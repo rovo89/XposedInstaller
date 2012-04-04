@@ -34,11 +34,11 @@ cp XposedBridge.jar /data/xposed/XposedBridge.jar.newversion || exit 1
 chmod 644 /data/xposed/XposedBridge.jar.newversion
 chown root:shell /data/xposed/XposedBridge.jar.newversion
 
-echo Touching module list...
+echo Touching module lists...
+touch /data/xposed/modules.list /data/xposed/modules.whitelist || exit 1
 XPOSEDUSER=`grep '^de.robv.android.xposed.installer ' /data/system/packages.list | cut -d' ' -f2`
-touch /data/xposed/modules.list || exit 1
-chmod 644 /data/xposed/modules.list
-chown 0$XPOSEDUSER:shell /data/xposed/modules.list
+chmod 644 /data/xposed/modules.list /data/xposed/modules.whitelist
+chown 0$XPOSEDUSER:shell /data/xposed/modules.list /data/xposed/modules.whitelist
 
 echo Mounting /system read-only...
 mount -o remount,ro /system

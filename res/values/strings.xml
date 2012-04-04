@@ -19,5 +19,6 @@
     <string name="versions">Versions:</string>
     <string name="reboot">Reboot</string>
     <string name="areyousure">Are you sure?</string>
+    <string name="module_is_not_activated_yet">Xposed module is not activated yet</string>
 
 </resources>

@@ -16,9 +16,10 @@ public class ModulesFragment extends Fragment {
 		View v = inflater.inflate(R.layout.tab_modules, container, false);
 		
 		PackageManager pm = getActivity().getPackageManager();
-
-		for (ApplicationInfo app : pm.getInstalledApplications(0)) {
-		  Log.d("PackageList", "package: " + app.packageName + ", sourceDir: " + app.sourceDir);
+		for (ApplicationInfo app : pm.getInstalledApplications(PackageManager.GET_META_DATA)) {
+			if (app.metaData == null || !app.metaData.containsKey("xposedmodule"))
+				continue;
+			Log.d("PackageList", "package: " + app.packageName + ", sourceDir: " + app.sourceDir);
 		}
 		
 		return v;
