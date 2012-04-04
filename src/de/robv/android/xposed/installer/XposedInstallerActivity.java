@@ -33,7 +33,7 @@ public class XposedInstallerActivity extends Activity {
         
         bar.addTab(bar.newTab()
                 .setText(R.string.tabModules)
-                .setTabListener(new TabListener<ModulesFragment>(this, "modules", ModulesFragment.class)));
+                .setTabListener(new TabListener<ModulesFragment>(this, "modules", ModulesFragment .class)));
         
         if (getIntent().hasExtra(EXTRA_OPEN_TAB)) {
         	bar.setSelectedNavigationItem(getIntent().getIntExtra(EXTRA_OPEN_TAB, 0));

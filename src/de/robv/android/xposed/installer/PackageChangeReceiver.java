@@ -68,6 +68,18 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 		return modules;
 	}
 	
+	static void setEnabledModules(Set<String> modules) {
+		try {
+			PrintWriter pw = new PrintWriter("/data/xposed/modules.whitelist");
+			for (String module : modules) {
+				pw.println(module);
+			}
+			pw.close();
+		} catch (IOException e) {
+			Log.e(XposedInstallerActivity.TAG, "cannot read modules.whitelist", e);
+		}
+	}
+	
 	static synchronized void updateModulesList(PackageManager pm, Set<String> enabledModules) {
 		try {
 			Log.i(XposedInstallerActivity.TAG, "updating modules.list");

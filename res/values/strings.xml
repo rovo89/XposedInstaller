@@ -4,7 +4,6 @@
     <string name="app_name">Xposed Installer</string>
     <string name="tabInstall">Install framework</string>
     <string name="tabModules">Modules</string>
-    <string name="not_implemented_yet">not implemented yet</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
     <string name="installerDescription">Here you can install the <b>Xposed</b> framework.
@@ -20,5 +19,6 @@
     <string name="reboot">Reboot</string>
     <string name="areyousure">Are you sure?</string>
     <string name="module_is_not_activated_yet">Xposed module is not activated yet</string>
+    <string name="no_xposed_modules_found">No Xposed modules were found!</string>
 
 </resources>
