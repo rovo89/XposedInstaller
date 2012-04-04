@@ -21,9 +21,6 @@ else
 fi
 rm -f /data/xposed/XposedBridge.jar.newversion 2>&1
 
-echo Mounting /system read-only...
-mount -o remount,ro /system
-
 echo
 echo Done! Changes will become active on reboot.
 exit 0

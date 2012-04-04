@@ -40,9 +40,6 @@ XPOSEDUSER=`grep '^de.robv.android.xposed.installer ' /data/system/packages.list
 chmod 644 /data/xposed/modules.list /data/xposed/modules.whitelist
 chown 0$XPOSEDUSER:shell /data/xposed/modules.list /data/xposed/modules.whitelist
 
-echo Mounting /system read-only...
-mount -o remount,ro /system
-
 echo
 echo Done! Changes will become active on reboot.
 exit 0

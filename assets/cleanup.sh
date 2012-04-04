@@ -16,9 +16,6 @@ fi
 echo Deleting /data/xposed...
 rm -rf /data/xposed/ || exit 1
 
-echo Mounting /system read-only...
-mount -o remount,ro /system
-
 echo
 echo Done! Changes will become active on reboot.
 exit 0
