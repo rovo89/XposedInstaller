@@ -57,6 +57,8 @@ public class InstallerFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				showAlert(install());
+				txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion());
+				txtJarInstalledVersion.setText(getJarInstalledVersion());
 			}
 		});
 		
@@ -64,6 +66,8 @@ public class InstallerFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				showAlert(uninstall());
+				txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion());
+				txtJarInstalledVersion.setText(getJarInstalledVersion());
 			}
 		});
 		btnCleanup.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +77,8 @@ public class InstallerFragment extends Fragment {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						showAlert(cleanup());
+						txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion());
+						txtJarInstalledVersion.setText(getJarInstalledVersion());
 					}
 				});
 			}
@@ -144,7 +150,10 @@ public class InstallerFragment extends Fragment {
 	
 	private String getJarInstalledVersion() {
 		try {
-			return getJarVersion(new FileInputStream("/data/xposed/XposedBridge.jar"));
+			if (new File("/data/xposed/XposedBridge.jar.newversion").exists())
+				return getJarVersion(new FileInputStream("/data/xposed/XposedBridge.jar.newversion"));
+			else
+				return getJarVersion(new FileInputStream("/data/xposed/XposedBridge.jar"));
 		} catch (IOException e) {
 			return getString(R.string.none);
 		}
