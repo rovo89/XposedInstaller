@@ -1,4 +1,6 @@
 #!/system/bin/sh
+export PATH=/system/bin:$PATH
+
 cd `dirname $0`
 
 if [ ! -f app_process -o ! -f XposedBridge.jar ]; then
@@ -20,25 +22,30 @@ fi
 echo Copying app_process...
 cp app_process /system/bin/app_process || exit 1
 chmod 755 /system/bin/app_process
-chown root:shell /system/bin/app_process
+chown root /system/bin/app_process
+chgrp shell /system/bin/app_process
 
 if [ ! -d /data/xposed ]; then
 	echo Creating /data/xposed...
 	mkdir /data/xposed
 	chmod 755 /data/xposed
-	chown root:shell /data/xposed
+	chown root /data/xposed
+	chgrp shell /data/xposed
 fi
 
 echo Copying XposedBridge.jar...
 cp XposedBridge.jar /data/xposed/XposedBridge.jar.newversion || exit 1
 chmod 644 /data/xposed/XposedBridge.jar.newversion
-chown root:shell /data/xposed/XposedBridge.jar.newversion
+chown root /data/xposed/XposedBridge.jar.newversion
+chgrp shell /data/xposed/XposedBridge.jar.newversion
 
 echo Touching module lists...
-touch /data/xposed/modules.list /data/xposed/modules.whitelist || exit 1
+touch /data/xposed/modules.list || exit 1
+touch /data/xposed/modules.whitelist || exit 1
 XPOSEDUSER=`grep '^de.robv.android.xposed.installer ' /data/system/packages.list | cut -d' ' -f2`
 chmod 644 /data/xposed/modules.list /data/xposed/modules.whitelist
-chown 0$XPOSEDUSER:shell /data/xposed/modules.list /data/xposed/modules.whitelist
+chown 0$XPOSEDUSER /data/xposed/modules.list /data/xposed/modules.whitelist
+chgrp shell /data/xposed/modules.list /data/xposed/modules.whitelist
 
 echo
 echo Done! Changes will become active on reboot.
