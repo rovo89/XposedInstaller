@@ -1,2 +1,2 @@
-#!/sbin/sh
+#!/system/bin/sh
 reboot

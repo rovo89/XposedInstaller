@@ -1,4 +1,4 @@
-#!/sbin/sh
+#!/system/bin/sh
 cd `dirname $0`
 
 if [ ! -f app_process -o ! -f XposedBridge.jar ]; then

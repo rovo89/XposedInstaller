@@ -1,4 +1,4 @@
-#!/sbin/sh
+#!/system/bin/sh
 cd `dirname $0`
 
 echo Mounting /system writable...
