@@ -39,12 +39,16 @@ chmod 644 /data/xposed/XposedBridge.jar.newversion
 chown root /data/xposed/XposedBridge.jar.newversion
 chgrp shell /data/xposed/XposedBridge.jar.newversion
 
+echo Getting user id for Xposed Installer...
+XPOSEDUSER=`grep '^de.robv.android.xposed.installer ' /data/system/packages.list | cut -d' ' -f2`
+echo User id: $XPOSEDUSER
+test -n "$XPOSEDUSER" || exit 1
+
 echo Touching module lists...
 touch /data/xposed/modules.list || exit 1
 touch /data/xposed/modules.whitelist || exit 1
-XPOSEDUSER=`grep '^de.robv.android.xposed.installer ' /data/system/packages.list | cut -d' ' -f2`
 chmod 644 /data/xposed/modules.list /data/xposed/modules.whitelist
-chown 0$XPOSEDUSER /data/xposed/modules.list /data/xposed/modules.whitelist
+chown $XPOSEDUSER /data/xposed/modules.list /data/xposed/modules.whitelist
 chgrp shell /data/xposed/modules.list /data/xposed/modules.whitelist
 
 echo
