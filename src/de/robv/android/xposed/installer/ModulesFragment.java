@@ -27,7 +27,7 @@ public class ModulesFragment extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
         
         ModuleAdapter modules = new ModuleAdapter(getActivity());
-        enabledModules = PackageChangeReceiver.getEnabledModules();
+        enabledModules = PackageChangeReceiver.getEnabledModules(getActivity());
         
 		PackageManager pm = getActivity().getPackageManager();
 		for (ApplicationInfo app : pm.getInstalledApplications(PackageManager.GET_META_DATA)) {
@@ -79,8 +79,8 @@ public class ModulesFragment extends ListFragment {
 							enabledModules.add(item.packageName);
 						else
 							enabledModules.remove(item.packageName);
-						PackageChangeReceiver.setEnabledModules(enabledModules);
-						PackageChangeReceiver.updateModulesList(getContext().getPackageManager(), enabledModules);
+						PackageChangeReceiver.setEnabledModules(getContext(), enabledModules);
+						PackageChangeReceiver.updateModulesList(getContext(), enabledModules);
 					}
 				});
 

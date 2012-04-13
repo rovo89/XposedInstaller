@@ -18,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 public class PackageChangeReceiver extends BroadcastReceiver {
 	@Override
@@ -31,8 +32,8 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			return;
 		
 		String appName;
-		PackageManager pm = context.getPackageManager();
 		try {
+			PackageManager pm = context.getPackageManager();
 			ApplicationInfo app = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
 			if (app.metaData == null || !app.metaData.containsKey("xposedmodule"))
 				return;
@@ -41,8 +42,8 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			return;
 		}
 		
-		Set<String> enabledModules = getEnabledModules();
-		updateModulesList(pm, enabledModules);
+		Set<String> enabledModules = getEnabledModules(context);
+		updateModulesList(context, enabledModules);
 		
 		if (!enabledModules.contains(packageName))
 			showNotActivatedNotification(context, packageName, appName);
@@ -53,7 +54,7 @@ public class PackageChangeReceiver extends BroadcastReceiver {
         return (uri != null) ? uri.getSchemeSpecificPart() : null;
     }
 	
-	static Set<String> getEnabledModules() {
+	static Set<String> getEnabledModules(Context context) {
 		Set<String> modules = new HashSet<String>();
 		try {
 			BufferedReader moduleLines = new BufferedReader(new FileReader("/data/xposed/modules.whitelist"));
@@ -61,14 +62,16 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			while ((module = moduleLines.readLine()) != null) {
 				modules.add(module);
 			}
+			moduleLines.close();
 		} catch (IOException e) {
-			Log.e(XposedInstallerActivity.TAG, "cannot read modules.whitelist", e);
+			Toast.makeText(context, "cannot read /data/xposed/modules.whitelist", 1000).show();
+			Log.e(XposedInstallerActivity.TAG, "cannot read /data/xposed/modules.whitelist", e);
 			return modules;
 		}
 		return modules;
 	}
 	
-	static void setEnabledModules(Set<String> modules) {
+	static void setEnabledModules(Context context, Set<String> modules) {
 		try {
 			PrintWriter pw = new PrintWriter("/data/xposed/modules.whitelist");
 			for (String module : modules) {
@@ -76,12 +79,14 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			}
 			pw.close();
 		} catch (IOException e) {
-			Log.e(XposedInstallerActivity.TAG, "cannot read modules.whitelist", e);
+			Toast.makeText(context, "cannot write /data/xposed/modules.whitelist", 1000).show();
+			Log.e(XposedInstallerActivity.TAG, "cannot write /data/xposed/modules.whitelist", e);
 		}
 	}
 	
-	static synchronized void updateModulesList(PackageManager pm, Set<String> enabledModules) {
+	static synchronized void updateModulesList(Context context, Set<String> enabledModules) {
 		try {
+			PackageManager pm = context.getPackageManager();
 			Log.i(XposedInstallerActivity.TAG, "updating modules.list");
 			PrintWriter modulesList = new PrintWriter("/data/xposed/modules.list");
 			for (ApplicationInfo app : pm.getInstalledApplications(PackageManager.GET_META_DATA)) {
@@ -90,8 +95,10 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 				modulesList.println(app.sourceDir);
 			}
 			modulesList.close();
+			Toast.makeText(context, "Xposed module list was updated", 1000).show();
 		} catch (IOException e) {
-			Log.e(XposedInstallerActivity.TAG, "cannot write modules.list", e);
+			Toast.makeText(context, "cannot write /data/xposed/modules.list", 1000).show();
+			Log.e(XposedInstallerActivity.TAG, "cannot write /data/xposed/modules.list", e);
 		}
 	}
 	
