@@ -39,6 +39,11 @@ chmod 644 /data/xposed/XposedBridge.jar.newversion
 chown root /data/xposed/XposedBridge.jar.newversion
 chgrp shell /data/xposed/XposedBridge.jar.newversion
 
+if [ -f /data/xposed/disabled ]; then
+	echo Removing /data/xposed/disabled...
+	rm /data/xposed/disabled
+fi
+
 echo Getting user id for Xposed Installer...
 XPOSEDUSER=`grep '^de.robv.android.xposed.installer ' /data/system/packages.list | cut -d' ' -f2`
 echo User id: $XPOSEDUSER
