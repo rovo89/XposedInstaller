@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
@@ -60,6 +61,8 @@ public class InstallerFragment extends Fragment {
 				showAlert(install());
 				txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
 				txtJarInstalledVersion.setText(getJarInstalledVersion(none));
+				Context context = InstallerFragment.this.getActivity();
+				PackageChangeReceiver.updateModulesList(context, PackageChangeReceiver.getEnabledModules(context));
 			}
 		});
 		
