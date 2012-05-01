@@ -43,10 +43,11 @@ public class InstallerFragment extends Fragment {
 		final TextView txtJarInstalledVersion = (TextView) v.findViewById(R.id.jar_installed_version);
 		final TextView txtJarLatestVersion = (TextView) v.findViewById(R.id.jar_latest_version);
 
-		txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion());
-		txtAppProcessLatestVersion.setText(getLatestAppProcessVersion());
-		txtJarInstalledVersion.setText(getJarInstalledVersion());
-		txtJarLatestVersion.setText(getJarLatestVersion());
+		final String none = getString(R.string.none);
+		txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
+		txtAppProcessLatestVersion.setText(getLatestAppProcessVersion(none));
+		txtJarInstalledVersion.setText(getJarInstalledVersion(none));
+		txtJarLatestVersion.setText(getJarLatestVersion(none));
 		
 		final Button btnInstall = (Button) v.findViewById(R.id.btnInstall);
 		final Button btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
@@ -57,8 +58,8 @@ public class InstallerFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				showAlert(install());
-				txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion());
-				txtJarInstalledVersion.setText(getJarInstalledVersion());
+				txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
+				txtJarInstalledVersion.setText(getJarInstalledVersion(none));
 			}
 		});
 		
@@ -66,8 +67,8 @@ public class InstallerFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				showAlert(uninstall());
-				txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion());
-				txtJarInstalledVersion.setText(getJarInstalledVersion());
+				txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
+				txtJarInstalledVersion.setText(getJarInstalledVersion(none));
 			}
 		});
 		btnCleanup.setOnClickListener(new View.OnClickListener() {
@@ -77,8 +78,8 @@ public class InstallerFragment extends Fragment {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						showAlert(cleanup());
-						txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion());
-						txtJarInstalledVersion.setText(getJarInstalledVersion());
+						txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
+						txtJarInstalledVersion.setText(getJarInstalledVersion(none));
 					}
 				});
 			}
@@ -117,24 +118,24 @@ public class InstallerFragment extends Fragment {
         .show();
 	}
 	
-	private String getInstalledAppProcessVersion() {
+	private String getInstalledAppProcessVersion(String defaultValue) {
 		try {
 			Process p = Runtime.getRuntime().exec(new String[] { "strings", "/system/bin/app_process" });
-			return getAppProcessVersion(p.getInputStream());
+			return getAppProcessVersion(p.getInputStream(), defaultValue);
 		} catch (IOException e) {
 			return getString(R.string.none);
 		}
 	}
 	
-	private String getLatestAppProcessVersion() {
+	private String getLatestAppProcessVersion(String defaultValue) {
 		try {
-			return getAppProcessVersion(getActivity().getAssets().open("app_process"));
+			return getAppProcessVersion(getActivity().getAssets().open("app_process"), defaultValue);
 		} catch (IOException e) {
-			return getString(R.string.none);
+			return defaultValue;
 		}
 	}
 	
-	private String getAppProcessVersion(InputStream is) throws IOException {
+	private String getAppProcessVersion(InputStream is, String defaultValue) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		String line;
 		while ((line = br.readLine()) != null) {
@@ -145,29 +146,29 @@ public class InstallerFragment extends Fragment {
 			}
 		}
 		is.close();
-		return getString(R.string.none);
+		return defaultValue;
 	}
 	
-	private String getJarInstalledVersion() {
+	public static String getJarInstalledVersion(String defaultValue) {
 		try {
 			if (new File("/data/xposed/XposedBridge.jar.newversion").exists())
-				return getJarVersion(new FileInputStream("/data/xposed/XposedBridge.jar.newversion"));
+				return getJarVersion(new FileInputStream("/data/xposed/XposedBridge.jar.newversion"), defaultValue);
 			else
-				return getJarVersion(new FileInputStream("/data/xposed/XposedBridge.jar"));
+				return getJarVersion(new FileInputStream("/data/xposed/XposedBridge.jar"), defaultValue);
 		} catch (IOException e) {
-			return getString(R.string.none);
+			return defaultValue;
 		}
 	}
 	
-	private String getJarLatestVersion() {
+	private String getJarLatestVersion(String defaultValue) {
 		try {
-			return getJarVersion(getActivity().getAssets().open("XposedBridge.jar"));
+			return getJarVersion(getActivity().getAssets().open("XposedBridge.jar"), defaultValue);
 		} catch (IOException e) {
-			return getString(R.string.none);
+			return defaultValue;
 		}
 	}
 	
-	private String getJarVersion(InputStream is) throws IOException {
+	public static String getJarVersion(InputStream is, String defaultValue) throws IOException {
 		JarInputStream jis = new JarInputStream(is);
 		JarEntry entry;
 		while ((entry = jis.getNextJarEntry()) != null) {
@@ -179,7 +180,7 @@ public class InstallerFragment extends Fragment {
 			is.close();
 			return version;
 		}
-		return getString(R.string.none);
+		return defaultValue;
 	}
 	
 	private String install() {

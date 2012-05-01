@@ -21,11 +21,14 @@ import android.widget.TextView;
 
 public class ModulesFragment extends ListFragment {
 	private Set<String> enabledModules;
+	private String installedXposedVersion;
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
         
+		installedXposedVersion = InstallerFragment.getJarInstalledVersion(null);
+		
         ModuleAdapter modules = new ModuleAdapter(getActivity());
         enabledModules = PackageChangeReceiver.getEnabledModules(getActivity());
         
@@ -34,7 +37,8 @@ public class ModulesFragment extends ListFragment {
 			if (app.metaData == null || !app.metaData.containsKey("xposedmodule"))
 				continue;
 			
-			modules.add(new XposedModule(app.packageName, pm.getApplicationLabel(app).toString(), pm.getApplicationIcon(app)));
+			String minVersion = app.metaData.getString("xposedminversion");
+			modules.add(new XposedModule(app.packageName, pm.getApplicationLabel(app).toString(), pm.getApplicationIcon(app), minVersion));
 		}
 		
 		modules.sort(new Comparator<XposedModule>() {
@@ -50,6 +54,7 @@ public class ModulesFragment extends ListFragment {
     
     private class ModuleAdapter extends ArrayAdapter<XposedModule> {
     	private final LayoutInflater mInflater;
+    	
     	
 		public ModuleAdapter(Context context) {
 			super(context, android.R.layout.simple_list_item_1);
@@ -72,17 +77,32 @@ public class ModulesFragment extends ListFragment {
 	            
 	            CheckBox checkbox = (CheckBox)view.findViewById(R.id.checkbox);
 	            checkbox.setChecked(enabledModules.contains(item.packageName));
-	            checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-						if (isChecked)
-							enabledModules.add(item.packageName);
-						else
-							enabledModules.remove(item.packageName);
-						PackageChangeReceiver.setEnabledModules(getContext(), enabledModules);
-						PackageChangeReceiver.updateModulesList(getContext(), enabledModules);
-					}
-				});
+	            TextView warningText = (TextView) view.findViewById(R.id.warning);
+
+	            if (item.minVersion != null && installedXposedVersion != null
+	            		&& PackageChangeReceiver.compareVersions(item.minVersion, installedXposedVersion) > 0) {
+	            	checkbox.setEnabled(false);
+	            	warningText.setText(String.format(getString(R.string.warning_xposed_min_version), 
+	            			PackageChangeReceiver.trimVersion(item.minVersion)));
+	            	warningText.setVisibility(View.VISIBLE);
+	            } else {
+	            	checkbox.setEnabled(true);
+	            	warningText.setVisibility(View.GONE);
+	            	checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+	            		@Override
+	            		public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+	            			if (isChecked)
+	            				enabledModules.add(item.packageName);
+	            			else
+	            				enabledModules.remove(item.packageName);
+	            			
+	            			PackageChangeReceiver.setEnabledModules(getContext(), enabledModules);
+	            			PackageChangeReceiver.updateModulesList(getContext(), enabledModules);
+	            		}
+	            	});
+	            }
+	            
+	            
 
 	            return view;
 		}
@@ -93,11 +113,13 @@ public class ModulesFragment extends ListFragment {
     	String packageName;
     	String appName;
     	Drawable icon;
+    	String minVersion;
     	
-    	public XposedModule(String packageName, String appName, Drawable icon) {
+    	public XposedModule(String packageName, String appName, Drawable icon, String minVersion) {
     		this.packageName = packageName;
     		this.appName = appName;
     		this.icon = icon;
+    		this.minVersion = minVersion;
     	}
     }
 }

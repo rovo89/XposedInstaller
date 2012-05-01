@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -88,14 +90,22 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 		try {
 			PackageManager pm = context.getPackageManager();
 			Log.i(XposedInstallerActivity.TAG, "updating modules.list");
+			String installedXposedVersion = InstallerFragment.getJarInstalledVersion(null); 
 			PrintWriter modulesList = new PrintWriter("/data/xposed/modules.list");
 			for (ApplicationInfo app : pm.getInstalledApplications(PackageManager.GET_META_DATA)) {
 				if (!enabledModules.contains(app.packageName) || app.metaData == null || !app.metaData.containsKey("xposedmodule"))
 					continue;
+				
+				String minVersion = app.metaData.getString("xposedminversion");
+	            if (minVersion != null && installedXposedVersion != null
+	            		&& PackageChangeReceiver.compareVersions(minVersion, installedXposedVersion) > 0)
+	            	continue;
+
 				modulesList.println(app.sourceDir);
 			}
 			modulesList.close();
-			Toast.makeText(context, "Xposed module list was updated", 1000).show();
+			
+			Toast.makeText(context, R.string.xposed_module_list_updated, 1000).show();
 		} catch (IOException e) {
 			Toast.makeText(context, "cannot write /data/xposed/modules.list", 1000).show();
 			Log.e(XposedInstallerActivity.TAG, "cannot write /data/xposed/modules.list", e);
@@ -119,5 +129,68 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 
 		NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		nm.notify(packageName, XposedInstallerActivity.NOTIFICATION_MODULE_NOT_ACTIVATED_YET, notification);
+	}
+	
+	
+	private static Pattern SEARCH_PATTERN = Pattern.compile("(\\d+)(\\D+)?");
+	// removes: spaces at front and back, any dots and following zeros/stars at the end, any stars at the end
+	private static Pattern TRIM_VERSION = Pattern.compile("^\\s*(.*?)(?:\\.+[0*]*)*\\**\\s*$");
+	public static int compareVersions(String s1, String s2) {
+		// easy: both are equal
+		if (s1.equalsIgnoreCase(s2))
+			return 0;
+		
+		s1 = trimVersion(s1);
+		s2 = trimVersion(s2);
+		
+		// check again
+		if (s1.equalsIgnoreCase(s2))
+			return 0;
+		
+		Matcher m1 = SEARCH_PATTERN.matcher(s1);
+		Matcher m2 = SEARCH_PATTERN.matcher(s2);
+		boolean bothMatch = false;
+		while (m1.find() && m2.find()) {
+			bothMatch = true;
+			
+			// if the whole match is equal, continue with the next match
+			if (m1.group().equalsIgnoreCase(m2.group()))
+				continue;
+			
+			// compare numeric part
+			int i1 = Integer.parseInt(m1.group(1));
+			int i2 = Integer.parseInt(m2.group(1));
+			if (i1 != i2)
+				return i1 - i2;
+			
+			// numeric part is equal from here on, now compare the suffix (anything non-numeric after the number)
+			String suf1 = m1.group(2);
+			String suf2 = m2.group(2);
+			
+			// both have no suffix, means nothing left in the string => equal
+			if (suf1 == null && suf2 == null)
+				return 0;
+			
+			// only one has a suffix => if it is a dot, a number will follow => newer, otherwise older
+			if (suf1 == null)
+				return suf2.equals(".") ? -1 : 1;
+			if (suf2 == null)
+				return suf1.equals(".") ? 1 : -1;
+			
+			// both have a prefix	
+			if (suf1 != null && suf2 != null && !suf1.equalsIgnoreCase(suf2))
+				return suf1.compareToIgnoreCase(suf2);
+		}
+		
+		// if one of the strings does not start with a number, do a simple string comparison
+		if (!bothMatch)
+			return s1.compareToIgnoreCase(s2);
+
+		// either whoever has remaining digits is bigger
+		return m1.hitEnd() ? -1 : 1;
+	}
+	
+	public static String trimVersion(String version) {
+		return TRIM_VERSION.matcher(version).replaceFirst("$1"); 		
 	}
 }
