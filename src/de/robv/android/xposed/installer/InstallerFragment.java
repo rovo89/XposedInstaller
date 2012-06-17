@@ -19,6 +19,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -55,16 +56,22 @@ public class InstallerFragment extends Fragment {
 		final Button btnCleanup = (Button) v.findViewById(R.id.btnCleanup);
 		final Button btnReboot = (Button) v.findViewById(R.id.btnReboot);
 		
-		btnInstall.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				showAlert(install());
-				txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
-				txtJarInstalledVersion.setText(getJarInstalledVersion(none));
-				Context context = InstallerFragment.this.getActivity();
-				PackageChangeReceiver.updateModulesList(context, PackageChangeReceiver.getEnabledModules(context));
-			}
-		});
+		if (checkBinaryCompatibility()) {
+			btnInstall.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					showAlert(install());
+					txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
+					txtJarInstalledVersion.setText(getJarInstalledVersion(none));
+					Context context = InstallerFragment.this.getActivity();
+					PackageChangeReceiver.updateModulesList(context, PackageChangeReceiver.getEnabledModules(context));
+				}
+			});
+		} else {
+			btnInstall.setText(R.string.phone_not_compatible);
+			btnInstall.setTextColor(Color.RED);
+			btnInstall.setEnabled(false);
+		}
 		
 		btnUninstall.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -119,6 +126,26 @@ public class InstallerFragment extends Fragment {
         .setNegativeButton(android.R.string.no, null)
         .create()
         .show();
+	}
+	
+	private boolean checkBinaryCompatibility() {
+		try {
+			File testFile = writeAssetToFile("xposedtest");
+			if (testFile == null)
+				return false;
+			
+			testFile.setExecutable(true);			
+			Process p = Runtime.getRuntime().exec(testFile.getAbsolutePath());
+			
+			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			String result = stdout.readLine();
+			stdout.close();
+			
+			testFile.delete();
+			return result.equals("OK");
+		} catch (IOException e) {
+			return false;
+		}
 	}
 	
 	private String getInstalledAppProcessVersion(String defaultValue) {
