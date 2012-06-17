@@ -19,36 +19,42 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
 public class PackageChangeReceiver extends BroadcastReceiver {
 	@Override
-	public void onReceive(Context context, Intent intent) {
+	public void onReceive(final Context context, final Intent intent) {
 		if (intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)
 				&& intent.getBooleanExtra(Intent.EXTRA_REPLACING, false))
 			return;
 		
-		String packageName = getPackageName(intent);
-		if (packageName == null)
-			return;
-		
-		String appName;
-		try {
-			PackageManager pm = context.getPackageManager();
-			ApplicationInfo app = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
-			if (app.metaData == null || !app.metaData.containsKey("xposedmodule"))
-				return;
-			appName = pm.getApplicationLabel(app).toString();
-		} catch (NameNotFoundException e) {
-			return;
-		}
-		
-		Set<String> enabledModules = getEnabledModules(context);
-		updateModulesList(context, enabledModules);
-		
-		if (!enabledModules.contains(packageName))
-			showNotActivatedNotification(context, packageName, appName);
+		new Thread() {
+			@Override
+			public void run() {
+				String packageName = getPackageName(intent);
+				if (packageName == null)
+					return;
+				
+				String appName;
+				try {
+					PackageManager pm = context.getPackageManager();
+					ApplicationInfo app = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+					if (app.metaData == null || !app.metaData.containsKey("xposedmodule"))
+						return;
+					appName = pm.getApplicationLabel(app).toString();
+				} catch (NameNotFoundException e) {
+					return;
+				}
+				
+				Set<String> enabledModules = getEnabledModules(context);
+				if (enabledModules.contains(packageName))
+					updateModulesList(context, enabledModules);
+				else
+					showNotActivatedNotification(context, packageName, appName);
+			}
+		}.start();
 	}
 	
 	private static String getPackageName(Intent intent) {
@@ -86,30 +92,40 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 		}
 	}
 	
-	static synchronized void updateModulesList(Context context, Set<String> enabledModules) {
-		try {
-			PackageManager pm = context.getPackageManager();
-			Log.i(XposedInstallerActivity.TAG, "updating modules.list");
-			String installedXposedVersion = InstallerFragment.getJarInstalledVersion(null); 
-			PrintWriter modulesList = new PrintWriter("/data/xposed/modules.list");
-			for (ApplicationInfo app : pm.getInstalledApplications(PackageManager.GET_META_DATA)) {
-				if (!enabledModules.contains(app.packageName) || app.metaData == null || !app.metaData.containsKey("xposedmodule"))
-					continue;
-				
-				String minVersion = app.metaData.getString("xposedminversion");
-	            if (minVersion != null && installedXposedVersion != null
-	            		&& PackageChangeReceiver.compareVersions(minVersion, installedXposedVersion) > 0)
-	            	continue;
-
-				modulesList.println(app.sourceDir);
+	static synchronized void updateModulesList(final Context context, final Set<String> enabledModules) {
+		new AsyncTask<Void, Void, String>() {
+			@Override
+			protected String doInBackground(Void... params) {
+				try {
+					PackageManager pm = context.getPackageManager();
+					Log.i(XposedInstallerActivity.TAG, "updating modules.list");
+					String installedXposedVersion = InstallerFragment.getJarInstalledVersion(null); 
+					PrintWriter modulesList = new PrintWriter("/data/xposed/modules.list");
+					for (ApplicationInfo app : pm.getInstalledApplications(PackageManager.GET_META_DATA)) {
+						if (!enabledModules.contains(app.packageName) || app.metaData == null || !app.metaData.containsKey("xposedmodule"))
+							continue;
+						
+						String minVersion = app.metaData.getString("xposedminversion");
+						if (minVersion != null && installedXposedVersion != null
+								&& PackageChangeReceiver.compareVersions(minVersion, installedXposedVersion) > 0)
+							continue;
+						
+						modulesList.println(app.sourceDir);
+					}
+					modulesList.close();
+					
+					return context.getString(R.string.xposed_module_list_updated);
+				} catch (IOException e) {
+					Log.e(XposedInstallerActivity.TAG, "cannot write /data/xposed/modules.list", e);
+					return "cannot write /data/xposed/modules.list";
+				}
 			}
-			modulesList.close();
 			
-			Toast.makeText(context, R.string.xposed_module_list_updated, 1000).show();
-		} catch (IOException e) {
-			Toast.makeText(context, "cannot write /data/xposed/modules.list", 1000).show();
-			Log.e(XposedInstallerActivity.TAG, "cannot write /data/xposed/modules.list", e);
-		}
+			@Override
+			protected void onPostExecute(String result) {
+				Toast.makeText(context, result, 1000).show();
+			}
+		}.execute();
 	}
 	
 	private static void showNotActivatedNotification(Context context, String packageName, String appName) {
