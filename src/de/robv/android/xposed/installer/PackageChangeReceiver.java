@@ -24,6 +24,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class PackageChangeReceiver extends BroadcastReceiver {
+	public static String MIN_MODULE_VERSION = "2.0b1";
+	
 	@Override
 	public void onReceive(final Context context, final Intent intent) {
 		if (intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)
@@ -102,12 +104,14 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 					String installedXposedVersion = InstallerFragment.getJarInstalledVersion(null); 
 					PrintWriter modulesList = new PrintWriter("/data/xposed/modules.list");
 					for (ApplicationInfo app : pm.getInstalledApplications(PackageManager.GET_META_DATA)) {
-						if (!enabledModules.contains(app.packageName) || app.metaData == null || !app.metaData.containsKey("xposedmodule"))
+						if (!enabledModules.contains(app.packageName) || app.metaData == null
+						 || !app.metaData.containsKey("xposedmodule") || !app.metaData.containsKey("xposedminversion"))
 							continue;
 						
 						String minVersion = app.metaData.getString("xposedminversion");
-						if (minVersion != null && installedXposedVersion != null
-								&& PackageChangeReceiver.compareVersions(minVersion, installedXposedVersion) > 0)
+						if (installedXposedVersion != null &&
+							(PackageChangeReceiver.compareVersions(minVersion, installedXposedVersion) > 0
+							|| PackageChangeReceiver.compareVersions(minVersion, MIN_MODULE_VERSION) < 0))
 							continue;
 						
 						modulesList.println(app.sourceDir);

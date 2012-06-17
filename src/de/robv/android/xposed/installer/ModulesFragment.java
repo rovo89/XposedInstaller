@@ -73,11 +73,19 @@ public class ModulesFragment extends ListFragment {
             checkbox.setChecked(enabledModules.contains(item.packageName));
             TextView warningText = (TextView) view.findViewById(R.id.warning);
 
-            if (item.minVersion != null && installedXposedVersion != null
-            		&& PackageChangeReceiver.compareVersions(item.minVersion, installedXposedVersion) > 0) {
+            if (item.minVersion == null) {
+            	checkbox.setEnabled(false);
+            	warningText.setText(getString(R.string.no_min_version_specified));
+            	warningText.setVisibility(View.VISIBLE);
+            } else if (installedXposedVersion != null && PackageChangeReceiver.compareVersions(item.minVersion, installedXposedVersion) > 0) {
             	checkbox.setEnabled(false);
             	warningText.setText(String.format(getString(R.string.warning_xposed_min_version), 
             			PackageChangeReceiver.trimVersion(item.minVersion)));
+            	warningText.setVisibility(View.VISIBLE);
+            } else if (PackageChangeReceiver.compareVersions(item.minVersion, PackageChangeReceiver.MIN_MODULE_VERSION) < 0) {
+            	checkbox.setEnabled(false);
+            	warningText.setText(String.format(getString(R.string.warning_min_version_too_low), 
+            			PackageChangeReceiver.trimVersion(item.minVersion), PackageChangeReceiver.MIN_MODULE_VERSION));
             	warningText.setVisibility(View.VISIBLE);
             } else {
             	checkbox.setEnabled(true);
