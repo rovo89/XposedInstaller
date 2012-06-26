@@ -27,17 +27,38 @@ public class XposedInstallerActivity extends Activity {
         
         bar.addTab(bar.newTab()
                 .setText(R.string.tabInstall)
-                .setTabListener(new TabListener<InstallerFragment>(this, "install", InstallerFragment.class)));
+                .setTabListener(new TabListener<InstallerFragment>(this, "install", InstallerFragment.class, false)));
         
         bar.addTab(bar.newTab()
                 .setText(R.string.tabModules)
-                .setTabListener(new TabListener<ModulesFragment>(this, "modules", ModulesFragment .class)));
+                .setTabListener(new TabListener<ModulesFragment>(this, "modules", ModulesFragment .class, false)));
         
+        bar.addTab(bar.newTab()
+                .setText(R.string.tabNativeLibs)
+                .setTabListener(new TabListener<NativeLibsFragment>(this, "nativelibs", NativeLibsFragment.class, true)));
+        
+        int selectTabIndex = -1; 
         if (getIntent().hasExtra(EXTRA_OPEN_TAB)) {
         	bar.setSelectedNavigationItem(getIntent().getIntExtra(EXTRA_OPEN_TAB, 0));
+        	Object extra = getIntent().getExtras().get(EXTRA_OPEN_TAB);
+        	try {
+        		if (extra != null)
+        			selectTabIndex = (Integer) extra;
+        	} catch (ClassCastException e) {
+        		String extraS = extra.toString();
+        		if (extraS.equals("install"))
+        			selectTabIndex = 0;
+        		else if (extraS.equals("modules")) 
+        			selectTabIndex = 1;
+        		else if (extraS.equals("nativelibs")) 
+        			selectTabIndex = 2;
+        	}
         } else if (savedInstanceState != null) {
-            bar.setSelectedNavigationItem(savedInstanceState.getInt("tab", 0));
+        	selectTabIndex = savedInstanceState.getInt("tab", -1);
         }
+        
+    	if (selectTabIndex >= 0 && selectTabIndex < bar.getTabCount())
+    		bar.setSelectedNavigationItem(getIntent().getIntExtra(EXTRA_OPEN_TAB, 0));
     }
     
     @Override

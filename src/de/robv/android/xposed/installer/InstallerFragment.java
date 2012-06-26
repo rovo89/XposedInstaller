@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.regex.Matcher;
@@ -54,6 +55,7 @@ public class InstallerFragment extends Fragment {
 		final Button btnInstall = (Button) v.findViewById(R.id.btnInstall);
 		final Button btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
 		final Button btnCleanup = (Button) v.findViewById(R.id.btnCleanup);
+		final Button btnSoftRebootTestmode = (Button) v.findViewById(R.id.btnSoftRebootTestmode);
 		final Button btnReboot = (Button) v.findViewById(R.id.btnReboot);
 		
 		if (checkBinaryCompatibility()) {
@@ -64,7 +66,9 @@ public class InstallerFragment extends Fragment {
 					txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
 					txtJarInstalledVersion.setText(getJarInstalledVersion(none));
 					Context context = InstallerFragment.this.getActivity();
-					PackageChangeReceiver.updateModulesList(context, PackageChangeReceiver.getEnabledModules(context));
+					Set<String> enabledModules = PackageChangeReceiver.getEnabledModules(context);
+					PackageChangeReceiver.updateModulesList(context, enabledModules);
+					PackageChangeReceiver.updateNativeLibs(context, enabledModules);
 				}
 			});
 		} else {
@@ -101,6 +105,18 @@ public class InstallerFragment extends Fragment {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						showAlert(reboot());
+					}
+				});
+			}
+		});
+		
+		btnSoftRebootTestmode.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				areYouSure(R.string.reboot, new OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						showAlert(softRebootTestmode());
 					}
 				});
 			}
@@ -236,6 +252,10 @@ public class InstallerFragment extends Fragment {
 	
 	private String cleanup() {
 		return executeScript("cleanup.sh");
+	}
+	
+	private String softRebootTestmode() {
+		return executeScript("soft_reboot.sh");
 	}
 	
 	private String reboot() {

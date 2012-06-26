@@ -1,11 +1,17 @@
 package de.robv.android.xposed.installer;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,11 +21,13 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -32,31 +40,28 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 				&& intent.getBooleanExtra(Intent.EXTRA_REPLACING, false))
 			return;
 		
-		new Thread() {
-			@Override
-			public void run() {
-				String packageName = getPackageName(intent);
-				if (packageName == null)
-					return;
-				
-				String appName;
-				try {
-					PackageManager pm = context.getPackageManager();
-					ApplicationInfo app = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
-					if (app.metaData == null || !app.metaData.containsKey("xposedmodule"))
-						return;
-					appName = pm.getApplicationLabel(app).toString();
-				} catch (NameNotFoundException e) {
-					return;
-				}
-				
-				Set<String> enabledModules = getEnabledModules(context);
-				if (enabledModules.contains(packageName))
-					updateModulesList(context, enabledModules);
-				else
-					showNotActivatedNotification(context, packageName, appName);
-			}
-		}.start();
+		String packageName = getPackageName(intent);
+		if (packageName == null)
+			return;
+		
+		String appName;
+		try {
+			PackageManager pm = context.getPackageManager();
+			ApplicationInfo app = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+			if (app.metaData == null || !app.metaData.containsKey("xposedmodule"))
+				return;
+			appName = pm.getApplicationLabel(app).toString();
+		} catch (NameNotFoundException e) {
+			return;
+		}
+		
+		Set<String> enabledModules = getEnabledModules(context);
+		if (enabledModules.contains(packageName)) {
+			updateModulesList(context, enabledModules);
+			updateNativeLibs(context, enabledModules);
+		} else {
+			showNotActivatedNotification(context, packageName, appName);
+		}
 	}
 	
 	private static String getPackageName(Intent intent) {
@@ -99,19 +104,29 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			@Override
 			protected String doInBackground(Void... params) {
 				try {
-					PackageManager pm = context.getPackageManager();
 					Log.i(XposedInstallerActivity.TAG, "updating modules.list");
-					String installedXposedVersion = InstallerFragment.getJarInstalledVersion(null); 
+					String installedXposedVersion = InstallerFragment.getJarInstalledVersion(null);
+					if (installedXposedVersion == null)
+						return "The xposed framework is not installed";
+					
+					PackageManager pm = context.getPackageManager();
 					PrintWriter modulesList = new PrintWriter("/data/xposed/modules.list");
-					for (ApplicationInfo app : pm.getInstalledApplications(PackageManager.GET_META_DATA)) {
-						if (!enabledModules.contains(app.packageName) || app.metaData == null
-						 || !app.metaData.containsKey("xposedmodule") || !app.metaData.containsKey("xposedminversion"))
+					for (String packageName : enabledModules) {
+						ApplicationInfo app;
+						try {
+							app = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
+						} catch (NameNotFoundException e) {
+							continue;
+						}
+						
+						if (app.metaData == null
+						|| !app.metaData.containsKey("xposedmodule")
+						|| !app.metaData.containsKey("xposedminversion"))
 							continue;
 						
 						String minVersion = app.metaData.getString("xposedminversion");
-						if (installedXposedVersion != null &&
-							(PackageChangeReceiver.compareVersions(minVersion, installedXposedVersion) > 0
-							|| PackageChangeReceiver.compareVersions(minVersion, MIN_MODULE_VERSION) < 0))
+						if (PackageChangeReceiver.compareVersions(minVersion, installedXposedVersion) > 0
+								|| PackageChangeReceiver.compareVersions(minVersion, MIN_MODULE_VERSION) < 0)
 							continue;
 						
 						modulesList.println(app.sourceDir);
@@ -130,6 +145,76 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 				Toast.makeText(context, result, 1000).show();
 			}
 		}.execute();
+	}
+	
+	static synchronized void updateNativeLibs(final Context context, final Set<String> enabledModules) {
+		new Thread() {
+			@Override
+			public void run() {
+				Log.i(XposedInstallerActivity.TAG, "updating native libraries");
+				
+				try {
+					new ProcessBuilder("sh", "-c", "rm -r /data/xposed/lib/*").start().waitFor();
+				} catch (Exception e) {
+					Log.e("XposedInstaller", "", e);
+				}
+				
+				new File("/data/xposed/lib/always/").delete();
+				new File("/data/xposed/lib/testonly/").delete();
+				
+				PackageManager pm = context.getPackageManager();
+				SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+				Map<String, ?> prefs = pref.getAll();
+				
+				for (Map.Entry<String, ?> entry : prefs.entrySet()) {
+					String key = entry.getKey();
+					if (!key.startsWith("nativelib_"))
+						continue;
+					
+					String value[] = String.valueOf(entry.getValue()).split("!");
+					if (value.length != 2)
+						continue;
+					String packageName = value[0];
+					if (!enabledModules.contains(packageName))
+						continue;
+					String assetPath = "assets/" + value[1];
+					String libName = key.substring(10);
+					boolean testOnly = Boolean.TRUE.equals(prefs.get("nativelibtest_" + libName));
+					try {
+						ApplicationInfo app = pm.getApplicationInfo(packageName, 0);
+						JarFile jf = new JarFile(app.sourceDir);
+						JarEntry jfentry = jf.getJarEntry(assetPath);
+						if (jfentry == null) {
+							jf.close();
+							Log.e("XposedInstaller", "Could not find " + assetPath + " in " + app.sourceDir);
+							continue;
+						}
+						InputStream is = jf.getInputStream(jfentry);
+						
+						String targetPath = "/data/xposed/lib/" + (testOnly ? "testonly" : "always") + "/" + libName;
+						File targetFile = new File(targetPath);
+						targetFile.getParentFile().mkdirs();
+						FileOutputStream os = new FileOutputStream(targetFile);
+						
+						byte[] temp = new byte[1024];
+						int read;
+						while ((read = is.read(temp)) > 0) {
+							os.write(temp, 0, read);
+						}
+						is.close();
+						os.close();
+						targetFile.setReadable(true, false);
+					} catch (NameNotFoundException e) {
+						Log.e("XposedInstaller", "", e);
+						continue;
+					} catch (IOException e) {
+						Log.e("XposedInstaller", "", e);
+						continue;
+					}
+				}
+				
+			}
+		}.start();
 	}
 	
 	private static void showNotActivatedNotification(Context context, String packageName, String appName) {

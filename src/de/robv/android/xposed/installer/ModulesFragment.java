@@ -100,6 +100,7 @@ public class ModulesFragment extends ListFragment {
             			
             			PackageChangeReceiver.setEnabledModules(getContext(), enabledModules);
             			PackageChangeReceiver.updateModulesList(getContext(), enabledModules);
+            			PackageChangeReceiver.updateNativeLibs(getContext(), enabledModules);
             		}
             	});
             }

@@ -41,6 +41,14 @@ if [ ! -d /data/xposed/tmp ]; then
 	chgrp shell /data/xposed/tmp
 fi
 
+if [ ! -d /data/xposed/lib ]; then
+	echo Creating /data/xposed/lib...
+	mkdir /data/xposed/lib
+	chmod 755 /data/xposed/lib
+	chown root /data/xposed/lib
+	chgrp shell /data/xposed/lib
+fi
+
 echo Copying XposedBridge.jar...
 cp XposedBridge.jar /data/xposed/XposedBridge.jar.newversion || exit 1
 chmod 644 /data/xposed/XposedBridge.jar.newversion

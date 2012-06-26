@@ -102,11 +102,17 @@
         android:layout_height="wrap_content"
         android:text="@string/cleanup" />
 
+	<Button
+        android:id="@+id/btnSoftRebootTestmode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/soft_reboot_testmode" />
+    
     <Button
         android:id="@+id/btnReboot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:text="@string/reboot" />
 
 </LinearLayout>
