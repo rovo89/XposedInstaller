@@ -12,6 +12,7 @@ import java.util.jar.JarFile;
 
 import org.xmlpull.v1.XmlPullParser;
 
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -33,11 +34,12 @@ public class NativeLibsFragment extends PreferenceFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		Set<String> enabledModules = PackageChangeReceiver.getEnabledModules(getActivity());
 		SortedMap<String, Set<LibReplacement>> map = new TreeMap<String, Set<LibReplacement>>();
-		
+
 		// read libraries
 		PackageManager pm = getActivity().getPackageManager();
-        for (String module : PackageChangeReceiver.getEnabledModules(getActivity())) {
+        for (String module : enabledModules) {
         	ApplicationInfo app;
         	JarFile jf = null;
         	InputStream is = null;
@@ -87,6 +89,32 @@ public class NativeLibsFragment extends PreferenceFragment {
 					
 			}
         }
+        
+        // check if all selected replacements still exist
+        SharedPreferences pref = getPreferenceManager().getSharedPreferences();
+        SharedPreferences.Editor prefEditor = pref.edit();
+        for (Map.Entry<String,?> existingSetting : pref.getAll().entrySet()) {
+        	String key = existingSetting.getKey();
+        	if (!key.startsWith("nativelib_"))
+        		continue;
+
+        	String selectedReplacement = String.valueOf(existingSetting.getValue());
+        	String libName = key.split("_", 2)[1];
+        	if (map.containsKey(libName)) {
+        		boolean found = false;
+        		for (LibReplacement replacement : map.get(libName)) {
+        			if (selectedReplacement.equals(replacement.packageName + "!" + replacement.asset)) {
+        				found = true;
+        				break;
+        			}
+        		}
+        		if (found)
+        			continue;
+        	}
+        	prefEditor.remove("nativelib_" + libName);
+        	prefEditor.remove("nativelibtest_" + libName);
+        }
+        prefEditor.commit();
 		
 		// create preference screen
 		PreferenceScreen screen = getPreferenceManager().createPreferenceScreen(getActivity());
