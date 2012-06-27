@@ -33,14 +33,6 @@ if [ ! -d /data/xposed ]; then
 	chgrp shell /data/xposed
 fi
 
-if [ ! -d /data/xposed/tmp ]; then
-	echo Creating /data/xposed/tmp...
-	mkdir /data/xposed/tmp
-	chmod 777 /data/xposed/tmp
-	chown root /data/xposed/tmp
-	chgrp shell /data/xposed/tmp
-fi
-
 if [ ! -d /data/xposed/lib ]; then
 	echo Creating /data/xposed/lib...
 	mkdir /data/xposed/lib
