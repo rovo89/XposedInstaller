@@ -1,8 +1,6 @@
 #!/system/bin/sh
 export PATH=/system/bin:$PATH
 
-cd `dirname $0`
-
 if [ ! -f app_process -o ! -f XposedBridge.jar ]; then
 	echo Files for update not found!
 	pwd

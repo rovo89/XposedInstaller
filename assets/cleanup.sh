@@ -1,8 +1,6 @@
 #!/system/bin/sh
 export PATH=/system/bin:$PATH
 
-cd `dirname $0`
-
 echo Mounting /system writable...
 mount -o remount,rw /system || exit 1
 

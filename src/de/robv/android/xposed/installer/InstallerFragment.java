@@ -271,7 +271,10 @@ public class InstallerFragment extends Fragment {
 		scriptFile.setExecutable(true, false);
 		
 		try {
-			Process p = Runtime.getRuntime().exec(new String[] { "su", "-c", scriptFile.getAbsolutePath() + " 2>&1" });
+			Process p = Runtime.getRuntime().exec(
+					new String[] { "su", "-c", scriptFile.getAbsolutePath() + " 2>&1" },
+					null,
+					getActivity().getCacheDir());
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			StringBuilder sb = new StringBuilder();
 			String line;
