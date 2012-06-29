@@ -191,9 +191,17 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 						}
 						InputStream is = jf.getInputStream(jfentry);
 						
-						String targetPath = "/data/xposed/lib/" + (testOnly ? "testonly" : "always") + "/" + libName;
-						File targetFile = new File(targetPath);
-						targetFile.getParentFile().mkdirs();
+						File targetDir = new File("/data/xposed/lib/" + (testOnly ? "testonly" : "always"));
+						File targetFile = new File(targetDir, libName);
+						// Must fetch the Dir again in case the libName contains a subdir
+						targetDir = targetFile.getParentFile();
+						targetDir.mkdirs();
+						for (File dir = targetDir;
+						        !dir.getAbsolutePath().equals("/data/xposed/lib");
+						        dir = dir.getParentFile()) {
+						    dir.setReadable(true, false);
+                                                    dir.setExecutable(true, false);
+						}
 						FileOutputStream os = new FileOutputStream(targetFile);
 						
 						byte[] temp = new byte[1024];
