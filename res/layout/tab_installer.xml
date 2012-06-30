@@ -1,118 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/installerDescription"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/installerDescription"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:orientation="vertical"
+        android:padding="4dp" >
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="15dp"
-        android:stretchColumns="0,1,2" >
+        <TextView
+            android:id="@+id/installerDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/installerDescription"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:stretchColumns="0,1,2" >
 
-            <TextView
+            <TableRow
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/versions"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content" >
 
-            <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/versions"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/installedVersion" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/latestVersion" />
+            </TableRow>
+
+            <TableRow
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/installedVersion" />
+                android:layout_height="wrap_content" >
 
-            <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="app_process" />
+
+                <TextView
+                    android:id="@+id/app_process_installed_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/none" />
+
+                <TextView
+                    android:id="@+id/app_process_latest_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/none" />
+            </TableRow>
+
+            <TableRow
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/latestVersion" />
-        </TableRow>
+                android:layout_height="wrap_content" >
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="XposedBridge.jar" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="app_process" />
+                <TextView
+                    android:id="@+id/jar_installed_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/none" />
 
-            <TextView
-                android:id="@+id/app_process_installed_version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/none" />
+                <TextView
+                    android:id="@+id/jar_latest_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/none" />
+            </TableRow>
+        </TableLayout>
 
-            <TextView
-                android:id="@+id/app_process_latest_version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/none" />
-        </TableRow>
+        <Button
+            android:id="@+id/btnInstall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/install" />
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+        <Button
+            android:id="@+id/btnUninstall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/uninstall" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="XposedBridge.jar" />
+        <Button
+            android:id="@+id/btnCleanup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cleanup" />
 
-            <TextView
-                android:id="@+id/jar_installed_version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/none" />
+        <Button
+            android:id="@+id/btnSoftRebootTestmode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/soft_reboot_testmode" />
 
-            <TextView
-                android:id="@+id/jar_latest_version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/none" />
-        </TableRow>
-    </TableLayout>
+        <Button
+            android:id="@+id/btnReboot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reboot" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnInstall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/install" />
-
-    <Button
-        android:id="@+id/btnUninstall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/uninstall" />
-
-    <Button
-        android:id="@+id/btnCleanup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/cleanup" />
-
-	<Button
-        android:id="@+id/btnSoftRebootTestmode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="@string/soft_reboot_testmode" />
-    
-    <Button
-        android:id="@+id/btnReboot"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/reboot" />
-
-</LinearLayout>
+</ScrollView>
