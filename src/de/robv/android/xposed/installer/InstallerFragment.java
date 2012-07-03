@@ -267,8 +267,17 @@ public class InstallerFragment extends Fragment {
 		if (scriptFile == null)
 			return "Could not find asset \"" + name + "\"";
 		
+		File busybox = writeAssetToFile("busybox-xposed");
+		if (busybox == null) {
+			scriptFile.delete();
+			return "Could not find asset \"busybox-xposed\"";
+		}
+		
 		scriptFile.setReadable(true, false);
 		scriptFile.setExecutable(true, false);
+		
+		busybox.setReadable(true, false);
+		busybox.setExecutable(true, false);
 		
 		try {
 			Process p = Runtime.getRuntime().exec(
@@ -291,6 +300,7 @@ public class InstallerFragment extends Fragment {
 			return sw.toString();
 		} finally {
 			scriptFile.delete();
+			busybox.delete();
 		}
 	}
 	

@@ -1,21 +1,28 @@
 #!/system/bin/sh
 export PATH=/system/bin:$PATH
 
+BUSYBOX=./busybox-xposed
+
+CHMOD="$BUSYBOX chmod"
+CHOWN="$BUSYBOX chown"
+MOUNT="$BUSYBOX mount"
+MV="$BUSYBOX mv"
+RM="$BUSYBOX rm"
+
 echo Mounting /system writable...
-mount -o remount,rw /system || exit 1
+$MOUNT -o remount,rw /system || exit 1
 
 if [ -f /system/bin/app_process.orig ]; then
 	echo Restoring backup from /system/bin/app_process.orig...
-	mv /system/bin/app_process.orig /system/bin/app_process || exit 1
-	chmod 755 /system/bin/app_process
-	chown 0 /system/bin/app_process
-	chgrp 2000 /system/bin/app_process
+	$MV /system/bin/app_process.orig /system/bin/app_process || exit 1
+	$CHMOD 755 /system/bin/app_process
+	$CHOWN root:shell /system/bin/app_process
 else
     echo No backup found at /system/bin/app_process.orig
 fi
 
 echo Deleting /data/xposed...
-rm -r /data/xposed/ || exit 1
+$RM -r /data/xposed/ || exit 1
 
 echo
 echo Done! Changes will become active on reboot.

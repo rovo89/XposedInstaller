@@ -15,7 +15,7 @@
     <string name="installedVersion">active</string>
     <string name="none">none</string>
     <string name="latestVersion">latest</string>
-    <string name="cleanup">Clean up (delete settings etc.)</string>
+    <string name="cleanup">Clean up (complete removal of the framework)</string>
     <string name="versions">Versions:</string>
     <string name="soft_reboot_testmode">Soft reboot <small>(with test-mode for native libraries)</small></string>
     <string name="reboot">Reboot</string>
