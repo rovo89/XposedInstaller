@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.robv.android.xposed.installer"
-    android:versionCode="6"
-    android:versionName="1.7b3" >
+    android:versionCode="7"
+    android:versionName="2.0rc1" >
 
     <uses-sdk android:minSdkVersion="15" />
-
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:icon="@drawable/ic_launcher"
