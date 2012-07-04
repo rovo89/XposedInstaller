@@ -79,7 +79,7 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			}
 			moduleLines.close();
 		} catch (IOException e) {
-			Toast.makeText(context, "cannot read /data/xposed/modules.whitelist", 1000).show();
+			Toast.makeText(context, "cannot read /data/xposed/modules.whitelist", Toast.LENGTH_LONG).show();
 			Log.e(XposedInstallerActivity.TAG, "cannot read /data/xposed/modules.whitelist", e);
 			return modules;
 		}
@@ -94,7 +94,7 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			}
 			pw.close();
 		} catch (IOException e) {
-			Toast.makeText(context, "cannot write /data/xposed/modules.whitelist", 1000).show();
+			Toast.makeText(context, "cannot write /data/xposed/modules.whitelist", Toast.LENGTH_LONG).show();
 			Log.e(XposedInstallerActivity.TAG, "cannot write /data/xposed/modules.whitelist", e);
 		}
 	}
@@ -142,7 +142,7 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			
 			@Override
 			protected void onPostExecute(String result) {
-				Toast.makeText(context, result, 1000).show();
+				Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
 			}
 		}.execute();
 	}
