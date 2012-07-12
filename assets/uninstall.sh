@@ -15,8 +15,8 @@ $MOUNT -o remount,rw /system || exit 1
 if [ -f /system/bin/app_process.orig ]; then
 	echo Restoring backup from /system/bin/app_process.orig...
 	$MV /system/bin/app_process.orig /system/bin/app_process || exit 1
-	$CHMOD 755 /system/bin/app_process
-	$CHOWN root:shell /system/bin/app_process
+	$CHMOD 755 /system/bin/app_process || exit 1
+	$CHOWN root:shell /system/bin/app_process || exit 1
 else
     echo No backup found at /system/bin/app_process.orig
 fi
@@ -27,7 +27,11 @@ if [ -f /data/xposed/XposedBridge.jar ]; then
 else
 	echo XposedBridge.jar did not exist, nothing to delete
 fi
-$RM /data/xposed/XposedBridge.jar.newversion 2>/dev/null
+
+if [ -f /data/xposed/XposedBridge.jar.newversion ]; then
+	echo Deleting XposedBridge.jar.newversion...
+	$RM /data/xposed/XposedBridge.jar.newversion || exit 1
+fi
 
 echo
 echo Done! Changes will become active on reboot.
