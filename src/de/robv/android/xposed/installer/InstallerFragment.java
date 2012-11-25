@@ -21,7 +21,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +60,7 @@ public class InstallerFragment extends Fragment {
 		final Button btnSoftRebootTestmode = (Button) v.findViewById(R.id.btnSoftRebootTestmode);
 		final Button btnReboot = (Button) v.findViewById(R.id.btnReboot);
 		
-		if (checkBinaryCompatibility()) {
+		if (checkCompatibility()) {
 			btnInstall.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -144,9 +146,13 @@ public class InstallerFragment extends Fragment {
         .show();
 	}
 	
+	private boolean checkCompatibility() {
+		return checkBinaryCompatibility() && checkRomCompatibility();
+	}
+
 	private boolean checkBinaryCompatibility() {
 		try {
-			File testFile = writeAssetToFile("xposedtest");
+			File testFile = writeAssetToCacheFile("xposedtest");
 			if (testFile == null)
 				return false;
 			
@@ -163,7 +169,44 @@ public class InstallerFragment extends Fragment {
 			return false;
 		}
 	}
-	
+
+	private boolean checkRomCompatibility() {
+		try {
+			String assetName = getAppProcessAssetName();
+			if (assetName == null) {
+				return false;
+			}
+			File testFile = writeAssetToCacheFile(assetName, "app_process");
+			if (testFile == null)
+				return false;
+
+			testFile.setExecutable(true);
+			Process p = Runtime.getRuntime().exec(testFile.getAbsolutePath());
+
+			BufferedReader stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+			stderr.readLine();
+			stderr.readLine();
+			String line3 = stderr.readLine();
+			stderr.close();
+			p.destroy();
+
+			testFile.delete();
+			return line3.matches(".*with Xposed support.*");
+		} catch (IOException e) {
+			return false;
+		}
+	}
+
+	private String getAppProcessAssetName() {
+		if (Build.VERSION.RELEASE.startsWith("4.0.")) {
+			return "app_process_40";
+		} else if (Build.VERSION.RELEASE.startsWith("4.1.")) {
+			return "app_process_41";
+		} else {
+			return null;
+		}
+	}
+
 	private String getInstalledAppProcessVersion(String defaultValue) {
 		try {
 			Process p = Runtime.getRuntime().exec(new String[] { "strings", "/system/bin/app_process" });
@@ -175,8 +218,10 @@ public class InstallerFragment extends Fragment {
 	
 	private String getLatestAppProcessVersion(String defaultValue) {
 		try {
-			return getAppProcessVersion(getActivity().getAssets().open("app_process"), defaultValue);
-		} catch (IOException e) {
+			return getAppProcessVersion(
+					getActivity().getAssets().open(getAppProcessAssetName()),
+					defaultValue);
+		} catch (Exception e) {
 			return defaultValue;
 		}
 	}
@@ -230,13 +275,16 @@ public class InstallerFragment extends Fragment {
 	}
 	
 	private String install() {
-		File appProcessFile = writeAssetToFile("app_process");
+		File appProcessFile = writeAssetToCacheFile(getAppProcessAssetName(), "app_process");
+		writeAssetToSdcardFile("Xposed-Disabler-CWM.zip");
 		if (appProcessFile == null)
 			return "Could not find asset \"app_process\"";
 		
-		File jarFile = writeAssetToFile("XposedBridge.jar");
+		File jarFile = writeAssetToCacheFile("XposedBridge.jar");
 		if (jarFile == null)
 			return "Could not find asset \"XposedBridge.jar\"";
+
+		writeAssetToSdcardFile("Xposed-Disabler-CWM.zip");
 		
 		String result = executeScript("install.sh");
 		
@@ -263,11 +311,11 @@ public class InstallerFragment extends Fragment {
 	}
 	
 	private String executeScript(String name) {
-		File scriptFile = writeAssetToFile(name);
+		File scriptFile = writeAssetToCacheFile(name);
 		if (scriptFile == null)
 			return "Could not find asset \"" + name + "\"";
 		
-		File busybox = writeAssetToFile("busybox-xposed");
+		File busybox = writeAssetToCacheFile("busybox-xposed");
 		if (busybox == null) {
 			scriptFile.delete();
 			return "Could not find asset \"busybox-xposed\"";
@@ -304,11 +352,15 @@ public class InstallerFragment extends Fragment {
 		}
 	}
 	
-	private File writeAssetToFile(String name) {
+	private File writeAssetToCacheFile(String name) {
+		return writeAssetToCacheFile(name, name);
+	}
+
+	private File writeAssetToCacheFile(String assetName, String fileName) {
 		File file = null;
 		try {
-			InputStream in = getActivity().getAssets().open(name);
-			file = new File(getActivity().getCacheDir(), name);
+			InputStream in = getActivity().getAssets().open(assetName);
+			file = new File(getActivity().getCacheDir(), fileName);
 			FileOutputStream out = new FileOutputStream(file);
 			
 			byte[] buffer = new byte[1024];
@@ -328,4 +380,36 @@ public class InstallerFragment extends Fragment {
 			return null;
 		}
 	}
+
+	private boolean writeAssetToSdcardFile(String name) {
+		return writeAssetToSdcardFile(name, name);
+	}
+
+	private boolean writeAssetToSdcardFile(String assetName, String fileName) {
+		File file = null;
+		try {
+			InputStream in = getActivity().getAssets().open(assetName);
+			File dir = Environment.getExternalStorageDirectory();
+			dir.mkdirs();
+			file = new File(dir, fileName);
+			FileOutputStream out = new FileOutputStream(file);
+
+			byte[] buffer = new byte[1024];
+			int len;
+			while ((len = in.read(buffer)) > 0){
+				out.write(buffer, 0, len);
+			}
+			in.close();
+			out.close();
+
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+			if (file != null)
+				file.delete();
+
+			return false;
+		}
+	}
+
 }

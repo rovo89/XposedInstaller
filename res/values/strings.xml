@@ -24,7 +24,7 @@
     <string name="no_xposed_modules_found">No Xposed modules were found!</string>
     <string name="xposed_module_list_updated">Xposed module list was updated\nChanges will become active on reboot</string>
     <string name="warning_xposed_min_version">This module requires a newer Xposed version (%s) and thus cannot be activated.</string>
-    <string name="phone_not_compatible">Your phone is not compatible.\nXposed works only for ARM processors.</string>
+    <string name="phone_not_compatible">Your phone is not compatible.\nXposed works only for ICS or JB running on ARM processors.</string>
     <string name="no_min_version_specified">This module does not specify the Xposed version it needs.</string>
     <string name="warning_min_version_too_low" formatted="false">This module was created for Xposed version %1s, but due to incompatible changes in version %2s, it has been disabled.</string>
     <string name="lib_default">default (don\'t replace)</string>
