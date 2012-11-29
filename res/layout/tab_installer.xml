@@ -107,18 +107,26 @@
             android:layout_height="wrap_content"
             android:text="@string/cleanup" />
 
-        <Button
-            android:id="@+id/btnSoftRebootTestmode"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/soft_reboot_testmode" />
+            android:layout_height="wrap_content" android:layout_marginTop="15dp"
+            >
 
-        <Button
-            android:id="@+id/btnReboot"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/reboot" />
+            <Button
+                android:id="@+id/btnSoftReboot"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/soft_reboot" />
+
+            <Button
+                android:id="@+id/btnReboot"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/reboot" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

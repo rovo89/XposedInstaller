@@ -1,17 +1,11 @@
 package de.robv.android.xposed.installer;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,13 +15,11 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -58,7 +50,6 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 		Set<String> enabledModules = getEnabledModules(context);
 		if (enabledModules.contains(packageName)) {
 			updateModulesList(context, enabledModules);
-			updateNativeLibs(context, enabledModules);
 		} else {
 			showNotActivatedNotification(context, packageName, appName);
 		}
@@ -146,85 +137,7 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			}
 		}.execute();
 	}
-	
-	static synchronized void updateNativeLibs(final Context context, final Set<String> enabledModules) {
-		new Thread() {
-			@Override
-			public void run() {
-				Log.i(XposedInstallerActivity.TAG, "updating native libraries");
-				
-				try {
-					new ProcessBuilder("sh", "-c", "rm -r /data/xposed/lib/*").start().waitFor();
-				} catch (Exception e) {
-					Log.e("XposedInstaller", "", e);
-				}
-				
-				new File("/data/xposed/lib/always/").delete();
-				new File("/data/xposed/lib/testonly/").delete();
-				
-				PackageManager pm = context.getPackageManager();
-				SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-				Map<String, ?> prefs = pref.getAll();
-				
-				for (Map.Entry<String, ?> entry : prefs.entrySet()) {
-					String key = entry.getKey();
-					if (!key.startsWith("nativelib_"))
-						continue;
-					
-					String value[] = String.valueOf(entry.getValue()).split("!");
-					if (value.length != 2)
-						continue;
-					String packageName = value[0];
-					if (!enabledModules.contains(packageName))
-						continue;
-					String assetPath = "assets/" + value[1];
-					String libName = key.substring(10);
-					boolean testOnly = Boolean.TRUE.equals(prefs.get("nativelibtest_" + libName));
-					try {
-						ApplicationInfo app = pm.getApplicationInfo(packageName, 0);
-						JarFile jf = new JarFile(app.sourceDir);
-						JarEntry jfentry = jf.getJarEntry(assetPath);
-						if (jfentry == null) {
-							jf.close();
-							Log.e("XposedInstaller", "Could not find " + assetPath + " in " + app.sourceDir);
-							continue;
-						}
-						InputStream is = jf.getInputStream(jfentry);
-						
-						File targetDir = new File("/data/xposed/lib/" + (testOnly ? "testonly" : "always"));
-						File targetFile = new File(targetDir, libName);
-						// Must fetch the Dir again in case the libName contains a subdir
-						targetDir = targetFile.getParentFile();
-						targetDir.mkdirs();
-						for (File dir = targetDir;
-						        !dir.getAbsolutePath().equals("/data/xposed/lib");
-						        dir = dir.getParentFile()) {
-						    dir.setReadable(true, false);
-                                                    dir.setExecutable(true, false);
-						}
-						FileOutputStream os = new FileOutputStream(targetFile);
-						
-						byte[] temp = new byte[1024];
-						int read;
-						while ((read = is.read(temp)) > 0) {
-							os.write(temp, 0, read);
-						}
-						is.close();
-						os.close();
-						targetFile.setReadable(true, false);
-					} catch (NameNotFoundException e) {
-						Log.e("XposedInstaller", "", e);
-						continue;
-					} catch (IOException e) {
-						Log.e("XposedInstaller", "", e);
-						continue;
-					}
-				}
-				
-			}
-		}.start();
-	}
-	
+
 	private static void showNotActivatedNotification(Context context, String packageName, String appName) {
 		Intent startXposedInstaller = new Intent(context, XposedInstallerActivity.class);
 		startXposedInstaller.putExtra(XposedInstallerActivity.EXTRA_OPEN_TAB, XposedInstallerActivity.TAB_MODULES);

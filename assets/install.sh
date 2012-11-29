@@ -47,13 +47,6 @@ if [ ! -d /data/xposed ]; then
 	$CHOWN root:shell /data/xposed || exit 1
 fi
 
-if [ ! -d /data/xposed/lib ]; then
-	echo Creating /data/xposed/lib...
-	$MKDIR /data/xposed/lib || exit 1
-	$CHMOD 755 /data/xposed/lib || exit 1
-	$CHOWN $XPOSEDUSER:shell /data/xposed/lib || exit 1
-fi
-
 echo Copying XposedBridge.jar...
 $CP XposedBridge.jar /data/xposed/XposedBridge.jar.newversion || exit 1
 $CHMOD 644 /data/xposed/XposedBridge.jar.newversion || exit 1

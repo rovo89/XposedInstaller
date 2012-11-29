@@ -57,7 +57,7 @@ public class InstallerFragment extends Fragment {
 		final Button btnInstall = (Button) v.findViewById(R.id.btnInstall);
 		final Button btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
 		final Button btnCleanup = (Button) v.findViewById(R.id.btnCleanup);
-		final Button btnSoftRebootTestmode = (Button) v.findViewById(R.id.btnSoftRebootTestmode);
+		final Button btnSoftReboot = (Button) v.findViewById(R.id.btnSoftReboot);
 		final Button btnReboot = (Button) v.findViewById(R.id.btnReboot);
 		
 		if (checkCompatibility()) {
@@ -70,7 +70,6 @@ public class InstallerFragment extends Fragment {
 					Context context = InstallerFragment.this.getActivity();
 					Set<String> enabledModules = PackageChangeReceiver.getEnabledModules(context);
 					PackageChangeReceiver.updateModulesList(context, enabledModules);
-					PackageChangeReceiver.updateNativeLibs(context, enabledModules);
 				}
 			});
 		} else {
@@ -112,13 +111,13 @@ public class InstallerFragment extends Fragment {
 			}
 		});
 		
-		btnSoftRebootTestmode.setOnClickListener(new View.OnClickListener() {
+		btnSoftReboot.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				areYouSure(R.string.reboot, new OnClickListener() {
+				areYouSure(R.string.soft_reboot, new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						showAlert(softRebootTestmode());
+						showAlert(softReboot());
 					}
 				});
 			}
@@ -164,7 +163,7 @@ public class InstallerFragment extends Fragment {
 			stdout.close();
 			
 			testFile.delete();
-			return result.equals("OK");
+			return result != null && result.equals("OK");
 		} catch (IOException e) {
 			return false;
 		}
@@ -191,17 +190,17 @@ public class InstallerFragment extends Fragment {
 			p.destroy();
 
 			testFile.delete();
-			return line3.matches(".*with Xposed support.*");
+			return line3 != null && line3.contains("with Xposed support");
 		} catch (IOException e) {
 			return false;
 		}
 	}
 
 	private String getAppProcessAssetName() {
-		if (Build.VERSION.RELEASE.startsWith("4.0.")) {
-			return "app_process_40";
-		} else if (Build.VERSION.RELEASE.startsWith("4.1.")) {
-			return "app_process_41";
+		if (Build.VERSION.SDK_INT == 15) {
+			return "app_process_sdk15";
+		} else if (Build.VERSION.SDK_INT == 16) {
+			return "app_process_sdk16";
 		} else {
 			return null;
 		}
@@ -302,7 +301,7 @@ public class InstallerFragment extends Fragment {
 		return executeScript("cleanup.sh");
 	}
 	
-	private String softRebootTestmode() {
+	private String softReboot() {
 		return executeScript("soft_reboot.sh");
 	}
 	
