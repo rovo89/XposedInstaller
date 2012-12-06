@@ -33,6 +33,8 @@ import android.widget.TextView;
 
 public class InstallerFragment extends Fragment {
 	private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
+	private String APP_PROCESS_NAME = null;
+	private String XPOSEDTEST_NAME = null;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,19 +50,40 @@ public class InstallerFragment extends Fragment {
 		final TextView txtJarInstalledVersion = (TextView) v.findViewById(R.id.jar_installed_version);
 		final TextView txtJarLatestVersion = (TextView) v.findViewById(R.id.jar_latest_version);
 
-		final String none = getString(R.string.none);
-		txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
-		txtAppProcessLatestVersion.setText(getLatestAppProcessVersion(none));
-		txtJarInstalledVersion.setText(getJarInstalledVersion(none));
-		txtJarLatestVersion.setText(getJarLatestVersion(none));
-		
 		final Button btnInstall = (Button) v.findViewById(R.id.btnInstall);
 		final Button btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
 		final Button btnCleanup = (Button) v.findViewById(R.id.btnCleanup);
 		final Button btnSoftReboot = (Button) v.findViewById(R.id.btnSoftReboot);
 		final Button btnReboot = (Button) v.findViewById(R.id.btnReboot);
 		
-		if (checkCompatibility()) {
+		boolean isCompatible = false;
+		if (Build.VERSION.SDK_INT == 15) {
+			APP_PROCESS_NAME = "app_process_sdk15";
+			XPOSEDTEST_NAME = "xposedtest_sdk15";
+			isCompatible = checkCompatibility();
+			
+		} else if (Build.VERSION.SDK_INT == 16) {
+			APP_PROCESS_NAME = "app_process_sdk16";
+			XPOSEDTEST_NAME = "xposedtest_sdk16";
+			isCompatible = checkCompatibility();
+			
+		} else if (Build.VERSION.SDK_INT > 16) {
+			APP_PROCESS_NAME = "app_process_sdk16";
+			XPOSEDTEST_NAME = "xposedtest_sdk16";
+			isCompatible = checkCompatibility();
+			if (isCompatible) {
+				btnInstall.setText(String.format(getString(R.string.not_tested_but_compatible), Build.VERSION.SDK_INT));
+				btnInstall.setTextColor(Color.YELLOW);
+			}
+		}
+		
+		final String none = getString(R.string.none);
+		txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
+		txtAppProcessLatestVersion.setText(getLatestAppProcessVersion(none));
+		txtJarInstalledVersion.setText(getJarInstalledVersion(none));
+		txtJarLatestVersion.setText(getJarLatestVersion(none));
+
+		if (isCompatible) {
 			btnInstall.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -73,7 +96,7 @@ public class InstallerFragment extends Fragment {
 				}
 			});
 		} else {
-			btnInstall.setText(R.string.phone_not_compatible);
+			btnInstall.setText(String.format(getString(R.string.phone_not_compatible), Build.VERSION.SDK_INT));
 			btnInstall.setTextColor(Color.RED);
 			btnInstall.setEnabled(false);
 		}
@@ -151,7 +174,10 @@ public class InstallerFragment extends Fragment {
 
 	private boolean checkBinaryCompatibility() {
 		try {
-			File testFile = writeAssetToCacheFile("xposedtest");
+			if (XPOSEDTEST_NAME == null)
+				return false;
+			
+			File testFile = writeAssetToCacheFile(XPOSEDTEST_NAME, "xposedtest");
 			if (testFile == null)
 				return false;
 			
@@ -171,11 +197,10 @@ public class InstallerFragment extends Fragment {
 
 	private boolean checkRomCompatibility() {
 		try {
-			String assetName = getAppProcessAssetName();
-			if (assetName == null) {
+			if (APP_PROCESS_NAME == null)
 				return false;
-			}
-			File testFile = writeAssetToCacheFile(assetName, "app_process");
+			
+			File testFile = writeAssetToCacheFile(APP_PROCESS_NAME, "app_process");
 			if (testFile == null)
 				return false;
 
@@ -196,16 +221,6 @@ public class InstallerFragment extends Fragment {
 		}
 	}
 
-	private String getAppProcessAssetName() {
-		if (Build.VERSION.SDK_INT == 15) {
-			return "app_process_sdk15";
-		} else if (Build.VERSION.SDK_INT == 16) {
-			return "app_process_sdk16";
-		} else {
-			return null;
-		}
-	}
-
 	private String getInstalledAppProcessVersion(String defaultValue) {
 		try {
 			Process p = Runtime.getRuntime().exec(new String[] { "strings", "/system/bin/app_process" });
@@ -218,7 +233,7 @@ public class InstallerFragment extends Fragment {
 	private String getLatestAppProcessVersion(String defaultValue) {
 		try {
 			return getAppProcessVersion(
-					getActivity().getAssets().open(getAppProcessAssetName()),
+					getActivity().getAssets().open(APP_PROCESS_NAME),
 					defaultValue);
 		} catch (Exception e) {
 			return defaultValue;
@@ -274,7 +289,7 @@ public class InstallerFragment extends Fragment {
 	}
 	
 	private String install() {
-		File appProcessFile = writeAssetToCacheFile(getAppProcessAssetName(), "app_process");
+		File appProcessFile = writeAssetToCacheFile(APP_PROCESS_NAME, "app_process");
 		writeAssetToSdcardFile("Xposed-Disabler-CWM.zip");
 		if (appProcessFile == null)
 			return "Could not find asset \"app_process\"";
