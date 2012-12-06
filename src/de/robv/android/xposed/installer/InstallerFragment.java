@@ -187,6 +187,7 @@ public class InstallerFragment extends Fragment {
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			String result = stdout.readLine();
 			stdout.close();
+			p.destroy();
 			
 			testFile.delete();
 			return result != null && result.equals("OK");
@@ -205,17 +206,15 @@ public class InstallerFragment extends Fragment {
 				return false;
 
 			testFile.setExecutable(true);
-			Process p = Runtime.getRuntime().exec(testFile.getAbsolutePath());
+			Process p = Runtime.getRuntime().exec(new String[] { testFile.getAbsolutePath(), "--xposedversion" });
 
-			BufferedReader stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-			stderr.readLine();
-			stderr.readLine();
-			String line3 = stderr.readLine();
-			stderr.close();
+			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			String result = stdout.readLine();
+			stdout.close();
 			p.destroy();
 
 			testFile.delete();
-			return line3 != null && line3.contains("with Xposed support");
+			return result != null && result.startsWith("Xposed version: ");
 		} catch (IOException e) {
 			return false;
 		}
