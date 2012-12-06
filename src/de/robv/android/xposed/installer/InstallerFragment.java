@@ -169,10 +169,10 @@ public class InstallerFragment extends Fragment {
 	}
 	
 	private boolean checkCompatibility() {
-		return checkBinaryCompatibility() && checkRomCompatibility();
+		return checkXposedTestCompatibility() && checkAppProcessCompatibility();
 	}
 
-	private boolean checkBinaryCompatibility() {
+	private boolean checkXposedTestCompatibility() {
 		try {
 			if (XPOSEDTEST_NAME == null)
 				return false;
@@ -195,7 +195,7 @@ public class InstallerFragment extends Fragment {
 		}
 	}
 
-	private boolean checkRomCompatibility() {
+	private boolean checkAppProcessCompatibility() {
 		try {
 			if (APP_PROCESS_NAME == null)
 				return false;
