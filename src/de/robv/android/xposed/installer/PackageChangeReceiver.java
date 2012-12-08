@@ -80,8 +80,10 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 	static void setEnabledModules(Context context, Set<String> modules) {
 		try {
 			PrintWriter pw = new PrintWriter("/data/xposed/modules.whitelist");
-			for (String module : modules) {
-				pw.println(module);
+			synchronized (modules) {
+				for (String module : modules) {
+					pw.println(module);
+				}
 			}
 			pw.close();
 		} catch (IOException e) {
@@ -102,7 +104,12 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 					
 					PackageManager pm = context.getPackageManager();
 					PrintWriter modulesList = new PrintWriter("/data/xposed/modules.list");
-					for (String packageName : enabledModules) {
+
+					HashSet<String> enabledModulesClone;
+					synchronized (enabledModules) {
+						enabledModulesClone = new HashSet<String>(enabledModules);
+					}
+					for (String packageName : enabledModulesClone) {
 						ApplicationInfo app;
 						try {
 							app = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
