@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -55,12 +56,19 @@ public class ModulesFragment extends ListFragment {
         setEmptyText(getActivity().getString(R.string.no_xposed_modules_found));
 
         getListView().setFastScrollEnabled(true);
+
+		getListView().setDivider(new ColorDrawable(0xFF0099cc));
+		getListView().setDividerHeight(1);
 	}
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		CheckBox checkbox = (CheckBox)v.findViewById(R.id.checkbox);
-		checkbox.toggle();
+		String packageName = (String) v.getTag();
+		Intent launchIntent = getActivity().getPackageManager().getLaunchIntentForPackage(packageName);
+		if (launchIntent != null)
+			startActivity(launchIntent);
+		else
+			Toast.makeText(getActivity(), getActivity().getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
 	}
 
     private class ModuleAdapter extends ArrayAdapter<XposedModule> {
@@ -73,7 +81,7 @@ public class ModulesFragment extends ListFragment {
 		 	View view = super.getView(position, convertView, parent);
 
 			if (convertView == null) {
-				// The reusable view was created for the first time, set up the listeners on the checkbox and image
+				// The reusable view was created for the first time, set up the listener on the checkbox
 				((CheckBox) view.findViewById(R.id.checkbox)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
 					@Override
 					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -92,31 +100,23 @@ public class ModulesFragment extends ListFragment {
 						}
 					}
 				});
-
-				((ImageView) view.findViewById(R.id.icon)).setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						String packageName = (String) v.getTag();
-						Intent launchIntent = getContext().getPackageManager().getLaunchIntentForPackage(packageName);
-						if (launchIntent != null)
-							startActivity(launchIntent);
-						else
-							Toast.makeText(getActivity(), getActivity().getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
-					}
-				});
 			}
 
 			XposedModule item = getItem(position);
+			// Store the package name in some views' tag for later access
 			((CheckBox) view.findViewById(R.id.checkbox)).setTag(item.packageName);
-			((ImageView) view.findViewById(R.id.icon)).setTag(item.packageName);
+			view.setTag(item.packageName);
 
 			((ImageView) view.findViewById(R.id.icon)).setImageDrawable(item.icon);
 
 			TextView descriptionText = (TextView) view.findViewById(R.id.description);
-			if (item.description.length() > 0)
+			if (item.description.length() > 0) {
 				descriptionText.setText(item.description);
-			else
+				descriptionText.setTextColor(0xFF777777);
+			} else {
 				descriptionText.setText(getActivity().getString(R.string.module_empty_description));
+				descriptionText.setTextColor(0xFFCC7700);
+			}
 
 			CheckBox checkbox = (CheckBox) view.findViewById(R.id.checkbox);
 			checkbox.setChecked(enabledModules.contains(item.packageName));
@@ -124,24 +124,20 @@ public class ModulesFragment extends ListFragment {
 
 			if (item.minVersion == null) {
 				checkbox.setEnabled(false);
-				descriptionText.setVisibility(View.GONE);
 				warningText.setText(getString(R.string.no_min_version_specified));
 				warningText.setVisibility(View.VISIBLE);
             } else if (installedXposedVersion != null && PackageChangeReceiver.compareVersions(item.minVersion, installedXposedVersion) > 0) {
             	checkbox.setEnabled(false);
-				descriptionText.setVisibility(View.GONE);
             	warningText.setText(String.format(getString(R.string.warning_xposed_min_version), 
             			PackageChangeReceiver.trimVersion(item.minVersion)));
             	warningText.setVisibility(View.VISIBLE);
             } else if (PackageChangeReceiver.compareVersions(item.minVersion, PackageChangeReceiver.MIN_MODULE_VERSION) < 0) {
             	checkbox.setEnabled(false);
-				descriptionText.setVisibility(View.GONE);
             	warningText.setText(String.format(getString(R.string.warning_min_version_too_low), 
             			PackageChangeReceiver.trimVersion(item.minVersion), PackageChangeReceiver.MIN_MODULE_VERSION));
             	warningText.setVisibility(View.VISIBLE);
             } else {
             	checkbox.setEnabled(true);
-				descriptionText.setVisibility(View.VISIBLE);
             	warningText.setVisibility(View.GONE);
             }
             return view;
