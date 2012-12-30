@@ -46,8 +46,6 @@ public class XposedInstallerActivity extends Activity {
         			selectTabIndex = 0;
         		else if (extraS.equals("modules")) 
         			selectTabIndex = 1;
-        		else if (extraS.equals("nativelibs")) 
-        			selectTabIndex = 2;
         	}
         } else if (savedInstanceState != null) {
         	selectTabIndex = savedInstanceState.getInt("tab", -1);
