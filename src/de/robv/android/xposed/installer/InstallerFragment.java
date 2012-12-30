@@ -67,14 +67,15 @@ public class InstallerFragment extends Fragment {
 			XPOSEDTEST_NAME = "xposedtest_sdk16";
 			isCompatible = checkCompatibility();
 			
-		} else if (Build.VERSION.SDK_INT > 16) {
-			APP_PROCESS_NAME = "app_process_sdk16";
-			XPOSEDTEST_NAME = "xposedtest_sdk16";
+		} else if (Build.VERSION.SDK_INT == 17) {
+			APP_PROCESS_NAME = "app_process_sdk17";
+			XPOSEDTEST_NAME = "xposedtest_sdk17";
 			isCompatible = checkCompatibility();
-			if (isCompatible) {
-				btnInstall.setText(String.format(getString(R.string.not_tested_but_compatible), Build.VERSION.SDK_INT));
-				btnInstall.setTextColor(Color.YELLOW);
-			}
+			
+		} else if (Build.VERSION.SDK_INT > 17) {
+			APP_PROCESS_NAME = "app_process_sdk17";
+			XPOSEDTEST_NAME = "xposedtest_sdk17";
+			isCompatible = false;
 		}
 		
 		final String none = getString(R.string.none);
@@ -275,14 +276,21 @@ public class InstallerFragment extends Fragment {
 	public static String getJarVersion(InputStream is, String defaultValue) throws IOException {
 		JarInputStream jis = new JarInputStream(is);
 		JarEntry entry;
-		while ((entry = jis.getNextJarEntry()) != null) {
-			if (!entry.getName().equals("assets/VERSION"))
-				continue;
-			
-			BufferedReader br = new BufferedReader(new InputStreamReader(jis));
-			String version = br.readLine();
-			is.close();
-			return version;
+		try {
+			while ((entry = jis.getNextJarEntry()) != null) {
+				if (!entry.getName().equals("assets/VERSION"))
+					continue;
+				
+				BufferedReader br = new BufferedReader(new InputStreamReader(jis));
+				String version = br.readLine();
+				is.close();
+				br.close();
+				return version;
+			}
+		} finally {
+			try {
+				jis.close();
+			} catch (Exception e) { }
 		}
 		return defaultValue;
 	}
