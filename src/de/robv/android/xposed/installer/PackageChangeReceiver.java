@@ -24,7 +24,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class PackageChangeReceiver extends BroadcastReceiver {
-	public static String MIN_MODULE_VERSION = "2.0b2";
+	public static String MIN_MODULE_VERSION = "2.0";
 	
 	@Override
 	public void onReceive(final Context context, final Intent intent) {
