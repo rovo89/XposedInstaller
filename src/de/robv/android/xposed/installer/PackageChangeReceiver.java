@@ -30,11 +30,24 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 	public void onReceive(final Context context, final Intent intent) {
 		if (intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)
 				&& intent.getBooleanExtra(Intent.EXTRA_REPLACING, false))
+			// Ignore existing packages being removed in order to be updated
 			return;
 		
 		String packageName = getPackageName(intent);
 		if (packageName == null)
 			return;
+		
+		if (intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)
+				&& !intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)) {
+			// Package being removed, disable it if it was a previously active Xposed mod
+			Set<String> enabledModules = getEnabledModules(context);
+			if (enabledModules.contains(packageName)) {
+				enabledModules.remove(packageName);
+				setEnabledModules(context, enabledModules);
+				updateModulesList(context, enabledModules);
+			}
+			return;
+		}
 		
 		String appName;
 		try {
