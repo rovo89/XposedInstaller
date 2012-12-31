@@ -75,7 +75,11 @@ public class InstallerFragment extends Fragment {
 		} else if (Build.VERSION.SDK_INT > 17) {
 			APP_PROCESS_NAME = "app_process_sdk17";
 			XPOSEDTEST_NAME = "xposedtest_sdk17";
-			isCompatible = false;
+			isCompatible = checkCompatibility();
+			if (isCompatible) {
+				btnInstall.setText(String.format(getString(R.string.not_tested_but_compatible), Build.VERSION.SDK_INT));
+				btnInstall.setTextColor(Color.YELLOW);
+			}
 		}
 		
 		final String none = getString(R.string.none);
