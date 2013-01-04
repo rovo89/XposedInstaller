@@ -13,7 +13,7 @@
     <string name="uninstall">Uninstall (restore app_process)</string>
     <string name="installedVersion">active</string>
     <string name="none">none</string>
-    <string name="latestVersion">latest</string>
+    <string name="latestVersion">bundled</string>
     <string name="cleanup">Clean up (complete removal of the framework)</string>
     <string name="versions">Versions:</string>
     <string name="soft_reboot">Soft reboot</string>
