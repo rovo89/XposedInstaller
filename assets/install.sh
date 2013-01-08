@@ -6,13 +6,16 @@ BUSYBOX=./busybox-xposed
 CP="$BUSYBOX cp"
 CHMOD="$BUSYBOX chmod"
 CHOWN="$BUSYBOX chown"
-CUT="$BUSYBOX cut"
-GREP="$BUSYBOX grep"
 MKDIR="$BUSYBOX mkdir"
 MOUNT="$BUSYBOX mount"
 RM="$BUSYBOX rm"
-TEST="$BUSYBOX test"
 TOUCH="$BUSYBOX touch"
+
+XPOSEDUSER=$1
+if [ -z "$XPOSEDUSER" ]; then
+	echo This script needs the user id for the Xposed Installer as first argument!
+	exit 1
+fi
 
 if [ ! -f app_process -o ! -f XposedBridge.jar ]; then
 	echo Files for update not found!
@@ -34,11 +37,6 @@ echo Copying app_process...
 $CP app_process /system/bin/app_process || exit 1
 $CHMOD 755 /system/bin/app_process || exit 1
 $CHOWN root:shell /system/bin/app_process || exit 1
-
-echo Getting user id for Xposed Installer...
-XPOSEDUSER=`$GREP '^de.robv.android.xposed.installer ' /data/system/packages.list | $CUT -d' ' -f2`
-echo User id: $XPOSEDUSER
-$TEST -n "$XPOSEDUSER" || exit 1
 
 if [ ! -d /data/xposed ]; then
 	echo Creating /data/xposed...

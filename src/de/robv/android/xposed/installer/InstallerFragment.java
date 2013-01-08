@@ -358,7 +358,7 @@ public class InstallerFragment extends Fragment {
 		
 		try {
 			Process p = Runtime.getRuntime().exec(
-					new String[] { "su", "-c", scriptFile.getAbsolutePath() + " 2>&1" },
+					new String[] { "su", "-c", scriptFile.getAbsolutePath() + " " + android.os.Process.myUid() + " 2>&1" },
 					null,
 					getActivity().getCacheDir());
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
