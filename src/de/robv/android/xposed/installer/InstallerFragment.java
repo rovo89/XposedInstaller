@@ -227,8 +227,9 @@ public class InstallerFragment extends Fragment {
 
 	private String getInstalledAppProcessVersion(String defaultValue) {
 		try {
-			Process p = Runtime.getRuntime().exec(new String[] { "strings", "/system/bin/app_process" });
-			return getAppProcessVersion(p.getInputStream(), defaultValue);
+			return getAppProcessVersion(
+					new FileInputStream("/system/bin/app_process"),
+					defaultValue);
 		} catch (IOException e) {
 			return getString(R.string.none);
 		}
@@ -245,9 +246,12 @@ public class InstallerFragment extends Fragment {
 	}
 	
 	private String getAppProcessVersion(InputStream is, String defaultValue) throws IOException {
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		String line;
 		while ((line = br.readLine()) != null) {
+			if (!line.contains("Xposed"))
+				continue;
 			Matcher m = PATTERN_APP_PROCESS_VERSION.matcher(line);
 			if (m.find()) {
 				is.close();
