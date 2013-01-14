@@ -21,8 +21,12 @@ else
     echo No backup found at /system/bin/app_process.orig
 fi
 
-echo Deleting /data/xposed...
-$RM -r /data/xposed/ || exit 1
+if [ -d /data/xposed ]; then
+	echo Deleting /data/xposed...
+	$RM -r /data/xposed/ || exit 1
+else
+	echo /data/xposed did not exist, nothing to delete
+fi
 
 echo
 echo Done! Changes will become active on reboot.
