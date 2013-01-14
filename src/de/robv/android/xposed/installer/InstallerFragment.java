@@ -35,6 +35,7 @@ public class InstallerFragment extends Fragment {
 	private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
 	private String APP_PROCESS_NAME = null;
 	private String XPOSEDTEST_NAME = null;
+	private static final String BINARIES_FOLDER = getBinariesFolder();
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,24 +58,26 @@ public class InstallerFragment extends Fragment {
 		final Button btnReboot = (Button) v.findViewById(R.id.btnReboot);
 		
 		boolean isCompatible = false;
-		if (Build.VERSION.SDK_INT == 15) {
-			APP_PROCESS_NAME = "app_process_sdk15";
-			XPOSEDTEST_NAME = "xposedtest_sdk15";
+		if (BINARIES_FOLDER == null) {
+			// incompatible processor architecture
+		} else if (Build.VERSION.SDK_INT == 15) {
+			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk15";
+			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk15";
 			isCompatible = checkCompatibility();
 			
 		} else if (Build.VERSION.SDK_INT == 16) {
-			APP_PROCESS_NAME = "app_process_sdk16";
-			XPOSEDTEST_NAME = "xposedtest_sdk16";
+			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
+			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
 			isCompatible = checkCompatibility();
 			
 		} else if (Build.VERSION.SDK_INT == 17) {
-			APP_PROCESS_NAME = "app_process_sdk17";
-			XPOSEDTEST_NAME = "xposedtest_sdk17";
+			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk17";
+			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk17";
 			isCompatible = checkCompatibility();
 			
 		} else if (Build.VERSION.SDK_INT > 17) {
-			APP_PROCESS_NAME = "app_process_sdk17";
-			XPOSEDTEST_NAME = "xposedtest_sdk17";
+			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk17";
+			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk17";
 			isCompatible = checkCompatibility();
 			if (isCompatible) {
 				btnInstall.setText(String.format(getString(R.string.not_tested_but_compatible), Build.VERSION.SDK_INT));
@@ -101,7 +104,7 @@ public class InstallerFragment extends Fragment {
 				}
 			});
 		} else {
-			btnInstall.setText(String.format(getString(R.string.phone_not_compatible), Build.VERSION.SDK_INT));
+			btnInstall.setText(String.format(getString(R.string.phone_not_compatible), Build.VERSION.SDK_INT, Build.CPU_ABI));
 			btnInstall.setTextColor(Color.RED);
 			btnInstall.setEnabled(false);
 		}
@@ -173,6 +176,17 @@ public class InstallerFragment extends Fragment {
         .show();
 	}
 	
+	private static String getBinariesFolder() {
+		if (Build.CPU_ABI.startsWith("armeabi-v7"))
+			return "armv7-a/";
+		else if (Build.CPU_ABI.startsWith("armeabi-v6"))
+			return "armv5te/";
+		else if (Build.CPU_ABI.startsWith("armeabi-v5"))
+			return "armv5te/";
+		else
+			return null;
+	}
+	
 	private boolean checkCompatibility() {
 		return checkXposedTestCompatibility() && checkAppProcessCompatibility();
 	}
@@ -236,6 +250,9 @@ public class InstallerFragment extends Fragment {
 	}
 	
 	private String getLatestAppProcessVersion(String defaultValue) {
+		if (APP_PROCESS_NAME == null)
+			return defaultValue;
+		
 		try {
 			return getAppProcessVersion(
 					getActivity().getAssets().open(APP_PROCESS_NAME),
