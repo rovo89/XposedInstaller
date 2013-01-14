@@ -86,18 +86,38 @@ public class InstallerFragment extends Fragment {
 		}
 		
 		final String none = getString(R.string.none);
-		txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
-		txtAppProcessLatestVersion.setText(getLatestAppProcessVersion(none));
-		txtJarInstalledVersion.setText(getJarInstalledVersion(none));
-		txtJarLatestVersion.setText(getJarLatestVersion(none));
-
+		final String appProcessInstalledVersion = getInstalledAppProcessVersion(none);
+		final String appProcessLatestVersion = getLatestAppProcessVersion(none);
+		final String jarInstalledVersion = getJarInstalledVersion(none);
+		final String jarLatestVersion = getJarLatestVersion(none);
+		
+		txtAppProcessInstalledVersion.setText(appProcessInstalledVersion);
+		txtAppProcessLatestVersion.setText(appProcessLatestVersion);
+		txtJarInstalledVersion.setText(jarInstalledVersion);
+		txtJarLatestVersion.setText(jarLatestVersion);
+		
+		if (appProcessInstalledVersion.equals(none)
+				|| PackageChangeReceiver.compareVersions(appProcessInstalledVersion, appProcessLatestVersion) < 0)
+			txtAppProcessInstalledVersion.setTextColor(Color.RED);
+		else
+			txtAppProcessInstalledVersion.setTextColor(Color.GREEN);
+		
+		if (jarInstalledVersion.equals(none)
+				|| PackageChangeReceiver.compareVersions(jarInstalledVersion, jarLatestVersion) < 0)
+			txtJarInstalledVersion.setTextColor(Color.RED);
+		else
+			txtJarInstalledVersion.setTextColor(Color.GREEN);
+		
+		
 		if (isCompatible) {
 			btnInstall.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					showAlert(install());
 					txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
+					txtAppProcessInstalledVersion.setTextColor(Color.GREEN);
 					txtJarInstalledVersion.setText(getJarInstalledVersion(none));
+					txtJarInstalledVersion.setTextColor(Color.GREEN);
 					Context context = InstallerFragment.this.getActivity();
 					Set<String> enabledModules = PackageChangeReceiver.getEnabledModules(context);
 					PackageChangeReceiver.updateModulesList(context, enabledModules);
@@ -114,7 +134,9 @@ public class InstallerFragment extends Fragment {
 			public void onClick(View v) {
 				showAlert(uninstall());
 				txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
+				txtAppProcessInstalledVersion.setTextColor(Color.RED);
 				txtJarInstalledVersion.setText(getJarInstalledVersion(none));
+				txtJarInstalledVersion.setTextColor(Color.RED);
 			}
 		});
 		btnCleanup.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +147,9 @@ public class InstallerFragment extends Fragment {
 					public void onClick(DialogInterface dialog, int which) {
 						showAlert(cleanup());
 						txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
+						txtAppProcessInstalledVersion.setTextColor(Color.RED);
 						txtJarInstalledVersion.setText(getJarInstalledVersion(none));
+						txtJarInstalledVersion.setTextColor(Color.RED);
 					}
 				});
 			}
