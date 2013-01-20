@@ -136,7 +136,7 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 							continue;
 						
 						String minVersion = app.metaData.getString("xposedminversion");
-						if (PackageChangeReceiver.compareVersions(minVersion, installedXposedVersion) > 0
+						if (minVersion == null || PackageChangeReceiver.compareVersions(minVersion, installedXposedVersion) > 0
 								|| PackageChangeReceiver.compareVersions(minVersion, MIN_MODULE_VERSION) < 0)
 							continue;
 						
@@ -178,7 +178,7 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 	}
 	
 	
-	private static Pattern SEARCH_PATTERN = Pattern.compile("^\\s*(\\d+(?:\\.\\d+)*)(.*?)[.*]*\\s*$");
+	private static Pattern SEARCH_PATTERN = Pattern.compile("^\\s*(\\d+(?:\\.\\d+)*)(.*?)[.+*]*\\s*$");
 	private static Pattern SUFFIX_PATTERN = Pattern.compile("(.*?)(\\d*)$");
 	public static int compareVersions(String s1, String s2) {
 		// easy: both are equal
@@ -249,9 +249,9 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 		return suffixNum1 - suffixNum2;
 	}
 	
-	private static Pattern TRIM_VERSION = Pattern.compile("^\\s*(.*?)(?:\\.+[0*]*)*\\**\\s*$");
-	/** removes: spaces at front and back, any dots and following zeros/stars at the end, any stars at the end */
+	private static Pattern TRIM_VERSION = Pattern.compile("[.+*]+$");
+	/** removes: spaces at front and back, any dots, stars and plus signs at the end */
 	public static String trimVersion(String version) {
-		return TRIM_VERSION.matcher(version).replaceFirst("$1");
+		return TRIM_VERSION.matcher(version.trim()).replaceFirst("");
 	}
 }
