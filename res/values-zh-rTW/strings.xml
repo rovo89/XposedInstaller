@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Xposed外掛模組</string>
+    <string name="tabInstall">核心框架</string>
+    <string name="tabModules">應用模組</string>
+    <string name="yes">確定</string>
+    <string name="no">取消</string>
+    <string name="installerDescription">即將開始安裝 <b>Xposed</b> 核心框架服務. 這是改變你手機外觀及功能操作的核心模組. 想取得更多資訊可到 <a href="http://forum.xda-developers.com/showthread.php?t=1574401">瀏覽</a>.</string>
+    <string name="install">安裝/更新</string>
+    <string name="uninstall">卸載 (restore app_process)</string>
+    <string name="installedVersion">使用中版本</string>
+    <string name="none">---</string>
+    <string name="latestVersion">最新版本</string>
+    <string name="cleanup">清除 (完整移除框架服務)</string>
+    <string name="versions">版本:</string>
+    <string name="soft_reboot">軟重啟</string>
+    <string name="reboot">重啟</string>
+    <string name="areyousure">你是否確定?</string>
+    <string name="module_is_not_activated_yet">Xposed 核心還沒有啟動.</string>
+    <string name="module_empty_description">(沒有任何說明)</string>
+    <string name="module_no_ui">此模組沒有提供任何使用者介面</string>
+    <string name="no_xposed_modules_found">沒有發現任何 Xposed 應用模組!</string>
+    <string name="xposed_module_list_updated">"Xposed 應用模組清單已更新\n重啟后即可選用"</string>
+    <string name="warning_xposed_min_version">此應用模組需要更新核心框架版本 (%s) 所以目前無法啟用.</string>
+    <string name="phone_not_compatible" formatted="false">Xposed 還沒有兼容正使用中的 Android SDK %d 版本 或你的處理器架搆(%s).</string>
+    <string name="not_tested_but_compatible">Xposed 沒有進行與 Android SDK 版本 %d 兼容測試,但它似乎能夠使用. 如果你確定相關風險,可以嘗試安裝.</string>
+    <string name="no_min_version_specified">此模組沒有指定使用的核心框架版本.</string>
+    <string name="warning_min_version_too_low" formatted="false">此模組專為 Xposed %1s 版本而設, 由於系統已更新至 %2s版本, 所以服務目前已被禁用. </string>
+</resources>
