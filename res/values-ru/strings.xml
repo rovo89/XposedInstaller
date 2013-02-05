@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Xposed Installer</string>
+    <string name="tabInstall">Система</string>
+    <string name="tabModules">Модули</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="installerDescription">Здесь вы можете установить <b>Xposed</b> систему.
+		Это база для модулей, которые могут изменить поведение и внешний вид вашего телефона Android.
+		Для получения дополнительной информации смотрите <a href="http://forum.xda-developers.com/showthread.php?t=1574401">здесь</a>.</string>
+    <string name="install">Установить/Обновить</string>
+    <string name="uninstall">Удаление (восстановление app_process)</string>
+    <string name="installedVersion">активна</string>
+    <string name="none">---</string>
+    <string name="latestVersion">в пакете</string>
+    <string name="cleanup">Очистка (полное удаление)</string>
+    <string name="versions">Версии:</string>
+    <string name="soft_reboot">Мягкая перезагрузка</string>
+    <string name="reboot">Перезагрузка</string>
+    <string name="areyousure">Вы уверены?</string>
+    <string name="module_is_not_activated_yet">Xposed модуль еще не активирован</string>
+    <string name="module_empty_description">(описание отсутствует)</string>
+    <string name="module_no_ui">Этот модуль не содержит пользовательского интерфейса</string>
+    <string name="no_xposed_modules_found">Xposed модули не найдены!</string>
+    <string name="xposed_module_list_updated">Cписок модулей Xposed был обновлен\nИзменения станут активными при перезагрузке</string>
+    <string name="warning_xposed_min_version">Этот модуль требует более новой версии Xposed (%s) и не может быть активирован.</string>
+    <string name="phone_not_compatible" formatted="false">Xposed (пока) не совместим с версией Android SDK %d или архитектурой процессора (%s).</string>
+    <string name="not_tested_but_compatible">Xposed не была протестирована с Android SDK версии %d, но мне кажется, могут быть совместимы. Вы можете попробовать его установить, если вы хотите приключений.</string>
+    <string name="no_min_version_specified">Этот модуль не указал версию Xposed, в которой он нуждается.</string>
+    <string name="warning_min_version_too_low" formatted="false">Этот модуль был создан для Xposed %1s версии, но из-за несовместимых изменений в %2s версии он была отключен.</string>
+</resources>
