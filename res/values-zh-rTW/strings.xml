@@ -26,4 +26,5 @@
     <string name="not_tested_but_compatible">Xposed 沒有進行與 Android SDK 版本 %d 兼容測試,但它似乎能夠使用. 如果你確定相關風險,可以嘗試安裝.</string>
     <string name="no_min_version_specified">此模組沒有指定使用的核心框架版本.</string>
     <string name="warning_min_version_too_low" formatted="false">此模組專為 Xposed %1s 版本而設, 由於系統已更新至 %2s版本, 所以服務目前已被禁用. </string>
+    <string name="translator">burstlam</string>
 </resources>
