@@ -25,7 +25,7 @@
     <string name="xposed_module_list_updated">Cписок модулей Xposed был обновлен\nИзменения станут активными при перезагрузке</string>
     <string name="warning_xposed_min_version">Этот модуль требует более новой версии Xposed (%s) и не может быть активирован.</string>
     <string name="phone_not_compatible" formatted="false">Xposed (пока) не совместим с версией Android SDK %d или архитектурой процессора (%s).</string>
-    <string name="not_tested_but_compatible">Xposed не была протестирована с Android SDK версии %d, но мне кажется, могут быть совместимы. Вы можете попробовать его установить, если вы хотите приключений.</string>
+    <string name="not_tested_but_compatible">Xposed не был протестирован с Android SDK версии %d, но может быть совместим. Вы можете попробовать его установить, если вы хотите приключений.</string>
     <string name="no_min_version_specified">Этот модуль не указал версию Xposed, в которой он нуждается.</string>
     <string name="warning_min_version_too_low" formatted="false">Этот модуль был создан для Xposed %1s версии, но из-за несовместимых изменений в %2s версии он была отключен.</string>
     <string name="translator">jack_nuclear</string>
