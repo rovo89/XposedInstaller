@@ -10,7 +10,7 @@
 		Для получения дополнительной информации смотрите <a href="http://forum.xda-developers.com/showthread.php?t=1574401">здесь</a>.</string>
     <string name="install">Установить/Обновить</string>
     <string name="uninstall">Удаление (восстановление app_process)</string>
-    <string name="installedVersion">активна</string>
+    <string name="installedVersion">активная</string>
     <string name="none">---</string>
     <string name="latestVersion">в пакете</string>
     <string name="cleanup">Очистка (полное удаление)</string>
