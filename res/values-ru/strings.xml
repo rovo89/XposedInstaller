@@ -10,7 +10,7 @@
 		Для получения дополнительной информации смотрите <a href="http://forum.xda-developers.com/showthread.php?t=1574401">здесь</a>.</string>
     <string name="install">Установить/Обновить</string>
     <string name="uninstall">Удаление (восстановление app_process)</string>
-    <string name="installedVersion">активна</string>
+    <string name="installedVersion">текущая</string>
     <string name="none">---</string>
     <string name="latestVersion">в пакете</string>
     <string name="cleanup">Очистка (полное удаление)</string>
@@ -25,7 +25,7 @@
     <string name="xposed_module_list_updated">Cписок модулей Xposed был обновлен\nИзменения станут активными при перезагрузке</string>
     <string name="warning_xposed_min_version">Этот модуль требует более новой версии Xposed (%s) и не может быть активирован.</string>
     <string name="phone_not_compatible">Xposed (пока) не совместим с версией Android SDK %1$d или архитектурой процессора (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed не была протестирована с Android SDK версии %d, но мне кажется, могут быть совместимы. Вы можете попробовать его установить, если вы хотите приключений.</string>
+    <string name="not_tested_but_compatible">Xposed не был протестирован с Android SDK версии %d, но может быть совместим. Вы можете попробовать его установить, если вы хотите приключений.</string>
     <string name="no_min_version_specified">Этот модуль не указал версию Xposed, в которой он нуждается.</string>
     <string name="warning_min_version_too_low">Этот модуль был создан для Xposed %1$s версии, но из-за несовместимых изменений в %2$s версии он была отключен.</string>
     <string name="translator">jack_nuclear</string>
