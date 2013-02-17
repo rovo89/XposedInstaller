@@ -7,6 +7,7 @@ import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -36,13 +37,15 @@ public class ModulesFragment extends ListFragment {
         enabledModules = PackageChangeReceiver.getEnabledModules(getActivity());
         
 		PackageManager pm = getActivity().getPackageManager();
-		for (ApplicationInfo app : pm.getInstalledApplications(PackageManager.GET_META_DATA)) {
+		for (PackageInfo pkg : pm.getInstalledPackages(PackageManager.GET_META_DATA)) {
+			ApplicationInfo app = pkg.applicationInfo;
 			if (app.metaData == null || !app.metaData.containsKey("xposedmodule"))
 				continue;
 			
 			String minVersion = app.metaData.getString("xposedminversion");
 			String description = app.metaData.getString("xposeddescription", "");
-			modules.add(new XposedModule(app.packageName, pm.getApplicationLabel(app).toString(), pm.getApplicationIcon(app), minVersion, description));
+			modules.add(new XposedModule(pkg.packageName, pkg.versionName, pm.getApplicationLabel(app).toString(),
+					pm.getApplicationIcon(app), minVersion, description));
 		}
 		
 		modules.sort(new Comparator<XposedModule>() {
@@ -147,13 +150,15 @@ public class ModulesFragment extends ListFragment {
 
 	private static class XposedModule {
 		String packageName;
+		String moduleVersion;
 		String appName;
 		Drawable icon;
 		String minVersion;
 		String description;
 
-		public XposedModule(String packageName, String appName, Drawable icon, String minVersion, String description) {
+		public XposedModule(String packageName, String moduleVersion, String appName, Drawable icon, String minVersion, String description) {
 			this.packageName = packageName;
+			this.moduleVersion = moduleVersion;
 			this.appName = appName;
 			this.icon = icon;
 			this.minVersion = minVersion;
@@ -162,7 +167,7 @@ public class ModulesFragment extends ListFragment {
 
 		@Override
 		public String toString() {
-			return appName;
+			return String.format("%s [%s]", appName, moduleVersion);
 		}
 	}
 }
