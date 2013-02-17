@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="app_name">Xposed Telepítő</string>
+    <string name="tabInstall">Keretrendszer</string>
+    <string name="tabModules">Modulok</string>
+    <string name="yes">igen</string>
+    <string name="no">nem</string>
+    <string name="installerDescription">Itt feltelepítheted az <b>Xposed</b> keretrendszert.
+		Ez az alapja a moduloknak, amik megváltoztatják az Androidos telefonod viselkedését és kinézetét.
+		További információkért látogass el <a href="http://forum.xda-developers.com/showthread.php?t=1574401">erre</a> a weboldalra.</string>
+    <string name="install">Telepítés/Frissítés</string>
+    <string name="uninstall">Eltávolítás (app_process visszaállítása)</string>
+    <string name="installedVersion">telepített</string>
+    <string name="none">---</string>
+    <string name="latestVersion">a csomagban</string>
+    <string name="cleanup">Tisztítás (a keretrendszer teljes eltávolítása)</string>
+    <string name="versions">Verziók:</string>
+    <string name="soft_reboot">Gyors újraindítás</string>
+    <string name="reboot">Újraindítás</string>
+    <string name="areyousure">Biztos vagy benne?</string>
+    <string name="module_is_not_activated_yet">Az Xposed modul még nincs aktiválva</string>
+    <string name="module_empty_description">(nincs leírás)</string>
+    <string name="module_no_ui">A modulnak nincs felhasználói felülete</string>
+    <string name="no_xposed_modules_found">Nem található Xposed modul!</string>
+    <string name="xposed_module_list_updated">Az Xposed modul lista frissült\nA változtatások újraindítás után lépnek életbe</string>
+    <string name="warning_xposed_min_version">A modulhoz frissebb Xposed verzió (%s) szükséges, ezért nem aktiválható.</string>
+    <string name="phone_not_compatible" formatted="false">Az Xposed (még) nem kompatibilis a %d verziójú Android SDK-val vagy a processzor architektúráddal (%s).</string>
+    <string name="not_tested_but_compatible">Az Xposed nem volt tesztelve a %d verziójú Android SDK-val, de úgy tűnik, kompatibilis. Megpróbálhatod telepíteni ha elég kalandvágyó vagy.</string>
+    <string name="no_min_version_specified">A modul nem tünteti fel a szükséges Xposed verziót.</string>
+    <string name="warning_min_version_too_low" formatted="false">Ez a modul a(z) %1s verziójú Xposed-hoz lett készítve, de a(z) %2s verzió összeférhetetlen változtatásai miatt le lett tiltva.</string>
+    <string name="translator">Adam77Root</string>
+</resources>
