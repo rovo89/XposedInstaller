@@ -22,9 +22,9 @@
     <string name="no_xposed_modules_found">沒有發現任何 Xposed 應用模組!</string>
     <string name="xposed_module_list_updated">"Xposed 應用模組清單已更新\n重啟后即可選用"</string>
     <string name="warning_xposed_min_version">此應用模組需要更新核心框架版本 (%s) 所以目前無法啟用.</string>
-    <string name="phone_not_compatible" formatted="false">Xposed 還沒有兼容正使用中的 Android SDK %d 版本 或你的處理器架搆(%s).</string>
+    <string name="phone_not_compatible">Xposed 還沒有兼容正使用中的 Android SDK %1$d 版本 或你的處理器架搆(%2$s).</string>
     <string name="not_tested_but_compatible">Xposed 沒有進行與 Android SDK 版本 %d 兼容測試,但它似乎能夠使用. 如果你確定相關風險,可以嘗試安裝.</string>
     <string name="no_min_version_specified">此模組沒有指定使用的核心框架版本.</string>
-    <string name="warning_min_version_too_low" formatted="false">此模組專為 Xposed %1s 版本而設, 由於系統已更新至 %2s版本, 所以服務目前已被禁用. </string>
+    <string name="warning_min_version_too_low">此模組專為 Xposed %1$s 版本而設, 由於系統已更新至 %2$s版本, 所以服務目前已被禁用. </string>
     <string name="translator">burstlam</string>
 </resources>

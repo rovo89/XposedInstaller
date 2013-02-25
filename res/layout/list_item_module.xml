@@ -7,7 +7,6 @@
     android:paddingRight="?android:attr/scrollbarSize" >
 
     <CheckBox
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -30,12 +29,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:singleLine="false"
+            android:textIsSelectable="false"
             android:textAppearance="?android:attr/textAppearanceMedium" />
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:textIsSelectable="false"
             android:textAppearance="?android:attr/textAppearanceSmall" />
         <TextView
             android:id="@+id/warning"

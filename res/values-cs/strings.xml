@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Xposed Installer</string>
     <string name="tabInstall">Framework</string>
     <string name="tabModules">Moduly</string>
     <string name="yes">ano</string>
@@ -23,9 +24,9 @@
     <string name="no_xposed_modules_found">Žádné Xposed moduly nebyly nalezeny!</string>
     <string name="xposed_module_list_updated">Sezan Xposed modulů byl aktualizován\nZměny se projeví po restartu</string>
     <string name="warning_xposed_min_version">Tento modul vyžaduje novější verzi Xposed (%s), proto nemůže být aktivován.</string>
-    <string name="phone_not_compatible" formatted="false">Xposed zatím není kompatibilní s Android SDK verzí %d nebo architekturou procesoru (%s).</string>
+    <string name="phone_not_compatible">Xposed zatím není kompatibilní s Android SDK verzí %1$d nebo architekturou procesoru (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed nebyl testován s Android SDK verzí %d, ale zdá se kompatibilní. Je možné ho instalovat na vlasntí nebezpečí.</string>
     <string name="no_min_version_specified">Tento modul nespecifikuje požadovanou verzi Xposed.</string>
-    <string name="warning_min_version_too_low" formatted="false">Tento modul byl vytvořen pro Xposed verzi %1s, ale kvůli nekompatibilním změnám ve verzi %2s, byl zakázán.</string>
+    <string name="warning_min_version_too_low">Tento modul byl vytvořen pro Xposed verzi %1$s, ale kvůli nekompatibilním změnám ve verzi %2$s, byl zakázán.</string>
     <string name="translator">Petr kecinzer Řezníček</string>
 </resources>
