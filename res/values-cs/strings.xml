@@ -4,28 +4,28 @@
     <string name="tabModules">Moduly</string>
     <string name="yes">ano</string>
     <string name="no">ne</string>
-    <string name="installerDescription">Zde je moné nainstalovat <b>Xposed</b> framework.
-		Je to základ pro moduly, které mohou mìnit chování a vzhled Android zaøízení.
-    Pro více informací pokraèovat <a href="http://forum.xda-developers.com/showthread.php?t=1574401">sem</a>.</string>
+    <string name="installerDescription">Zde je moÅ¾nÃ© nainstalovat <b>Xposed</b> framework.
+		Je to zÃ¡klad pro moduly, kterÃ© mohou mÄ›nit chovÃ¡nÃ­ a vzhled Android zaÅ™Ã­nÃ­
+    Pro vÃ­ce informacÃ­ je moÅ¾nÃ© pokraÄovat <a href="http://forum.xda-developers.com/showthread.php?t=1574401">sem</a>.</string>
     <string name="install">Instalovat/Aktualizovat</string>
     <string name="uninstall">Odinstalovat (obnovit app_process)</string>
-    <string name="installedVersion">aktivní</string>
+    <string name="installedVersion">aktivnÃ­</string>
     <string name="none">---</string>
-    <string name="latestVersion">poslední</string>
-    <string name="cleanup">Vyèistit (kompletnì odstranit framework)</string>
+    <string name="latestVersion">poslednÃ­</string>
+    <string name="cleanup">VyÄistit (kompletnÄ› odstranit framework)</string>
     <string name="versions">Verze:</string>
-    <string name="soft_reboot">Lehkı restart</string>
+    <string name="soft_reboot">LehkÃ½ restart</string>
     <string name="reboot">Restart</string>
-    <string name="areyousure">Skuteènì potvrdit?</string>
-    <string name="module_is_not_activated_yet">Xposed modul ještì není aktivován</string>
-    <string name="module_empty_description">(není poskytován ádnı popis)</string>
-    <string name="module_no_ui">Tento modul neposkytuje uivatelské rozhraní</string>
-    <string name="no_xposed_modules_found">ádné Xposed moduly nebyly nalezeny!</string>
-    <string name="xposed_module_list_updated">Sezan Xposed modulù byl aktualizován\nZmìny se projeví po restartu</string>
-    <string name="warning_xposed_min_version">Tento modul vyaduje novìjší verzi Xposed (%s), proto nemùe bıt aktivován.</string>
-    <string name="phone_not_compatible" formatted="false">Xposed zatím není kompatibilní s Android SDK verzí %d nebo architekturou procesoru (%s).</string>
-    <string name="not_tested_but_compatible">Xposed nebyl testován s Android SDK verzí %d, ale zdá se kompatibilní. Je moné ho instalovat na vlasntí nebezpeèí.</string>
-    <string name="no_min_version_specified">Tento modul nespecifikuje poadovanou verzi Xposed.</string>
-    <string name="warning_min_version_too_low" formatted="false">Tento modul byl vytvoøen pro Xposed verzi %1s, ale kvùli nekompatibilním zmìnám ve verzi %2s, byl zakázán.</string>
-    <string name="translator">Petr kecinzer Øezníèek</string>
+    <string name="areyousure">SkuteÄnÄ› potvrdit?</string>
+    <string name="module_is_not_activated_yet">Xposed modul jeÅ¡tÄ› nenÃ­ aktivovÃ¡n</string>
+    <string name="module_empty_description">(nenÃ­ k dispozici Å¾Ã¡dnÃ½ popis)</string>
+    <string name="module_no_ui">Tento modul neposkytuje uÅ¾ivatelskÃ© rozhranÃ­</string>
+    <string name="no_xposed_modules_found">Å½Ã¡dnÃ© Xposed moduly nebyly nalezeny!</string>
+    <string name="xposed_module_list_updated">Sezan Xposed modulÅ¯ byl aktualizovÃ¡n\nZmÄ›ny se projevÃ­ po restartu</string>
+    <string name="warning_xposed_min_version">Tento modul vyÅ¾aduje novÄ›jÅ¡Ã­ verzi Xposed (%s), proto nemÅ¯Å¾e bÃ½t aktivovÃ¡n.</string>
+    <string name="phone_not_compatible" formatted="false">Xposed zatÃ­m nenÃ­ kompatibilnÃ­ s Android SDK verzÃ­ %d nebo architekturou procesoru (%s).</string>
+    <string name="not_tested_but_compatible">Xposed nebyl testovÃ¡n s Android SDK verzÃ­ %d, ale zdÃ¡ se kompatibilnÃ­. Je moÅ¾nÃ© ho instalovat na vlasntÃ­ nebezpeÄÃ­.</string>
+    <string name="no_min_version_specified">Tento modul nespecifikuje poÅ¾adovanou verzi Xposed.</string>
+    <string name="warning_min_version_too_low" formatted="false">Tento modul byl vytvoÅ™en pro Xposed verzi %1s, ale kvÅ¯li nekompatibilnÃ­m zmÄ›nÃ¡m ve verzi %2s, byl zakÃ¡zÃ¡n.</string>
+    <string name="translator">Petr kecinzer Å˜eznÃ­Äek</string>
 </resources>
