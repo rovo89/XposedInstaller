@@ -51,7 +51,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="app_process" />
+                    android:text="@string/app_process" />
 
                 <TextView
                     android:id="@+id/app_process_installed_version"
@@ -73,7 +73,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="XposedBridge.jar" />
+                    android:text="@string/xposedbridge" />
 
                 <TextView
                     android:id="@+id/jar_installed_version"
