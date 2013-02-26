@@ -24,9 +24,9 @@
     <string name="no_xposed_modules_found">Nem található Xposed modul!</string>
     <string name="xposed_module_list_updated">Az Xposed modul lista frissült\nA változtatások újraindítás után lépnek életbe</string>
     <string name="warning_xposed_min_version">A modulhoz frissebb Xposed verzió (%s) szükséges, ezért nem aktiválható.</string>
-    <string name="phone_not_compatible" formatted="false">Az Xposed (még) nem kompatibilis a %d verziójú Android SDK-val vagy a processzor architektúráddal (%s).</string>
+    <string name="phone_not_compatible">Az Xposed (még) nem kompatibilis a %1$d verziójú Android SDK-val vagy a processzor architektúráddal (%2$s).</string>
     <string name="not_tested_but_compatible">Az Xposed nem volt tesztelve a %d verziójú Android SDK-val, de úgy tűnik, kompatibilis. Megpróbálhatod telepíteni ha elég kalandvágyó vagy.</string>
     <string name="no_min_version_specified">A modul nem tünteti fel a szükséges Xposed verziót.</string>
-    <string name="warning_min_version_too_low" formatted="false">Ez a modul a(z) %1s verziójú Xposed-hoz lett készítve, de a(z) %2s verzió összeférhetetlen változtatásai miatt le lett tiltva.</string>
+    <string name="warning_min_version_too_low">Ez a modul a(z) %1$s verziójú Xposed-hoz lett készítve, de a(z) %2$s verzió összeférhetetlen változtatásai miatt le lett tiltva.</string>
     <string name="translator">Adam77Root</string>
 </resources>
