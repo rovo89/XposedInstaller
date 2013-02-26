@@ -22,7 +22,7 @@
     <string name="module_empty_description">(není k dispozici žádný popis)</string>
     <string name="module_no_ui">Tento modul neposkytuje uživatelské rozhraní</string>
     <string name="no_xposed_modules_found">Žádné Xposed moduly nebyly nalezeny!</string>
-    <string name="xposed_module_list_updated">Sezan Xposed modulů byl aktualizován\nZměny se projeví po restartu</string>
+    <string name="xposed_module_list_updated">Seznam Xposed modulů byl aktualizován\nZměny se projeví po restartu</string>
     <string name="warning_xposed_min_version">Tento modul vyžaduje novější verzi Xposed (%s), proto nemůže být aktivován.</string>
     <string name="phone_not_compatible">Xposed zatím není kompatibilní s Android SDK verzí %1$d nebo architekturou procesoru (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed nebyl testován s Android SDK verzí %d, ale zdá se kompatibilní. Je možné ho instalovat na vlasntí nebezpečí.</string>
