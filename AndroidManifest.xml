@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.robv.android.xposed.installer"
-    android:versionCode="13"
-    android:versionName="2.1.2" xmlns:tools="http://schemas.android.com/tools">
+    android:versionCode="14"
+    android:versionName="2.1.3" xmlns:tools="http://schemas.android.com/tools">
 
     <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="15" tools:ignore="OldTargetApi"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
