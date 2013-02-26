@@ -15,16 +15,19 @@ import java.util.jar.JarInputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,7 +98,14 @@ public class InstallerFragment extends Fragment {
 		txtAppProcessLatestVersion.setText(appProcessLatestVersion);
 		txtJarInstalledVersion.setText(jarInstalledVersion);
 		txtJarLatestVersion.setText(jarLatestVersion);
-		
+		try {
+			final Activity activity = getActivity();
+			final String installerVersion = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0).versionName;
+			((TextView) v.findViewById(R.id.installer_version)).setText(installerVersion);
+		} catch (NameNotFoundException e) {
+			Log.e(XposedInstallerActivity.TAG, "could not get information about our own package", e);
+		}
+
 		if (appProcessInstalledVersion.equals(none)
 				|| PackageChangeReceiver.compareVersions(appProcessInstalledVersion, appProcessLatestVersion) < 0)
 			txtAppProcessInstalledVersion.setTextColor(Color.RED);
