@@ -44,6 +44,15 @@ public class ModulesFragment extends ListFragment {
 			
 			String minVersion = app.metaData.getString("xposedminversion");
 			String description = app.metaData.getString("xposeddescription", "");
+			if (description.length() == 0) {
+				// Check if the metadata is using a resource and load it if so
+				try {
+					int resId = app.metaData.getInt("xposeddescription", 0);
+					if (resId != 0) {
+						description = pm.getResourcesForApplication(app).getString(resId);
+					}
+				} catch (Exception e) { }
+			}
 			modules.add(new XposedModule(pkg.packageName, pkg.versionName, pm.getApplicationLabel(app).toString(),
 					pm.getApplicationIcon(app), minVersion, description));
 		}
