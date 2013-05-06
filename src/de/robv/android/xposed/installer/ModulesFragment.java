@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.Set;
 
 import android.app.ListFragment;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -76,11 +77,20 @@ public class ModulesFragment extends ListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		String packageName = (String) v.getTag();
-		Intent launchIntent = getActivity().getPackageManager().getLaunchIntentForPackage(packageName);
-		if (launchIntent != null)
+		Intent launchIntent;
+		try {
+			launchIntent = new Intent("de.robv.android.xposed.installer.XPOSED_SETTINGS");
+			launchIntent.addCategory(Intent.CATEGORY_DEFAULT);
+			launchIntent.setPackage(packageName);
 			startActivity(launchIntent);
-		else
-			Toast.makeText(getActivity(), getActivity().getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
+		} catch (ActivityNotFoundException e) {
+			// Fall back
+			launchIntent = getActivity().getPackageManager().getLaunchIntentForPackage(packageName);
+			if (launchIntent != null)
+				startActivity(launchIntent);
+			else
+				Toast.makeText(getActivity(), getActivity().getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
+		}
 	}
 
     private class ModuleAdapter extends ArrayAdapter<XposedModule> {
