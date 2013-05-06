@@ -10,7 +10,7 @@ MV="$BUSYBOX mv"
 RM="$BUSYBOX rm"
 
 echo Mounting /system writable...
-$MOUNT -o remount,rw /system || exit 1
+$MOUNT -o remount,rw /system
 
 if [ -f /system/bin/app_process.orig ]; then
 	echo Restoring backup from /system/bin/app_process.orig...

@@ -24,7 +24,7 @@ if [ ! -f app_process -o ! -f XposedBridge.jar ]; then
 fi
 
 echo Mounting /system writable...
-$MOUNT -o remount,rw /system || exit 1
+$MOUNT -o remount,rw /system
 
 if [ -f /system/bin/app_process.orig ]; then
 	echo Backup of app_process executable exists already at /system/bin/app_process.orig
