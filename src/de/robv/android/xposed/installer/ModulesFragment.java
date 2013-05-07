@@ -1,6 +1,7 @@
 package de.robv.android.xposed.installer;
 
 import java.util.Comparator;
+import java.util.List;
 import java.util.Set;
 
 import android.app.ListFragment;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -24,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ModulesFragment extends ListFragment {
+	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
 	private Set<String> enabledModules;
 	private String installedXposedVersion;
 	
@@ -67,11 +70,31 @@ public class ModulesFragment extends ListFragment {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		String packageName = (String) v.getTag();
-		Intent launchIntent = getActivity().getPackageManager().getLaunchIntentForPackage(packageName);
+		Intent launchIntent = getSettingsIntent(packageName);
 		if (launchIntent != null)
 			startActivity(launchIntent);
 		else
 			Toast.makeText(getActivity(), getActivity().getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
+	}
+
+	private Intent getSettingsIntent(String packageName) {
+		// taken from ApplicationPackageManager.getLaunchIntentForPackage(String)
+		// first looks for an Xposed-specific category, falls back to getLaunchIntentForPackage
+		PackageManager pm = getActivity().getPackageManager();
+
+		Intent intentToResolve = new Intent(Intent.ACTION_MAIN);
+		intentToResolve.addCategory(SETTINGS_CATEGORY);
+		intentToResolve.setPackage(packageName);
+		List<ResolveInfo> ris = pm.queryIntentActivities(intentToResolve, 0);
+
+		if (ris == null || ris.size() <= 0) {
+			return pm.getLaunchIntentForPackage(packageName);
+		}
+
+		Intent intent = new Intent(intentToResolve);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		intent.setClassName(ris.get(0).activityInfo.packageName, ris.get(0).activityInfo.name);
+		return intent;
 	}
 
     private class ModuleAdapter extends ArrayAdapter<XposedModule> {
