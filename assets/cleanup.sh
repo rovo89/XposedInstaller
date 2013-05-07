@@ -3,6 +3,7 @@ export PATH=/system/bin:$PATH
 
 BUSYBOX=./busybox-xposed
 
+BRACKET="$BUSYBOX ["
 CHMOD="$BUSYBOX chmod"
 CHOWN="$BUSYBOX chown"
 MOUNT="$BUSYBOX mount"
@@ -12,7 +13,7 @@ RM="$BUSYBOX rm"
 echo Mounting /system writable...
 $MOUNT -o remount,rw /system
 
-if [ -f /system/bin/app_process.orig ]; then
+if $BRACKET -f /system/bin/app_process.orig ]; then
 	echo Restoring backup from /system/bin/app_process.orig...
 	$MV /system/bin/app_process.orig /system/bin/app_process || exit 1
 	$CHMOD 755 /system/bin/app_process || exit 1
@@ -21,7 +22,7 @@ else
     echo No backup found at /system/bin/app_process.orig
 fi
 
-if [ -d /data/xposed ]; then
+if $BRACKET -d /data/xposed ]; then
 	echo Deleting /data/xposed...
 	$RM -r /data/xposed/ || exit 1
 else
