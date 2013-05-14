@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Instalator Xposed</string>
+    <string name="tabInstall">Framework</string>
+    <string name="tabModules">Moduły</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+    <string name="installerDescription">Tu możesz zainstalować <b>Xposed</b> framework.
+		Jest to baza dla modułów, które mogą zmienić wygląd i zachowanie twojego smartphona.
+		Więcej informacji pod adresem <a href="http://forum.xda-developers.com/showthread.php?t=1574401">Tutaj</a>.</string>
+    <string name="install">Zainstaluj/Uaktualnij</string>
+    <string name="uninstall">Odinstaluj (przywróć app_process)</string>
+    <string name="installedVersion">aktywna</string>
+    <string name="none">---</string>
+    <string name="latestVersion">w pakiecie</string>
+    <string name="cleanup">Posprzątaj (dokończ usuwanie frameworka)</string>
+    <string name="versions">Wersje:</string>
+    <string name="soft_reboot">Miękki restart</string>
+    <string name="reboot">Restart</string>
+    <string name="areyousure">Czy jesteś pewien?</string>
+    <string name="module_is_not_activated_yet">Moduł Xposed nie jest jeszcze aktywny</string>
+    <string name="module_empty_description">(brak dołączonego opisu)</string>
+    <string name="module_no_ui">Ten moduł nie zawiera interfaceu urzytkownika</string>
+    <string name="no_xposed_modules_found">Nie znaleziono żadnych modułów Xposed!</string>
+    <string name="xposed_module_list_updated">Lista modułów Xposed została zaktualizowana\nZmiany zostaną uaktywnione po restarcie</string>
+    <string name="warning_xposed_min_version">Ten moduł wymaga nowszej wersji Xposed (%s) i nie może być aktywowany.</string>
+    <string name="phone_not_compatible">Xposed nie jest (jeszcze) kompatybilne z Android SDK wersją %1$d lub z twoją architektórą procesora (%2$s).</string>
+    <string name="not_tested_but_compatible">Xposed nie był testowany z tą wersją Android SDK %d, ale wygląda na to, że jest kompatybilna. Możesz spróbować instalacji jeśli czujesz się odważny.</string>
+    <string name="no_min_version_specified">Ten moduł nie określa wymaganej wersji Xposed.</string>
+    <string name="warning_min_version_too_low">Ten moduł był stworzony dla Xposed w wersji %1$s, ale przez niekompatybilne zmiany w wersji %2$s, został wyłączony.</string>
+    <string name="translator">rocky12345678900</string>
+</resources>
