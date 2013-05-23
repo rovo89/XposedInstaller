@@ -1,0 +1,32 @@
+<repository>
+	<name>Main repository</name>
+	<module package="de.robv.android.xposed.mods.appsettings">
+		<name>App Settings</name>
+		<description><![CDATA[Can modify x and y & z.
+		Also great for
+adding line breaks]]></description>
+		<screenshot>http://xyz.de/screen1.png</screenshot>
+		<author>Tungstwenty</author>
+		<contact>http://xyz.de/contact.php</contact>
+		
+		<version>
+			<name>1.1</name>
+			<code>2</code>
+			<download>http://xyz.de/my.apk</download>
+			<md5sum>d41d8cd98f00b204e9800998ecf8427e</md5sum>
+			<changelog>Add feature y</changelog>
+			<changelog>Add feature z</changelog>
+		</version>
+<!--
+		<version name="1.1 beta" code="1" branch="beta">
+			<changelog>Add feature z</changelog>
+			<download>http://xyz.de/my-beta.apk</download>
+		</version>
+-->
+		<version>
+			<name>1.0</name>
+			<code>1</code>
+			<changelog>Initial version</changelog>
+		</version>
+	</module>
+</repository>
