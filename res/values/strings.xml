@@ -4,6 +4,7 @@
     <string name="app_name">Xposed Installer</string>
     <string name="tabInstall">Framework</string>
     <string name="tabModules">Modules</string>
+    <string name="tabDownload">Download</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
     <string name="installerDescription">Here you can install the <b>Xposed</b> framework.
