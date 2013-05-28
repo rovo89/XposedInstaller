@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
+import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
@@ -33,7 +34,11 @@ public class ModulesFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-        
+
+		Activity activity = getActivity();
+		if (activity instanceof XposedInstallerActivity)
+			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_MODULES);
+
 		installedXposedVersion = InstallerFragment.getJarInstalledVersion(null);
 		
         ModuleAdapter modules = new ModuleAdapter(getActivity());

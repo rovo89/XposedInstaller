@@ -39,7 +39,15 @@ public class InstallerFragment extends Fragment {
 	private String APP_PROCESS_NAME = null;
 	private String XPOSEDTEST_NAME = null;
 	private static final String BINARIES_FOLDER = getBinariesFolder();
-	
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		Activity activity = getActivity();
+		if (activity instanceof XposedInstallerActivity)
+			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_INSTALL);
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
