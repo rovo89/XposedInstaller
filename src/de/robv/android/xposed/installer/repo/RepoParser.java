@@ -34,7 +34,7 @@ public class RepoParser {
         	if (tagName.equals("name")) {
         		repository.name = parser.nextText(); 
         	} else if (tagName.equals("module")) {
-        		Module module = readModule();
+        		Module module = readModule(repository);
         		if (module != null)
         			repository.modules.put(module.packageName, module);
         	} else {
@@ -45,9 +45,9 @@ public class RepoParser {
         return repository;
 	}
 	
-	protected Module readModule() throws XmlPullParserException, IOException {
+	protected Module readModule(Repository repository) throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, NS, "module");
-        Module module = new Module();
+        Module module = new Module(repository);
         module.packageName = parser.getAttributeValue(NS, "package");
         if (module.packageName == null) {
         	logError("no package name defined");
@@ -67,23 +67,25 @@ public class RepoParser {
         	} else if (tagName.equals("screenshot")) {
         		module.screenshots.add(parser.nextText());
         	} else if (tagName.equals("version")) {
-        		ModuleVersion version = readModuleVersion();
-        		if (version != null) {
+        		ModuleVersion version = readModuleVersion(module);
+        		if (version != null)
         			module.versions.add(version);
-        			if (module.latestVersion == null)
-        				module.latestVersion = version;
-        		}
         	} else {
         		skip();
         	}
         }
         
+        if (module.name == null) {
+        	logError("packages need at least a name");
+        	return null;
+        }
+        
         return module;
 	}
 	
-	protected ModuleVersion readModuleVersion() throws XmlPullParserException, IOException {
+	protected ModuleVersion readModuleVersion(Module module) throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, NS, "version");
-        ModuleVersion version= new ModuleVersion();
+        ModuleVersion version= new ModuleVersion(module);
 
         while (parser.nextTag() == XmlPullParser.START_TAG) {
         	String tagName = parser.getName();
