@@ -1,5 +1,8 @@
 <repository>
 	<name>Main repository</name>
+	<module package="com.simple.test">
+		<name>Simple Test</name>
+	</module>
 	<module package="de.robv.android.xposed.mods.appsettings">
 		<name>App Settings</name>
 		<description><![CDATA[Can modify x and y & z.
