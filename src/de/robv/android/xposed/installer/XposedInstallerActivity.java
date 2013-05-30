@@ -13,6 +13,7 @@ import android.app.FragmentTransaction;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.SimpleAdapter;
 
 public class XposedInstallerActivity extends Activity {
@@ -115,5 +116,18 @@ public class XposedInstallerActivity extends Activity {
 	void setNavItem(int position) {
 		currentNavItem = position;
 		getActionBar().setSelectedNavigationItem(position);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == android.R.id.home)
+			finish();
+	    return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void finish() {
+	    super.finish();
+	    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
 	}
 }
