@@ -1,31 +1,35 @@
 package de.robv.android.xposed.installer;
 
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-
 import android.animation.Animator;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import de.robv.android.xposed.installer.repo.Module;
-import de.robv.android.xposed.installer.repo.RepoParser;
-import de.robv.android.xposed.installer.repo.Repository;
+import android.widget.Toast;
+import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.util.AnimatorUtil;
+import de.robv.android.xposed.installer.util.RepoLoader;
+import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
-public class DownloadFragment extends Fragment {
+public class DownloadFragment extends Fragment implements RepoListener {
+	private DownloadsAdapter adapter;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    setHasOptionsMenu(true);
+	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -39,30 +43,15 @@ public class DownloadFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_downloader, container, false);
 		ListView lv = (ListView) v.findViewById(R.id.listModules);
-		final DownloadsAdapter adapter = new DownloadsAdapter(getActivity());
-		try {
-			InputStream is = getResources().getAssets().open("repo.xml");
-			RepoParser parser = new RepoParser(is);
-			Repository repo = parser.parse();
-
-			HashMap<String, ModuleRef> refs = new HashMap<String, ModuleRef>();
-			for (Module mod : repo.modules.values()) {
-				ModuleRef existing = refs.get(mod.packageName);
-				if (existing != null)
-					existing.addModule(mod);
-				else
-					refs.put(mod.packageName, new ModuleRef(mod));
-			}
-			adapter.addAll(refs.values());
-			adapter.sort(null);
-		} catch (Exception e) {
-			Log.e(RepoParser.TAG, "error while parsing the test repository", e);
-		}
+		
+		adapter = new DownloadsAdapter(getActivity());
+		RepoLoader.getInstance().addListener(this, true);
 		lv.setAdapter(adapter);
+		
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				ModuleRef ref = adapter.getItem(position);
+				ModuleGroup ref = adapter.getItem(position);
 				DownloadDetailsFragment fragment = DownloadDetailsFragment.newInstance(ref.packageName);
 
 				FragmentTransaction tx = getFragmentManager().beginTransaction();
@@ -76,62 +65,55 @@ public class DownloadFragment extends Fragment {
 		});
 		return v;
 	}
-
-	private class DownloadsAdapter extends ArrayAdapter<ModuleRef> {
-		public DownloadsAdapter(Context context) {
-			super(context, R.layout.list_item_module, R.id.text);
-		}
+	
+	@Override
+	public void onDestroyView() {
+	    super.onDestroyView();
+	    adapter = null;
+	    RepoLoader.getInstance().removeListener(this);
 	}
-
-	private class ModuleRef implements Comparable<ModuleRef> {
-		public final String packageName;
-		private final List<Module> modules = new ArrayList<Module>(1);
-
-		public ModuleRef(Module module) {
-			packageName = module.packageName;
-			modules.add(module);
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.menu_download, menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.menu_refresh:
+				RepoLoader.getInstance().triggerReload();
+				Toast.makeText(getActivity(), "Reloading...", Toast.LENGTH_SHORT).show();
+				break;
 		}
-
-		public void addModule(Module module) {
-			if (!packageName.equals(module.packageName)) {
-				throw new IllegalArgumentException("Cannot add module with package "
-						+ module.packageName + ", existing package is " + packageName);
-			}
-
-			modules.add(module);
-			// TODO: add logic to sort modules by preferred repository
-		}
-
-		/** Returns the module from the preferred repository */
-		public Module getModule() {
-			return modules.get(0);
-		}
-
-		public List<Module> getAllModules() {
-			return Collections.unmodifiableList(modules);
-		}
-
-		@Override
-		public String toString() {
-			return modules.get(0).name;
-		}
-
-		@Override
-		public int compareTo(ModuleRef another) {
-			Module thisModule = modules.get(0);
-			Module otherModule = another.modules.get(0);
-
-			int order = thisModule.name.compareTo(otherModule.name);
-			if (order != 0)
-				return order;
-
-			order = packageName.compareTo(another.packageName);
-			return order;
-		}
+	    return super.onOptionsItemSelected(item);
 	}
 
 	@Override
 	public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
 		return AnimatorUtil.createSlideAnimation(this, nextAnim);
+	}
+	
+	@Override
+	public void onRepoReloaded(final RepoLoader loader) {
+		if (adapter == null)
+			return;
+		
+		getActivity().runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				synchronized (adapter) {
+					adapter.clear();
+					adapter.addAll(loader.getModules().values());
+					adapter.sort(null);
+		        }
+			}
+		});
+	}
+	
+	private class DownloadsAdapter extends ArrayAdapter<ModuleGroup> {
+		public DownloadsAdapter(Context context) {
+			super(context, R.layout.list_item_module, R.id.text);
+		}
 	}
 }
