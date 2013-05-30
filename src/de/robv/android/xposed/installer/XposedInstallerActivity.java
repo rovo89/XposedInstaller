@@ -9,6 +9,7 @@ import android.app.ActionBar;
 import android.app.ActionBar.OnNavigationListener;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -27,6 +28,7 @@ public class XposedInstallerActivity extends Activity {
 	static final int NOTIFICATION_MODULE_NOT_ACTIVATED_YET = 1;
 	
 	int currentNavItem = -1;
+	String popToStateOnUp = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -113,15 +115,21 @@ public class XposedInstallerActivity extends Activity {
         outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
     }
 
-	void setNavItem(int position) {
-		currentNavItem = position;
+	void setNavItem(int position, String popToStateOnUp) {
+		this.currentNavItem = position;
+		this.popToStateOnUp = popToStateOnUp;
 		getActionBar().setSelectedNavigationItem(position);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == android.R.id.home)
-			finish();
+		if (item.getItemId() == android.R.id.home) {
+			if (popToStateOnUp != null) {
+				getFragmentManager().popBackStack(popToStateOnUp, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+			} else {
+				finish();
+			}
+		}
 	    return super.onOptionsItemSelected(item);
 	}
 

@@ -45,7 +45,7 @@ public class InstallerFragment extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 		Activity activity = getActivity();
 		if (activity instanceof XposedInstallerActivity)
-			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_INSTALL);
+			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_INSTALL, null);
 	}
 
 	@Override

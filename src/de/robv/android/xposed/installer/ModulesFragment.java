@@ -37,7 +37,7 @@ public class ModulesFragment extends ListFragment {
 
 		Activity activity = getActivity();
 		if (activity instanceof XposedInstallerActivity)
-			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_MODULES);
+			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_MODULES, null);
 
 		installedXposedVersion = InstallerFragment.getJarInstalledVersion(null);
 		
