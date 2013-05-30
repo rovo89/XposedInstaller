@@ -74,6 +74,8 @@ public class XposedInstallerActivity extends Activity {
 				currentNavItem = itemPosition;
 				tx.commit();
 
+				getFragmentManager().executePendingTransactions();
+
 				return true;
 			}
 		});

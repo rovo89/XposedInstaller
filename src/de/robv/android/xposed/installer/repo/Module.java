@@ -8,6 +8,7 @@ public class Module {
 	public String packageName;
 	public String name;
 	public String description;
+	public boolean descriptionIsHtml = false;
 	public String author;
 	public String contact;
 	public final List<ModuleVersion> versions = new ArrayList<ModuleVersion>();

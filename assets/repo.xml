@@ -5,9 +5,9 @@
 	</module>
 	<module package="de.robv.android.xposed.mods.appsettings">
 		<name>App Settings</name>
-		<description><![CDATA[Can modify x and y & z.
-		Also great for
-adding line breaks]]></description>
+		<description html="true"><![CDATA[Can <a href="http://google.com">modify</a> x and y & z.<br>
+<ul><li>Also <i>great</i> for</li>
+<li>adding line breaks</li></ul>test]]></description>
 		<screenshot>http://xyz.de/screen1.png</screenshot>
 		<author>Tungstwenty</author>
 		<contact>http://xyz.de/contact.php</contact>

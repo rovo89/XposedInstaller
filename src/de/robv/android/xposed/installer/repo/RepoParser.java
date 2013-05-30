@@ -63,6 +63,9 @@ public class RepoParser {
 			} else if (tagName.equals("contact")) {
 				module.contact = parser.nextText();
 			} else if (tagName.equals("description")) {
+				String isHtml = parser.getAttributeValue(NS, "html");
+				if (isHtml != null && isHtml.equals("true"))
+					module.descriptionIsHtml = true;
 				module.description = parser.nextText();
 			} else if (tagName.equals("screenshot")) {
 				module.screenshots.add(parser.nextText());
