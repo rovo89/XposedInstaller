@@ -1,13 +1,23 @@
 package de.robv.android.xposed.installer.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.zip.GZIPInputStream;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.RepoParser;
@@ -16,6 +26,7 @@ import de.robv.android.xposed.installer.repo.Repository;
 public class RepoLoader {
 	private static RepoLoader mInstance = null;
 	private Application mApp = null;
+	private SharedPreferences mPref;
 	
 	private Map<String, ModuleGroup> mModules = new HashMap<String, ModuleGroup>(0);
 	private boolean mIsLoading = false;
@@ -31,6 +42,7 @@ public class RepoLoader {
 		
 		mInstance = new RepoLoader();
 		mInstance.mApp = app;
+		mInstance.mPref = app.getSharedPreferences("repo", Context.MODE_PRIVATE);
 		mInstance.triggerReload();
 	}
 	
@@ -67,30 +79,138 @@ public class RepoLoader {
 		}.start();
 	}
 	
+	public String[] getRepositories() {
+		return mPref.getString("repositories", "http://dl.xposed.info/repo.xml.gz").split("\\|");
+	}
+	
+	public void setRepositories(String... repos) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < repos.length; i++) {
+			if (i > 0)
+				sb.append("|");
+			sb.append(repos[i]);
+		}
+		mPref.edit().putString("repositories", sb.toString()).commit();
+	}
+	
+	private File getRepoCacheFile(String repo) {
+		String filename = "repo_" + HashUtil.md5(repo) + ".xml";
+		if (repo.endsWith(".gz"))
+			filename += ".gz";
+		return new File(mApp.getCacheDir(), filename);
+	}
+	
 	private void downloadFiles() {
-		// TODO implement me
+		String[] repos = getRepositories();
+		for (String repo : repos) {
+			URLConnection connection = null;
+			InputStream in = null;
+			FileOutputStream out = null;
+			try {
+				File cacheFile = getRepoCacheFile(repo);
+				
+				connection = new URL(repo).openConnection();
+				connection.setDoOutput(false);
+				connection.setConnectTimeout(30000);
+				connection.setReadTimeout(30000);
+				
+				if (connection instanceof HttpURLConnection) {
+					// disable transparent gzip encoding for gzipped files
+					if (repo.endsWith(".gz"))
+						connection.addRequestProperty("Accept-Encoding", "identity");
+					
+					if (cacheFile.exists()) {
+						String modified = mPref.getString("repo_" + repo + "_modified", null);
+						String etag = mPref.getString("repo_" + repo + "_etag", null);
+						
+						if (modified != null)
+							connection.addRequestProperty("If-Modified-Since", modified);
+						if (etag != null)
+							connection.addRequestProperty("If-None-Match", etag);
+					}
+				}
+				
+				connection.connect();
+				
+				if (connection instanceof HttpURLConnection) {
+					HttpURLConnection httpConnection = (HttpURLConnection) connection;
+					int responseCode = httpConnection.getResponseCode();
+					if (responseCode == HttpURLConnection.HTTP_NOT_MODIFIED) {
+						continue;
+					} else if (responseCode < 200 || responseCode >= 300) {
+						mMessages.add(String.format("Downloading %s failed: %d (%s)", responseCode, httpConnection.getResponseMessage()));
+						continue;
+					}
+				}
+				
+				in = connection.getInputStream();
+				out = new FileOutputStream(cacheFile);
+				byte buf[] = new byte[1024];
+				int read;
+				while ((read = in.read(buf)) != -1) {
+					out.write(buf, 0, read);
+				}
+				
+				if (connection instanceof HttpURLConnection) {
+					HttpURLConnection httpConnection = (HttpURLConnection) connection;
+					String modified = httpConnection.getHeaderField("Last-Modified");
+					String etag = httpConnection.getHeaderField("ETag");
+					
+					mPref.edit()
+						.putString("repo_" + repo + "_modified", modified)
+						.putString("repo_" + repo + "_etag", etag)
+						.commit();
+				}
+				
+			} catch (Throwable t) {
+				mMessages.add(String.format("Downloading %s failed: %s", t.getMessage()));
+
+			} finally {
+				if (connection != null && connection instanceof HttpURLConnection)
+					((HttpURLConnection) connection).disconnect();
+				if (in != null)
+	                try { in.close(); } catch (IOException ignored) {}
+				if (out != null)
+					try { out.close(); } catch (IOException ignored) {}
+			}
+		}
 	}
 	
 	private void parseFiles() {
 		Map<String, ModuleGroup> modules = new HashMap<String, ModuleGroup>();
-		
-		// TODO do this for all downloaded repo.xml files...
-		try {
-			InputStream is = mApp.getResources().getAssets().open("repo.xml");
-			RepoParser parser = new RepoParser(is);
-			Repository repo = parser.parse();
-	
-			for (Module mod : repo.modules.values()) {
-				ModuleGroup existing = modules.get(mod.packageName);
-				if (existing != null)
-					existing.addModule(mod);
-				else
-					modules.put(mod.packageName, new ModuleGroup(mod));
+
+		String[] repos = getRepositories();
+		for (String repo : repos) {
+			InputStream in = null; 
+			try {
+				File cacheFile = getRepoCacheFile(repo);
+				if (!cacheFile.exists())
+					continue;
+
+				in = new FileInputStream(cacheFile);
+				if (repo.endsWith(".gz"))
+					in = new GZIPInputStream(in);
+
+				RepoParser parser = new RepoParser(in);
+				Repository repository = parser.parse();
+
+				for (Module mod : repository.modules.values()) {
+					ModuleGroup existing = modules.get(mod.packageName);
+					if (existing != null)
+						existing.addModule(mod);
+					else
+						modules.put(mod.packageName, new ModuleGroup(mod));
+				}
+
+			} catch (Throwable t) {
+				mMessages.add(String.format("Cannot load repository from %s:\n%s", repo, t.getMessage()));
+
+			} finally {
+				if (in != null)
+					try { in.close(); } catch (IOException ignored) {}
 			}
-		} catch (Throwable t) {
-			mMessages.add(String.format("cannot load repository from %s:\n%s", "FIXME", t.getMessage()));
 		}
-		
+
 		mModules = modules;
 	}
 	
