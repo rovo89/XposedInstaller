@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -87,7 +88,21 @@ public class DownloadDetailsFragment extends Fragment {
 	private Spanned parseSimpleHtml(String source) {
 		source = source.replaceAll("<li>", "\t• ");
 		source = source.replaceAll("</li>", "<br>");
-		return Html.fromHtml(source);
+		Spanned html = Html.fromHtml(source);
+		
+		// trim trailing newlines
+		int len = html.length();
+		int end = len;
+		for (int i = len - 1; i >= 0; i--) {
+			if (html.charAt(i) != '\n')
+				break;
+			end = i;
+		}
+		
+		if (end == len)
+			return html;
+		else
+			return new SpannableStringBuilder(html, 0, end);
 	}
 
 	@Override
