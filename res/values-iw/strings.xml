@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Xposed Installer</string>
+    <string name="tabInstall">Framework</string>
+    <string name="tabModules">Modules</string>
+    <string name="yes">כן</string>
+    <string name="no">לא</string>
+    <string name="installerDescription">כאן ניתן להתקין את <b>Xposed</b> framework.
+                זהו בסיס למודולים שיכולים לשנות את התנהגות ומראה המכשיר שלך.
+                למידע נוסף <a href="http://forum.xda-developers.com/showthread.php?t=1574401">לחץ כאן</a>.</string>
+    <string name="install">התקנה/עדכון</string>
+    <string name="uninstall">הסרה (משחזר את app_process)</string>
+    <string name="installedVersion">מופעל</string>
+    <string name="none">---</string>
+    <string name="latestVersion">מובנה</string>
+    <string name="cleanup">ניקוי (הסרה מוחלטת של הframework)</string>
+    <string name="versions">גרסאות:</string>
+    <string name="soft_reboot">הפעלה רכה מחדש</string>
+    <string name="reboot">הפעלה מחדש</string>
+    <string name="areyousure">האם אתה בטוח?</string>
+    <string name="module_is_not_activated_yet">מודול של Xposed עוד לא מאופשר</string>
+    <string name="module_empty_description">(הסבר לא זמין)</string>
+    <string name="module_no_ui">למודול זה אין ממשק גראפי</string>
+    <string name="no_xposed_modules_found">לא נמצאו מודולים!</string>
+    <string name="xposed_module_list_updated">רשימת המודולים עודכנה\nהשינויים יחולו לאחר הפעלה מחדש</string>
+    <string name="warning_xposed_min_version">מודול זה דורש גרסה חדשה יותר (%s) ולכן לא ניתן לאפשרו.</string>
+    <string name="phone_not_compatible">Xposed לא תומך (עדיין) ב Android SDK גרסה %1$d או בארכיטרטורת המעבד שלך (%2$s).</string>
+    <string name="not_tested_but_compatible">Xposed לא נבדק עדיין עם Android SDK גרסה %d, אבל נראה שהוא נתמך. אתה יכול לנסות להתקין אם אתה מרגיש הרפתקן.</string>
+    <string name="no_min_version_specified">מודול זה לא סיפק את גרסת Xposed שהוא צריך.</string>
+    <string name="warning_min_version_too_low">מודול זה נכתב עבור גרסה %1$s של Xposed, אבל בגלל שינויים בגרסה %2$s, הוא בוטל.</string>
+    <string name="app_process" translatable="false">app_process</string>
+    <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
+    <string name="translator">Ido Kahana</string>
+</resources>
