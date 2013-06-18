@@ -138,7 +138,7 @@ public class RepoLoader {
 					if (responseCode == HttpURLConnection.HTTP_NOT_MODIFIED) {
 						continue;
 					} else if (responseCode < 200 || responseCode >= 300) {
-						mMessages.add(String.format("Downloading %s failed: %d (%s)", responseCode, httpConnection.getResponseMessage()));
+						mMessages.add(String.format("Downloading %s failed: %d (%s)", repo, responseCode, httpConnection.getResponseMessage()));
 						continue;
 					}
 				}
@@ -163,7 +163,7 @@ public class RepoLoader {
 				}
 				
 			} catch (Throwable t) {
-				mMessages.add(String.format("Downloading %s failed: %s", t.getMessage()));
+				mMessages.add(String.format("Downloading %s failed: %s", repo, t.getMessage()));
 
 			} finally {
 				if (connection != null && connection instanceof HttpURLConnection)

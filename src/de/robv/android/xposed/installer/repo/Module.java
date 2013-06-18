@@ -7,6 +7,7 @@ public class Module {
 	public final Repository repository;
 	public String packageName;
 	public String name;
+	public String summary;
 	public String description;
 	public boolean descriptionIsHtml = false;
 	public String author;

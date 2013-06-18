@@ -1,7 +1,5 @@
 package de.robv.android.xposed.installer.repo;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class ModuleVersion {
 	public final Module module;
@@ -9,7 +7,8 @@ public class ModuleVersion {
 	public int code;
 	public String downloadLink;
 	public String md5sum;
-	public final List<String> changelog = new ArrayList<String>();
+	public String changelog;
+	public boolean changelogIsHtml = false;
 	
 	/*package*/ ModuleVersion(Module module) {
 		this.module = module;

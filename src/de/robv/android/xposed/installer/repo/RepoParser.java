@@ -47,10 +47,13 @@ public class RepoParser {
 
 	protected Module readModule(Repository repository) throws XmlPullParserException, IOException {
 		parser.require(XmlPullParser.START_TAG, NS, "module");
+		final int startDepth = parser.getDepth();
+
 		Module module = new Module(repository);
 		module.packageName = parser.getAttributeValue(NS, "package");
 		if (module.packageName == null) {
 			logError("no package name defined");
+			leave(startDepth);
 			return null;
 		}
 
@@ -62,6 +65,8 @@ public class RepoParser {
 				module.author = parser.nextText();
 			} else if (tagName.equals("contact")) {
 				module.contact = parser.nextText();
+			} else if (tagName.equals("summary")) {
+				module.summary = parser.nextText();
 			} else if (tagName.equals("description")) {
 				String isHtml = parser.getAttributeValue(NS, "html");
 				if (isHtml != null && isHtml.equals("true"))
@@ -88,7 +93,8 @@ public class RepoParser {
 
 	protected ModuleVersion readModuleVersion(Module module) throws XmlPullParserException, IOException {
 		parser.require(XmlPullParser.START_TAG, NS, "version");
-		ModuleVersion version= new ModuleVersion(module);
+		final int startDepth = parser.getDepth();
+		ModuleVersion version = new ModuleVersion(module);
 
 		while (parser.nextTag() == XmlPullParser.START_TAG) {
 			String tagName = parser.getName();
@@ -99,6 +105,7 @@ public class RepoParser {
 					version.code = Integer.parseInt(parser.nextText());
 				} catch (NumberFormatException nfe) {
 					logError(nfe.getMessage());
+					leave(startDepth);
 					return null;
 				}
 			} else if (tagName.equals("download")) {
@@ -106,7 +113,10 @@ public class RepoParser {
 			} else if (tagName.equals("md5sum")) {
 				version.md5sum = parser.nextText();
 			} else if (tagName.equals("changelog")) {
-				version.changelog.add(parser.nextText());
+				String isHtml = parser.getAttributeValue(NS, "html");
+				if (isHtml != null && isHtml.equals("true"))
+					version.changelogIsHtml = true;
+				version.changelog = parser.nextText();
 			} else {
 				skip();
 			}
@@ -117,7 +127,7 @@ public class RepoParser {
 
 	protected void skip() throws XmlPullParserException, IOException {
 		parser.require(XmlPullParser.START_TAG, null, null);
-		Log.w(TAG, "skipping unknown tag: " + parser.getPositionDescription());
+		Log.w(TAG, "skipping unknown/erronous tag: " + parser.getPositionDescription());
 		int level = 1;
 		while (level > 0) {
 			int eventType = parser.next();
@@ -125,6 +135,15 @@ public class RepoParser {
 				level--;
 			} else if (eventType == XmlPullParser.START_TAG) {
 				level++;
+			}
+		}
+	}
+
+	protected void leave(int targetDepth) throws XmlPullParserException, IOException {
+		Log.w(TAG, "leaving up to level " + targetDepth + ": " + parser.getPositionDescription());
+		while (parser.getDepth() > targetDepth) {
+			while (parser.next() != XmlPullParser.END_TAG) {
+				// do nothing
 			}
 		}
 	}
