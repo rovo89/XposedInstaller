@@ -16,7 +16,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.util.AnimatorUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
@@ -110,10 +112,22 @@ public class DownloadFragment extends Fragment implements RepoListener {
 			}
 		});
 	}
-	
+
 	private class DownloadsAdapter extends ArrayAdapter<ModuleGroup> {
 		public DownloadsAdapter(Context context) {
-			super(context, R.layout.list_item_module, R.id.text);
+			super(context, android.R.layout.simple_list_item_2, android.R.id.text1);
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View view = super.getView(position, convertView, parent);
+
+			Module module = getItem(position).getModule();
+
+			TextView txtSummary = (TextView) view.findViewById(android.R.id.text2);
+			txtSummary.setText(module.summary);
+
+			return view;
 		}
 	}
 }

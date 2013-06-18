@@ -41,6 +41,12 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".DownloadReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
