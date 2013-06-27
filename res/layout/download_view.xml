@@ -1,12 +1,35 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <Button
-        android:id="@+id/btnDownload"
-        android:text="Download"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:minHeight="40dip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btnDownload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="40dip"
+            android:text="Download"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/btnDownloadCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="40dip"
+            android:text="Cancel"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnInstall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="40dip"
+            android:text="Install"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:visibility="gone" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progress"
@@ -16,9 +39,9 @@
 
     <TextView
         android:id="@+id/txtInfo"
-        android:text="Info text here"
-        android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Info text here"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </merge>

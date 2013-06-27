@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;
@@ -19,6 +20,8 @@ public class DownloadView extends LinearLayout {
 	private String mTitle = null;
 
 	private final Button btnDownload;
+	private final Button btnDownloadCancel;
+	private final Button btnInstall;
 	private final ProgressBar progressBar;
 	private final TextView txtInfo;
 
@@ -31,6 +34,9 @@ public class DownloadView extends LinearLayout {
 		inflater.inflate(R.layout.download_view, this, true);
 
 		btnDownload = (Button) findViewById(R.id.btnDownload);
+		btnDownloadCancel = (Button) findViewById(R.id.btnDownloadCancel);
+		btnInstall = (Button) findViewById(R.id.btnInstall);
+		
 		btnDownload.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -39,6 +45,25 @@ public class DownloadView extends LinearLayout {
 
 				if (mInfo != null)
 					new DownloadMonitor().start();
+			}
+		});
+		
+		btnDownloadCancel.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (mInfo == null)
+					return;
+				
+				DownloadsUtil.removeById(getContext(), mInfo.id);
+				// UI update will happen automatically by the DownloadMonitor
+			}
+		});
+		
+		btnInstall.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO implement
+				Toast.makeText(getContext(), "Not implemented yet", Toast.LENGTH_LONG).show();
 			}
 		});
 
@@ -62,6 +87,8 @@ public class DownloadView extends LinearLayout {
 		public void run() {
 			if (mUrl == null) {
 				btnDownload.setVisibility(View.GONE);
+				btnDownloadCancel.setVisibility(View.GONE);
+				btnInstall.setVisibility(View.GONE);
 				progressBar.setVisibility(View.GONE);
 				txtInfo.setVisibility(View.VISIBLE);
 				txtInfo.setText("No download URL available");
@@ -71,6 +98,8 @@ public class DownloadView extends LinearLayout {
 			btnDownload.setVisibility(View.VISIBLE);
 
 			if (mInfo == null) {
+				btnDownloadCancel.setVisibility(View.GONE);
+				btnInstall.setVisibility(View.GONE);
 				progressBar.setVisibility(View.GONE);
 				txtInfo.setVisibility(View.GONE);
 			} else {
@@ -78,6 +107,8 @@ public class DownloadView extends LinearLayout {
 					case DownloadManager.STATUS_PENDING:
 					case DownloadManager.STATUS_PAUSED:
 					case DownloadManager.STATUS_RUNNING:
+						btnDownloadCancel.setVisibility(View.VISIBLE);
+						btnInstall.setVisibility(View.GONE);
 						progressBar.setVisibility(View.VISIBLE);
 						txtInfo.setVisibility(View.VISIBLE);
 						if (mInfo.totalSize <= 0) {
@@ -93,12 +124,16 @@ public class DownloadView extends LinearLayout {
 						break;
 	
 					case DownloadManager.STATUS_FAILED:
+						btnDownloadCancel.setVisibility(View.GONE);
+						btnInstall.setVisibility(View.GONE);
 						progressBar.setVisibility(View.GONE);
 						txtInfo.setVisibility(View.VISIBLE);
 						txtInfo.setText("Download failed");
 						break;
 	
 					case DownloadManager.STATUS_SUCCESSFUL:
+						btnDownloadCancel.setVisibility(View.GONE);
+						btnInstall.setVisibility(View.VISIBLE);
 						progressBar.setVisibility(View.GONE);
 						txtInfo.setVisibility(View.VISIBLE);
 						txtInfo.setText("Download successful");
