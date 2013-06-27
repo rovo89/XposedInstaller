@@ -19,6 +19,14 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/download_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="italic" />
+
+        <TextView
             android:id="@+id/download_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

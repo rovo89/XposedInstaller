@@ -58,6 +58,12 @@ public class DownloadDetailsFragment extends Fragment {
 		TextView title = (TextView) view.findViewById(R.id.download_title);
 		title.setText(module.name);
 
+		TextView author = (TextView) view.findViewById(R.id.download_author);
+		if (module.author != null && !module.author.isEmpty())
+			author.setText("by " + module.author);
+		else
+			author.setText("unknown author");
+		
 		TextView description = (TextView) view.findViewById(R.id.download_description);
 		if (module.description != null) {
 			if (module.descriptionIsHtml) {
