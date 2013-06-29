@@ -1,5 +1,9 @@
 package de.robv.android.xposed.installer.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -22,7 +26,33 @@ public class HashUtil {
 		return hash(input, "SHA-1");
 	}
 
-	
+
+	public static final String hash(File file, String algorithm) throws IOException {
+		try {
+			MessageDigest md = MessageDigest.getInstance(algorithm);
+			InputStream is = new FileInputStream(file);
+			byte[] buffer = new byte[8192];
+			int read = 0;
+			while ((read = is.read(buffer)) > 0) {
+				md.update(buffer, 0, read);
+			}
+			is.close();
+			byte[] messageDigest = md.digest();
+			return toHexString(messageDigest);
+		} catch (NoSuchAlgorithmException e) {
+			throw new IllegalArgumentException(e);
+		}
+	}
+
+	public static final String md5(File input) throws IOException {
+		return hash(input, "MD5");
+	}
+
+	public static final String sha1(File input) throws IOException {
+		return hash(input, "SHA-1");
+	}
+
+
 	private static String toHexString(byte[] bytes) {
 		StringBuilder sb = new StringBuilder();
 		for (byte b : bytes) {

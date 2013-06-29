@@ -9,15 +9,16 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadFinishedCallback;
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;
 
 public class DownloadView extends LinearLayout {
 	private DownloadInfo mInfo = null;
 	private String mUrl = null;
 	private String mTitle = null;
+	private DownloadFinishedCallback mCallback = null;
 
 	private final Button btnDownload;
 	private final Button btnDownloadCancel;
@@ -40,7 +41,7 @@ public class DownloadView extends LinearLayout {
 		btnDownload.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mInfo = DownloadsUtil.add(getContext(), mTitle, mUrl);
+				mInfo = DownloadsUtil.add(getContext(), mTitle, mUrl, mCallback);
 				refreshViewFromUiThread();
 
 				if (mInfo != null)
@@ -62,8 +63,10 @@ public class DownloadView extends LinearLayout {
 		btnInstall.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO implement
-				Toast.makeText(getContext(), "Not implemented yet", Toast.LENGTH_LONG).show();
+				if (mCallback == null)
+					return;
+
+				mCallback.onDownloadFinished(getContext(), mInfo);
 			}
 		});
 
@@ -164,6 +167,14 @@ public class DownloadView extends LinearLayout {
 
 	public String getTitle() {
 		return mTitle;
+	}
+
+	public void setDownloadFinishedCallback(DownloadFinishedCallback downloadFinishedCallback) {
+		this.mCallback = downloadFinishedCallback;
+	}
+
+	public DownloadFinishedCallback getDownloadFinishedCallback() {
+		return mCallback;
 	}
 
 	private class DownloadMonitor extends Thread {

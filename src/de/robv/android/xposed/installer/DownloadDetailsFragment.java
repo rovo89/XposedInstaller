@@ -1,9 +1,15 @@
 package de.robv.android.xposed.installer;
 
+import java.io.File;
+
 import android.animation.Animator;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
@@ -14,10 +20,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.util.AnimatorUtil;
+import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadFinishedCallback;
+import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;
+import de.robv.android.xposed.installer.util.HashUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.widget.DownloadView;
 import de.robv.android.xposed.installer.widget.ExpandableStaticListView;
@@ -150,6 +161,7 @@ public class DownloadDetailsFragment extends Fragment {
 
 			downloadView.setUrl(item.downloadLink);
 			downloadView.setTitle(module.name);
+			downloadView.setDownloadFinishedCallback(new DownloadModuleCallback(item));
 
 			if (item.changelog != null && !item.changelog.isEmpty()) {
 				txtChangesTitle.setVisibility(View.VISIBLE);
@@ -209,6 +221,63 @@ public class DownloadDetailsFragment extends Fragment {
 		@Override
 		public boolean isChildSelectable(int groupPosition, int childPosition) {
 			return false;
+		}
+	}
+
+	private static class DownloadModuleCallback implements DownloadFinishedCallback {
+		private final ModuleVersion moduleVersion;
+
+		public DownloadModuleCallback(ModuleVersion moduleVersion) {
+			this.moduleVersion = moduleVersion;
+		}
+
+		@Override
+		public void onDownloadFinished(Context context, DownloadInfo info) {
+			File localFile = new File(info.localFilename);
+			if (!localFile.isFile())
+				return;
+
+			if (moduleVersion.md5sum != null && !moduleVersion.md5sum.isEmpty()) {
+				try {
+					String actualMd5Sum = HashUtil.md5(localFile);
+					if (!moduleVersion.md5sum.equals(actualMd5Sum)) {
+						Toast.makeText(context,
+							String.format("MD5 sum is incorrect (downloaded: %s, expected: %s)",
+								actualMd5Sum, moduleVersion.md5sum),
+							Toast.LENGTH_LONG).show();
+
+						return;
+					}
+				} catch (Exception e) {
+					Toast.makeText(context, "Could not read downloaded file: " + e.getMessage(), Toast.LENGTH_LONG).show();
+					return;
+				}
+			}
+
+			PackageManager pm = context.getPackageManager();
+			PackageInfo packageInfo = pm.getPackageArchiveInfo(info.localFilename, 0);
+
+			if (packageInfo == null) {
+				Toast.makeText(context, "Downloaded file is not a valid APK (or incompatible)", Toast.LENGTH_LONG).show();
+				return;
+			}
+
+			if (!packageInfo.packageName.equals(moduleVersion.module.packageName)) {
+				Toast.makeText(context,
+					String.format("Package name is incorrect (downloaded: %s, expected: %s)",
+						packageInfo.packageName, moduleVersion.module.packageName),
+					Toast.LENGTH_LONG).show();
+
+				return;
+			}
+
+			Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+			installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			installIntent.setDataAndType(Uri.fromFile(localFile), DownloadsUtil.MIME_TYPE_APK);
+			//installIntent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
+			//installIntent.putExtra(Intent.EXTRA_RETURN_RESULT, true);
+			installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, context.getApplicationInfo().packageName);
+			context.startActivity(installIntent);
 		}
 	}
 }
