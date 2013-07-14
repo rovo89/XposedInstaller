@@ -13,9 +13,12 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -25,10 +28,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ModulesFragment extends ListFragment {
+public class ModulesFragment extends ListFragment implements OnItemLongClickListener {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
 	private Set<String> enabledModules;
 	private String installedXposedVersion;
+	ModuleAdapter modules;
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -36,7 +40,7 @@ public class ModulesFragment extends ListFragment {
         
 		installedXposedVersion = InstallerFragment.getJarInstalledVersion(null);
 		
-        ModuleAdapter modules = new ModuleAdapter(getActivity());
+        modules = new ModuleAdapter(getActivity());
         enabledModules = PackageChangeReceiver.getEnabledModules(getActivity());
         
 		PackageManager pm = getActivity().getPackageManager();
@@ -74,7 +78,19 @@ public class ModulesFragment extends ListFragment {
 
 		getListView().setDivider(new ColorDrawable(0xFF0099cc));
 		getListView().setDividerHeight(1);
+		getListView().setOnItemLongClickListener(this);	        				    
 	}
+	
+	@Override
+    public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+        // TODO Auto-generated method stub
+		String packageName = (String)arg1.getTag();
+		Intent uninstallIntent = new Intent(Intent.ACTION_DELETE);
+	    uninstallIntent.setData(Uri.parse("package:" + packageName));
+	    startActivity(uninstallIntent); 
+		//TODO:refresh the list
+        return false;
+    }
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
