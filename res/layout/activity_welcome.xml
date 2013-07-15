@@ -12,6 +12,8 @@
 
     <ListView
         android:id="@+id/welcome_list"
+        android:divider="@color/list_divider"
+        android:dividerHeight="1px"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" >

@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="4dp"
     tools:context=".DownloadFragment" >
 
     <TextView
@@ -15,6 +14,8 @@
 
     <ListView
         android:id="@+id/listModules"
+        android:divider="@color/list_divider"
+        android:dividerHeight="1px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </ListView>

@@ -2,7 +2,6 @@ package de.robv.android.xposed.installer.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -12,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ExpandableListAdapter;
 import android.widget.LinearLayout;
+import de.robv.android.xposed.installer.R;
 
 /** An ExpandableListView that can be used inside a ScrollView */
 public class ExpandableStaticListView extends LinearLayout {
@@ -107,7 +107,7 @@ public class ExpandableStaticListView extends LinearLayout {
 	View getDivider() {
 		View divider = new View(getContext());
 		divider.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 1));
-		divider.setBackgroundColor(Color.DKGRAY);
+		divider.setBackgroundColor(getResources().getColor(R.color.list_divider));
 		return divider;
 	}
 

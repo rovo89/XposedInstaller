@@ -20,7 +20,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
+import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.util.AnimatorUtil;
+import de.robv.android.xposed.installer.util.ModuleUtil;
+import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
@@ -115,7 +118,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 
 	private class DownloadsAdapter extends ArrayAdapter<ModuleGroup> {
 		public DownloadsAdapter(Context context) {
-			super(context, android.R.layout.simple_list_item_2, android.R.id.text1);
+			super(context, R.layout.list_item_download, android.R.id.text1);
 		}
 
 		@Override
@@ -123,9 +126,24 @@ public class DownloadFragment extends Fragment implements RepoListener {
 			View view = super.getView(position, convertView, parent);
 
 			Module module = getItem(position).getModule();
+			ModuleVersion latest = ModuleUtil.getInstance().getLatestVersion(module);
+			InstalledModule installed = ModuleUtil.getInstance().getModule(module.packageName);
 
 			TextView txtSummary = (TextView) view.findViewById(android.R.id.text2);
 			txtSummary.setText(module.summary);
+			
+			TextView txtStatus = (TextView) view.findViewById(R.id.downloadStatus);
+			if (installed != null && installed.isUpdate(latest)) {
+				txtStatus.setText(String.format("Update available (version %s \u2192 %s)", installed.versionName, latest.name));
+				txtStatus.setTextColor(getResources().getColor(R.color.download_status_update_available));
+				txtStatus.setVisibility(View.VISIBLE);
+			} else if (installed != null) {
+				txtStatus.setText(String.format("Installed (version %s)", installed.versionName));
+				txtStatus.setTextColor(getResources().getColor(R.color.download_status_installed));
+				txtStatus.setVisibility(View.VISIBLE);
+			} else {
+				txtStatus.setVisibility(View.GONE);
+			}
 
 			return view;
 		}

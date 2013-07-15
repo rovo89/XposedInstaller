@@ -42,7 +42,7 @@ public class ModuleGroup implements Comparable<ModuleGroup> {
 		Module thisModule = modules.get(0);
 		Module otherModule = another.modules.get(0);
 
-		int order = thisModule.name.compareTo(otherModule.name);
+		int order = thisModule.name.compareToIgnoreCase(otherModule.name);
 		if (order != 0)
 			return order;
 
