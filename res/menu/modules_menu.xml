@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/configuration" android:title="@string/configuration" android:titleCondensed="@string/configuration"></item>
+    <item android:id="@+id/uninstall_module" android:title="@string/uninstall_module" android:titleCondensed="@string/uninstall_module"></item>
+    
+
+</menu>

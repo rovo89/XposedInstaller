@@ -15,10 +15,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -28,7 +31,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ModulesFragment extends ListFragment implements OnItemLongClickListener {
+public class ModulesFragment extends ListFragment {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
 	private Set<String> enabledModules;
 	private String installedXposedVersion;
@@ -78,20 +81,41 @@ public class ModulesFragment extends ListFragment implements OnItemLongClickList
 
 		getListView().setDivider(new ColorDrawable(0xFF0099cc));
 		getListView().setDividerHeight(1);
-		getListView().setOnItemLongClickListener(this);	        				    
+		registerForContextMenu(getListView());
 	}
 	
 	@Override
-    public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-        // TODO Auto-generated method stub
-		String packageName = (String)arg1.getTag();
-		Intent uninstallIntent = new Intent(Intent.ACTION_DELETE);
-	    uninstallIntent.setData(Uri.parse("package:" + packageName));
-	    startActivity(uninstallIntent); 
-		//TODO:refresh the list
-        return false;
+	public void onCreateContextMenu(ContextMenu menu, View v,
+            ContextMenuInfo menuInfo) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+		menu.setHeaderTitle("Select The Action");  
+        getActivity().getMenuInflater().inflate(R.menu.modules_menu, menu);		
     }
+	@Override 
+    public boolean onContextItemSelected(MenuItem item){  
+		AdapterView.AdapterContextMenuInfo module = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+		String packageName = modules.getItem(module.position).getPackageName();
+		Intent uninstallIntent,infoIntent;
+		switch (item.getItemId()) {
+		case R.id.configuration:
+			infoIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+			Uri uri = Uri.fromParts("package", packageName, null);
+	        infoIntent.setData(uri);
+			startActivity(infoIntent);
+			break;
+		case R.id.uninstall_module:
+			uninstallIntent = new Intent(Intent.ACTION_DELETE);
+		    uninstallIntent.setData(Uri.parse("package:" + packageName));
+		    startActivity(uninstallIntent);
+			break;
 
+		default:
+			break;
+		}
+		
+		return true ;
+    }
+	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		String packageName = (String) v.getTag();
@@ -216,6 +240,9 @@ public class ModulesFragment extends ListFragment implements OnItemLongClickList
 		@Override
 		public String toString() {
 			return String.format("%s [%s]", appName, moduleVersion);
+		}
+		public String getPackageName(){
+			return packageName;
 		}
 	}
 }
