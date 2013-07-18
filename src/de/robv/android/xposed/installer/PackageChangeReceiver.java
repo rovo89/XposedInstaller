@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -49,19 +51,27 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			return;
 		}
 		
-		String appName;
+		String appName = null;
+		ArrayList<String> permissions = new ArrayList<String>();
 		try {
 			PackageManager pm = context.getPackageManager();
 			ApplicationInfo app = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
 			if (app.metaData == null || !app.metaData.containsKey("xposedmodule"))
 				return;
 			appName = pm.getApplicationLabel(app).toString();
+			permissions.addAll(Arrays.asList(pm.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS).requestedPermissions));
 		} catch (NameNotFoundException e) {
 			return;
+		} catch (NullPointerException e) {
 		}
 		
 		Set<String> enabledModules = getEnabledModules(context);
-		if (enabledModules.contains(packageName)) {
+		if (enabledModules.contains(packageName) || permissions.contains("de.robv.android.xposed.permission.USE_XPOSED")) {
+			// if permission is set, auto enable
+			if (permissions.contains("de.robv.android.xposed.permission.USE_XPOSED")) {
+				enabledModules.add(packageName);
+				setEnabledModules(context, enabledModules);
+			}
 			updateModulesList(context, enabledModules);
 		} else {
 			showNotActivatedNotification(context, packageName, appName);
