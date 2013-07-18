@@ -4,6 +4,13 @@
     android:versionCode="15"
     android:versionName="2.1.4" xmlns:tools="http://schemas.android.com/tools">
 
+    <permission-group android:name="de.robv.android.xposed.permissions"
+                      android:label="@string/xposed_permission_group" />
+
+    <permission android:name="de.robv.android.xposed.permission.USE_XPOSED"
+                android:permissionGroup="de.robv.android.xposed.permissions"
+                android:label="@string/xposed_permission" />
+
     <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="15" tools:ignore="OldTargetApi"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>

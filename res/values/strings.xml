@@ -32,4 +32,6 @@
     <string name="app_process" translatable="false">app_process</string>
     <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
     <string name="translator"></string>
+    <string name="xposed_permission_group">Xposed Framework Permission</string>
+    <string name="xposed_permission">Allow application to use Xposed to hook to existing applications (including system) codes.</string>
 </resources>
