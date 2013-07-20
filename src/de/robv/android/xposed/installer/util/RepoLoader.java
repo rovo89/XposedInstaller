@@ -18,6 +18,7 @@ import java.util.zip.GZIPInputStream;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.RepoParser;
@@ -60,6 +61,9 @@ public class RepoLoader {
 	}
 	
 	public void triggerReload() {
+		if (!XposedApp.SUPPORTS_INTERNET)
+			return;
+
 		synchronized (this) {
 			if (mIsLoading)
 				return;
