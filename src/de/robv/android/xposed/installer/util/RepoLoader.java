@@ -33,17 +33,18 @@ public class RepoLoader {
 	private final List<String> mMessages = new LinkedList<String>();
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
 	
-	private RepoLoader() {}
+	private RepoLoader(Application app) {
+		mApp = app;
+		mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
+		triggerReload();
+	}
 	
 	/** call this only once (from the Application) */
 	public static void init(Application app) {
 		if (mInstance != null)
 			throw new IllegalStateException("this class must only be initialized once");
 		
-		mInstance = new RepoLoader();
-		mInstance.mApp = app;
-		mInstance.mPref = app.getSharedPreferences("repo", Context.MODE_PRIVATE);
-		mInstance.triggerReload();
+		mInstance = new RepoLoader(app);
 	}
 	
 	public static RepoLoader getInstance() {
