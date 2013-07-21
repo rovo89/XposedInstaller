@@ -79,7 +79,6 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			}
 			moduleLines.close();
 		} catch (IOException e) {
-			Toast.makeText(context, "cannot read /data/xposed/modules.whitelist", Toast.LENGTH_LONG).show();
 			Log.e(XposedInstallerActivity.TAG, "cannot read /data/xposed/modules.whitelist", e);
 			return modules;
 		}
