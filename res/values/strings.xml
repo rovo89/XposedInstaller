@@ -32,5 +32,7 @@
     <string name="warning_min_version_too_low">This module was created for Xposed version %1$s, but due to incompatible changes in version %2$s, it has been disabled.</string>
     <string name="app_process" translatable="false">app_process</string>
     <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
+    <string name="welcome_framework_update_available">An update for the Xposed framework is available</string>
+    <string name="welcome_update_available">One or more update(s) for modules available</string>
     <string name="translator"></string>
 </resources>

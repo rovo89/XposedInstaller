@@ -56,10 +56,17 @@ public class RepoLoader {
 		return mModules;
 	}
 	
-	public ModuleGroup getModule(String packageName) {
+	public ModuleGroup getModuleGroup(String packageName) {
 		return mModules.get(packageName);
 	}
 	
+	public Module getModule(String packageName) {
+		ModuleGroup group = mModules.get(packageName);
+		if (group == null)
+			return null;
+		return group.getModule();
+	}
+
 	public void triggerReload() {
 		if (!XposedApp.SUPPORTS_INTERNET)
 			return;

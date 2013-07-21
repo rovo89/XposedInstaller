@@ -8,6 +8,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 
@@ -53,7 +54,7 @@ public final class ModuleUtil {
 
 			if (app.metaData != null && app.metaData.containsKey("xposedmodule"))
 				modules.put(pkg.packageName, new InstalledModule(pkg, false));
-			else
+			else if (isFramework(pkg.packageName))
 				modules.put(pkg.packageName, new InstalledModule(pkg, true));
 
 		}
@@ -70,6 +71,37 @@ public final class ModuleUtil {
 
 	public boolean isInstalled(String packageName) {
 		return mInstalledModules.containsKey(packageName);
+	}
+
+	public boolean hasModuleUpdates() {
+		if (!XposedApp.SUPPORTS_INTERNET)
+			return false;
+
+		RepoLoader repoLoader = RepoLoader.getInstance();
+		for (InstalledModule installed : mInstalledModules.values()) {
+			if (installed.isFramework)
+				continue;
+
+			Module download = repoLoader.getModule(installed.packageName);
+			if (download == null)
+				continue;
+
+			if (installed.isUpdate(download))
+				return true;
+		}
+		return false;
+	}
+
+	public boolean hasFrameworkUpdate() {
+		if (!XposedApp.SUPPORTS_INTERNET)
+			return false;
+
+		Module download = RepoLoader.getInstance().getModule(mFrameworkPackage);
+		if (download == null)
+			return false;
+
+		InstalledModule installed = mInstalledModules.get(mFrameworkPackage);
+		return installed.isUpdate(download);
 	}
 
 	public InstalledModule getModule(String packageName) {
@@ -93,6 +125,7 @@ public final class ModuleUtil {
 	public class InstalledModule {
 		public ApplicationInfo app;
 		public final String packageName;
+		public final boolean isFramework;
 		public final String versionName;
 		public final int versionCode;
 		public final String minVersion;
@@ -103,6 +136,7 @@ public final class ModuleUtil {
 		private InstalledModule(PackageInfo pkg, boolean isFramework) {
 			this.app = pkg.applicationInfo;
 			this.packageName = pkg.packageName;
+			this.isFramework = isFramework;
 			this.versionName = pkg.versionName;
 			this.versionCode = pkg.versionCode;
 

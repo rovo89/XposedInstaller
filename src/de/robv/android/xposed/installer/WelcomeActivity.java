@@ -11,12 +11,16 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import de.robv.android.xposed.installer.util.ModuleUtil;
 
 public class WelcomeActivity extends Activity {
+	private ModuleUtil moduleUtil;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		moduleUtil = ModuleUtil.getInstance();
+
 		setContentView(R.layout.activity_welcome);
 		
 		WelcomeAdapter items = new WelcomeAdapter(this);
@@ -40,7 +44,7 @@ public class WelcomeActivity extends Activity {
 	
 	class WelcomeAdapter extends ArrayAdapter<WelcomeItem> {
 		public WelcomeAdapter(Context context) {
-	        super(context, android.R.layout.simple_list_item_2, android.R.id.text1);
+	        super(context, R.layout.list_item_welcome, android.R.id.text1);
         }
 		
 		@Override
@@ -50,7 +54,17 @@ public class WelcomeActivity extends Activity {
 		    
 		    TextView description = (TextView) view.findViewById(android.R.id.text2);
 		    description.setText(item.description);
-		    
+
+		    boolean frameworkUpdateAvailable = false;
+		    boolean moduleUpdateAvailable = false;
+		    if (position == XposedInstallerActivity.TAB_DOWNLOAD) {
+				frameworkUpdateAvailable = moduleUtil.hasFrameworkUpdate();
+				moduleUpdateAvailable = moduleUtil.hasModuleUpdates();
+		    }
+
+		    view.findViewById(R.id.txtFrameworkUpdateAvailable).setVisibility(frameworkUpdateAvailable ? View.VISIBLE : View.GONE);
+		    view.findViewById(R.id.txtUpdateAvailable).setVisibility(moduleUpdateAvailable ? View.VISIBLE : View.GONE);
+
 		    return view;
 		}
 	}

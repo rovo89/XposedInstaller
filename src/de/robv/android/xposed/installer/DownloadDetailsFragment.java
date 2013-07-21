@@ -63,7 +63,7 @@ public class DownloadDetailsFragment extends Fragment {
 
 		Bundle args = getArguments();
 		packageName = args.getString(ARGUMENT_PACKAGE);
-		moduleGroup = RepoLoader.getInstance().getModule(packageName);
+		moduleGroup = RepoLoader.getInstance().getModuleGroup(packageName);
 		module = moduleGroup.getModule();
 
 		TextView title = (TextView) view.findViewById(R.id.download_title);
