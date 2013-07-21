@@ -24,6 +24,7 @@ public class XposedInstallerActivity extends Activity {
 	static final int TAB_INSTALL = 0;
 	static final int TAB_MODULES = 1;
 	static final int TAB_DOWNLOAD = 2;
+	static final int TAB_SETTINGS = 3;
 
 	static final int NOTIFICATION_MODULE_NOT_ACTIVATED_YET = 1;
 	
@@ -46,6 +47,7 @@ public class XposedInstallerActivity extends Activity {
 		data.add(makeNavigationItem(getString(R.string.tabInstall), InstallerFragment.class));
 		data.add(makeNavigationItem(getString(R.string.tabModules), ModulesFragment.class));
 		data.add(makeNavigationItem(getString(R.string.tabDownload), DownloadFragment.class));
+		data.add(makeNavigationItem(getString(R.string.tabSettings), SettingsFragment.class));
 
 		SimpleAdapter adapter = new SimpleAdapter(this, data,
 				android.R.layout.simple_spinner_dropdown_item,
@@ -95,7 +97,9 @@ public class XposedInstallerActivity extends Activity {
         			selectTabIndex = TAB_MODULES;
         		else if (extraS.equals("download"))
         			selectTabIndex = TAB_DOWNLOAD;
-        	}
+				else if (extraS.equals("settings"))
+					selectTabIndex = TAB_SETTINGS;
+			}
         } else if (savedInstanceState != null) {
         	selectTabIndex = savedInstanceState.getInt("tab", -1);
         }

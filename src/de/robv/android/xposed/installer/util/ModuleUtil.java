@@ -3,7 +3,6 @@ package de.robv.android.xposed.installer.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.app.Application;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -16,13 +15,13 @@ import de.robv.android.xposed.installer.repo.ModuleVersion;
 
 public final class ModuleUtil {
 	private static ModuleUtil mInstance = null;
-	private final Application mApp;
+	private final XposedApp mApp;
 	private final PackageManager mPm;
 	private final String mFrameworkPackage;
 	private Map<String, InstalledModule> mInstalledModules;
 	private boolean mIsReloading = false;
 
-	private ModuleUtil(Application app) {
+	private ModuleUtil(XposedApp app) {
 		mApp = app;
 		mPm = mApp.getPackageManager();
 		mFrameworkPackage = mApp.getPackageName();
@@ -30,7 +29,7 @@ public final class ModuleUtil {
 	}
 
 	/** call this only once (from the Application) */
-	public static void init(Application app) {
+	public static void init(XposedApp app) {
 		if (mInstance != null)
 			throw new IllegalStateException("this class must only be initialized once");
 
@@ -95,7 +94,7 @@ public final class ModuleUtil {
 	}
 
 	public boolean hasModuleUpdates() {
-		if (!XposedApp.SUPPORTS_INTERNET)
+		if (!mApp.enableDownloads())
 			return false;
 
 		RepoLoader repoLoader = RepoLoader.getInstance();
@@ -114,7 +113,7 @@ public final class ModuleUtil {
 	}
 
 	public boolean hasFrameworkUpdate() {
-		if (!XposedApp.SUPPORTS_INTERNET)
+		if (!mApp.enableDownloads())
 			return false;
 
 		Module download = RepoLoader.getInstance().getModule(mFrameworkPackage);

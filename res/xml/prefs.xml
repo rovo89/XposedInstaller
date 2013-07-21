@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="group_download"
+        android:title="Download" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable_downloads"
+            android:summary="Allow Xposed Installer to check for updates and new modules"
+            android:title="Enable downloads" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

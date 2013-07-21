@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.zip.GZIPInputStream;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import de.robv.android.xposed.installer.XposedApp;
@@ -26,7 +25,7 @@ import de.robv.android.xposed.installer.repo.Repository;
 
 public class RepoLoader {
 	private static RepoLoader mInstance = null;
-	private Application mApp = null;
+	private XposedApp mApp = null;
 	private SharedPreferences mPref;
 	
 	private Map<String, ModuleGroup> mModules = new HashMap<String, ModuleGroup>(0);
@@ -34,14 +33,14 @@ public class RepoLoader {
 	private final List<String> mMessages = new LinkedList<String>();
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
 	
-	private RepoLoader(Application app) {
+	private RepoLoader(XposedApp app) {
 		mApp = app;
 		mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
 		triggerReload();
 	}
 	
 	/** call this only once (from the Application) */
-	public static void init(Application app) {
+	public static void init(XposedApp app) {
 		if (mInstance != null)
 			throw new IllegalStateException("this class must only be initialized once");
 		
@@ -68,7 +67,7 @@ public class RepoLoader {
 	}
 
 	public void triggerReload() {
-		if (!XposedApp.SUPPORTS_INTERNET)
+		if (!mApp.enableDownloads())
 			return;
 
 		synchronized (this) {

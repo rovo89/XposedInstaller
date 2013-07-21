@@ -29,6 +29,7 @@ public class WelcomeActivity extends Activity {
 		mAdapter.add(new WelcomeItem(getString(R.string.tabInstall), "Here you can install the framework"));
 		mAdapter.add(new WelcomeItem(getString(R.string.tabModules), "Activate modules here"));
 		mAdapter.add(new WelcomeItem(getString(R.string.tabDownload), "Download new modules"));
+		mAdapter.add(new WelcomeItem(getString(R.string.tabSettings), "Configuration stuff"));
 		
 		ListView lv = (ListView) findViewById(R.id.welcome_list);
 		lv.setAdapter(mAdapter);
