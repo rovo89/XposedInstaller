@@ -7,6 +7,7 @@ import android.app.Application;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.Module;
@@ -62,6 +63,26 @@ public final class ModuleUtil {
 		mInstalledModules = modules;
 		synchronized (this) {
 			mIsReloading = false;
+		}
+	}
+
+	public InstalledModule reloadSingleModule(String packageName) {
+		PackageInfo pkg;
+		try {
+			pkg = mPm.getPackageInfo(packageName, PackageManager.GET_META_DATA);
+		} catch (NameNotFoundException e) {
+			mInstalledModules.remove(packageName);
+			return null;
+		}
+
+		ApplicationInfo app = pkg.applicationInfo;
+		if (app.metaData != null && app.metaData.containsKey("xposedmodule")) {
+			InstalledModule module = new InstalledModule(pkg, false);
+			mInstalledModules.put(packageName, module);
+			return module;
+		} else {
+			mInstalledModules.remove(packageName);
+			return null;
 		}
 	}
 
