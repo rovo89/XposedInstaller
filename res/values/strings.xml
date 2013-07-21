@@ -34,5 +34,6 @@
     <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
     <string name="welcome_framework_update_available">An update for the Xposed framework is available</string>
     <string name="welcome_update_available">One or more update(s) for modules available</string>
+    <string name="branch_display">(%s branch)</string>
     <string name="translator"></string>
 </resources>

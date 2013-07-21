@@ -142,7 +142,12 @@ public class DownloadDetailsFragment extends Fragment {
 			TextView txtBranch = (TextView) v.findViewById(R.id.txtBranch);
 
 			txtVersion.setText(item.name);
-			txtBranch.setText("(main branch)");
+			if (item.branch != null && !item.branch.isEmpty()) {
+				txtBranch.setText(getResources().getString(R.string.branch_display, item.branch));
+				txtBranch.setVisibility(View.VISIBLE);
+			} else {
+				txtBranch.setVisibility(View.GONE);
+			}
 			return v;
 		}
 
