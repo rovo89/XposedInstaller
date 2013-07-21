@@ -15,6 +15,7 @@ import de.robv.android.xposed.installer.util.ModuleUtil;
 
 public class WelcomeActivity extends Activity {
 	private ModuleUtil moduleUtil;
+	private WelcomeAdapter mAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +24,14 @@ public class WelcomeActivity extends Activity {
 
 		setContentView(R.layout.activity_welcome);
 		
-		WelcomeAdapter items = new WelcomeAdapter(this);
+		mAdapter = new WelcomeAdapter(this);
 		// TODO add proper description texts and load them from resources, add icons, make it more fancy, ... 
-		items.add(new WelcomeItem(getString(R.string.tabInstall), "Here you can install the framework"));
-		items.add(new WelcomeItem(getString(R.string.tabModules), "Activate modules here"));
-		items.add(new WelcomeItem(getString(R.string.tabDownload), "Download new modules"));
+		mAdapter.add(new WelcomeItem(getString(R.string.tabInstall), "Here you can install the framework"));
+		mAdapter.add(new WelcomeItem(getString(R.string.tabModules), "Activate modules here"));
+		mAdapter.add(new WelcomeItem(getString(R.string.tabDownload), "Download new modules"));
 		
 		ListView lv = (ListView) findViewById(R.id.welcome_list);
-		lv.setAdapter(items);
+		lv.setAdapter(mAdapter);
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -42,6 +43,13 @@ public class WelcomeActivity extends Activity {
 		});
 	}
 	
+	@Override
+	protected void onRestart() {
+	    super.onRestart();
+	    // refresh update status
+	    mAdapter.notifyDataSetChanged();
+	}
+
 	class WelcomeAdapter extends ArrayAdapter<WelcomeItem> {
 		public WelcomeAdapter(Context context) {
 	        super(context, R.layout.list_item_welcome, android.R.id.text1);
