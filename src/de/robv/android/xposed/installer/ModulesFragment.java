@@ -88,7 +88,7 @@ public class ModulesFragment extends ListFragment {
 	public void onCreateContextMenu(ContextMenu menu, View v,
             ContextMenuInfo menuInfo) {
         // Inflate the menu; this adds items to the action bar if it is present.
-		menu.setHeaderTitle("Select The Action");  
+		menu.setHeaderTitle(modules.getItem(((AdapterView.AdapterContextMenuInfo) menuInfo).position).getAppName());
         getActivity().getMenuInflater().inflate(R.menu.modules_menu, menu);		
     }
 	@Override 
@@ -243,6 +243,9 @@ public class ModulesFragment extends ListFragment {
 		}
 		public String getPackageName(){
 			return packageName;
+		}
+		public String getAppName(){
+			return appName;
 		}
 	}
 }
