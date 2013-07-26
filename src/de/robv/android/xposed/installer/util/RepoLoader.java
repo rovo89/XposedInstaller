@@ -89,7 +89,16 @@ public class RepoLoader {
 			}
 		}.start();
 	}
-	
+
+	public void clear() {
+		synchronized (this) {
+			if (mIsLoading)
+				return;
+
+			mModules = new HashMap<String, ModuleGroup>();
+		}
+	}
+
 	public String[] getRepositories() {
 		return mPref.getString("repositories", "http://dl.xposed.info/repo.xml.gz").split("\\|");
 	}

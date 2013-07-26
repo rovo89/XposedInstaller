@@ -2,7 +2,10 @@ package de.robv.android.xposed.installer;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceFragment;
+import de.robv.android.xposed.installer.util.RepoLoader;
 
 public class SettingsFragment extends PreferenceFragment {
 
@@ -19,5 +22,19 @@ public class SettingsFragment extends PreferenceFragment {
 		super.onCreate(savedInstanceState);
 
 		addPreferencesFromResource(R.xml.prefs);
+
+		findPreference("enable_downloads").setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				boolean enabled = (Boolean) newValue;
+				if (enabled) {
+					preference.getEditor().putBoolean("enable_downloads", enabled).apply();
+					RepoLoader.getInstance().triggerReload();
+				} else {
+					RepoLoader.getInstance().clear();
+				}
+				return true;
+			}
+		});
 	}
 }
