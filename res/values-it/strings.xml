@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Xposed Installer</string>
+    <string name="tabInstall">Framework</string>
+    <string name="tabModules">Moduli</string>
+    <string name="yes">si</string>
+    <string name="no">no</string>
+    <string name="installerDescription">Qui puoi installare il framework <b>Xposed</b>.
+È la base per utilizzare moduli con lo scopo di cambiare il comportamento e l\'aspetto del tuo dispositivo Android.
+Per ulteriori informazioni dai un\'occhiata <a href="http://forum.xda-developers.com/showthread.php?t=1574401">qui</a>.</string>
+    <string name="install">Installa/Aggiorna</string>
+    <string name="uninstall">Rimuovi (ripristina app_process)</string>
+    <string name="installedVersion">corrente</string>
+    <string name="none">---</string>
+    <string name="latestVersion">ultima</string>
+    <string name="cleanup">Pulisci (rimuovi completamente il framework)</string>
+    <string name="versions">Versioni:</string>
+    <string name="soft_reboot">Riavvio soft</string>
+    <string name="reboot">Riavvia</string>
+    <string name="areyousure">Sei sicuro?</string>
+    <string name="module_is_not_activated_yet">Il modulo Xposed non è stato ancora attivato</string>
+    <string name="module_empty_description">(nessuna descrizione presente)</string>
+    <string name="module_no_ui">Questo modulo non prevede un\'interfaccia utente</string>
+    <string name="no_xposed_modules_found">Nessun modulo Xposed presente!</string>
+    <string name="xposed_module_list_updated">La lista dei moduli Xposed è stata aggiornata\nI cambiamenti saranno attivi al riavvio</string>
+    <string name="warning_xposed_min_version">Questo modulo richiede una nuova versione di Xposed (%s) e pertanto non può essere attivato.</string>
+    <string name="phone_not_compatible">Xposed non è (ancora) compatibile con Android SDK versione %1$d o con l\'architettura del tuo processore (%2$s).</string>
+    <string name="not_tested_but_compatible">Xposed non è stato testato con Android SDK versione %d, ma sembra essere compatibile. Puoi provare ad installarlo se sei avventuroso.</string>
+    <string name="no_min_version_specified">Questo modulo non specifica la versione di Xposed richiesta.</string>
+    <string name="warning_min_version_too_low">Questo modulo è stato creato per la versione %1$s di Xposed ed è stato disabilitato a causa di incompatibilià con la versione %2$s.</string>
+    <string name="app_process" translatable="false">app_process</string>
+    <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
+    <string name="translator">Vincenzo Cerminara</string>
+</resources>
