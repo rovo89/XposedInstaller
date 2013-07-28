@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
-import android.app.ListFragment;
+import android.support.v4.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -46,8 +46,8 @@ public class ModulesFragment extends ListFragment {
 				continue;
 			
 			String minVersion = app.metaData.getString("xposedminversion");
-			String description = app.metaData.getString("xposeddescription", "");
-			if (description.length() == 0) {
+			String description = app.metaData.getString("xposeddescription");
+			if (description == null || description.length() == 0) {
 				// Check if the metadata is using a resource and load it if so
 				try {
 					int resId = app.metaData.getInt("xposeddescription", 0);

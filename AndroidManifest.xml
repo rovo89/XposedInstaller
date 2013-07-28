@@ -4,11 +4,12 @@
     android:versionCode="15"
     android:versionName="2.1.4" xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="15" tools:ignore="OldTargetApi"/>
+    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="15" tools:ignore="OldTargetApi"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
 
     <application
+        android:theme="@style/Theme.AppCompat.Light"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" android:allowBackup="false">
         <activity

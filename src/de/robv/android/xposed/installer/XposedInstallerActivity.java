@@ -1,12 +1,13 @@
 package de.robv.android.xposed.installer;
 
-import android.app.ActionBar;
-import android.app.Activity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Bundle;
 
-public class XposedInstallerActivity extends Activity {
+public class XposedInstallerActivity extends ActionBarActivity {
 	static final String TAG = "xposed_installer";
 	
 	static final String EXTRA_OPEN_TAB = "opentab";
@@ -19,10 +20,13 @@ public class XposedInstallerActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        setContentView(R.layout.abc_screen);
+        findViewById(R.id.title_container).setVisibility(View.GONE);
+
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		nm.cancelAll();
         
-        final ActionBar bar = getActionBar();
+        final ActionBar bar = getSupportActionBar();
         bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         
         bar.addTab(bar.newTab()
@@ -58,6 +62,6 @@ public class XposedInstallerActivity extends Activity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("tab", getActionBar().getSelectedNavigationIndex());
+        outState.putInt("tab", getSupportActionBar().getSelectedNavigationIndex());
     }
 }

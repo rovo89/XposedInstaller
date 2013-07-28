@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -64,6 +64,11 @@ public class InstallerFragment extends Fragment {
 		boolean isCompatible = false;
 		if (BINARIES_FOLDER == null || BUSYBOX_BINARY == null) {
 			// incompatible processor architecture
+		} else if (Build.VERSION.SDK_INT == 10) {
+			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk10";
+			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk10";
+			isCompatible = checkCompatibility();
+
 		} else if (Build.VERSION.SDK_INT == 15) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk15";
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk15";
@@ -201,10 +206,14 @@ public class InstallerFragment extends Fragment {
 	}
 	
 	private void areYouSure(int messageTextId, OnClickListener yesHandler) {
+		AlertDialog.Builder builder =
 		new AlertDialog.Builder(getActivity())
 		.setTitle(R.string.areyousure)
-        .setMessage(messageTextId)
-        .setIconAttribute(android.R.attr.alertDialogIcon)
+        .setMessage(messageTextId);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1) {
+            builder.setIconAttribute(android.R.attr.alertDialogIcon);
+        }
+        builder
         .setPositiveButton(android.R.string.yes, yesHandler)
         .setNegativeButton(android.R.string.no, null)
         .create()
