@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tabInstall">Framework</string>
+    <string name="tabModules">Moduly</string>
+    <string name="yes">áno</string>
+    <string name="no">nie</string>
+    <string name="installerDescription">Tu je možné nainštalovať <b>Xposed</b> framework.
+  	Xposed framework je základ pre moduly, ktoré môžu meniť správanie a vzhľad Vášho Android zariadenia
+    Pre viac informácií prosím navštívte <a href="http://forum.xda-developers.com/showthread.php?t=1574401">túto tému</a> na XDA fóre.</string>
+    <string name="install">Inštalovať/Aktualizovať</string>
+    <string name="uninstall">Odinštalovať (obnoviť app_process)</string>
+    <string name="installedVersion">aktívna</string>
+    <string name="latestVersion">najnovšia</string>
+    <string name="cleanup">Vyčistiť (kompletne odstrániť framework)</string>
+    <string name="versions">Verzie:</string>
+    <string name="soft_reboot">Ľahký reštart</string>
+    <string name="reboot">Reštart</string>
+    <string name="areyousure">Ste si istý?</string>
+    <string name="module_is_not_activated_yet">Xposed modul nie je zatiaľ aktivovaný</string>
+    <string name="module_empty_description">(nie je k dispozícii žiadny popis)</string>
+    <string name="module_no_ui">Tento modul neposkytuje užívateľské rozhranie</string>
+    <string name="no_xposed_modules_found">Neboli nájdené žiadne Xposed moduly.</string>
+    <string name="xposed_module_list_updated">Zoznam Xposed modulov bol aktualizovaný\nZmeny sa prejavia po reštarte</string>
+    <string name="warning_xposed_min_version">Tento modul vyžaduje novšiu verziu Xposed (%s), a preto nemôže byť aktivovaný.</string>
+    <string name="phone_not_compatible">Xposed zatiaľ nie je kompatibilný s Android SDK verziou %1$d alebo s architektúrou procesora (%2$s).</string>
+    <string name="not_tested_but_compatible">Xposed nebol testovaný s Android SDK verziou %d, ale zdá sa byť kompatibilný. Môžete ho instalovať na vlastné riziko.</string>
+    <string name="no_min_version_specified">Tento modul nešpecifikuje verziu Xposed, ktorú potrebuje pre správne fungovanie.</string>
+    <string name="warning_min_version_too_low">Tento modul bol vytvorený pre Xposed vo verzii %1$s, ale kvôli nekompatibilným zmenám vo verzii %2$s bol deaktivovaný.</string>
+    <string name="translator">pyler</string>
+</resources>
