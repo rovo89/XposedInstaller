@@ -17,6 +17,8 @@ import java.util.zip.GZIPInputStream;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Handler;
+import android.widget.Toast;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
@@ -27,6 +29,7 @@ public class RepoLoader {
 	private static RepoLoader mInstance = null;
 	private XposedApp mApp = null;
 	private SharedPreferences mPref;
+	private Handler mMainHandler;
 	
 	private Map<String, ModuleGroup> mModules = new HashMap<String, ModuleGroup>(0);
 	private boolean mIsLoading = false;
@@ -36,6 +39,7 @@ public class RepoLoader {
 	private RepoLoader(XposedApp app) {
 		mApp = app;
 		mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
+		mMainHandler = new Handler(mApp.getMainLooper());
 		triggerReload();
 	}
 	
@@ -78,8 +82,19 @@ public class RepoLoader {
 		
 		new Thread("RepositoryReload") {
 			public void run() {
+				mMessages.clear();
+
 				downloadFiles();
 				parseFiles();
+
+				for (final String message : mMessages) {
+					mMainHandler.post(new Runnable() {
+						public void run() {
+							Toast.makeText(mApp, message, Toast.LENGTH_LONG).show();
+						}
+					});
+				}
+
 				for (RepoListener listener : mListeners) {
 					listener.onRepoReloaded(mInstance);
 				}
