@@ -33,6 +33,7 @@ public class RepoLoader {
 	
 	private Map<String, ModuleGroup> mModules = new HashMap<String, ModuleGroup>(0);
 	private boolean mIsLoading = false;
+	private boolean mReloadTriggeredOnce = false;
 	private final List<String> mMessages = new LinkedList<String>();
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
 	
@@ -40,7 +41,6 @@ public class RepoLoader {
 		mApp = app;
 		mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
 		mMainHandler = new Handler(mApp.getMainLooper());
-		triggerReload();
 	}
 	
 	/** call this only once (from the Application) */
@@ -71,6 +71,8 @@ public class RepoLoader {
 	}
 
 	public void triggerReload() {
+		mReloadTriggeredOnce = true;
+
 		if (!mApp.enableDownloads())
 			return;
 
@@ -103,6 +105,11 @@ public class RepoLoader {
 				}
 			}
 		}.start();
+	}
+
+	public void triggerFirstLoadIfNecessary() {
+		if (!mReloadTriggeredOnce)
+			triggerReload();
 	}
 
 	public void clear() {
