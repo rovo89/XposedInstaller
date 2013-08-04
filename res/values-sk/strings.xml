@@ -13,7 +13,7 @@
     <string name="latestVersion">najnovšia</string>
     <string name="cleanup">Vyčistiť (kompletne odstrániť framework)</string>
     <string name="versions">Verzie:</string>
-    <string name="soft_reboot">Ľahký reštart</string>
+    <string name="soft_reboot">Softvérový reštart</string>
     <string name="reboot">Reštart</string>
     <string name="areyousure">Ste si istý?</string>
     <string name="module_is_not_activated_yet">Xposed modul nie je zatiaľ aktivovaný</string>
