@@ -46,6 +46,7 @@ public final class ModuleUtil {
 				return;
 			mIsReloading = true;
 		}
+		mApp.updateProgressIndicator();
 
 		Map<String, InstalledModule> modules = new HashMap<String, ModuleUtil.InstalledModule>();
 
@@ -63,6 +64,7 @@ public final class ModuleUtil {
 		synchronized (this) {
 			mIsReloading = false;
 		}
+		mApp.updateProgressIndicator();
 	}
 
 	public InstalledModule reloadSingleModule(String packageName) {
@@ -83,6 +85,10 @@ public final class ModuleUtil {
 			mInstalledModules.remove(packageName);
 			return null;
 		}
+	}
+
+	public synchronized boolean isLoading() {
+		return mIsReloading;
 	}
 
 	public boolean isFramework(String packageName) {

@@ -17,7 +17,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
@@ -88,7 +87,6 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		switch (item.getItemId()) {
 			case R.id.menu_refresh:
 				RepoLoader.getInstance().triggerReload();
-				Toast.makeText(getActivity(), "Reloading...", Toast.LENGTH_SHORT).show();
 				break;
 		}
 	    return super.onOptionsItemSelected(item);

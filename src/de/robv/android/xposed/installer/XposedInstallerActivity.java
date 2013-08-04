@@ -15,6 +15,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.SimpleAdapter;
 
 public class XposedInstallerActivity extends Activity {
@@ -34,7 +35,9 @@ public class XposedInstallerActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
+
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		nm.cancelAll();
         

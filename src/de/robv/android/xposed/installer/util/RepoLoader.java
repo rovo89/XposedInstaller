@@ -81,6 +81,7 @@ public class RepoLoader {
 				return;
 			mIsLoading = true;
 		}
+		mApp.updateProgressIndicator();
 		
 		new Thread("RepositoryReload") {
 			public void run() {
@@ -103,6 +104,7 @@ public class RepoLoader {
 				synchronized (this) {
 					mIsLoading = false;
 				}
+				mApp.updateProgressIndicator();
 			}
 		}.start();
 	}
@@ -110,6 +112,10 @@ public class RepoLoader {
 	public void triggerFirstLoadIfNecessary() {
 		if (!mReloadTriggeredOnce)
 			triggerReload();
+	}
+
+	public synchronized boolean isLoading() {
+		return mIsLoading;
 	}
 
 	public void clear() {
