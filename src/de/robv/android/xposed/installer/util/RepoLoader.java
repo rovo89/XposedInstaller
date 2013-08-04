@@ -64,7 +64,7 @@ public class RepoLoader {
 	public void triggerReload() {
 		mReloadTriggeredOnce = true;
 
-		if (!mApp.enableDownloads())
+		if (!mApp.areDownloadsEnabled())
 			return;
 
 		synchronized (this) {

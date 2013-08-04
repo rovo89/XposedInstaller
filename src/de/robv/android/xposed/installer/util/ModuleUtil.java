@@ -94,7 +94,7 @@ public final class ModuleUtil {
 	}
 
 	public boolean hasModuleUpdates() {
-		if (!mApp.enableDownloads())
+		if (!mApp.areDownloadsEnabled())
 			return false;
 
 		RepoLoader repoLoader = RepoLoader.getInstance();
@@ -113,7 +113,7 @@ public final class ModuleUtil {
 	}
 
 	public boolean hasFrameworkUpdate() {
-		if (!mApp.enableDownloads())
+		if (!mApp.areDownloadsEnabled())
 			return false;
 
 		Module download = RepoLoader.getInstance().getModule(mFrameworkPackage);
