@@ -21,22 +21,16 @@ public final class ModuleUtil {
 	private Map<String, InstalledModule> mInstalledModules;
 	private boolean mIsReloading = false;
 
-	private ModuleUtil(XposedApp app) {
-		mApp = app;
+	private ModuleUtil() {
+		mApp = XposedApp.getInstance();
 		mPm = mApp.getPackageManager();
 		mFrameworkPackage = mApp.getPackageName();
 		reloadInstalledModules();
 	}
 
-	/** call this only once (from the Application) */
-	public static void init(XposedApp app) {
-		if (mInstance != null)
-			throw new IllegalStateException("this class must only be initialized once");
-
-		mInstance = new ModuleUtil(app);
-	}
-
-	public static ModuleUtil getInstance() {
+	public static synchronized ModuleUtil getInstance() {
+		if (mInstance == null)
+			mInstance = new ModuleUtil();
 		return mInstance;
 	}
 

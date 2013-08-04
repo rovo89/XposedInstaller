@@ -37,21 +37,15 @@ public class RepoLoader {
 	private final List<String> mMessages = new LinkedList<String>();
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
 	
-	private RepoLoader(XposedApp app) {
-		mApp = app;
+	private RepoLoader() {
+		mApp = XposedApp.getInstance();
 		mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
 		mMainHandler = new Handler(mApp.getMainLooper());
 	}
 	
-	/** call this only once (from the Application) */
-	public static void init(XposedApp app) {
-		if (mInstance != null)
-			throw new IllegalStateException("this class must only be initialized once");
-		
-		mInstance = new RepoLoader(app);
-	}
-	
-	public static RepoLoader getInstance() {
+	public static synchronized RepoLoader getInstance() {
+		if (mInstance == null)
+			mInstance = new RepoLoader();
 		return mInstance;
 	}
 	

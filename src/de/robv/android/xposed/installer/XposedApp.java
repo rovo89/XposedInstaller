@@ -13,18 +13,21 @@ import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
 public class XposedApp extends Application implements ActivityLifecycleCallbacks {
+	private static XposedApp mInstance = null;
+
 	private boolean mIsUiLoaded = false;
 	private Activity mCurrentActivity = null;
 	private Handler mCurrentActivityHandler = null;
 
 	public void onCreate() {
 		super.onCreate();
+		mInstance = this;
 
-		// some stuff is only needed if UI is needed, not for receivers etc.
 		registerActivityLifecycleCallbacks(this);
+	}
 
-		RepoLoader.init(this);
-		ModuleUtil.init(this);
+	public static XposedApp getInstance() {
+		return mInstance;
 	}
 
 	public boolean enableDownloads() {
@@ -35,7 +38,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 		return prefs.getBoolean("enable_downloads", true);
 	}
 
-	public void updateProgressIndicator() {
+	public synchronized void updateProgressIndicator() {
 		if (mCurrentActivity == null)
 			return;
 
