@@ -131,7 +131,7 @@ public class DownloadView extends LinearLayout {
 						btnInstall.setVisibility(View.GONE);
 						progressBar.setVisibility(View.GONE);
 						txtInfo.setVisibility(View.VISIBLE);
-						txtInfo.setText("Download failed");
+						txtInfo.setText("Download failed (error " + mInfo.reason + ")");
 						break;
 	
 					case DownloadManager.STATUS_SUCCESSFUL:
