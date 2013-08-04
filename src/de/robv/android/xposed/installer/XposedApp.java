@@ -14,20 +14,31 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 
 public class XposedApp extends Application implements ActivityLifecycleCallbacks {
 	private static XposedApp mInstance = null;
+	private static Thread mUiThread;
+	private static Handler mMainHandler;
 
 	private boolean mIsUiLoaded = false;
 	private Activity mCurrentActivity = null;
-	private Handler mCurrentActivityHandler = null;
 
 	public void onCreate() {
 		super.onCreate();
 		mInstance = this;
+		mUiThread = Thread.currentThread();
+		mMainHandler = new Handler();
 
 		registerActivityLifecycleCallbacks(this);
 	}
 
 	public static XposedApp getInstance() {
 		return mInstance;
+	}
+
+	public static void runOnUiThread(Runnable action) {
+		if (Thread.currentThread() != mUiThread) {
+			mMainHandler.post(action);
+		} else {
+			action.run();
+		}
 	}
 
 	public boolean enableDownloads() {
@@ -38,16 +49,9 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 		return prefs.getBoolean("enable_downloads", true);
 	}
 
-	public synchronized void updateProgressIndicator() {
-		if (mCurrentActivity == null)
-			return;
-
-		if (mCurrentActivityHandler == null)
-			mCurrentActivityHandler = new Handler(mCurrentActivity.getMainLooper());
-
+	public void updateProgressIndicator() {
 		final boolean isLoading = RepoLoader.getInstance().isLoading() || ModuleUtil.getInstance().isLoading();
-
-		mCurrentActivityHandler.post(new Runnable() {
+		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				synchronized (XposedApp.this) {
