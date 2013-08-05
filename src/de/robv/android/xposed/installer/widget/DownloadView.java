@@ -114,9 +114,9 @@ public class DownloadView extends LinearLayout {
 						btnInstall.setVisibility(View.GONE);
 						progressBar.setVisibility(View.VISIBLE);
 						txtInfo.setVisibility(View.VISIBLE);
-						if (mInfo.totalSize <= 0) {
+						if (mInfo.totalSize <= 0 || mInfo.status != DownloadManager.STATUS_RUNNING) {
 							progressBar.setIndeterminate(true);
-							txtInfo.setText("Download is running");
+							txtInfo.setText("Download is waiting");
 						} else {
 							progressBar.setIndeterminate(false);
 							progressBar.setMax(mInfo.totalSize);
