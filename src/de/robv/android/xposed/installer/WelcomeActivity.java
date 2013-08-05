@@ -12,10 +12,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import de.robv.android.xposed.installer.util.ModuleUtil;
+import de.robv.android.xposed.installer.util.RepoLoader;
 
 public class WelcomeActivity extends Activity {
-	private ModuleUtil moduleUtil;
+	private RepoLoader repoLoader;
 	private WelcomeAdapter mAdapter;
 
 	@Override
@@ -23,7 +23,7 @@ public class WelcomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		moduleUtil = ModuleUtil.getInstance();
+		repoLoader = RepoLoader.getInstance();
 
 		setContentView(R.layout.activity_welcome);
 		
@@ -70,8 +70,8 @@ public class WelcomeActivity extends Activity {
 		    boolean frameworkUpdateAvailable = false;
 		    boolean moduleUpdateAvailable = false;
 		    if (position == XposedInstallerActivity.TAB_DOWNLOAD) {
-				frameworkUpdateAvailable = moduleUtil.hasFrameworkUpdate();
-				moduleUpdateAvailable = moduleUtil.hasModuleUpdates();
+				frameworkUpdateAvailable = repoLoader.hasFrameworkUpdate();
+				moduleUpdateAvailable = repoLoader.hasModuleUpdates();
 		    }
 
 		    view.findViewById(R.id.txtFrameworkUpdateAvailable).setVisibility(frameworkUpdateAvailable ? View.VISIBLE : View.GONE);

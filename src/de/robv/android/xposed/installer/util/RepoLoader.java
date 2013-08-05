@@ -23,6 +23,7 @@ import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.repo.Repository;
+import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 
 public class RepoLoader {
 	private static RepoLoader mInstance = null;
@@ -131,7 +132,41 @@ public class RepoLoader {
 		}
 		mPref.edit().putString("repositories", sb.toString()).commit();
 	}
-	
+
+	public boolean hasModuleUpdates() {
+		if (!mApp.areDownloadsEnabled())
+			return false;
+
+		Map<String, InstalledModule> installedModules = ModuleUtil.getInstance().getModules();
+		for (InstalledModule installed : installedModules.values()) {
+			if (installed.isFramework)
+				continue;
+
+			Module download = getModule(installed.packageName);
+			if (download == null)
+				continue;
+
+			if (installed.isUpdate(download))
+				return true;
+		}
+		return false;
+	}
+
+	public boolean hasFrameworkUpdate() {
+		if (!mApp.areDownloadsEnabled())
+			return false;
+
+		InstalledModule installed = ModuleUtil.getInstance().getFramework();
+		if (installed == null) // would be strange if this happened...
+			return false;
+
+		Module download = getModule(installed.packageName);
+		if (download == null)
+			return false;
+
+		return installed.isUpdate(download);
+	}
+
 	private File getRepoCacheFile(String repo) {
 		String filename = "repo_" + HashUtil.md5(repo) + ".xml";
 		if (repo.endsWith(".gz"))

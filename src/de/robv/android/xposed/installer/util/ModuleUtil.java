@@ -25,12 +25,13 @@ public final class ModuleUtil {
 		mApp = XposedApp.getInstance();
 		mPm = mApp.getPackageManager();
 		mFrameworkPackage = mApp.getPackageName();
-		reloadInstalledModules();
 	}
 
 	public static synchronized ModuleUtil getInstance() {
-		if (mInstance == null)
+		if (mInstance == null) {
 			mInstance = new ModuleUtil();
+			mInstance.reloadInstalledModules();
+		}
 		return mInstance;
 	}
 
@@ -85,43 +86,16 @@ public final class ModuleUtil {
 		return mIsReloading;
 	}
 
+	public InstalledModule getFramework() {
+		return getModule(mFrameworkPackage);
+	}
+
 	public boolean isFramework(String packageName) {
 		return mFrameworkPackage.equals(packageName);
 	}
 
 	public boolean isInstalled(String packageName) {
 		return mInstalledModules.containsKey(packageName);
-	}
-
-	public boolean hasModuleUpdates() {
-		if (!mApp.areDownloadsEnabled())
-			return false;
-
-		RepoLoader repoLoader = RepoLoader.getInstance();
-		for (InstalledModule installed : mInstalledModules.values()) {
-			if (installed.isFramework)
-				continue;
-
-			Module download = repoLoader.getModule(installed.packageName);
-			if (download == null)
-				continue;
-
-			if (installed.isUpdate(download))
-				return true;
-		}
-		return false;
-	}
-
-	public boolean hasFrameworkUpdate() {
-		if (!mApp.areDownloadsEnabled())
-			return false;
-
-		Module download = RepoLoader.getInstance().getModule(mFrameworkPackage);
-		if (download == null)
-			return false;
-
-		InstalledModule installed = mInstalledModules.get(mFrameworkPackage);
-		return installed.isUpdate(download);
 	}
 
 	public InstalledModule getModule(String packageName) {
@@ -137,7 +111,11 @@ public final class ModuleUtil {
 			return null;
 
 		// TODO implement logic for branches
-		return module.versions.get(0);
+		for (ModuleVersion version : module.versions) {
+			if (version.downloadLink != null)
+				return version;
+		}
+		return null;
 	}
 
 
