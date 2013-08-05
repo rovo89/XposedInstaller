@@ -17,6 +17,8 @@ import java.util.zip.GZIPInputStream;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.Module;
@@ -29,6 +31,7 @@ public class RepoLoader {
 	private static RepoLoader mInstance = null;
 	private XposedApp mApp = null;
 	private SharedPreferences mPref;
+	private ConnectivityManager mConMgr;
 	
 	private Map<String, ModuleGroup> mModules = new HashMap<String, ModuleGroup>(0);
 	private boolean mIsLoading = false;
@@ -39,6 +42,7 @@ public class RepoLoader {
 	private RepoLoader() {
 		mApp = XposedApp.getInstance();
 		mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
+		mConMgr = (ConnectivityManager) mApp.getSystemService(Context.CONNECTIVITY_SERVICE);
 	}
 	
 	public static synchronized RepoLoader getInstance() {
@@ -173,8 +177,12 @@ public class RepoLoader {
 			filename += ".gz";
 		return new File(mApp.getCacheDir(), filename);
 	}
-	
+
 	private void downloadFiles() {
+		NetworkInfo netInfo = mConMgr.getActiveNetworkInfo();
+		if (netInfo == null || !netInfo.isConnected())
+			return;
+
 		String[] repos = getRepositories();
 		for (String repo : repos) {
 			URLConnection connection = null;

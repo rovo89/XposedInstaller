@@ -19,12 +19,15 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
 	private boolean mIsUiLoaded = false;
 	private Activity mCurrentActivity = null;
+	private SharedPreferences mPref;
 
 	public void onCreate() {
 		super.onCreate();
 		mInstance = this;
 		mUiThread = Thread.currentThread();
 		mMainHandler = new Handler();
+
+		mPref = PreferenceManager.getDefaultSharedPreferences(this);
 
 		registerActivityLifecycleCallbacks(this);
 	}
@@ -42,11 +45,13 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 	}
 
 	public boolean areDownloadsEnabled() {
+		if (!mPref.getBoolean("enable_downloads", true))
+			return false;
+
 		if (checkCallingOrSelfPermission(Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED)
 			return false;
 
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		return prefs.getBoolean("enable_downloads", true);
+		return true;
 	}
 
 	public void updateProgressIndicator() {
