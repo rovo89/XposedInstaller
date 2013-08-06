@@ -1,5 +1,8 @@
 package de.robv.android.xposed.installer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.animation.Animator;
 import android.app.Activity;
 import android.app.Fragment;
@@ -27,12 +30,14 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
 public class DownloadFragment extends Fragment implements RepoListener {
-	private DownloadsAdapter adapter;
-	
+	private DownloadsAdapter mAdapter;
+	private ModuleUtil mModuleUtil;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
-	    setHasOptionsMenu(true);
+		super.onCreate(savedInstanceState);
+		mModuleUtil = ModuleUtil.getInstance();
+		setHasOptionsMenu(true);
 	}
 
 	@Override
@@ -48,15 +53,16 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		View v = inflater.inflate(R.layout.tab_downloader, container, false);
 		ListView lv = (ListView) v.findViewById(R.id.listModules);
 		
-		adapter = new DownloadsAdapter(getActivity());
+		mAdapter = new DownloadsAdapter(getActivity());
+		mAdapter.setNotifyOnChange(false);
 		RepoLoader.getInstance().addListener(this, true);
-		lv.setAdapter(adapter);
+		lv.setAdapter(mAdapter);
 		
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				ModuleGroup ref = adapter.getItem(position);
-				DownloadDetailsFragment fragment = DownloadDetailsFragment.newInstance(ref.packageName);
+				DownloadItem item = mAdapter.getItem(position);
+				DownloadDetailsFragment fragment = DownloadDetailsFragment.newInstance(item.packageName);
 
 				FragmentTransaction tx = getFragmentManager().beginTransaction();
 				// requires onCreateAnimator() to be overridden!
@@ -73,7 +79,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 	@Override
 	public void onDestroyView() {
 	    super.onDestroyView();
-	    adapter = null;
+	    mAdapter = null;
 	    RepoLoader.getInstance().removeListener(this);
 	}
 	
@@ -99,22 +105,29 @@ public class DownloadFragment extends Fragment implements RepoListener {
 	
 	@Override
 	public void onRepoReloaded(final RepoLoader loader) {
-		if (adapter == null)
+		if (mAdapter == null)
 			return;
-		
+
+		final List<DownloadItem> items = new ArrayList<DownloadItem>();
+		for (ModuleGroup group : loader.getModules().values()) {
+			items.add(new DownloadItem(group));
+		}
+
 		getActivity().runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				synchronized (adapter) {
-					adapter.clear();
-					adapter.addAll(loader.getModules().values());
-					adapter.sort(null);
-		        }
+				synchronized (mAdapter) {
+					mAdapter.clear();
+					mAdapter.addAll(items);
+					mAdapter.notifyDataSetChanged();
+				}
 			}
 		});
 	}
 
-	private class DownloadsAdapter extends ArrayAdapter<ModuleGroup> {
+
+
+	private class DownloadsAdapter extends ArrayAdapter<DownloadItem> {
 		public DownloadsAdapter(Context context) {
 			super(context, R.layout.list_item_download, android.R.id.text1);
 		}
@@ -123,19 +136,21 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View view = super.getView(position, convertView, parent);
 
-			Module module = getItem(position).getModule();
-			ModuleVersion latest = ModuleUtil.getInstance().getLatestVersion(module);
-			InstalledModule installed = ModuleUtil.getInstance().getModule(module.packageName);
+			DownloadItem item = getItem(position);
+			Module module = item.getModule();
+			ModuleVersion latest = item.getLatestVersion();
+			InstalledModule installed = item.getInstalled();
+			int installStatus = item.getInstallStatus();
 
 			TextView txtSummary = (TextView) view.findViewById(android.R.id.text2);
 			txtSummary.setText(module.summary);
-			
+
 			TextView txtStatus = (TextView) view.findViewById(R.id.downloadStatus);
-			if (installed != null && installed.isUpdate(latest)) {
+			if (installStatus == DownloadItem.INSTALL_STATUS_HAS_UPDATE) {
 				txtStatus.setText(String.format("Update available (version %s \u2192 %s)", installed.versionName, latest.name));
 				txtStatus.setTextColor(getResources().getColor(R.color.download_status_update_available));
 				txtStatus.setVisibility(View.VISIBLE);
-			} else if (installed != null) {
+			} else if (installStatus == DownloadItem.INSTALL_STATUS_INSTALLED) {
 				txtStatus.setText(String.format("Installed (version %s)", installed.versionName));
 				txtStatus.setTextColor(getResources().getColor(R.color.download_status_installed));
 				txtStatus.setVisibility(View.VISIBLE);
@@ -144,6 +159,79 @@ public class DownloadFragment extends Fragment implements RepoListener {
 			}
 
 			return view;
+		}
+
+		@Override
+		public void notifyDataSetChanged() {
+			mAdapter.sort(null);
+		    super.notifyDataSetChanged();
+		}
+	}
+
+
+
+	private class DownloadItem implements Comparable<DownloadItem> {
+		public final ModuleGroup group;
+		public final String packageName;
+		public final boolean isFramework;
+
+		public final static int INSTALL_STATUS_NOT_INSTALLED = 0;
+		public final static int INSTALL_STATUS_INSTALLED = 1;
+		public final static int INSTALL_STATUS_HAS_UPDATE = 2;
+
+		public DownloadItem(ModuleGroup group) {
+			this.group = group;
+			this.packageName = group.packageName;
+			this.isFramework = mModuleUtil.isFramework(group.packageName);
+		}
+
+		public Module getModule() {
+			return group.getModule();
+		}
+
+		public ModuleVersion getLatestVersion() {
+			return mModuleUtil.getLatestVersion(group.getModule());
+		}
+
+		public InstalledModule getInstalled() {
+			return mModuleUtil.getModule(group.packageName);
+		}
+
+		public int getInstallStatus() {
+			InstalledModule installed = getInstalled();
+			if (installed == null)
+				return INSTALL_STATUS_NOT_INSTALLED;
+
+			return installed.isUpdate(getLatestVersion()) ? INSTALL_STATUS_HAS_UPDATE : INSTALL_STATUS_INSTALLED; 
+		}
+
+		public String getDisplayName() {
+			return group.getModule().name;
+		}
+
+		@Override
+		public String toString() {
+			return getDisplayName();
+		}
+
+		@Override
+		public int compareTo(DownloadItem other) {
+			if (other == null)
+				return 1;
+
+			if (this.isFramework != other.isFramework)
+				return this.isFramework ? -1 : 1;
+
+			int order = other.getInstallStatus() - this.getInstallStatus();
+			if (order != 0)
+				return order;
+
+			order = getDisplayName().compareToIgnoreCase(other.getDisplayName());
+			if (order != 0)
+				return order;
+
+			order = this.packageName.compareTo(other.packageName);
+			return order;
 		}
 	}
 }

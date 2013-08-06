@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ModuleGroup implements Comparable<ModuleGroup> {
+public class ModuleGroup {
 	public final String packageName;
 	private final List<Module> modules = new ArrayList<Module>(1);
 
@@ -30,23 +30,5 @@ public class ModuleGroup implements Comparable<ModuleGroup> {
 
 	public List<Module> getAllModules() {
 		return Collections.unmodifiableList(modules);
-	}
-
-	@Override
-	public String toString() {
-		return modules.get(0).name;
-	}
-
-	@Override
-	public int compareTo(ModuleGroup another) {
-		Module thisModule = modules.get(0);
-		Module otherModule = another.modules.get(0);
-
-		int order = thisModule.name.compareToIgnoreCase(otherModule.name);
-		if (order != 0)
-			return order;
-
-		order = packageName.compareTo(another.packageName);
-		return order;
 	}
 }
