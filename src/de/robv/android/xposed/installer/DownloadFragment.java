@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,6 +21,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.emilsjolander.components.stickylistheaders.StickyListHeadersAdapter;
+
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
@@ -129,9 +133,21 @@ public class DownloadFragment extends Fragment implements RepoListener {
 
 
 
-	private class DownloadsAdapter extends ArrayAdapter<DownloadItem> {
+	private class DownloadsAdapter extends ArrayAdapter<DownloadItem> implements StickyListHeadersAdapter {
+		private final LayoutInflater mInflater;
+		private String[] sectionHeaders;
+
 		public DownloadsAdapter(Context context) {
 			super(context, R.layout.list_item_download, android.R.id.text1);
+			mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+			Resources res = context.getResources();
+			sectionHeaders = new String[] {
+				res.getString(R.string.download_section_framework),
+				res.getString(R.string.download_section_update_available),
+				res.getString(R.string.download_section_installed),
+				res.getString(R.string.download_section_not_installed),
+			};
 		}
 
 		@Override
@@ -167,6 +183,35 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		public void notifyDataSetChanged() {
 			mAdapter.sort(null);
 		    super.notifyDataSetChanged();
+		}
+
+		@Override
+		public View getHeaderView(int position, View convertView, ViewGroup parent) {
+			if (convertView == null) {
+				convertView = mInflater.inflate(R.layout.list_sticky_header_download, parent, false);
+			}
+
+			long section = getHeaderId(position);
+
+			TextView tv = (TextView) convertView.findViewById(android.R.id.title);
+			tv.setText(sectionHeaders[(int)section]);
+			return convertView;
+		}
+
+		@Override
+		public long getHeaderId(int position) {
+			DownloadItem item = getItem(position);
+
+			if (item.isFramework)
+				return 0;
+
+			int installStatus = item.getInstallStatus();
+			if (installStatus == DownloadItem.INSTALL_STATUS_HAS_UPDATE)
+				return 1;
+			else if (installStatus == DownloadItem.INSTALL_STATUS_INSTALLED)
+				return 2;
+			else
+				return 3;
 		}
 	}
 

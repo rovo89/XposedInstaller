@@ -36,5 +36,9 @@
     <string name="welcome_framework_update_available">An update for the Xposed framework is available</string>
     <string name="welcome_update_available">One or more update(s) for modules available</string>
     <string name="branch_display">(%s branch)</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Update available</string>
+    <string name="download_section_installed">Installed</string>
+    <string name="download_section_not_installed">Not installed</string>
     <string name="translator"></string>
 </resources>

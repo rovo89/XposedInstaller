@@ -12,12 +12,12 @@
         android:text="Please note - the downloader is still in an early stage. Layout and functionality will be extended or changed in the future."
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    <ListView
+    <com.emilsjolander.components.stickylistheaders.StickyListHeadersListView
         android:id="@+id/listModules"
-        android:divider="@color/list_divider"
-        android:dividerHeight="1px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        android:layout_height="wrap_content"
+        android:divider="@color/list_divider"
+        android:dividerHeight="1px" >
+    </com.emilsjolander.components.stickylistheaders.StickyListHeadersListView>
 
 </LinearLayout>
