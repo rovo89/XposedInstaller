@@ -31,11 +31,13 @@ import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
 public class DownloadFragment extends Fragment implements RepoListener {
 	private DownloadsAdapter mAdapter;
+	private RepoLoader mRepoLoader;
 	private ModuleUtil mModuleUtil;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		mRepoLoader = RepoLoader.getInstance();
 		mModuleUtil = ModuleUtil.getInstance();
 		setHasOptionsMenu(true);
 	}
@@ -55,7 +57,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		
 		mAdapter = new DownloadsAdapter(getActivity());
 		mAdapter.setNotifyOnChange(false);
-		RepoLoader.getInstance().addListener(this, true);
+		mRepoLoader.addListener(this, true);
 		lv.setAdapter(mAdapter);
 		
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -80,7 +82,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 	public void onDestroyView() {
 	    super.onDestroyView();
 	    mAdapter = null;
-	    RepoLoader.getInstance().removeListener(this);
+	    mRepoLoader.removeListener(this);
 	}
 	
 	@Override
@@ -92,7 +94,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menu_refresh:
-				RepoLoader.getInstance().triggerReload();
+				mRepoLoader.triggerReload();
 				break;
 		}
 	    return super.onOptionsItemSelected(item);
@@ -190,7 +192,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		}
 
 		public ModuleVersion getLatestVersion() {
-			return mModuleUtil.getLatestVersion(group.getModule());
+			return mRepoLoader.getLatestVersion(group.getModule());
 		}
 
 		public InstalledModule getInstalled() {

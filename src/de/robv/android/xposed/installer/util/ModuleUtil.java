@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import de.robv.android.xposed.installer.XposedApp;
-import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 
 
@@ -106,18 +105,6 @@ public final class ModuleUtil {
 		return mInstalledModules;
 	}
 
-	public ModuleVersion getLatestVersion(Module module) {
-		if (module == null || module.versions.isEmpty())
-			return null;
-
-		// TODO implement logic for branches
-		for (ModuleVersion version : module.versions) {
-			if (version.downloadLink != null)
-				return version;
-		}
-		return null;
-	}
-
 
 
 	public class InstalledModule {
@@ -166,10 +153,6 @@ public final class ModuleUtil {
 
 		public boolean isUpdate(ModuleVersion version) {
 			return (version != null) ? version.code > versionCode : false;
-		}
-
-		public boolean isUpdate(Module module) {
-			return isUpdate(getLatestVersion(module));
 		}
 
 		public Drawable getIcon() {

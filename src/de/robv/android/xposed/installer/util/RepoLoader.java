@@ -23,6 +23,7 @@ import android.widget.Toast;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
+import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.repo.Repository;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
@@ -64,6 +65,18 @@ public class RepoLoader {
 		if (group == null)
 			return null;
 		return group.getModule();
+	}
+
+	public ModuleVersion getLatestVersion(Module module) {
+		if (module == null || module.versions.isEmpty())
+			return null;
+
+		// TODO implement logic for branches
+		for (ModuleVersion version : module.versions) {
+			if (version.downloadLink != null)
+				return version;
+		}
+		return null;
 	}
 
 	public void triggerReload() {
@@ -150,7 +163,7 @@ public class RepoLoader {
 			if (download == null)
 				continue;
 
-			if (installed.isUpdate(download))
+			if (installed.isUpdate(getLatestVersion(download)))
 				return true;
 		}
 		return false;
@@ -168,7 +181,7 @@ public class RepoLoader {
 		if (download == null)
 			return false;
 
-		return installed.isUpdate(download);
+		return installed.isUpdate(getLatestVersion(download));
 	}
 
 	private File getRepoCacheFile(String repo) {
