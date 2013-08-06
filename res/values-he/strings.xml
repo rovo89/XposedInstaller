@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">התקנת Xposed</string>
+    <string name="tabInstall">מערכת</string>
+    <string name="tabModules">מודולים</string>
+    <string name="yes">כן</string>
+    <string name="no">לא</string>
+    <string name="installerDescription">כאן תוכלו להתקין את מערכת <b>Xposed</b>.
+		זה הבסיס עבור המודולים שיכולים לשנות את מראה והתנהגות המכשיר שלכם.
+		עוד מידע תוכלו לראות <a href="http://forum.xda-developers.com/showthread.php?t=1574401">כאן</a>.</string>
+    <string name="install">התקנה/עדכון</string>
+    <string name="uninstall">הסרה</string>
+    <string name="installedVersion">פועל</string>
+    <string name="none">---</string>
+    <string name="latestVersion">bundled</string>
+    <string name="cleanup">נקיון (הסרה מוחלטת של המערכת)</string>
+    <string name="versions">גרסאות:</string>
+    <string name="soft_reboot">הפעלה מחדש מהירה</string>
+    <string name="reboot">הפעלה מחדש</string>
+    <string name="areyousure">אתם בטוחים?</string>
+    <string name="module_is_not_activated_yet">Xposed עוד לא פעיל</string>
+    <string name="module_empty_description">(אין תיאור זמין)</string>
+    <string name="module_no_ui">מודול זה לא מגיע עם ממשק משתמש</string>
+    <string name="no_xposed_modules_found">לא נמצאו מודולים של Xposed!</string>
+    <string name="xposed_module_list_updated">רשימת המודולים של Xposed עודכנה\nהשינויים יעודכנו לאחר הפעלה מחדש</string>
+    <string name="warning_xposed_min_version">המודול הזה דורש גרסה חדש יותר של Xposed על מנת לפעול (%s).</string>
+    <string name="phone_not_compatible">Xposed עוד לא יכול לפעול על גרסת ה-SDK %1$d או שארכיטקטורת המעבד (%2$s) עוד לא נתמכת.</string>
+    <string name="not_tested_but_compatible">Xposed עוד לא נוסה על גרסת ה-SDK %d, אבל ככל הנראה אין איתה בעיות. אתם יכולים לנסות להתקין..</string>
+    <string name="no_min_version_specified">המודול הזה לא סיפק פרטים לגבי גרסת ה-Xposed שהוא דורש על מנת לפעול.</string>
+    <string name="warning_min_version_too_low">המודול הזה נוצר עבור הגרסה %1$s, אבל בגלל שינויים בגרסה  %2$s, נוצרו בעיות התאמה והמודול לא יופעל.</string>
+    <string name="app_process" translatable="false">app_process</string>
+    <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
+    <string name="translator"></string>
+</resources>
