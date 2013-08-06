@@ -60,7 +60,6 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		ListView lv = (ListView) v.findViewById(R.id.listModules);
 		
 		mAdapter = new DownloadsAdapter(getActivity());
-		mAdapter.setNotifyOnChange(false);
 		mRepoLoader.addListener(this, true);
 		lv.setAdapter(mAdapter);
 		
@@ -123,6 +122,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 			@Override
 			public void run() {
 				synchronized (mAdapter) {
+					mAdapter.setNotifyOnChange(false);
 					mAdapter.clear();
 					mAdapter.addAll(items);
 					mAdapter.notifyDataSetChanged();
@@ -181,6 +181,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 
 		@Override
 		public void notifyDataSetChanged() {
+			setNotifyOnChange(false);
 			mAdapter.sort(null);
 		    super.notifyDataSetChanged();
 		}
