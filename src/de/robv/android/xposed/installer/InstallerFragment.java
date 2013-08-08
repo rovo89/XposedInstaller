@@ -223,9 +223,7 @@ public class InstallerFragment extends Fragment {
 	private static String getBinariesFolder() {
 		if (Build.CPU_ABI.startsWith("armeabi-v7"))
 			return "armv7-a/";
-		else if (Build.CPU_ABI.startsWith("armeabi-v6"))
-			return "armv5te/";
-		else if (Build.CPU_ABI.startsWith("armeabi-v5"))
+		else if (Build.CPU_ABI.startsWith("armeabi"))
 			return "armv5te/";
 		else if (Build.CPU_ABI.startsWith("x86"))
 			return "x86/";
@@ -234,7 +232,7 @@ public class InstallerFragment extends Fragment {
 	}
 
 	private static String getBusyboxBinary() {
-		if (Build.CPU_ABI.startsWith("armeabi-"))
+		if (Build.CPU_ABI.startsWith("armeabi"))
 			return "busybox-xposed-arm";
 		else if (Build.CPU_ABI.startsWith("x86"))
 			return "busybox-xposed-x86";
