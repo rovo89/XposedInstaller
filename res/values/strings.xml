@@ -6,6 +6,7 @@
     <string name="tabModules">Modules</string>
     <string name="tabDownload">Download</string>
     <string name="tabSettings">Settings</string>
+    <string name="menuSearch">Search</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
     <string name="installerDescription">Here you can install the <b>Xposed</b> framework.

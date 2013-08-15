@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -19,7 +20,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.emilsjolander.components.stickylistheaders.StickyListHeadersAdapter;
@@ -35,6 +39,7 @@ import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
 public class DownloadFragment extends Fragment implements RepoListener {
 	private DownloadsAdapter mAdapter;
+	private String mFilterText;
 	private RepoLoader mRepoLoader;
 	private ModuleUtil mModuleUtil;
 
@@ -91,8 +96,44 @@ public class DownloadFragment extends Fragment implements RepoListener {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.menu_download, menu);
+
+		// Setup search button
+		final MenuItem searchItem = menu.findItem(R.id.menu_search);
+		final SearchView searchView = (SearchView) searchItem.getActionView();
+		searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+			@Override
+			public boolean onQueryTextSubmit(String query) {
+				setFilter(query);
+				searchView.clearFocus();
+				return true;
+			}
+
+			@Override
+			public boolean onQueryTextChange(String newText) {
+				setFilter(newText);
+				return true;
+			}
+		});
+		searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+			@Override
+			public boolean onMenuItemActionExpand(MenuItem item) {
+				return true;
+			}
+
+			@Override
+			public boolean onMenuItemActionCollapse(MenuItem item) {
+				setFilter(null);
+				return true;
+			}
+		});
 	}
-	
+
+	private void setFilter(String filterText) {
+		mFilterText = filterText;
+		if (mAdapter != null)
+			mAdapter.getFilter().filter(mFilterText);
+	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
@@ -123,8 +164,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 			public void run() {
 				synchronized (mAdapter) {
 					mAdapter.setNotifyOnChange(false);
-					mAdapter.clear();
-					mAdapter.addAll(items);
+					mAdapter.setItems(items);
 					mAdapter.notifyDataSetChanged();
 				}
 			}
@@ -133,9 +173,11 @@ public class DownloadFragment extends Fragment implements RepoListener {
 
 
 
-	private class DownloadsAdapter extends ArrayAdapter<DownloadItem> implements StickyListHeadersAdapter {
+	private class DownloadsAdapter extends ArrayAdapter<DownloadItem> implements StickyListHeadersAdapter, Filterable {
 		private final LayoutInflater mInflater;
 		private String[] sectionHeaders;
+		private ArrayList<DownloadItem> mOriginalValues;
+		private Filter mFilter;
 
 		public DownloadsAdapter(Context context) {
 			super(context, R.layout.list_item_download, android.R.id.text1);
@@ -148,6 +190,11 @@ public class DownloadFragment extends Fragment implements RepoListener {
 				res.getString(R.string.download_section_installed),
 				res.getString(R.string.download_section_not_installed),
 			};
+		}
+
+		public void setItems(List<DownloadItem> items) {
+			mOriginalValues = new ArrayList<DownloadItem>(items);
+			getFilter().filter(mFilterText);
 		}
 
 		@Override
@@ -214,8 +261,55 @@ public class DownloadFragment extends Fragment implements RepoListener {
 			else
 				return 3;
 		}
-	}
 
+		@Override
+		public Filter getFilter() {
+			if (mFilter == null) {
+				mFilter = new DownloadFilter();
+			}
+			return mFilter;
+		}
+
+		private class DownloadFilter extends Filter {
+			@Override
+			protected FilterResults performFiltering(CharSequence filter) {
+				FilterResults results = new FilterResults();
+
+				ArrayList<DownloadItem> list = new ArrayList<DownloadItem>(mOriginalValues);
+				if (filter == null || filter.length() == 0) {
+					results.values = list;
+					results.count = list.size();
+				} else {
+					int count = list.size();
+					ArrayList<DownloadItem> newValues = new ArrayList<DownloadItem>();
+					String filterStr = filter.toString();
+
+					for (int i = 0; i < count; i++) {
+						DownloadItem value = list.get(i);
+						if (value.containsText(filterStr))
+							newValues.add(value);
+					}
+
+					results.values = newValues;
+					results.count = newValues.size();
+				}
+
+				return results;
+			}
+
+			@SuppressWarnings("unchecked")
+			@Override
+			protected void publishResults(CharSequence constraint, FilterResults results) {
+				clear();
+				addAll((List<DownloadItem>) results.values);
+				if (results.count > 0) {
+					notifyDataSetChanged();
+				} else {
+					notifyDataSetInvalidated();
+				}
+			}
+		}
+	}
 
 
 	private class DownloadItem implements Comparable<DownloadItem> {
@@ -280,6 +374,25 @@ public class DownloadFragment extends Fragment implements RepoListener {
 
 			order = this.packageName.compareTo(other.packageName);
 			return order;
+		}
+
+		@SuppressLint("DefaultLocale")
+		public boolean containsText(String text) {
+			text = text.toLowerCase();
+			if (stringContainsText(getDisplayName(), text))
+				return true;
+			if (stringContainsText(getModule().summary, text))
+				return true;
+			if (stringContainsText(getModule().description, text))
+				return true;
+			if (stringContainsText(getModule().author, text))
+				return true;
+			return false;
+		}
+
+		@SuppressLint("DefaultLocale")
+		private boolean stringContainsText(String value, String text) {
+			return value != null && value.toLowerCase().contains(text);
 		}
 	}
 }
