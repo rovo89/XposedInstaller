@@ -9,4 +9,10 @@
           android:icon="@drawable/ic_menu_refresh"
           android:title="Reload"
           android:showAsAction="always|withText" /> 
+    <item android:id="@+id/menu_sort_status"
+          android:title="@string/menuSortStatus"
+          android:showAsAction="never" />
+    <item android:id="@+id/menu_sort_date"
+          android:title="@string/menuSortDate"
+          android:showAsAction="never" />
 </menu>

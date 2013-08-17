@@ -1,6 +1,8 @@
 package de.robv.android.xposed.installer;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import android.animation.Animator;
@@ -42,6 +44,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 	private String mFilterText;
 	private RepoLoader mRepoLoader;
 	private ModuleUtil mModuleUtil;
+	private boolean mSortByDate = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -126,6 +129,9 @@ public class DownloadFragment extends Fragment implements RepoListener {
 				return true;
 			}
 		});
+
+		menu.findItem(R.id.menu_sort_status).setVisible(mSortByDate);
+		menu.findItem(R.id.menu_sort_date).setVisible(!mSortByDate);
 	}
 
 	private void setFilter(String filterText) {
@@ -139,6 +145,12 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		switch (item.getItemId()) {
 			case R.id.menu_refresh:
 				mRepoLoader.triggerReload();
+				break;
+			case R.id.menu_sort_date:
+			case R.id.menu_sort_status:
+				mSortByDate = (item.getItemId() == R.id.menu_sort_date);
+				getActivity().invalidateOptionsMenu();
+				mAdapter.notifyDataSetChanged();
 				break;
 		}
 	    return super.onOptionsItemSelected(item);
@@ -175,7 +187,8 @@ public class DownloadFragment extends Fragment implements RepoListener {
 
 	private class DownloadsAdapter extends ArrayAdapter<DownloadItem> implements StickyListHeadersAdapter, Filterable {
 		private final LayoutInflater mInflater;
-		private String[] sectionHeaders;
+		private String[] sectionHeadersStatus;
+		private String[] sectionHeadersDate;
 		private ArrayList<DownloadItem> mOriginalValues;
 		private Filter mFilter;
 
@@ -184,11 +197,17 @@ public class DownloadFragment extends Fragment implements RepoListener {
 			mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 			Resources res = context.getResources();
-			sectionHeaders = new String[] {
+			sectionHeadersStatus = new String[] {
 				res.getString(R.string.download_section_framework),
 				res.getString(R.string.download_section_update_available),
 				res.getString(R.string.download_section_installed),
 				res.getString(R.string.download_section_not_installed),
+			};
+			sectionHeadersDate = new String[] {
+				res.getString(R.string.download_section_24h),
+				res.getString(R.string.download_section_7d),
+				res.getString(R.string.download_section_30d),
+				res.getString(R.string.download_section_older)
 			};
 		}
 
@@ -223,6 +242,11 @@ public class DownloadFragment extends Fragment implements RepoListener {
 				txtStatus.setVisibility(View.GONE);
 			}
 
+			Calendar updateDate = Calendar.getInstance();
+			updateDate.setTimeInMillis(item.getLastUpdate());
+			((TextView) view.findViewById(R.id.updatedDate)).setText(
+					DateFormat.getDateInstance(DateFormat.MEDIUM).format(updateDate.getTime()));
+
 			return view;
 		}
 
@@ -242,7 +266,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 			long section = getHeaderId(position);
 
 			TextView tv = (TextView) convertView.findViewById(android.R.id.title);
-			tv.setText(sectionHeaders[(int)section]);
+			tv.setText(mSortByDate ? sectionHeadersDate[(int) section] : sectionHeadersStatus[(int)section]);
 			return convertView;
 		}
 
@@ -250,16 +274,28 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		public long getHeaderId(int position) {
 			DownloadItem item = getItem(position);
 
-			if (item.isFramework)
-				return 0;
-
-			int installStatus = item.getInstallStatus();
-			if (installStatus == DownloadItem.INSTALL_STATUS_HAS_UPDATE)
-				return 1;
-			else if (installStatus == DownloadItem.INSTALL_STATUS_INSTALLED)
-				return 2;
-			else
+			if (mSortByDate) {
+				long age = System.currentTimeMillis() - item.getLastUpdate();
+				final long mSecsPerHour = 60 * 60 * 1000L;
+				if (age < 24 * mSecsPerHour)
+					return 0;
+				if (age < 7 * 24 * mSecsPerHour)
+					return 1;
+				if (age < 30 * 24 * mSecsPerHour)
+					return 2;
 				return 3;
+			} else {
+				if (item.isFramework)
+					return 0;
+
+				int installStatus = item.getInstallStatus();
+				if (installStatus == DownloadItem.INSTALL_STATUS_HAS_UPDATE)
+					return 1;
+				else if (installStatus == DownloadItem.INSTALL_STATUS_INSTALLED)
+					return 2;
+				else
+					return 3;
+			}
 		}
 
 		@Override
@@ -347,6 +383,15 @@ public class DownloadFragment extends Fragment implements RepoListener {
 			return installed.isUpdate(getLatestVersion()) ? INSTALL_STATUS_HAS_UPDATE : INSTALL_STATUS_INSTALLED; 
 		}
 
+		public long getLastUpdate() {
+			long lastUpdate = 0;
+			for (Module m : group.getAllModules()) {
+				if (m.updated > lastUpdate)
+					lastUpdate = m.updated;
+			}
+			return lastUpdate;
+		}
+
 		public String getDisplayName() {
 			return group.getModule().name;
 		}
@@ -360,6 +405,12 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		public int compareTo(DownloadItem other) {
 			if (other == null)
 				return 1;
+
+			if (mSortByDate) {
+				long updateDiff = other.getLastUpdate() - this.getLastUpdate();
+				if (updateDiff != 0)
+					return updateDiff > 0 ? 1 : -1;
+			}
 
 			if (this.isFramework != other.isFramework)
 				return this.isFramework ? -1 : 1;

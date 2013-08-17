@@ -7,6 +7,8 @@
     <string name="tabDownload">Download</string>
     <string name="tabSettings">Settings</string>
     <string name="menuSearch">Search</string>
+    <string name="menuSortStatus">Sort by Status</string>
+    <string name="menuSortDate">Sort by Date</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
     <string name="installerDescription">Here you can install the <b>Xposed</b> framework.
@@ -41,5 +43,9 @@
     <string name="download_section_update_available">Update available</string>
     <string name="download_section_installed">Installed</string>
     <string name="download_section_not_installed">Not installed</string>
+    <string name="download_section_24h">Last 24 hours</string>
+    <string name="download_section_7d">Last 7 days</string>
+    <string name="download_section_30d">Last 30 days</string>
+    <string name="download_section_older">More than 30 days ago</string>
     <string name="translator"></string>
 </resources>

@@ -14,6 +14,8 @@ public class Module {
 	public String contact;
 	public final List<ModuleVersion> versions = new ArrayList<ModuleVersion>();
 	public final List<String> screenshots = new ArrayList<String>();
+	public long created;
+	public long updated;
 	
 	/*package*/ Module(Repository repository) {
 		this.repository = repository;

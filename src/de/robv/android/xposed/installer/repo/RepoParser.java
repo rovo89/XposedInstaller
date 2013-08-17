@@ -57,6 +57,14 @@ public class RepoParser {
 			return null;
 		}
 
+		module.created = parseTimestamp("created");
+		module.updated = parseTimestamp("updated");
+		if (module.created < 0 || module.updated < 0) {
+			logError("missing or invalid timestamps");
+			leave(startDepth);
+			return null;
+		}
+
 		while (parser.nextTag() == XmlPullParser.START_TAG) {
 			String tagName = parser.getName();
 			if (tagName.equals("name")) {
@@ -89,6 +97,17 @@ public class RepoParser {
 		}
 
 		return module;
+	}
+
+	private long parseTimestamp(String attName) {
+		String value = parser.getAttributeValue(NS, attName);
+		if (value == null)
+			return -1;
+		try {
+			return Long.parseLong(value) * 1000L;
+		} catch (NumberFormatException ex) {
+			return -1;
+		}
 	}
 
 	protected ModuleVersion readModuleVersion(Module module) throws XmlPullParserException, IOException {
