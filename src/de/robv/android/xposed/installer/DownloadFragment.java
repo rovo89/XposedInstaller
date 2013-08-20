@@ -13,6 +13,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -45,6 +46,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 	private RepoLoader mRepoLoader;
 	private ModuleUtil mModuleUtil;
 	private boolean mSortByDate = false;
+	private SearchView mSearchView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,19 @@ public class DownloadFragment extends Fragment implements RepoListener {
 				tx.commit();
 			}
 		});
+		lv.setOnKeyListener(new View.OnKeyListener() {
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				// Expand the search view when the SEARCH key is trigered
+				if (keyCode == KeyEvent.KEYCODE_SEARCH && event.getAction() == KeyEvent.ACTION_UP
+						&& (event.getFlags() & KeyEvent.FLAG_CANCELED) == 0) {
+					if (mSearchView != null)
+						mSearchView.setIconified(false);
+					return true;
+				}
+				return false;
+			}
+		});
 		return v;
 	}
 	
@@ -102,12 +117,13 @@ public class DownloadFragment extends Fragment implements RepoListener {
 
 		// Setup search button
 		final MenuItem searchItem = menu.findItem(R.id.menu_search);
-		final SearchView searchView = (SearchView) searchItem.getActionView();
-		searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+		mSearchView = (SearchView) searchItem.getActionView();
+		mSearchView.setIconifiedByDefault(true);
+		mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 			@Override
 			public boolean onQueryTextSubmit(String query) {
 				setFilter(query);
-				searchView.clearFocus();
+				mSearchView.clearFocus();
 				return true;
 			}
 

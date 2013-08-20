@@ -3,7 +3,7 @@
     <item android:id="@+id/menu_search"
           android:icon="@android:drawable/ic_menu_search"
           android:title="@string/menuSearch"
-          android:showAsAction="always|collapseActionView"
+          android:showAsAction="always"
           android:actionViewClass="android.widget.SearchView" />
     <item android:id="@+id/menu_refresh"
           android:icon="@drawable/ic_menu_refresh"
