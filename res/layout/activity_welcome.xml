@@ -8,7 +8,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/installerDescription" />
+        android:textSize="18sp"
+        android:text="@string/welcome" />
 
     <ListView
         android:id="@+id/welcome_list"

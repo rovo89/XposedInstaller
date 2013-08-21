@@ -29,10 +29,10 @@ public class WelcomeActivity extends Activity {
 		
 		mAdapter = new WelcomeAdapter(this);
 		// TODO add proper description texts and load them from resources, add icons, make it more fancy, ... 
-		mAdapter.add(new WelcomeItem(getString(R.string.tabInstall), "Here you can install the framework"));
-		mAdapter.add(new WelcomeItem(getString(R.string.tabModules), "Activate modules here"));
-		mAdapter.add(new WelcomeItem(getString(R.string.tabDownload), "Download new modules"));
-		mAdapter.add(new WelcomeItem(getString(R.string.tabSettings), "Configuration stuff"));
+		mAdapter.add(new WelcomeItem(R.string.tabInstall, R.string.tabInstallDescription));
+		mAdapter.add(new WelcomeItem(R.string.tabModules, R.string.tabModulesDescription));
+		mAdapter.add(new WelcomeItem(R.string.tabDownload, R.string.tabDownloadDescription));
+		mAdapter.add(new WelcomeItem(R.string.tabSettings, R.string.tabSettingsDescription));
 		
 		ListView lv = (ListView) findViewById(R.id.welcome_list);
 		lv.setAdapter(mAdapter);
@@ -85,9 +85,9 @@ public class WelcomeActivity extends Activity {
 		public final String title;
 		public final String description;
 		
-		protected WelcomeItem(String title, String description) {
-	        this.title = title;
-	        this.description = description;
+		protected WelcomeItem(int titleResId, int descriptionResId) {
+	        this.title = getString(titleResId);
+	        this.description = getString(descriptionResId);
         }
 		
 		@Override

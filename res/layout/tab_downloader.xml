@@ -4,13 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingTop="6dip"
     tools:context=".DownloadFragment" >
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Please note - the downloader is still in an early stage. Layout and functionality will be extended or changed in the future."
-        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <com.emilsjolander.components.stickylistheaders.StickyListHeadersListView
         android:id="@+id/listModules"
