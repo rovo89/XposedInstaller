@@ -59,11 +59,6 @@ public class RepoParser {
 
 		module.created = parseTimestamp("created");
 		module.updated = parseTimestamp("updated");
-		if (module.created < 0 || module.updated < 0) {
-			logError("missing or invalid timestamps");
-			leave(startDepth);
-			return null;
-		}
 
 		while (parser.nextTag() == XmlPullParser.START_TAG) {
 			String tagName = parser.getName();
