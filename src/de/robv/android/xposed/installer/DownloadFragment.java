@@ -8,11 +8,16 @@ import java.util.List;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -41,18 +46,25 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
 public class DownloadFragment extends Fragment implements RepoListener {
+	private SharedPreferences mPref;
 	private DownloadsAdapter mAdapter;
 	private String mFilterText;
 	private RepoLoader mRepoLoader;
 	private ModuleUtil mModuleUtil;
-	private boolean mSortByDate = false;
+	private int mSortingOrder;
 	private SearchView mSearchView;
+
+	private static final int SORT_STATUS = 0;
+	private static final int SORT_UPDATED = 1;
+	private static final int SORT_CREATED = 2;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		mPref = PreferenceManager.getDefaultSharedPreferences(XposedApp.getInstance());
 		mRepoLoader = RepoLoader.getInstance();
 		mModuleUtil = ModuleUtil.getInstance();
+		mSortingOrder = mPref.getInt("download_sorting_order", SORT_STATUS);
 		setHasOptionsMenu(true);
 	}
 
@@ -145,9 +157,6 @@ public class DownloadFragment extends Fragment implements RepoListener {
 				return true;
 			}
 		});
-
-		menu.findItem(R.id.menu_sort_status).setVisible(mSortByDate);
-		menu.findItem(R.id.menu_sort_date).setVisible(!mSortByDate);
 	}
 
 	private void setFilter(String filterText) {
@@ -161,13 +170,21 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		switch (item.getItemId()) {
 			case R.id.menu_refresh:
 				mRepoLoader.triggerReload();
-				break;
-			case R.id.menu_sort_date:
-			case R.id.menu_sort_status:
-				mSortByDate = (item.getItemId() == R.id.menu_sort_date);
-				getActivity().invalidateOptionsMenu();
-				mAdapter.notifyDataSetChanged();
-				break;
+				return true;
+			case R.id.menu_sort:
+				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+				builder.setTitle(R.string.download_sorting_title);
+				builder.setSingleChoiceItems(R.array.download_sort_order, mSortingOrder, new OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						mSortingOrder = which;
+						mPref.edit().putInt("download_sorting_order", mSortingOrder).commit();
+						mAdapter.notifyDataSetChanged();
+						dialog.dismiss();
+					}
+				});
+				builder.show();
+				return true;
 		}
 	    return super.onOptionsItemSelected(item);
 	}
@@ -282,7 +299,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 			long section = getHeaderId(position);
 
 			TextView tv = (TextView) convertView.findViewById(android.R.id.title);
-			tv.setText(mSortByDate ? sectionHeadersDate[(int) section] : sectionHeadersStatus[(int)section]);
+			tv.setText(mSortingOrder == SORT_STATUS ? sectionHeadersStatus[(int)section] : sectionHeadersDate[(int) section]);
 			return convertView;
 		}
 
@@ -290,14 +307,15 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		public long getHeaderId(int position) {
 			DownloadItem item = getItem(position);
 
-			if (mSortByDate) {
-				long age = System.currentTimeMillis() - item.getLastUpdate();
-				final long mSecsPerHour = 60 * 60 * 1000L;
-				if (age < 24 * mSecsPerHour)
+			if (mSortingOrder != SORT_STATUS) {
+				long timestamp = (mSortingOrder ==  SORT_UPDATED) ? item.getLastUpdate() : item.getCreationDate();
+				long age = System.currentTimeMillis() - timestamp;
+				final long mSecsPerDay = 24 * 60 * 60 * 1000L;
+				if (age < mSecsPerDay)
 					return 0;
-				if (age < 7 * 24 * mSecsPerHour)
+				if (age < 7 * mSecsPerDay)
 					return 1;
-				if (age < 30 * 24 * mSecsPerHour)
+				if (age < 30 * mSecsPerDay)
 					return 2;
 				return 3;
 			} else {
@@ -399,6 +417,10 @@ public class DownloadFragment extends Fragment implements RepoListener {
 			return installed.isUpdate(getLatestVersion()) ? INSTALL_STATUS_HAS_UPDATE : INSTALL_STATUS_INSTALLED; 
 		}
 
+		public long getCreationDate() {
+			return group.getModule().created;
+		}
+
 		public long getLastUpdate() {
 			return group.getModule().updated;
 		}
@@ -417,8 +439,12 @@ public class DownloadFragment extends Fragment implements RepoListener {
 			if (other == null)
 				return 1;
 
-			if (mSortByDate) {
+			if (mSortingOrder == SORT_UPDATED) {
 				long updateDiff = other.getLastUpdate() - this.getLastUpdate();
+				if (updateDiff != 0)
+					return updateDiff > 0 ? 1 : -1;
+			} else if (mSortingOrder == SORT_CREATED) {
+				long updateDiff = other.getCreationDate() - this.getCreationDate();
 				if (updateDiff != 0)
 					return updateDiff > 0 ? 1 : -1;
 			}
