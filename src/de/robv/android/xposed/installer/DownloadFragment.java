@@ -400,12 +400,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		}
 
 		public long getLastUpdate() {
-			long lastUpdate = 0;
-			for (Module m : group.getAllModules()) {
-				if (m.updated > lastUpdate)
-					lastUpdate = m.updated;
-			}
-			return lastUpdate;
+			return group.getModule().updated;
 		}
 
 		public String getDisplayName() {
