@@ -6,7 +6,6 @@
     <string name="menuSearch">Search</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
-    <string name="translator"></string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Welcome to the <b>Xposed Installer</b>!\nPlease choose what you want to do:</string>
@@ -20,6 +19,8 @@
     <string name="welcome_update_available">One or more update(s) for modules available</string>
     <string name="tabSettings">Settings</string>
     <string name="tabSettingsDescription">Go to this section to configure the Xposed Installer and framework.</string>
+    <string name="tabAbout">About</string>
+    <string name="tabAboutDescription">Learn about the people who created Xposed, where to get support for this app etc.</string>
 
     <!-- Installer tab -->
     <string name="install">Install/Update</string>
@@ -59,5 +60,19 @@
     <string name="download_section_7d">Last 7 days</string>
     <string name="download_section_30d">Last 30 days</string>
     <string name="download_section_older">More than 30 days ago</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Main developers:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">Translator:</string>
+    <string name="translator"></string>
+    <string name="about_version_label">Version of this app:</string>
+    <string name="about_source_label">Source code:</string>
+    <string name="about_source" translatable="false">https://github.com/rovo89</string>
+    <string name="about_support_label">Get support at:</string>
+    <string name="about_support" translatable="false">http://forum.xda-developers.com/showthread.php?t=1574401</string>
+    <string name="about_support_warning">This link is for the installer and the framework <b>only</b>! If you need help with a module, do <b>not</b> use it, contact the module author instead.</string>
+    <string name="about_libraries_label">Used libraries:</string>
+    <string name="about_libraries" translatable="false"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a></string>
 
 </resources>
