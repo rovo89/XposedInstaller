@@ -22,19 +22,20 @@
 
     <TextView
         android:id="@+id/downloadStatus"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@android:id/text2"
         android:layout_below="@android:id/text2"
-        android:layout_toLeftOf="@+id/updatedDate"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:visibility="gone" />
 
     <TextView
-        android:id="@id/updatedDate"
+        android:id="@+id/timestamps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@android:id/text2"
-        android:layout_below="@android:id/text2"
+        android:layout_alignLeft="@android:id/text2"
+        android:layout_below="@id/downloadStatus"
+        android:textColor="@android:color/tertiary_text_dark"
         android:textAppearance="?android:attr/textAppearanceSmall" />
+
 </RelativeLayout>

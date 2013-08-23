@@ -50,12 +50,11 @@
 
     <!-- Download tab -->
     <string name="branch_display">(%s branch)</string>
+    <string name="download_timestamps">Added on %1$s \u00b7 Updated on %2$s</string>
     <string name="download_sorting_title">Sorting order</string>
     <string name="download_sorting_status">Sort by status</string>
     <string name="download_sorting_updated">Sort by last update</string>
     <string name="download_sorting_created">Sort by creation date</string>
-    <string name="menuSortStatus">Sort by Status</string>
-    <string name="menuSortDate">Sort by Date</string>
     <string name="download_section_framework">Framework</string>
     <string name="download_section_update_available">Update available</string>
     <string name="download_section_installed">Installed</string>

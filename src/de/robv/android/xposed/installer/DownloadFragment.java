@@ -2,7 +2,7 @@ package de.robv.android.xposed.installer;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import android.animation.Animator;
@@ -219,6 +219,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 
 
 	private class DownloadsAdapter extends ArrayAdapter<DownloadItem> implements StickyListHeadersAdapter, Filterable {
+		private final DateFormat mDateFormatter = DateFormat.getDateInstance(DateFormat.SHORT);
 		private final LayoutInflater mInflater;
 		private String[] sectionHeadersStatus;
 		private String[] sectionHeadersDate;
@@ -275,10 +276,10 @@ public class DownloadFragment extends Fragment implements RepoListener {
 				txtStatus.setVisibility(View.GONE);
 			}
 
-			Calendar updateDate = Calendar.getInstance();
-			updateDate.setTimeInMillis(item.getLastUpdate());
-			((TextView) view.findViewById(R.id.updatedDate)).setText(
-					DateFormat.getDateInstance(DateFormat.MEDIUM).format(updateDate.getTime()));
+			String creationDate = mDateFormatter.format(new Date(item.getCreationDate()));
+			String updateDate = mDateFormatter.format(new Date(item.getLastUpdate()));
+			((TextView) view.findViewById(R.id.timestamps)).setText(
+				getString(R.string.download_timestamps, creationDate, updateDate));
 
 			return view;
 		}
