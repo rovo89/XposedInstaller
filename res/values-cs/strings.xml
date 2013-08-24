@@ -5,9 +5,6 @@
     <string name="tabModules">Moduly</string>
     <string name="yes">ano</string>
     <string name="no">ne</string>
-    <string name="installerDescription">Zde je možné nainstalovat <b>Xposed</b> framework.
-		Je to základ pro moduly, které mohou měnit chování a vzhled Android zaříní
-    Pro více informací je možné pokračovat <a href="http://forum.xda-developers.com/showthread.php?t=1574401">sem</a>.</string>
     <string name="install">Instalovat/Aktualizovat</string>
     <string name="uninstall">Odinstalovat (obnovit app_process)</string>
     <string name="installedVersion">aktivní</string>

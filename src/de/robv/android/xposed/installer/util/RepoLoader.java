@@ -20,6 +20,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.Toast;
+import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
@@ -233,7 +234,7 @@ public class RepoLoader {
 					if (responseCode == HttpURLConnection.HTTP_NOT_MODIFIED) {
 						continue;
 					} else if (responseCode < 200 || responseCode >= 300) {
-						mMessages.add(String.format("Downloading %s failed: %d (%s)", repo, responseCode, httpConnection.getResponseMessage()));
+						mMessages.add(mApp.getString(R.string.repo_download_failed_http, repo, responseCode, httpConnection.getResponseMessage()));
 						continue;
 					}
 				}
@@ -258,7 +259,7 @@ public class RepoLoader {
 				}
 				
 			} catch (Throwable t) {
-				mMessages.add(String.format("Downloading %s failed: %s", repo, t.getMessage()));
+				mMessages.add(mApp.getString(R.string.repo_download_failed, repo, t.getMessage()));
 
 			} finally {
 				if (connection != null && connection instanceof HttpURLConnection)
@@ -298,7 +299,7 @@ public class RepoLoader {
 				}
 
 			} catch (Throwable t) {
-				mMessages.add(String.format("Cannot load repository from %s:\n%s", repo, t.getMessage()));
+				mMessages.add(mApp.getString(R.string.repo_load_failed, repo, t.getMessage()));
 
 			} finally {
 				if (in != null)

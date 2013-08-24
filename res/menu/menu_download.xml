@@ -16,6 +16,6 @@
         android:id="@+id/menu_refresh"
         android:icon="@drawable/ic_menu_refresh"
         android:showAsAction="always|withText"
-        android:title="Reload"/>
+        android:title="@string/menuReload"/>
 
 </menu>

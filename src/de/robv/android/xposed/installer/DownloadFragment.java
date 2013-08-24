@@ -264,11 +264,11 @@ public class DownloadFragment extends Fragment implements RepoListener {
 
 			TextView txtStatus = (TextView) view.findViewById(R.id.downloadStatus);
 			if (installStatus == DownloadItem.INSTALL_STATUS_HAS_UPDATE) {
-				txtStatus.setText(String.format("Update available (version %s \u2192 %s)", installed.versionName, latest.name));
+				txtStatus.setText(getContext().getString(R.string.download_status_update_available, installed.versionName, latest.name));
 				txtStatus.setTextColor(getResources().getColor(R.color.download_status_update_available));
 				txtStatus.setVisibility(View.VISIBLE);
 			} else if (installStatus == DownloadItem.INSTALL_STATUS_INSTALLED) {
-				txtStatus.setText(String.format("Installed (version %s)", installed.versionName));
+				txtStatus.setText(getContext().getString(R.string.download_status_installed, installed.versionName));
 				txtStatus.setTextColor(getResources().getColor(R.color.download_status_installed));
 				txtStatus.setVisibility(View.VISIBLE);
 			} else {

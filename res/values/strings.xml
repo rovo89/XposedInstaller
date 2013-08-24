@@ -3,9 +3,6 @@
 
     <!-- General/various strings -->
     <string name="app_name">Xposed Installer</string>
-    <string name="menuSearch">Search</string>
-    <string name="yes">yes</string>
-    <string name="no">no</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Welcome to the <b>Xposed Installer</b>!\nPlease choose what you want to do:</string>
@@ -15,8 +12,8 @@
     <string name="tabModulesDescription">The framework itself doesn\'t add any functionality. You need modules for that. In this section you can activate modules after you have installed them.</string>
     <string name="tabDownload">Download</string>
     <string name="tabDownloadDescription">This section gives you access to a repository of modules, so you can search and download the ones you like and keep them up to date.</string>
-    <string name="welcome_framework_update_available">An update for the Xposed framework is available</string>
-    <string name="welcome_update_available">One or more update(s) for modules available</string>
+    <string name="welcome_framework_update_available">An update for the Xposed framework is available.</string>
+    <string name="welcome_update_available">One or more update(s) for modules available.</string>
     <string name="tabSettings">Settings</string>
     <string name="tabSettingsDescription">Go to this section to configure the Xposed Installer and framework.</string>
     <string name="tabAbout">About</string>
@@ -49,7 +46,14 @@
     <string name="warning_min_version_too_low">This module was created for Xposed version %1$s, but due to incompatible changes in version %2$s, it has been disabled.</string>
 
     <!-- Download tab -->
+    <string name="menuSearch">Search</string>
+    <string name="menuReload">Reload</string>
+    <string name="changes">Changes:</string>
     <string name="branch_display">(%s branch)</string>
+    <string name="download_author">by %s</string>
+    <string name="download_unknown_author">unknown author</string>
+    <string name="download_status_installed">Installed (version %s)</string>
+    <string name="download_status_update_available">Update available (version %1$s \u2192 %2$s)</string>
     <string name="download_timestamps">Added on %1$s \u00b7 Updated on %2$s</string>
     <string name="download_sorting_title">Sorting order</string>
     <string name="download_sorting_status">Sort by status</string>
@@ -67,6 +71,7 @@
     <!-- About tab -->
     <string name="about_developers_label">Main developers:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">Please do <b>not</b> contact us directly for support, use the link below.</string>
     <string name="about_translator_label">Translator:</string>
     <string name="translator"></string>
     <string name="about_version_label">Version of this app:</string>
@@ -77,5 +82,26 @@
     <string name="about_support_warning">This link is for the installer and the framework <b>only</b>! If you need help with a module, do <b>not</b> use it, contact the module author instead.</string>
     <string name="about_libraries_label">Used libraries:</string>
     <string name="about_libraries" translatable="false"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a></string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Download</string>
+    <string name="download_view_install">Install</string>
+    <string name="download_view_cancel">Cancel</string>
+    <string name="download_view_no_url">No download URL available</string>
+    <string name="download_view_running">Download is running (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">Download is waiting</string>
+    <string name="download_view_successful">Download successful</string>
+    <string name="download_view_failed">Download failed (error %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 sum is incorrect (downloaded: %1$s, expected: %2$s)</string>
+    <string name="download_could_not_read_file">Could not read downloaded file: %s</string>
+    <string name="download_no_valid_apk">Downloaded file is not a valid APK (or incompatible)</string>
+    <string name="download_incorrect_package_name">Package name is incorrect (downloaded: %1$s, expected: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Downloading %1$s failed: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Downloading %1$s failed: %2$s</string>
+    <string name="repo_load_failed">Cannot load repository from %1$s:\n%2$s</string>
 
 </resources>

@@ -71,9 +71,9 @@ public class DownloadDetailsFragment extends Fragment {
 
 		TextView author = (TextView) view.findViewById(R.id.download_author);
 		if (module.author != null && !module.author.isEmpty())
-			author.setText("by " + module.author);
+			author.setText(getString(R.string.download_author, module.author));
 		else
-			author.setText("unknown author");
+			author.setText(R.string.download_unknown_author);
 		
 		TextView description = (TextView) view.findViewById(R.id.download_description);
 		if (module.description != null) {
@@ -246,15 +246,14 @@ public class DownloadDetailsFragment extends Fragment {
 				try {
 					String actualMd5Sum = HashUtil.md5(localFile);
 					if (!moduleVersion.md5sum.equals(actualMd5Sum)) {
-						Toast.makeText(context,
-							String.format("MD5 sum is incorrect (downloaded: %s, expected: %s)",
-								actualMd5Sum, moduleVersion.md5sum),
-							Toast.LENGTH_LONG).show();
+						Toast.makeText(context, context.getString(R.string.download_md5sum_incorrect,
+								actualMd5Sum, moduleVersion.md5sum), Toast.LENGTH_LONG).show();
 
 						return;
 					}
 				} catch (Exception e) {
-					Toast.makeText(context, "Could not read downloaded file: " + e.getMessage(), Toast.LENGTH_LONG).show();
+					Toast.makeText(context, context.getString(R.string.download_could_not_read_file,
+							e.getMessage()), Toast.LENGTH_LONG).show();
 					return;
 				}
 			}
@@ -263,13 +262,13 @@ public class DownloadDetailsFragment extends Fragment {
 			PackageInfo packageInfo = pm.getPackageArchiveInfo(info.localFilename, 0);
 
 			if (packageInfo == null) {
-				Toast.makeText(context, "Downloaded file is not a valid APK (or incompatible)", Toast.LENGTH_LONG).show();
+				Toast.makeText(context, R.string.download_no_valid_apk, Toast.LENGTH_LONG).show();
 				return;
 			}
 
 			if (!packageInfo.packageName.equals(moduleVersion.module.packageName)) {
 				Toast.makeText(context,
-					String.format("Package name is incorrect (downloaded: %s, expected: %s)",
+					context.getString(R.string.download_incorrect_package_name,
 						packageInfo.packageName, moduleVersion.module.packageName),
 					Toast.LENGTH_LONG).show();
 

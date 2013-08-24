@@ -9,7 +9,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="40dip"
-            android:text="Download"
+            android:text="@string/download_view_download"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <Button
@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="40dip"
-            android:text="Cancel"
+            android:text="@string/download_view_cancel"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
 
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="40dip"
-            android:text="Install"
+            android:text="@string/download_view_install"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
     </LinearLayout>
@@ -41,7 +41,6 @@
         android:id="@+id/txtInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Info text here"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </merge>

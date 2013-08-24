@@ -84,7 +84,6 @@ public class DownloadView extends LinearLayout {
 		post(refreshViewRunnable);
 	}
 
-	// TODO extract texts to string resources
 	private final Runnable refreshViewRunnable = new Runnable() {
 		@Override
 		public void run() {
@@ -94,7 +93,7 @@ public class DownloadView extends LinearLayout {
 				btnInstall.setVisibility(View.GONE);
 				progressBar.setVisibility(View.GONE);
 				txtInfo.setVisibility(View.VISIBLE);
-				txtInfo.setText("No download URL available");
+				txtInfo.setText(R.string.download_view_no_url);
 				return;
 			}
 
@@ -116,12 +115,12 @@ public class DownloadView extends LinearLayout {
 						txtInfo.setVisibility(View.VISIBLE);
 						if (mInfo.totalSize <= 0 || mInfo.status != DownloadManager.STATUS_RUNNING) {
 							progressBar.setIndeterminate(true);
-							txtInfo.setText("Download is waiting");
+							txtInfo.setText(R.string.download_view_waiting);
 						} else {
 							progressBar.setIndeterminate(false);
 							progressBar.setMax(mInfo.totalSize);
 							progressBar.setProgress(mInfo.bytesDownloaded);
-							txtInfo.setText(String.format("Download is running (%,d of %,d kB)",
+							txtInfo.setText(getContext().getString(R.string.download_view_running,
 									mInfo.bytesDownloaded / 1024, mInfo.totalSize / 1024));
 						}
 						break;
@@ -131,7 +130,7 @@ public class DownloadView extends LinearLayout {
 						btnInstall.setVisibility(View.GONE);
 						progressBar.setVisibility(View.GONE);
 						txtInfo.setVisibility(View.VISIBLE);
-						txtInfo.setText("Download failed (error " + mInfo.reason + ")");
+						txtInfo.setText(getContext().getString(R.string.download_view_failed, mInfo.reason));
 						break;
 	
 					case DownloadManager.STATUS_SUCCESSFUL:
@@ -139,7 +138,7 @@ public class DownloadView extends LinearLayout {
 						btnInstall.setVisibility(View.VISIBLE);
 						progressBar.setVisibility(View.GONE);
 						txtInfo.setVisibility(View.VISIBLE);
-						txtInfo.setText("Download successful");
+						txtInfo.setText(R.string.download_view_successful);
 						break;
 				}
 			}
