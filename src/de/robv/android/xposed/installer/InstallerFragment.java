@@ -39,8 +39,7 @@ public class InstallerFragment extends Fragment {
 	private String APP_PROCESS_NAME = null;
 	private String XPOSEDTEST_NAME = null;
 	private static final String BINARIES_FOLDER = getBinariesFolder();
-	private static final String BUSYBOX_BINARY = getBusyboxBinary();
-
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -62,7 +61,7 @@ public class InstallerFragment extends Fragment {
 		final Button btnReboot = (Button) v.findViewById(R.id.btnReboot);
 		
 		boolean isCompatible = false;
-		if (BINARIES_FOLDER == null || BUSYBOX_BINARY == null) {
+		if (BINARIES_FOLDER == null) {
 			// incompatible processor architecture
 		} else if (Build.VERSION.SDK_INT == 15) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk15";
@@ -218,17 +217,6 @@ public class InstallerFragment extends Fragment {
 			return "armv5te/";
 		else if (Build.CPU_ABI.startsWith("armeabi-v5"))
 			return "armv5te/";
-		else if (Build.CPU_ABI.startsWith("x86"))
-			return "x86/";
-		else
-			return null;
-	}
-
-	private static String getBusyboxBinary() {
-		if (Build.CPU_ABI.startsWith("armeabi-"))
-			return "busybox-xposed-arm";
-		else if (Build.CPU_ABI.startsWith("x86"))
-			return "busybox-xposed-x86";
 		else
 			return null;
 	}
@@ -407,7 +395,7 @@ public class InstallerFragment extends Fragment {
 		if (scriptFile == null)
 			return "Could not find asset \"" + name + "\"";
 		
-		File busybox = writeAssetToCacheFile(BUSYBOX_BINARY, "busybox-xposed");
+		File busybox = writeAssetToCacheFile("busybox-xposed");
 		if (busybox == null) {
 			scriptFile.delete();
 			return "Could not find asset \"busybox-xposed\"";
