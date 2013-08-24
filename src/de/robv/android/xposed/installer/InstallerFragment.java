@@ -413,9 +413,14 @@ public class InstallerFragment extends Fragment {
 					null,
 					getActivity().getCacheDir());
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			BufferedReader stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 			StringBuilder sb = new StringBuilder();
 			String line;
 			while ((line = stdout.readLine()) != null) {
+				sb.append(line);
+				sb.append('\n');
+			}
+			while ((line = stderr.readLine()) != null) {
 				sb.append(line);
 				sb.append('\n');
 			}
