@@ -69,19 +69,14 @@ public class InstallerFragment extends Fragment {
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk15";
 			isCompatible = checkCompatibility();
 			
-		} else if (Build.VERSION.SDK_INT == 16) {
+		} else if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT <= 18) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
 			isCompatible = checkCompatibility();
 			
-		} else if (Build.VERSION.SDK_INT == 17) {
-			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk17";
-			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk17";
-			isCompatible = checkCompatibility();
-			
-		} else if (Build.VERSION.SDK_INT > 17) {
-			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk17";
-			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk17";
+		} else if (Build.VERSION.SDK_INT > 18) {
+			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
+			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
 			isCompatible = checkCompatibility();
 			if (isCompatible) {
 				btnInstall.setText(String.format(getString(R.string.not_tested_but_compatible), Build.VERSION.SDK_INT));
@@ -403,9 +398,12 @@ public class InstallerFragment extends Fragment {
 		
 		try {
 			Process p = Runtime.getRuntime().exec(
-					new String[] { "su", "-c", scriptFile.getAbsolutePath() + " " + android.os.Process.myUid() + " 2>&1" },
-					null,
-					getActivity().getCacheDir());
+					new String[] {
+						"su",
+						"-c",
+						"cd " + getActivity().getCacheDir() + "; "
+							+ scriptFile.getAbsolutePath() + " " + android.os.Process.myUid() + " 2>&1"
+					});
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			StringBuilder sb = new StringBuilder();
 			String line;
