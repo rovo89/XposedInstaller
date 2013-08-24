@@ -54,6 +54,10 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 		return true;
 	}
 
+	public static SharedPreferences getPreferences() {
+		return mInstance.mPref;
+	}
+
 	public void updateProgressIndicator() {
 		final boolean isLoading = RepoLoader.getInstance().isLoading() || ModuleUtil.getInstance().isLoading();
 		runOnUiThread(new Runnable() {

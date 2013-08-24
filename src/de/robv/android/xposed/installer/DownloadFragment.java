@@ -17,7 +17,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -61,7 +60,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mPref = PreferenceManager.getDefaultSharedPreferences(XposedApp.getInstance());
+		mPref = XposedApp.getPreferences();
 		mRepoLoader = RepoLoader.getInstance();
 		mModuleUtil = ModuleUtil.getInstance();
 		mSortingOrder = mPref.getInt("download_sorting_order", SORT_STATUS);

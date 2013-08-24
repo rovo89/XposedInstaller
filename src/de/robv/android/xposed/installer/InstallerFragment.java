@@ -35,7 +35,7 @@ public class InstallerFragment extends Fragment {
 	private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
 	private String APP_PROCESS_NAME = null;
 	private String XPOSEDTEST_NAME = null;
-	private static final String BINARIES_FOLDER = getBinariesFolder();
+	private final String BINARIES_FOLDER = getBinariesFolder();
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -200,14 +200,17 @@ public class InstallerFragment extends Fragment {
 	}
 	
 	private static String getBinariesFolder() {
-		if (Build.CPU_ABI.startsWith("armeabi-v7"))
+		if (Build.CPU_ABI.startsWith("armeabi-v7")) {
+			if (XposedApp.getPreferences().getBoolean("use_armv5", false))
+				return "armv5te/";
 			return "armv7-a/";
-		else if (Build.CPU_ABI.startsWith("armeabi-v6"))
+		} else if (Build.CPU_ABI.startsWith("armeabi-v6")) {
 			return "armv5te/";
-		else if (Build.CPU_ABI.startsWith("armeabi-v5"))
+		} else if (Build.CPU_ABI.startsWith("armeabi-v5")) {
 			return "armv5te/";
-		else
+		} else {
 			return null;
+		}
 	}
 	
 	private boolean checkCompatibility() {
