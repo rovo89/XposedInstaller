@@ -1,0 +1,9 @@
+<resources>
+
+    <string-array name="download_sort_order" translateable="false">
+        <item>@string/download_sorting_status</item>
+        <item>@string/download_sorting_updated</item>
+        <item>@string/download_sorting_created</item>
+    </string-array>
+
+</resources>
