@@ -31,7 +31,7 @@ public class SettingsFragment extends PreferenceFragment {
 				boolean enabled = (Boolean) newValue;
 				if (enabled) {
 					preference.getEditor().putBoolean("enable_downloads", enabled).apply();
-					RepoLoader.getInstance().triggerReload();
+					RepoLoader.getInstance().triggerReload(true);
 				} else {
 					RepoLoader.getInstance().clear();
 				}

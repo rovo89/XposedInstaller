@@ -80,8 +80,11 @@ public class RepoLoader {
 		return null;
 	}
 
-	public void triggerReload() {
+	public void triggerReload(final boolean force) {
 		mReloadTriggeredOnce = true;
+
+		if (force)
+			resetLastUpdateCheck();
 
 		if (!mApp.areDownloadsEnabled())
 			return;
@@ -121,7 +124,11 @@ public class RepoLoader {
 
 	public void triggerFirstLoadIfNecessary() {
 		if (!mReloadTriggeredOnce)
-			triggerReload();
+			triggerReload(false);
+	}
+
+	public void resetLastUpdateCheck() {
+		mPref.edit().remove("last_update_check").commit();
 	}
 
 	public synchronized boolean isLoading() {
@@ -193,6 +200,11 @@ public class RepoLoader {
 	}
 
 	private void downloadFiles() {
+		long lastUpdateCheck = mPref.getLong("last_update_check", 0);
+		int UPDATE_FREQUENCY = 24 * 60 * 60 * 1000; // TODO make this configurable
+		if (System.currentTimeMillis() < lastUpdateCheck + UPDATE_FREQUENCY)
+			return;
+
 		NetworkInfo netInfo = mConMgr.getActiveNetworkInfo();
 		if (netInfo == null || !netInfo.isConnected())
 			return;
@@ -270,6 +282,8 @@ public class RepoLoader {
 					try { out.close(); } catch (IOException ignored) {}
 			}
 		}
+
+		mPref.edit().putLong("last_update_check", System.currentTimeMillis()).commit();
 	}
 	
 	private void parseFiles() {

@@ -168,7 +168,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menu_refresh:
-				mRepoLoader.triggerReload();
+				mRepoLoader.triggerReload(true);
 				return true;
 			case R.id.menu_sort:
 				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
