@@ -3,8 +3,6 @@
     <string name="app_name">Xposed Installer</string>
     <string name="tabInstall">Framework</string>
     <string name="tabModules">Moduly</string>
-    <string name="yes">ano</string>
-    <string name="no">ne</string>
     <string name="install">Instalovat/Aktualizovat</string>
     <string name="uninstall">Odinstalovat (obnovit app_process)</string>
     <string name="installedVersion">aktivní</string>
