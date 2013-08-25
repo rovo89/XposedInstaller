@@ -1,13 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- General/various strings -->
     <string name="app_name">Xposed Telepítő</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome">Üdvözöl az <b>Xposed Telepítő</b>!\nKérlek válaszd ki mit szeretnél tenni:</string>
     <string name="tabInstall">Keretrendszer</string>
+    <string name="tabInstallDescription">Itt kezelheted az Xposed keretrendszert, ami szükséges minden modul működéséhez.</string>
     <string name="tabModules">Modulok</string>
-    <string name="yes">igen</string>
-    <string name="no">nem</string>
+    <string name="tabModulesDescription">A keretrendszer önmagában semmilyen funkciót nem biztosít. Ahhoz modulok kellenek. Ebben a szekcióban aktiválhatod a modulokat miután telepítetted őket.</string>
+    <string name="tabDownload">Letöltések</string>
+    <string name="tabDownloadDescription">Ez a szekció hozzáférést biztosít egy modulgyűjteményhez, ahol keresheted és letöltheted amelyeket szeretnéd és frissen is tarthatod őket.</string>
+
+    <string name="welcome_framework_update_available">Frissítés elérhető az Xposed keretrendszerhez.</string>
+    <string name="welcome_update_available">Egy vagy több frissítés elérhető.</string>
+    <string name="tabSettings">Beállítások</string>
+    <string name="tabSettingsDescription">Látogasd meg ezt a szekciót, hogy beállítsd az Xposed Telepítőt és a keretrendszert.</string>
+    <string name="tabAbout">Rólunk</string>
+    <string name="tabAboutDescription">Tudj meg többet az Xposed készítőiről, hol találsz támogatást az alkalmazáshoz, stb.</string>
+
+    <!-- Installer tab -->
     <string name="install">Telepítés/Frissítés</string>
     <string name="uninstall">Eltávolítás (app_process visszaállítása)</string>
-    <string name="installedVersion">telepített</string>
+    <string name="installedVersion">aktív</string>
     <string name="none">---</string>
     <string name="latestVersion">a csomagban</string>
     <string name="cleanup">Tisztítás (a keretrendszer teljes eltávolítása)</string>
@@ -15,15 +31,73 @@
     <string name="soft_reboot">Gyors újraindítás</string>
     <string name="reboot">Újraindítás</string>
     <string name="areyousure">Biztos vagy benne?</string>
+    <string name="phone_not_compatible">Az Xposed (még) nem kompatibilis a %1$d verziójú Android SDK-val vagy a processzor architektúráddal (%2$s).</string>
+    <string name="not_tested_but_compatible">Az Xposed nem volt tesztelve a %d verziójú Android SDK-val, de úgy tűnik, kompatibilis. Megpróbálhatod telepíteni ha elég kalandvágyó vagy.</string>
+
+    <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Az Xposed modul még nincs aktiválva</string>
     <string name="module_empty_description">(nincs leírás)</string>
     <string name="module_no_ui">A modulnak nincs felhasználói felülete</string>
     <string name="no_xposed_modules_found">Nem található Xposed modul!</string>
     <string name="xposed_module_list_updated">Az Xposed modul lista frissült\nA változtatások újraindítás után lépnek életbe</string>
     <string name="warning_xposed_min_version">A modulhoz frissebb Xposed verzió (%s) szükséges, ezért nem aktiválható.</string>
-    <string name="phone_not_compatible">Az Xposed (még) nem kompatibilis a %1$d verziójú Android SDK-val vagy a processzor architektúráddal (%2$s).</string>
-    <string name="not_tested_but_compatible">Az Xposed nem volt tesztelve a %d verziójú Android SDK-val, de úgy tűnik, kompatibilis. Megpróbálhatod telepíteni ha elég kalandvágyó vagy.</string>
     <string name="no_min_version_specified">A modul nem tünteti fel a szükséges Xposed verziót.</string>
     <string name="warning_min_version_too_low">Ez a modul a(z) %1$s verziójú Xposed-hoz lett készítve, de a(z) %2$s verzió összeférhetetlen változtatásai miatt le lett tiltva.</string>
-    <string name="translator">Adam77Root</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Keresés</string>
+    <string name="menuReload">Újratöltés</string>
+    <string name="changes">Változások:</string>
+    <string name="branch_display">(%s branch)</string>
+    <string name="download_author">%s-tól</string>
+    <string name="download_unknown_author">ismeretlen készítő</string>
+    <string name="download_status_installed">Telepítve (verzió %s)</string>
+    <string name="download_status_update_available">Frissítés elérhető (verzió %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Hozzáadva: %1$s \u00b7 Frissítve: %2$s</string>
+    <string name="download_sorting_title">Rendezés</string>
+    <string name="download_sorting_status">Rendezés állapot szerint</string>
+    <string name="download_sorting_updated">Rendezés legutolsó frissítés szerint</string>
+    <string name="download_sorting_created">Rendezés készítés ideje szerint</string>
+    <string name="download_section_framework">Keretrendszer</string>
+    <string name="download_section_update_available">Frissítés elérhető</string>
+    <string name="download_section_installed">Telepítve</string>
+    <string name="download_section_not_installed">Nincs telepítve</string>
+    <string name="download_section_24h">Elmúlt 24 órában</string>
+    <string name="download_section_7d">Elmúlt 7 napban</string>
+    <string name="download_section_30d">Elmúlt 30 napban</string>
+    <string name="download_section_older">Több, mint 30 napja</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Fő fejlesztők:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> és <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">Kérlek <b>ne</b> lépj közvetlen kapcsolatba velünk támogatásért, használd az alábbi linket.</string>
+    <string name="about_translator_label">Fordító:</string>
+    <string name="translator"><a href="http://forum.xda-developers.com/member.php?u=4719724">Adam77Root</a></string>
+    <string name="about_version_label">Alkalmazás verziója:</string>
+    <string name="about_source_label">Forráskód:</string>
+    <string name="about_support_label">Támogatás:</string>
+    <string name="about_support_warning">Ez a link <b>csak</b> a telepítőé és a keretrendszeré! Ha segítség kell egy modullal, <b>ne</b> használd, lépj kapcsolatba a modul készítőjével.</string>
+    <string name="about_libraries_label">Használt könyvtárak:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Letöltés</string>
+    <string name="download_view_install">Telepítés</string>
+    <string name="download_view_cancel">Mégse</string>
+    <string name="download_view_no_url">Nincs elérhető letöltési URL</string>
+    <string name="download_view_running">Letöltés folyamatban (%1$,d a %2$,d kB-ból)</string>
+    <string name="download_view_waiting">Letöltés várakozik</string>
+    <string name="download_view_successful">Sikeres letöltés</string>
+    <string name="download_view_failed">Sikertelen letöltés (hiba: %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">Hibás MD5 ellenőrzöösszeg (letöltött: %1$s, várt: %2$s)</string>
+    <string name="download_could_not_read_file">A letöltött fájlt nem lehetett olvasni: %s</string>
+    <string name="download_no_valid_apk">A letöltött fájl nem érvényes APK (vagy nem kompatibilis)</string>
+    <string name="download_incorrect_package_name">A csomag neve hibás: (letöltött: %1$s, várt: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">%1$s letöltése sikertelen: %2$d (%3$s)</string>
+    <string name="repo_download_failed">%1$s letöltése sikertelen: %2$s</string>
+    <string name="repo_load_failed">Nem lehet betölteni a gyűjteményt %1$s-ról:\n%2$s</string>
+
 </resources>
