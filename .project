@@ -30,4 +30,11 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/NOTICE.txt</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/NOTICE.txt</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

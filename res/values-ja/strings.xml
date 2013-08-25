@@ -4,8 +4,6 @@
     <string name="app_name">Xposed Installer</string>
     <string name="tabInstall">Framework</string>
     <string name="tabModules">モジュール</string>
-    <string name="yes">はい</string>
-    <string name="no">いいえ</string>
     <string name="install">インストール/更新</string>
     <string name="uninstall">アンインストール(app_processのリストア)</string>
     <string name="installedVersion">動作中</string>

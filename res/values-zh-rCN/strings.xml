@@ -3,8 +3,6 @@
     <string name="app_name">Xposed外挂模块</string>
     <string name="tabInstall">核心框架</string>
     <string name="tabModules">应用模块</string>
-    <string name="yes">确定</string>
-    <string name="no">取消</string>
     <string name="install">安装/更新</string>
     <string name="uninstall">卸载 (restore app_process)</string>
     <string name="installedVersion">使用中版本</string>

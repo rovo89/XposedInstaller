@@ -3,8 +3,6 @@
     <string name="app_name">Xposed Installer</string>
     <string name="tabInstall">Система</string>
     <string name="tabModules">Модули</string>
-    <string name="yes">Да</string>
-    <string name="no">Нет</string>
     <string name="install">Установить/Обновить</string>
     <string name="uninstall">Удаление (восстановление app_process)</string>
     <string name="installedVersion">текущая</string>

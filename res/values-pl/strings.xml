@@ -3,8 +3,6 @@
     <string name="app_name">Instalator Xposed</string>
     <string name="tabInstall">Framework</string>
     <string name="tabModules">Moduły</string>
-    <string name="yes">Tak</string>
-    <string name="no">Nie</string>
     <string name="install">Zainstaluj/Uaktualnij</string>
     <string name="uninstall">Odinstaluj (przywróć app_process)</string>
     <string name="installedVersion">aktywna</string>
