@@ -15,9 +15,9 @@
     <string name="welcome_framework_update_available">Une mise à jour du framework Xposed est disponible.</string>
     <string name="welcome_update_available">Des mises à jour pour vos modules sont disponibles.</string>
     <string name="tabSettings">Paramètres</string>
-    <string name="tabSettingsDescription">Allez dans cette section pour configurer l'installateur Xposed et le framework.</string>
+    <string name="tabSettingsDescription">Allez dans cette section pour configurer l\'installateur Xposed et le framework.</string>
     <string name="tabAbout">À propos</string>
-    <string name="tabAboutDescription">Apprenez-en à propos des créateurs de Xposed, où vous pouvez obtenir du support pour cette application, etc...</string>
+    <string name="tabAboutDescription">Apprenez-en à propos des créateurs de Xposed, où vous pouvez obtenir du support pour cette application, etc&#8230;</string>
 
     <!-- Installer tab -->
     <string name="install">Installer/Mettre à jour</string>
@@ -31,7 +31,7 @@
     <string name="reboot">Redémarrer</string>
     <string name="areyousure">Êtes-vous sûr?</string>
     <string name="phone_not_compatible">Xposed n\'est pas (encore) compatible avec Android SDK version %1$d ou l\'architecture de votre processeur (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed n\'a pas été testé avec Android SDK version %d, mais il semble compatible. Vous pouvez tenter de l\'installer si vous vous sentez l\'âme d'un aventurier.</string>
+    <string name="not_tested_but_compatible">Xposed n\'a pas été testé avec Android SDK version %d, mais il semble compatible. Vous pouvez tenter de l\'installer si vous vous sentez l\'âme d\'un aventurier.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Le module Xposed n\'est pas encore activé</string>
