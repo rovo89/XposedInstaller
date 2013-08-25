@@ -106,5 +106,4 @@
     <string name="repo_download_failed_http">Download di %1$s fallito: %2$d (%3$s)</string>
     <string name="repo_download_failed">Download di %1$s fallito: %2$s</string>
     <string name="repo_load_failed">Impossibile caricare repository da %1$s:\n%2$s</string>
-
 </resources>
