@@ -6,9 +6,6 @@
     <string name="tabModules">モジュール</string>
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
-    <string name="installerDescription">このアプリでは<b>Xposed</b> frameworkをインストールできます。
-		Xposed frameworkとはAndroid端末の見た目や動作を変えるモジュールの基礎となるもののことです。
-		詳しくは<a href="http://forum.xda-developers.com/showthread.php?t=1574401">このページ</a>をご覧ください。</string>
     <string name="install">インストール/更新</string>
     <string name="uninstall">アンインストール(app_processのリストア)</string>
     <string name="installedVersion">動作中</string>

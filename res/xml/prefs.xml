@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="group_download"
+        android:title="Download" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable_downloads"
+            android:summary="Allow Xposed Installer to check for updates and new modules"
+            android:title="Enable downloads" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="group_experimental"
+        android:title="Experimental" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="use_armv5"
+            android:summary="If you enable this, your system performance might either increase, decrease or stay the same. Feel free to try it and report back which effect you see (or if there is none at all). You need to reinstall the framework and reboot after changing this."
+            android:title="Performance experiment" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

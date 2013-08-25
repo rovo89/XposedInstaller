@@ -1,0 +1,10 @@
+<resources>
+
+    <color name="download_status_installed">#ffffbb33</color>
+    <color name="download_status_update_available">#ff66ff00</color>
+    <color name="welcome_framework_update_available">@color/download_status_update_available</color>
+    <color name="welcome_update_available">@color/download_status_update_available</color>
+    <color name="list_divider">#ff0099cc</color>
+    <color name="list_header">#ff0099cc</color>
+
+</resources>

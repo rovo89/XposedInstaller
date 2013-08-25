@@ -5,9 +5,6 @@
     <string name="tabModules">Modulok</string>
     <string name="yes">igen</string>
     <string name="no">nem</string>
-    <string name="installerDescription">Itt feltelepítheted az <b>Xposed</b> keretrendszert.
-		Ez az alapja a moduloknak, amik megváltoztatják az Androidos telefonod viselkedését és kinézetét.
-		További információkért látogass el <a href="http://forum.xda-developers.com/showthread.php?t=1574401">erre</a> a weboldalra.</string>
     <string name="install">Telepítés/Frissítés</string>
     <string name="uninstall">Eltávolítás (app_process visszaállítása)</string>
     <string name="installedVersion">telepített</string>
