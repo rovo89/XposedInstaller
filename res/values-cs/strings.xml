@@ -69,7 +69,7 @@
     <string name="about_version_label">Verze této aplikace:</string>
     <string name="about_source_label">Zdrojový kód:</string>
     <string name="about_support_label">Pro získání podpory:</string>
-    <string name="about_support_warning">Tento odkaz je určen <b>pouze<b/> pro framework a instalátor! Pro získání podpory ke konkrétnímu modulu je nutné kontaktovat jeho vývojáře.</string>
+    <string name="about_support_warning">Tento odkaz je určen <b>pouze</b> pro framework a instalátor! Pro získání podpory ke konkrétnímu modulu je nutné kontaktovat jeho vývojáře.</string>
     <string name="about_libraries_label">Použité knihovny:</string>
     <!-- DownloadView -->
     <string name="download_view_download">Stáhnout</string>
