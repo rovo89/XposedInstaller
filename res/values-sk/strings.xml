@@ -11,7 +11,7 @@
     <string name="tabModules">Moduly</string>
     <string name="tabModulesDescription">Samotný framework neposkytuje žiadne funkcie. Tieto funkcie poskytujú rôzne moduly. V tejto sekcii môžete aktivovať moduly po ich inštalácií.</string>
     <string name="tabDownload">Sťahovanie</string>
-    <string name="tabDownloadDescription">Táto sekcia Vám umožní pristupovať k repozitáru s modulmi, takže môžete vyhľadávať a stiahnuť tie, ktoré sa Vám páčia a udržiavať ich stále aktuálne.</string>
+    <string name="tabDownloadDescription">Táto sekcia Vám umožní pristupovať k repozitáru s modulmi, takže môžete vyhľadávať a sťahovať tie, ktoré sa Vám páčia a udržiavať ich stále aktuálne.</string>
     <string name="welcome_framework_update_available">Je dostupná aktualizácia pre Xposed framework.</string>
     <string name="welcome_update_available">Je dostupná jedna alebo viac aktualizácií pre moduly.</string>
     <string name="tabSettings">Nastavenia</string>
