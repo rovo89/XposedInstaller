@@ -10,8 +10,8 @@
     <string name="tabInstallDescription">Tu môžte spravovať Xposed framework, ktorý je nutný pre fungovanie modulov.</string>
     <string name="tabModules">Moduly</string>
     <string name="tabModulesDescription">Samotný framework neposkytuje žiadne funkcie. Tieto funkcie poskytujú rôzne moduly. V tejto sekcii môžete aktivovať moduly po ich inštalácií.</string>
-    <string name="tabDownload">Stiahnuť</string>
-    <string name="tabDownloadDescription">Táto sekcia Vám umožní pristupovať k repozitáru s modulmi, takže môžete vyhľadávať a sťahovať tie, ktoré sa Vám páčia a udržiavať ich stále aktuálne.</string>
+    <string name="tabDownload">Sťahovanie</string>
+    <string name="tabDownloadDescription">Táto sekcia Vám umožní pristupovať k repozitáru s modulmi, takže môžete vyhľadávať a stiahnuť tie, ktoré sa Vám páčia a udržiavať ich stále aktuálne.</string>
     <string name="welcome_framework_update_available">Je dostupná aktualizácia pre Xposed framework.</string>
     <string name="welcome_update_available">Je dostupná jedna alebo viac aktualizácií pre moduly.</string>
     <string name="tabSettings">Nastavenia</string>
@@ -52,24 +52,32 @@
     <string name="download_unknown_author">neznámy autor</string>
     <string name="download_status_installed">Nainštalované (verzia %s)</string>
     <string name="download_status_update_available">Dostupná aktualizácia (verzia %1$s \u2192 %2$s)</string>
-    <string name="download_timestamps">Pridané: %1$s \u00b7 Aktualizované: %2$s</string>
-    <string name="download_sorting_title">Poradie zoradenia</string>
-    <string name="download_sorting_status">Zoradiť podľa stavu</string>
-    <string name="download_sorting_updated">Zoradiť podľa poslednej aktualizácie</string>
-    <string name="download_sorting_created">Zoradiť podľa dátumu vytvorenia</string>
+    <string name="download_timestamps">Pridané %1$s \u00b7 Aktualizované %2$s</string>
+    <string name="download_sorting_title">Zoradiť</string>
+    <string name="download_sorting_status">Podľa stavu</string>
+    <string name="download_sorting_updated">Podľa poslednej aktualizácie</string>
+    <string name="download_sorting_created">Podľa dátumu vytvorenia</string>
     <string name="download_section_framework">Framework</string>
     <string name="download_section_update_available">Dostupná aktualizácia</string>
     <string name="download_section_installed">Nainštalované</string>
     <string name="download_section_not_installed">Nenainštalované</string>
-    <string name="download_section_24h">Posledných 24 hodín</string>
-    <string name="download_section_7d">Posledných 7 dní</string>
-    <string name="download_section_30d">Posledných 30 dní</string>
+    <string name="download_section_24h">Za posledných 24 hodín</string>
+    <string name="download_section_7d">Za posledných 7 dní</string>
+    <string name="download_section_30d">Za posledných 30 dní</string>
     <string name="download_section_older">Pred viac ako 30 dňami</string>
+
+     <!-- Settings tab -->
+    <string name="settings_group_download">Sťahovanie</string>
+    <string name="settings_enable_downloads">Povoliť sťahovania</string>
+    <string name="settings_enable_downloads_summary">Povoliť Xposed Inštalátoru kontrolovanie aktualizácií a nových modulov</string>
+    <string name="settings_group_experimental">Experimentálne</string>
+    <string name="settings_use_armv5">Experiment s výkonom</string>
+    <string name="settings_use_armv5_summary">Ak povolíte túto možnosť, výkon systému sa môže buď zvýšiť, znížiť alebo zostať rovnaký. Nebojte sa vyskúšať experiment s výkonom a podajte správu o efekte, ktorý vidíte (nemusí byť však vôbec žiadny). Po zmene tejto možnosti je nutné znovu inštalovať framework a vykonať reštart zariadenia.</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Hlavní vývojári:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> a <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Prosím <b>nekontaktujte</b> nás priamo na podporu, radšej použite odkaz nižšie.</string>
+    <string name="about_developers_warning">Prosím <b>nekontaktujte</b> nás priamo za účelom podpory, radšej použite odkaz nižšie.</string>
     <string name="about_translator_label">Prekladateľ:</string>
     <string name="translator">pyler</string>
     <string name="about_version_label">Verzia aplikácie:</string>
@@ -91,12 +99,11 @@
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">Kontrolný súčet MD5 nie je správny (stiahnuté: %1$s, očakávané: %2$s)</string>
     <string name="download_could_not_read_file">Nemožno čítať stiahnutý súbor: %s</string>
-    <string name="download_no_valid_apk">Štiahnutý súbor nie je platný APK súbor (alebo nie je kompatibilný)</string>
+    <string name="download_no_valid_apk">Stiahnutý súbor nie je platný APK súbor (alebo nie je kompatibilný)</string>
     <string name="download_incorrect_package_name">Názov balíka nie je správny (stiahnuté: %1$s, očakávané: %2$s)</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Sťahovanie %1$s zlyhalo: %2$d (%3$s)</string>
     <string name="repo_download_failed">Sťahovanie %1$s zlyhalo: %2$s</string>
     <string name="repo_load_failed">Nemožno načítať z repozitára %1$s:\n%2$s</string>
-
 </resources>
