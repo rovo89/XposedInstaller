@@ -1,33 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">Xposed Installer</string>
-    <string name="tabInstall">Framework</string>
+    <string name="app_name">Xposedインストーラ</string>
+    <string name="welcome"><b>Xposedインストーラ</b>にようこそ"!
+したいことを選んでください:"</string>
+    <string name="tabInstall">フレームワーク</string>
+    <string name="tabInstallDescription">モジュールの動作に必要なXposedフレームワークの管理をします。</string>
     <string name="tabModules">モジュール</string>
-    <string name="yes">はい</string>
-    <string name="no">いいえ</string>
-    <string name="installerDescription">このアプリでは<b>Xposed</b> frameworkをインストールできます。
-		Xposed frameworkとはAndroid端末の見た目や動作を変えるモジュールの基礎となるもののことです。
-		詳しくは<a href="http://forum.xda-developers.com/showthread.php?t=1574401">このページ</a>をご覧ください。</string>
+    <string name="tabModulesDescription">"フレームワーク単体では何もできないのでモジュールが別途必要です。モジュールのインストール後ここで有効化できます。"</string>
+    <string name="tabDownload">ダウンロード</string>
+    <string name="tabDownloadDescription">モジュールのレポジトリにアクセスして検索やダウンロードができます。</string>
+    <string name="welcome_framework_update_available">Xposedフレームワークの更新があります。</string>
+    <string name="welcome_update_available">モジュールの更新があります。</string>
+    <string name="tabSettings">設定</string>
+    <string name="tabSettingsDescription">Xposedインストーラとフレームワークの設定ができます。</string>
+    <string name="tabAbout">このアプリについて</string>
+    <string name="tabAboutDescription">Xposedの開発に携わった人たちやサポートの情報を見られます。</string>
     <string name="install">インストール/更新</string>
     <string name="uninstall">アンインストール(app_processのリストア)</string>
     <string name="installedVersion">動作中</string>
     <string name="none">---</string>
     <string name="latestVersion">内蔵</string>
-    <string name="cleanup">初期化(frameworkを完全に消去します)</string>
+    <string name="cleanup">初期化(フレームワークの完全消去)</string>
     <string name="versions">バージョン:</string>
     <string name="soft_reboot">簡易再起動</string>
     <string name="reboot">再起動</string>
     <string name="areyousure">実行しますか?</string>
-    <string name="module_is_not_activated_yet">Xposedモジュールはまだ有効にされていません</string>
-    <string name="module_empty_description">(説明なし)</string>
-    <string name="module_no_ui">このモジュールはUIがありません</string>
-    <string name="no_xposed_modules_found">Xposedモジュールが見つかりません!</string>
-    <string name="xposed_module_list_updated">Xposedモジュールリストが更新されました。\n変更は再起動後に反映されます。</string>
-    <string name="warning_xposed_min_version">このモジュールはXposedの新しいバージョン (%s) が必要なので有効にできません。</string>
     <string name="phone_not_compatible">Xposedは(まだ)Android SDK バージョン %1$d やプロセッサ (%2$s)に非対応です。</string>
     <string name="not_tested_but_compatible">XposedはまだAndroid SDK バージョン %dでテストされていませんが、対応しているか試したい場合はインストールしてみてください。</string>
+    <string name="module_is_not_activated_yet">Xposedモジュールがまだ有効にされていません</string>
+    <string name="module_empty_description">(説明なし)</string>
+    <string name="module_no_ui">このモジュールにはUIがありません</string>
+    <string name="no_xposed_modules_found">Xposedモジュールが見つかりません!</string>
+    <string name="xposed_module_list_updated">"Xposedモジュールが更新されました。
+変更は再起動後に反映されます。"</string>
+    <string name="warning_xposed_min_version">このモジュールはXposedの新しいバージョン (%s) が必要なので有効にできません。</string>
     <string name="no_min_version_specified">このモジュールは必要なXposedバージョンを指定していません。</string>
     <string name="warning_min_version_too_low">このモジュールはXposed バージョン %1$s向けに作成されましたが、 バージョン %2$sでは互換性がないため無効にされました。</string>
-    <string name="translator">WedyDQ10</string>
+    <string name="menuSearch">検索</string>
+    <string name="menuReload">再読み込み</string>
+    <string name="changes">変更点:</string>
+    <string name="branch_display">(%s ブランチ)</string>
+    <string name="download_author">制作者: %s</string>
+    <string name="download_unknown_author">制作者不明</string>
+    <string name="download_status_installed">インストール済み (バージョン %s)</string>
+    <string name="download_status_update_available">更新あり (バージョン %1$s → %2$s)</string>
+    <string name="download_timestamps">%1$sに追加 · %2$sに更新</string>
+    <string name="download_sorting_title">並び順</string>
+    <string name="download_sorting_status">状態</string>
+    <string name="download_sorting_updated">最終更新日</string>
+    <string name="download_sorting_created">作成日</string>
+    <string name="download_section_framework">フレームワーク</string>
+    <string name="download_section_update_available">更新があります</string>
+    <string name="download_section_installed">インストール済み</string>
+    <string name="download_section_not_installed">未インストール</string>
+    <string name="download_section_24h">24時間以内</string>
+    <string name="download_section_7d">7日以内</string>
+    <string name="download_section_30d">30日以内</string>
+    <string name="download_section_older">30日以上前</string>
+    <string name="settings_group_download">ダウンロード</string>
+    <string name="settings_enable_downloads">ダウンロードを有効化</string>
+    <string name="settings_enable_downloads_summary">Xposedインストーラやモジュールの更新を定期的に確認するようにします。</string>
+    <string name="settings_group_experimental">実験的</string>
+    <string name="settings_use_armv5">パフォーマンス実験</string>
+    <string name="settings_use_armv5_summary">これを有効にするとパフォーマンスに影響が出る可能性があります。どうか試してみて効果があるかないか報告してください。有効にした後はフレームワークを再インストールして再起動してください。</string>
+    <string name="about_developers_label">メイン開発者:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> と <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">サポートが必要な場合直接<b>連絡しないで</b>以下のリンクを使ってください。</string>
+    <string name="about_translator_label">翻訳:</string>
+    <string name="translator"><a href="http://androplus.kagome-kagome.com/">WedyDQ10</a></string>
+    <string name="about_version_label">アプリのバージョン:</string>
+    <string name="about_source_label">ソースコード:</string>
+    <string name="about_source">https://github.com/rovo89</string>
+    <string name="about_support_label">サポート:</string>
+    <string name="about_support">http://forum.xda-developers.com/showthread.php?t=1574401</string>
+    <string name="about_support_warning">インストーラとフレームワーク<b>専用</b>のサポートページです! モジュールの問題は<b>ここを使わずに</b>モジュールの制作者に連絡してください。</string>
+    <string name="about_libraries_label">使用ライブラリ:</string>
+    <string name="about_libraries"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a></string>
+    <string name="download_view_download">ダウンロード</string>
+    <string name="download_view_install">インストール</string>
+    <string name="download_view_cancel">キャンセル</string>
+    <string name="download_view_no_url">ダウンロードURLが利用不可能です</string>
+    <string name="download_view_running">ダウンロード中です(%1$,d / %2$,d kB)</string>
+    <string name="download_view_waiting">ダウンロード待機中</string>
+    <string name="download_view_successful">ダウンロードしました</string>
+    <string name="download_view_failed">ダウンロード失敗 (error %d)</string>
+    <string name="download_md5sum_incorrect">MD5チェックサムが違います (ダウンロード済み: %1$s, 本来の値: %2$s)</string>
+    <string name="download_could_not_read_file">ダウンロードしたファイルを読み込めません: %s</string>
+    <string name="download_no_valid_apk">ダウンロードしたファイルがAPKファイルでないか互換性がありません</string>
+    <string name="download_incorrect_package_name">パッケージ名が違います (ダウンロード済み: %1$s, 本来の名前: %2$s)</string>
+    <string name="repo_download_failed_http">%1$sのダウンロード失敗: %2$d (%3$s)</string>
+    <string name="repo_download_failed">%1$sのダウンロード失敗: %2$s</string>
+    <string name="repo_load_failed">"%1$sからレポジトリを読み込めません:
+%2$s"</string>
 </resources>
