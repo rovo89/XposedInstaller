@@ -7,7 +7,7 @@
     <!-- Welcome screen / main sections -->
     <string name="welcome">Bienvenido a <b>Instalador Xposed</b>!\nEscoja lo que quiere hacer:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Aquí puede gestionar Framework Xposed, que es necesario para que todos los módulos funcionen.</string>
+    <string name="tabInstallDescription">Aquí puede gestionar Xposed Framework, que es necesario para que todos los módulos funcionen.</string>
     <string name="tabModules">Módulos</string>
     <string name="tabModulesDescription">Xposed Framework en sí no añade ninguna funcionalidad. Necesitará módulos para eso. En esta sección puede activar módulos después de haberlos instalado.</string>
     <string name="tabDownload">Descarga</string>
@@ -76,15 +76,15 @@
 
     <!-- About tab -->
     <string name="about_developers_label">Desarrolladores principales:</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> y <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Por favor <b>no</b> se ponga en contacto con nosotros directamente para obtener soporte, utilice el siguiente enlace.</string>
     <string name="about_translator_label">Traductor:</string>
     <string name="translator">David_Vaz</string>
     <string name="about_version_label">Versión de esta aplicación:</string>
     <string name="about_source_label">Código fuente:</string>
     <string name="about_support_label">Recibe soporte en:</string>
-    <string name="about_support_warning">Este enlace es para Xposed Framework <b>sólo</b>! Si necesitas ayuda con un módulo, <b>no</b> uses este, contacta con el autor del módulo.</string>
-    <string name="about_libraries_label">Used libraries:</string>
+    <string name="about_support_warning">Este enlace es <b>sólo</b> para Xposed Framework! Si necesitas ayuda con un módulo, <b>no</b> uses este enlace, contacta con el autor del módulo.</string>
+    <string name="about_libraries_label">Librerias usadas:</string>
 
     <!-- DownloadView -->
     <string name="download_view_download">Descarga</string>
