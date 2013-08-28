@@ -66,6 +66,14 @@
     <string name="download_section_30d">Mois dernier</string>
     <string name="download_section_older">Plus ancien</string>
 
+    <!-- Settings tab -->
+    <string name="settings_group_download">Téléchargements</string>
+    <string name="settings_enable_downloads">Activer les téléchargements</string>
+    <string name="settings_enable_downloads_summary">Autoriser l\'installateur Xposed à chercher des mises à jour et de nouveaux modules</string>
+    <string name="settings_group_experimental">Expérimental</string>
+    <string name="settings_use_armv5">Expérimentation pour les performances</string>
+    <string name="settings_use_armv5_summary">Si vous activez ceci, les performances de votre système peuvent être améliorées, diminuées ou rester identiques. N`hésitez pas à essayer et à nous rapporter les effets obtenus (ou s\'il n\'y en a pas eu). Vous devez réinstaller le framework et redémarrer après avoir changé ce paramètre.</string>
+
     <!-- About tab -->
     <string name="about_developers_label">Dévelopeurs principaux:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> et <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
