@@ -285,7 +285,16 @@ public class RepoLoader {
 
 		mPref.edit().putLong("last_update_check", System.currentTimeMillis()).commit();
 	}
-	
+
+	private void removeRepoFile(String repo) {
+		getRepoCacheFile(repo).delete();
+
+		mPref.edit()
+			.remove("repo_" + repo + "_modified")
+			.remove("repo_" + repo + "_etag")
+			.commit();
+	}
+
 	private void parseFiles() {
 		Map<String, ModuleGroup> modules = new HashMap<String, ModuleGroup>();
 
@@ -314,6 +323,7 @@ public class RepoLoader {
 
 			} catch (Throwable t) {
 				mMessages.add(mApp.getString(R.string.repo_load_failed, repo, t.getMessage()));
+				removeRepoFile(repo);
 
 			} finally {
 				if (in != null)
