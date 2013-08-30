@@ -63,6 +63,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		mPref = XposedApp.getPreferences();
 		mRepoLoader = RepoLoader.getInstance();
 		mModuleUtil = ModuleUtil.getInstance();
+		mAdapter = new DownloadsAdapter(XposedApp.getInstance());
 		mSortingOrder = mPref.getInt("download_sorting_order", SORT_STATUS);
 		setHasOptionsMenu(true);
 	}
@@ -73,14 +74,14 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		Activity activity = getActivity();
 		if (activity instanceof XposedInstallerActivity)
 			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_DOWNLOAD, null);
+
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_downloader, container, false);
 		ListView lv = (ListView) v.findViewById(R.id.listModules);
-		
-		mAdapter = new DownloadsAdapter(getActivity());
+
 		mRepoLoader.addListener(this, true);
 		lv.setAdapter(mAdapter);
 		
@@ -114,14 +115,13 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		});
 		return v;
 	}
-	
+
 	@Override
 	public void onDestroyView() {
-	    super.onDestroyView();
-	    mAdapter = null;
-	    mRepoLoader.removeListener(this);
+		super.onDestroyView();
+		mRepoLoader.removeListener(this);
 	}
-	
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.menu_download, menu);
