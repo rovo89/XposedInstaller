@@ -9,7 +9,7 @@
     <string name="tabInstall">Framework</string>
     <string name="tabInstallDescription">Qui puoi gestire il framework Xposed, richiesto da ogni modulo per poter funzionare.</string>
     <string name="tabModules">Moduli</string>
-    <string name="tabModulesDescription">Il framework in sè non aggiunge alcuna funzionalità. È necessario installare i moduli per farlo. In questa sezione puoi attivare i moduli dopo averli installati.</string>
+    <string name="tabModulesDescription">Il framework in sé non aggiunge alcuna funzionalità. È necessario installare i moduli per farlo. In questa sezione puoi attivare i moduli dopo averli installati.</string>
     <string name="tabDownload">Download</string>
     <string name="tabDownloadDescription">Questa sezione fornisce l\'accesso ad un repository di moduli, è quindi possibile cercare e scaricare quelli che preferisci e mantenerli aggiornati.</string>
     <string name="welcome_framework_update_available">È disponibile un aggiornamento per il framework Xposed.</string>
