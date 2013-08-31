@@ -34,6 +34,11 @@ if $BRACKET -f /data/xposed/XposedBridge.jar.newversion ]; then
 	$RM /data/xposed/XposedBridge.jar.newversion || exit 1
 fi
 
+if $BRACKET -f /data/xposed/app_process ]; then
+	echo Deleting app_process...
+	$RM /data/xposed/app_process || exit 1
+fi
+
 echo
 echo Done! Changes will become active on reboot.
 exit 0
