@@ -51,7 +51,7 @@ $CP XposedBridge.jar /data/xposed/XposedBridge.jar.newversion || exit 1
 $CHMOD 644 /data/xposed/XposedBridge.jar.newversion || exit 1
 $CHOWN root:shell /data/xposed/XposedBridge.jar.newversion || exit 1
 
-echo Copying app_process for re-activator...
+echo Copying app_process for future ROM updates...
 $CP /system/bin/app_process /data/xposed/app_process || exit 1
 $CHMOD 644 /data/xposed/app_process || exit 1
 $CHOWN root:shell /data/xposed/app_process || exit 1
