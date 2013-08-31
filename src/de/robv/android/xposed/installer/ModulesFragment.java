@@ -13,9 +13,15 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -29,6 +35,7 @@ public class ModulesFragment extends ListFragment {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
 	private Set<String> enabledModules;
 	private String installedXposedVersion;
+	ModuleAdapter modules;
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -36,7 +43,7 @@ public class ModulesFragment extends ListFragment {
         
 		installedXposedVersion = InstallerFragment.getJarInstalledVersion(null);
 		
-        ModuleAdapter modules = new ModuleAdapter(getActivity());
+        modules = new ModuleAdapter(getActivity());
         enabledModules = PackageChangeReceiver.getEnabledModules(getActivity());
         
 		PackageManager pm = getActivity().getPackageManager();
@@ -74,8 +81,41 @@ public class ModulesFragment extends ListFragment {
 
 		getListView().setDivider(new ColorDrawable(0xFF0099cc));
 		getListView().setDividerHeight(1);
+		registerForContextMenu(getListView());
 	}
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+            ContextMenuInfo menuInfo) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+		menu.setHeaderTitle(modules.getItem(((AdapterView.AdapterContextMenuInfo) menuInfo).position).getAppName());
+        getActivity().getMenuInflater().inflate(R.menu.modules_menu, menu);		
+    }
+	@Override 
+    public boolean onContextItemSelected(MenuItem item){  
+		AdapterView.AdapterContextMenuInfo module = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+		String packageName = modules.getItem(module.position).getPackageName();
+		Intent uninstallIntent,infoIntent;
+		switch (item.getItemId()) {
+		case R.id.configuration:
+			infoIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+			Uri uri = Uri.fromParts("package", packageName, null);
+	        infoIntent.setData(uri);
+			startActivity(infoIntent);
+			break;
+		case R.id.uninstall_module:
+			uninstallIntent = new Intent(Intent.ACTION_DELETE);
+		    uninstallIntent.setData(Uri.parse("package:" + packageName));
+		    startActivity(uninstallIntent);
+			break;
 
+		default:
+			break;
+		}
+		
+		return true ;
+    }
+	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		String packageName = (String) v.getTag();
@@ -200,6 +240,12 @@ public class ModulesFragment extends ListFragment {
 		@Override
 		public String toString() {
 			return String.format("%s [%s]", appName, moduleVersion);
+		}
+		public String getPackageName(){
+			return packageName;
+		}
+		public String getAppName(){
+			return appName;
 		}
 	}
 }

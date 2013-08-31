@@ -32,4 +32,6 @@
     <string name="app_process" translatable="false">app_process</string>
     <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
     <string name="translator"></string>
+    <string name="configuration">Configuration</string>
+    <string name="uninstall_module">Uninstall</string>    
 </resources>
