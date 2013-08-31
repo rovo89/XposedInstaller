@@ -348,7 +348,6 @@ public class InstallerFragment extends Fragment {
 	
 	private String install() {
 		File appProcessFile = writeAssetToCacheFile(APP_PROCESS_NAME, "app_process");
-		writeAssetToSdcardFile("Xposed-Disabler-CWM.zip");
 		if (appProcessFile == null)
 			return "Could not find asset \"app_process\"";
 		
