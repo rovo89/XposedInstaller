@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
+import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +12,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -33,7 +33,11 @@ public class ModulesFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-        
+
+		Activity activity = getActivity();
+		if (activity instanceof XposedInstallerActivity)
+			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_MODULES, null);
+
 		installedXposedVersion = InstallerFragment.getJarInstalledVersion(null);
 		
         ModuleAdapter modules = new ModuleAdapter(getActivity());
@@ -72,7 +76,7 @@ public class ModulesFragment extends ListFragment {
 
         getListView().setFastScrollEnabled(true);
 
-		getListView().setDivider(new ColorDrawable(0xFF0099cc));
+		getListView().setDivider(getResources().getDrawable(R.color.list_divider));
 		getListView().setDividerHeight(1);
 	}
 

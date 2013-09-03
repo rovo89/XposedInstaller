@@ -22,6 +22,11 @@ else
     echo No backup found at /system/bin/app_process.orig
 fi
 
+if $BRACKET -f /data/xposed/app_process ]; then
+	echo Deleting /data/xposed/app_process...
+	$RM /data/xposed/app_process || exit 1
+fi
+
 if $BRACKET -f /data/xposed/XposedBridge.jar ]; then
 	echo Deleting XposedBridge.jar...
 	$RM /data/xposed/XposedBridge.jar || exit 1

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="app_name">Xposed Installer</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome">Benvenuto in <b>Xposed Installer</b>!\nScegli cosa desideri fare:</string>
+    <string name="tabInstall">Framework</string>
+    <string name="tabInstallDescription">Qui puoi gestire il framework Xposed, richiesto da ogni modulo per poter funzionare.</string>
+    <string name="tabModules">Moduli</string>
+    <string name="tabModulesDescription">Il framework in sé non aggiunge alcuna funzionalità. È necessario installare i moduli per farlo. In questa sezione puoi attivare i moduli dopo averli installati.</string>
+    <string name="tabDownload">Download</string>
+    <string name="tabDownloadDescription">Questa sezione fornisce l\'accesso ad un repository di moduli, è quindi possibile cercare e scaricare quelli che preferisci e mantenerli aggiornati.</string>
+    <string name="welcome_framework_update_available">È disponibile un aggiornamento per il framework Xposed.</string>
+    <string name="welcome_update_available">Uno o più aggiornamenti per moduli sono disponibili.</string>
+    <string name="tabSettings">Impostazioni</string>
+    <string name="tabSettingsDescription">In questa sezione è possibile configurare Xposed Installer ed il framework.</string>
+    <string name="tabAbout">About</string>
+    <string name="tabAboutDescription">Qui è possibile conoscere chi ha creato Xposed, come richiedere supporto, ecc.</string>
+
+    <!-- Installer tab -->
+    <string name="install">Installa/Aggiorna</string>
+    <string name="uninstall">Rimuovi (ripristina app_process)</string>
+    <string name="installedVersion">attiva</string>
+    <string name="none">---</string>
+    <string name="latestVersion">ultima</string>
+    <string name="cleanup">Pulisci (rimuovi completamente il framework)</string>
+    <string name="versions">Versioni:</string>
+    <string name="soft_reboot">Riavvio soft</string>
+    <string name="reboot">Riavvio</string>
+    <string name="areyousure">Sei sicuro?</string>
+    <string name="phone_not_compatible">Xposed non è (ancora) compatibile con l\'SDK Android %1$d o con l\'architettura (%2$s) del tuo processore.</string>
+    <string name="not_tested_but_compatible">Xposed non è stato testato con l\'SDK Android %d, ma sembra essere compatibile. Puoi provare ad installarlo, se sei avventuroso.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Il modulo Xposed non è stato ancora attivato</string>
+    <string name="module_empty_description">(descrizione non disponibile)</string>
+    <string name="module_no_ui">Questo modulo non dispone di un\'interfaccia utente</string>
+    <string name="no_xposed_modules_found">Nessun modulo Xposed trovato!</string>
+    <string name="xposed_module_list_updated">La lista dei moduli Xposed è stata aggiornata\nI cambiamenti saranno attivi al riavvio</string>
+    <string name="warning_xposed_min_version">Questo modulo richiede una nuova versione (%s) di Xposed, di conseguenza non può essere attivato.</string>
+    <string name="no_min_version_specified">Questo modulo non specifica la versione di Xposed di cui ha bisogno.</string>
+    <string name="warning_min_version_too_low">Questo modulo è stato creato per la versione %1$s di Xposed, ma a causa di incompatibilità con la versione %2$s è stato disattivato.</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Cerca</string>
+    <string name="menuReload">Aggiorna</string>
+    <string name="changes">Cambia:</string>
+    <string name="branch_display">(%s branch)</string>
+    <string name="download_author">di %s</string>
+    <string name="download_unknown_author">autore sconosciuto</string>
+    <string name="download_status_installed">Installato (versione %s)</string>
+    <string name="download_status_update_available">Aggiornamento disponibile (versione %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Aggiunto il %1$s \u00b7 Aggiornato il %2$s</string>
+    <string name="download_sorting_title">Ordina per</string>
+    <string name="download_sorting_status">Disponi per stato</string>
+    <string name="download_sorting_updated">Disponi per ultimo aggiornamento</string>
+    <string name="download_sorting_created">Disponi per data creazione</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Aggiornamento disponibile</string>
+    <string name="download_section_installed">Installato</string>
+    <string name="download_section_not_installed">Non installato</string>
+    <string name="download_section_24h">Ultime 24 ore</string>
+    <string name="download_section_7d">Ultimi 7 giorni</string>
+    <string name="download_section_30d">Ultimi 30 giorni</string>
+    <string name="download_section_older">Oltre 30 giorni fa</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Download</string>
+    <string name="settings_enable_downloads">Abilita downloads</string>
+    <string name="settings_enable_downloads_summary">Permetti a Xposed Installer di controllare eventuali aggiornamenti e nuovi moduli</string>
+    <string name="settings_group_experimental">Sperimentale</string>
+    <string name="settings_use_armv5">Esperimento performance</string>
+    <string name="settings_use_armv5_summary">Se attivi questo, la performance del sistema potrebbe aumentare, diminuire o restare invariata. Sei libero di testarla e segnalarci gli effetti che essa ha avuto. È necessario reinstallare il framework e riavviare dopo aver cambiato questo.</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Sviluppatori principali:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> e <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning"><b>Non</b> contattare direttamente gli sviluppatori per supporto, usa i link in basso.</string>
+    <string name="about_translator_label">Tradotto da:</string>
+    <string name="translator">Vincenzo Cerminara</string>
+    <string name="about_version_label">Versione applicazione:</string>
+    <string name="about_source_label">Codice sorgente:</string>
+    <string name="about_support_label">Ottieni supporto:</string>
+    <string name="about_support_warning">Questo link è <b>solo</b> per l\'installer ed il framework! Se hai bisogno di supporto per un modulo, <b>non</b> usare questo, contatta l\'autore del modulo.</string>
+    <string name="about_libraries_label">Librerie utilizzate:</string>
+    
+    <!-- DownloadView -->
+    <string name="download_view_download">Download</string>
+    <string name="download_view_install">Installa</string>
+    <string name="download_view_cancel">Annulla</string>
+    <string name="download_view_no_url">Non sono disponibili URL per il download</string>
+    <string name="download_view_running">Download in corso (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">Download in attesa</string>
+    <string name="download_view_successful">Download completato con successo</string>
+    <string name="download_view_failed">Download fallito (errore %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 sum non è corretto (scaricato: %1$s, previsto: %2$s)</string>
+    <string name="download_could_not_read_file">Impossibile leggere il file scaricato: %s</string>
+    <string name="download_no_valid_apk">Il file scaricato non è un APK valido (o incompatibile)</string>
+    <string name="download_incorrect_package_name">Il nome del pacchetto non è corretto (scaricato: %1$s, previsto: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Download di %1$s fallito: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Download di %1$s fallito: %2$s</string>
+    <string name="repo_load_failed">Impossibile caricare repository da %1$s:\n%2$s</string>
+
+</resources>

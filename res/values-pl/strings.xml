@@ -3,11 +3,6 @@
     <string name="app_name">Instalator Xposed</string>
     <string name="tabInstall">Framework</string>
     <string name="tabModules">Moduły</string>
-    <string name="yes">Tak</string>
-    <string name="no">Nie</string>
-    <string name="installerDescription">Tu możesz zainstalować <b>Xposed</b> framework.
-		Jest to baza dla modułów, które mogą zmienić wygląd i zachowanie twojego smartphona.
-		Więcej informacji pod adresem <a href="http://forum.xda-developers.com/showthread.php?t=1574401">Tutaj</a>.</string>
     <string name="install">Zainstaluj/Uaktualnij</string>
     <string name="uninstall">Odinstaluj (przywróć app_process)</string>
     <string name="installedVersion">aktywna</string>

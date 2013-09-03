@@ -21,13 +21,10 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,16 +35,20 @@ public class InstallerFragment extends Fragment {
 	private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
 	private String APP_PROCESS_NAME = null;
 	private String XPOSEDTEST_NAME = null;
-	private static final String BINARIES_FOLDER = getBinariesFolder();
-	
+	private final String BINARIES_FOLDER = getBinariesFolder();
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		Activity activity = getActivity();
+		if (activity instanceof XposedInstallerActivity)
+			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_INSTALL, null);
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_installer, container, false);
-		
-		// make link in description clickable
-		final TextView txtDescription = (TextView) v.findViewById(R.id.installerDescription);
-		txtDescription.setMovementMethod(LinkMovementMethod.getInstance());
 		
 		final TextView txtAppProcessInstalledVersion = (TextView) v.findViewById(R.id.app_process_installed_version);
 		final TextView txtAppProcessLatestVersion = (TextView) v.findViewById(R.id.app_process_latest_version);
@@ -68,19 +69,14 @@ public class InstallerFragment extends Fragment {
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk15";
 			isCompatible = checkCompatibility();
 			
-		} else if (Build.VERSION.SDK_INT == 16) {
+		} else if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT <= 18) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
 			isCompatible = checkCompatibility();
 			
-		} else if (Build.VERSION.SDK_INT == 17) {
-			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk17";
-			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk17";
-			isCompatible = checkCompatibility();
-			
-		} else if (Build.VERSION.SDK_INT > 17) {
-			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk17";
-			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk17";
+		} else if (Build.VERSION.SDK_INT > 18) {
+			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
+			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
 			isCompatible = checkCompatibility();
 			if (isCompatible) {
 				btnInstall.setText(String.format(getString(R.string.not_tested_but_compatible), Build.VERSION.SDK_INT));
@@ -98,13 +94,6 @@ public class InstallerFragment extends Fragment {
 		txtAppProcessLatestVersion.setText(appProcessLatestVersion);
 		txtJarInstalledVersion.setText(jarInstalledVersion);
 		txtJarLatestVersion.setText(jarLatestVersion);
-		try {
-			final Activity activity = getActivity();
-			final String installerVersion = activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0).versionName;
-			((TextView) v.findViewById(R.id.installer_version)).setText(installerVersion);
-		} catch (NameNotFoundException e) {
-			Log.e(XposedInstallerActivity.TAG, "could not get information about our own package", e);
-		}
 
 		if (appProcessInstalledVersion.equals(none)
 				|| PackageChangeReceiver.compareVersions(appProcessInstalledVersion, appProcessLatestVersion) < 0)
@@ -211,14 +200,17 @@ public class InstallerFragment extends Fragment {
 	}
 	
 	private static String getBinariesFolder() {
-		if (Build.CPU_ABI.startsWith("armeabi-v7"))
+		if (Build.CPU_ABI.startsWith("armeabi-v7")) {
+			if (XposedApp.getPreferences().getBoolean("use_armv5", false))
+				return "armv5te/";
 			return "armv7-a/";
-		else if (Build.CPU_ABI.startsWith("armeabi-v6"))
+		} else if (Build.CPU_ABI.startsWith("armeabi-v6")) {
 			return "armv5te/";
-		else if (Build.CPU_ABI.startsWith("armeabi-v5"))
+		} else if (Build.CPU_ABI.startsWith("armeabi-v5")) {
 			return "armv5te/";
-		else
+		} else {
 			return null;
+		}
 	}
 	
 	private boolean checkCompatibility() {
@@ -356,7 +348,6 @@ public class InstallerFragment extends Fragment {
 	
 	private String install() {
 		File appProcessFile = writeAssetToCacheFile(APP_PROCESS_NAME, "app_process");
-		writeAssetToSdcardFile("Xposed-Disabler-CWM.zip");
 		if (appProcessFile == null)
 			return "Could not find asset \"app_process\"";
 		
@@ -409,13 +400,21 @@ public class InstallerFragment extends Fragment {
 		
 		try {
 			Process p = Runtime.getRuntime().exec(
-					new String[] { "su", "-c", scriptFile.getAbsolutePath() + " " + android.os.Process.myUid() + " 2>&1" },
-					null,
-					getActivity().getCacheDir());
+					new String[] {
+						"su",
+						"-c",
+						"cd " + getActivity().getCacheDir() + "; "
+							+ scriptFile.getAbsolutePath() + " " + android.os.Process.myUid() + " 2>&1"
+					});
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			BufferedReader stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 			StringBuilder sb = new StringBuilder();
 			String line;
 			while ((line = stdout.readLine()) != null) {
+				sb.append(line);
+				sb.append('\n');
+			}
+			while ((line = stderr.readLine()) != null) {
 				sb.append(line);
 				sb.append('\n');
 			}

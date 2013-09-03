@@ -70,12 +70,9 @@
     <string name="translator"><a href="http://androplus.kagome-kagome.com/">WedyDQ10</a></string>
     <string name="about_version_label">アプリのバージョン:</string>
     <string name="about_source_label">ソースコード:</string>
-    <string name="about_source">https://github.com/rovo89</string>
     <string name="about_support_label">サポート:</string>
-    <string name="about_support">http://forum.xda-developers.com/showthread.php?t=1574401</string>
     <string name="about_support_warning">インストーラとフレームワーク<b>専用</b>のサポートページです! モジュールの問題は<b>ここを使わずに</b>モジュールの制作者に連絡してください。</string>
     <string name="about_libraries_label">使用ライブラリ:</string>
-    <string name="about_libraries"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a></string>
     <string name="download_view_download">ダウンロード</string>
     <string name="download_view_install">インストール</string>
     <string name="download_view_cancel">キャンセル</string>
