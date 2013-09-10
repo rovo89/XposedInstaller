@@ -40,9 +40,9 @@ public class ModulesFragment extends ListFragment {
 
 		installedXposedVersion = InstallerFragment.getJarInstalledVersion(null);
 		
-        ModuleAdapter modules = new ModuleAdapter(getActivity());
-        enabledModules = PackageChangeReceiver.getEnabledModules(getActivity());
-        
+		ModuleAdapter modules = new ModuleAdapter(getActivity());
+		enabledModules = PackageChangeReceiver.getEnabledModules(getActivity());
+		
 		PackageManager pm = getActivity().getPackageManager();
 		for (PackageInfo pkg : pm.getInstalledPackages(PackageManager.GET_META_DATA)) {
 			ApplicationInfo app = pkg.applicationInfo;
@@ -70,11 +70,11 @@ public class ModulesFragment extends ListFragment {
 				return lhs.appName.compareTo(rhs.appName);
 			}
 		});
-        
-        setListAdapter(modules);
-        setEmptyText(getActivity().getString(R.string.no_xposed_modules_found));
+		
+		setListAdapter(modules);
+		setEmptyText(getActivity().getString(R.string.no_xposed_modules_found));
 
-        getListView().setFastScrollEnabled(true);
+		getListView().setFastScrollEnabled(true);
 
 		getListView().setDivider(getResources().getDrawable(R.color.list_divider));
 		getListView().setDividerHeight(1);
@@ -110,7 +110,7 @@ public class ModulesFragment extends ListFragment {
 		return intent;
 	}
 
-    private class ModuleAdapter extends ArrayAdapter<XposedModule> {
+	private class ModuleAdapter extends ArrayAdapter<XposedModule> {
 		public ModuleAdapter(Context context) {
 			super(context, R.layout.list_item_module, R.id.text);
 		}
@@ -165,23 +165,23 @@ public class ModulesFragment extends ListFragment {
 				checkbox.setEnabled(false);
 				warningText.setText(getString(R.string.no_min_version_specified));
 				warningText.setVisibility(View.VISIBLE);
-            } else if (installedXposedVersion != null && PackageChangeReceiver.compareVersions(item.minVersion, installedXposedVersion) > 0) {
-            	checkbox.setEnabled(false);
-            	warningText.setText(String.format(getString(R.string.warning_xposed_min_version), 
-            			PackageChangeReceiver.trimVersion(item.minVersion)));
-            	warningText.setVisibility(View.VISIBLE);
-            } else if (PackageChangeReceiver.compareVersions(item.minVersion, PackageChangeReceiver.MIN_MODULE_VERSION) < 0) {
-            	checkbox.setEnabled(false);
-            	warningText.setText(String.format(getString(R.string.warning_min_version_too_low), 
-            			PackageChangeReceiver.trimVersion(item.minVersion), PackageChangeReceiver.MIN_MODULE_VERSION));
-            	warningText.setVisibility(View.VISIBLE);
-            } else {
-            	checkbox.setEnabled(true);
-            	warningText.setVisibility(View.GONE);
-            }
-            return view;
+			} else if (installedXposedVersion != null && PackageChangeReceiver.compareVersions(item.minVersion, installedXposedVersion) > 0) {
+				checkbox.setEnabled(false);
+				warningText.setText(String.format(getString(R.string.warning_xposed_min_version), 
+						PackageChangeReceiver.trimVersion(item.minVersion)));
+				warningText.setVisibility(View.VISIBLE);
+			} else if (PackageChangeReceiver.compareVersions(item.minVersion, PackageChangeReceiver.MIN_MODULE_VERSION) < 0) {
+				checkbox.setEnabled(false);
+				warningText.setText(String.format(getString(R.string.warning_min_version_too_low), 
+						PackageChangeReceiver.trimVersion(item.minVersion), PackageChangeReceiver.MIN_MODULE_VERSION));
+				warningText.setVisibility(View.VISIBLE);
+			} else {
+				checkbox.setEnabled(true);
+				warningText.setVisibility(View.GONE);
+			}
+			return view;
 		}
-    	
+		
 	}
 
 	private static class XposedModule {
