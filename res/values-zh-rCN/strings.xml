@@ -71,8 +71,8 @@
     <string name="settings_enable_downloads">启用下载</string>
     <string name="settings_enable_downloads_summary">允许Xposed安装器检查更新和新模块</string>
     <string name="settings_group_experimental">实验性</string>
-    <string name="settings_use_armv5">性能试验</string>
-    <string name="settings_use_armv5_summary">如果您启用该选项，您的系统性能可能更好、更差或没有变化。请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启。</string>
+    <string name="settings_performance_experiment">性能试验</string>
+    <string name="settings_performance_experiment_summary">如果您启用该选项，您的系统性能可能更好、更差或没有变化。请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启。</string>
 
     <!-- About tab -->
     <string name="about_developers_label">主要开发者：</string>
