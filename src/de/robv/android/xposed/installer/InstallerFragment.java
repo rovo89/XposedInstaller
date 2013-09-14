@@ -202,6 +202,8 @@ public class InstallerFragment extends Fragment {
 	private static String getBinariesFolder() {
 		if (Build.CPU_ABI.startsWith("armeabi")) {
 			return "arm/";
+		} else if (Build.CPU_ABI.startsWith("x86")) {
+				return "x86/";
 		} else {
 			return null;
 		}
@@ -380,7 +382,7 @@ public class InstallerFragment extends Fragment {
 		if (scriptFile == null)
 			return "Could not find asset \"" + name + "\"";
 		
-		File busybox = writeAssetToCacheFile("busybox-xposed");
+		File busybox = writeAssetToCacheFile(BINARIES_FOLDER + "busybox-xposed", "busybox-xposed");
 		if (busybox == null) {
 			scriptFile.delete();
 			return "Could not find asset \"busybox-xposed\"";
