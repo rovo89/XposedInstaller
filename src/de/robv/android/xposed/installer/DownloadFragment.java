@@ -406,7 +406,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		}
 
 		public InstalledModule getInstalled() {
-			return mModuleUtil.getModule(group.packageName);
+			return isFramework ? mModuleUtil.getFramework() : mModuleUtil.getModule(group.packageName);
 		}
 
 		public int getInstallStatus() {

@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.regex.Matcher;
@@ -18,7 +17,6 @@ import java.util.regex.Pattern;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
@@ -30,6 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import de.robv.android.xposed.installer.util.ModuleUtil;
 
 public class InstallerFragment extends Fragment {
 	private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
@@ -117,9 +116,8 @@ public class InstallerFragment extends Fragment {
 					txtAppProcessInstalledVersion.setTextColor(Color.GREEN);
 					txtJarInstalledVersion.setText(getJarInstalledVersion(none));
 					txtJarInstalledVersion.setTextColor(Color.GREEN);
-					Context context = InstallerFragment.this.getActivity();
-					Set<String> enabledModules = PackageChangeReceiver.getEnabledModules(context);
-					PackageChangeReceiver.updateModulesList(context, enabledModules);
+
+					ModuleUtil.getInstance().updateModulesList();
 				}
 			});
 		} else {

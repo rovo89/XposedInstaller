@@ -1,29 +1,46 @@
 package de.robv.android.xposed.installer.util;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
+import android.widget.Toast;
+import de.robv.android.xposed.installer.InstallerFragment;
+import de.robv.android.xposed.installer.PackageChangeReceiver;
+import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
+import de.robv.android.xposed.installer.XposedInstallerActivity;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 
 
 public final class ModuleUtil {
 	private static ModuleUtil mInstance = null;
 	private final XposedApp mApp;
+	private SharedPreferences mPref;
 	private final PackageManager mPm;
-	private final String mFrameworkPackage;
+	private final String mFrameworkPackageName;
+	private InstalledModule mFramework = null;
 	private Map<String, InstalledModule> mInstalledModules;
 	private boolean mIsReloading = false;
 
+	public static String MIN_MODULE_VERSION = "2.0"; // reject modules with xposedminversion below this
+
 	private ModuleUtil() {
 		mApp = XposedApp.getInstance();
+		mPref = mApp.getSharedPreferences("enabled_modules", Context.MODE_PRIVATE);
 		mPm = mApp.getPackageManager();
-		mFrameworkPackage = mApp.getPackageName();
+		mFrameworkPackageName = mApp.getPackageName();
 	}
 
 	public static synchronized ModuleUtil getInstance() {
@@ -50,7 +67,7 @@ public final class ModuleUtil {
 			if (app.metaData != null && app.metaData.containsKey("xposedmodule"))
 				modules.put(pkg.packageName, new InstalledModule(pkg, false));
 			else if (isFramework(pkg.packageName))
-				modules.put(pkg.packageName, new InstalledModule(pkg, true));
+				mFramework = new InstalledModule(pkg, true);
 
 		}
 
@@ -86,15 +103,15 @@ public final class ModuleUtil {
 	}
 
 	public InstalledModule getFramework() {
-		return getModule(mFrameworkPackage);
+		return mFramework;
 	}
 
 	public boolean isFramework(String packageName) {
-		return mFrameworkPackage.equals(packageName);
+		return mFrameworkPackageName.equals(packageName);
 	}
 
 	public boolean isInstalled(String packageName) {
-		return mInstalledModules.containsKey(packageName);
+		return mInstalledModules.containsKey(packageName) || isFramework(packageName);
 	}
 
 	public InstalledModule getModule(String packageName) {
@@ -103,6 +120,59 @@ public final class ModuleUtil {
 
 	public Map<String, InstalledModule> getModules() {
 		return mInstalledModules;
+	}
+
+	public void setModuleEnabled(String packageName, boolean enabled) {
+		if (enabled)
+			mPref.edit().putInt(packageName, 1).commit();
+		else
+			mPref.edit().remove(packageName).commit();
+	}
+
+	public boolean isModuleEnabled(String packageName) {
+		return mPref.contains(packageName);
+	}
+
+	public List<InstalledModule> getEnabledModules() {
+		LinkedList<InstalledModule> result = new LinkedList<InstalledModule>();
+
+		for (String packageName : mPref.getAll().keySet()) {
+			InstalledModule module = getModule(packageName);
+			if (module != null)
+				result.add(module);
+			else
+				setModuleEnabled(packageName, false);
+		}
+
+		return result;
+	}
+
+	public synchronized void updateModulesList() {
+		try {
+			Log.i(XposedInstallerActivity.TAG, "updating modules.list");
+			String installedXposedVersion = InstallerFragment.getJarInstalledVersion(null);
+			if (installedXposedVersion == null) {
+				Toast.makeText(mApp, "The xposed framework is not installed", Toast.LENGTH_SHORT).show();
+				return;
+			}
+
+			PrintWriter modulesList = new PrintWriter("/data/xposed/modules.list");
+			List<InstalledModule> enabledModules = getEnabledModules();
+			for (InstalledModule module : enabledModules) {
+				if (module.minVersion == null
+						|| PackageChangeReceiver.compareVersions(module.minVersion, installedXposedVersion) > 0
+						|| PackageChangeReceiver.compareVersions(module.minVersion, MIN_MODULE_VERSION) < 0)
+					continue;
+
+				modulesList.println(module.app.sourceDir);
+			}
+			modulesList.close();
+
+			Toast.makeText(mApp, R.string.xposed_module_list_updated, Toast.LENGTH_SHORT).show();
+		} catch (IOException e) {
+			Log.e(XposedInstallerActivity.TAG, "cannot write /data/xposed/modules.list", e);
+			Toast.makeText(mApp, "cannot write /data/xposed/modules.list", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 
@@ -114,9 +184,11 @@ public final class ModuleUtil {
 		public final String versionName;
 		public final int versionCode;
 		public final String minVersion;
-		public final String description;
 
 		private String appName; // loaded lazyily
+		private String description; // loaded lazyily
+
+		private Drawable.ConstantState iconCache = null;
 
 		private InstalledModule(PackageInfo pkg, boolean isFramework) {
 			this.app = pkg.applicationInfo;
@@ -130,18 +202,6 @@ public final class ModuleUtil {
 				this.description = "";
 			} else {
 				this.minVersion = app.metaData.getString("xposedminversion");
-				Object descriptionRaw = app.metaData.get("xposeddescription");
-				String description = null;
-				if (descriptionRaw instanceof String) {
-					description = ((String) descriptionRaw).trim();
-				} else if (descriptionRaw instanceof Integer) {
-					try {
-						int resId = (Integer) descriptionRaw;
-						if (resId != 0)
-							description = mPm.getResourcesForApplication(app).getString(resId).trim();
-					} catch (Exception ignored) {}
-				}
-				this.description = (description != null) ? description : "";
 			}
 		}
 
@@ -151,12 +211,35 @@ public final class ModuleUtil {
 			return appName;
 		}
 
+		public String getDescription() {
+			if (this.description == null) {
+				Object descriptionRaw = app.metaData.get("xposeddescription");
+				String descriptionTmp = null;
+				if (descriptionRaw instanceof String) {
+					descriptionTmp = ((String) descriptionRaw).trim();
+				} else if (descriptionRaw instanceof Integer) {
+					try {
+						int resId = (Integer) descriptionRaw;
+						if (resId != 0)
+							descriptionTmp = mPm.getResourcesForApplication(app).getString(resId).trim();
+					} catch (Exception ignored) {}
+				}
+				this.description = (descriptionTmp != null) ? descriptionTmp : "";
+			}
+			return this.description;
+		}
+
 		public boolean isUpdate(ModuleVersion version) {
 			return (version != null) ? version.code > versionCode : false;
 		}
 
 		public Drawable getIcon() {
-			return app.loadIcon(mPm);
+			if (iconCache != null)
+				return iconCache.newDrawable();
+
+			Drawable result = app.loadIcon(mPm);
+			iconCache = result.getConstantState();
+			return result;
 		}
 
 		@Override

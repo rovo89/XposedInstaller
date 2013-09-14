@@ -19,7 +19,7 @@ import android.view.Window;
 import android.widget.SimpleAdapter;
 
 public class XposedInstallerActivity extends Activity {
-	static final String TAG = "xposed_installer";
+	public static final String TAG = "XposedInstaller";
 	
 	static final String EXTRA_OPEN_TAB = "opentab";
 	static final int TAB_INSTALL = 0;

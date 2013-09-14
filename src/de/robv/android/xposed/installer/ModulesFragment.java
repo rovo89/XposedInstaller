@@ -2,17 +2,13 @@ package de.robv.android.xposed.installer;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 
 import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +20,19 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import de.robv.android.xposed.installer.util.ModuleUtil;
+import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 
 public class ModulesFragment extends ListFragment {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
-	private Set<String> enabledModules;
 	private String installedXposedVersion;
+	private ModuleUtil mModuleUtil;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    mModuleUtil = ModuleUtil.getInstance();
+	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -41,33 +45,11 @@ public class ModulesFragment extends ListFragment {
 		installedXposedVersion = InstallerFragment.getJarInstalledVersion(null);
 
 		ModuleAdapter modules = new ModuleAdapter(getActivity());
-		enabledModules = PackageChangeReceiver.getEnabledModules(getActivity());
-
-		PackageManager pm = getActivity().getPackageManager();
-		for (PackageInfo pkg : pm.getInstalledPackages(PackageManager.GET_META_DATA)) {
-			ApplicationInfo app = pkg.applicationInfo;
-			if (app.metaData == null || !app.metaData.containsKey("xposedmodule"))
-				continue;
-
-			String minVersion = app.metaData.getString("xposedminversion");
-			String description = app.metaData.getString("xposeddescription", "");
-			if (description.length() == 0) {
-				// Check if the metadata is using a resource and load it if so
-				try {
-					int resId = app.metaData.getInt("xposeddescription", 0);
-					if (resId != 0) {
-						description = pm.getResourcesForApplication(app).getString(resId);
-					}
-				} catch (Exception e) { }
-			}
-			modules.add(new XposedModule(pkg.packageName, pkg.versionName, pm.getApplicationLabel(app).toString(),
-					pm.getApplicationIcon(app), minVersion, description));
-		}
-
-		modules.sort(new Comparator<XposedModule>() {
+		modules.addAll(mModuleUtil.getModules().values());
+		modules.sort(new Comparator<InstalledModule>() {
 			@Override
-			public int compare(XposedModule lhs, XposedModule rhs) {
-				return lhs.appName.compareTo(rhs.appName);
+			public int compare(InstalledModule lhs, InstalledModule rhs) {
+				return lhs.getAppName().compareTo(rhs.getAppName());
 			}
 		});
 
@@ -110,7 +92,7 @@ public class ModulesFragment extends ListFragment {
 		return intent;
 	}
 
-	private class ModuleAdapter extends ArrayAdapter<XposedModule> {
+	private class ModuleAdapter extends ArrayAdapter<InstalledModule> {
 		public ModuleAdapter(Context context) {
 			super(context, R.layout.list_item_module, R.id.text);
 		}
@@ -125,32 +107,25 @@ public class ModulesFragment extends ListFragment {
 					@Override
 					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 						String packageName = (String) buttonView.getTag();
-						boolean changed = enabledModules.contains(packageName) ^ isChecked;
+						boolean changed = mModuleUtil.isModuleEnabled(packageName) ^ isChecked;
 						if (changed) {
-							synchronized (enabledModules) {
-								if (isChecked)
-									enabledModules.add(packageName);
-								else
-									enabledModules.remove(packageName);
-							}
-
-							PackageChangeReceiver.setEnabledModules(getContext(), enabledModules);
-							PackageChangeReceiver.updateModulesList(getContext(), enabledModules);
+							mModuleUtil.setModuleEnabled(packageName, isChecked);
+							mModuleUtil.updateModulesList();
 						}
 					}
 				});
 			}
 
-			XposedModule item = getItem(position);
+			InstalledModule item = getItem(position);
 			// Store the package name in some views' tag for later access
 			((CheckBox) view.findViewById(R.id.checkbox)).setTag(item.packageName);
 			view.setTag(item.packageName);
 
-			((ImageView) view.findViewById(R.id.icon)).setImageDrawable(item.icon);
+			((ImageView) view.findViewById(R.id.icon)).setImageDrawable(item.getIcon());
 
 			TextView descriptionText = (TextView) view.findViewById(R.id.description);
-			if (item.description.length() > 0) {
-				descriptionText.setText(item.description);
+			if (!item.getDescription().isEmpty()) {
+				descriptionText.setText(item.getDescription());
 				descriptionText.setTextColor(0xFF777777);
 			} else {
 				descriptionText.setText(getActivity().getString(R.string.module_empty_description));
@@ -158,7 +133,7 @@ public class ModulesFragment extends ListFragment {
 			}
 
 			CheckBox checkbox = (CheckBox) view.findViewById(R.id.checkbox);
-			checkbox.setChecked(enabledModules.contains(item.packageName));
+			checkbox.setChecked(mModuleUtil.isModuleEnabled(item.packageName));
 			TextView warningText = (TextView) view.findViewById(R.id.warning);
 
 			if (item.minVersion == null) {
@@ -170,10 +145,10 @@ public class ModulesFragment extends ListFragment {
 				warningText.setText(String.format(getString(R.string.warning_xposed_min_version), 
 						PackageChangeReceiver.trimVersion(item.minVersion)));
 				warningText.setVisibility(View.VISIBLE);
-			} else if (PackageChangeReceiver.compareVersions(item.minVersion, PackageChangeReceiver.MIN_MODULE_VERSION) < 0) {
+			} else if (PackageChangeReceiver.compareVersions(item.minVersion, ModuleUtil.MIN_MODULE_VERSION) < 0) {
 				checkbox.setEnabled(false);
 				warningText.setText(String.format(getString(R.string.warning_min_version_too_low), 
-						PackageChangeReceiver.trimVersion(item.minVersion), PackageChangeReceiver.MIN_MODULE_VERSION));
+						PackageChangeReceiver.trimVersion(item.minVersion), ModuleUtil.MIN_MODULE_VERSION));
 				warningText.setVisibility(View.VISIBLE);
 			} else {
 				checkbox.setEnabled(true);
@@ -182,28 +157,5 @@ public class ModulesFragment extends ListFragment {
 			return view;
 		}
 
-	}
-
-	private static class XposedModule {
-		String packageName;
-		String moduleVersion;
-		String appName;
-		Drawable icon;
-		String minVersion;
-		String description;
-
-		public XposedModule(String packageName, String moduleVersion, String appName, Drawable icon, String minVersion, String description) {
-			this.packageName = packageName;
-			this.moduleVersion = moduleVersion;
-			this.appName = appName;
-			this.icon = icon;
-			this.minVersion = minVersion;
-			this.description = description.trim();
-		}
-
-		@Override
-		public String toString() {
-			return String.format("%s [%s]", appName, moduleVersion);
-		}
 	}
 }

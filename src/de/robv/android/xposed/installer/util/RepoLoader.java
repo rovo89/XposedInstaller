@@ -164,9 +164,6 @@ public class RepoLoader {
 
 		Map<String, InstalledModule> installedModules = ModuleUtil.getInstance().getModules();
 		for (InstalledModule installed : installedModules.values()) {
-			if (installed.isFramework)
-				continue;
-
 			Module download = getModule(installed.packageName);
 			if (download == null)
 				continue;

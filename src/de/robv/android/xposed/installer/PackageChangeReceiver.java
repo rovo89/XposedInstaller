@@ -1,11 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,18 +9,12 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 
 public class PackageChangeReceiver extends BroadcastReceiver {
-	public static String MIN_MODULE_VERSION = "2.0";
+	private final static ModuleUtil mModuleUtil = ModuleUtil.getInstance();
 	
 	@Override
 	public void onReceive(final Context context, final Intent intent) {
@@ -38,27 +26,22 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 		String packageName = getPackageName(intent);
 		if (packageName == null)
 			return;
-		
-		if (intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)
-				&& !intent.getBooleanExtra(Intent.EXTRA_REPLACING, false)) {
+
+		if (intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)) {
 			// Package being removed, disable it if it was a previously active Xposed mod
-			Set<String> enabledModules = getEnabledModules(context);
-			if (enabledModules.contains(packageName)) {
-				enabledModules.remove(packageName);
-				setEnabledModules(context, enabledModules);
-				updateModulesList(context, enabledModules);
+			if (mModuleUtil.isModuleEnabled(packageName)) {
+				mModuleUtil.setModuleEnabled(packageName, false);
+				mModuleUtil.updateModulesList();
 			}
 			return;
 		}
-		
-		
+
 		InstalledModule module = ModuleUtil.getInstance().reloadSingleModule(packageName);
 		if (module == null)
 			return;
 
-		Set<String> enabledModules = getEnabledModules(context);
-		if (enabledModules.contains(packageName)) {
-			updateModulesList(context, enabledModules);
+		if (mModuleUtil.isModuleEnabled(packageName)) {
+			mModuleUtil.updateModulesList();
 		} else {
 			showNotActivatedNotification(context, packageName, module.getAppName());
 		}
@@ -69,89 +52,7 @@ public class PackageChangeReceiver extends BroadcastReceiver {
         return (uri != null) ? uri.getSchemeSpecificPart() : null;
     }
 	
-	static Set<String> getEnabledModules(Context context) {
-		Set<String> modules = new HashSet<String>();
-		try {
-			BufferedReader moduleLines = new BufferedReader(new FileReader("/data/xposed/modules.whitelist"));
-			String module;
-			while ((module = moduleLines.readLine()) != null) {
-				modules.add(module);
-			}
-			moduleLines.close();
-		} catch (IOException e) {
-			Log.e(XposedInstallerActivity.TAG, "cannot read /data/xposed/modules.whitelist", e);
-			return modules;
-		}
-		return modules;
-	}
-	
-	static void setEnabledModules(Context context, Set<String> modules) {
-		try {
-			PrintWriter pw = new PrintWriter("/data/xposed/modules.whitelist");
-			synchronized (modules) {
-				for (String module : modules) {
-					pw.println(module);
-				}
-			}
-			pw.close();
-		} catch (IOException e) {
-			Toast.makeText(context, "cannot write /data/xposed/modules.whitelist", Toast.LENGTH_LONG).show();
-			Log.e(XposedInstallerActivity.TAG, "cannot write /data/xposed/modules.whitelist", e);
-		}
-	}
-	
-	static synchronized void updateModulesList(final Context context, final Set<String> enabledModules) {
-		new AsyncTask<Void, Void, String>() {
-			@Override
-			protected String doInBackground(Void... params) {
-				try {
-					Log.i(XposedInstallerActivity.TAG, "updating modules.list");
-					String installedXposedVersion = InstallerFragment.getJarInstalledVersion(null);
-					if (installedXposedVersion == null)
-						return "The xposed framework is not installed";
-					
-					PackageManager pm = context.getPackageManager();
-					PrintWriter modulesList = new PrintWriter("/data/xposed/modules.list");
 
-					HashSet<String> enabledModulesClone;
-					synchronized (enabledModules) {
-						enabledModulesClone = new HashSet<String>(enabledModules);
-					}
-					for (String packageName : enabledModulesClone) {
-						ApplicationInfo app;
-						try {
-							app = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
-						} catch (NameNotFoundException e) {
-							continue;
-						}
-						
-						if (app.metaData == null
-						|| !app.metaData.containsKey("xposedmodule")
-						|| !app.metaData.containsKey("xposedminversion"))
-							continue;
-						
-						String minVersion = app.metaData.getString("xposedminversion");
-						if (minVersion == null || PackageChangeReceiver.compareVersions(minVersion, installedXposedVersion) > 0
-								|| PackageChangeReceiver.compareVersions(minVersion, MIN_MODULE_VERSION) < 0)
-							continue;
-						
-						modulesList.println(app.sourceDir);
-					}
-					modulesList.close();
-					
-					return context.getString(R.string.xposed_module_list_updated);
-				} catch (IOException e) {
-					Log.e(XposedInstallerActivity.TAG, "cannot write /data/xposed/modules.list", e);
-					return "cannot write /data/xposed/modules.list";
-				}
-			}
-			
-			@Override
-			protected void onPostExecute(String result) {
-				Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
-			}
-		}.execute();
-	}
 
 	private static void showNotActivatedNotification(Context context, String packageName, String appName) {
 		Intent startXposedInstaller = new Intent(context, XposedInstallerActivity.class);
