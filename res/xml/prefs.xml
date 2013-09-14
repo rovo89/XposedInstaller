@@ -10,15 +10,15 @@
             android:summary="@string/settings_enable_downloads_summary"
             android:title="@string/settings_enable_downloads" />
     </PreferenceCategory>
-
+<!--
     <PreferenceCategory
         android:key="group_experimental"
         android:title="@string/settings_group_experimental" >
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="use_armv5"
-            android:summary="@string/settings_use_armv5_summary"
-            android:title="@string/settings_use_armv5" />
+            android:key="performance_experiment"
+            android:summary="@string/settings_performance_experiment_summary"
+            android:title="@string/settings_performance_experiment" />
     </PreferenceCategory>
-
+-->
 </PreferenceScreen>

@@ -71,8 +71,8 @@
     <string name="settings_enable_downloads">Abilita downloads</string>
     <string name="settings_enable_downloads_summary">Permetti a Xposed Installer di controllare eventuali aggiornamenti e nuovi moduli</string>
     <string name="settings_group_experimental">Sperimentale</string>
-    <string name="settings_use_armv5">Esperimento performance</string>
-    <string name="settings_use_armv5_summary">Se attivi questo, la performance del sistema potrebbe aumentare, diminuire o restare invariata. Sei libero di testarla e segnalarci gli effetti che essa ha avuto. È necessario reinstallare il framework e riavviare dopo aver cambiato questo.</string>
+    <string name="settings_performance_experiment">Esperimento performance</string>
+    <string name="settings_performance_experiment_summary">Se attivi questo, la performance del sistema potrebbe aumentare, diminuire o restare invariata. Sei libero di testarla e segnalarci gli effetti che essa ha avuto. È necessario reinstallare il framework e riavviare dopo aver cambiato questo.</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Sviluppatori principali:</string>

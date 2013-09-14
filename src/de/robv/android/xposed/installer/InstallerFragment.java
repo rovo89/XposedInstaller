@@ -200,14 +200,8 @@ public class InstallerFragment extends Fragment {
 	}
 	
 	private static String getBinariesFolder() {
-		if (Build.CPU_ABI.startsWith("armeabi-v7")) {
-			if (XposedApp.getPreferences().getBoolean("use_armv5", false))
-				return "armv5te/";
-			return "armv7-a/";
-		} else if (Build.CPU_ABI.startsWith("armeabi-v6")) {
-			return "armv5te/";
-		} else if (Build.CPU_ABI.startsWith("armeabi-v5")) {
-			return "armv5te/";
+		if (Build.CPU_ABI.startsWith("armeabi")) {
+			return "arm/";
 		} else {
 			return null;
 		}

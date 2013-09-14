@@ -61,8 +61,8 @@
     <string name="settings_enable_downloads">ダウンロードを有効化</string>
     <string name="settings_enable_downloads_summary">Xposedインストーラやモジュールの更新を定期的に確認するようにします。</string>
     <string name="settings_group_experimental">実験的</string>
-    <string name="settings_use_armv5">パフォーマンス実験</string>
-    <string name="settings_use_armv5_summary">これを有効にするとパフォーマンスに影響が出る可能性があります。どうか試してみて効果があるかないか報告してください。有効にした後はフレームワークを再インストールして再起動してください。</string>
+    <string name="settings_performance_experiment">パフォーマンス実験</string>
+    <string name="settings_performance_experiment_summary">これを有効にするとパフォーマンスに影響が出る可能性があります。どうか試してみて効果があるかないか報告してください。有効にした後はフレームワークを再インストールして再起動してください。</string>
     <string name="about_developers_label">メイン開発者:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> と <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">サポートが必要な場合直接<b>連絡しないで</b>以下のリンクを使ってください。</string>

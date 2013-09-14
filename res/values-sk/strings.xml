@@ -71,8 +71,8 @@
     <string name="settings_enable_downloads">Povoliť sťahovania</string>
     <string name="settings_enable_downloads_summary">Povoliť Xposed Inštalátoru kontrolovanie aktualizácií a nových modulov</string>
     <string name="settings_group_experimental">Experimentálne</string>
-    <string name="settings_use_armv5">Experiment s výkonom</string>
-    <string name="settings_use_armv5_summary">Ak povolíte túto možnosť, výkon systému sa môže buď zvýšiť, znížiť alebo zostať rovnaký. Nebojte sa vyskúšať experiment s výkonom a podajte správu o efekte, ktorý vidíte (nemusí byť však vôbec žiadny). Po zmene tejto možnosti je nutné znovu inštalovať framework a vykonať reštart zariadenia.</string>
+    <string name="settings_performance_experiment">Experiment s výkonom</string>
+    <string name="settings_performance_experiment_summary">Ak povolíte túto možnosť, výkon systému sa môže buď zvýšiť, znížiť alebo zostať rovnaký. Nebojte sa vyskúšať experiment s výkonom a podajte správu o efekte, ktorý vidíte (nemusí byť však vôbec žiadny). Po zmene tejto možnosti je nutné znovu inštalovať framework a vykonať reštart zariadenia.</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Hlavní vývojári:</string>
