@@ -23,6 +23,8 @@ import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
+import de.robv.android.xposed.installer.util.ModuleUtil;
+import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 
 public class PackageChangeReceiver extends BroadcastReceiver {
 	public static String MIN_MODULE_VERSION = "2.0";
@@ -50,22 +52,16 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			return;
 		}
 		
-		String appName;
-		try {
-			PackageManager pm = context.getPackageManager();
-			ApplicationInfo app = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
-			if (app.metaData == null || !app.metaData.containsKey("xposedmodule"))
-				return;
-			appName = pm.getApplicationLabel(app).toString();
-		} catch (NameNotFoundException e) {
-			return;
-		}
 		
+		InstalledModule module = ModuleUtil.getInstance().reloadSingleModule(packageName);
+		if (module == null)
+			return;
+
 		Set<String> enabledModules = getEnabledModules(context);
 		if (enabledModules.contains(packageName)) {
 			updateModulesList(context, enabledModules);
 		} else {
-			showNotActivatedNotification(context, packageName, appName);
+			showNotActivatedNotification(context, packageName, module.getAppName());
 		}
 	}
 	
@@ -84,7 +80,6 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			}
 			moduleLines.close();
 		} catch (IOException e) {
-			Toast.makeText(context, "cannot read /data/xposed/modules.whitelist", Toast.LENGTH_LONG).show();
 			Log.e(XposedInstallerActivity.TAG, "cannot read /data/xposed/modules.whitelist", e);
 			return modules;
 		}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="group_download"
+        android:title="@string/settings_group_download" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="enable_downloads"
+            android:summary="@string/settings_enable_downloads_summary"
+            android:title="@string/settings_enable_downloads" />
+    </PreferenceCategory>
+<!--
+    <PreferenceCategory
+        android:key="group_experimental"
+        android:title="@string/settings_group_experimental" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="performance_experiment"
+            android:summary="@string/settings_performance_experiment_summary"
+            android:title="@string/settings_performance_experiment" />
+    </PreferenceCategory>
+-->
+</PreferenceScreen>

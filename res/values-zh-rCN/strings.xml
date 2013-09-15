@@ -1,30 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Xposed外挂模块</string>
-    <string name="tabInstall">核心框架</string>
-    <string name="tabModules">应用模块</string>
-    <string name="yes">确定</string>
-    <string name="no">取消</string>
-    <string name="installerDescription">即将开始安装 <b>Xposed</b> 核心框架服务. 这是改变你手机外观及功能操作的核心模块. 想取得更多信息可到 <a href="http://forum.xda-developers.com/showthread.php?t=1574401">浏览</a>.</string>
+
+    <!-- General/various strings -->
+    <string name="app_name">Xposed安装器</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome">欢迎使用<b>Xposed安装器</b>!\n请选择您想进行的操作：</string>
+    <string name="tabInstall">框架</string>
+    <string name="tabInstallDescription">此处您能管理Xposed框架，任何模块想正常运行都需要它。</string>
+    <string name="tabModules">模块</string>
+    <string name="tabModulesDescription">框架本身不增加任何功能。您需要使用模块。安装模块后在此处激活它们。</string>
+    <string name="tabDownload">下载</string>
+    <string name="tabDownloadDescription">此处您能访问模块仓库，您可以搜索并下载您喜欢的模块，并及时更新它们。</string>
+    <string name="welcome_framework_update_available">Xposed框架有更新可用。</string>
+    <string name="welcome_update_available">一个或多个模块有更新可用。</string>
+    <string name="tabSettings">设置</string>
+    <string name="tabSettingsDescription">此处可配置Xposed安装器和框架。</string>
+    <string name="tabAbout">关于</string>
+    <string name="tabAboutDescription">了解Xposed作者，如何获取帮助支持等。</string>
+
+    <!-- Installer tab -->
     <string name="install">安装/更新</string>
-    <string name="uninstall">卸载 (restore app_process)</string>
-    <string name="installedVersion">使用中版本</string>
+    <string name="uninstall">卸载(恢复app_process)</string>
+    <string name="installedVersion">激活</string>
     <string name="none">---</string>
-    <string name="latestVersion">最新版本</string>
-    <string name="cleanup">清除 (完整删除框架服务)</string>
-    <string name="versions">版本:</string>
+    <string name="latestVersion">程序自带</string>
+    <string name="cleanup">清理(彻底清除框架)</string>
+    <string name="versions">版本：</string>
     <string name="soft_reboot">软重启</string>
     <string name="reboot">重启</string>
-    <string name="areyousure">你是否确定?</string>
-    <string name="module_is_not_activated_yet">Xposed 核心还没有引导.</string>
-    <string name="module_empty_description">(没有任何说明)</string>
-    <string name="module_no_ui">此模块没有提供任何用户界面</string>
-    <string name="no_xposed_modules_found">没有发现任何 Xposed 应用模块!</string>
-    <string name="xposed_module_list_updated">"Xposed 应用模块清单已更新\n重启后即可选用"</string>
-    <string name="warning_xposed_min_version">此应用模块需要更新核心框架版本 (%s) 所以当前不能启用.</string>
-    <string name="phone_not_compatible">Xposed 还没有兼容正使用中的 Android SDK %1$d 版本 或你的处理器架构(%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed 没有进行与 Android SDK 版本 %d 兼容测试,但它似乎能够使用. 如果你确定相关风险,可以尝试安装.</string>
-    <string name="no_min_version_specified">此模块没有指定使用的核心框架版本.</string>
-    <string name="warning_min_version_too_low">此模块专为 Xposed %1$s 版本而设, 由于系统已更新至 %2$s版本, 所以服务当前已被禁用. </string>
-    <string name="translator">burstlam</string>
+    <string name="areyousure">您确定？</string>
+    <string name="phone_not_compatible">Xposed目前不兼容 Android SDK 版本 %1$d 或者您的处理器架构(%2$s)。</string>
+    <string name="not_tested_but_compatible">Xposed未在 Android SDK 版本 %d 上测试，但它似乎是可兼容的。如果您热爱冒险，您可以试试安装它。</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed模块未激活</string>
+    <string name="module_empty_description">(未提供描述)</string>
+    <string name="module_no_ui">该模块未提供用户界面</string>
+    <string name="no_xposed_modules_found">未找到Xposed模块！</string>
+    <string name="xposed_module_list_updated">Xposed模块列表已更新\n重启后更改将生效</string>
+    <string name="warning_xposed_min_version">该模块需要较新版本的Xposed(%s)，因此无法激活。</string>
+    <string name="no_min_version_specified">该模块未指定需要的Xposed版本。</string>
+    <string name="warning_min_version_too_low">该模块在Xposed版本%1$s下创建，但因为不兼容版本%2$s中的变化内容，它已被禁用。</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">搜索</string>
+    <string name="menuReload">重新加载</string>
+    <string name="changes">变更：</string>
+    <string name="branch_display">(%s 分支)</string>
+    <string name="download_author">作者：%s</string>
+    <string name="download_unknown_author">未知作者</string>
+    <string name="download_status_installed">已安装(版本 %s)</string>
+    <string name="download_status_update_available">可更新(版本 %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">添加于 %1$s \u00b7 更新于 %2$s</string>
+    <string name="download_sorting_title">排序方式</string>
+    <string name="download_sorting_status">按状态排序</string>
+    <string name="download_sorting_updated">按最后更新时间排序</string>
+    <string name="download_sorting_created">按创建时间排序</string>
+    <string name="download_section_framework">框架</string>
+    <string name="download_section_update_available">可更新</string>
+    <string name="download_section_installed">已安装</string>
+    <string name="download_section_not_installed">未安装</string>
+    <string name="download_section_24h">最近24小时</string>
+    <string name="download_section_7d">最近7天</string>
+    <string name="download_section_30d">最近30天</string>
+    <string name="download_section_older">30天前</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">下载</string>
+    <string name="settings_enable_downloads">启用下载</string>
+    <string name="settings_enable_downloads_summary">允许Xposed安装器检查更新和新模块</string>
+    <string name="settings_group_experimental">实验性</string>
+    <string name="settings_performance_experiment">性能试验</string>
+    <string name="settings_performance_experiment_summary">如果您启用该选项，您的系统性能可能更好、更差或没有变化。请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启。</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">主要开发者：</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 与 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">请<b>不</b>要直接联系我们获取帮助，使用下面的链接。</string>
+    <string name="about_translator_label">翻译：</string>
+    <string name="translator">Cye3s</string>
+    <string name="about_version_label">应用程序版本：</string>
+    <string name="about_source_label">源码：</string>
+    <string name="about_support_label">获取支持：</string>
+    <string name="about_support_warning">该链接<b>只</b>适用于安装器和框架！如果您想获得模块相关的帮助支持，<b>不</b>要点击它，请联系模块作者。</string>
+    <string name="about_libraries_label">使用的库：</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">下载</string>
+    <string name="download_view_install">安装</string>
+    <string name="download_view_cancel">取消</string>
+    <string name="download_view_no_url">无下载地址可用</string>
+    <string name="download_view_running">正在下载(%1$,d / %2$,d kB)</string>
+    <string name="download_view_waiting">下载等待中</string>
+    <string name="download_view_successful">下载成功</string>
+    <string name="download_view_failed">下载失败(错误 %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5校验码错误(下载项: %1$s, 预期: %2$s)</string>
+    <string name="download_could_not_read_file">无法读取下载文件：%s</string>
+    <string name="download_no_valid_apk">下载的文件不是有效APK(或不兼容)</string>
+    <string name="download_incorrect_package_name">包名不正确(下载项: %1$s, 预期: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">下载 %1$s 时出错：%2$d (%3$s)</string>
+    <string name="repo_download_failed">下载 %1$s 时出错：%2$s</string>
+    <string name="repo_load_failed">无法加载仓库 %1$s:\n%2$s</string>
+
 </resources>

@@ -3,11 +3,6 @@
     <string name="app_name">Xposed Installer</string>
     <string name="tabInstall">Система</string>
     <string name="tabModules">Модули</string>
-    <string name="yes">Да</string>
-    <string name="no">Нет</string>
-    <string name="installerDescription">Здесь вы можете установить <b>Xposed</b> систему.
-		Это база для модулей, которые могут изменить поведение и внешний вид вашего телефона Android.
-		Для получения дополнительной информации смотрите <a href="http://forum.xda-developers.com/showthread.php?t=1574401">здесь</a>.</string>
     <string name="install">Установить/Обновить</string>
     <string name="uninstall">Удаление (восстановление app_process)</string>
     <string name="installedVersion">текущая</string>

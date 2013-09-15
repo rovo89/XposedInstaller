@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- General/various strings -->
     <string name="app_name">Xposed Installer</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome">Welcome to the <b>Xposed Installer</b>!\nPlease choose what you want to do:</string>
     <string name="tabInstall">Framework</string>
+    <string name="tabInstallDescription">Here you can manage the Xposed framework, which is required for any modules to work.</string>
     <string name="tabModules">Modules</string>
-    <string name="yes">yes</string>
-    <string name="no">no</string>
-    <string name="installerDescription">Here you can install the <b>Xposed</b> framework.
-		It is the base for modules that can change the behaviour and look of your Android phone.
-		For more information please see <a href="http://forum.xda-developers.com/showthread.php?t=1574401">here</a>.</string>
+    <string name="tabModulesDescription">The framework itself doesn\'t add any functionality. You need modules for that. In this section you can activate modules after you have installed them.</string>
+    <string name="tabDownload">Download</string>
+    <string name="tabDownloadDescription">This section gives you access to a repository of modules, so you can search and download the ones you like and keep them up to date.</string>
+    <string name="welcome_framework_update_available">An update for the Xposed framework is available.</string>
+    <string name="welcome_update_available">One or more update(s) for modules available.</string>
+    <string name="tabSettings">Settings</string>
+    <string name="tabSettingsDescription">Go to this section to configure the Xposed Installer and framework.</string>
+    <string name="tabAbout">About</string>
+    <string name="tabAboutDescription">Learn about the people who created Xposed, where to get support for this app etc.</string>
+
+    <!-- Installer tab -->
     <string name="install">Install/Update</string>
     <string name="uninstall">Uninstall (restore app_process)</string>
     <string name="installedVersion">active</string>
@@ -16,20 +27,89 @@
     <string name="latestVersion">bundled</string>
     <string name="cleanup">Clean up (complete removal of the framework)</string>
     <string name="versions">Versions:</string>
+    <string name="app_process" translatable="false">app_process</string>
+    <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
     <string name="soft_reboot">Soft reboot</string>
     <string name="reboot">Reboot</string>
     <string name="areyousure">Are you sure?</string>
+    <string name="phone_not_compatible">Xposed is not (yet) compatible with Android SDK version %1$d or your processor architecture (%2$s).</string>
+    <string name="not_tested_but_compatible">Xposed has not been tested with Android SDK version %d, but it seems to be compatible. You can try installing it if you feel adventurous.</string>
+
+    <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed module is not activated yet</string>
     <string name="module_empty_description">(no description provided)</string>
     <string name="module_no_ui">This module does not provide a user interface</string>
     <string name="no_xposed_modules_found">No Xposed modules were found!</string>
     <string name="xposed_module_list_updated">Xposed module list was updated\nChanges will become active on reboot</string>
     <string name="warning_xposed_min_version">This module requires a newer Xposed version (%s) and thus cannot be activated.</string>
-    <string name="phone_not_compatible">Xposed is not (yet) compatible with Android SDK version %1$d or your processor architecture (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed has not been tested with Android SDK version %d, but it seems to be compatible. You can try installing it if you feel adventurous.</string>
     <string name="no_min_version_specified">This module does not specify the Xposed version it needs.</string>
     <string name="warning_min_version_too_low">This module was created for Xposed version %1$s, but due to incompatible changes in version %2$s, it has been disabled.</string>
-    <string name="app_process" translatable="false">app_process</string>
-    <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Search</string>
+    <string name="menuReload">Reload</string>
+    <string name="changes">Changes:</string>
+    <string name="branch_display">(%s branch)</string>
+    <string name="download_author">by %s</string>
+    <string name="download_unknown_author">unknown author</string>
+    <string name="download_status_installed">Installed (version %s)</string>
+    <string name="download_status_update_available">Update available (version %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Added on %1$s \u00b7 Updated on %2$s</string>
+    <string name="download_sorting_title">Sorting order</string>
+    <string name="download_sorting_status">Sort by status</string>
+    <string name="download_sorting_updated">Sort by last update</string>
+    <string name="download_sorting_created">Sort by creation date</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Update available</string>
+    <string name="download_section_installed">Installed</string>
+    <string name="download_section_not_installed">Not installed</string>
+    <string name="download_section_24h">Last 24 hours</string>
+    <string name="download_section_7d">Last 7 days</string>
+    <string name="download_section_30d">Last 30 days</string>
+    <string name="download_section_older">More than 30 days ago</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Download</string>
+    <string name="settings_enable_downloads">Enable downloads</string>
+    <string name="settings_enable_downloads_summary">Allow Xposed Installer to check for updates and new modules</string>
+    <string name="settings_group_experimental">Experimental</string>
+    <string name="settings_performance_experiment">Performance experiment</string>
+    <string name="settings_performance_experiment_summary">If you enable this, your system performance might either increase, decrease or stay the same. Feel free to try it and report back which effect you see (or if there is none at all). You need to reinstall the framework and reboot after changing this.</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Main developers:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">Please do <b>not</b> contact us directly for support, use the link below.</string>
+    <string name="about_translator_label">Translator:</string>
     <string name="translator"></string>
+    <string name="about_version_label">Version of this app:</string>
+    <string name="about_source_label">Source code:</string>
+    <string name="about_source" translatable="false">https://github.com/rovo89</string>
+    <string name="about_support_label">Get support at:</string>
+    <string name="about_support" translatable="false">http://forum.xda-developers.com/showthread.php?t=1574401</string>
+    <string name="about_support_warning">This link is for the installer and the framework <b>only</b>! If you need help with a module, do <b>not</b> use it, contact the module author instead.</string>
+    <string name="about_libraries_label">Used libraries:</string>
+    <string name="about_libraries" translatable="false"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a></string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Download</string>
+    <string name="download_view_install">Install</string>
+    <string name="download_view_cancel">Cancel</string>
+    <string name="download_view_no_url">No download URL available</string>
+    <string name="download_view_running">Download is running (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">Download is waiting</string>
+    <string name="download_view_successful">Download successful</string>
+    <string name="download_view_failed">Download failed (error %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 sum is incorrect (downloaded: %1$s, expected: %2$s)</string>
+    <string name="download_could_not_read_file">Could not read downloaded file: %s</string>
+    <string name="download_no_valid_apk">Downloaded file is not a valid APK (or incompatible)</string>
+    <string name="download_incorrect_package_name">Package name is incorrect (downloaded: %1$s, expected: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Downloading %1$s failed: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Downloading %1$s failed: %2$s</string>
+    <string name="repo_load_failed">Cannot load repository from %1$s:\n%2$s</string>
+
 </resources>
