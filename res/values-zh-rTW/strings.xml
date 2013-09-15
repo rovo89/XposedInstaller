@@ -4,11 +4,10 @@
     <string name="tabInstall">核心框架</string>
     <string name="tabModules">應用模組</string>
     <string name="install">安裝/更新</string>
-    <string name="uninstall">卸載 (restore app_process)</string>
+    <string name="uninstall">卸載</string>
     <string name="installedVersion">使用中版本</string>
     <string name="none">---</string>
     <string name="latestVersion">最新版本</string>
-    <string name="cleanup">清除 (完整移除框架服務)</string>
     <string name="versions">版本:</string>
     <string name="soft_reboot">軟重啟</string>
     <string name="reboot">重啟</string>

@@ -22,11 +22,10 @@
 
     <!-- Installer tab -->
     <string name="install">Telepítés/Frissítés</string>
-    <string name="uninstall">Eltávolítás (app_process visszaállítása)</string>
+    <string name="uninstall">Eltávolítás</string>
     <string name="installedVersion">aktív</string>
     <string name="none">---</string>
     <string name="latestVersion">a csomagban</string>
-    <string name="cleanup">Tisztítás (a keretrendszer teljes eltávolítása)</string>
     <string name="versions">Verziók:</string>
     <string name="soft_reboot">Gyors újraindítás</string>
     <string name="reboot">Újraindítás</string>

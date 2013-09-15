@@ -21,11 +21,10 @@
 
     <!-- Installer tab -->
     <string name="install">Installer/Mettre à jour</string>
-    <string name="uninstall">Désinstaller (restaurer app_process)</string>
+    <string name="uninstall">Désinstaller</string>
     <string name="installedVersion">courante</string>
     <string name="none">---</string>
     <string name="latestVersion">dernière</string>
-    <string name="cleanup">Nettoyage (suppression complète du framework)</string>
     <string name="versions">Versions:</string>
     <string name="soft_reboot">Redémarrage doux</string>
     <string name="reboot">Redémarrer</string>

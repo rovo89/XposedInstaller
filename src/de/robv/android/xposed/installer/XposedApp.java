@@ -1,18 +1,25 @@
 package de.robv.android.xposed.installer;
 
+import java.io.File;
+
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
 public class XposedApp extends Application implements ActivityLifecycleCallbacks {
+	@SuppressLint("SdCardPath")
+	public static final String BASE_DIR = "/data/data/de.robv.android.xposed.installer/";
+
 	private static XposedApp mInstance = null;
 	private static Thread mUiThread;
 	private static Handler mMainHandler;
@@ -28,8 +35,21 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 		mMainHandler = new Handler();
 
 		mPref = PreferenceManager.getDefaultSharedPreferences(this);
+		createDirectories();
 
 		registerActivityLifecycleCallbacks(this);
+	}
+
+	private void createDirectories() {
+		mkdirAndChmod("bin", 00771);
+		mkdirAndChmod("conf", 00771);
+		mkdirAndChmod("log", 00771);
+	}
+
+	private void mkdirAndChmod(String dir, int permissions) {
+		dir = BASE_DIR + dir;
+		new File(dir).mkdir();
+		FileUtils.setPermissions(dir, permissions, -1, -1);
 	}
 
 	public static XposedApp getInstance() {

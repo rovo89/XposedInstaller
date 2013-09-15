@@ -21,11 +21,10 @@
 
     <!-- Installer tab -->
     <string name="install">Install/Update</string>
-    <string name="uninstall">Uninstall (restore app_process)</string>
+    <string name="uninstall">Uninstall</string>
     <string name="installedVersion">active</string>
     <string name="none">---</string>
     <string name="latestVersion">bundled</string>
-    <string name="cleanup">Clean up (complete removal of the framework)</string>
     <string name="versions">Versions:</string>
     <string name="app_process" translatable="false">app_process</string>
     <string name="xposedbridge" translatable="false">XposedBridge.jar</string>

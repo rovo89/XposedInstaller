@@ -1,7 +1,8 @@
 #!/system/bin/sh
 export PATH=/system/bin:$PATH
 
-BUSYBOX=./busybox-xposed
+cd /data/data/de.robv.android.xposed.installer/
+BUSYBOX=cache/busybox-xposed
 
 BRACKET="$BUSYBOX ["
 CHMOD="$BUSYBOX chmod"
@@ -22,21 +23,9 @@ else
     echo No backup found at /system/bin/app_process.orig
 fi
 
-if $BRACKET -f /data/xposed/app_process ]; then
-	echo Deleting /data/xposed/app_process...
-	$RM /data/xposed/app_process || exit 1
-fi
-
-if $BRACKET -f /data/xposed/XposedBridge.jar ]; then
-	echo Deleting XposedBridge.jar...
-	$RM /data/xposed/XposedBridge.jar || exit 1
-else
-	echo XposedBridge.jar did not exist, nothing to delete
-fi
-
-if $BRACKET -f /data/xposed/XposedBridge.jar.newversion ]; then
-	echo Deleting XposedBridge.jar.newversion...
-	$RM /data/xposed/XposedBridge.jar.newversion || exit 1
+if $BRACKET -d /data/xposed ]; then
+	echo Deleting legacy directory /data/xposed...
+	$RM -r /data/xposed/ || exit 1
 fi
 
 echo

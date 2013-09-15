@@ -16,7 +16,7 @@
     <string name="tabAbout">このアプリについて</string>
     <string name="tabAboutDescription">Xposedの開発に携わった人たちやサポートの情報を見られます。</string>
     <string name="install">インストール/更新</string>
-    <string name="uninstall">アンインストール(app_processのリストア)</string>
+    <string name="uninstall">アンインストール</string>
     <string name="installedVersion">動作中</string>
     <string name="none">---</string>
     <string name="latestVersion">内蔵</string>

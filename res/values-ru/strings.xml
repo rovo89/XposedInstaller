@@ -4,11 +4,10 @@
     <string name="tabInstall">Система</string>
     <string name="tabModules">Модули</string>
     <string name="install">Установить/Обновить</string>
-    <string name="uninstall">Удаление (восстановление app_process)</string>
+    <string name="uninstall">Удаление</string>
     <string name="installedVersion">текущая</string>
     <string name="none">---</string>
     <string name="latestVersion">в пакете</string>
-    <string name="cleanup">Очистка (полное удаление)</string>
     <string name="versions">Версии:</string>
     <string name="soft_reboot">Мягкая перезагрузка</string>
     <string name="reboot">Перезагрузка</string>

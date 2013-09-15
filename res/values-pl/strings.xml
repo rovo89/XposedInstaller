@@ -4,11 +4,10 @@
     <string name="tabInstall">Framework</string>
     <string name="tabModules">Moduły</string>
     <string name="install">Zainstaluj/Uaktualnij</string>
-    <string name="uninstall">Odinstaluj (przywróć app_process)</string>
+    <string name="uninstall">Odinstaluj</string>
     <string name="installedVersion">aktywna</string>
     <string name="none">---</string>
     <string name="latestVersion">w pakiecie</string>
-    <string name="cleanup">Posprzątaj (dokończ usuwanie frameworka)</string>
     <string name="versions">Wersje:</string>
     <string name="soft_reboot">Miękki restart</string>
     <string name="reboot">Restart</string>

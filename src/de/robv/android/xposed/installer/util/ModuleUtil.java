@@ -14,6 +14,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
+import android.os.FileUtils;
 import android.util.Log;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.InstallerFragment;
@@ -35,6 +36,7 @@ public final class ModuleUtil {
 	private boolean mIsReloading = false;
 
 	public static String MIN_MODULE_VERSION = "2.0"; // reject modules with xposedminversion below this
+	private static final String MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/modules.list";
 
 	private ModuleUtil() {
 		mApp = XposedApp.getInstance();
@@ -156,7 +158,7 @@ public final class ModuleUtil {
 				return;
 			}
 
-			PrintWriter modulesList = new PrintWriter("/data/xposed/modules.list");
+			PrintWriter modulesList = new PrintWriter(MODULES_LIST_FILE);
 			List<InstalledModule> enabledModules = getEnabledModules();
 			for (InstalledModule module : enabledModules) {
 				if (module.minVersion == null
@@ -168,10 +170,12 @@ public final class ModuleUtil {
 			}
 			modulesList.close();
 
+			FileUtils.setPermissions(MODULES_LIST_FILE, 00664, -1, -1);
+
 			Toast.makeText(mApp, R.string.xposed_module_list_updated, Toast.LENGTH_SHORT).show();
 		} catch (IOException e) {
-			Log.e(XposedInstallerActivity.TAG, "cannot write /data/xposed/modules.list", e);
-			Toast.makeText(mApp, "cannot write /data/xposed/modules.list", Toast.LENGTH_SHORT).show();
+			Log.e(XposedInstallerActivity.TAG, "cannot write " + MODULES_LIST_FILE, e);
+			Toast.makeText(mApp, "cannot write " +  MODULES_LIST_FILE, Toast.LENGTH_SHORT).show();
 		}
 	}
 

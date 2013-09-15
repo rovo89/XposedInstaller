@@ -21,11 +21,10 @@
 
     <!-- Installer tab -->
     <string name="install">安装/更新</string>
-    <string name="uninstall">卸载(恢复app_process)</string>
+    <string name="uninstall">卸载</string>
     <string name="installedVersion">激活</string>
     <string name="none">---</string>
     <string name="latestVersion">程序自带</string>
-    <string name="cleanup">清理(彻底清除框架)</string>
     <string name="versions">版本：</string>
     <string name="soft_reboot">软重启</string>
     <string name="reboot">重启</string>

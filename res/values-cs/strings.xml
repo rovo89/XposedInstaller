@@ -18,11 +18,10 @@
     <string name="tabAboutDescription">Dozvědět se něco o lidech, kteří vytvořili Xposed, jako kde získat podporu atd.</string>
     <!-- Installer tab -->
     <string name="install">Instalovat/Aktualizovat</string>
-    <string name="uninstall">Odinstalovat (obnovit app_process)</string>
+    <string name="uninstall">Odinstalovat</string>
     <string name="installedVersion">aktivní</string>
     <string name="none">---</string>
     <string name="latestVersion">poslední</string>
-    <string name="cleanup">Vyčistit (kompletně odstranit framework)</string>
     <string name="versions">Verze:</string>
     <string name="soft_reboot">Lehký restart</string>
     <string name="reboot">Restart</string>
