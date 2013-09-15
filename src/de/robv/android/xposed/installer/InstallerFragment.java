@@ -67,6 +67,9 @@ public class InstallerFragment extends Fragment {
 		} else if (Build.VERSION.SDK_INT == 10) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk10";
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk10";
+			if (!checkJit()) {
+				APP_PROCESS_NAME += "_nojit";
+			}
 			isCompatible = checkCompatibility();
 
 		} else if (Build.VERSION.SDK_INT == 15) {
@@ -239,6 +242,32 @@ public class InstallerFragment extends Fragment {
 			
 			testFile.delete();
 			return result != null && result.equals("OK");
+		} catch (IOException e) {
+			return false;
+		}
+	}
+
+	private boolean checkJit() {
+		try {
+			/*
+			dvmFprintf(stderr, "Configured with:"
+			....
+			#if defined(WITH_JIT)
+			        " jit(" ARCH_VARIANT ")"
+			#endif
+			....
+			*/
+			Process p = Runtime.getRuntime().exec(new String[] { "dalvikvm", "-help" });
+			BufferedReader stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+			String result;
+			while ((result = stderr.readLine()) != null) {
+				if (result.startsWith("Configured with:")) {
+					break;
+				}
+			}
+			stderr.close();
+			p.destroy();
+			return result != null && result.contains(" jit(");
 		} catch (IOException e) {
 			return false;
 		}
