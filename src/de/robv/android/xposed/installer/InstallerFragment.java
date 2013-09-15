@@ -351,7 +351,7 @@ public class InstallerFragment extends Fragment {
 		if (jarFile == null)
 			return "Could not find asset \"XposedBridge.jar\"";
 
-		writeAssetToSdcardFile("Xposed-Disabler-CWM.zip");
+		writeAssetToSdcardFile("Xposed-Disabler-Recovery.zip");
 		
 		String result = executeScript("install.sh");
 		
