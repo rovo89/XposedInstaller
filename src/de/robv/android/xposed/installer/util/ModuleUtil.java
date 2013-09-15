@@ -18,7 +18,6 @@ import android.os.FileUtils;
 import android.util.Log;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.InstallerFragment;
-import de.robv.android.xposed.installer.PackageChangeReceiver;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.XposedInstallerActivity;
@@ -35,7 +34,7 @@ public final class ModuleUtil {
 	private Map<String, InstalledModule> mInstalledModules;
 	private boolean mIsReloading = false;
 
-	public static String MIN_MODULE_VERSION = "2.0"; // reject modules with xposedminversion below this
+	public static int MIN_MODULE_VERSION = 2; // reject modules with xposedminversion below this
 	private static final String MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/modules.list";
 
 	private ModuleUtil() {
@@ -152,8 +151,8 @@ public final class ModuleUtil {
 	public synchronized void updateModulesList() {
 		try {
 			Log.i(XposedInstallerActivity.TAG, "updating modules.list");
-			String installedXposedVersion = InstallerFragment.getJarInstalledVersion(null);
-			if (installedXposedVersion == null) {
+			int installedXposedVersion = InstallerFragment.getJarInstalledVersion();
+			if (installedXposedVersion == 0) {
 				Toast.makeText(mApp, "The xposed framework is not installed", Toast.LENGTH_SHORT).show();
 				return;
 			}
@@ -161,9 +160,7 @@ public final class ModuleUtil {
 			PrintWriter modulesList = new PrintWriter(MODULES_LIST_FILE);
 			List<InstalledModule> enabledModules = getEnabledModules();
 			for (InstalledModule module : enabledModules) {
-				if (module.minVersion == null
-						|| PackageChangeReceiver.compareVersions(module.minVersion, installedXposedVersion) > 0
-						|| PackageChangeReceiver.compareVersions(module.minVersion, MIN_MODULE_VERSION) < 0)
+				if (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)
 					continue;
 
 				modulesList.println(module.app.sourceDir);
@@ -179,6 +176,18 @@ public final class ModuleUtil {
 		}
 	}
 
+	public static int extractIntPart(String str) {
+		int result = 0, length = str.length();
+		for (int offset = 0; offset < length; offset++) {
+			char c = str.charAt(offset);
+			if ('0' <= c && c <= '9')
+				result = result * 10 + (c - '0');
+			else
+				break;
+		}
+		return result;
+	}
+
 
 
 	public class InstalledModule {
@@ -187,7 +196,7 @@ public final class ModuleUtil {
 		public final boolean isFramework;
 		public final String versionName;
 		public final int versionCode;
-		public final String minVersion;
+		public final int minVersion;
 
 		private String appName; // loaded lazyily
 		private String description; // loaded lazyily
@@ -202,10 +211,17 @@ public final class ModuleUtil {
 			this.versionCode = pkg.versionCode;
 
 			if (isFramework) {
-				this.minVersion = "";
+				this.minVersion = 0;
 				this.description = "";
 			} else {
-				this.minVersion = app.metaData.getString("xposedminversion");
+				Object minVersionRaw = app.metaData.get("xposedminversion");
+				if (minVersionRaw instanceof Integer) {
+					this.minVersion = (Integer) minVersionRaw;
+				} else if (minVersionRaw instanceof String) {
+					this.minVersion = extractIntPart((String) minVersionRaw);
+				} else {
+					this.minVersion = 0;
+				}
 			}
 		}
 

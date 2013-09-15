@@ -40,9 +40,9 @@
     <string name="module_no_ui">This module does not provide a user interface</string>
     <string name="no_xposed_modules_found">No Xposed modules were found!</string>
     <string name="xposed_module_list_updated">Xposed module list was updated\nChanges will become active on reboot</string>
-    <string name="warning_xposed_min_version">This module requires a newer Xposed version (%s) and thus cannot be activated.</string>
-    <string name="no_min_version_specified">This module does not specify the Xposed version it needs.</string>
-    <string name="warning_min_version_too_low">This module was created for Xposed version %1$s, but due to incompatible changes in version %2$s, it has been disabled.</string>
+    <string name="warning_xposed_min_version">This module requires a newer XposedBridge version (%d) and thus cannot be activated.</string>
+    <string name="no_min_version_specified">This module does not specify the XposedBridge version it needs.</string>
+    <string name="warning_min_version_too_low">This module was created for XposedBridge version %1$d, but due to incompatible changes in version %2$d, it has been disabled.</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Search</string>

@@ -17,10 +17,10 @@
     <string name="module_no_ui">Ten moduł nie zawiera interfaceu urzytkownika</string>
     <string name="no_xposed_modules_found">Nie znaleziono żadnych modułów Xposed!</string>
     <string name="xposed_module_list_updated">Lista modułów Xposed została zaktualizowana\nZmiany zostaną uaktywnione po restarcie</string>
-    <string name="warning_xposed_min_version">Ten moduł wymaga nowszej wersji Xposed (%s) i nie może być aktywowany.</string>
+    <string name="warning_xposed_min_version">Ten moduł wymaga nowszej wersji XposedBridge (%d) i nie może być aktywowany.</string>
     <string name="phone_not_compatible">Xposed nie jest (jeszcze) kompatybilne z Android SDK wersją %1$d lub z twoją architektórą procesora (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed nie był testowany z tą wersją Android SDK %d, ale wygląda na to, że jest kompatybilna. Możesz spróbować instalacji jeśli czujesz się odważny.</string>
-    <string name="no_min_version_specified">Ten moduł nie określa wymaganej wersji Xposed.</string>
-    <string name="warning_min_version_too_low">Ten moduł był stworzony dla Xposed w wersji %1$s, ale przez niekompatybilne zmiany w wersji %2$s, został wyłączony.</string>
+    <string name="no_min_version_specified">Ten moduł nie określa wymaganej wersji XposedBridge.</string>
+    <string name="warning_min_version_too_low">Ten moduł był stworzony dla XposedBridge w wersji %1$d, ale przez niekompatybilne zmiany w wersji %2$d, został wyłączony.</string>
     <string name="translator">rocky12345678900</string>
 </resources>

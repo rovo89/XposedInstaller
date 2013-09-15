@@ -34,9 +34,9 @@
     <string name="module_no_ui">Tento modul neposkytuje žádné uživatelské rozhraní</string>
     <string name="no_xposed_modules_found">Nenalezeny žádné Xposed moduly!</string>
     <string name="xposed_module_list_updated">Seznam Xposed modulů byl aktualizován.\nZměny se projeví po restartu.</string>
-    <string name="warning_xposed_min_version">Tento modul vyžaduje novější verzi Xposed (%s), proto nemůže být aktivován.</string>
-    <string name="no_min_version_specified">Tento modul nespecifikuje požadovanou verzi Xposed.</string>
-    <string name="warning_min_version_too_low">Tento modul byl vytvořen pro Xposed verzi %1$s, ale kvůli nekompatibilním změnám ve verzi %2$s, byl zakázán.</string>
+    <string name="warning_xposed_min_version">Tento modul vyžaduje novější verzi XposedBridge (%d), proto nemůže být aktivován.</string>
+    <string name="no_min_version_specified">Tento modul nespecifikuje požadovanou verzi XposedBridge.</string>
+    <string name="warning_min_version_too_low">Tento modul byl vytvořen pro XposedBridge verzi %1$d, ale kvůli nekompatibilním změnám ve verzi %2$d, byl zakázán.</string>
     <!-- Download tab -->
     <string name="menuSearch">Hledat</string>
     <string name="menuReload">Obnovit</string>

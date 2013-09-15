@@ -38,9 +38,9 @@
     <string name="module_no_ui">Aquest mòdul no proporciona una interficie d\'usuari</string>
     <string name="no_xposed_modules_found">No es van trobar móduls!</string>
     <string name="xposed_module_list_updated">l·lista de móduls Xposed actualitzada\nEls canvis s\'activaran reiniciant</string>
-    <string name="warning_xposed_min_version">Aquest módul requereix una versió més recent de Xposed (%s) i per tant no es pot activar.</string>
-    <string name="no_min_version_specified">Aquest mòdul no especifica la versió de Xposed que necessita.</string>
-    <string name="warning_min_version_too_low">Aquest mòdul va ser creat per a la versió %1$s de Xposed, però a causa d\'un canvi incompatible en la versió %2$s, ha estat desactivat.</string>
+    <string name="warning_xposed_min_version">Aquest módul requereix una versió més recent de XposedBridge (%d) i per tant no es pot activar.</string>
+    <string name="no_min_version_specified">Aquest mòdul no especifica la versió de XposedBridge que necessita.</string>
+    <string name="warning_min_version_too_low">Aquest mòdul va ser creat per a la versió %1$d de XposedBridge, però a causa d\'un canvi incompatible en la versió %2$d, ha estat desactivat.</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Cercar</string>

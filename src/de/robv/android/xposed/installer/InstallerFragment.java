@@ -84,25 +84,22 @@ public class InstallerFragment extends Fragment {
 			}
 		}
 		
-		final String none = getString(R.string.none);
-		final String appProcessInstalledVersion = getInstalledAppProcessVersion(none);
-		final String appProcessLatestVersion = getLatestAppProcessVersion(none);
-		final String jarInstalledVersion = getJarInstalledVersion(none);
-		final String jarLatestVersion = getJarLatestVersion(none);
+		final int appProcessInstalledVersion = getInstalledAppProcessVersion();
+		final int appProcessLatestVersion = getLatestAppProcessVersion();
+		final int jarInstalledVersion = getJarInstalledVersion();
+		final int jarLatestVersion = getJarLatestVersion();
 		
-		txtAppProcessInstalledVersion.setText(appProcessInstalledVersion);
-		txtAppProcessLatestVersion.setText(appProcessLatestVersion);
-		txtJarInstalledVersion.setText(jarInstalledVersion);
-		txtJarLatestVersion.setText(jarLatestVersion);
+		txtAppProcessInstalledVersion.setText(versionToText(appProcessInstalledVersion));
+		txtAppProcessLatestVersion.setText(versionToText(appProcessLatestVersion));
+		txtJarInstalledVersion.setText(versionToText(jarInstalledVersion));
+		txtJarLatestVersion.setText(versionToText(jarLatestVersion));
 
-		if (appProcessInstalledVersion.equals(none)
-				|| PackageChangeReceiver.compareVersions(appProcessInstalledVersion, appProcessLatestVersion) < 0)
+		if (appProcessInstalledVersion < appProcessLatestVersion)
 			txtAppProcessInstalledVersion.setTextColor(Color.RED);
 		else
 			txtAppProcessInstalledVersion.setTextColor(Color.GREEN);
 		
-		if (jarInstalledVersion.equals(none)
-				|| PackageChangeReceiver.compareVersions(jarInstalledVersion, jarLatestVersion) < 0)
+		if (jarInstalledVersion < jarLatestVersion)
 			txtJarInstalledVersion.setTextColor(Color.RED);
 		else
 			txtJarInstalledVersion.setTextColor(Color.GREEN);
@@ -113,9 +110,9 @@ public class InstallerFragment extends Fragment {
 				@Override
 				public void onClick(View v) {
 					showAlert(install());
-					txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
+					txtAppProcessInstalledVersion.setText(versionToText(getInstalledAppProcessVersion()));
 					txtAppProcessInstalledVersion.setTextColor(Color.GREEN);
-					txtJarInstalledVersion.setText(getJarInstalledVersion(none));
+					txtJarInstalledVersion.setText(versionToText(getJarInstalledVersion()));
 					txtJarInstalledVersion.setTextColor(Color.GREEN);
 
 					ModuleUtil.getInstance().updateModulesList();
@@ -131,9 +128,9 @@ public class InstallerFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				showAlert(uninstall());
-				txtAppProcessInstalledVersion.setText(getInstalledAppProcessVersion(none));
+				txtAppProcessInstalledVersion.setText(versionToText(getInstalledAppProcessVersion()));
 				txtAppProcessInstalledVersion.setTextColor(Color.RED);
-				txtJarInstalledVersion.setText(getJarInstalledVersion(none));
+				txtJarInstalledVersion.setText(versionToText(getJarInstalledVersion()));
 				txtJarInstalledVersion.setTextColor(Color.RED);
 			}
 		});
@@ -163,7 +160,11 @@ public class InstallerFragment extends Fragment {
 		
 		return v;
 	}
-	
+
+	private String versionToText(int version) {
+		return (version == 0) ? getString(R.string.none) : Integer.toString(version);
+	}
+
 	private void showAlert(String result) {
 		new AlertDialog.Builder(getActivity())
         .setMessage(result)
@@ -243,31 +244,26 @@ public class InstallerFragment extends Fragment {
 		}
 	}
 
-	private String getInstalledAppProcessVersion(String defaultValue) {
+	private int getInstalledAppProcessVersion() {
 		try {
-			return getAppProcessVersion(
-					new FileInputStream("/system/bin/app_process"),
-					defaultValue);
+			return getAppProcessVersion(new FileInputStream("/system/bin/app_process"));
 		} catch (IOException e) {
-			return getString(R.string.none);
+			return 0;
 		}
 	}
 	
-	private String getLatestAppProcessVersion(String defaultValue) {
+	private int getLatestAppProcessVersion() {
 		if (APP_PROCESS_NAME == null)
-			return defaultValue;
+			return 0;
 		
 		try {
-			return getAppProcessVersion(
-					getActivity().getAssets().open(APP_PROCESS_NAME),
-					defaultValue);
+			return getAppProcessVersion(getActivity().getAssets().open(APP_PROCESS_NAME));
 		} catch (Exception e) {
-			return defaultValue;
+			return 0;
 		}
 	}
 	
-	private String getAppProcessVersion(InputStream is, String defaultValue) throws IOException {
-		
+	private int getAppProcessVersion(InputStream is) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		String line;
 		while ((line = br.readLine()) != null) {
@@ -276,33 +272,33 @@ public class InstallerFragment extends Fragment {
 			Matcher m = PATTERN_APP_PROCESS_VERSION.matcher(line);
 			if (m.find()) {
 				is.close();
-				return m.group(1);
+				return ModuleUtil.extractIntPart(m.group(1));
 			}
 		}
 		is.close();
-		return defaultValue;
+		return 0;
 	}
 	
-	public static String getJarInstalledVersion(String defaultValue) {
+	public static int getJarInstalledVersion() {
 		try {
 			if (new File(JAR_PATH + ".newversion").exists())
-				return getJarVersion(new FileInputStream(JAR_PATH + ".newversion"), defaultValue);
+				return getJarVersion(new FileInputStream(JAR_PATH + ".newversion"));
 			else
-				return getJarVersion(new FileInputStream(JAR_PATH), defaultValue);
+				return getJarVersion(new FileInputStream(JAR_PATH));
 		} catch (IOException e) {
-			return defaultValue;
+			return 0;
 		}
 	}
 	
-	private String getJarLatestVersion(String defaultValue) {
+	private int getJarLatestVersion() {
 		try {
-			return getJarVersion(getActivity().getAssets().open("XposedBridge.jar"), defaultValue);
+			return getJarVersion(getActivity().getAssets().open("XposedBridge.jar"));
 		} catch (IOException e) {
-			return defaultValue;
+			return 0;
 		}
 	}
 	
-	public static String getJarVersion(InputStream is, String defaultValue) throws IOException {
+	public static int getJarVersion(InputStream is) throws IOException {
 		JarInputStream jis = new JarInputStream(is);
 		JarEntry entry;
 		try {
@@ -314,14 +310,14 @@ public class InstallerFragment extends Fragment {
 				String version = br.readLine();
 				is.close();
 				br.close();
-				return version;
+				return ModuleUtil.extractIntPart(version);
 			}
 		} finally {
 			try {
 				jis.close();
 			} catch (Exception e) { }
 		}
-		return defaultValue;
+		return 0;
 	}
 	
 	private String install() {

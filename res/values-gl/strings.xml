@@ -38,9 +38,9 @@
     <string name="module_no_ui">Este módulo e non ofrece unha interface de usuario</string>
     <string name="no_xposed_modules_found">Non hai módulos instalados!</string>
     <string name="xposed_module_list_updated">Lista de modulos Xposed actualizada\nOs cambios serán activadas no reinicio</string>
-    <string name="warning_xposed_min_version">Este módulo require unha versión máis recente de Xposed (%s) e, polo tanto, non pode ser activado.</string>
-    <string name="no_min_version_specified">Este módulo non especifica a versión que precisa de Xposed.</string>
-    <string name="warning_min_version_too_low">Este módulo foi creado para a versión %1$s de Xposed, pero debido a un cambio incompatible na versión %2$s, foi desactivado.</string>
+    <string name="warning_xposed_min_version">Este módulo require unha versión máis recente de XposedBridge (%d) e, polo tanto, non pode ser activado.</string>
+    <string name="no_min_version_specified">Este módulo non especifica a versión que precisa de XposedBridge.</string>
+    <string name="warning_min_version_too_low">Este módulo foi creado para a versión %1$d de XposedBridge, pero debido a un cambio incompatible na versión %2$d, foi desactivado.</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Buscar</string>

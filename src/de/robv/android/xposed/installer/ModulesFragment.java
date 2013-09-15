@@ -25,7 +25,7 @@ import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 
 public class ModulesFragment extends ListFragment {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
-	private String installedXposedVersion;
+	private int installedXposedVersion;
 	private ModuleUtil mModuleUtil;
 
 	@Override
@@ -42,7 +42,7 @@ public class ModulesFragment extends ListFragment {
 		if (activity instanceof XposedInstallerActivity)
 			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_MODULES, null);
 
-		installedXposedVersion = InstallerFragment.getJarInstalledVersion(null);
+		installedXposedVersion = InstallerFragment.getJarInstalledVersion();
 
 		ModuleAdapter modules = new ModuleAdapter(getActivity());
 		modules.addAll(mModuleUtil.getModules().values());
@@ -136,19 +136,19 @@ public class ModulesFragment extends ListFragment {
 			checkbox.setChecked(mModuleUtil.isModuleEnabled(item.packageName));
 			TextView warningText = (TextView) view.findViewById(R.id.warning);
 
-			if (item.minVersion == null) {
+			if (item.minVersion == 0) {
 				checkbox.setEnabled(false);
 				warningText.setText(getString(R.string.no_min_version_specified));
 				warningText.setVisibility(View.VISIBLE);
-			} else if (installedXposedVersion != null && PackageChangeReceiver.compareVersions(item.minVersion, installedXposedVersion) > 0) {
+			} else if (installedXposedVersion != 0 && item.minVersion > installedXposedVersion) {
 				checkbox.setEnabled(false);
 				warningText.setText(String.format(getString(R.string.warning_xposed_min_version), 
-						PackageChangeReceiver.trimVersion(item.minVersion)));
+						item.minVersion));
 				warningText.setVisibility(View.VISIBLE);
-			} else if (PackageChangeReceiver.compareVersions(item.minVersion, ModuleUtil.MIN_MODULE_VERSION) < 0) {
+			} else if (item.minVersion < ModuleUtil.MIN_MODULE_VERSION) {
 				checkbox.setEnabled(false);
 				warningText.setText(String.format(getString(R.string.warning_min_version_too_low), 
-						PackageChangeReceiver.trimVersion(item.minVersion), ModuleUtil.MIN_MODULE_VERSION));
+						item.minVersion, ModuleUtil.MIN_MODULE_VERSION));
 				warningText.setVisibility(View.VISIBLE);
 			} else {
 				checkbox.setEnabled(true);
