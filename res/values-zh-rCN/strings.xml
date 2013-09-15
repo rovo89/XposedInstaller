@@ -27,8 +27,6 @@
     <string name="latestVersion">程序自带</string>
     <string name="cleanup">清理(彻底清除框架)</string>
     <string name="versions">版本：</string>
-    <string name="app_process" translatable="false">app_process</string>
-    <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
     <string name="soft_reboot">软重启</string>
     <string name="reboot">重启</string>
     <string name="areyousure">您确定？</string>
@@ -73,8 +71,8 @@
     <string name="settings_enable_downloads">启用下载</string>
     <string name="settings_enable_downloads_summary">允许Xposed安装器检查更新和新模块</string>
     <string name="settings_group_experimental">实验性</string>
-    <string name="settings_use_armv5">性能试验</string>
-    <string name="settings_use_armv5_summary">如果您启用该选项，您的系统性能可能更好、更差或没有变化。请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启。</string>
+    <string name="settings_performance_experiment">性能试验</string>
+    <string name="settings_performance_experiment_summary">如果您启用该选项，您的系统性能可能更好、更差或没有变化。请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启。</string>
 
     <!-- About tab -->
     <string name="about_developers_label">主要开发者：</string>
@@ -84,12 +82,9 @@
     <string name="translator">Cye3s</string>
     <string name="about_version_label">应用程序版本：</string>
     <string name="about_source_label">源码：</string>
-    <string name="about_source" translatable="false">https://github.com/rovo89</string>
     <string name="about_support_label">获取支持：</string>
-    <string name="about_support" translatable="false">http://forum.xda-developers.com/showthread.php?t=1574401</string>
     <string name="about_support_warning">该链接<b>只</b>适用于安装器和框架！如果您想获得模块相关的帮助支持，<b>不</b>要点击它，请联系模块作者。</string>
     <string name="about_libraries_label">使用的库：</string>
-    <string name="about_libraries" translatable="false"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a></string>
 
     <!-- DownloadView -->
     <string name="download_view_download">下载</string>

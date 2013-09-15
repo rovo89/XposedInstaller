@@ -1,12 +1,10 @@
 package de.robv.android.xposed.installer;
 
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceGroup;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
 public class SettingsFragment extends PreferenceFragment {
@@ -38,12 +36,5 @@ public class SettingsFragment extends PreferenceFragment {
 				return true;
 			}
 		});
-
-		if (!Build.CPU_ABI.startsWith("armeabi-v7")) {
-			PreferenceGroup parent = (PreferenceGroup) findPreference("group_experimental");
-			parent.removePreference(findPreference("use_armv5"));
-			if (parent.getPreferenceCount() == 0)
-				getPreferenceScreen().removePreference(parent);
-		}
 	}
 }

@@ -71,8 +71,8 @@
     <string name="settings_enable_downloads">Activar descargas</string>
     <string name="settings_enable_downloads_summary">Permitir a Instalador Xposed comprobar si hay actualizaciones y nuevos módulos</string>
     <string name="settings_group_experimental">Experimental</string>
-    <string name="settings_use_armv5">Performance experiment</string>
-    <string name="settings_use_armv5_summary">Si habilita esto, el rendimiento del sistema puede aumentar, disminuir o permanecer igual. No dude en probar e informar cuyo efecto se ve (o si no hay ninguno en absoluto). Es necesario volver a instalar el Stock Framework y reiniciar después de cambiar esto.</string>
+    <string name="settings_performance_experiment">Performance experiment</string>
+    <string name="settings_performance_experiment_summary">Si habilita esto, el rendimiento del sistema puede aumentar, disminuir o permanecer igual. No dude en probar e informar cuyo efecto se ve (o si no hay ninguno en absoluto). Es necesario volver a instalar el Stock Framework y reiniciar después de cambiar esto.</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Desarrolladores principales:</string>

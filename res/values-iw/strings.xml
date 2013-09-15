@@ -71,8 +71,8 @@
     <string name="settings_enable_downloads">אפשר הורדות</string>
     <string name="settings_enable_downloads_summary">מאפשר לאפליקצייה לבדוק ולעדכן מודולים</string>
     <string name="settings_group_experimental">ניסיוני</string>
-    <string name="settings_use_armv5">ניסוי ביצועים</string>
-    <string name="settings_use_armv5_summary">אם הינך מאפשר זאת, הביצועים של המערכת שלך יכולים להשתפר, לגרוע או להישאר זהים. הרגישו חופשי לנסות  ולדווח לי את התוצאות (אם יש). אתה צריך להתקין מחדש את הסביבה ולהפעיל מחדש את המכשיר כדי להחיל את השינויים.</string>
+    <string name="settings_performance_experiment">ניסוי ביצועים</string>
+    <string name="settings_performance_experiment_summary">אם הינך מאפשר זאת, הביצועים של המערכת שלך יכולים להשתפר, לגרוע או להישאר זהים. הרגישו חופשי לנסות  ולדווח לי את התוצאות (אם יש). אתה צריך להתקין מחדש את הסביבה ולהפעיל מחדש את המכשיר כדי להחיל את השינויים.</string>
 
     <!-- About tab -->
     <string name="about_developers_label">מפתחים ראשיים:</string>
