@@ -9,12 +9,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
+import android.text.style.StyleSpan;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,6 +89,19 @@ public class DownloadDetailsFragment extends Fragment {
 			}
 		} else {
 			description.setVisibility(View.GONE);
+		}
+
+		ViewGroup moreInfoContainer = (ViewGroup) view.findViewById(R.id.download_moreinfo_container);
+		for (Pair<String,String> moreInfoEntry : module.moreInfo) {
+			TextView moreInfoView = (TextView) inflater.inflate(R.layout.download_moreinfo, moreInfoContainer, false);
+
+			SpannableStringBuilder ssb = new SpannableStringBuilder(moreInfoEntry.first);
+			ssb.append(": ");
+			ssb.setSpan(new StyleSpan(Typeface.BOLD), 0, ssb.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+			ssb.append(moreInfoEntry.second);
+			moreInfoView.setText(ssb);
+
+			moreInfoContainer.addView(moreInfoView);
 		}
 
 		ExpandableStaticListView lv = (ExpandableStaticListView) view.findViewById(R.id.listVersions);
