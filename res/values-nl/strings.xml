@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="app_name">Xposed Installer</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome">Welkom bij de <b>Xposed Installer</b>!\nKies alstublieft wat u wenst te doen:</string>
+    <string name="tabInstall">Framework</string>
+    <string name="tabInstallDescription">Hier kunt u het Xposed framework instellen, Dit is nodig voor elke module om te werken.</string>
+    <string name="tabModules">Modules</string>
+    <string name="tabModulesDescription">Het framework op zich voegt geen functionaliteit toe. Daar hebt u modules voor nodig. In dit onderdeel kunt u modules activeren nadat u ze hebt geinstalleerd.</string>
+    <string name="tabDownload">Download</string>
+    <string name="tabDownloadDescription">Deze sectie geeft u toegang tot een verzameling van modules, zodat u degene die u goed vind kunt zoeken en downloaden en hen bijgewerkt houden.</string>
+    <string name="welcome_framework_update_available">Een update voor het Xposed framework is beschikbaar.</string>
+    <string name="welcome_update_available">Eén of meer update(s) voor modules beschikbaar.</string>
+    <string name="tabSettings">Instellingen</string>
+    <string name="tabSettingsDescription">Ga naar dit onderdeel om de Xposed Installer en framework te configureren.</string>
+    <string name="tabAbout">Over</string>
+    <string name="tabAboutDescription">Leer meer over de mensen die Xposed hebben gecreëerd, waar ondersteuning voor deze app te vinden enz.</string>
+
+    <!-- Installer tab -->
+    <string name="install">Installeren/Bijwerken</string>
+    <string name="uninstall">Verwijderen</string>
+    <string name="installedVersion">actief</string>
+    <string name="none">---</string>
+    <string name="latestVersion">gebundeld</string>
+    <string name="versions">Versies:</string>
+    <string name="soft_reboot">Zachte Herstart</string>
+    <string name="reboot">Herstart</string>
+    <string name="areyousure">Bent u het zeker?</string>
+    <string name="phone_not_compatible">Xposed is (nog) niet compatibel met Android SDK versie %1$d van uw processor architectuur (%2$s).</string>
+    <string name="not_tested_but_compatible">Xposed is niet getest geweest met Android SDK versie %d, maar het lijkt compatibel te zijn. U kan het proberen te installeren als u zich avontuurlijk voelt.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed module is nog niet geactiveerd</string>
+    <string name="module_empty_description">(geen beschrijving verstrekt)</string>
+    <string name="module_no_ui">Deze module voorziet geen a gebruikers interface</string>
+    <string name="no_xposed_modules_found">Geen Xposed modules gevonden!</string>
+    <string name="xposed_module_list_updated">Xposed module lijst werd bijgewerkt\nVeranderingen worden actief bij herstart</string>
+    <string name="warning_xposed_min_version">Deze module heeft een nieuwere XposedBridge versie nodig (%d) en kan dus niet geactiveerd worden.</string>
+    <string name="no_min_version_specified">Deze module specificeerde de XposedBridge versie niet dat nodig is.</string>
+    <string name="warning_min_version_too_low">Deze module werd gecreëerd voor XposedBridge versie %1$d, maar door onverenigbare veranderingen in versie %2$d, werd ze uitgeschakeld.</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Zoeken</string>
+    <string name="menuReload">Herladen</string>
+    <string name="changes">Veranderingen:</string>
+    <string name="branch_display">(%s branch)</string>
+    <string name="download_author">door %s</string>
+    <string name="download_unknown_author">onbekende auteur</string>
+    <string name="download_status_installed">Geïnstalleerd (versie %s)</string>
+    <string name="download_status_update_available">Update beschikbaar (version %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Toegevoegd op %1$s \u00b7 Bijgewerkt op %2$s</string>
+    <string name="download_sorting_title">Sortering volgorde</string>
+    <string name="download_sorting_status">Sorteren op status</string>
+    <string name="download_sorting_updated">Sorteren op laatste update</string>
+    <string name="download_sorting_created">Sorteren op creatie datum</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Update beschikbaar</string>
+    <string name="download_section_installed">Geïnstalleerd</string>
+    <string name="download_section_not_installed">Niet geïnstalleerd</string>
+    <string name="download_section_24h">Laatste 24 uur</string>
+    <string name="download_section_7d">Laatste 7 dagen</string>
+    <string name="download_section_30d">Laatste 30 dagen</string>
+    <string name="download_section_older">Meer dan 30 dagen geleden</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Download</string>
+    <string name="settings_enable_downloads">Inschakelen downloads</string>
+    <string name="settings_enable_downloads_summary">Xposed Installer toestaan te controleren op updates en nieuwe modules</string>
+    <string name="settings_group_experimental">Experimenteel</string>
+    <string name="settings_performance_experiment">Performantie experiment</string>
+    <string name="settings_performance_experiment_summary">Als u dit inschakeld, kan uw systeem performantie verhogen, verminderen of hetzelfde blijven. Voel u vrij om te proberen en laat ons weten welk effect u ziet (of als er helemaal geen is). U moet het framework herinstalleren en herstarten nadat u dit veranderd.</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Hoofd Ontwikkelaars:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> en <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">Kontakteer ons alstublieft <b>niet</b> direct voor ondersteuning, gebruik de onderstaande link.</string>
+    <string name="about_translator_label">Vertaler:</string>
+    <string name="translator"></string>
+    <string name="about_version_label">Versie van deze app:</string>
+    <string name="about_source_label">Bron code:</string>
+    <string name="about_support_label">Krijg ondersteuning op:</string>
+    <string name="about_support_warning">Deze link is voor de installeerder en het framework <b>alleen</b>! Als u hulp nodig heeft met een module, gebruik hem <b>niet</b>, Kontakteer de module auteur in de plaats.</string>
+    <string name="about_libraries_label">Gebruikte bibliotheken:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Download</string>
+    <string name="download_view_install">Installeren</string>
+    <string name="download_view_cancel">Annuleer</string>
+    <string name="download_view_no_url">Geen download URL beschikbaar</string>
+    <string name="download_view_running">Download is bezig (%1$,d van %2$,d kB)</string>
+    <string name="download_view_waiting">Download is wachtend</string>
+    <string name="download_view_successful">Download succesvol</string>
+    <string name="download_view_failed">Download mislukt (fout %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 som is niet correct (gedownload: %1$s, verwacht: %2$s)</string>
+    <string name="download_could_not_read_file">Kan gedownload bestand niet lezen: %s</string>
+    <string name="download_no_valid_apk">Gedownload bestand is geen  geldige APK (of incompatibel)</string>
+    <string name="download_incorrect_package_name">Pakket naam is niet correct (gedownload: %1$s, verwacht: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Downloaden %1$s mislukt: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Downloaden %1$s mislukt: %2$s</string>
+    <string name="repo_load_failed">Kan de repository niet laden van %1$s:\n%2$s</string>
+
+</resources>
