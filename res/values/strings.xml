@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- General/various strings -->
     <string name="app_name">Xposed Installer</string>
@@ -71,9 +71,9 @@
     <string name="settings_group_download">Download</string>
     <string name="settings_enable_downloads">Enable downloads</string>
     <string name="settings_enable_downloads_summary">Allow Xposed Installer to check for updates and new modules</string>
-    <string name="settings_group_experimental">Experimental</string>
-    <string name="settings_performance_experiment">Performance experiment</string>
-    <string name="settings_performance_experiment_summary">If you enable this, your system performance might either increase, decrease or stay the same. Feel free to try it and report back which effect you see (or if there is none at all). You need to reinstall the framework and reboot after changing this.</string>
+    <string name="settings_group_experimental" tools:ignore="UnusedResources">Experimental</string>
+    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Performance experiment</string>
+    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">If you enable this, your system performance might either increase, decrease or stay the same. Feel free to try it and report back which effect you see (or if there is none at all). You need to reinstall the framework and reboot after changing this.</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Main developers:</string>

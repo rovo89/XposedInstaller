@@ -1,4 +1,4 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+<merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,7 +10,8 @@
             android:layout_height="wrap_content"
             android:minHeight="40dip"
             android:text="@string/download_view_download"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnDownloadCancel"
@@ -19,7 +20,8 @@
             android:minHeight="40dip"
             android:text="@string/download_view_cancel"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:visibility="gone" />
+            android:visibility="gone"
+            tools:ignore="ButtonOrder,ButtonStyle" />
 
         <Button
             android:id="@+id/btnInstall"
@@ -28,7 +30,9 @@
             android:minHeight="40dip"
             android:text="@string/download_view_install"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:visibility="gone" />
+            android:visibility="gone"
+            tools:ignore="ButtonStyle" />
+
     </LinearLayout>
 
     <ProgressBar

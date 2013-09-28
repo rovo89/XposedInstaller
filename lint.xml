@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconDipSize">
+        <ignore path="res/drawable-xhdpi/ic_menu_refresh.png" />
+    </issue>
+</lint>
