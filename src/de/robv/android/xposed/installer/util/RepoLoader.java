@@ -38,6 +38,8 @@ public class RepoLoader {
 	private Map<String, ModuleGroup> mModules = new HashMap<String, ModuleGroup>(0);
 	private boolean mIsLoading = false;
 	private boolean mReloadTriggeredOnce = false;
+	private boolean mFirstLoadFinished = false;
+	private Object mFirstLoadFinishedLock = new Object();
 	private final List<String> mMessages = new LinkedList<String>();
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
 	
@@ -86,8 +88,10 @@ public class RepoLoader {
 		if (force)
 			resetLastUpdateCheck();
 
-		if (!mApp.areDownloadsEnabled())
+		if (!mApp.areDownloadsEnabled()) {
+			notifyFirstLoadFinished();
 			return;
+		}
 
 		synchronized (this) {
 			if (mIsLoading)
@@ -117,6 +121,7 @@ public class RepoLoader {
 				synchronized (this) {
 					mIsLoading = false;
 				}
+				notifyFirstLoadFinished();
 				mApp.updateProgressIndicator();
 			}
 		}.start();
@@ -125,6 +130,24 @@ public class RepoLoader {
 	public void triggerFirstLoadIfNecessary() {
 		if (!mReloadTriggeredOnce)
 			triggerReload(false);
+	}
+
+	public RepoLoader waitForFirstLoadFinished() {
+		synchronized (mFirstLoadFinishedLock) {
+			while (!mFirstLoadFinished) {
+				try {
+					mFirstLoadFinishedLock.wait();
+				} catch (InterruptedException ignored) {}
+			}
+		}
+		return this;
+	}
+
+	private void notifyFirstLoadFinished() {
+		synchronized (mFirstLoadFinishedLock) {
+			mFirstLoadFinished = true;
+			mFirstLoadFinishedLock.notifyAll();
+		}
 	}
 
 	public void resetLastUpdateCheck() {
