@@ -4,14 +4,20 @@ import java.util.Comparator;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -22,16 +28,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
+import de.robv.android.xposed.installer.util.RepoLoader;
 
 public class ModulesFragment extends ListFragment {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
 	private int installedXposedVersion;
 	private ModuleUtil mModuleUtil;
+	private RepoLoader mRepoLoader;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    mModuleUtil = ModuleUtil.getInstance();
+	    mRepoLoader = RepoLoader.getInstance();
 	}
 
 	@Override
@@ -60,6 +69,7 @@ public class ModulesFragment extends ListFragment {
 
 		getListView().setDivider(getResources().getDrawable(R.color.list_divider));
 		getListView().setDividerHeight(1);
+		registerForContextMenu(getListView());
 	}
 
 	@Override
@@ -70,6 +80,57 @@ public class ModulesFragment extends ListFragment {
 			startActivity(launchIntent);
 		else
 			Toast.makeText(getActivity(), getActivity().getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		InstalledModule module = getItemFromContextMenuInfo(menuInfo);
+		menu.setHeaderTitle(module.getAppName());
+
+		getActivity().getMenuInflater().inflate(R.menu.context_menu_modules, menu);
+
+		if (getSettingsIntent(module.packageName) == null)
+			menu.removeItem(R.id.menu_launch);
+
+		if (mRepoLoader.getModuleGroup(module.packageName) == null)
+			menu.removeItem(R.id.menu_download_updates);
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		InstalledModule module = getItemFromContextMenuInfo(item.getMenuInfo());
+		switch (item.getItemId()) {
+			case R.id.menu_launch:
+				startActivity(getSettingsIntent(module.packageName));
+				return true;
+
+			case R.id.menu_download_updates:
+				DownloadDetailsFragment detailsFragment = DownloadDetailsFragment.newInstance(module.packageName);
+
+				FragmentTransaction tx = getFragmentManager().beginTransaction();
+				tx.replace(android.R.id.content, detailsFragment);
+				// FIXME Up navigation brings us back to the module section instead of the downloads overview
+				tx.addToBackStack("downloads_overview");
+				tx.commit();
+				return true;
+
+			case R.id.menu_application_settings:
+				startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+					Uri.fromParts("package", module.packageName, null)));
+	            return true;
+
+			case R.id.menu_uninstall:
+				startActivity(new Intent(Intent.ACTION_UNINSTALL_PACKAGE,
+					Uri.fromParts("package", module.packageName, null)));
+				return true;
+		}
+
+		return false;
+	}
+
+	private InstalledModule getItemFromContextMenuInfo(ContextMenuInfo menuInfo) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+		return (InstalledModule) getListAdapter().getItem(info.position);
 	}
 
 	private Intent getSettingsIntent(String packageName) {
