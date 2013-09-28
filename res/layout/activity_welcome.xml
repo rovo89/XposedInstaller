@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="?android:attr/listPreferredItemPaddingLeft"
+        android:layout_marginLeft="?attr/listPreferredItemPaddingLeft"
         android:layout_marginTop="10dp"
         android:text="@string/welcome"
         android:textSize="18sp" />

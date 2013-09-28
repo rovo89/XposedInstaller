@@ -1,8 +1,7 @@
 package de.robv.android.xposed.installer;
 
-import android.animation.Animator;
-import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
@@ -10,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import de.robv.android.xposed.installer.util.AnimatorUtil;
 
 public class AboutFragment extends Fragment {
 	@Override
@@ -21,7 +19,7 @@ public class AboutFragment extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		Activity activity = getActivity();
+		FragmentActivity activity = getActivity();
 		if (activity instanceof XposedInstallerActivity)
 			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_ABOUT, null);
 	}
@@ -50,10 +48,5 @@ public class AboutFragment extends Fragment {
 		}
 
 		return v;
-	}
-
-	@Override
-	public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
-		return AnimatorUtil.createSlideAnimation(this, nextAnim);
 	}
 }

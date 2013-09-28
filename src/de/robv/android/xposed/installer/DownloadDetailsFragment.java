@@ -2,14 +2,15 @@ package de.robv.android.xposed.installer;
 
 import java.io.File;
 
-import android.animation.Animator;
-import android.app.Activity;
-import android.app.Fragment;
+import android.annotation.TargetApi;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
@@ -24,7 +25,6 @@ import android.widget.Toast;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
-import de.robv.android.xposed.installer.util.AnimatorUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadFinishedCallback;
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;
@@ -33,6 +33,7 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.widget.DownloadView;
 import de.robv.android.xposed.installer.widget.ExpandableStaticListView;
 
+@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
 public class DownloadDetailsFragment extends Fragment {
 	public static final String ARGUMENT_PACKAGE = "package";
 	private String packageName;
@@ -52,7 +53,7 @@ public class DownloadDetailsFragment extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		Activity activity = getActivity();
+		FragmentActivity activity = getActivity();
 		if (activity instanceof XposedInstallerActivity)
 			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_DOWNLOAD, "downloads_overview");
 	}
@@ -97,7 +98,7 @@ public class DownloadDetailsFragment extends Fragment {
 	}
 
 	private Spanned parseSimpleHtml(String source) {
-		source = source.replaceAll("<li>", "\t• ");
+		source = source.replaceAll("<li>", "\t ");
 		source = source.replaceAll("</li>", "<br>");
 		Spanned html = Html.fromHtml(source);
 		
@@ -116,12 +117,6 @@ public class DownloadDetailsFragment extends Fragment {
 			return new SpannableStringBuilder(html, 0, end);
 	}
 
-	@Override
-	public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
-		return AnimatorUtil.createSlideAnimation(this, nextAnim);
-	}
-
-	
 	private class VersionsAdapter extends BaseExpandableListAdapter {
 		private final LayoutInflater mLayoutInflater;
 

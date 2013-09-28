@@ -5,17 +5,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import android.animation.Animator;
 import android.annotation.SuppressLint;
-import android.app.Activity;
+import android.annotation.TargetApi;
+import android.support.v4.app.FragmentActivity;
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -38,12 +39,12 @@ import com.emilsjolander.components.stickylistheaders.StickyListHeadersAdapter;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
-import de.robv.android.xposed.installer.util.AnimatorUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
+@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
 public class DownloadFragment extends Fragment implements RepoListener {
 	private SharedPreferences mPref;
 	private DownloadsAdapter mAdapter;
@@ -71,7 +72,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		Activity activity = getActivity();
+		FragmentActivity activity = getActivity();
 		if (activity instanceof XposedInstallerActivity)
 			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_DOWNLOAD, null);
 
@@ -95,7 +96,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 				// requires onCreateAnimator() to be overridden!
 				tx.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
 						R.anim.slide_in_left, R.anim.slide_out_right);
-				tx.replace(android.R.id.content, fragment);
+				tx.replace(R.id.action_bar_activity_content, fragment);
 				tx.addToBackStack("downloads_overview");
 				tx.commit();
 			}
@@ -186,11 +187,6 @@ public class DownloadFragment extends Fragment implements RepoListener {
 				return true;
 		}
 	    return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
-		return AnimatorUtil.createSlideAnimation(this, nextAnim);
 	}
 	
 	@Override

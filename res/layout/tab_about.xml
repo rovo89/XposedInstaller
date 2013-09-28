@@ -6,7 +6,7 @@
     tools:context=".AboutFragment" >
 
     <LinearLayout
-        android:id="@android:id/content"
+        android:id="@id/action_bar_activity_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

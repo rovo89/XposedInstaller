@@ -9,8 +9,8 @@
         android:id="@android:id/text1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="?android:attr/listPreferredItemPaddingLeft"
-        android:textAppearance="?android:attr/textAppearanceListItem" />
+        android:layout_marginLeft="?attr/listPreferredItemPaddingLeft"
+        android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
         android:id="@android:id/text2"

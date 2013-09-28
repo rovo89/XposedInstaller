@@ -15,9 +15,9 @@ import java.util.jar.JarInputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.app.AlertDialog;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -40,7 +40,7 @@ public class InstallerFragment extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		Activity activity = getActivity();
+		FragmentActivity activity = getActivity();
 		if (activity instanceof XposedInstallerActivity)
 			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_INSTALL, null);
 	}
@@ -64,6 +64,14 @@ public class InstallerFragment extends Fragment {
 		boolean isCompatible = false;
 		if (BINARIES_FOLDER == null) {
 			// incompatible processor architecture
+		} else if (Build.VERSION.SDK_INT == 10) {
+			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk10";
+			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk10";
+			if (!checkJit()) {
+				APP_PROCESS_NAME += "_nojit";
+			}
+			isCompatible = checkCompatibility();
+
 		} else if (Build.VERSION.SDK_INT == 15) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk15";
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk15";
@@ -73,7 +81,7 @@ public class InstallerFragment extends Fragment {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
 			isCompatible = checkCompatibility();
-			
+
 		} else if (Build.VERSION.SDK_INT > 18) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
@@ -189,10 +197,14 @@ public class InstallerFragment extends Fragment {
 	}
 	
 	private void areYouSure(int messageTextId, OnClickListener yesHandler) {
+		AlertDialog.Builder builder =
 		new AlertDialog.Builder(getActivity())
 		.setTitle(R.string.areyousure)
-        .setMessage(messageTextId)
-        .setIconAttribute(android.R.attr.alertDialogIcon)
+        .setMessage(messageTextId);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1) {
+            builder.setIconAttribute(android.R.attr.alertDialogIcon);
+        }
+        builder
         .setPositiveButton(android.R.string.yes, yesHandler)
         .setNegativeButton(android.R.string.no, null)
         .create()
@@ -230,6 +242,32 @@ public class InstallerFragment extends Fragment {
 			
 			testFile.delete();
 			return result != null && result.equals("OK");
+		} catch (IOException e) {
+			return false;
+		}
+	}
+
+	private boolean checkJit() {
+		try {
+			/*
+			dvmFprintf(stderr, "Configured with:"
+			....
+			#if defined(WITH_JIT)
+			        " jit(" ARCH_VARIANT ")"
+			#endif
+			....
+			*/
+			Process p = Runtime.getRuntime().exec(new String[] { "dalvikvm", "-help" });
+			BufferedReader stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+			String result;
+			while ((result = stderr.readLine()) != null) {
+				if (result.startsWith("Configured with:")) {
+					break;
+				}
+			}
+			stderr.close();
+			p.destroy();
+			return result != null && result.contains(" jit(");
 		} catch (IOException e) {
 			return false;
 		}

@@ -20,6 +20,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.util.ModuleUtil;
@@ -159,7 +160,7 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 		startXposedInstaller.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		
 		Notification notification =
-			new Notification.Builder(context)
+			new NotificationCompat.Builder(context)
 			.setContentTitle(context.getString(R.string.module_is_not_activated_yet))
 			.setContentText(appName)
 			.setTicker(context.getString(R.string.module_is_not_activated_yet))

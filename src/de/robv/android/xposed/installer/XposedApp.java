@@ -2,8 +2,6 @@ package de.robv.android.xposed.installer;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Application;
-import android.app.Application.ActivityLifecycleCallbacks;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -12,7 +10,7 @@ import android.preference.PreferenceManager;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
-public class XposedApp extends Application implements ActivityLifecycleCallbacks {
+public class XposedApp extends Application implements Application.ActivityLifecycleCallbacks {
 	private static XposedApp mInstance = null;
 	private static Thread mUiThread;
 	private static Handler mMainHandler;
