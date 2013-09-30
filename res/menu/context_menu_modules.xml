@@ -8,7 +8,10 @@
         android:id="@+id/menu_download_updates"
         android:title="@string/module_download_updates"/>
     <item
-        android:id="@+id/menu_application_settings"
+        android:id="@+id/menu_support"
+        android:title="@string/module_support"/>
+    <item
+        android:id="@+id/menu_app_info"
         android:title="@string/module_app_info"/>
     <item
         android:id="@+id/menu_uninstall"
