@@ -17,8 +17,12 @@ import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
 public class XposedApp extends Application implements ActivityLifecycleCallbacks {
+	public static final String TAG = "XposedInstaller";
+
 	@SuppressLint("SdCardPath")
 	public static final String BASE_DIR = "/data/data/de.robv.android.xposed.installer/";
+
+	public static final int NOTIFICATION_MODULE_NOT_ACTIVATED_YET = 1;
 
 	private static XposedApp mInstance = null;
 	private static Thread mUiThread;

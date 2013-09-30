@@ -1,6 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +11,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
-public class WelcomeActivity extends Activity {
+public class WelcomeActivity extends XposedBaseActivity {
 	private RepoLoader repoLoader;
 	private WelcomeAdapter mAdapter;
 
@@ -42,8 +42,9 @@ public class WelcomeActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Intent intent = new Intent(WelcomeActivity.this, XposedInstallerActivity.class);
 				intent.putExtra(XposedInstallerActivity.EXTRA_OPEN_TAB, position);
+				intent.putExtra(NavUtil.FINISH_ON_UP_NAVIGATION, true);
 				startActivity(intent);
-				overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+				NavUtil.setTransitionSlideEnter(WelcomeActivity.this);
 			}
 		});
 	}

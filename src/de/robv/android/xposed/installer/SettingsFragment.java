@@ -13,8 +13,8 @@ public class SettingsFragment extends PreferenceFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		Activity activity = getActivity();
-		if (activity instanceof XposedInstallerActivity)
-			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_SETTINGS, null);
+		if (activity instanceof XposedDropdownNavActivity)
+			((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_SETTINGS);
 	}
 
 	@Override

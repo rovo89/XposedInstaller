@@ -34,6 +34,16 @@
             android:configChanges="orientation|screenSize"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".DownloadDetailsActivity"
+            android:configChanges="orientation|screenSize">
+			<intent-filter>
+			    <action android:name="de.robv.android.xposed.installer.DOWNLOAD_DETAILS" />
+			    <data android:scheme="package" />
+			    <category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+        </activity>
+
 
         <receiver android:name=".PackageChangeReceiver" >
             <intent-filter>

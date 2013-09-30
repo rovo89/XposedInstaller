@@ -4,7 +4,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
@@ -48,8 +47,8 @@ public class ModulesFragment extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
 
 		Activity activity = getActivity();
-		if (activity instanceof XposedInstallerActivity)
-			((XposedInstallerActivity) activity).setNavItem(XposedInstallerActivity.TAB_MODULES, null);
+		if (activity instanceof XposedDropdownNavActivity)
+			((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_MODULES);
 
 		installedXposedVersion = InstallerFragment.getJarInstalledVersion();
 
@@ -105,13 +104,9 @@ public class ModulesFragment extends ListFragment {
 				return true;
 
 			case R.id.menu_download_updates:
-				DownloadDetailsFragment detailsFragment = DownloadDetailsFragment.newInstance(module.packageName);
-
-				FragmentTransaction tx = getFragmentManager().beginTransaction();
-				tx.replace(android.R.id.content, detailsFragment);
-				// FIXME Up navigation brings us back to the module section instead of the downloads overview
-				tx.addToBackStack("downloads_overview");
-				tx.commit();
+				Intent detailsIntent = new Intent(getActivity(), DownloadDetailsActivity.class);
+				detailsIntent.setData(Uri.fromParts("package", module.packageName, null));
+				startActivity(detailsIntent);
 				return true;
 
 			case R.id.menu_application_settings:

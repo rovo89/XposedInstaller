@@ -67,6 +67,6 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			.getNotification();
 
 		NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-		nm.notify(packageName, XposedInstallerActivity.NOTIFICATION_MODULE_NOT_ACTIVATED_YET, notification);
+		nm.notify(packageName, XposedApp.NOTIFICATION_MODULE_NOT_ACTIVATED_YET, notification);
 	}
 }

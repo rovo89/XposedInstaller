@@ -20,7 +20,6 @@ import android.widget.Toast;
 import de.robv.android.xposed.installer.InstallerFragment;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
-import de.robv.android.xposed.installer.XposedInstallerActivity;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 
 
@@ -150,7 +149,7 @@ public final class ModuleUtil {
 
 	public synchronized void updateModulesList() {
 		try {
-			Log.i(XposedInstallerActivity.TAG, "updating modules.list");
+			Log.i(XposedApp.TAG, "updating modules.list");
 			int installedXposedVersion = InstallerFragment.getJarInstalledVersion();
 			if (installedXposedVersion == 0) {
 				Toast.makeText(mApp, "The xposed framework is not installed", Toast.LENGTH_SHORT).show();
@@ -171,7 +170,7 @@ public final class ModuleUtil {
 
 			Toast.makeText(mApp, R.string.xposed_module_list_updated, Toast.LENGTH_SHORT).show();
 		} catch (IOException e) {
-			Log.e(XposedInstallerActivity.TAG, "cannot write " + MODULES_LIST_FILE, e);
+			Log.e(XposedApp.TAG, "cannot write " + MODULES_LIST_FILE, e);
 			Toast.makeText(mApp, "cannot write " +  MODULES_LIST_FILE, Toast.LENGTH_SHORT).show();
 		}
 	}
