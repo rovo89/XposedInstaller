@@ -9,7 +9,7 @@
         android:title="@string/module_download_updates"/>
     <item
         android:id="@+id/menu_application_settings"
-        android:title="@string/module_application_settings"/>
+        android:title="@string/module_app_info"/>
     <item
         android:id="@+id/menu_uninstall"
         android:title="@string/module_uninstall"/>
