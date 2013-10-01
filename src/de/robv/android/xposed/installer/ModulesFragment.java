@@ -28,14 +28,16 @@ import android.widget.Toast;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
+import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
-public class ModulesFragment extends ListFragment {
+public class ModulesFragment extends ListFragment implements ModuleListener {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
 	private int installedXposedVersion;
 	private ModuleUtil mModuleUtil;
 	private RepoLoader mRepoLoader;
+	private ModuleAdapter mAdapter = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -54,23 +56,46 @@ public class ModulesFragment extends ListFragment {
 
 		installedXposedVersion = InstallerFragment.getJarInstalledVersion();
 
-		ModuleAdapter modules = new ModuleAdapter(getActivity());
-		modules.addAll(mModuleUtil.getModules().values());
-		modules.sort(new Comparator<InstalledModule>() {
-			@Override
-			public int compare(InstalledModule lhs, InstalledModule rhs) {
-				return lhs.getAppName().compareTo(rhs.getAppName());
-			}
-		});
-
-		setListAdapter(modules);
+		mAdapter = new ModuleAdapter(getActivity());
+		reloadModules.run();
+		setListAdapter(mAdapter);
 		setEmptyText(getActivity().getString(R.string.no_xposed_modules_found));
-
 		getListView().setFastScrollEnabled(true);
-
 		getListView().setDivider(getResources().getDrawable(R.color.list_divider));
 		getListView().setDividerHeight(1);
 		registerForContextMenu(getListView());
+		mModuleUtil.addListener(this);
+	}
+
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		mModuleUtil.removeListener(this);
+	}
+
+	private Runnable reloadModules = new Runnable() {
+		public void run() {
+			mAdapter.setNotifyOnChange(false);
+			mAdapter.clear();
+			mAdapter.addAll(mModuleUtil.getModules().values());
+			mAdapter.sort(new Comparator<InstalledModule>() {
+				@Override
+				public int compare(InstalledModule lhs, InstalledModule rhs) {
+					return lhs.getAppName().compareTo(rhs.getAppName());
+				}
+			});
+			mAdapter.notifyDataSetChanged();
+		}
+	};
+
+	@Override
+	public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module) {
+		getActivity().runOnUiThread(reloadModules);
+	}
+
+	@Override
+	public void onInstalledModulesReloaded(ModuleUtil moduleUtil) {
+		getActivity().runOnUiThread(reloadModules);
 	}
 
 	@Override

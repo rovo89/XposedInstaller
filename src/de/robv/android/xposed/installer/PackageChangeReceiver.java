@@ -24,7 +24,8 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 		if (packageName == null)
 			return;
 
-		if (intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)) {
+		InstalledModule module = ModuleUtil.getInstance().reloadSingleModule(packageName);
+		if (module == null || intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)) {
 			// Package being removed, disable it if it was a previously active Xposed mod
 			if (mModuleUtil.isModuleEnabled(packageName)) {
 				mModuleUtil.setModuleEnabled(packageName, false);
@@ -32,10 +33,6 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			}
 			return;
 		}
-
-		InstalledModule module = ModuleUtil.getInstance().reloadSingleModule(packageName);
-		if (module == null)
-			return;
 
 		if (mModuleUtil.isModuleEnabled(packageName)) {
 			mModuleUtil.updateModulesList();
