@@ -26,8 +26,6 @@
     <string name="none">---</string>
     <string name="latestVersion">bundled</string>
     <string name="versions">Versions:</string>
-    <string name="app_process" translatable="false">app_process</string>
-    <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
     <string name="soft_reboot">Soft reboot</string>
     <string name="reboot">Reboot</string>
     <string name="areyousure">Are you sure?</string>
@@ -88,12 +86,9 @@
     <string name="translator"></string>
     <string name="about_version_label">Version of this app:</string>
     <string name="about_source_label">Source code:</string>
-    <string name="about_source" translatable="false">https://github.com/rovo89</string>
     <string name="about_support_label">Get support at:</string>
-    <string name="about_support" translatable="false">http://forum.xda-developers.com/showthread.php?t=1574401</string>
     <string name="about_support_warning">This link is for the installer and the framework <b>only</b>! If you need help with a module, do <b>not</b> use it, contact the module author instead.</string>
     <string name="about_libraries_label">Used libraries:</string>
-    <string name="about_libraries" translatable="false"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a></string>
 
     <!-- DownloadView -->
     <string name="download_view_download">Download</string>
