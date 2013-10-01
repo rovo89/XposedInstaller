@@ -42,11 +42,12 @@ import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.util.AnimatorUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
+import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
-public class DownloadFragment extends Fragment implements RepoListener {
+public class DownloadFragment extends Fragment implements RepoListener, ModuleListener {
 	private SharedPreferences mPref;
 	private DownloadsAdapter mAdapter;
 	private String mFilterText;
@@ -85,6 +86,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 		ListView lv = (ListView) v.findViewById(R.id.listModules);
 
 		mRepoLoader.addListener(this, true);
+		mModuleUtil.addListener(this);
 		lv.setAdapter(mAdapter);
 		
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -119,6 +121,7 @@ public class DownloadFragment extends Fragment implements RepoListener {
 	public void onDestroyView() {
 		super.onDestroyView();
 		mRepoLoader.removeListener(this);
+		mModuleUtil.removeListener(this);
 	}
 
 	@Override
@@ -212,6 +215,27 @@ public class DownloadFragment extends Fragment implements RepoListener {
 				}
 			}
 		});
+	}
+
+	private void notifyDataSetChanged() {
+		getActivity().runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				synchronized (mAdapter) {
+					mAdapter.notifyDataSetChanged();
+				}
+			}
+		});
+	}
+
+	@Override
+	public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module) {
+		notifyDataSetChanged();
+	}
+
+	@Override
+	public void onInstalledModulesReloaded(ModuleUtil moduleUtil) {
+		notifyDataSetChanged();
 	}
 
 
