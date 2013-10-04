@@ -41,6 +41,11 @@
     <string name="warning_xposed_min_version">该模块需要较新版本的XposedBridge(%d)，因此无法激活。</string>
     <string name="no_min_version_specified">该模块未指定需要的XposedBridge版本。</string>
     <string name="warning_min_version_too_low">该模块在XposedBridge版本%1$d下创建，但因为不兼容版本%2$d中的变化内容，它已被禁用。</string>
+	<string name="module_launch">运行界面</string>
+    <string name="module_download_updates">下载/上传</string>
+    <string name="module_support">支持</string>
+    <string name="module_app_info">程序信息</string>
+    <string name="module_uninstall">卸载</string>
 
     <!-- Download tab -->
     <string name="menuSearch">搜索</string>
@@ -69,9 +74,9 @@
     <string name="settings_group_download">下载</string>
     <string name="settings_enable_downloads">启用下载</string>
     <string name="settings_enable_downloads_summary">允许Xposed安装器检查更新和新模块</string>
-    <string name="settings_group_experimental">实验性</string>
-    <string name="settings_performance_experiment">性能试验</string>
-    <string name="settings_performance_experiment_summary">如果您启用该选项，您的系统性能可能更好、更差或没有变化。请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启。</string>
+    <string name="settings_group_experimental" tools:ignore="UnusedResources">>实验性</string>
+    <string name="settings_performance_experiment" tools:ignore="UnusedResources">>性能试验</string>
+    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">如果您启用该选项，您的系统性能可能更好、更差或没有变化。请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启。</string>
 
     <!-- About tab -->
     <string name="about_developers_label">主要开发者：</string>
