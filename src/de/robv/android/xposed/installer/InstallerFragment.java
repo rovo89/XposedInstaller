@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.LinkedList;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.regex.Matcher;
@@ -24,6 +25,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,7 @@ public class InstallerFragment extends Fragment {
 	private String XPOSEDTEST_NAME = null;
 	private final String BINARIES_FOLDER = getBinariesFolder();
 	private static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
+	private final LinkedList<String> mCompatibilityErrors = new LinkedList<String>();
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -55,6 +58,8 @@ public class InstallerFragment extends Fragment {
 		final TextView txtAppProcessLatestVersion = (TextView) v.findViewById(R.id.app_process_latest_version);
 		final TextView txtJarInstalledVersion = (TextView) v.findViewById(R.id.jar_installed_version);
 		final TextView txtJarLatestVersion = (TextView) v.findViewById(R.id.jar_latest_version);
+
+		final TextView txtInstallError = (TextView) v.findViewById(R.id.framework_install_errors);
 
 		final Button btnInstall = (Button) v.findViewById(R.id.btnInstall);
 		final Button btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
@@ -79,8 +84,9 @@ public class InstallerFragment extends Fragment {
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
 			isCompatible = checkCompatibility();
 			if (isCompatible) {
-				btnInstall.setText(String.format(getString(R.string.not_tested_but_compatible), Build.VERSION.SDK_INT));
-				btnInstall.setTextColor(Color.YELLOW);
+				txtInstallError.setText(String.format(getString(R.string.not_tested_but_compatible), Build.VERSION.SDK_INT));
+				txtInstallError.setTextColor(Color.YELLOW);
+				txtInstallError.setVisibility(View.VISIBLE);
 			}
 		}
 		
@@ -119,8 +125,12 @@ public class InstallerFragment extends Fragment {
 				}
 			});
 		} else {
-			btnInstall.setText(String.format(getString(R.string.phone_not_compatible), Build.VERSION.SDK_INT, Build.CPU_ABI));
-			btnInstall.setTextColor(Color.RED);
+			String errorText = String.format(getString(R.string.phone_not_compatible), Build.VERSION.SDK_INT, Build.CPU_ABI);
+			if (!mCompatibilityErrors.isEmpty())
+				errorText += "\n\n" + TextUtils.join("\n", mCompatibilityErrors);
+			txtInstallError.setText(errorText);
+			txtInstallError.setTextColor(Color.RED);
+			txtInstallError.setVisibility(View.VISIBLE);
 			btnInstall.setEnabled(false);
 		}
 		
@@ -195,6 +205,7 @@ public class InstallerFragment extends Fragment {
 	}
 	
 	private boolean checkCompatibility() {
+		mCompatibilityErrors.clear();
 		return checkXposedTestCompatibility() && checkAppProcessCompatibility();
 	}
 
@@ -204,19 +215,30 @@ public class InstallerFragment extends Fragment {
 				return false;
 			
 			File testFile = writeAssetToCacheFile(XPOSEDTEST_NAME, "xposedtest", 00700);
-			if (testFile == null)
+			if (testFile == null) {
+				mCompatibilityErrors.add("could not write xposedtest to cache");
 				return false;
+			}
 			
 			Process p = Runtime.getRuntime().exec(testFile.getAbsolutePath());
 			
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			String result = stdout.readLine();
 			stdout.close();
+
+			BufferedReader stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+			String errorLine;
+			while ((errorLine = stderr.readLine()) != null) {
+				mCompatibilityErrors.add(errorLine);
+			}
+			stderr.close();
+
 			p.destroy();
 			
 			testFile.delete();
 			return result != null && result.equals("OK");
 		} catch (IOException e) {
+			mCompatibilityErrors.add(e.getMessage());
 			return false;
 		}
 	}
@@ -227,19 +249,30 @@ public class InstallerFragment extends Fragment {
 				return false;
 			
 			File testFile = writeAssetToCacheFile(APP_PROCESS_NAME, "app_process", 00700);
-			if (testFile == null)
+			if (testFile == null) {
+				mCompatibilityErrors.add("could not write app_process to cache");
 				return false;
+			}
 
 			Process p = Runtime.getRuntime().exec(new String[] { testFile.getAbsolutePath(), "--xposedversion" });
 
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			String result = stdout.readLine();
 			stdout.close();
+
+			BufferedReader stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+			String errorLine;
+			while ((errorLine = stderr.readLine()) != null) {
+				mCompatibilityErrors.add(errorLine);
+			}
+			stderr.close();
+
 			p.destroy();
 
 			testFile.delete();
 			return result != null && result.startsWith("Xposed version: ");
 		} catch (IOException e) {
+			mCompatibilityErrors.add(e.getMessage());
 			return false;
 		}
 	}

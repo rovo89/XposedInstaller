@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/latestVersion" />
             </TableRow>
-            
+
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
@@ -83,6 +83,14 @@
             </TableRow>
         </TableLayout>
 
+        <TextView
+            android:id="@+id/framework_install_errors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
         <Button
             android:id="@+id/btnInstall"
             android:layout_width="match_parent"
@@ -97,8 +105,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:layout_marginTop="15dp"
-            >
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp" >
 
             <Button
                 android:id="@+id/btnSoftReboot"
@@ -115,7 +123,6 @@
                 android:layout_weight="1"
                 android:text="@string/reboot"
                 tools:ignore="ButtonStyle" />
-
         </LinearLayout>
     </LinearLayout>
 
