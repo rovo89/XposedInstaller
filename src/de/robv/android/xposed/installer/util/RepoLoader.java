@@ -165,6 +165,9 @@ public class RepoLoader {
 
 			mModules = new HashMap<String, ModuleGroup>();
 		}
+		for (RepoListener listener : mListeners) {
+			listener.onRepoReloaded(mInstance);
+		}
 	}
 
 	public String[] getRepositories() {
