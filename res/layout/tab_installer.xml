@@ -84,6 +84,16 @@
         </TableLayout>
 
         <TextView
+            android:id="@+id/miui_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="@string/miui_warning"
+            android:textColor="#ffff0000"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/framework_install_errors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
