@@ -190,8 +190,8 @@ public class InstallerFragment extends Fragment {
 	
 	private void areYouSure(int messageTextId, OnClickListener yesHandler) {
 		new AlertDialog.Builder(getActivity())
-		.setTitle(R.string.areyousure)
-        .setMessage(messageTextId)
+		.setTitle(messageTextId)
+        .setMessage(getResources().getString(R.string.areyousure))
         .setIconAttribute(android.R.attr.alertDialogIcon)
         .setPositiveButton(android.R.string.yes, yesHandler)
         .setNegativeButton(android.R.string.no, null)
