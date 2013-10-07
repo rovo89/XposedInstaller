@@ -70,7 +70,7 @@ public class InstallerFragment extends Fragment {
 		final Button btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
 		final Button btnSoftReboot = (Button) v.findViewById(R.id.btnSoftReboot);
 		final Button btnReboot = (Button) v.findViewById(R.id.btnReboot);
-		
+
 		boolean isCompatible = false;
 		if (BINARIES_FOLDER == null) {
 			// incompatible processor architecture
@@ -78,12 +78,12 @@ public class InstallerFragment extends Fragment {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk15";
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk15";
 			isCompatible = checkCompatibility();
-			
+
 		} else if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT <= 18) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
 			isCompatible = checkCompatibility();
-			
+
 		} else if (Build.VERSION.SDK_INT > 18) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
@@ -94,12 +94,12 @@ public class InstallerFragment extends Fragment {
 				txtInstallError.setVisibility(View.VISIBLE);
 			}
 		}
-		
+
 		final int appProcessInstalledVersion = getInstalledAppProcessVersion();
 		final int appProcessLatestVersion = getLatestAppProcessVersion();
 		final int jarInstalledVersion = getJarInstalledVersion();
 		final int jarLatestVersion = getJarLatestVersion();
-		
+
 		txtAppProcessInstalledVersion.setText(versionToText(appProcessInstalledVersion));
 		txtAppProcessLatestVersion.setText(versionToText(appProcessLatestVersion));
 		txtJarInstalledVersion.setText(versionToText(jarInstalledVersion));
@@ -109,13 +109,13 @@ public class InstallerFragment extends Fragment {
 			txtAppProcessInstalledVersion.setTextColor(Color.RED);
 		else
 			txtAppProcessInstalledVersion.setTextColor(Color.GREEN);
-		
+
 		if (jarInstalledVersion < jarLatestVersion)
 			txtJarInstalledVersion.setTextColor(Color.RED);
 		else
 			txtJarInstalledVersion.setTextColor(Color.GREEN);
-		
-		
+
+
 		if (isCompatible) {
 			btnInstall.setOnClickListener(new View.OnClickListener() {
 				@Override
@@ -138,7 +138,7 @@ public class InstallerFragment extends Fragment {
 			txtInstallError.setVisibility(View.VISIBLE);
 			btnInstall.setEnabled(false);
 		}
-		
+
 		btnUninstall.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -160,7 +160,7 @@ public class InstallerFragment extends Fragment {
 				});
 			}
 		});
-		
+
 		btnSoftReboot.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -172,7 +172,7 @@ public class InstallerFragment extends Fragment {
 				});
 			}
 		});
-		
+
 		return v;
 	}
 
@@ -182,33 +182,33 @@ public class InstallerFragment extends Fragment {
 
 	private void showAlert(String result) {
 		new AlertDialog.Builder(getActivity())
-        .setMessage(result)
-        .setPositiveButton(android.R.string.ok, null)
-        .create()
-        .show();
+		.setMessage(result)
+		.setPositiveButton(android.R.string.ok, null)
+		.create()
+		.show();
 	}
-	
+
 	private void areYouSure(int messageTextId, OnClickListener yesHandler) {
 		new AlertDialog.Builder(getActivity())
-		.setTitle(R.string.areyousure)
-        .setMessage(messageTextId)
-        .setIconAttribute(android.R.attr.alertDialogIcon)
-        .setPositiveButton(android.R.string.yes, yesHandler)
-        .setNegativeButton(android.R.string.no, null)
-        .create()
-        .show();
+		.setTitle(messageTextId)
+		.setMessage(R.string.areyousure)
+		.setIconAttribute(android.R.attr.alertDialogIcon)
+		.setPositiveButton(android.R.string.yes, yesHandler)
+		.setNegativeButton(android.R.string.no, null)
+		.create()
+		.show();
 	}
-	
+
 	private static String getBinariesFolder() {
 		if (Build.CPU_ABI.startsWith("armeabi")) {
 			return "arm/";
 		} else if (Build.CPU_ABI.startsWith("x86")) {
-				return "x86/";
+			return "x86/";
 		} else {
 			return null;
 		}
 	}
-	
+
 	private boolean checkCompatibility() {
 		mCompatibilityErrors.clear();
 		return checkXposedTestCompatibility() && checkAppProcessCompatibility();
@@ -218,15 +218,15 @@ public class InstallerFragment extends Fragment {
 		try {
 			if (XPOSEDTEST_NAME == null)
 				return false;
-			
+
 			File testFile = writeAssetToCacheFile(XPOSEDTEST_NAME, "xposedtest", 00700);
 			if (testFile == null) {
 				mCompatibilityErrors.add("could not write xposedtest to cache");
 				return false;
 			}
-			
+
 			Process p = Runtime.getRuntime().exec(testFile.getAbsolutePath());
-			
+
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			String result = stdout.readLine();
 			stdout.close();
@@ -239,7 +239,7 @@ public class InstallerFragment extends Fragment {
 			stderr.close();
 
 			p.destroy();
-			
+
 			testFile.delete();
 			return result != null && result.equals("OK");
 		} catch (IOException e) {
@@ -252,7 +252,7 @@ public class InstallerFragment extends Fragment {
 		try {
 			if (APP_PROCESS_NAME == null)
 				return false;
-			
+
 			File testFile = writeAssetToCacheFile(APP_PROCESS_NAME, "app_process", 00700);
 			if (testFile == null) {
 				mCompatibilityErrors.add("could not write app_process to cache");
@@ -289,18 +289,18 @@ public class InstallerFragment extends Fragment {
 			return 0;
 		}
 	}
-	
+
 	private int getLatestAppProcessVersion() {
 		if (APP_PROCESS_NAME == null)
 			return 0;
-		
+
 		try {
 			return getAppProcessVersion(getActivity().getAssets().open(APP_PROCESS_NAME));
 		} catch (Exception e) {
 			return 0;
 		}
 	}
-	
+
 	private int getAppProcessVersion(InputStream is) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		String line;
@@ -316,7 +316,7 @@ public class InstallerFragment extends Fragment {
 		is.close();
 		return 0;
 	}
-	
+
 	public static int getJarInstalledVersion() {
 		try {
 			if (new File(JAR_PATH + ".newversion").exists())
@@ -327,7 +327,7 @@ public class InstallerFragment extends Fragment {
 			return 0;
 		}
 	}
-	
+
 	private int getJarLatestVersion() {
 		try {
 			return getJarVersion(getActivity().getAssets().open("XposedBridge.jar"));
@@ -335,7 +335,7 @@ public class InstallerFragment extends Fragment {
 			return 0;
 		}
 	}
-	
+
 	public static int getJarVersion(InputStream is) throws IOException {
 		JarInputStream jis = new JarInputStream(is);
 		JarEntry entry;
@@ -343,7 +343,7 @@ public class InstallerFragment extends Fragment {
 			while ((entry = jis.getNextJarEntry()) != null) {
 				if (!entry.getName().equals("assets/VERSION"))
 					continue;
-				
+
 				BufferedReader br = new BufferedReader(new InputStreamReader(jis));
 				String version = br.readLine();
 				is.close();
@@ -357,52 +357,52 @@ public class InstallerFragment extends Fragment {
 		}
 		return 0;
 	}
-	
+
 	private String install() {
 		File appProcessFile = writeAssetToCacheFile(APP_PROCESS_NAME, "app_process", 00700);
 		if (appProcessFile == null)
 			return "Could not find asset \"app_process\"";
-		
+
 		File jarFile = writeAssetToFile("XposedBridge.jar", new File(JAR_PATH + ".newversion"), 00644);
 		if (jarFile == null)
 			return "Could not find asset \"XposedBridge.jar\"";
 
 		writeAssetToFile(APP_PROCESS_NAME, new File(XposedApp.BASE_DIR + "bin/app_process"), 00600);
 		writeAssetToSdcardFile("Xposed-Disabler-Recovery.zip", 00644);
-		
+
 		String result = executeScript("install.sh");
-		
+
 		appProcessFile.delete();
-		
+
 		return result;
 	}
-	
+
 	private String uninstall() {
 		new File(JAR_PATH).delete();
 		new File(JAR_PATH + ".newversion").delete();
 		new File(XposedApp.BASE_DIR + "bin/app_process").delete();
 		return executeScript("uninstall.sh");
 	}
-	
+
 	private String softReboot() {
 		return executeScript("soft_reboot.sh");
 	}
-	
+
 	private String reboot() {
 		return executeScript("reboot.sh");
 	}
-	
+
 	private String executeScript(String name) {
 		File scriptFile = writeAssetToCacheFile(name, 00700);
 		if (scriptFile == null)
 			return "Could not find asset \"" + name + "\"";
-		
+
 		File busybox = writeAssetToCacheFile(BINARIES_FOLDER + "busybox-xposed", "busybox-xposed", 00700);
 		if (busybox == null) {
 			scriptFile.delete();
 			return "Could not find asset \"busybox-xposed\"";
 		}
-		
+
 		try {
 			Process p = Runtime.getRuntime().exec(
 					new String[] {
@@ -424,7 +424,7 @@ public class InstallerFragment extends Fragment {
 			}
 			stdout.close();
 			return sb.toString();
-			
+
 		} catch (IOException e) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
