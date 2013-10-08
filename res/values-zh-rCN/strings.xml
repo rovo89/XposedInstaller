@@ -31,6 +31,7 @@
     <string name="areyousure">您确定？</string>
     <string name="phone_not_compatible">Xposed目前不兼容 Android SDK 版本 %1$d 或者您的处理器架构(%2$s)。</string>
     <string name="not_tested_but_compatible">Xposed未在 Android SDK 版本 %d 上测试，但它似乎是可兼容的。如果您热爱冒险，您可以试试安装它。</string>
+    <string name="miui_warning">MIUI系统无法完全支持。处理的资源模块将无法正常工作。</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed模块未激活</string>
