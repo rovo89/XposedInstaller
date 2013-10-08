@@ -26,13 +26,12 @@
     <string name="none">---</string>
     <string name="latestVersion">bundled</string>
     <string name="versions">Versions:</string>
-    <string name="app_process" translatable="false">app_process</string>
-    <string name="xposedbridge" translatable="false">XposedBridge.jar</string>
     <string name="soft_reboot">Soft reboot</string>
     <string name="reboot">Reboot</string>
     <string name="areyousure">Are you sure?</string>
     <string name="phone_not_compatible">Xposed is not (yet) compatible with Android SDK version %1$d or your processor architecture (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed has not been tested with Android SDK version %d, but it seems to be compatible. You can try installing it if you feel adventurous.</string>
+    <string name="miui_warning">MIUI is not supported completely. Modules that manipulate resources will not work.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed module is not activated yet</string>
@@ -45,6 +44,7 @@
     <string name="warning_min_version_too_low">This module was created for XposedBridge version %1$d, but due to incompatible changes in version %2$d, it has been disabled.</string>
     <string name="module_launch">Launch UI</string>
     <string name="module_download_updates">Download/Updates</string>
+    <string name="module_support">Support</string>
     <string name="module_app_info">App info</string>
     <string name="module_uninstall">Uninstall</string>
 
@@ -87,12 +87,9 @@
     <string name="translator"></string>
     <string name="about_version_label">Version of this app:</string>
     <string name="about_source_label">Source code:</string>
-    <string name="about_source" translatable="false">https://github.com/rovo89</string>
     <string name="about_support_label">Get support at:</string>
-    <string name="about_support" translatable="false">http://forum.xda-developers.com/showthread.php?t=1574401</string>
     <string name="about_support_warning">This link is for the installer and the framework <b>only</b>! If you need help with a module, do <b>not</b> use it, contact the module author instead.</string>
     <string name="about_libraries_label">Used libraries:</string>
-    <string name="about_libraries" translatable="false"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a></string>
 
     <!-- DownloadView -->
     <string name="download_view_download">Download</string>

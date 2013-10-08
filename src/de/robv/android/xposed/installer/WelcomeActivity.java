@@ -11,11 +11,15 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import de.robv.android.xposed.installer.util.ModuleUtil;
+import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
+import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
+import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
-public class WelcomeActivity extends XposedBaseActivity {
-	private RepoLoader repoLoader;
+public class WelcomeActivity extends XposedBaseActivity implements ModuleListener, RepoListener {
+	private RepoLoader mRepoLoader;
 	private WelcomeAdapter mAdapter;
 
 	@Override
@@ -23,7 +27,7 @@ public class WelcomeActivity extends XposedBaseActivity {
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		repoLoader = RepoLoader.getInstance();
+		mRepoLoader = RepoLoader.getInstance();
 
 		setContentView(R.layout.activity_welcome);
 		
@@ -47,13 +51,42 @@ public class WelcomeActivity extends XposedBaseActivity {
 				NavUtil.setTransitionSlideEnter(WelcomeActivity.this);
 			}
 		});
+
+		ModuleUtil.getInstance().addListener(this);
+		mRepoLoader.addListener(this, false);
 	}
-	
+
+	private void notifyDataSetChanged() {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				synchronized (mAdapter) {
+					mAdapter.notifyDataSetChanged();
+				}
+			}
+		});
+	}
+
 	@Override
-	protected void onRestart() {
-	    super.onRestart();
-	    // refresh update status
-	    mAdapter.notifyDataSetChanged();
+	public void onInstalledModulesReloaded(ModuleUtil moduleUtil) {
+		notifyDataSetChanged();
+	}
+
+	@Override
+	public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module) {
+		notifyDataSetChanged();
+	}
+
+	@Override
+	public void onRepoReloaded(RepoLoader loader) {
+		notifyDataSetChanged();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		ModuleUtil.getInstance().removeListener(this);
+		mRepoLoader.removeListener(this);
 	}
 
 	class WelcomeAdapter extends ArrayAdapter<WelcomeItem> {
@@ -72,8 +105,8 @@ public class WelcomeActivity extends XposedBaseActivity {
 		    boolean frameworkUpdateAvailable = false;
 		    boolean moduleUpdateAvailable = false;
 		    if (position == XposedInstallerActivity.TAB_DOWNLOAD) {
-				frameworkUpdateAvailable = repoLoader.hasFrameworkUpdate();
-				moduleUpdateAvailable = repoLoader.hasModuleUpdates();
+				frameworkUpdateAvailable = mRepoLoader.hasFrameworkUpdate();
+				moduleUpdateAvailable = mRepoLoader.hasModuleUpdates();
 		    }
 
 		    view.findViewById(R.id.txtFrameworkUpdateAvailable).setVisibility(frameworkUpdateAvailable ? View.VISIBLE : View.GONE);

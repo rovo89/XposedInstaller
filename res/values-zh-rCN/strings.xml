@@ -41,6 +41,11 @@
     <string name="warning_xposed_min_version">该模块需要较新版本的XposedBridge(%d)，因此无法激活。</string>
     <string name="no_min_version_specified">该模块未指定需要的XposedBridge版本。</string>
     <string name="warning_min_version_too_low">该模块在XposedBridge版本%1$d下创建，但因为不兼容版本%2$d中的变化内容，它已被禁用。</string>
+    <string name="module_launch">运行界面</string>
+    <string name="module_download_updates">下载/上传</string>
+    <string name="module_support">支持</string>
+    <string name="module_app_info">程序信息</string>
+    <string name="module_uninstall">卸载</string>
 
     <!-- Download tab -->
     <string name="menuSearch">搜索</string>
