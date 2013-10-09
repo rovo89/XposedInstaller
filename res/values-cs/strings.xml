@@ -28,6 +28,7 @@
     <string name="areyousure">Skutečně potvrdit?</string>
     <string name="phone_not_compatible">Xposed zatím není kompatibilní s Android SDK verzí %1$d nebo architekturou procesoru (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed nebyl testován s Android SDK verzí %d, ale zdá se kompatibilní. Je možné ho instalovat na vlasntí nebezpečí.</string>
+    <string name="miui_warning">MIUI ROM není plně podporována. Moduly, které manipulují s prostředky nebudou fungovat.</string>
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed modul ještě není aktivován</string>
     <string name="module_empty_description">(žádný popis není k dispozici)</string>
