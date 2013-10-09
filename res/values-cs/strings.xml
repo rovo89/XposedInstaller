@@ -37,6 +37,11 @@
     <string name="warning_xposed_min_version">Tento modul vyžaduje novější verzi XposedBridge (%d), proto nemůže být aktivován.</string>
     <string name="no_min_version_specified">Tento modul nespecifikuje požadovanou verzi XposedBridge.</string>
     <string name="warning_min_version_too_low">Tento modul byl vytvořen pro XposedBridge verzi %1$d, ale kvůli nekompatibilním změnám ve verzi %2$d, byl zakázán.</string>
+    <string name="module_launch">Spustit UI</string>
+    <string name="module_download_updates">Stažení/Aktualizace</string>
+    <string name="module_support">Podpora</string>
+    <string name="module_app_info">Info o aplikaci</string>
+    <string name="module_uninstall">Odinstalovat</string>
     <!-- Download tab -->
     <string name="menuSearch">Hledat</string>
     <string name="menuReload">Obnovit</string>
