@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- General/various strings -->
     <string name="app_name">Xposedインストーラ</string>
+    
+    <!-- Welcome screen / main sections -->
     <string name="welcome"><b>Xposedインストーラ</b>にようこそ"!
 したいことを選んでください:"</string>
     <string name="tabInstall">フレームワーク</string>
@@ -15,6 +19,8 @@
     <string name="tabSettingsDescription">Xposedインストーラとフレームワークの設定ができます。</string>
     <string name="tabAbout">このアプリについて</string>
     <string name="tabAboutDescription">Xposedの開発に携わった人たちやサポートの情報を見られます。</string>
+    
+    <!-- Installer tab -->
     <string name="install">インストール/更新</string>
     <string name="uninstall">アンインストール</string>
     <string name="installedVersion">動作中</string>
@@ -26,6 +32,8 @@
     <string name="areyousure">実行しますか?</string>
     <string name="phone_not_compatible">Xposedは(まだ)Android SDK バージョン %1$d やプロセッサ (%2$s)に非対応です。</string>
     <string name="not_tested_but_compatible">XposedはまだAndroid SDK バージョン %dでテストされていませんが、対応しているか試したい場合はインストールしてみてください。</string>
+    
+    <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposedモジュールがまだ有効にされていません</string>
     <string name="module_empty_description">(説明なし)</string>
     <string name="module_no_ui">このモジュールにはUIがありません</string>
@@ -35,6 +43,13 @@
     <string name="warning_xposed_min_version">このモジュールはXposedBridgeの新しいバージョン (%d) が必要なので有効にできません。</string>
     <string name="no_min_version_specified">このモジュールは必要なXposedBridgeバージョンを指定していません。</string>
     <string name="warning_min_version_too_low">このモジュールはXposedBridge バージョン %1$d向けに作成されましたが、 バージョン %2$dでは互換性がないため無効にされました。</string>
+    <string name="module_launch">UIを起動</string>
+    <string name="module_download_updates">ダウンロード/更新</string>
+    <string name="module_support">サポート</string>
+    <string name="module_app_info">アプリ情報</string>
+    <string name="module_uninstall">アンインストール</string>
+    
+    <!-- Download tab -->
     <string name="menuSearch">検索</string>
     <string name="menuReload">再読み込み</string>
     <string name="changes">変更点:</string>
@@ -56,12 +71,16 @@
     <string name="download_section_7d">7日以内</string>
     <string name="download_section_30d">30日以内</string>
     <string name="download_section_older">30日以上前</string>
+    
+    <!-- Settings tab -->
     <string name="settings_group_download">ダウンロード</string>
     <string name="settings_enable_downloads">ダウンロードを有効化</string>
     <string name="settings_enable_downloads_summary">Xposedインストーラやモジュールの更新を定期的に確認するようにします。</string>
     <string name="settings_group_experimental">実験的</string>
     <string name="settings_performance_experiment">パフォーマンス実験</string>
     <string name="settings_performance_experiment_summary">これを有効にするとパフォーマンスに影響が出る可能性があります。どうか試してみて効果があるかないか報告してください。有効にした後はフレームワークを再インストールして再起動してください。</string>
+    
+    <!-- About tab -->
     <string name="about_developers_label">メイン開発者:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> と <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">サポートが必要な場合直接<b>連絡しないで</b>以下のリンクを使ってください。</string>
@@ -72,6 +91,8 @@
     <string name="about_support_label">サポート:</string>
     <string name="about_support_warning">インストーラとフレームワーク<b>専用</b>のサポートページです! モジュールの問題は<b>ここを使わずに</b>モジュールの制作者に連絡してください。</string>
     <string name="about_libraries_label">使用ライブラリ:</string>
+    
+    <!-- DownloadView -->
     <string name="download_view_download">ダウンロード</string>
     <string name="download_view_install">インストール</string>
     <string name="download_view_cancel">キャンセル</string>
@@ -80,12 +101,17 @@
     <string name="download_view_waiting">ダウンロード待機中</string>
     <string name="download_view_successful">ダウンロードしました</string>
     <string name="download_view_failed">ダウンロード失敗 (error %d)</string>
+    
+    <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">MD5チェックサムが違います (ダウンロード済み: %1$s, 本来の値: %2$s)</string>
     <string name="download_could_not_read_file">ダウンロードしたファイルを読み込めません: %s</string>
     <string name="download_no_valid_apk">ダウンロードしたファイルがAPKファイルでないか互換性がありません</string>
     <string name="download_incorrect_package_name">パッケージ名が違います (ダウンロード済み: %1$s, 本来の名前: %2$s)</string>
+    
+    <!-- RepoLoader -->
     <string name="repo_download_failed_http">%1$sのダウンロード失敗: %2$d (%3$s)</string>
     <string name="repo_download_failed">%1$sのダウンロード失敗: %2$s</string>
     <string name="repo_load_failed">"%1$sからレポジトリを読み込めません:
 %2$s"</string>
+
 </resources>
