@@ -31,7 +31,6 @@
     <string name="areyousure">Are you sure?</string>
     <string name="phone_not_compatible">Xposed is not (yet) compatible with Android SDK version %1$d or your processor architecture (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed has not been tested with Android SDK version %d, but it seems to be compatible. You can try installing it if you feel adventurous.</string>
-    <string name="miui_warning">MIUI is not supported completely. Modules that manipulate resources will not work.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed module is not activated yet</string>

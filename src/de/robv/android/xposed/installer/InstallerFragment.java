@@ -54,11 +54,6 @@ public class InstallerFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_installer, container, false);
 
-		try {
-			Class.forName("android.content.res.MiuiResources");
-			v.findViewById(R.id.miui_warning).setVisibility(View.VISIBLE);
-		} catch (ClassNotFoundException ignored) {}
-
 		final TextView txtAppProcessInstalledVersion = (TextView) v.findViewById(R.id.app_process_installed_version);
 		final TextView txtAppProcessLatestVersion = (TextView) v.findViewById(R.id.app_process_latest_version);
 		final TextView txtJarInstalledVersion = (TextView) v.findViewById(R.id.jar_installed_version);
