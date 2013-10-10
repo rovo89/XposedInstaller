@@ -5,7 +5,7 @@
     <string name="app_name">Xposed安装器</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">欢迎使用<b>Xposed安装器</b>!\n请选择您想进行的操作：</string>
+    <string name="welcome">欢迎使用<b>Xposed安装器</b>\n请选择您想进行的操作：</string>
     <string name="tabInstall">框架</string>
     <string name="tabInstallDescription">此处您能管理Xposed框架，任何模块想正常运行都需要它。</string>
     <string name="tabModules">模块</string>
@@ -42,7 +42,7 @@
     <string name="no_min_version_specified">该模块未指定需要的XposedBridge版本。</string>
     <string name="warning_min_version_too_low">该模块在XposedBridge版本%1$d下创建，但因为不兼容版本%2$d中的变化内容，它已被禁用。</string>
     <string name="module_launch">运行界面</string>
-    <string name="module_download_updates">下载/上传</string>
+    <string name="module_download_updates">下载/更新</string>
     <string name="module_support">支持</string>
     <string name="module_app_info">程序信息</string>
     <string name="module_uninstall">卸载</string>
