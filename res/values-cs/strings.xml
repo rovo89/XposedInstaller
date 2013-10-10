@@ -18,11 +18,10 @@
     <string name="tabAboutDescription">Dozvědět se něco o lidech, kteří vytvořili Xposed, jako kde získat podporu atd.</string>
     <!-- Installer tab -->
     <string name="install">Instalovat/Aktualizovat</string>
-    <string name="uninstall">Odinstalovat (obnovit app_process)</string>
+    <string name="uninstall">Odinstalovat</string>
     <string name="installedVersion">aktivní</string>
     <string name="none">---</string>
     <string name="latestVersion">poslední</string>
-    <string name="cleanup">Vyčistit (kompletně odstranit framework)</string>
     <string name="versions">Verze:</string>
     <string name="soft_reboot">Lehký restart</string>
     <string name="reboot">Restart</string>
@@ -35,9 +34,14 @@
     <string name="module_no_ui">Tento modul neposkytuje žádné uživatelské rozhraní</string>
     <string name="no_xposed_modules_found">Nenalezeny žádné Xposed moduly!</string>
     <string name="xposed_module_list_updated">Seznam Xposed modulů byl aktualizován.\nZměny se projeví po restartu.</string>
-    <string name="warning_xposed_min_version">Tento modul vyžaduje novější verzi Xposed (%s), proto nemůže být aktivován.</string>
-    <string name="no_min_version_specified">Tento modul nespecifikuje požadovanou verzi Xposed.</string>
-    <string name="warning_min_version_too_low">Tento modul byl vytvořen pro Xposed verzi %1$s, ale kvůli nekompatibilním změnám ve verzi %2$s, byl zakázán.</string>
+    <string name="warning_xposed_min_version">Tento modul vyžaduje novější verzi XposedBridge (%d), proto nemůže být aktivován.</string>
+    <string name="no_min_version_specified">Tento modul nespecifikuje požadovanou verzi XposedBridge.</string>
+    <string name="warning_min_version_too_low">Tento modul byl vytvořen pro XposedBridge verzi %1$d, ale kvůli nekompatibilním změnám ve verzi %2$d, byl zakázán.</string>
+    <string name="module_launch">Spustit UI</string>
+    <string name="module_download_updates">Stažení/Aktualizace</string>
+    <string name="module_support">Podpora</string>
+    <string name="module_app_info">Info o aplikaci</string>
+    <string name="module_uninstall">Odinstalovat</string>
     <!-- Download tab -->
     <string name="menuSearch">Hledat</string>
     <string name="menuReload">Obnovit</string>
@@ -60,6 +64,13 @@
     <string name="download_section_7d">Za poslední týden</string>
     <string name="download_section_30d">Za posledních 30 dní</string>
     <string name="download_section_older">Před více jak 30 dny</string>
+    <!-- Settings tab -->
+    <string name="settings_group_download">Stahování</string>
+    <string name="settings_enable_downloads">Povolit stahování</string>
+    <string name="settings_enable_downloads_summary">Povolit Xposed Instalátoru kontrolovat aktualizace a nové moduly</string>
+    <string name="settings_group_experimental">Experimentální</string>
+    <string name="settings_performance_experiment">Experimentální výkon</string>
+    <string name="settings_performance_experiment_summary">Zapnutím této volby se systém může zrychlit, ale také zpomalit, nebo zůstat stejný. Tuto vlastnost je vhodné řádně otestovat. Po změně této hodnoty je nutné přeinstalovat framework a restartovat.</string>
     <!-- About tab -->
     <string name="about_developers_label">Hlavní vývojáři:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> a <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>

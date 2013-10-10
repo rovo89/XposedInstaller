@@ -21,11 +21,10 @@
 
     <!-- Installer tab -->
     <string name="install">Installer/Mettre à jour</string>
-    <string name="uninstall">Désinstaller (restaurer app_process)</string>
+    <string name="uninstall">Désinstaller</string>
     <string name="installedVersion">courante</string>
     <string name="none">---</string>
     <string name="latestVersion">dernière</string>
-    <string name="cleanup">Nettoyage (suppression complète du framework)</string>
     <string name="versions">Versions:</string>
     <string name="soft_reboot">Redémarrage doux</string>
     <string name="reboot">Redémarrer</string>
@@ -39,9 +38,9 @@
     <string name="module_no_ui">Ce module ne fournit pas d\'interface utilisateur</string>
     <string name="no_xposed_modules_found">Aucun module Xposed trouvé!</string>
     <string name="xposed_module_list_updated">La liste des modules Xposed a été rafraîchie\nLes changements seront actifs après redémarrage</string>
-    <string name="warning_xposed_min_version">Ce module nécessite une nouvelle version de Xposed (%s) et ne peut donc pas être activé.</string>
-    <string name="no_min_version_specified">Ce module ne spécifie pas la version de Xposed dont il a besoin.</string>
-    <string name="warning_min_version_too_low">Ce module a été créé pour Xposed version %1$s, mais du fait de changements incompatibles dans la version %2$s, il a été désactivé.</string>
+    <string name="warning_xposed_min_version">Ce module nécessite une nouvelle version de XposedBridge (%d) et ne peut donc pas être activé.</string>
+    <string name="no_min_version_specified">Ce module ne spécifie pas la version de XposedBridge dont il a besoin.</string>
+    <string name="warning_min_version_too_low">Ce module a été créé pour XposedBridge version %1$d, mais du fait de changements incompatibles dans la version %2$d, il a été désactivé.</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Chercher</string>

@@ -8,6 +8,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.util.Log;
+import android.util.Pair;
 
 public class RepoParser {
 	public final static String TAG = "XposedRepoParser";
@@ -66,8 +67,6 @@ public class RepoParser {
 				module.name = parser.nextText();
 			} else if (tagName.equals("author")) {
 				module.author = parser.nextText();
-			} else if (tagName.equals("contact")) {
-				module.contact = parser.nextText();
 			} else if (tagName.equals("summary")) {
 				module.summary = parser.nextText();
 			} else if (tagName.equals("description")) {
@@ -77,6 +76,14 @@ public class RepoParser {
 				module.description = parser.nextText();
 			} else if (tagName.equals("screenshot")) {
 				module.screenshots.add(parser.nextText());
+			} else if (tagName.equals("moreinfo")) {
+				String label = parser.getAttributeValue(NS, "label");
+				String role = parser.getAttributeValue(NS, "role");
+				String value = parser.nextText();
+				module.moreInfo.add(new Pair<String, String>(label, value));
+
+				if (role != null && role.contains("support"))
+					module.support = value;
 			} else if (tagName.equals("version")) {
 				ModuleVersion version = readModuleVersion(module);
 				if (version != null)

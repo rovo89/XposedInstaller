@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="de.robv.android.xposed.installer"
-    android:versionCode="18"
-    android:versionName="2.2" >
+    android:versionCode="20"
+    android:versionName="2.3" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -34,6 +34,16 @@
             android:configChanges="orientation|screenSize"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".DownloadDetailsActivity"
+            android:configChanges="orientation|screenSize">
+			<intent-filter>
+			    <action android:name="de.robv.android.xposed.installer.DOWNLOAD_DETAILS" />
+			    <data android:scheme="package" />
+			    <category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+        </activity>
+
 
         <receiver android:name=".PackageChangeReceiver" >
             <intent-filter>

@@ -21,11 +21,10 @@
 
     <!-- Installer tab -->
     <string name="install">安裝/更新</string>
-    <string name="uninstall">卸載(恢復app_process)</string>
+    <string name="uninstall">卸載</string>
     <string name="installedVersion">啟動</string>
     <string name="none">---</string>
     <string name="latestVersion">程式自帶</string>
-    <string name="cleanup">清理(徹底清除框架)</string>
     <string name="versions">版本：</string>
     <string name="soft_reboot">軟重啟</string>
     <string name="reboot">重啟</string>
@@ -39,9 +38,9 @@
     <string name="module_no_ui">該模組未提供使用者介面</string>
     <string name="no_xposed_modules_found">未找到Xposed模組！</string>
     <string name="xposed_module_list_updated">Xposed模組清單已更新\n重啟後更改將生效</string>
-    <string name="warning_xposed_min_version">該模組需要較新版本的Xposed(%s)，因此無法啟動。</string>
+    <string name="warning_xposed_min_version">該模組需要較新版本的XposedBridge(%d)，因此無法啟動。</string>
     <string name="no_min_version_specified">該模組未指定需要的Xposed版本。</string>
-    <string name="warning_min_version_too_low">該模組在Xposed版本%1$s下創建，但因為不相容版本%2$s中的變化內容，它已被禁用。</string>
+    <string name="warning_min_version_too_low">該模組在XposedBridge版本%1$d下創建，但因為不相容版本%2$d中的變化內容，它已被禁用。</string>
 
     <!-- Download tab -->
     <string name="menuSearch">搜索</string>

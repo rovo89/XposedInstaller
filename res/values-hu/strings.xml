@@ -22,11 +22,10 @@
 
     <!-- Installer tab -->
     <string name="install">Telepítés/Frissítés</string>
-    <string name="uninstall">Eltávolítás (app_process visszaállítása)</string>
+    <string name="uninstall">Eltávolítás</string>
     <string name="installedVersion">aktív</string>
     <string name="none">---</string>
     <string name="latestVersion">a csomagban</string>
-    <string name="cleanup">Tisztítás (a keretrendszer teljes eltávolítása)</string>
     <string name="versions">Verziók:</string>
     <string name="soft_reboot">Gyors újraindítás</string>
     <string name="reboot">Újraindítás</string>
@@ -40,9 +39,9 @@
     <string name="module_no_ui">A modulnak nincs felhasználói felülete</string>
     <string name="no_xposed_modules_found">Nem található Xposed modul!</string>
     <string name="xposed_module_list_updated">Az Xposed modul lista frissült\nA változtatások újraindítás után lépnek életbe</string>
-    <string name="warning_xposed_min_version">A modulhoz frissebb Xposed verzió (%s) szükséges, ezért nem aktiválható.</string>
-    <string name="no_min_version_specified">A modul nem tünteti fel a szükséges Xposed verziót.</string>
-    <string name="warning_min_version_too_low">Ez a modul a(z) %1$s verziójú Xposed-hoz lett készítve, de a(z) %2$s verzió összeférhetetlen változtatásai miatt le lett tiltva.</string>
+    <string name="warning_xposed_min_version">A modulhoz frissebb XposedBridge verzió (%d) szükséges, ezért nem aktiválható.</string>
+    <string name="no_min_version_specified">A modul nem tünteti fel a szükséges XposedBridge verziót.</string>
+    <string name="warning_min_version_too_low">Ez a modul a(z) %1$d verziójú XposedBridge-hoz lett készítve, de a(z) %2$d verzió összeférhetetlen változtatásai miatt le lett tiltva.</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Keresés</string>

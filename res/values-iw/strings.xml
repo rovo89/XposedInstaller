@@ -21,11 +21,10 @@
 
     <!-- Installer tab -->
     <string name="install">התקנה/עדכון</string>
-    <string name="uninstall">הסרה (משחזר את app_process)</string>
+    <string name="uninstall">הסרה</string>
     <string name="installedVersion">פעיל</string>
     <string name="none">---</string>
     <string name="latestVersion">כלול</string>
-    <string name="cleanup">ניקוי (הסרה מלאה של הסביבה)</string>
     <string name="versions">גרסאות:</string>
     <string name="soft_reboot">הפעלה מחדש מהירה</string>
     <string name="reboot">הפעלה מחדש</string>
@@ -39,9 +38,9 @@
     <string name="module_no_ui">מודול זה לא מספק ממשק משתמש</string>
     <string name="no_xposed_modules_found">לא נמצאו מודולים!</string>
     <string name="xposed_module_list_updated">רשימת המודולים עודכנה\nהשינויים יחולו לאחר הפעלה מחדש</string>
-    <string name="warning_xposed_min_version">מודול זה דורש גרסה עדכנית יותר של סביבת Xposed (%s) ולכן לא ניתן להפעילו.</string>
-    <string name="no_min_version_specified">מודול זה אינו מספק את הגרסה של סביבת Xposed שהוא צריך.</string>
-    <string name="warning_min_version_too_low">מודול זה פותח עבור Xposed בגרסה %1$s, אבל בעקרבות שינויים בגרסה %2$s, הוא בוטל.</string>
+    <string name="warning_xposed_min_version">מודול זה דורש גרסה עדכנית יותר של סביבת XposedBridge (%d) ולכן לא ניתן להפעילו.</string>
+    <string name="no_min_version_specified">מודול זה אינו מספק את הגרסה של סביבת XposedBridge שהוא צריך.</string>
+    <string name="warning_min_version_too_low">מודול זה פותח עבור XposedBridge בגרסה %1$d, אבל בעקרבות שינויים בגרסה %2$d, הוא בוטל.</string>
 
     <!-- Download tab -->
     <string name="menuSearch">חיפוש</string>

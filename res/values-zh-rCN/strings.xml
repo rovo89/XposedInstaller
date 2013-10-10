@@ -21,11 +21,10 @@
 
     <!-- Installer tab -->
     <string name="install">安装/更新</string>
-    <string name="uninstall">卸载(恢复app_process)</string>
+    <string name="uninstall">卸载</string>
     <string name="installedVersion">激活</string>
     <string name="none">---</string>
     <string name="latestVersion">程序自带</string>
-    <string name="cleanup">清理(彻底清除框架)</string>
     <string name="versions">版本：</string>
     <string name="soft_reboot">软重启</string>
     <string name="reboot">重启</string>
@@ -39,9 +38,14 @@
     <string name="module_no_ui">该模块未提供用户界面</string>
     <string name="no_xposed_modules_found">未找到Xposed模块！</string>
     <string name="xposed_module_list_updated">Xposed模块列表已更新\n重启后更改将生效</string>
-    <string name="warning_xposed_min_version">该模块需要较新版本的Xposed(%s)，因此无法激活。</string>
-    <string name="no_min_version_specified">该模块未指定需要的Xposed版本。</string>
-    <string name="warning_min_version_too_low">该模块在Xposed版本%1$s下创建，但因为不兼容版本%2$s中的变化内容，它已被禁用。</string>
+    <string name="warning_xposed_min_version">该模块需要较新版本的XposedBridge(%d)，因此无法激活。</string>
+    <string name="no_min_version_specified">该模块未指定需要的XposedBridge版本。</string>
+    <string name="warning_min_version_too_low">该模块在XposedBridge版本%1$d下创建，但因为不兼容版本%2$d中的变化内容，它已被禁用。</string>
+    <string name="module_launch">运行界面</string>
+    <string name="module_download_updates">下载/上传</string>
+    <string name="module_support">支持</string>
+    <string name="module_app_info">程序信息</string>
+    <string name="module_uninstall">卸载</string>
 
     <!-- Download tab -->
     <string name="menuSearch">搜索</string>

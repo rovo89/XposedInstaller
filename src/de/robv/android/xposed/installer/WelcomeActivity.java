@@ -1,6 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +11,15 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import de.robv.android.xposed.installer.util.ModuleUtil;
+import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
+import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
+import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
+import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
-public class WelcomeActivity extends Activity {
-	private RepoLoader repoLoader;
+public class WelcomeActivity extends XposedBaseActivity implements ModuleListener, RepoListener {
+	private RepoLoader mRepoLoader;
 	private WelcomeAdapter mAdapter;
 
 	@Override
@@ -23,7 +27,7 @@ public class WelcomeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-		repoLoader = RepoLoader.getInstance();
+		mRepoLoader = RepoLoader.getInstance();
 
 		setContentView(R.layout.activity_welcome);
 		
@@ -42,17 +46,47 @@ public class WelcomeActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Intent intent = new Intent(WelcomeActivity.this, XposedInstallerActivity.class);
 				intent.putExtra(XposedInstallerActivity.EXTRA_OPEN_TAB, position);
+				intent.putExtra(NavUtil.FINISH_ON_UP_NAVIGATION, true);
 				startActivity(intent);
-				overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+				NavUtil.setTransitionSlideEnter(WelcomeActivity.this);
+			}
+		});
+
+		ModuleUtil.getInstance().addListener(this);
+		mRepoLoader.addListener(this, false);
+	}
+
+	private void notifyDataSetChanged() {
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				synchronized (mAdapter) {
+					mAdapter.notifyDataSetChanged();
+				}
 			}
 		});
 	}
-	
+
 	@Override
-	protected void onRestart() {
-	    super.onRestart();
-	    // refresh update status
-	    mAdapter.notifyDataSetChanged();
+	public void onInstalledModulesReloaded(ModuleUtil moduleUtil) {
+		notifyDataSetChanged();
+	}
+
+	@Override
+	public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module) {
+		notifyDataSetChanged();
+	}
+
+	@Override
+	public void onRepoReloaded(RepoLoader loader) {
+		notifyDataSetChanged();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		ModuleUtil.getInstance().removeListener(this);
+		mRepoLoader.removeListener(this);
 	}
 
 	class WelcomeAdapter extends ArrayAdapter<WelcomeItem> {
@@ -71,8 +105,8 @@ public class WelcomeActivity extends Activity {
 		    boolean frameworkUpdateAvailable = false;
 		    boolean moduleUpdateAvailable = false;
 		    if (position == XposedInstallerActivity.TAB_DOWNLOAD) {
-				frameworkUpdateAvailable = repoLoader.hasFrameworkUpdate();
-				moduleUpdateAvailable = repoLoader.hasModuleUpdates();
+				frameworkUpdateAvailable = mRepoLoader.hasFrameworkUpdate();
+				moduleUpdateAvailable = mRepoLoader.hasModuleUpdates();
 		    }
 
 		    view.findViewById(R.id.txtFrameworkUpdateAvailable).setVisibility(frameworkUpdateAvailable ? View.VISIBLE : View.GONE);
