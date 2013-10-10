@@ -42,7 +42,7 @@
     <string name="no_min_version_specified">该模块未指定需要的XposedBridge版本。</string>
     <string name="warning_min_version_too_low">该模块在XposedBridge版本%1$d下创建，但因为不兼容版本%2$d中的变化内容，它已被禁用。</string>
     <string name="module_launch">运行界面</string>
-    <string name="module_download_updates">下载/上传</string>
+    <string name="module_download_updates">下载/更新</string>
     <string name="module_support">支持</string>
     <string name="module_app_info">程序信息</string>
     <string name="module_uninstall">卸载</string>
@@ -83,7 +83,7 @@
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 与 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">请<b>不</b>要直接联系我们获取帮助，使用下面的链接。</string>
     <string name="about_translator_label">翻译：</string>
-    <string name="translator">Cye3s</string>
+    <string name="translator">Cye3s, liveasx</string>
     <string name="about_version_label">应用程序版本：</string>
     <string name="about_source_label">源码：</string>
     <string name="about_support_label">获取支持：</string>
