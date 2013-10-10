@@ -16,6 +16,8 @@
     <string name="welcome_update_available">One or more update(s) for modules available.</string>
     <string name="tabSettings">Settings</string>
     <string name="tabSettingsDescription">Go to this section to configure the Xposed Installer and framework.</string>
+    <string name="tabLogs">Logs</string>
+    <string name="tabLogsDescription">Display and save/send logs of the Xposed framework.</string>
     <string name="tabAbout">About</string>
     <string name="tabAboutDescription">Learn about the people who created Xposed, where to get support for this app etc.</string>
 
