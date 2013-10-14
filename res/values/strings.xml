@@ -80,6 +80,9 @@
     <string name="settings_performance_experiment" tools:ignore="UnusedResources">Performance experiment</string>
     <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">If you enable this, your system performance might either increase, decrease or stay the same. Feel free to try it and report back which effect you see (or if there is none at all). You need to reinstall the framework and reboot after changing this.</string>
 
+    <!--  Logs tab  -->
+    <string name="logs_load_failed">Could not read log:</string>
+
     <!-- About tab -->
     <string name="about_developers_label">Main developers:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>

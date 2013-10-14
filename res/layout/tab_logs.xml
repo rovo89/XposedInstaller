@@ -11,11 +11,9 @@
         android:padding="4dp" >
 
         <TextView
+            android:id="@+id/txtLog"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/tabLogs"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </ScrollView>
