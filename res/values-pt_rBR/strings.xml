@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- General/various strings -->
+    <string name="app_name">Instalador do Xposed</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome">Bem-vindo ao <b>Instalador do Xposed</b>!\nPor favor decida o que iremos fazer:</string>
+    <string name="tabInstall">Framework</string>
+    <string name="tabInstallDescription">Aqui você gerencia o Xposed framework, o qual é exigido para que qualquer módulo funcione.</string>
+    <string name="tabModules">Módulos</string>
+    <string name="tabModulesDescription">O framework sozinho não tem nenhuma funcionalidade. Você precisa de módulos para isso. Nesta guia você pode ativar os módulos que você instalou.</string>
+    <string name="tabDownload">Baixar</string>
+    <string name="tabDownloadDescription">Esta guia te dá acesso ao repositório de módulos, onde você pode pesquisar e baixar os módulos que você gostar e mantê-los atualizados.</string>
+    <string name="welcome_framework_update_available">Uma atualização do Xposed framework está disponível.</string>
+    <string name="welcome_update_available">Uma ou mais atualizações de módulos disponível.</string>
+    <string name="tabSettings">Configurações</string>
+    <string name="tabSettingsDescription">Nesta guia você configura o Instalador do Xposed e o framework.</string>
+    <string name="tabAbout">Sobre</string>
+    <string name="tabAboutDescription">Saber mais sobre as pessoas que criaram o Xposed, onde obter suporte, etc.</string>
+
+    <!-- Installer tab -->
+    <string name="install">Instalar/Atualizar</string>
+    <string name="uninstall">Desinstalar</string>
+    <string name="installedVersion">ativa</string>
+    <string name="none">---</string>
+    <string name="latestVersion">disponível</string>
+    <string name="versions">Versões:</string>
+    <string name="soft_reboot">Reinício suave</string>
+    <string name="reboot">Reiniciar</string>
+    <string name="areyousure">Tem certeza?</string>
+    <string name="phone_not_compatible">O Xposed não é compatível (ainda) com o Android SDK versão %1$d ou a arquitetura do seu processador (%2$s).</string>
+    <string name="not_tested_but_compatible">O Xposed não foi testado com o Android SDK versão %d, mas parece ser compatível. Você pode tentar instalá-lo se estiver se sentido aventureiro.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">O módulo do Xposed ainda não foi ativado</string>
+    <string name="module_empty_description">(nenhuma descrição fornecida)</string>
+    <string name="module_no_ui">Este módulo não possui uma interface de usuário</string>
+    <string name="no_xposed_modules_found">Nenhum módulo encontrado!</string>
+    <string name="xposed_module_list_updated">A lista de módulos do Xposed foi atualizada\nAs mudanças serão efetivadas ao reiniciar</string>
+    <string name="warning_xposed_min_version">Este módulo requer uma versão do XposedBridge mais recente (%d) e não pode ser ativado.</string>
+    <string name="no_min_version_specified">Este módulo não especifica a versão do XposedBridge que ele precisa.</string>
+    <string name="warning_min_version_too_low">Este módulo foi criado para a XposedBridge versão %1$d, mas devido a incompatibilidade na versão %2$d, foi desabilitado.</string>
+    <string name="module_launch">Abrir IU</string>
+    <string name="module_download_updates">Baixar/Atualizar</string>
+    <string name="module_support">Suporte</string>
+    <string name="module_app_info">Detalhes</string>
+    <string name="module_uninstall">Desinstalar</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Pesquisar</string>
+    <string name="menuReload">Recarregar</string>
+    <string name="changes">Novidades:</string>
+    <string name="branch_display">(%s marca)</string>
+    <string name="download_author">por %s</string>
+    <string name="download_unknown_author" tools:ignore="Typos">autor desconhecido</string>
+    <string name="download_status_installed">Instalado (versão %s)</string>
+    <string name="download_status_update_available">Atualização disponível (versão %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Adicionado em %1$s \u00b7 Atualizado em %2$s</string>
+    <string name="download_sorting_title">Ordem de classificação</string>
+    <string name="download_sorting_status">Ordenar por status</string>
+    <string name="download_sorting_updated">Ordenar por atualização</string>
+    <string name="download_sorting_created">Ordenar por data de criação</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Atualização disponível</string>
+    <string name="download_section_installed">Instalado</string>
+    <string name="download_section_not_installed">Não instalado</string>
+    <string name="download_section_24h">Últimas 24 horas</string>
+    <string name="download_section_7d">Últimos 7 dias</string>
+    <string name="download_section_30d">Últimos 30 dias</string>
+    <string name="download_section_older">Mais de 30 dias atrás</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Baixar</string>
+    <string name="settings_enable_downloads">Ativar downloads</string>
+    <string name="settings_enable_downloads_summary">Permitir ao Instalador ao Xposed verificar atualizações para módulos e o framework</string>
+    <string name="settings_group_experimental">Experimental</string>
+    <string name="settings_performance_experiment">Experiência de performance</string>
+    <string name="settings_performance_experiment_summary">Ao ativar isso, a performance do seu sistema pode melhorar, piorar ou ficar na mesma. Sinta-se livre para experimentar e me reportar os efeitos (ou ausência deles). Você precisa reinstalar o framework e reiniciar após ativar esta opção.</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Principais desenvolvedores:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> e <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">Por favor <b>não</b> nos contate diretamente para obter suporte, use o link abaixo.</string>
+    <string name="about_translator_label">Tradutor:</string>
+    <string name="translator">Marcio Andrade @marciozom13</string>
+    <string name="about_version_label">Versão deste app:</string>
+    <string name="about_source_label">Código fonte:</string>
+    <string name="about_support_label">Obtenha suporte em:</string>
+    <string name="about_support_warning">Este link é para o instalador e o framework <b>apenas</b>! Se você precisa de ajuda com um módulo, <b>não</b> o use, contate o desenvolvedor do módulo.</string>
+    <string name="about_libraries_label">Bibliotecas usadas:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Baixar</string>
+    <string name="download_view_install">Instalar</string>
+    <string name="download_view_cancel">Cancelar</string>
+    <string name="download_view_no_url">Nenhuma URL disponível</string>
+    <string name="download_view_running">Download em andamento (%1$,d de %2$,d kB)</string>
+    <string name="download_view_waiting">Download em espera</string>
+    <string name="download_view_successful">Download concluído</string>
+    <string name="download_view_failed">O download falhou (erro %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">A soma MD5 está incorreta (baixado: %1$s, esperado: %2$s)</string>
+    <string name="download_could_not_read_file">Não foi possível ler o arquivo baixado: %s</string>
+    <string name="download_no_valid_apk">O arquivo baixado não é um APK válido (ou é incompatível)</string>
+    <string name="download_incorrect_package_name">Nome de pacote incorreto (baixado: %1$s, esperado: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">O download de %1$s falhou: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Falha ao baixar %1$s: %2$s</string>
+    <string name="repo_load_failed">Não foi possível carregar o repositório a partir de %1$s:\n%2$s</string>
+
+</resources>
