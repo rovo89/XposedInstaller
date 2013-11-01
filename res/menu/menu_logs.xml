@@ -4,7 +4,15 @@
     <item
         android:id="@+id/menu_refresh"
         android:icon="@drawable/ic_menu_refresh"
-        android:showAsAction="always|withText"
+        android:showAsAction="ifRoom|withText"
         android:title="@string/menuReload"/>
+    <item
+        android:id="@+id/menu_save"
+        android:showAsAction="never"
+        android:title="@string/menuSaveToSd"/>
+    <item
+        android:id="@+id/menu_send"
+        android:showAsAction="never"
+        android:title="@string/menuSend"/>
 
 </menu>
