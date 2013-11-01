@@ -68,6 +68,11 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 		}
 	}
 
+	// This method is hooked by XposedBridge to return the current version
+	public static int getActiveXposedVersion() {
+		return -1;
+	}
+
 	public boolean areDownloadsEnabled() {
 		if (!mPref.getBoolean("enable_downloads", true))
 			return false;

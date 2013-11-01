@@ -39,6 +39,7 @@ public class InstallerFragment extends Fragment {
 	private String XPOSEDTEST_NAME = null;
 	private final String BINARIES_FOLDER = getBinariesFolder();
 	private static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
+	private static int JAR_LATEST_VERSION = -1;
 	private final LinkedList<String> mCompatibilityErrors = new LinkedList<String>();
 
 	@Override
@@ -323,12 +324,15 @@ public class InstallerFragment extends Fragment {
 		}
 	}
 
-	private int getJarLatestVersion() {
-		try {
-			return getJarVersion(getActivity().getAssets().open("XposedBridge.jar"));
-		} catch (IOException e) {
-			return 0;
+	public static int getJarLatestVersion() {
+		if (JAR_LATEST_VERSION == -1) {
+			try {
+				JAR_LATEST_VERSION = getJarVersion(XposedApp.getInstance().getAssets().open("XposedBridge.jar"));
+			} catch (IOException e) {
+				JAR_LATEST_VERSION = 0;
+			}
 		}
+		return JAR_LATEST_VERSION;
 	}
 
 	public static int getJarVersion(InputStream is) throws IOException {

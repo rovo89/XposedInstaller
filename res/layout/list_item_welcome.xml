@@ -9,11 +9,11 @@
 
     <TextView
         android:id="@android:id/text1"
-        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="?android:attr/listPreferredItemPaddingLeft"
-        android:textAppearance="?android:attr/textAppearanceListItem" />
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtFrameworkUpdateAvailable"
@@ -44,5 +44,16 @@
         android:layout_alignLeft="@android:id/text1"
         android:layout_below="@id/txtUpdateAvailable"
         android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/txtXposedNotActive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@android:id/text1"
+        android:layout_below="@android:id/text2"
+        android:text="@string/xposed_not_active"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#ffff0000"
+        android:visibility="gone" />
 
 </RelativeLayout>

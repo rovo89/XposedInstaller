@@ -5,6 +5,7 @@
     <string name="app_name">Xposed Installer</string>
     <string name="menuSend">Send</string>
     <string name="menuSaveToSd">Save to SD card</string>
+    <string name="xposed_not_active">The latest version of Xposed is currently not active. Did you install the framework and reboot?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Welcome to the <b>Xposed Installer</b>!\nPlease choose what you want to do:</string>
