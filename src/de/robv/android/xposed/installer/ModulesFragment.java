@@ -56,6 +56,11 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 		installedXposedVersion = InstallerFragment.getJarInstalledVersion();
 
+		if (XposedApp.getActiveXposedVersion() < InstallerFragment.getJarLatestVersion()) {
+			getListView().addHeaderView(getActivity().getLayoutInflater().inflate(
+					R.layout.xposed_not_active_note, getListView(), false));
+		}
+
 		mAdapter = new ModuleAdapter(getActivity());
 		reloadModules.run();
 		setListAdapter(mAdapter);
@@ -71,6 +76,8 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	public void onDestroyView() {
 		super.onDestroyView();
 		mModuleUtil.removeListener(this);
+		setListAdapter(null);
+		mAdapter = null;
 	}
 
 	private Runnable reloadModules = new Runnable() {
@@ -101,6 +108,9 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		String packageName = (String) v.getTag();
+		if (packageName == null)
+			return;
+
 		Intent launchIntent = getSettingsIntent(packageName);
 		if (launchIntent != null)
 			startActivity(launchIntent);
@@ -111,6 +121,9 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		InstalledModule installedModule = getItemFromContextMenuInfo(menuInfo);
+		if (installedModule == null)
+			return;
+
 		menu.setHeaderTitle(installedModule.getAppName());
 		getActivity().getMenuInflater().inflate(R.menu.context_menu_modules, menu);
 
@@ -129,6 +142,9 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		InstalledModule module = getItemFromContextMenuInfo(item.getMenuInfo());
+		if (module == null)
+			return false;
+
 		switch (item.getItemId()) {
 			case R.id.menu_launch:
 				startActivity(getSettingsIntent(module.packageName));
@@ -161,7 +177,8 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 	private InstalledModule getItemFromContextMenuInfo(ContextMenuInfo menuInfo) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
-		return (InstalledModule) getListAdapter().getItem(info.position);
+		int position = info.position - getListView().getHeaderViewsCount();
+		return (position >= 0) ? (InstalledModule) getListAdapter().getItem(position) : null;
 	}
 
 	private Intent getSettingsIntent(String packageName) {
