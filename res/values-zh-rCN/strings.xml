@@ -3,6 +3,9 @@
 
     <!-- General/various strings -->
     <string name="app_name">Xposed安装器</string>
+    <string name="menuSend">发送</string>
+    <string name="menuSaveToSd">保存到 SD内存卡</string>
+    <string name="xposed_not_active">Xposed最新版本目前未激活。是否要安装框架并重新启动？</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">欢迎使用<b>Xposed安装器</b>\n请选择您想进行的操作：</string>
@@ -16,6 +19,8 @@
     <string name="welcome_update_available">一个或多个模块有更新可用。</string>
     <string name="tabSettings">设置</string>
     <string name="tabSettingsDescription">此处可配置Xposed安装器和框架。</string>
+    <string name="tabLogs">日志</string>
+    <string name="tabLogsDescription">显示Xposed框架保存/发送日志。</string>
     <string name="tabAbout">关于</string>
     <string name="tabAboutDescription">了解Xposed作者，如何获取帮助支持等。</string>
 
@@ -78,6 +83,11 @@
     <string name="settings_performance_experiment">性能试验</string>
     <string name="settings_performance_experiment_summary">如果您启用该选项，您的系统性能可能更好、更差或没有变化。请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启。</string>
 
+    <!--  Logs tab  -->
+    <string name="logs_load_failed">无法读取日志：</string>
+    <string name="logs_save_failed">无法写入日志到 SD内存卡</string>
+    <string name="sdcard_not_writable">SD内存卡没有发现或没有写权限</string>
+    
     <!-- About tab -->
     <string name="about_developers_label">主要开发者：</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 与 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
