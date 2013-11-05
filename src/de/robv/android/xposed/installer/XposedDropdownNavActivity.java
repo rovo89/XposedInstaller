@@ -75,13 +75,8 @@ public abstract class XposedDropdownNavActivity extends XposedBaseActivity {
 				}
 
 				Map<String, Object> map = navigationItemList.get(itemPosition);
-
-				Fragment fragment = (Fragment) map.get("fragment");
-				if (fragment == null) {
-					String fragmentClass = (String) map.get("fragment_class");
-					fragment = Fragment.instantiate(XposedDropdownNavActivity.this, fragmentClass);
-					map.put("fragment", fragment);
-				}
+				String fragmentClass = (String) map.get("fragment_class");
+				Fragment fragment = Fragment.instantiate(XposedDropdownNavActivity.this, fragmentClass);
 
 				FragmentTransaction tx = getFragmentManager().beginTransaction();
 				tx.replace(android.R.id.content, fragment);
