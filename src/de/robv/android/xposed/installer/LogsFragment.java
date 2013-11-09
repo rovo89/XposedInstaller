@@ -21,12 +21,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class LogsFragment extends Fragment {
 	private File mFileDebugLog = new File(XposedApp.BASE_DIR + "log/debug.log");
 	private TextView mTxtLog;
+	private ScrollView mSVLog;
+	private HorizontalScrollView mHSVLog;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -41,6 +45,8 @@ public class LogsFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_logs, container, false);
 		mTxtLog = (TextView) v.findViewById(R.id.txtLog);
+		mSVLog = (ScrollView) v.findViewById(R.id.svLog);
+		mHSVLog = (HorizontalScrollView) v.findViewById(R.id.hsvLog);
 		reloadDebugLog();
 		return v;
 	}
@@ -83,6 +89,18 @@ public class LogsFragment extends Fragment {
 			logContent.append(e.getMessage());
 		}
 		mTxtLog.setText(logContent.toString());
+		mSVLog.post(new Runnable() {
+			@Override
+			public void run() {
+				mSVLog.scrollTo(0, mTxtLog.getHeight());
+			}
+		});
+		mHSVLog.post(new Runnable() {
+			@Override
+			public void run() {
+				mHSVLog.scrollTo(0, 0);
+			}
+		});
 	}
 
 	private void send() {
