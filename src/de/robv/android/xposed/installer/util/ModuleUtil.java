@@ -65,6 +65,8 @@ public final class ModuleUtil {
 
 		for (PackageInfo pkg : mPm.getInstalledPackages(PackageManager.GET_META_DATA)) {
 			ApplicationInfo app = pkg.applicationInfo;
+			if (!app.enabled)
+				continue;
 
 			if (app.metaData != null && app.metaData.containsKey("xposedmodule"))
 				modules.put(pkg.packageName, new InstalledModule(pkg, false));
@@ -98,7 +100,7 @@ public final class ModuleUtil {
 		}
 
 		ApplicationInfo app = pkg.applicationInfo;
-		if (app.metaData != null && app.metaData.containsKey("xposedmodule")) {
+		if (app.enabled && app.metaData != null && app.metaData.containsKey("xposedmodule")) {
 			InstalledModule module = new InstalledModule(pkg, false);
 			mInstalledModules.put(packageName, module);
 			for (ModuleListener listener : mListeners) {
