@@ -75,12 +75,12 @@ public class InstallerFragment extends Fragment {
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk15";
 			isCompatible = checkCompatibility();
 
-		} else if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT <= 18) {
+		} else if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT <= 19) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
 			isCompatible = checkCompatibility();
 
-		} else if (Build.VERSION.SDK_INT > 18) {
+		} else if (Build.VERSION.SDK_INT > 19) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
 			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
 			isCompatible = checkCompatibility();
