@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- General/various strings -->
+    <string name="app_name">Xposed-Installer</string>
+    <string name="menuSend">Senden</string>
+    <string name="menuSaveToSd">Auf SD-Karte speichern</string>
+    <string name="xposed_not_active">Die aktuellste Xposed-Version ist derzeit nicht aktiv. Haben Sie das Framework installiert und das Gerät neugestartet?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome">Willkommen zum <b>Xposed-Installer</b>!\nBitte wählen Sie, was Sie tun möchten:</string>
+    <string name="tabInstall">Framework</string>
+    <string name="tabInstallDescription">Hier können Sie das Xposed-Framework verwalten, welches für die Funktionalität aller Module erforderlich ist.</string>
+    <string name="tabModules">Module</string>
+    <string name="tabModulesDescription">Das Framework selbst fügt keine Funktionalität hinzu. Hier kommen die Module ins Spiel. In diesem Bereich können Sie installierte Module aktivieren.</string>
+    <string name="tabDownload">Herunterladen</string>
+    <string name="tabDownloadDescription">In diesem Bereich haben Sie Zugriff auf ein Modulverzeichnis, in welchem Sie gewünschte Module herunterladen und immer aktuell halten können.</string>
+    <string name="welcome_framework_update_available">Es ist eine Aktualisierung für das Xposed-Framework verfügbar.</string>
+    <string name="welcome_update_available">Es sind Aktualisierungen für Module verfügbar.</string>
+    <string name="tabSettings">Einstellungen</string>
+    <string name="tabSettingsDescription">In diesem Bereich können Sie den Xposed-Installer und das Xposed-Framework anpassen.</string>
+    <string name="tabLogs">Protokolle</string>
+    <string name="tabLogsDescription">Protokolle des Xposed-Frameworks ansehen, speichern und senden.</string>
+    <string name="tabAbout">Über</string>
+    <string name="tabAboutDescription">Erfahren Sie mehr über die Leute, welche Xposed erstellt haben und wo Sie Support für diese App erhalten.</string>
+
+    <!-- Installer tab -->
+    <string name="install">Installiere /Aktualisieren</string>
+    <string name="uninstall">Deinstallieren</string>
+    <string name="installedVersion">Aktiv</string>
+    <string name="none">---</string>
+    <string name="latestVersion">Mitgeliefert</string>
+    <string name="versions">Versionen:</string>
+    <string name="soft_reboot">Software-Neustart</string>
+    <string name="reboot">Geräte-Neustart</string>
+    <string name="areyousure">Sind Sie sicher?</string>
+    <string name="phone_not_compatible">Xposed ist (noch) nicht mit der Android-SDK-Version %1$d oder Ihrer Prozessor-Architektur (%2$s) kompatibel.</string>
+    <string name="not_tested_but_compatible">Xposed wurde noch nicht mit der Android-SDK-Version %d getestet, aber es scheint kompatibel damit zu sein. Sie können die Installation versuchen, falls Sie abenteuerlich sind.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed-Module noch nicht aktiv</string>
+    <string name="module_empty_description">(Keine Beschreibung vorhanden)</string>
+    <string name="module_no_ui">Dieses Modul besitzt keine Benutzeroberfläche</string>
+    <string name="no_xposed_modules_found">Keine Xposed-Modules vorhanden!</string>
+    <string name="xposed_module_list_updated">Liste der Xposed-Module aktualisiert\nÄnderungen werden nach einem Neustart sichtbar</string>
+    <string name="warning_xposed_min_version">Dieses Modul erfordert eine neuere XposedBridge-Version (%d) und kann daher nicht aktiviert werden.</string>
+    <string name="no_min_version_specified">Dieses Modul macht keine Angabe über die benötigte XposedBridge-Version.</string>
+    <string name="warning_min_version_too_low">Dieses Modul wurde für die XposedBridge-Version %1$d erstellt. Aufgrund von inkompatiblen Änderungen in Version %2$d wurde das Modul daher deaktiviert.</string>
+    <string name="module_launch">App öffnen</string>
+    <string name="module_download_updates">Downloads/Aktualisierungen</string>
+    <string name="module_support">Support</string>
+    <string name="module_app_info">App-Info</string>
+    <string name="module_uninstall">Deinstallieren</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Suchen</string>
+    <string name="menuReload">Neu laden</string>
+    <string name="changes">Änderungen:</string>
+    <string name="branch_display">(%s branch)</string>
+    <string name="download_author">von %s</string>
+    <string name="download_unknown_author">Unbekannt</string>
+    <string name="download_status_installed">Installiert (Version %s)</string>
+    <string name="download_status_update_available">Aktualisierung verfügbar (Version %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Hinzugefügt am %1$s \u00b7 Aktualisiert am %2$s</string>
+    <string name="download_sorting_title">Sortierung</string>
+    <string name="download_sorting_status">Status</string>
+    <string name="download_sorting_updated">Zuletzt Aktualisiert</string>
+    <string name="download_sorting_created">Erstellungsdatum</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Aktualisierung verfügbar</string>
+    <string name="download_section_installed">Installiert</string>
+    <string name="download_section_not_installed">Nicht installiert</string>
+    <string name="download_section_24h">Letzte 24 Stunden</string>
+    <string name="download_section_7d">Letzte 7 Tage</string>
+    <string name="download_section_30d">Letzte 30 Tage</string>
+    <string name="download_section_older">Vor mehr als 30 Tagen</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Herunterladen</string>
+    <string name="settings_enable_downloads">Herunterladen aktivieren</string>
+    <string name="settings_enable_downloads_summary">Xposed-Installer das Prüfen nach Aktualisierungen und neuen Modulen erlauben</string>
+    <string name="settings_group_experimental" tools:ignore="UnusedResources">Experimentelle</string>
+    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Performance-Experiment</string>
+    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Falls Sie dies aktivieren, wird sich die Leistung Ihres System entweder verschlechter, verbessern oder nicht verändern. Fühlen Sie sich daher frei, diese Einstellung zu aktivieren und über mögliches Verhalten zu berichten. Sie müssen das Framework neuinstallieren und das Gerät neustarten, nachdem Sie diese Einstellung geändert haben.</string>
+
+    <!--  Logs tab  -->
+    <string name="logs_load_failed">Protokoll konnte nicht gelesen werden:</string>
+    <string name="logs_save_failed">Protokoll konnte nicht auf der SD-Karte gespeichert werden:</string>
+    <string name="sdcard_not_writable">SD-Karte wurde nicht gefunden oder ist nicht beschreibbar</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Hauptentwickler:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> und <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">Bitte kontaktieren Sie uns <b>nicht</b> direkt für Support. Verwenden Sie dazu die folgenden Links.</string>
+    <string name="about_translator_label">Übersetzer:</string>
+    <string name="translator">Nils Wasser (BobQuentok)</string>
+    <string name="about_version_label">Version dieser App:</string>
+    <string name="about_source_label">Quellcode:</string>
+    <string name="about_support_label">Support:</string>
+    <string name="about_support_warning">Dieser Link ist <b>ausschließlich</b> für den Installer und das Framework! Falls Sie Hilfe mit einem Modul benötigen, verwenden Sie diesen <b>nicht</b>, sondern kontaktieren Sie den entsprechenden Modul-Entwickler.</string>
+    <string name="about_libraries_label">Verwendete Bibliotheken:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Herunterladen</string>
+    <string name="download_view_install">Installieren</string>
+    <string name="download_view_cancel">Abbrechen</string>
+    <string name="download_view_no_url">Keine Download-URL verfügbar</string>
+    <string name="download_view_running">Wird heruntergeladen (%1$,d von %2$,d kB)</string>
+    <string name="download_view_waiting">In der Warteschlange</string>
+    <string name="download_view_successful">Herunterladen abgeschlossen</string>
+    <string name="download_view_failed">Hunterladen fehlgeschlagen (Fehler %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5-Summe ist nicht korrekt (heruntergeladen: %1$s, erwartet: %2$s)</string>
+    <string name="download_could_not_read_file">Heruntergeladene Datei kann nicht gelesen werden: %s</string>
+    <string name="download_no_valid_apk">Heruntergeladene Datei ist keine gültige APK (oder inkompatibel)</string>
+    <string name="download_incorrect_package_name">Paketname ist nicht korrekt (heruntergeladen: %1$s, erwartet: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Herunterladen von %1$s fehlgeschlagen: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Herunterladen von %1$s fehlgeschlagen: %2$s</string>
+    <string name="repo_load_failed">Verzeichnis konnte nicht geladen werden von %1$s:\n%2$s</string>
+
+</resources>
