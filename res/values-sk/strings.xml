@@ -3,11 +3,14 @@
 
     <!-- General/various strings -->
     <string name="app_name">Xposed Inštalátor</string>
+    <string name="menuSend">Odoslať</string>
+    <string name="menuSaveToSd">Uložiť na kartu SD</string>
+    <string name="xposed_not_active">Najnovšia verzia Xposed nie je aktuálne aktívna. Nainštalovali ste framework a vykonali reštart?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Vitajte v <b>Xposed Inštalátore</b>!\nProsím vyberte, čo chcete robiť:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Tu môžte spravovať Xposed framework, ktorý je nutný pre fungovanie modulov.</string>
+    <string name="tabInstallDescription">Tu môžete spravovať Xposed framework, ktorý je nutný pre fungovanie modulov.</string>
     <string name="tabModules">Moduly</string>
     <string name="tabModulesDescription">Samotný framework neposkytuje žiadne funkcie. Tieto funkcie poskytujú rôzne moduly. V tejto sekcii môžete aktivovať moduly po ich inštalácií.</string>
     <string name="tabDownload">Sťahovanie</string>
@@ -16,6 +19,8 @@
     <string name="welcome_update_available">Je dostupná jedna alebo viac aktualizácií pre moduly.</string>
     <string name="tabSettings">Nastavenia</string>
     <string name="tabSettingsDescription">Prejdite do tejto sekcie pre nastavenie Xposed Inštalátora a frameworku.</string>
+    <string name="tabLogs">Záznamy</string>
+    <string name="tabLogsDescription">Zobraziť a uložiť/odoslať záznamy Xposed frameworku.</string>
     <string name="tabAbout">O aplikácii</string>
     <string name="tabAboutDescription">Dozveďte sa viac o ľuďoch, ktorí vytvorili Xposed, kde môžete získať podporu pre túto aplikáciu, atď.</string>
 
@@ -78,6 +83,11 @@
     <string name="settings_performance_experiment">Experiment s výkonom</string>
     <string name="settings_performance_experiment_summary">Ak povolíte túto možnosť, výkon systému sa môže buď zvýšiť, znížiť alebo zostať rovnaký. Nebojte sa vyskúšať experiment s výkonom a podajte správu o efekte, ktorý vidíte (nemusí byť však vôbec žiadny). Po zmene tejto možnosti je nutné znovu inštalovať framework a vykonať reštart zariadenia.</string>
 
+    <!--  Logs tab  -->
+    <string name="logs_load_failed">Nemožno čítať záznam:</string>
+    <string name="logs_save_failed">Nemožno zapísať záznam na kartu SD:</string>
+    <string name="sdcard_not_writable">Karta SD nebola nájdená alebo nie je zapisovateľná</string>
+    
     <!-- About tab -->
     <string name="about_developers_label">Hlavní vývojári:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> a <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
