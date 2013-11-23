@@ -3,6 +3,9 @@
 
     <!-- General/various strings -->
     <string name="app_name">Xposedインストーラ</string>
+    <string name="menuSend">送信</string>
+    <string name="menuSaveToSd">SDカードに保存</string>
+    <string name="xposed_not_active">最新版のXposedが動作していません。フレームワークをインストールして再起動しましたか?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome"><b>Xposedインストーラ</b>にようこそ"!
@@ -10,15 +13,17 @@
     <string name="tabInstall">フレームワーク</string>
     <string name="tabInstallDescription">モジュールの動作に必要なXposedフレームワークの管理をします。</string>
     <string name="tabModules">モジュール</string>
-    <string name="tabModulesDescription">"フレームワーク単体では何もできないのでモジュールが別途必要です。モジュールのインストール後ここで有効化できます。"</string>
+    <string name="tabModulesDescription">"フレームワーク単体では何もできないのでモジュールが別途必要です。モジュールのインストール後ここで有効化してください。"</string>
     <string name="tabDownload">ダウンロード</string>
-    <string name="tabDownloadDescription">モジュールのレポジトリにアクセスして検索やダウンロードができます。</string>
+    <string name="tabDownloadDescription">モジュールのレポジトリにアクセスして検索やダウンロードをします。</string>
     <string name="welcome_framework_update_available">Xposedフレームワークの更新があります。</string>
     <string name="welcome_update_available">モジュールの更新があります。</string>
     <string name="tabSettings">設定</string>
-    <string name="tabSettingsDescription">Xposedインストーラとフレームワークの設定ができます。</string>
+    <string name="tabSettingsDescription">Xposedインストーラとフレームワークの設定をします。</string>
+    <string name="tabLogs">ログ</string>
+    <string name="tabLogsDescription">Xposedフレームワークのログの表示、保存や送信をします。</string>
     <string name="tabAbout">このアプリについて</string>
-    <string name="tabAboutDescription">Xposedの開発に携わった人たちやサポートの情報を見られます。</string>
+    <string name="tabAboutDescription">Xposedの開発に携わった人たちやサポートの情報を表示します。</string>
 
     <!-- Installer tab -->
     <string name="install">インストール/更新</string>
@@ -43,7 +48,7 @@
     <string name="warning_xposed_min_version">このモジュールはXposedBridgeの新しいバージョン (%d) が必要なので有効にできません。</string>
     <string name="no_min_version_specified">このモジュールは必要なXposedBridgeバージョンを指定していません。</string>
     <string name="warning_min_version_too_low">このモジュールはXposedBridge バージョン %1$d向けに作成されましたが、 バージョン %2$dでは互換性がないため無効にされました。</string>
-    <string name="module_launch">UIを起動</string>
+    <string name="module_launch">アプリを起動</string>
     <string name="module_download_updates">ダウンロード/更新</string>
     <string name="module_support">サポート</string>
     <string name="module_app_info">アプリ情報</string>
@@ -79,6 +84,11 @@
     <string name="settings_group_experimental">実験的</string>
     <string name="settings_performance_experiment">パフォーマンス実験</string>
     <string name="settings_performance_experiment_summary">これを有効にするとパフォーマンスに影響が出る可能性があります。どうか試してみて効果があるかないか報告してください。有効にした後はフレームワークを再インストールして再起動してください。</string>
+
+    <!-- Logs tab -->
+    <string name="logs_load_failed">ログを読み込めません:</string>
+    <string name="logs_save_failed">SDカードにログを書き込めません:</string>
+    <string name="sdcard_not_writable">SDカードが無いか書き込み可能でありません。</string>
 
     <!-- About tab -->
     <string name="about_developers_label">メイン開発者:</string>
