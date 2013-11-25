@@ -16,6 +16,8 @@
     <string name="welcome_update_available">Uma ou mais atualizações de módulos disponível.</string>
     <string name="tabSettings">Configurações</string>
     <string name="tabSettingsDescription">Nesta guia você configura o Instalador do Xposed e o framework.</string>
+    <string name="tabLogs">Registros</string>
+    <string name="tabLogsDescription">Exibir e também salvar/enviar logs do Xposed framework.</string>
     <string name="tabAbout">Sobre</string>
     <string name="tabAboutDescription">Saber mais sobre as pessoas que criaram o Xposed, onde obter suporte, etc.</string>
 
