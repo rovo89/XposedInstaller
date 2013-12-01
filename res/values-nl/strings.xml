@@ -79,9 +79,9 @@
     <string name="settings_group_download">Download</string>
     <string name="settings_enable_downloads">Downloads inschakelen</string>
     <string name="settings_enable_downloads_summary">Xposed Installer toestaan te controleren op updates en nieuwe modules</string>
-    <string name="settings_group_experimental" tools:ignore="UnusedResources">Experimenteel</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Prestatie experiment</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Als u dit inschakeld, kan uw systeem prestaties verhogen, verminderen of hetzelfde blijven. Het is gratis om te proberen en laat ons weten welk effect u ziet (of als er helemaal geen is). U moet het framework herinstalleren en herstarten nadat u dit veranderd.</string>
+    <string name="settings_group_experimental">Experimenteel</string>
+    <string name="settings_performance_experiment">Prestatie experiment</string>
+    <string name="settings_performance_experiment_summary">Als u dit inschakeld, kan uw systeem prestaties verhogen, verminderen of hetzelfde blijven. Het is gratis om te proberen en laat ons weten welk effect u ziet (of als er helemaal geen is). U moet het framework herinstalleren en herstarten nadat u dit veranderd.</string>
 
     <!--  Logs tab  -->
     <string name="logs_load_failed">Kan logboek niet lezen:</string>
@@ -93,7 +93,7 @@
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> en <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Contacteer ons alstublieft <b>niet</b> direct voor ondersteuning, gebruik de onderstaande link. (Onder de titel "Krijg ondersteuning op")</string>
     <string name="about_translator_label">Het framework in is het Nederlands vertaald door:</string>
-    <string name="translator">Martinusbe & <a href="http://git.gertlily.com/">Gert-Jan Anema</a></string>
+    <string name="translator">Martinusbe &amp; <a href="http://git.gertlily.com/">Gert-Jan Anema</a></string>
     <string name="about_version_label">Versie van deze app:</string>
     <string name="about_source_label">Bron code:</string>
     <string name="about_support_label">Krijg ondersteuning op:</string>
@@ -106,7 +106,7 @@
     <string name="download_view_cancel">Annuleer</string>
     <string name="download_view_no_url">Geen download URL beschikbaar</string>
     <string name="download_view_running">Bezig met downloaden (%1$,d van %2$,d kB)</string>
-    <string name="download_view_waiting">Wachten op download...</string>
+    <string name="download_view_waiting">Wachten op download&#8230;</string>
     <string name="download_view_successful">De download is succesvol</string>
     <string name="download_view_failed">De download is mislukt (fout %d)</string>
 
