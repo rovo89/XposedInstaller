@@ -5,120 +5,120 @@
     <string name="app_name">Xposed Yükleyici</string>
     <string name="menuSend">Gönder</string>
     <string name="menuSaveToSd">SD Karta kaydet</string>
-    <string name="xposed_not_active">Xposed en son sürümü þu anda aktif deðildir. Þimdi Frameworku kurmak ve yeniden baþlatmak istermisiniz?</string>
+    <string name="xposed_not_active">Xposed en son sürümü şu anda aktif değildir. Şimdi Frameworku kurmak ve yeniden başlatmak istermisiniz?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Xposed Yükleyici<b>Hoþgeldiniz</b>"Lütfen ne yapmak istediðinizi seçin:"</string>
+    <string name="welcome">Xposed Yükleyici<b>Hoşgeldiniz</b>\nLütfen ne yapmak istediğinizi seçin:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Bu bölümden Xposed framework,yükleyip kaldýrabilirsiniz..</string>
+    <string name="tabInstallDescription">Bu bölümden Xposed framework,yükleyip kaldırabilirsiniz..</string>
     <string name="tabModules">Modüller</string>
-    <string name="tabModulesDescription">"Framework tek baþýna bir iþe yaramaz.Kullaným için Modüller gerekir.Bu bölümden framework ile çalýþacak Modülleri seçebilirsiniz."</string>
-    <string name="tabDownload">Modül Ýndir</string>
-    <string name="tabDownloadDescription">Bu bölüm modül deposuna eriþim saðlar, Böylece aramak ve indirmek istediðiniz uygulamalarý ve güncellemeleri yapabilirsiniz..</string>
-    <string name="welcome_framework_update_available">Xposed için kullanýlabilir bir güncelleþtirme var.</string>
-    <string name="welcome_update_available">Mevcut modüller için bir veya daha fazla güncelleþtirme var.</string>
+    <string name="tabModulesDescription">Framework tek başına bir işe yaramaz.Kullanım için Modüller gerekir.Bu bölümden framework ile çalışacak Modülleri seçebilirsiniz.</string>
+    <string name="tabDownload">Modül İndir</string>
+    <string name="tabDownloadDescription">Bu bölüm modül deposuna erişim sağlar, Böylece aramak ve indirmek istediğiniz uygulamaları ve güncellemeleri yapabilirsiniz..</string>
+    <string name="welcome_framework_update_available">Xposed için kullanılabilir bir güncelleştirme var.</string>
+    <string name="welcome_update_available">Mevcut modüller için bir veya daha fazla güncelleştirme var.</string>
     <string name="tabSettings">Ayarlar</string>
-    <string name="tabSettingsDescription">Xposed Yükleme ve Framework yapýlandýrmak için bu bölümüne gidin.</string>
-    <string name="tabLogs">Log Kayýtlarý</string>
-    <string name="tabLogsDescription">Xposed frawork loglarýný görüntüleme veya kaydet/gönder</string>
-    <string name="tabAbout">Hakkýnda</string>
-    <string name="tabAboutDescription">Xposed,yazýlýmcýlarýna ulaþmak ve destek almak için bu bölümü kullanýn..</string>
+    <string name="tabSettingsDescription">Xposed Yükleme ve Framework yapılandırmak için bu bölümüne gidin.</string>
+    <string name="tabLogs">Log Kayıtları</string>
+    <string name="tabLogsDescription">Xposed framework loglarını görüntüleme veya kaydet/gönder</string>
+    <string name="tabAbout">Hakkında</string>
+    <string name="tabAboutDescription">Xposed,yazılımcılarına ulaşmak ve destek almak için bu bölümü kullanın..</string>
 
     <!-- Installer tab -->
     <string name="install">Yükle/Güncelle</string>
-    <string name="uninstall">Kaldýr</string>
+    <string name="uninstall">Kaldır</string>
     <string name="installedVersion">aktif</string>
     <string name="none">---</string>
     <string name="latestVersion">birlikte</string>
     <string name="versions">Versiyonlar:</string>
-    <string name="soft_reboot">Hýzlý yeniden Bbaþlat</string>
-    <string name="reboot">Yeniden Baþlat</string>
+    <string name="soft_reboot">Hızlı yeniden başlat</string>
+    <string name="reboot">Yeniden Başlat</string>
     <string name="areyousure">Eminmisiniz?</string>
-    <string name="phone_not_compatible">Xposed þu an (yet)bu Android SDK versiyonu %1$d ve iþlemci mimarisi (%2$s) ile uyumlu deðil.</string>
-    <string name="not_tested_but_compatible">Xposed Framework bu Android sürümü ile %d, test edilmemiþtir ama uyumlu görünüyor. Macerayý seviyorsanýz bunu yüklemeyi deneyebilirsiniz..</string>
+    <string name="phone_not_compatible">Xposed şu an (yet)bu Android SDK versiyonu %1$d ve işlemci mimarisi (%2$s) ile uyumlu değil.</string>
+    <string name="not_tested_but_compatible">Xposed Framework bu Android sürümü ile %d, test edilmemiştir ama uyumlu görünüyor. Macerayı seviyorsanız bunu yüklemeyi deneyebilirsiniz..</string>
 
     <!-- Modules tab -->
-    <string name="module_is_not_activated_yet">Xposed modülü henüz aktif deðil</string>
-    <string name="module_empty_description">(hiçbir açýklama yok)</string>
-    <string name="module_no_ui">Bu modül bir kullanýcý arabirimi saðlamaz</string>
-    <string name="no_xposed_modules_found">Xposed modülleri bulunamadý!</string>
-    <string name="xposed_module_list_updated">Xposed modül listesi güncellendi.Deðiþikliklerin aktif olmasý için telefonunuzu yeniden baþlatýn.</string>
+    <string name="module_is_not_activated_yet">Xposed modülü henüz aktif değil</string>
+    <string name="module_empty_description">(hiçbir açıklama yok)</string>
+    <string name="module_no_ui">Bu modül bir kullanıcı arabirimi sağlamaz</string>
+    <string name="no_xposed_modules_found">Xposed modülleri bulunamadı!</string>
+    <string name="xposed_module_list_updated">Xposed modül listesi güncellendi.Değişikliklerin aktif olması için telefonunuzu yeniden başlatın.</string>
     <string name="warning_xposed_min_version">Bu modül yeni bir Xposed sürümü (%d) gerektirir ve aktive edilemez..</string>
-    <string name="no_min_version_specified">Bu modül ihtiyacý olan XposedBridge sürümünü belirtmez.</string>
-    <string name="warning_min_version_too_low">Bu modül XposedBridge sürüm %1$d, için oluþturuldu, ancak bu sürüm ile uyumsuz deðiþiklikler var, %2$d, Bu yüzden evre dýþý býrakýldý..</string>
-    <string name="module_launch">UI Baþlat</string>
-    <string name="module_download_updates">Ýndir/Güncelle</string>
+    <string name="no_min_version_specified">Bu modül ihtiyacı olan XposedBridge sürümünü belirtmez.</string>
+    <string name="warning_min_version_too_low">Bu modül XposedBridge sürüm %1$d, için oluşturuldu, ancak bu sürüm ile uyumsuz değişiklikler var, %2$d, Bu yüzden evre dışı bırakıldı..</string>
+    <string name="module_launch">UI Başlat</string>
+    <string name="module_download_updates">ındir/Güncelle</string>
     <string name="module_support">Destek</string>
     <string name="module_app_info">App Bilgileri</string>
-    <string name="module_uninstall">Kaldýr</string>
+    <string name="module_uninstall">Kaldır</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Arama</string>
     <string name="menuReload">Yenile</string>
-    <string name="changes">Deðiþiklikler:</string>
-    <string name="branch_display">(%s sýnýf)</string>
-    <string name="download_author">Yapýmcý %s</string>
-    <string name="download_unknown_author">Bilinmeyen yapýmcý</string>
-    <string name="download_status_installed">Yüklenmiþ (versiyon %s)</string>
+    <string name="changes">Değişiklikler:</string>
+    <string name="branch_display">(%s sınıf)</string>
+    <string name="download_author">Yapımcı %s</string>
+    <string name="download_unknown_author">Bilinmeyen yapımcı</string>
+    <string name="download_status_installed">Yüklenmiş (versiyon %s)</string>
     <string name="download_status_update_available">Güncelleme mevcut (versiyon %1$s \u2192 %2$s)</string>
     <string name="download_timestamps">Eklenme tarihi %1$s \u00b7 Son güncelleme %2$s</string>
-    <string name="download_sorting_title">Sýralama Düzeni</string>
-    <string name="download_sorting_status">Duruma göre sýrala</string>
+    <string name="download_sorting_title">Sıralama Düzeni</string>
+    <string name="download_sorting_status">Duruma göre sırala</string>
     <string name="download_sorting_updated">Son güncelleme tarihine göre</string>
     <string name="download_sorting_created">Eklenme tarihine göre</string>
     <string name="download_section_framework">Framework</string>
     <string name="download_section_update_available">Güncelleme mevcut</string>
-    <string name="download_section_installed">Yüklenmiþ  Modüller</string>
-    <string name="download_section_not_installed">Yüklenmemiþ Modüller</string>
+    <string name="download_section_installed">Yüklenmiş  Modüller</string>
+    <string name="download_section_not_installed">Yüklenmemiş Modüller</string>
     <string name="download_section_24h">Son 24 Saat</string>
     <string name="download_section_7d">Son 7 Gün</string>
     <string name="download_section_30d">Son 30 Gün</string>
     <string name="download_section_older">30 günden daha önce</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_download">Ýndir</string>
-    <string name="settings_enable_downloads">Ýndirmeleri etkinleþtir</string>
-    <string name="settings_enable_downloads_summary">Xposed Yükleyici güncellemeleri ve yeni modülleri otomatik kontrol etmek için ektinleþtirin</string>
+    <string name="settings_group_download">ındir</string>
+    <string name="settings_enable_downloads">indirmeleri etkinleştir</string>
+    <string name="settings_enable_downloads_summary">Xposed Yükleyici güncellemeleri ve yeni modülleri otomatik kontrol etmek için ektinleştirin</string>
     <string name="settings_group_experimental">Deneysel</string>
     <string name="settings_performance_experiment">Performans deneyleri</string>
-    <string name="settings_performance_experiment_summary">Bunu etkinleþtirirseni sistemde performans artýþý veya azalma olabilir.. Bunu deneyin ve gördüðünüz herhangi bir etki raporunu bize bildirmekten çekinmeyin. Bunu deðiþtirdikten sonra framework ve modülleri yeniden yüklemeniz gerekir.</string>
+    <string name="settings_performance_experiment_summary">Bunu etkinleştirirseni sistemde performans artışı veya azalma olabilir.. Bunu deneyin ve gördüğünüz herhangi bir etki raporunu bize bildirmekten çekinmeyin. Bunu değiştirdikten sonra framework ve modülleri yeniden yüklemeniz gerekir.</string>
 
     <!--  Logs tab  -->
-    <string name="logs_load_failed">Log kayýtlarý okunamadý:</string>
-    <string name="logs_save_failed">Log kayýtlarýný SD karta yazamadý:</string>
-    <string name="sdcard_not_writable">SD kart yazýlabilir deðil veya bulunamadý</string>
+    <string name="logs_load_failed">Log kayıtları okunamadı:</string>
+    <string name="logs_save_failed">Log kayıtlarını SD karta yazamadı:</string>
+    <string name="sdcard_not_writable">SD kart yazılabilir değil veya bulunamadı</string>
 
     <!-- About tab -->
-    <string name="about_developers_label">Ana Geliþtiriciler:</string>
+    <string name="about_developers_label">Ana Geliştiriciler:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Lütfen bizimle <b>direkt</b> olarak iletiþim yerine aþaðýdaki linki kullanýn.</string>
+    <string name="about_developers_warning">Lütfen bizimle <b>direkt</b> olarak iletişim yerine aşağıdaki linki kullanın.</string>
     <string name="about_translator_label">Çevirmen:</string>
     <string name="translator">TheNorth34</string>
     <string name="about_version_label">Uygulama sürümü:</string>
     <string name="about_source_label">Kaynak kodu:</string>
     <string name="about_support_label">Destek almak için:</string>
-    <string name="about_support_warning">Bu linkte <b>sadece</b>!framework dosyasý ile ilgili destek bulunmakta. Modüller ile ilgili sorularýnýzý <b>lütfen</b> modül yapýmcýlarýna ulaþarak sorun..</string>
-    <string name="about_libraries_label">Kullanýlan kütüphaneler:</string>
+    <string name="about_support_warning">Bu linkte <b>sadece</b>!framework dosyası ile ilgili destek bulunmakta. Modüller ile ilgili sorularınızı <b>lütfen</b> modül yapımcılarına ulaşarak sorun..</string>
+    <string name="about_libraries_label">Kullanılan kütüphaneler:</string>
 
     <!-- DownloadView -->
-    <string name="download_view_download">Ýndir</string>
+    <string name="download_view_download">ındir</string>
     <string name="download_view_install">Yükle</string>
-    <string name="download_view_cancel">Ýptal</string>
-    <string name="download_view_no_url">Ýndirme URL adresi yok</string>
-    <string name="download_view_running">Ýndirme sürüyor (%1$,d kalan %2$,d kB)</string>
-    <string name="download_view_waiting">Ýndirme bekliyor</string>
-    <string name="download_view_successful">Ýndirme tamamlandý</string>
-    <string name="download_view_failed">Ýndirme tamamlanamadý (hata %d)</string>
+    <string name="download_view_cancel">ıptal</string>
+    <string name="download_view_no_url">ındirme URL adresi yok</string>
+    <string name="download_view_running">ındirme sürüyor (%1$,d kalan %2$,d kB)</string>
+    <string name="download_view_waiting">ındirme bekliyor</string>
+    <string name="download_view_successful">ındirme tamamlandı</string>
+    <string name="download_view_failed">ındirme tamamlanamadı (hata %d)</string>
 
     <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">MD5 toplamý yanlýþ (indirilen: %1$s, beklenen: %2$s)</string>
-    <string name="download_could_not_read_file">Ýndirilen dosya okunamadý: %s</string>
-    <string name="download_no_valid_apk">Ýndirilen dosya geçerli Apk dosyasý deðil (veya uyumsuz)</string>
-    <string name="download_incorrect_package_name">Paket adý yanlýþ (indirilen: %1$s, beklenen: %2$s)</string>
+    <string name="download_md5sum_incorrect">MD5 toplamı yanlış (indirilen: %1$s, beklenen: %2$s)</string>
+    <string name="download_could_not_read_file">ındirilen dosya okunamadı: %s</string>
+    <string name="download_no_valid_apk">ındirilen dosya geçerli Apk dosyası değil (veya uyumsuz)</string>
+    <string name="download_incorrect_package_name">Paket adı yanlış (indirilen: %1$s, beklenen: %2$s)</string>
 
     <!-- RepoLoader -->
-    <string name="repo_download_failed_http">Ýndirme %1$s baþarýsýz: %2$d (%3$s)</string>
-    <string name="repo_download_failed">Ýndirme %1$s baþarýsýz: %2$s</string>
+    <string name="repo_download_failed_http">ındirme %1$s başarısız: %2$d (%3$s)</string>
+    <string name="repo_download_failed">ındirme %1$s başarısız: %2$s</string>
     <string name="repo_load_failed">Depodan yüklenemiyor %1$s:\n%2$s</string>
 
 </resources>
