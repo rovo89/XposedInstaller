@@ -14,5 +14,9 @@
         android:id="@+id/menu_send"
         android:showAsAction="never"
         android:title="@string/menuSend"/>
+    <item
+        android:id="@+id/menu_clear"
+        android:showAsAction="never"
+        android:title="@string/menuClearLog"/>
 
 </menu>

@@ -86,6 +86,8 @@
     <string name="logs_load_failed">Kan logboek niet lezen:</string>
     <string name="logs_save_failed">Kan niet schrijven naar SD kaart:</string>
     <string name="sdcard_not_writable">SD kaart niet gevonden of niet schrijfbaar</string>
+    <string name="menuClearLog">Maak logboek leeg</string>
+    <string name="logs_cleared">Logboek succesvol geleegd</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Hoofd ontwikkelaars:</string>

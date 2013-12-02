@@ -126,6 +126,9 @@
     <string name="logs_save_failed">Could not write log to SD card:</string>
     <string name="sdcard_not_writable">SD card not found or not writable</string>
     <string name="log_too_large">Log file is larger than %1$,d kB, skipped first %2$,d kB</string>
+    <string name="menuClearLog">Clear log now</string>
+    <string name="logs_cleared">Log successfully cleared</string>
+    <string name="logs_clear_failed">Could not clear the log:</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Main developers:</string>

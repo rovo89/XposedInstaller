@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 public class LogsFragment extends Fragment {
 	private File mFileDebugLog = new File(XposedApp.BASE_DIR + "log/debug.log");
+	private File mFileDebugLogOld = new File(XposedApp.BASE_DIR + "log/debug.log.old");
 	private static final int MAX_LOG_SIZE = 2*1024*1024; // 2 MB
 	private TextView mTxtLog;
 	private ScrollView mSVLog;
@@ -70,6 +71,9 @@ public class LogsFragment extends Fragment {
 		case R.id.menu_save:
 			save();
 			return true;
+		case R.id.menu_clear:
+			clear();
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -109,6 +113,20 @@ public class LogsFragment extends Fragment {
 				mHSVLog.scrollTo(0, 0);
 			}
 		});
+	}
+
+	private void clear() {
+		try {
+			new FileOutputStream(mFileDebugLog).close();;
+			mFileDebugLogOld.delete();
+			Toast.makeText(getActivity(), R.string.logs_cleared, Toast.LENGTH_SHORT).show();
+			reloadDebugLog();
+		} catch (IOException e) {
+			Toast.makeText(getActivity(),
+					getResources().getString(R.string.logs_clear_failed) + "\n" + e.getMessage(),
+					Toast.LENGTH_LONG).show();
+			return;
+		}
 	}
 
 	private void send() {
