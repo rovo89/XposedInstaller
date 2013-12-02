@@ -17,7 +17,6 @@
     <string name="install">Установить/Обновить</string>
     <string name="uninstall">Удалить</string>
     <string name="installedVersion">текущая</string>
-    <string name="none">---</string>
     <string name="latestVersion">доступная</string>
     <string name="versions">Версии:</string>
     <string name="soft_reboot">Быстрая перезагрузка</string>

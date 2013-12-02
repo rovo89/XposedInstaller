@@ -23,7 +23,6 @@
     <string name="install">Instal·lar / Actualitzar</string>
     <string name="uninstall">Desinstal·lar</string>
     <string name="installedVersion">Activat</string>
-    <string name="none">---</string>
     <string name="latestVersion">Inclòs</string>
     <string name="versions">Versió:</string>
     <string name="soft_reboot">Reinici Software</string>

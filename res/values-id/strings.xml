@@ -23,7 +23,6 @@
     <string name="install">Install/Update</string>
     <string name="uninstall">Hapus</string>
     <string name="installedVersion">aktif</string>
-    <string name="none">---</string>
     <string name="latestVersion">tergabung</string>
     <string name="versions">Versi:</string>
     <string name="soft_reboot">Reboot cepat</string>

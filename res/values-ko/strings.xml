@@ -28,7 +28,6 @@
     <string name="install">Xposed 프레임워크 설치 및 업데이트</string>
     <string name="uninstall">Xposed 프레임워크 제거</string>
     <string name="installedVersion">현재 시스템</string>
-    <string name="none">----</string>
     <string name="latestVersion">설치 도구</string>
     <string name="versions">버전</string>
     <string name="soft_reboot">빠른 재시작</string>

@@ -28,7 +28,6 @@
     <string name="install">Inštalovať/Aktualizovať</string>
     <string name="uninstall">Odinštalovať</string>
     <string name="installedVersion">aktívna</string>
-    <string name="none">---</string>
     <string name="latestVersion">najnovšia</string>
     <string name="versions">Verzie:</string>
     <string name="soft_reboot">Softvérový reštart</string>

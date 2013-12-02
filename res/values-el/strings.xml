@@ -28,7 +28,6 @@
     <string name="install">Εγκατάσταση/Αναβάθμιση</string>
     <string name="uninstall">Απεγκατάσταση</string>
     <string name="installedVersion">ενεργό</string>
-    <string name="none">---</string>
     <string name="latestVersion">bundled</string>
     <string name="versions">Εκδόσεις:</string>
     <string name="soft_reboot">Soft reboot</string>

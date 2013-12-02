@@ -23,7 +23,6 @@
     <string name="install">تثبيت/تحديث</string>
     <string name="uninstall">إلغاء تثبيت</string>
     <string name="installedVersion">تنشيط</string>
-    <string name="none">---</string>
     <string name="latestVersion">تجميع</string>
     <string name="versions">إصدارات:</string>
     <string name="soft_reboot">اعادة تشغيل سريعة</string>

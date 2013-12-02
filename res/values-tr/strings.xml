@@ -28,7 +28,6 @@
     <string name="install">Yükle/Güncelle</string>
     <string name="uninstall">Kaldır</string>
     <string name="installedVersion">aktif</string>
-    <string name="none">---</string>
     <string name="latestVersion">birlikte</string>
     <string name="versions">Versiyonlar:</string>
     <string name="soft_reboot">Hızlı yeniden başlat</string>

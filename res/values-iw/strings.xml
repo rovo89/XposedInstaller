@@ -23,7 +23,6 @@
     <string name="install">התקנה/עדכון</string>
     <string name="uninstall">הסרה</string>
     <string name="installedVersion">פעיל</string>
-    <string name="none">---</string>
     <string name="latestVersion">כלול</string>
     <string name="versions">גרסאות:</string>
     <string name="soft_reboot">הפעלה מחדש מהירה</string>

@@ -28,7 +28,6 @@
     <string name="install">Install/Update</string>
     <string name="uninstall">Uninstall</string>
     <string name="installedVersion">active</string>
-    <string name="none">---</string>
     <string name="latestVersion">bundled</string>
     <string name="versions">Versions:</string>
     <string name="soft_reboot">Soft reboot</string>
