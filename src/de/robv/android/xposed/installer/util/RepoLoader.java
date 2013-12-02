@@ -82,6 +82,11 @@ public class RepoLoader {
 		return null;
 	}
 
+	public ModuleVersion getLatestVersion(String packageName) {
+		Module module = getModule(packageName);
+		return (module != null) ? getLatestVersion(module) : null;
+	}
+
 	public void triggerReload(final boolean force) {
 		mReloadTriggeredOnce = true;
 
