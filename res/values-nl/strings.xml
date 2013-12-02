@@ -4,6 +4,7 @@
     <!-- General/various strings -->
     <string name="app_name">Xposed Installer</string>
     <string name="menuSend">Deel</string>
+    <string name="menuClear">Maak logboek leeg</string>
     <string name="menuSaveToSd">Opslaan op SD kaart</string>
     <string name="xposed_not_active">De laatste versie van Xposed is momenteel niet actief. Heb je het framework geïnstalleerd en geherstart?</string>
 
@@ -87,13 +88,14 @@
     <string name="logs_load_failed">Kan logboek niet lezen:</string>
     <string name="logs_save_failed">Kan niet schrijven naar SD kaart:</string>
     <string name="sdcard_not_writable">SD kaart niet gevonden of niet schrijfbaar</string>
+    <string name="logs_cleared">Logboek succesvol geleegd</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Hoofd ontwikkelaars:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> en <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Contacteer ons alstublieft <b>niet</b> direct voor ondersteuning, gebruik de onderstaande link. (Onder de titel "Krijg ondersteuning op")</string>
     <string name="about_translator_label">Het framework in is het Nederlands vertaald door:</string>
-    <string name="translator">Martinusbe &amp; <a href="http://git.gertlily.com/">Gert-Jan Anema</a></string>
+    <string name="translator">Martinusbe &amp; <a href="http://code.gertlily.com/">Gert-Jan Anema</a></string>
     <string name="about_version_label">Versie van deze app:</string>
     <string name="about_source_label">Bron code:</string>
     <string name="about_support_label">Krijg ondersteuning op:</string>

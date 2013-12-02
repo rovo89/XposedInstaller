@@ -4,6 +4,7 @@
     <!-- General/various strings -->
     <string name="app_name">Xposed Installer</string>
     <string name="menuSend">Send</string>
+    <string name="menuClear">Clear log</string>
     <string name="menuSaveToSd">Save to SD card</string>
     <string name="xposed_not_active">The latest version of Xposed is currently not active. Did you install the framework and reboot?</string>
 
@@ -87,6 +88,7 @@
     <string name="logs_load_failed">Could not read log:</string>
     <string name="logs_save_failed">Could not write log to SD card:</string>
     <string name="sdcard_not_writable">SD card not found or not writable</string>
+    <string name="logs_cleared">Log successfully cleared</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Main developers:</string>
