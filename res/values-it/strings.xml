@@ -23,7 +23,6 @@
     <string name="install">Installa/Aggiorna</string>
     <string name="uninstall">Rimuovi</string>
     <string name="installedVersion">attiva</string>
-    <string name="none">---</string>
     <string name="latestVersion">ultima</string>
     <string name="versions">Versioni:</string>
     <string name="soft_reboot">Riavvio soft</string>

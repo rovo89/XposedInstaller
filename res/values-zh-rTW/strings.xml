@@ -23,7 +23,6 @@
     <string name="install">安裝/更新</string>
     <string name="uninstall">卸載</string>
     <string name="installedVersion">啟動</string>
-    <string name="none">---</string>
     <string name="latestVersion">程式自帶</string>
     <string name="versions">版本：</string>
     <string name="soft_reboot">軟重啟</string>

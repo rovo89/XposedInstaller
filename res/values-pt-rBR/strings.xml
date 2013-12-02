@@ -28,7 +28,6 @@
     <string name="install">Instalar/Atualizar</string>
     <string name="uninstall">Desinstalar</string>
     <string name="installedVersion">ativa</string>
-    <string name="none">---</string>
     <string name="latestVersion">disponível</string>
     <string name="versions">Versões:</string>
     <string name="soft_reboot">Reinício suave</string>

@@ -28,7 +28,6 @@
     <string name="install">Installeren/Bijwerken</string>
     <string name="uninstall">Verwijderen</string>
     <string name="installedVersion">actief</string>
-    <string name="none">---</string>
     <string name="latestVersion">Laatste versie</string>
     <string name="versions">Versies:</string>
     <string name="soft_reboot">Systeem herstart</string>

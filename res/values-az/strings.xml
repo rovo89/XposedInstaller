@@ -28,7 +28,6 @@
     <string name="install">Quraşdır/Yenilə</string>
     <string name="uninstall">Sil</string>
     <string name="installedVersion">aktiv</string>
-    <string name="none">---</string>
     <string name="latestVersion">paketlənmiş</string>
     <string name="versions">Versiyalar:</string>
     <string name="soft_reboot">Soft yenidən başlat</string>

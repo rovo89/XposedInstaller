@@ -28,7 +28,6 @@
     <string name="install">Installieren/Aktualisieren</string>
     <string name="uninstall">Deinstallieren</string>
     <string name="installedVersion">Aktiv</string>
-    <string name="none">---</string>
     <string name="latestVersion">Mitgeliefert</string>
     <string name="versions">Versionen:</string>
     <string name="soft_reboot">Software-Neustart</string>
