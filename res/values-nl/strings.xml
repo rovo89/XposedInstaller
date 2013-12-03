@@ -10,19 +10,19 @@
     <!-- Welcome screen / main sections -->
     <string name="welcome">Welkom bij de <b>Xposed Installer</b>!\nKies alstublieft wat u wenst te doen:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Hier kunt u het Xposed framework instellen, Dit is nodig voor elke module om te werken.</string>
+    <string name="tabInstallDescription">Hier kunt u het Xposed framework installeren, als het framework niet geïnstalleerd is werken de modules ook niet!</string>
     <string name="tabModules">Modules</string>
     <string name="tabModulesDescription">Het framework op zich voegt geen functionaliteit toe. Daar heeft u modules voor nodig. In dit onderdeel kunt u modules activeren nadat u ze hebt geinstalleerd.</string>
     <string name="tabDownload">Download</string>
     <string name="tabDownloadDescription">Deze sectie geeft u toegang tot een verzameling van modules, zodat u degene die u goed vind kunt zoeken en downloaden en hen bijgewerkt houden.</string>
-    <string name="welcome_framework_update_available">Een update voor het Xposed framework is beschikbaar.</string>
+    <string name="welcome_framework_update_available">Een update voor het Xposed framework is beschikbaar (%s).</string>
     <string name="welcome_update_available">Eén of meer update(s) voor modules beschikbaar.</string>
     <string name="tabSettings">Instellingen</string>
-    <string name="tabSettingsDescription">Ga naar dit onderdeel om de Xposed Installer en framework te configureren.</string>
+    <string name="tabSettingsDescription">Hier kunt u extra instellingen voor het Xposed framework of de installer in- of uitschakelen.</string>
     <string name="tabLogs">Logboek</string>
     <string name="tabLogsDescription">Bekijk en sla het logboek op of verstuur het logboek van het Xposed framework.</string>
     <string name="tabAbout">Over</string>
-    <string name="tabAboutDescription">Leer meer over de mensen die Xposed hebben gecreëerd, waar ondersteuning voor deze app te vinden enz.</string>
+    <string name="tabAboutDescription">Informatie over de ontwikkelaars, de geïnstalleerde versie, ondersteuning voor het Xposed framework en meer..</string>
 
     <!-- Installer tab -->
     <string name="install">Installeren/Bijwerken</string>
@@ -30,8 +30,8 @@
     <string name="installedVersion">actief</string>
     <string name="latestVersion">Laatste versie</string>
     <string name="versions">Versies:</string>
-    <string name="soft_reboot">Systeem herstart</string>
-    <string name="reboot">Herstart</string>
+    <string name="soft_reboot">Systeem herstarten</string>
+    <string name="reboot">Volledige herstarten</string>
     <string name="areyousure">Weet u het zeker?</string>
     <string name="phone_not_compatible">Xposed is (nog) niet compatibel met Android SDK versie %1$d van uw processor architectuur (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed is nog niet getest met Android SDK versie %d, maar het lijkt compatibel te zijn. U kunt het proberen te installeren als u het wilt proberen.</string>
@@ -66,7 +66,7 @@
     <string name="download_sorting_updated">Sorteren op laatste update</string>
     <string name="download_sorting_created">Sorteren op laatst toegevoegd</string>
     <string name="download_section_framework">Framework</string>
-    <string name="download_section_update_available">Update beschikbaar</string>
+    <string name="download_section_update_available">Update(s) beschikbaar</string>
     <string name="download_section_installed">Geïnstalleerd</string>
     <string name="download_section_not_installed">Niet geïnstalleerd</string>
     <string name="download_section_24h">Laatste 24 uur</string>
@@ -90,13 +90,13 @@
     <!-- About tab -->
     <string name="about_developers_label">Hoofd ontwikkelaars:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> en <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Contacteer ons alstublieft <b>niet</b> direct voor ondersteuning, gebruik de onderstaande link. (Onder de titel "Krijg ondersteuning op")</string>
+    <string name="about_developers_warning">Contacteer de ontwikkelaard <b>niet</b> voor directe ondersteuning. Kijk inplaats hiervan onder het kopje <i><u>Krijg ondersteuning op</u></i>.</string>
     <string name="about_translator_label">Het framework in is het Nederlands vertaald door:</string>
-    <string name="translator">Martinusbe &amp; <a href="http://git.gertlily.com/">Gert-Jan Anema</a></string>
+    <string name="translator">Martinusbe &amp; <a href="http://code.gertlily.com/">Gert-Jan Anema</a></string>
     <string name="about_version_label">Versie van deze app:</string>
-    <string name="about_source_label">Bron code:</string>
+    <string name="about_source_label">Bekijk de broncode:</string>
     <string name="about_support_label">Krijg ondersteuning op:</string>
-    <string name="about_support_warning">Deze link is voor de Xposed en het framework <b>alleen</b>! Als u hulp nodig heeft met een module, gebruik hem <b>niet</b>, Contakteer de auteur van de module in de plaats.</string>
+    <string name="about_support_warning">Gebruik de link hierboven <b>alleen</b> voor problemen met het Xposed Framework! Als er een probleem is met een module neem dan contact op met de ontwikkelaar van de module!</string>
     <string name="about_libraries_label">Gebruikte bibliotheken:</string>
 
     <!-- DownloadView -->
