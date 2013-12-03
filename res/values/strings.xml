@@ -15,7 +15,7 @@
     <string name="tabModulesDescription">The framework itself doesn\'t add any functionality. You need modules for that. In this section you can activate modules after you have installed them.</string>
     <string name="tabDownload">Download</string>
     <string name="tabDownloadDescription">This section gives you access to a repository of modules, so you can search and download the ones you like and keep them up to date.</string>
-    <string name="welcome_framework_update_available">An update for the Xposed framework is available.</string>
+    <string name="welcome_framework_update_available">An update for the Xposed framework is available (%s).</string>
     <string name="welcome_update_available">One or more update(s) for modules available.</string>
     <string name="tabSettings">Settings</string>
     <string name="tabSettingsDescription">Go to this section to configure the Xposed Installer and framework.</string>
