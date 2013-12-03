@@ -31,7 +31,7 @@
     <string name="latestVersion">Laatste versie</string>
     <string name="versions">Versies:</string>
     <string name="soft_reboot">Systeem herstarten</string>
-    <string name="reboot">Volledige herstarten</string>
+    <string name="reboot">Volledig herstarten</string>
     <string name="areyousure">Weet u het zeker?</string>
     <string name="phone_not_compatible">Xposed is (nog) niet compatibel met Android SDK versie %1$d van uw processor architectuur (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed is nog niet getest met Android SDK versie %d, maar het lijkt compatibel te zijn. U kunt het proberen te installeren als u het wilt proberen.</string>
