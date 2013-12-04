@@ -16,7 +16,7 @@
     <string name="tabModulesDescription">"フレームワーク単体では何もできないのでモジュールが別途必要です。モジュールのインストール後ここで有効化してください。"</string>
     <string name="tabDownload">ダウンロード</string>
     <string name="tabDownloadDescription">モジュールのレポジトリにアクセスして検索やダウンロードをします。</string>
-    <string name="welcome_framework_update_available">Xposedフレームワークの更新があります。</string>
+    <string name="welcome_framework_update_available">Xposedフレームワークの更新があります。 (%s)</string>
     <string name="welcome_update_available">モジュールの更新があります。</string>
     <string name="tabSettings">設定</string>
     <string name="tabSettingsDescription">Xposedインストーラとフレームワークの設定をします。</string>
