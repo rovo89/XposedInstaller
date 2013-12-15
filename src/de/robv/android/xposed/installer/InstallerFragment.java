@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.jar.JarEntry;
@@ -360,17 +359,6 @@ public class InstallerFragment extends Fragment {
 		return false;
 	}
 
-	private String concat(List<String> lines) {
-		StringBuilder buffer = new StringBuilder(lines.size() * 80);
-		Iterator<String> it = lines.iterator();
-		while (it.hasNext()) {
-			buffer.append(it.next());
-			if (it.hasNext())
-				buffer.append('\n');
-		}
-		return buffer.toString().trim();
-	}
-
 	private boolean install() {
 		if (!startShell())
 			return false;
@@ -455,7 +443,7 @@ public class InstallerFragment extends Fragment {
 			AssetUtil.removeBusybox();
 			appProcessFile.delete();
 
-			showAlert(concat(messages));
+			showAlert(TextUtils.join("\n", messages).trim());
 		}
 	}
 
@@ -512,7 +500,7 @@ public class InstallerFragment extends Fragment {
 			mRootUtil.dispose();
 			AssetUtil.removeBusybox();
 
-			showAlert(concat(messages));
+			showAlert(TextUtils.join("\n", messages).trim());
 		}
 	}
 
@@ -524,7 +512,7 @@ public class InstallerFragment extends Fragment {
 		if (mRootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages) != 0) {
 			messages.add("");
 			messages.add(getString(R.string.reboot_failed));
-			showAlert(concat(messages));
+			showAlert(TextUtils.join("\n", messages).trim());
 		}
 
 		mRootUtil.dispose();
@@ -538,7 +526,7 @@ public class InstallerFragment extends Fragment {
 		if (mRootUtil.execute("reboot", messages) != 0) {
 			messages.add("");
 			messages.add(getString(R.string.reboot_failed));
-			showAlert(concat(messages));
+			showAlert(TextUtils.join("\n", messages).trim());
 		}
 
 		mRootUtil.dispose();
