@@ -3,13 +3,12 @@ package de.robv.android.xposed.installer;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.regex.Matcher;
@@ -23,24 +22,26 @@ import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.FileUtils;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
+import de.robv.android.xposed.installer.util.RootUtil;
 
 public class InstallerFragment extends Fragment {
 	private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
 	private String APP_PROCESS_NAME = null;
 	private String XPOSEDTEST_NAME = null;
-	private final String BINARIES_FOLDER = getBinariesFolder();
+	private final String BINARIES_FOLDER = AssetUtil.getBinariesFolder();
 	private static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
+	private static final String JAR_PATH_NEWVERSION = JAR_PATH + ".newversion";
 	private static int JAR_LATEST_VERSION = -1;
 	private final LinkedList<String> mCompatibilityErrors = new LinkedList<String>();
+	private RootUtil mRootUtil = new RootUtil();
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -116,7 +117,9 @@ public class InstallerFragment extends Fragment {
 			btnInstall.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					showAlert(install());
+					if (!install())
+						return;
+
 					txtAppProcessInstalledVersion.setText(versionToText(getInstalledAppProcessVersion()));
 					txtAppProcessInstalledVersion.setTextColor(Color.GREEN);
 					txtJarInstalledVersion.setText(versionToText(getJarInstalledVersion()));
@@ -138,7 +141,9 @@ public class InstallerFragment extends Fragment {
 		btnUninstall.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showAlert(uninstall());
+				if (!uninstall())
+					return;
+
 				txtAppProcessInstalledVersion.setText(versionToText(getInstalledAppProcessVersion()));
 				txtAppProcessInstalledVersion.setTextColor(Color.RED);
 				txtJarInstalledVersion.setText(versionToText(getJarInstalledVersion()));
@@ -151,7 +156,7 @@ public class InstallerFragment extends Fragment {
 				areYouSure(R.string.reboot, new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						showAlert(reboot());
+						reboot();
 					}
 				});
 			}
@@ -163,7 +168,7 @@ public class InstallerFragment extends Fragment {
 				areYouSure(R.string.soft_reboot, new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						showAlert(softReboot());
+						softReboot();
 					}
 				});
 			}
@@ -195,16 +200,6 @@ public class InstallerFragment extends Fragment {
 		.show();
 	}
 
-	private static String getBinariesFolder() {
-		if (Build.CPU_ABI.startsWith("armeabi")) {
-			return "arm/";
-		} else if (Build.CPU_ABI.startsWith("x86")) {
-			return "x86/";
-		} else {
-			return null;
-		}
-	}
-
 	private boolean checkCompatibility() {
 		mCompatibilityErrors.clear();
 		return checkXposedTestCompatibility() && checkAppProcessCompatibility();
@@ -215,7 +210,7 @@ public class InstallerFragment extends Fragment {
 			if (XPOSEDTEST_NAME == null)
 				return false;
 
-			File testFile = writeAssetToCacheFile(XPOSEDTEST_NAME, "xposedtest", 00700);
+			File testFile = AssetUtil.writeAssetToCacheFile(XPOSEDTEST_NAME, "xposedtest", 00700);
 			if (testFile == null) {
 				mCompatibilityErrors.add("could not write xposedtest to cache");
 				return false;
@@ -249,7 +244,7 @@ public class InstallerFragment extends Fragment {
 			if (APP_PROCESS_NAME == null)
 				return false;
 
-			File testFile = writeAssetToCacheFile(APP_PROCESS_NAME, "app_process", 00700);
+			File testFile = AssetUtil.writeAssetToCacheFile(APP_PROCESS_NAME, "app_process", 00700);
 			if (testFile == null) {
 				mCompatibilityErrors.add("could not write app_process to cache");
 				return false;
@@ -315,8 +310,8 @@ public class InstallerFragment extends Fragment {
 
 	public static int getJarInstalledVersion() {
 		try {
-			if (new File(JAR_PATH + ".newversion").exists())
-				return getJarVersion(new FileInputStream(JAR_PATH + ".newversion"));
+			if (new File(JAR_PATH_NEWVERSION).exists())
+				return getJarVersion(new FileInputStream(JAR_PATH_NEWVERSION));
 			else
 				return getJarVersion(new FileInputStream(JAR_PATH));
 		} catch (IOException e) {
@@ -357,123 +352,195 @@ public class InstallerFragment extends Fragment {
 		return 0;
 	}
 
-	private String install() {
-		File appProcessFile = writeAssetToCacheFile(APP_PROCESS_NAME, "app_process", 00700);
-		if (appProcessFile == null)
-			return "Could not find asset \"app_process\"";
+	private boolean startShell() {
+		if (mRootUtil.startShell())
+			return true;
 
-		File jarFile = writeAssetToFile("XposedBridge.jar", new File(JAR_PATH + ".newversion"), 00644);
-		if (jarFile == null)
-			return "Could not find asset \"XposedBridge.jar\"";
-
-		writeAssetToFile(APP_PROCESS_NAME, new File(XposedApp.BASE_DIR + "bin/app_process"), 00600);
-		writeAssetToSdcardFile("Xposed-Disabler-Recovery.zip", 00644);
-
-		String result = executeScript("install.sh");
-
-		appProcessFile.delete();
-
-		return result;
+		showAlert(getString(R.string.root_failed));
+		return false;
 	}
 
-	private String uninstall() {
-		new File(JAR_PATH).delete();
-		new File(JAR_PATH + ".newversion").delete();
-		new File(XposedApp.BASE_DIR + "bin/app_process").delete();
-		return executeScript("uninstall.sh");
+	private String concat(List<String> lines) {
+		StringBuilder buffer = new StringBuilder(lines.size() * 80);
+		Iterator<String> it = lines.iterator();
+		while (it.hasNext()) {
+			buffer.append(it.next());
+			if (it.hasNext())
+				buffer.append('\n');
+		}
+		return buffer.toString().trim();
 	}
 
-	private String softReboot() {
-		return executeScript("soft_reboot.sh");
-	}
+	private boolean install() {
+		if (!startShell())
+			return false;
 
-	private String reboot() {
-		return executeScript("reboot.sh");
-	}
+		List<String> messages = new LinkedList<String>();
 
-	private String executeScript(String name) {
-		File scriptFile = writeAssetToCacheFile(name, 00700);
-		if (scriptFile == null)
-			return "Could not find asset \"" + name + "\"";
-
-		File busybox = writeAssetToCacheFile(BINARIES_FOLDER + "busybox-xposed", "busybox-xposed", 00700);
-		if (busybox == null) {
-			scriptFile.delete();
-			return "Could not find asset \"busybox-xposed\"";
+		File appProcessFile = AssetUtil.writeAssetToCacheFile(APP_PROCESS_NAME, "app_process", 00700);
+		if (appProcessFile == null) {
+			showAlert(getString(R.string.file_extract_failed, "app_process"));
+			return false;
 		}
 
 		try {
-			Process p = Runtime.getRuntime().exec(
-					new String[] {
-						"su",
-						"-c",
-						scriptFile.getAbsolutePath() + " 2>&1"
-					});
-			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			BufferedReader stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-			StringBuilder sb = new StringBuilder();
-			String line;
-			while ((line = stdout.readLine()) != null) {
-				sb.append(line);
-				sb.append('\n');
+			messages.add(getString(R.string.file_mounting_writable, "/system"));
+			if (mRootUtil.executeWithBusybox("mount -o remount,rw /system", messages) != 0) {
+				messages.add(getString(R.string.file_mount_writable_failed, "/system"));
+				messages.add(getString(R.string.file_trying_to_continue));
 			}
-			while ((line = stderr.readLine()) != null) {
-				sb.append(line);
-				sb.append('\n');
-			}
-			stdout.close();
-			return sb.toString();
 
-		} catch (IOException e) {
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			return sw.toString();
+			if (new File("/system/bin/app_process.orig").exists()) {
+				messages.add(getString(R.string.file_backup_already_exists, "/system/bin/app_process.orig"));
+			} else {
+				if (mRootUtil.executeWithBusybox("cp -a /system/bin/app_process /system/bin/app_process.orig", messages) != 0) {
+					messages.add("");
+					messages.add(getString(R.string.file_backup_failed, "/system/bin/app_process"));
+					return false;
+				} else {
+					messages.add(getString(R.string.file_backup_successful, "/system/bin/app_process.orig"));
+				}
+			}
+
+			messages.add(getString(R.string.file_copying, "app_process"));
+			if (mRootUtil.executeWithBusybox("cp -a " + appProcessFile.getAbsolutePath() + " /system/bin/app_process", messages) != 0) {
+				messages.add("");
+				messages.add(getString(R.string.file_copy_failed, "app_process", "/system/bin"));
+				return false;
+			}
+			if (mRootUtil.executeWithBusybox("chmod 755 /system/bin/app_process", messages) != 0) {
+				messages.add("");
+				messages.add(getString(R.string.file_set_perms_failed, "/system/bin/app_process"));
+				return false;
+			}
+			if (mRootUtil.executeWithBusybox("chown root:shell /system/bin/app_process", messages) != 0) {
+				messages.add("");
+				messages.add(getString(R.string.file_set_owner_failed, "/system/bin/app_process"));
+				return false;
+			}
+
+			File blocker = new File(XposedApp.BASE_DIR + "conf/disabled");
+			if (blocker.exists()) {
+				messages.add(getString(R.string.file_removing, blocker.getAbsolutePath()));
+				if (mRootUtil.executeWithBusybox("rm " + blocker.getAbsolutePath(), messages) != 0) {
+					messages.add("");
+					messages.add(getString(R.string.file_remove_failed, blocker.getAbsolutePath()));
+					return false;
+				}
+			}
+
+			if (new File("/data/xposed").exists()) {
+				messages.add(getString(R.string.file_removing, "/data/xposed"));
+				mRootUtil.executeWithBusybox("rm -r /data/xposed", messages);
+				// ignoring the result as it's only cleanup
+			}
+
+			messages.add(getString(R.string.file_copying, "XposedBridge.jar"));
+			File jarFile = AssetUtil.writeAssetToFile("XposedBridge.jar", new File(JAR_PATH_NEWVERSION), 00644);
+			if (jarFile == null) {
+				messages.add("");
+				messages.add(getString(R.string.file_extract_failed, "XposedBridge.jar"));
+				return false;
+			}
+
+			AssetUtil.writeAssetToFile(APP_PROCESS_NAME, new File(XposedApp.BASE_DIR + "bin/app_process"), 00600);
+			AssetUtil.writeAssetToSdcardFile("Xposed-Disabler-Recovery.zip", 00644);
+
+			messages.add("");
+			messages.add(getString(R.string.file_done));
+			return true;
+
 		} finally {
-			scriptFile.delete();
-			busybox.delete();
+			mRootUtil.dispose();
+			AssetUtil.removeBusybox();
+			appProcessFile.delete();
+
+			showAlert(concat(messages));
 		}
 	}
 
-	private File writeAssetToCacheFile(String name, int mode) {
-		return writeAssetToCacheFile(name, name, mode);
-	}
+	private boolean uninstall() {
+		new File(JAR_PATH_NEWVERSION).delete();
+		new File(JAR_PATH).delete();
+		new File(XposedApp.BASE_DIR + "bin/app_process").delete();
 
-	private File writeAssetToCacheFile(String assetName, String fileName, int mode) {
-		return writeAssetToFile(assetName, new File(getActivity().getCacheDir(), fileName), mode);
-	}
+		if (!startShell())
+			return false;
 
-	private File writeAssetToSdcardFile(String name, int mode) {
-		return writeAssetToSdcardFile(name, name, mode);
-	}
-
-	private File writeAssetToSdcardFile(String assetName, String fileName, int mode) {
-		File dir = Environment.getExternalStorageDirectory();
-		dir.mkdirs();
-		return writeAssetToFile(assetName, new File(dir, fileName), mode);
-	}
-
-	private File writeAssetToFile(String assetName, File targetFile, int mode) {
+		List<String> messages = new LinkedList<String>();
 		try {
-			InputStream in = getActivity().getAssets().open(assetName);
-			FileOutputStream out = new FileOutputStream(targetFile);
-
-			byte[] buffer = new byte[1024];
-			int len;
-			while ((len = in.read(buffer)) > 0){
-				out.write(buffer, 0, len);
+			messages.add(getString(R.string.file_mounting_writable, "/system"));
+			if (mRootUtil.executeWithBusybox("mount -o remount,rw /system", messages) != 0) {
+				messages.add(getString(R.string.file_mount_writable_failed, "/system"));
+				messages.add(getString(R.string.file_trying_to_continue));
 			}
-			in.close();
-			out.close();
 
-			FileUtils.setPermissions(targetFile.getAbsolutePath(), mode, -1, -1);
+			messages.add(getString(R.string.file_backup_restoring, "/system/bin/app_process.orig"));
+			if (!new File("/system/bin/app_process.orig").exists()) {
+				messages.add("");
+				messages.add(getString(R.string.file_backup_not_found, "/system/bin/app_process.orig"));
+				return false;
+			}
 
-			return targetFile;
-		} catch (IOException e) {
-			e.printStackTrace();
-			if (targetFile != null)
-				targetFile.delete();
+			if (mRootUtil.executeWithBusybox("mv /system/bin/app_process.orig /system/bin/app_process", messages) != 0) {
+				messages.add("");
+				messages.add(getString(R.string.file_move_failed, "/system/bin/app_process.orig", "/system/bin/app_process"));
+				return false;
+			}
+			if (mRootUtil.executeWithBusybox("chmod 755 /system/bin/app_process", messages) != 0) {
+				messages.add("");
+				messages.add(getString(R.string.file_set_perms_failed, "/system/bin/app_process"));
+				return false;
+			}
+			if (mRootUtil.executeWithBusybox("chown root:shell /system/bin/app_process", messages) != 0) {
+				messages.add("");
+				messages.add(getString(R.string.file_set_owner_failed, "/system/bin/app_process"));
+				return false;
+			}
 
-			return null;
+			if (new File("/data/xposed").exists()) {
+				messages.add(getString(R.string.file_removing, "/data/xposed"));
+				mRootUtil.executeWithBusybox("rm -r /data/xposed", messages);
+				// ignoring the result as it's only cleanup
+			}
+
+			messages.add("");
+			messages.add(getString(R.string.file_done));
+			return true;
+
+		} finally {
+			mRootUtil.dispose();
+			AssetUtil.removeBusybox();
+
+			showAlert(concat(messages));
 		}
+	}
+
+	private void softReboot() {
+		if (!startShell())
+			return;
+
+		List<String> messages = new LinkedList<String>();
+		if (mRootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages) != 0) {
+			messages.add("");
+			messages.add(getString(R.string.reboot_failed));
+			showAlert(concat(messages));
+		}
+
+		mRootUtil.dispose();
+	}
+
+	private void reboot() {
+		if (!startShell())
+			return;
+
+		List<String> messages = new LinkedList<String>();
+		if (mRootUtil.execute("reboot", messages) != 0) {
+			messages.add("");
+			messages.add(getString(R.string.reboot_failed));
+			showAlert(concat(messages));
+		}
+
+		mRootUtil.dispose();
 	}
 }
