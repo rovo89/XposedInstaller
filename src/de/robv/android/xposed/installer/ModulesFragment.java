@@ -229,7 +229,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 						boolean changed = mModuleUtil.isModuleEnabled(packageName) ^ isChecked;
 						if (changed) {
 							mModuleUtil.setModuleEnabled(packageName, isChecked);
-							mModuleUtil.updateModulesList();
+							mModuleUtil.updateModulesList(true);
 						}
 					}
 				});

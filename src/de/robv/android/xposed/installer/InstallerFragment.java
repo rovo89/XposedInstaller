@@ -114,7 +114,7 @@ public class InstallerFragment extends Fragment {
 						@Override
 						public void run() {
 							refreshVersions();
-							ModuleUtil.getInstance().updateModulesList();
+							ModuleUtil.getInstance().updateModulesList(false);
 						}
 					});
 				}

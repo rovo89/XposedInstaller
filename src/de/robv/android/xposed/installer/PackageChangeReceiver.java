@@ -29,13 +29,13 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			// Package being removed, disable it if it was a previously active Xposed mod
 			if (mModuleUtil.isModuleEnabled(packageName)) {
 				mModuleUtil.setModuleEnabled(packageName, false);
-				mModuleUtil.updateModulesList();
+				mModuleUtil.updateModulesList(false);
 			}
 			return;
 		}
 
 		if (mModuleUtil.isModuleEnabled(packageName)) {
-			mModuleUtil.updateModulesList();
+			mModuleUtil.updateModulesList(true);
 		} else {
 			showNotActivatedNotification(context, packageName, module.getAppName());
 		}
