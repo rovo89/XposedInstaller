@@ -107,14 +107,13 @@ public class InstallerFragment extends Fragment {
 			btnInstall.setOnClickListener(new AsyncClickListener(btnInstall.getText()) {
 				@Override
 				public void onAsyncClick(View v) {
-					if (!install())
-						return;
-
+					final boolean success = install();
 					getActivity().runOnUiThread(new Runnable() {
 						@Override
 						public void run() {
 							refreshVersions();
-							ModuleUtil.getInstance().updateModulesList(false);
+							if (success)
+								ModuleUtil.getInstance().updateModulesList(false);
 						}
 					});
 				}
@@ -132,9 +131,7 @@ public class InstallerFragment extends Fragment {
 		btnUninstall.setOnClickListener(new AsyncClickListener(btnUninstall.getText()) {
 			@Override
 			public void onAsyncClick(View v) {
-				if (!uninstall())
-					return;
-
+				uninstall();
 				getActivity().runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
