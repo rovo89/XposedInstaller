@@ -42,6 +42,11 @@ public class InstallerFragment extends Fragment {
 	private final LinkedList<String> mCompatibilityErrors = new LinkedList<String>();
 	private RootUtil mRootUtil = new RootUtil();
 
+	private TextView txtAppProcessInstalledVersion, txtAppProcessLatestVersion;
+	private TextView txtJarInstalledVersion, txtJarLatestVersion;
+	private TextView txtInstallError;
+	private Button btnInstall, btnUninstall, btnSoftReboot, btnReboot;
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -55,17 +60,17 @@ public class InstallerFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_installer, container, false);
 
-		final TextView txtAppProcessInstalledVersion = (TextView) v.findViewById(R.id.app_process_installed_version);
-		final TextView txtAppProcessLatestVersion = (TextView) v.findViewById(R.id.app_process_latest_version);
-		final TextView txtJarInstalledVersion = (TextView) v.findViewById(R.id.jar_installed_version);
-		final TextView txtJarLatestVersion = (TextView) v.findViewById(R.id.jar_latest_version);
+		txtAppProcessInstalledVersion = (TextView) v.findViewById(R.id.app_process_installed_version);
+		txtAppProcessLatestVersion = (TextView) v.findViewById(R.id.app_process_latest_version);
+		txtJarInstalledVersion = (TextView) v.findViewById(R.id.jar_installed_version);
+		txtJarLatestVersion = (TextView) v.findViewById(R.id.jar_latest_version);
 
-		final TextView txtInstallError = (TextView) v.findViewById(R.id.framework_install_errors);
+		txtInstallError = (TextView) v.findViewById(R.id.framework_install_errors);
 
-		final Button btnInstall = (Button) v.findViewById(R.id.btnInstall);
-		final Button btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
-		final Button btnSoftReboot = (Button) v.findViewById(R.id.btnSoftReboot);
-		final Button btnReboot = (Button) v.findViewById(R.id.btnReboot);
+		btnInstall = (Button) v.findViewById(R.id.btnInstall);
+		btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
+		btnSoftReboot = (Button) v.findViewById(R.id.btnSoftReboot);
+		btnReboot = (Button) v.findViewById(R.id.btnReboot);
 
 		boolean isCompatible = false;
 		if (BINARIES_FOLDER == null) {
@@ -91,26 +96,7 @@ public class InstallerFragment extends Fragment {
 			}
 		}
 
-		final int appProcessInstalledVersion = getInstalledAppProcessVersion();
-		final int appProcessLatestVersion = getLatestAppProcessVersion();
-		final int jarInstalledVersion = getJarInstalledVersion();
-		final int jarLatestVersion = getJarLatestVersion();
-
-		txtAppProcessInstalledVersion.setText(versionToText(appProcessInstalledVersion));
-		txtAppProcessLatestVersion.setText(versionToText(appProcessLatestVersion));
-		txtJarInstalledVersion.setText(versionToText(jarInstalledVersion));
-		txtJarLatestVersion.setText(versionToText(jarLatestVersion));
-
-		if (appProcessInstalledVersion < appProcessLatestVersion)
-			txtAppProcessInstalledVersion.setTextColor(Color.RED);
-		else
-			txtAppProcessInstalledVersion.setTextColor(Color.GREEN);
-
-		if (jarInstalledVersion < jarLatestVersion)
-			txtJarInstalledVersion.setTextColor(Color.RED);
-		else
-			txtJarInstalledVersion.setTextColor(Color.GREEN);
-
+		refreshVersions();
 
 		if (isCompatible) {
 			btnInstall.setOnClickListener(new View.OnClickListener() {
@@ -119,11 +105,7 @@ public class InstallerFragment extends Fragment {
 					if (!install())
 						return;
 
-					txtAppProcessInstalledVersion.setText(versionToText(getInstalledAppProcessVersion()));
-					txtAppProcessInstalledVersion.setTextColor(Color.GREEN);
-					txtJarInstalledVersion.setText(versionToText(getJarInstalledVersion()));
-					txtJarInstalledVersion.setTextColor(Color.GREEN);
-
+					refreshVersions();
 					ModuleUtil.getInstance().updateModulesList();
 				}
 			});
@@ -143,10 +125,7 @@ public class InstallerFragment extends Fragment {
 				if (!uninstall())
 					return;
 
-				txtAppProcessInstalledVersion.setText(versionToText(getInstalledAppProcessVersion()));
-				txtAppProcessInstalledVersion.setTextColor(Color.RED);
-				txtJarInstalledVersion.setText(versionToText(getJarInstalledVersion()));
-				txtJarInstalledVersion.setTextColor(Color.RED);
+				refreshVersions();
 			}
 		});
 		btnReboot.setOnClickListener(new View.OnClickListener() {
@@ -174,6 +153,28 @@ public class InstallerFragment extends Fragment {
 		});
 
 		return v;
+	}
+
+	private void refreshVersions() {
+		int appProcessInstalledVersion = getInstalledAppProcessVersion();
+		int appProcessLatestVersion = getLatestAppProcessVersion();
+		int jarInstalledVersion = getJarInstalledVersion();
+		int jarLatestVersion = getJarLatestVersion();
+
+		txtAppProcessInstalledVersion.setText(versionToText(appProcessInstalledVersion));
+		txtAppProcessLatestVersion.setText(versionToText(appProcessLatestVersion));
+		txtJarInstalledVersion.setText(versionToText(jarInstalledVersion));
+		txtJarLatestVersion.setText(versionToText(jarLatestVersion));
+
+		if (appProcessInstalledVersion < appProcessLatestVersion)
+			txtAppProcessInstalledVersion.setTextColor(Color.RED);
+		else
+			txtAppProcessInstalledVersion.setTextColor(Color.GREEN);
+
+		if (jarInstalledVersion < jarLatestVersion)
+			txtJarInstalledVersion.setTextColor(Color.RED);
+		else
+			txtJarInstalledVersion.setTextColor(Color.GREEN);
 	}
 
 	private String versionToText(int version) {
@@ -329,7 +330,7 @@ public class InstallerFragment extends Fragment {
 		return JAR_LATEST_VERSION;
 	}
 
-	public static int getJarVersion(InputStream is) throws IOException {
+	private static int getJarVersion(InputStream is) throws IOException {
 		JarInputStream jis = new JarInputStream(is);
 		JarEntry entry;
 		try {
