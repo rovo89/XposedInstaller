@@ -16,11 +16,12 @@ import java.util.regex.Pattern;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,7 @@ public class InstallerFragment extends Fragment {
 	private final LinkedList<String> mCompatibilityErrors = new LinkedList<String>();
 	private RootUtil mRootUtil = new RootUtil();
 
+	private ProgressDialog dlgProgress;
 	private TextView txtAppProcessInstalledVersion, txtAppProcessLatestVersion;
 	private TextView txtJarInstalledVersion, txtJarLatestVersion;
 	private TextView txtInstallError;
@@ -53,6 +55,9 @@ public class InstallerFragment extends Fragment {
 		Activity activity = getActivity();
 		if (activity instanceof XposedDropdownNavActivity)
 			((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_INSTALL);
+
+		dlgProgress = new ProgressDialog(activity);
+		dlgProgress.setIndeterminate(true);
 	}
 
 	@Override
@@ -99,14 +104,19 @@ public class InstallerFragment extends Fragment {
 		refreshVersions();
 
 		if (isCompatible) {
-			btnInstall.setOnClickListener(new View.OnClickListener() {
+			btnInstall.setOnClickListener(new AsyncClickListener(btnInstall.getText()) {
 				@Override
-				public void onClick(View v) {
+				public void onAsyncClick(View v) {
 					if (!install())
 						return;
 
-					refreshVersions();
-					ModuleUtil.getInstance().updateModulesList();
+					getActivity().runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							refreshVersions();
+							ModuleUtil.getInstance().updateModulesList();
+						}
+					});
 				}
 			});
 		} else {
@@ -119,21 +129,26 @@ public class InstallerFragment extends Fragment {
 			btnInstall.setEnabled(false);
 		}
 
-		btnUninstall.setOnClickListener(new View.OnClickListener() {
+		btnUninstall.setOnClickListener(new AsyncClickListener(btnUninstall.getText()) {
 			@Override
-			public void onClick(View v) {
+			public void onAsyncClick(View v) {
 				if (!uninstall())
 					return;
 
-				refreshVersions();
+				getActivity().runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						refreshVersions();
+					}
+				});
 			}
 		});
 		btnReboot.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				areYouSure(R.string.reboot, new OnClickListener() {
+				areYouSure(R.string.reboot, new AsyncDialogClickListener(btnReboot.getText()) {
 					@Override
-					public void onClick(DialogInterface dialog, int which) {
+					public void onAsyncClick(DialogInterface dialog, int which) {
 						reboot();
 					}
 				});
@@ -143,9 +158,9 @@ public class InstallerFragment extends Fragment {
 		btnSoftReboot.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				areYouSure(R.string.soft_reboot, new OnClickListener() {
+				areYouSure(R.string.soft_reboot, new AsyncDialogClickListener(btnSoftReboot.getText()) {
 					@Override
-					public void onClick(DialogInterface dialog, int which) {
+					public void onAsyncClick(DialogInterface dialog, int which) {
 						softReboot();
 					}
 				});
@@ -153,6 +168,50 @@ public class InstallerFragment extends Fragment {
 		});
 
 		return v;
+	}
+
+	private abstract class AsyncClickListener implements View.OnClickListener {
+		private final CharSequence mProgressDlgText;
+
+		public AsyncClickListener(CharSequence progressDlgText) {
+			mProgressDlgText = progressDlgText;
+		}
+
+		@Override
+		public final void onClick(final View v) {
+			dlgProgress.setMessage(mProgressDlgText);
+			dlgProgress.show();
+			new Thread() {
+				public void run() {
+					onAsyncClick(v);
+					dlgProgress.dismiss();
+				}
+			}.start();
+		}
+
+		protected abstract void onAsyncClick(View v);
+	}
+
+	private abstract class AsyncDialogClickListener implements DialogInterface.OnClickListener {
+		private final CharSequence mProgressDlgText;
+
+		public AsyncDialogClickListener(CharSequence progressDlgText) {
+			mProgressDlgText = progressDlgText;
+		}
+
+		@Override
+		public void onClick(final DialogInterface dialog, final int which) {
+			dlgProgress.setMessage(mProgressDlgText);
+			dlgProgress.show();
+			new Thread() {
+				public void run() {
+					onAsyncClick(dialog, which);
+					dlgProgress.dismiss();
+				}
+			}.start();
+		}
+
+		protected abstract void onAsyncClick(DialogInterface dialog, int which);
 	}
 
 	private void refreshVersions() {
@@ -181,7 +240,17 @@ public class InstallerFragment extends Fragment {
 		return (version == 0) ? getString(R.string.none) : Integer.toString(version);
 	}
 
-	private void showAlert(String result) {
+	private void showAlert(final String result) {
+		if (Looper.myLooper() != Looper.getMainLooper()) {
+			getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					showAlert(result);
+				}
+			});
+			return;
+		}
+
 		new AlertDialog.Builder(getActivity())
 		.setMessage(result)
 		.setPositiveButton(android.R.string.ok, null)
@@ -189,7 +258,7 @@ public class InstallerFragment extends Fragment {
 		.show();
 	}
 
-	private void areYouSure(int messageTextId, OnClickListener yesHandler) {
+	private void areYouSure(int messageTextId, DialogInterface.OnClickListener yesHandler) {
 		new AlertDialog.Builder(getActivity())
 		.setTitle(messageTextId)
 		.setMessage(R.string.areyousure)
