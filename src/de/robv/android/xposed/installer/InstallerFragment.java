@@ -248,11 +248,13 @@ public class InstallerFragment extends Fragment {
 			return;
 		}
 
-		new AlertDialog.Builder(getActivity())
+		AlertDialog dialog = new AlertDialog.Builder(getActivity())
 		.setMessage(result)
 		.setPositiveButton(android.R.string.ok, null)
-		.create()
-		.show();
+		.create();
+		dialog.show();
+		TextView txtMessage = (TextView) dialog.findViewById(android.R.id.message);
+		txtMessage.setTextSize(14);
 	}
 
 	private void areYouSure(int messageTextId, DialogInterface.OnClickListener yesHandler) {
