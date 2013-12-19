@@ -3,7 +3,7 @@
 
     <!-- General/various strings -->
     <string name="app_name">Instal·lador Xposed</string>
-	<string name="menuSend">Envia</string>
+    <string name="menuSend">Envia</string>
     <string name="menuSaveToSd">Envia a la targeta SD</string>
     <string name="xposed_not_active">La última versió de Xposed no està activa. Heu instal·lat el framework i reiniciat?</string>
 
@@ -21,7 +21,7 @@
     <string name="tabSettingsDescription">Vagi a aquesta secció per configurar l\'instal·lador Xposed i el framework.</string>
     <string name="tabLogs">Registres</string>
     <string name="tabLogsDescription">Mostra i desa/envia registres del Xposed framework.</string>
-	<string name="tabAbout">Quant a</string>
+    <string name="tabAbout">Quant a</string>
     <string name="tabAboutDescription">Informació sobre les persones que van crear Xposed, on obtenir ajuda per a aquesta aplicació, etc</string>
 
     <!-- Instal·ler tab -->
@@ -45,7 +45,7 @@
     <string name="warning_xposed_min_version">Aquest mòdul requereix una versió més recent de XposedBridge (%d) i per tant no es pot activar.</string>
     <string name="no_min_version_specified">Aquest mòdul no especifica la versió de XposedBridge que necessita.</string>
     <string name="warning_min_version_too_low">Aquest mòdul va ser creat per a la versió %1$d de XposedBridge, però a causa de canvis incompatibles en la versió %2$d, ha estat desactivat.</string>
-	<string name="module_launch">Executa UI</string>
+    <string name="module_launch">Executa UI</string>
     <string name="module_download_updates">Descarrega/Actualitza</string>
     <string name="module_support">Suport</string>
     <string name="module_app_info">Informació de l\'aplicació</string>
