@@ -8,7 +8,7 @@
     <string name="xposed_not_active">Najnovšia verzia Xposed nie je aktuálne aktívna. Nainštalovali ste framework a vykonali reštart?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Vitajte v <b>Xposed Inštalátore</b>!\nProsím vyberte, čo chcete robiť:</string>
+    <string name="welcome">Vitajte v <b>Xposed Inštalátore</b>!\nVyberte prosím, čo chcete robiť:</string>
     <string name="tabInstall">Framework</string>
     <string name="tabInstallDescription">Tu môžete spravovať Xposed framework, ktorý je nutný pre fungovanie modulov.</string>
     <string name="tabModules">Moduly</string>
@@ -90,7 +90,7 @@
     <!-- About tab -->
     <string name="about_developers_label">Hlavní vývojári:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> a <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Prosím <b>nekontaktujte</b> nás priamo za účelom podpory, je na to je určený odkaz nižšie.</string>
+    <string name="about_developers_warning">Prosím, <b>nekontaktujte</b> nás priamo za účelom podpory, je na to je určený odkaz nižšie.</string>
     <string name="about_translator_label">Prekladateľ:</string>
     <string name="translator">pyler</string>
     <string name="about_version_label">Verzia aplikácie:</string>
