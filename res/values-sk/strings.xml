@@ -2,13 +2,13 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed Inštalátor</string>
+    <string name="app_name">Inštalátor Xposed</string>
     <string name="menuSend">Odoslať</string>
     <string name="menuSaveToSd">Uložiť na kartu SD</string>
     <string name="xposed_not_active">Najnovšia verzia Xposed nie je aktuálne aktívna. Nainštalovali ste framework a vykonali reštart?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Vitajte v <b>Xposed Inštalátore</b>!\nVyberte prosím, čo chcete robiť:</string>
+    <string name="welcome">Vitajte v <b>Inštalátori Xposed</b>!\nVyberte prosím, čo chcete robiť:</string>
     <string name="tabInstall">Framework</string>
     <string name="tabInstallDescription">Tu môžete spravovať Xposed framework, ktorý je nutný pre fungovanie modulov.</string>
     <string name="tabModules">Moduly</string>
@@ -18,7 +18,7 @@
     <string name="welcome_framework_update_available">Je dostupná aktualizácia pre Xposed framework (%s).</string>
     <string name="welcome_update_available">Je dostupná jedna alebo viac aktualizácií pre moduly.</string>
     <string name="tabSettings">Nastavenia</string>
-    <string name="tabSettingsDescription">Prejdite do tejto sekcie pre nastavenie Xposed Inštalátora a frameworku.</string>
+    <string name="tabSettingsDescription">Prejdite do tejto sekcie pre nastavenie Inštalátora Xposed a frameworku.</string>
     <string name="tabLogs">Záznamy</string>
     <string name="tabLogsDescription">Zobraziť a uložiť/odoslať záznamy Xposed frameworku.</string>
     <string name="tabAbout">O aplikácii</string>
@@ -77,7 +77,7 @@
      <!-- Settings tab -->
     <string name="settings_group_download">Sťahovanie</string>
     <string name="settings_enable_downloads">Povoliť sťahovania</string>
-    <string name="settings_enable_downloads_summary">Povoliť Xposed Inštalátoru kontrolovanie nových modulov a aktualizácií</string>
+    <string name="settings_enable_downloads_summary">Povoliť Inštalátoru Xposedu kontrolovanie nových modulov a aktualizácií</string>
     <string name="settings_group_experimental">Experimentálne</string>
     <string name="settings_performance_experiment">Experiment s výkonom</string>
     <string name="settings_performance_experiment_summary">Ak povolíte túto možnosť, výkon systému sa môže buď zvýšiť, znížiť alebo zostať rovnaký. Nebojte sa vyskúšať experiment s výkonom a podajte správu o efekte, ktorý vidíte (nemusí byť však vôbec žiadny). Po zmene tejto možnosti je nutné znovu inštalovať framework a vykonať reštart zariadenia.</string>
