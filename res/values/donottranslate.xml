@@ -7,6 +7,5 @@
     <string name="about_source">https://github.com/rovo89</string>
     <string name="about_support">http://forum.xda-developers.com/showthread.php?t=1574401</string>
     <string name="about_libraries"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a></string>
-    <string name="module_play_store">Play Store</string>
 
 </resources>
