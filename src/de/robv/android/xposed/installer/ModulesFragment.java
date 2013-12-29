@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.ListFragment;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -35,6 +36,8 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 public class ModulesFragment extends ListFragment implements ModuleListener {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
 	private static final String NOT_ACTIVE_NOTE_TAG = "NOT_ACTIVE_NOTE";
+	private static final String PLAY_STORE_PACKAGE = "com.android.vending";
+	private static final String PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=%s";
 	private int installedXposedVersion;
 	private ModuleUtil mModuleUtil;
 	private RepoLoader mRepoLoader;
@@ -147,6 +150,11 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		} else if (NavUtil.parseURL(downloadModule.support) == null) {
 			menu.removeItem(R.id.menu_support);
 		}
+		
+		String installer = getActivity().getPackageManager().getInstallerPackageName(installedModule.packageName);
+		if (!PLAY_STORE_PACKAGE.equals(installer)) {
+			menu.removeItem(R.id.menu_play_store);
+		}
 	}
 
 	@Override
@@ -174,6 +182,18 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			case R.id.menu_app_info:
 				startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
 					Uri.fromParts("package", module.packageName, null)));
+				return true;
+				
+			case R.id.menu_play_store:
+				Intent i = new Intent(android.content.Intent.ACTION_VIEW);
+				i.setData(Uri.parse(String.format(PLAY_STORE_LINK, module.packageName)));
+				i.setPackage(PLAY_STORE_PACKAGE);
+				try {
+					startActivity(i);
+				} catch (ActivityNotFoundException e) {
+					i.setPackage(null);
+					startActivity(i);
+				}
 				return true;
 
 			case R.id.menu_uninstall:

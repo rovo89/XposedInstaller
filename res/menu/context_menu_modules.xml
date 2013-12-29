@@ -14,6 +14,9 @@
         android:id="@+id/menu_app_info"
         android:title="@string/module_app_info"/>
     <item
+        android:id="@+id/menu_play_store"
+        android:title="@string/module_play_store" />
+    <item
         android:id="@+id/menu_uninstall"
         android:title="@string/module_uninstall"/>
 
