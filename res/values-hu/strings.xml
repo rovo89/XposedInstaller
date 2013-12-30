@@ -75,11 +75,11 @@
     <string name="download_section_older">Több, mint 30 napja</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_download">Letöltése</string>
+    <string name="settings_group_download">Letöltések</string>
     <string name="settings_enable_downloads">Letöltések engedélyezése</string>
     <string name="settings_enable_downloads_summary">Engedélyezd az Xposed Telepítőnek, hogy frissítéseket és új modulokat keressen</string>
     <string name="settings_group_experimental" tools:ignore="UnusedResources">Kísérlet</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Teljesítmény kísérlet</string>
+    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Teljesítménykísérlet</string>
     <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Ha ezt engedélyezed, a rendszer teljesítménye lehet, hogy növekszik, csökken vagy nem változik. Nyugodtan próbáld ki és jelezz vissza, hogy melyik hatást látod (vagy hogy nincs semmilyen). Újra kell telepítened a keretrendszert és újraindítanod az eszközt, miután ezt megváltoztatod.</string>
 
     <!-- Logs tab -->
