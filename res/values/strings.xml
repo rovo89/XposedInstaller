@@ -55,6 +55,10 @@
     <string name="file_set_owner_failed">Could not set owner for %s</string>
     <string name="file_removing">Removing %s&#8230;</string>
     <string name="file_remove_failed">Could not remove %s</string>
+    <string name="file_creating_directory">Creating directory %s&#8230;</string>
+    <string name="file_create_directory_failed">Could not create directory %s</string>
+    <string name="file_writing_recovery_command">Writing recovery command&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Writing recovery command failed. Please use a different installation method.</string>
     <string name="file_done">Done! Changes will become active on reboot.</string>
 
     <!-- Modules tab -->

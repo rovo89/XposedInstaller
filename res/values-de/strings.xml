@@ -55,6 +55,10 @@
     <string name="file_set_owner_failed">Besitzer für %s konnte nicht gesetzt werden</string>
     <string name="file_removing">Entferne %s&#8230;</string>
     <string name="file_remove_failed">%s konnte nicht entfernt werden</string>
+    <string name="file_creating_directory">Erstelle Verzeichnis %s&#8230;</string>
+    <string name="file_create_directory_failed">Konnte Verzeichnis %s nicht anlegen</string>
+    <string name="file_writing_recovery_command">Schreibe Recovery-Kommando&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Schreiben des Recovery-Kommands ist fehlgeschlagen. Bitte verwende eine andere Installationsweise.</string>
     <string name="file_done">Fertig! Änderungen werden nach einem Neustart sichtbar.</string>
 
     <!-- Modules tab -->
