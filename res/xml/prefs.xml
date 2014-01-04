@@ -2,6 +2,18 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <PreferenceCategory
+        android:key="group_installation"
+        android:title="@string/settings_group_installation" >
+        <de.robv.android.xposed.installer.widget.IntegerListPreference
+            android:key="install_mode"
+            android:title="@string/settings_install_mode"
+            android:summary="%s"
+            android:entries="@array/install_mode_texts"
+            android:entryValues="@array/install_mode_values"
+            android:defaultValue="0" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="group_download"
         android:title="@string/settings_group_download" >
         <CheckBoxPreference

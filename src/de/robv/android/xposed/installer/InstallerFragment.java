@@ -432,8 +432,15 @@ public class InstallerFragment extends Fragment {
 		return false;
 	}
 
+	private int getInstallMode() {
+		int mode = XposedApp.getPreferences().getInt("install_mode", INSTALL_MODE_NORMAL);
+		if (mode < INSTALL_MODE_NORMAL || mode > INSTALL_MODE_RECOVERY_MANUAL)
+			mode = INSTALL_MODE_NORMAL;
+		return mode;
+	}
+
 	private boolean install() {
-		final int installMode = INSTALL_MODE_NORMAL;
+		final int installMode = getInstallMode();
 
 		if (!startShell())
 			return false;

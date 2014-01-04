@@ -100,6 +100,11 @@
     <string name="download_section_older">More than 30 days ago</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">Installation</string>
+    <string name="settings_install_mode">Installation mode</string>
+    <string name="install_mode_normal">Classical (write to /system directly)</string>
+    <string name="install_mode_recovery_auto">Recovery (flash zip automatically)</string>
+    <string name="install_mode_recovery_manual">Recovery (write zip to SD card, flash manually)</string>
     <string name="settings_group_download">Download</string>
     <string name="settings_enable_downloads">Enable downloads</string>
     <string name="settings_enable_downloads_summary">Allow Xposed Installer to check for updates and new modules</string>

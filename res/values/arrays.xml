@@ -6,4 +6,16 @@
         <item>@string/download_sorting_created</item>
     </string-array>
 
+    <string-array name="install_mode_texts" translateable="false">
+        <item>@string/install_mode_normal</item>
+        <item>@string/install_mode_recovery_auto</item>
+        <item>@string/install_mode_recovery_manual</item>
+    </string-array>
+
+    <string-array name="install_mode_values" translateable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
 </resources>
