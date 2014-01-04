@@ -4,7 +4,7 @@
     <!-- General/various strings -->
     <string name="app_name">Xposed安装器</string>
     <string name="menuSend">发送</string>
-    <string name="menuSaveToSd">发送到SD卡</string>
+    <string name="menuSaveToSd">保存到SD卡</string>
     <string name="xposed_not_active">最新版本的Xposed当前未激活。您是否已安装框架并重启？</string>
 
     <!-- Welcome screen / main sections -->
@@ -12,15 +12,15 @@
     <string name="tabInstall">框架</string>
     <string name="tabInstallDescription">此处您能管理Xposed框架，任何模块想正常运行都需要它。</string>
     <string name="tabModules">模块</string>
-    <string name="tabModulesDescription">框架本身不增加任何功能。您需要使用模块。安装模块后在此处激活它们。</string>
+    <string name="tabModulesDescription">框架本身不增加任何功能。您需要使用模块。此处您能激活已经安装的模块。</string>
     <string name="tabDownload">下载</string>
     <string name="tabDownloadDescription">此处您能访问模块仓库，您可以搜索并下载您喜欢的模块，并及时更新它们。</string>
-    <string name="welcome_framework_update_available">Xposed框架有更新可用。</string>
-    <string name="welcome_update_available">一个或多个模块有更新可用。</string>
+    <string name="welcome_framework_update_available">Xposed框架可更新至%s。</string>
+    <string name="welcome_update_available">一个或多个模块可更新。</string>
     <string name="tabSettings">设置</string>
     <string name="tabSettingsDescription">此处可配置Xposed安装器和框架。</string>
     <string name="tabLogs">日志</string>
-    <string name="tabLogsDescription">显示并保存/发送Xposed框架产生的日志。</string>
+    <string name="tabLogsDescription">显示并保存/发送Xposed框架日志。</string>
     <string name="tabAbout">关于</string>
     <string name="tabAboutDescription">了解Xposed作者，如何获取帮助支持等。</string>
 
@@ -90,7 +90,7 @@
     <!-- About tab -->
     <string name="about_developers_label">主要开发者：</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 与 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">请<b>不</b>要直接联系我们获取帮助，使用下面的链接。</string>
+    <string name="about_developers_warning">请<b>不要</b>直接联系我们获取帮助，使用下面的链接。</string>
     <string name="about_translator_label">翻译：</string>
     <string name="translator">Cye3s, liveasx</string>
     <string name="about_version_label">应用程序版本：</string>
