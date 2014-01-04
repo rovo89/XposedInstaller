@@ -66,7 +66,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 		mPref = XposedApp.getPreferences();
 		mRepoLoader = RepoLoader.getInstance();
 		mModuleUtil = ModuleUtil.getInstance();
-		mAdapter = new DownloadsAdapter(XposedApp.getInstance());
+		mAdapter = new DownloadsAdapter(getActivity());
 		mSortingOrder = mPref.getInt("download_sorting_order", SORT_STATUS);
 		setHasOptionsMenu(true);
 	}
