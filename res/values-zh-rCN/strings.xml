@@ -14,7 +14,7 @@
     <string name="tabModules">模块</string>
     <string name="tabModulesDescription">框架本身不增加任何功能。您需要使用模块。此处您能激活已经安装的模块。</string>
     <string name="tabDownload">下载</string>
-    <string name="tabDownloadDescription">此处您能访问模块仓库，您可以搜索并下载您喜欢的模块，并及时更新它们。</string>
+    <string name="tabDownloadDescription">此处您能访问模块仓库，您可以搜索并下载您喜欢的模块，或及时更新它们。</string>
     <string name="welcome_framework_update_available">Xposed框架可更新至%s。</string>
     <string name="welcome_update_available">一个或多个模块可更新。</string>
     <string name="tabSettings">设置</string>
@@ -28,7 +28,7 @@
     <string name="install">安装/更新</string>
     <string name="uninstall">卸载</string>
     <string name="installedVersion">激活</string>
-    <string name="latestVersion">程序自带</string>
+    <string name="latestVersion">自带</string>
     <string name="versions">版本：</string>
     <string name="soft_reboot">软重启</string>
     <string name="reboot">重启</string>
@@ -54,7 +54,7 @@
     <!-- Download tab -->
     <string name="menuSearch">搜索</string>
     <string name="menuReload">重新加载</string>
-    <string name="changes">变更：</string>
+    <string name="changes">变化：</string>
     <string name="branch_display">(%s 分支)</string>
     <string name="download_author">作者：%s</string>
     <string name="download_unknown_author">未知作者</string>
@@ -77,7 +77,7 @@
     <!-- Settings tab -->
     <string name="settings_group_download">下载</string>
     <string name="settings_enable_downloads">启用下载</string>
-    <string name="settings_enable_downloads_summary">允许Xposed安装器检查更新和新模块</string>
+    <string name="settings_enable_downloads_summary">允许Xposed安装器检查更新及发现新模块</string>
     <string name="settings_group_experimental">实验性</string>
     <string name="settings_performance_experiment">性能试验</string>
     <string name="settings_performance_experiment_summary">如果您启用该选项，您的系统性能可能更好、更差或没有变化。请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启。</string>
