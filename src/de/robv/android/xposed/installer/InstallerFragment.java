@@ -165,7 +165,7 @@ public class InstallerFragment extends Fragment {
 				areYouSure(R.string.reboot, new AsyncDialogClickListener(btnReboot.getText()) {
 					@Override
 					public void onAsyncClick(DialogInterface dialog, int which) {
-						reboot();
+						reboot(null);
 					}
 				});
 			}
@@ -302,6 +302,27 @@ public class InstallerFragment extends Fragment {
 		.setNegativeButton(android.R.string.no, null)
 		.create()
 		.show();
+	}
+
+	private void showConfirmDialog(final String message, final DialogInterface.OnClickListener yesHandler) {
+		if (Looper.myLooper() != Looper.getMainLooper()) {
+			getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					showConfirmDialog(message, yesHandler);
+				}
+			});
+			return;
+		}
+
+		AlertDialog dialog = new AlertDialog.Builder(getActivity())
+		.setMessage(message)
+		.setPositiveButton(android.R.string.yes, yesHandler)
+		.setNegativeButton(android.R.string.no, null)
+		.create();
+		dialog.show();
+		TextView txtMessage = (TextView) dialog.findViewById(android.R.id.message);
+		txtMessage.setTextSize(14);
 	}
 
 	private boolean checkCompatibility() {
@@ -490,7 +511,8 @@ public class InstallerFragment extends Fragment {
 		if (!startShell())
 			return false;
 
-		List<String> messages = new LinkedList<String>();
+		final List<String> messages = new LinkedList<String>();
+		boolean showAlert = true;
 		try {
 			messages.add(getString(R.string.file_copying, "Xposed-Disabler-Recovery.zip"));
 			if (AssetUtil.writeAssetToSdcardFile("Xposed-Disabler-Recovery.zip", 00644) == null) {
@@ -618,14 +640,29 @@ public class InstallerFragment extends Fragment {
 			if (installMode == INSTALL_MODE_NORMAL) {
 				messages.add(getString(R.string.file_done));
 			} else {
-				//mRootUtil.executeWithBusybox("reboot recovery", messages);
+				showAlert = false;
+
+				if (installMode == INSTALL_MODE_RECOVERY_AUTO)
+					messages.add(getString(R.string.auto_flash_note, "Xposed-Installer-Recovery.zip"));
+				else
+					messages.add(getString(R.string.manual_flash_note, "Xposed-Installer-Recovery.zip"));
+
+				messages.add("");
+				messages.add(getString(R.string.reboot_recovery_confirmation));
+				showConfirmDialog(TextUtils.join("\n", messages).trim(), new AsyncDialogClickListener(getString(R.string.reboot)) {
+					@Override
+					protected void onAsyncClick(DialogInterface dialog, int which) {
+						reboot("recovery");
+					}
+				});
 			}
 			return true;
 
 		} finally {
 			AssetUtil.removeBusybox();
 
-			showAlert(TextUtils.join("\n", messages).trim());
+			if (showAlert)
+				showAlert(TextUtils.join("\n", messages).trim());
 		}
 	}
 
@@ -695,17 +732,23 @@ public class InstallerFragment extends Fragment {
 			messages.add(getString(R.string.reboot_failed));
 			showAlert(TextUtils.join("\n", messages).trim());
 		}
+		AssetUtil.removeBusybox();
 	}
 
-	private void reboot() {
+	private void reboot(String mode) {
 		if (!startShell())
 			return;
 
+		String command = "reboot";
+		if (mode != null)
+			command += " " + mode;
+
 		List<String> messages = new LinkedList<String>();
-		if (mRootUtil.executeWithBusybox("reboot", messages) != 0) {
+		if (mRootUtil.executeWithBusybox(command, messages) != 0) {
 			messages.add("");
 			messages.add(getString(R.string.reboot_failed));
 			showAlert(TextUtils.join("\n", messages).trim());
 		}
+		AssetUtil.removeBusybox();
 	}
 }

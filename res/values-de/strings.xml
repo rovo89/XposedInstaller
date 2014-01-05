@@ -36,6 +36,9 @@
     <string name="phone_not_compatible">Xposed ist (noch) nicht mit der Android-SDK-Version %1$d oder deiner Prozessor-Architektur (%2$s) kompatibel.</string>
     <string name="not_tested_but_compatible">Xposed wurde noch nicht mit der Android-SDK-Version %d getestet, aber es scheint kompatibel damit zu sein. Wenn du abenteuerlustig bist, kannst die Installation versuchen.</string>
     <string name="reboot_failed">Neustart fehlgeschlagen. Bitte verwende die normale Neustartfunktion des Geräts.</string>
+    <string name="auto_flash_note">%s sollte automatisch installiert werden, sobald in den Recovery-Modus gebootet wurde.</string>
+    <string name="manual_flash_note">Bitte installiere %s von der SD-Karte, um die Installation abzuschließen.</string>
+    <string name="reboot_recovery_confirmation">Willst du jetzt in den Recovery-Modus booten?</string>
 
     <!--  File operations -->
     <string name="root_failed">Root-Zugriff fehlgeschlagen\n\nStelle sicher, dass das Gerät korrekt gerootet ist und Shell-Kommandos nicht blockiert werden.</string>
