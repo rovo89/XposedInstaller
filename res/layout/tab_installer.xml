@@ -84,6 +84,12 @@
         </TableLayout>
 
         <TextView
+            android:id="@+id/framework_install_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp" />
+
+        <TextView
             android:id="@+id/framework_install_errors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

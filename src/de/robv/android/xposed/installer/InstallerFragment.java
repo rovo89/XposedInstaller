@@ -18,11 +18,16 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +51,7 @@ public class InstallerFragment extends Fragment {
 	private ProgressDialog dlgProgress;
 	private TextView txtAppProcessInstalledVersion, txtAppProcessLatestVersion;
 	private TextView txtJarInstalledVersion, txtJarLatestVersion;
-	private TextView txtInstallError;
+	private TextView txtInstallError, txtInstallMode;
 	private Button btnInstall, btnUninstall, btnSoftReboot, btnReboot;
 
 	private static final int INSTALL_MODE_NORMAL = 0;
@@ -74,12 +79,22 @@ public class InstallerFragment extends Fragment {
 		txtJarInstalledVersion = (TextView) v.findViewById(R.id.jar_installed_version);
 		txtJarLatestVersion = (TextView) v.findViewById(R.id.jar_latest_version);
 
+		txtInstallMode = (TextView) v.findViewById(R.id.framework_install_mode);
 		txtInstallError = (TextView) v.findViewById(R.id.framework_install_errors);
 
 		btnInstall = (Button) v.findViewById(R.id.btnInstall);
 		btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
 		btnSoftReboot = (Button) v.findViewById(R.id.btnSoftReboot);
 		btnReboot = (Button) v.findViewById(R.id.btnReboot);
+
+		txtInstallMode.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), XposedInstallerActivity.class);
+				intent.putExtra(XposedInstallerActivity.EXTRA_OPEN_TAB, XposedDropdownNavActivity.TAB_SETTINGS);
+				startActivity(intent);
+			}
+		});
 
 		boolean isCompatible = false;
 		if (BINARIES_FOLDER == null) {
@@ -169,6 +184,17 @@ public class InstallerFragment extends Fragment {
 		});
 
 		return v;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		SpannableStringBuilder installModeText = new SpannableStringBuilder(getString(R.string.settings_install_mode));
+		installModeText.append(":\n");
+		installModeText.setSpan(new StyleSpan(Typeface.BOLD), 0, installModeText.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+		installModeText.append(getInstallModeText());
+		txtInstallMode.setText(installModeText);
 	}
 
 	private abstract class AsyncClickListener implements View.OnClickListener {
@@ -437,6 +463,19 @@ public class InstallerFragment extends Fragment {
 		if (mode < INSTALL_MODE_NORMAL || mode > INSTALL_MODE_RECOVERY_MANUAL)
 			mode = INSTALL_MODE_NORMAL;
 		return mode;
+	}
+
+	private String getInstallModeText() {
+		final int installMode = getInstallMode();
+		switch (installMode) {
+			case INSTALL_MODE_NORMAL:
+				return getString(R.string.install_mode_normal);
+			case INSTALL_MODE_RECOVERY_AUTO:
+				return getString(R.string.install_mode_recovery_auto);
+			case INSTALL_MODE_RECOVERY_MANUAL:
+				return getString(R.string.install_mode_recovery_manual);
+		}
+		throw new IllegalStateException("unknown install mode " + installMode);
 	}
 
 	private boolean install() {
