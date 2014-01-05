@@ -197,6 +197,12 @@ public class InstallerFragment extends Fragment {
 		txtInstallMode.setText(installModeText);
 	}
 
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		mRootUtil.dispose();
+	}
+
 	private abstract class AsyncClickListener implements View.OnClickListener {
 		private final CharSequence mProgressDlgText;
 
@@ -617,7 +623,6 @@ public class InstallerFragment extends Fragment {
 			return true;
 
 		} finally {
-			mRootUtil.dispose();
 			AssetUtil.removeBusybox();
 
 			showAlert(TextUtils.join("\n", messages).trim());
@@ -674,7 +679,6 @@ public class InstallerFragment extends Fragment {
 			return true;
 
 		} finally {
-			mRootUtil.dispose();
 			AssetUtil.removeBusybox();
 
 			showAlert(TextUtils.join("\n", messages).trim());
@@ -691,8 +695,6 @@ public class InstallerFragment extends Fragment {
 			messages.add(getString(R.string.reboot_failed));
 			showAlert(TextUtils.join("\n", messages).trim());
 		}
-
-		mRootUtil.dispose();
 	}
 
 	private void reboot() {
@@ -705,7 +707,5 @@ public class InstallerFragment extends Fragment {
 			messages.add(getString(R.string.reboot_failed));
 			showAlert(TextUtils.join("\n", messages).trim());
 		}
-
-		mRootUtil.dispose();
 	}
 }
