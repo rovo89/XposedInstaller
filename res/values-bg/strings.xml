@@ -105,9 +105,9 @@
     <string name="download_view_cancel">Отказ</string>
     <string name="download_view_no_url">Няма наличен URL за изтегляне</string>
     <string name="download_view_running">Изтегляне (%1$,d от %2$,d kB)</string>
-    <string name="download_view_waiting">Изтеглянето е на изчакване</string>
+    <string name="download_view_waiting">Подготовка за изтегляне</string>
     <string name="download_view_successful">Успешно изтегляне</string>
-    <string name="download_view_failed">Неуспешно изтегляне (грешка %d)</string>
+    <string name="download_view_failed">Неуспешно изтеглен (грешка %d)</string>
 
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">Некоректна MD5 сума (изтеглено: %1$s, очаквано: %2$s)</string>
