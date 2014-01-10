@@ -567,23 +567,6 @@ public class InstallerFragment extends Fragment {
 				}
 
 			} else if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
-				messages.add(getString(R.string.file_copying, "Xposed-Installer-Recovery.zip"));
-				File installerFile = AssetUtil.writeAssetToCacheFile("Xposed-Installer-Recovery.zip", 00644);
-				if (installerFile == null) {
-					messages.add("");
-					messages.add(getString(R.string.file_extract_failed, "Xposed-Installer-Recovery.zip"));
-					return false;
-				}
-
-				if (mRootUtil.executeWithBusybox("cp -a " + installerFile.getAbsolutePath() + " /cache/Xposed-Installer-Recovery.zip", messages) != 0) {
-					messages.add("");
-					messages.add(getString(R.string.file_copy_failed, "Xposed-Installer-Recovery.zip", "/cache"));
-					installerFile.delete();
-					return false;
-				}
-
-				installerFile.delete();
-
 				if (mRootUtil.execute("ls /cache/recovery", null) != 0) {
 					messages.add(getString(R.string.file_creating_directory, "/cache/recovery"));
 					if (mRootUtil.executeWithBusybox("mkdir /cache/recovery", messages) != 0) {
@@ -593,8 +576,25 @@ public class InstallerFragment extends Fragment {
 					}
 				}
 
+				messages.add(getString(R.string.file_copying, "Xposed-Installer-Recovery.zip"));
+				File installerFile = AssetUtil.writeAssetToCacheFile("Xposed-Installer-Recovery.zip", 00644);
+				if (installerFile == null) {
+					messages.add("");
+					messages.add(getString(R.string.file_extract_failed, "Xposed-Installer-Recovery.zip"));
+					return false;
+				}
+
+				if (mRootUtil.executeWithBusybox("cp -a " + installerFile.getAbsolutePath() + " /cache/recovery/Xposed-Installer-Recovery.zip", messages) != 0) {
+					messages.add("");
+					messages.add(getString(R.string.file_copy_failed, "Xposed-Installer-Recovery.zip", "/cache"));
+					installerFile.delete();
+					return false;
+				}
+
+				installerFile.delete();
+
 				messages.add(getString(R.string.file_writing_recovery_command));
-				if (mRootUtil.execute("echo \"--update_package=/cache/Xposed-Installer-Recovery.zip\n--show_text\" > /cache/recovery/command", messages) != 0) {
+				if (mRootUtil.execute("echo \"--update_package=/cache/recovery/Xposed-Installer-Recovery.zip\n--show_text\" > /cache/recovery/command", messages) != 0) {
 					messages.add("");
 					messages.add(getString(R.string.file_writing_recovery_command_failed));
 					return false;
