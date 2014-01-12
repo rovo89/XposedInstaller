@@ -732,7 +732,6 @@ public class InstallerFragment extends Fragment {
 			messages.add(getString(R.string.reboot_failed));
 			showAlert(TextUtils.join("\n", messages).trim());
 		}
-		AssetUtil.removeBusybox();
 	}
 
 	private void reboot(String mode) {
