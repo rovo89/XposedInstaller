@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
@@ -40,6 +41,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
 		mPref = PreferenceManager.getDefaultSharedPreferences(this);
 		createDirectories();
+		AssetUtil.removeBusybox();
 
 		registerActivityLifecycleCallbacks(this);
 	}
