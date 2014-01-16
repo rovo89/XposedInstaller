@@ -36,7 +36,7 @@
     <string name="phone_not_compatible">Xposed is not (yet) compatible with Android SDK version %1$d or your processor architecture (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed has not been tested with Android SDK version %d, but it seems to be compatible. You can try installing it if you feel adventurous.</string>
     <string name="reboot_failed">Reboot failed. Please use the device\'s normal reboot function.</string>
-    <string name="auto_flash_note">%s should be flashed automatically after rebooting to recovery.</string>
+    <string name="auto_flash_note">%s should be flashed automatically once you press "OK".</string>
     <string name="manual_flash_note">Please flash %s from the SD card to complete the installation.</string>
     <string name="reboot_recovery_confirmation">Do you want to reboot to recovery now?</string>
 
