@@ -234,8 +234,10 @@ public class InstallerFragment extends Fragment {
 
 		@Override
 		public void onClick(final DialogInterface dialog, final int which) {
-			dlgProgress.setMessage(mProgressDlgText);
-			dlgProgress.show();
+			if (dlgProgress != null) {
+				dlgProgress.setMessage(mProgressDlgText);
+				dlgProgress.show();
+			}
 			new Thread() {
 				public void run() {
 					onAsyncClick(dialog, which);
@@ -304,12 +306,13 @@ public class InstallerFragment extends Fragment {
 		.show();
 	}
 
-	private void showConfirmDialog(final String message, final DialogInterface.OnClickListener yesHandler) {
+	private void showConfirmDialog(final String message, final DialogInterface.OnClickListener yesHandler,
+			final DialogInterface.OnClickListener noHandler) {
 		if (Looper.myLooper() != Looper.getMainLooper()) {
 			getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					showConfirmDialog(message, yesHandler);
+					showConfirmDialog(message, yesHandler, noHandler);
 				}
 			});
 			return;
@@ -318,7 +321,7 @@ public class InstallerFragment extends Fragment {
 		AlertDialog dialog = new AlertDialog.Builder(getActivity())
 		.setMessage(message)
 		.setPositiveButton(android.R.string.yes, yesHandler)
-		.setNegativeButton(android.R.string.no, null)
+		.setNegativeButton(android.R.string.no, noHandler)
 		.create();
 		dialog.show();
 		TextView txtMessage = (TextView) dialog.findViewById(android.R.id.message);
@@ -649,12 +652,24 @@ public class InstallerFragment extends Fragment {
 
 				messages.add("");
 				messages.add(getString(R.string.reboot_recovery_confirmation));
-				showConfirmDialog(TextUtils.join("\n", messages).trim(), new AsyncDialogClickListener(getString(R.string.reboot)) {
-					@Override
-					protected void onAsyncClick(DialogInterface dialog, int which) {
-						reboot("recovery");
-					}
-				});
+				showConfirmDialog(TextUtils.join("\n", messages).trim(),
+					new AsyncDialogClickListener(getString(R.string.reboot)) {
+						@Override
+						protected void onAsyncClick(DialogInterface dialog, int which) {
+							reboot("recovery");
+						}
+					},
+					new AsyncDialogClickListener(null) {
+						@Override
+						protected void onAsyncClick(DialogInterface dialog, int which) {
+							if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
+								// clean up to avoid unwanted flashing
+								mRootUtil.executeWithBusybox("rm /cache/recovery/command", null);
+								mRootUtil.executeWithBusybox("rm /cache/recovery/Xposed-Installer-Recovery.zip", null);
+								AssetUtil.removeBusybox();
+							}
+						}
+					});
 			}
 			return true;
 
