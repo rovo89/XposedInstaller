@@ -42,6 +42,12 @@
 			    <data android:scheme="package" />
 			    <category android:name="android.intent.category.DEFAULT" />
 			</intent-filter>
+			<intent-filter>
+			    <data android:scheme="http" android:host="repo.xposed.info" android:pathPrefix="/module" />
+			    <category android:name="android.intent.category.DEFAULT" />
+			    <category android:name="android.intent.category.BROWSABLE" />
+			    <action android:name="android.intent.action.VIEW" />
+			</intent-filter>
         </activity>
 
 

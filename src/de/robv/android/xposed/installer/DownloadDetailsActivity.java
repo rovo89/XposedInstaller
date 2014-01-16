@@ -8,8 +8,12 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		String packageName = getIntent().getData().getSchemeSpecificPart();
+		String packageName;
+		if (Intent.ACTION_VIEW.equals(getIntent().getAction())) {
+			packageName = getIntent().getData().getPathSegments().get(1);
+		} else {
+			packageName = getIntent().getData().getSchemeSpecificPart();
+		}
 		DownloadDetailsFragment detailsFragment = DownloadDetailsFragment.newInstance(packageName);
 
 		FragmentTransaction tx = getFragmentManager().beginTransaction();
