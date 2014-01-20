@@ -14,14 +14,16 @@
     <string name="tabDownloadDescription">此處您能訪問模組倉庫，您可以搜索並下載您喜歡的模組，並及時更新它們。</string>
     <string name="welcome_framework_update_available">Xposed框架有更新可用。</string>
     <string name="welcome_update_available">一個或多個模組有更新可用。</string>
-    <string name="tabSettings">設置</string>
+    <string name="tabSettings">設定</string>
     <string name="tabSettingsDescription">此處可配置Xposed安裝器和框架。</string>
+    <string name="tabLogs">紀錄</string>
+    <string name="tabLogsDescription">此處可顯示儲存/傳送 Xposed 框架的紀錄.</string>
     <string name="tabAbout">關於</string>
-    <string name="tabAboutDescription">瞭解Xposed作者，如何獲取幫助支持等。</string>
+    <string name="tabAboutDescription">瞭解Xposed作者，如何取得幫助支援等。</string>
 
     <!-- Installer tab -->
     <string name="install">安裝/更新</string>
-    <string name="uninstall">卸載</string>
+    <string name="uninstall">解除安裝</string>
     <string name="installedVersion">啟動</string>
     <string name="latestVersion">程式自帶</string>
     <string name="versions">版本：</string>
@@ -39,10 +41,10 @@
     <string name="xposed_module_list_updated">Xposed模組清單已更新\n重啟後更改將生效</string>
     <string name="warning_xposed_min_version">該模組需要較新版本的XposedBridge(%d)，因此無法啟動。</string>
     <string name="no_min_version_specified">該模組未指定需要的Xposed版本。</string>
-    <string name="warning_min_version_too_low">該模組在XposedBridge版本%1$d下創建，但因為不相容版本%2$d中的變化內容，它已被禁用。</string>
+    <string name="warning_min_version_too_low">該模組在XposedBridge版本%1$d下建立，但因為不相容版本%2$d中的變化內容，它已被停用。</string>
 
     <!-- Download tab -->
-    <string name="menuSearch">搜索</string>
+    <string name="menuSearch">搜尋</string>
     <string name="menuReload">重新載入</string>
     <string name="changes">變更：</string>
     <string name="branch_display">(%s 分支)</string>
@@ -50,11 +52,11 @@
     <string name="download_unknown_author">未知作者</string>
     <string name="download_status_installed">已安裝(版本 %s)</string>
     <string name="download_status_update_available">可更新(版本 %1$s \u2192 %2$s)</string>
-    <string name="download_timestamps">添加於 %1$s \u00b7 更新於 %2$s</string>
+    <string name="download_timestamps">新增於 %1$s \u00b7 更新於 %2$s</string>
     <string name="download_sorting_title">排序方式</string>
     <string name="download_sorting_status">按狀態排序</string>
     <string name="download_sorting_updated">按最後更新時間排序</string>
-    <string name="download_sorting_created">按創建時間排序</string>
+    <string name="download_sorting_created">按建立時間排序</string>
     <string name="download_section_framework">框架</string>
     <string name="download_section_update_available">可更新</string>
     <string name="download_section_installed">已安裝</string>
@@ -72,15 +74,20 @@
     <string name="settings_performance_experiment">性能試驗</string>
     <string name="settings_performance_experiment_summary">如果您啟用該選項，您的系統性能可能更好、更差或沒有變化。請隨意試用並回報您觀察到的效果(或者根本沒變化)。修改選項後您需要重新安裝框架並重啟。</string>
 
+    <!--  Logs tab  -->
+    <string name="logs_load_failed">無法讀取紀錄:</string>
+    <string name="logs_save_failed">無法寫入紀錄至 SD 卡:</string>
+    <string name="sdcard_not_writable">SD 卡沒有找到或無法被寫入</string>
+
     <!-- About tab -->
     <string name="about_developers_label">主要開發者：</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 與 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">請<b>不</b>要直接聯繫我們獲取説明，使用下面的連結。</string>
+    <string name="about_developers_warning">請<b>不</b>要直接聯絡我們取得説明，使用下面的連結。</string>
     <string name="about_translator_label">翻譯：</string>
     <string name="translator">Cye3s</string>
     <string name="about_version_label">應用程式版本：</string>
-    <string name="about_source_label">源碼：</string>
-    <string name="about_support_label">獲取支持：</string>
+    <string name="about_source_label">原始碼：</string>
+    <string name="about_support_label">取得支援：</string>
     <string name="about_support_warning">該連結<b>只</b>適用於安裝器和框架！如果您想獲得模組相關的説明支援，<b>不</b>要點擊它，請聯繫模組作者。</string>
     <string name="about_libraries_label">使用的庫：</string>
 
@@ -97,12 +104,12 @@
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">MD5校驗碼錯誤(下載項: %1$s, 預期: %2$s)</string>
     <string name="download_could_not_read_file">無法讀取下載檔案：%s</string>
-    <string name="download_no_valid_apk">下載的檔不是有效APK(或不相容)</string>
-    <string name="download_incorrect_package_name">包名不正確(下載項: %1$s, 預期: %2$s)</string>
+    <string name="download_no_valid_apk">下載的檔案不是有效 APK 安裝包(或不相容)</string>
+    <string name="download_incorrect_package_name">安裝包名不正確(下載項: %1$s, 預期: %2$s)</string>
 
     <!-- RepoLoader -->
-    <string name="repo_download_failed_http">下載 %1$s 時出錯：%2$d (%3$s)</string>
-    <string name="repo_download_failed">下載 %1$s 時出錯：%2$s</string>
+    <string name="repo_download_failed_http">下載 %1$s 時發生錯誤：%2$d (%3$s)</string>
+    <string name="repo_download_failed">下載 %1$s 時發生錯誤：%2$s</string>
     <string name="repo_load_failed">無法載入倉庫 %1$s:\n%2$s</string>
 
 </resources>
