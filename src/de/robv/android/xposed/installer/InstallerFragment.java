@@ -516,7 +516,7 @@ public class InstallerFragment extends Fragment {
 		if (!startShell())
 			return false;
 
-		final List<String> messages = new LinkedList<String>();
+		List<String> messages = new LinkedList<String>();
 		boolean showAlert = true;
 		try {
 			messages.add(getString(R.string.file_copying, "Xposed-Disabler-Recovery.zip"));
@@ -572,47 +572,12 @@ public class InstallerFragment extends Fragment {
 				}
 
 			} else if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
-				if (mRootUtil.execute("ls /cache/recovery", null) != 0) {
-					messages.add(getString(R.string.file_creating_directory, "/cache/recovery"));
-					if (mRootUtil.executeWithBusybox("mkdir /cache/recovery", messages) != 0) {
-						messages.add("");
-						messages.add(getString(R.string.file_create_directory_failed, "/cache/recovery"));
-						return false;
-					}
-				}
-
-				messages.add(getString(R.string.file_copying, "Xposed-Installer-Recovery.zip"));
-				File installerFile = AssetUtil.writeAssetToCacheFile("Xposed-Installer-Recovery.zip", 00644);
-				if (installerFile == null) {
-					messages.add("");
-					messages.add(getString(R.string.file_extract_failed, "Xposed-Installer-Recovery.zip"));
+				if (!prepareAutoFlash(messages, "Xposed-Installer-Recovery.zip"))
 					return false;
-				}
-
-				if (mRootUtil.executeWithBusybox("cp -a " + installerFile.getAbsolutePath() + " /cache/recovery/Xposed-Installer-Recovery.zip", messages) != 0) {
-					messages.add("");
-					messages.add(getString(R.string.file_copy_failed, "Xposed-Installer-Recovery.zip", "/cache"));
-					installerFile.delete();
-					return false;
-				}
-
-				installerFile.delete();
-
-				messages.add(getString(R.string.file_writing_recovery_command));
-				if (mRootUtil.execute("echo \"--update_package=/cache/recovery/Xposed-Installer-Recovery.zip\n--show_text\" > /cache/recovery/command", messages) != 0) {
-					messages.add("");
-					messages.add(getString(R.string.file_writing_recovery_command_failed));
-					return false;
-				}
 
 			} else if (installMode == INSTALL_MODE_RECOVERY_MANUAL) {
-				// Installation via recovery (manual flashing)
-				messages.add(getString(R.string.file_copying, "Xposed-Installer-Recovery.zip"));
-				if (AssetUtil.writeAssetToSdcardFile("Xposed-Installer-Recovery.zip", 00644) == null) {
-					messages.add("");
-					messages.add(getString(R.string.file_extract_failed, "Xposed-Installer-Recovery.zip"));
+				if (!prepareManualFlash(messages, "Xposed-Installer-Recovery.zip"))
 					return false;
-				}
 			}
 
 			File blocker = new File(XposedApp.BASE_DIR + "conf/disabled");
@@ -640,32 +605,7 @@ public class InstallerFragment extends Fragment {
 				messages.add(getString(R.string.file_done));
 			} else {
 				showAlert = false;
-
-				if (installMode == INSTALL_MODE_RECOVERY_AUTO)
-					messages.add(getString(R.string.auto_flash_note, "Xposed-Installer-Recovery.zip"));
-				else
-					messages.add(getString(R.string.manual_flash_note, "Xposed-Installer-Recovery.zip"));
-
-				messages.add("");
-				messages.add(getString(R.string.reboot_recovery_confirmation));
-				showConfirmDialog(TextUtils.join("\n", messages).trim(),
-					new AsyncDialogClickListener(getString(R.string.reboot)) {
-						@Override
-						protected void onAsyncClick(DialogInterface dialog, int which) {
-							reboot("recovery");
-						}
-					},
-					new AsyncDialogClickListener(null) {
-						@Override
-						protected void onAsyncClick(DialogInterface dialog, int which) {
-							if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
-								// clean up to avoid unwanted flashing
-								mRootUtil.executeWithBusybox("rm /cache/recovery/command", null);
-								mRootUtil.executeWithBusybox("rm /cache/recovery/Xposed-Installer-Recovery.zip", null);
-								AssetUtil.removeBusybox();
-							}
-						}
-					});
+				offerRebootToRecovery(messages, "Xposed-Installer-Recovery.zip", installMode);
 			}
 			return true;
 
@@ -678,6 +618,8 @@ public class InstallerFragment extends Fragment {
 	}
 
 	private boolean uninstall() {
+		final int installMode = getInstallMode();
+
 		new File(JAR_PATH_NEWVERSION).delete();
 		new File(JAR_PATH).delete();
 		new File(XposedApp.BASE_DIR + "bin/app_process").delete();
@@ -686,45 +628,138 @@ public class InstallerFragment extends Fragment {
 			return false;
 
 		List<String> messages = new LinkedList<String>();
+		boolean showAlert = true;
 		try {
-			messages.add(getString(R.string.file_mounting_writable, "/system"));
-			if (mRootUtil.executeWithBusybox("mount -o remount,rw /system", messages) != 0) {
-				messages.add(getString(R.string.file_mount_writable_failed, "/system"));
-				messages.add(getString(R.string.file_trying_to_continue));
-			}
+			if (installMode == INSTALL_MODE_NORMAL) {
+				messages.add(getString(R.string.file_mounting_writable, "/system"));
+				if (mRootUtil.executeWithBusybox("mount -o remount,rw /system", messages) != 0) {
+					messages.add(getString(R.string.file_mount_writable_failed, "/system"));
+					messages.add(getString(R.string.file_trying_to_continue));
+				}
 
-			messages.add(getString(R.string.file_backup_restoring, "/system/bin/app_process.orig"));
-			if (!new File("/system/bin/app_process.orig").exists()) {
-				messages.add("");
-				messages.add(getString(R.string.file_backup_not_found, "/system/bin/app_process.orig"));
-				return false;
-			}
+				messages.add(getString(R.string.file_backup_restoring, "/system/bin/app_process.orig"));
+				if (!new File("/system/bin/app_process.orig").exists()) {
+					messages.add("");
+					messages.add(getString(R.string.file_backup_not_found, "/system/bin/app_process.orig"));
+					return false;
+				}
 
-			if (mRootUtil.executeWithBusybox("mv /system/bin/app_process.orig /system/bin/app_process", messages) != 0) {
-				messages.add("");
-				messages.add(getString(R.string.file_move_failed, "/system/bin/app_process.orig", "/system/bin/app_process"));
-				return false;
-			}
-			if (mRootUtil.executeWithBusybox("chmod 755 /system/bin/app_process", messages) != 0) {
-				messages.add("");
-				messages.add(getString(R.string.file_set_perms_failed, "/system/bin/app_process"));
-				return false;
-			}
-			if (mRootUtil.executeWithBusybox("chown root:shell /system/bin/app_process", messages) != 0) {
-				messages.add("");
-				messages.add(getString(R.string.file_set_owner_failed, "/system/bin/app_process"));
-				return false;
+				if (mRootUtil.executeWithBusybox("mv /system/bin/app_process.orig /system/bin/app_process", messages) != 0) {
+					messages.add("");
+					messages.add(getString(R.string.file_move_failed, "/system/bin/app_process.orig", "/system/bin/app_process"));
+					return false;
+				}
+				if (mRootUtil.executeWithBusybox("chmod 755 /system/bin/app_process", messages) != 0) {
+					messages.add("");
+					messages.add(getString(R.string.file_set_perms_failed, "/system/bin/app_process"));
+					return false;
+				}
+				if (mRootUtil.executeWithBusybox("chown root:shell /system/bin/app_process", messages) != 0) {
+					messages.add("");
+					messages.add(getString(R.string.file_set_owner_failed, "/system/bin/app_process"));
+					return false;
+				}
+
+			} else if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
+				if (!prepareAutoFlash(messages, "Xposed-Disabler-Recovery.zip"))
+					return false;
+
+			} else if (installMode == INSTALL_MODE_RECOVERY_MANUAL) {
+				if (!prepareManualFlash(messages, "Xposed-Disabler-Recovery.zip"))
+					return false;
 			}
 
 			messages.add("");
-			messages.add(getString(R.string.file_done));
+			if (installMode == INSTALL_MODE_NORMAL) {
+				messages.add(getString(R.string.file_done));
+			} else {
+				showAlert = false;
+				offerRebootToRecovery(messages, "Xposed-Disabler-Recovery.zip", installMode);
+			}
 			return true;
 
 		} finally {
 			AssetUtil.removeBusybox();
 
-			showAlert(TextUtils.join("\n", messages).trim());
+			if (showAlert)
+				showAlert(TextUtils.join("\n", messages).trim());
 		}
+	}
+
+	private boolean prepareAutoFlash(List<String> messages, String file) {
+		if (mRootUtil.execute("ls /cache/recovery", null) != 0) {
+			messages.add(getString(R.string.file_creating_directory, "/cache/recovery"));
+			if (mRootUtil.executeWithBusybox("mkdir /cache/recovery", messages) != 0) {
+				messages.add("");
+				messages.add(getString(R.string.file_create_directory_failed, "/cache/recovery"));
+				return false;
+			}
+		}
+
+		messages.add(getString(R.string.file_copying, file));
+		File tempFile = AssetUtil.writeAssetToCacheFile(file, 00644);
+		if (tempFile == null) {
+			messages.add("");
+			messages.add(getString(R.string.file_extract_failed, file));
+			return false;
+		}
+
+		if (mRootUtil.executeWithBusybox("cp -a " + tempFile.getAbsolutePath() + " /cache/recovery/" + file, messages) != 0) {
+			messages.add("");
+			messages.add(getString(R.string.file_copy_failed, file, "/cache"));
+			tempFile.delete();
+			return false;
+		}
+
+		tempFile.delete();
+
+		messages.add(getString(R.string.file_writing_recovery_command));
+		if (mRootUtil.execute("echo \"--update_package=/cache/recovery/" + file + "\n--show_text\" > /cache/recovery/command", messages) != 0) {
+			messages.add("");
+			messages.add(getString(R.string.file_writing_recovery_command_failed));
+			return false;
+		}
+
+		return true;
+	}
+
+	private boolean prepareManualFlash(List<String> messages, String file) {
+		messages.add(getString(R.string.file_copying, file));
+		if (AssetUtil.writeAssetToSdcardFile(file, 00644) == null) {
+			messages.add("");
+			messages.add(getString(R.string.file_extract_failed, file));
+			return false;
+		}
+
+		return true;
+	}
+
+	private void offerRebootToRecovery(List<String> messages, final String file, final int installMode) {
+		if (installMode == INSTALL_MODE_RECOVERY_AUTO)
+			messages.add(getString(R.string.auto_flash_note, file));
+		else
+			messages.add(getString(R.string.manual_flash_note, file));
+
+		messages.add("");
+		messages.add(getString(R.string.reboot_recovery_confirmation));
+		showConfirmDialog(TextUtils.join("\n", messages).trim(),
+			new AsyncDialogClickListener(getString(R.string.reboot)) {
+				@Override
+				protected void onAsyncClick(DialogInterface dialog, int which) {
+					reboot("recovery");
+				}
+			},
+			new AsyncDialogClickListener(null) {
+				@Override
+				protected void onAsyncClick(DialogInterface dialog, int which) {
+					if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
+						// clean up to avoid unwanted flashing
+						mRootUtil.executeWithBusybox("rm /cache/recovery/command", null);
+						mRootUtil.executeWithBusybox("rm /cache/recovery/" + file, null);
+						AssetUtil.removeBusybox();
+					}
+				}
+			});
 	}
 
 	private void softReboot() {
