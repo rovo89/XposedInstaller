@@ -212,8 +212,10 @@ public class InstallerFragment extends Fragment {
 
 		@Override
 		public final void onClick(final View v) {
-			dlgProgress.setMessage(mProgressDlgText);
-			dlgProgress.show();
+			if (mProgressDlgText != null) {
+				dlgProgress.setMessage(mProgressDlgText);
+				dlgProgress.show();
+			}
 			new Thread() {
 				public void run() {
 					onAsyncClick(v);
@@ -234,7 +236,7 @@ public class InstallerFragment extends Fragment {
 
 		@Override
 		public void onClick(final DialogInterface dialog, final int which) {
-			if (dlgProgress != null) {
+			if (mProgressDlgText != null) {
 				dlgProgress.setMessage(mProgressDlgText);
 				dlgProgress.show();
 			}
