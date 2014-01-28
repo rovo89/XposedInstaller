@@ -623,12 +623,6 @@ public class InstallerFragment extends Fragment {
 				}
 			}
 
-			if (new File("/data/xposed").exists()) {
-				messages.add(getString(R.string.file_removing, "/data/xposed"));
-				mRootUtil.executeWithBusybox("rm -r /data/xposed", messages);
-				// ignoring the result as it's only cleanup
-			}
-
 			messages.add(getString(R.string.file_copying, "XposedBridge.jar"));
 			File jarFile = AssetUtil.writeAssetToFile("XposedBridge.jar", new File(JAR_PATH_NEWVERSION), 00644);
 			if (jarFile == null) {
@@ -718,12 +712,6 @@ public class InstallerFragment extends Fragment {
 				messages.add("");
 				messages.add(getString(R.string.file_set_owner_failed, "/system/bin/app_process"));
 				return false;
-			}
-
-			if (new File("/data/xposed").exists()) {
-				messages.add(getString(R.string.file_removing, "/data/xposed"));
-				mRootUtil.executeWithBusybox("rm -r /data/xposed", messages);
-				// ignoring the result as it's only cleanup
 			}
 
 			messages.add("");
