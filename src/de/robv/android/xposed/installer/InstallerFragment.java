@@ -785,8 +785,7 @@ public class InstallerFragment extends Fragment {
 			command += " " + mode;
 			if (mode.equals("recovery"))
 				// create a flag used by some kernels to boot into recovery
-				// TODO use BusyBox?
-				mRootUtil.execute("touch /cache/recovery/boot", messages);
+				mRootUtil.executeWithBusybox("touch /cache/recovery/boot", messages);
 		}
 
 		if (mRootUtil.executeWithBusybox(command, messages) != 0) {
