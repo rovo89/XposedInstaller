@@ -659,6 +659,8 @@ public class InstallerFragment extends Fragment {
 					messages.add(getString(R.string.file_set_owner_failed, "/system/bin/app_process"));
 					return false;
 				}
+				// Might help on some SELinux-enforced ROMs, shouldn't hurt on others
+				mRootUtil.execute("/system/bin/restorecon /system/bin/app_process", null);
 
 			} else if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
 				if (!prepareAutoFlash(messages, "Xposed-Disabler-Recovery.zip"))
