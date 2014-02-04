@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 
@@ -38,6 +39,12 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 				if (!isForPackage)
 					return;
 			}
+		}
+
+		if (packageName.equals(AssetUtil.STATIC_BUSYBOX_PACKAGE)) {
+			AssetUtil.checkStaticBusyboxAvailability();
+			AssetUtil.removeBusybox();
+			return;
 		}
 
 		InstalledModule module = ModuleUtil.getInstance().reloadSingleModule(packageName);

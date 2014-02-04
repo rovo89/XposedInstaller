@@ -41,6 +41,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
 		mPref = PreferenceManager.getDefaultSharedPreferences(this);
 		createDirectories();
+		AssetUtil.checkStaticBusyboxAvailability();
 		AssetUtil.removeBusybox();
 
 		registerActivityLifecycleCallbacks(this);
