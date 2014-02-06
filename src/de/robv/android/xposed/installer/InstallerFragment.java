@@ -600,13 +600,13 @@ public class InstallerFragment extends Fragment {
 
 			mRootUtil.executeWithBusybox("sync", messages);
 
+			showAlert = false;
 			messages.add("");
-			if (installMode == INSTALL_MODE_NORMAL) {
-				messages.add(getString(R.string.file_done));
-			} else {
-				showAlert = false;
+			if (installMode == INSTALL_MODE_NORMAL)
+				offerReboot(messages);
+			else
 				offerRebootToRecovery(messages, "Xposed-Installer-Recovery.zip", installMode);
-			}
+
 			return true;
 
 		} finally {
@@ -671,13 +671,13 @@ public class InstallerFragment extends Fragment {
 					return false;
 			}
 
+			showAlert = false;
 			messages.add("");
-			if (installMode == INSTALL_MODE_NORMAL) {
-				messages.add(getString(R.string.file_done));
-			} else {
-				showAlert = false;
+			if (installMode == INSTALL_MODE_NORMAL)
+				offerReboot(messages);
+			else
 				offerRebootToRecovery(messages, "Xposed-Disabler-Recovery.zip", installMode);
-			}
+
 			return true;
 
 		} finally {
@@ -734,6 +734,19 @@ public class InstallerFragment extends Fragment {
 		}
 
 		return true;
+	}
+
+	private void offerReboot(List<String> messages) {
+		messages.add(getString(R.string.file_done));
+		messages.add("");
+		messages.add(getString(R.string.reboot_confirmation));
+		showConfirmDialog(TextUtils.join("\n", messages).trim(),
+			new AsyncDialogClickListener(getString(R.string.reboot)) {
+				@Override
+				protected void onAsyncClick(DialogInterface dialog, int which) {
+					reboot(null);
+				}
+			}, null);
 	}
 
 	private void offerRebootToRecovery(List<String> messages, final String file, final int installMode) {

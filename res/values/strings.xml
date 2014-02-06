@@ -38,6 +38,7 @@
     <string name="reboot_failed">Reboot failed. Please use the device\'s normal reboot function.</string>
     <string name="auto_flash_note">%s should be flashed automatically once you press "OK".</string>
     <string name="manual_flash_note">Please flash %s from the SD card to complete the operation.</string>
+    <string name="reboot_confirmation">Do you want to reboot now?</string>
     <string name="reboot_recovery_confirmation">Do you want to reboot to recovery now?</string>
 
     <!--  File operations -->
