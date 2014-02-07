@@ -35,7 +35,35 @@
     <string name="areyousure">您确定？</string>
     <string name="phone_not_compatible">Xposed目前不兼容 Android SDK 版本 %1$d 或者您的处理器架构(%2$s)。</string>
     <string name="not_tested_but_compatible">Xposed未在 Android SDK 版本 %d 上测试，但它似乎是可兼容的。如果您热爱冒险，您可以试试安装它。</string>
+    <string name="reboot_failed">重启失败。请使用设备本身的普通重启功能。</string>
+    <string name="auto_flash_note">如果您点击了“确定”，将自动刷入 %s。</string>
+    <string name="manual_flash_note">请刷入SD卡上的 %s 以完成操作。</string>
+    <string name="reboot_confirmation">您想立即重启吗？</string>
+    <string name="reboot_recovery_confirmation">您想立即重启到恢复模式(Recovery)吗？</string>
 
+    <!--  File operations -->
+    <string name="root_failed">无法取得root权限。\n\n请确认您的设备已成功root并且未阻止终端命令。</string>
+    <string name="file_extract_failed">无法提取 %s</string>
+    <string name="file_mounting_writable">挂载 %s 为可写&#8230;</string>
+    <string name="file_mount_writable_failed">无法挂载 %s 为可写</string>
+    <string name="file_trying_to_continue">仍然继续&#8230;</string>
+    <string name="file_backup_already_exists">备份已存在：%s</string>
+    <string name="file_backup_not_found">未找到备份：%s</string>
+    <string name="file_backup_failed">无法创建 %s 的备份</string>
+    <string name="file_backup_successful">创建备份：%s</string>
+    <string name="file_backup_restoring">从 %s 恢复备份</string>
+    <string name="file_copying">正在复制%s&#8230;</string>
+    <string name="file_copy_failed">无法复制 %1$s 至 %2$s</string>
+    <string name="file_move_failed">无法移动 %1$s 至 %2$s</string>
+    <string name="file_set_perms_failed">无法设置 %s 的权限</string>
+    <string name="file_set_owner_failed">无法设置 %s 的所属用户</string>
+    <string name="file_removing">正在移除 %s&#8230;</string>
+    <string name="file_remove_failed">无法移除 %s</string>
+    <string name="file_creating_directory">正在创建目录%s&#8230;</string>
+    <string name="file_create_directory_failed">无法创建目录 %s</string>
+    <string name="file_writing_recovery_command">正在写入恢复命令&#8230;</string>
+    <string name="file_writing_recovery_command_failed">写入恢复命令失败。请使用其它安装方式。</string>
+    <string name="file_done">完成！应用将在重启后生效。</string>
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed模块未激活</string>
     <string name="module_empty_description">(未提供描述)</string>
@@ -75,6 +103,11 @@
     <string name="download_section_older">30天前</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">安装</string>
+    <string name="settings_install_mode">安装模式</string>
+    <string name="install_mode_normal">经典(直接写入/system)</string>
+    <string name="install_mode_recovery_auto">恢复模式(自动刷入zip)</string>
+    <string name="install_mode_recovery_manual">恢复模式(写入zip到SD卡，手工刷入)</string>
     <string name="settings_group_download">下载</string>
     <string name="settings_enable_downloads">启用下载</string>
     <string name="settings_enable_downloads_summary">允许Xposed安装器检查更新和新模块</string>
