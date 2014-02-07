@@ -5,24 +5,24 @@
     <string name="app_name">Xposed安装器</string>
     <string name="menuSend">发送</string>
     <string name="menuSaveToSd">发送到SD卡</string>
-    <string name="xposed_not_active">最新版本的Xposed当前未激活。您是否已安装框架并重启？</string>
+    <string name="xposed_not_active">最新版本的Xposed当前未激活，您是否已安装框架并重新启动？</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">欢迎使用<b>Xposed安装器</b>\n请选择您想进行的操作：</string>
     <string name="tabInstall">框架</string>
-    <string name="tabInstallDescription">此处您能管理Xposed框架，任何模块想正常运行都需要它。</string>
+    <string name="tabInstallDescription">此处您能管理Xposed框架，任何模块想正常运行都需要它</string>
     <string name="tabModules">模块</string>
-    <string name="tabModulesDescription">框架本身不增加任何功能。您需要使用模块。安装模块后在此处激活它们。</string>
+    <string name="tabModulesDescription">框架本身不增加任何功能，您需要安装模块并使用请在此处激活它们</string>
     <string name="tabDownload">下载</string>
-    <string name="tabDownloadDescription">此处您能访问模块仓库，您可以搜索并下载您喜欢的模块，并及时更新它们。</string>
-    <string name="welcome_framework_update_available">Xposed框架有更新可用。</string>
-    <string name="welcome_update_available">一个或多个模块有更新可用。</string>
+    <string name="tabDownloadDescription">此处您能访问模块仓库，您可以搜索并下载您喜欢的模块并及时更新它们</string>
+    <string name="welcome_framework_update_available">Xposed框架有更新可用</string>
+    <string name="welcome_update_available">一个或多个模块有更新可用</string>
     <string name="tabSettings">设置</string>
-    <string name="tabSettingsDescription">此处可配置Xposed安装器和框架。</string>
+    <string name="tabSettingsDescription">此处可配置Xposed安装器和框架</string>
     <string name="tabLogs">日志</string>
-    <string name="tabLogsDescription">显示并保存/发送Xposed框架产生的日志。</string>
+    <string name="tabLogsDescription">显示并保存/发送Xposed框架产生的日志</string>
     <string name="tabAbout">关于</string>
-    <string name="tabAboutDescription">了解Xposed作者，如何获取帮助支持等。</string>
+    <string name="tabAboutDescription">了解Xposed作者，如何获取帮助支持等</string>
 
     <!-- Installer tab -->
     <string name="install">安装/更新</string>
@@ -33,8 +33,37 @@
     <string name="soft_reboot">软重启</string>
     <string name="reboot">重启</string>
     <string name="areyousure">您确定？</string>
-    <string name="phone_not_compatible">Xposed目前不兼容 Android SDK 版本 %1$d 或者您的处理器架构(%2$s)。</string>
-    <string name="not_tested_but_compatible">Xposed未在 Android SDK 版本 %d 上测试，但它似乎是可兼容的。如果您热爱冒险，您可以试试安装它。</string>
+    <string name="phone_not_compatible">Xposed目前不兼容Android SDK版本%1$d 或者您的处理器架构(%2$s)</string>
+    <string name="not_tested_but_compatible">Xposed未在Android SDK版本%d上测试，但它似乎是可兼容的。如果您热爱冒险，您可以尝试安装它</string>
+    <string name="reboot_failed">重新启动失败，请使用该设备的正常重启功能</string>
+    <string name="auto_flash_note">%s一旦出现你应该按下“确定"</string>
+    <string name="manual_flash_note">请从SD卡刷入%s即可完成操作</string>
+    <string name="reboot_confirmation">你想现在重新启动？</string>
+    <string name="reboot_recovery_confirmation">你想现在重新启动到恢复模式？</string>
+    
+    <!--  File operations -->
+    <string name="root_failed">未能获得root权限 \n\n请确保您的设备已正常root或您没有阻止shell命令</string>
+    <string name="file_extract_failed">无法提取%s</string>
+    <string name="file_mounting_writable">安装%s写入&#8230;</string>
+    <string name="file_mount_writable_failed">无法安装%s写入</string>
+    <string name="file_trying_to_continue">想继续吗&#8230;</string>
+    <string name="file_backup_already_exists">%s备份已存在</string>
+    <string name="file_backup_not_found">在%s没有发现备份</string>
+    <string name="file_backup_failed">在%s无法创建备份</string>
+    <string name="file_backup_successful">在%s创建备份</string>
+    <string name="file_backup_restoring">从%s备份恢复</string>
+    <string name="file_copying">%s正在复制&#8230;</string>
+    <string name="file_copy_failed">无法复制%1$s到%2$s</string>
+    <string name="file_move_failed">无法移动%1$s到%2$s</string>
+    <string name="file_set_perms_failed">%s无法设置权限</string>
+    <string name="file_set_owner_failed">%s无法设置所有者</string>
+    <string name="file_removing">%s正在删除&#8230;</string>
+    <string name="file_remove_failed">%s无法删除</string>
+    <string name="file_creating_directory">%s正在创建目录&#8230;</string>
+    <string name="file_create_directory_failed">%s无法创建目录</string>
+    <string name="file_writing_recovery_command">正在写恢复命令&#8230;</string>
+    <string name="file_writing_recovery_command_failed">写恢复命令失败，请使用不同的安装方法</string>
+    <string name="file_done">完成！重新启动后更改将生效</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed模块未激活</string>
@@ -42,9 +71,9 @@
     <string name="module_no_ui">该模块未提供用户界面</string>
     <string name="no_xposed_modules_found">未找到Xposed模块！</string>
     <string name="xposed_module_list_updated">Xposed模块列表已更新\n重启后更改将生效</string>
-    <string name="warning_xposed_min_version">该模块需要较新版本的XposedBridge(%d)，因此无法激活。</string>
-    <string name="no_min_version_specified">该模块未指定需要的XposedBridge版本。</string>
-    <string name="warning_min_version_too_low">该模块在XposedBridge版本%1$d下创建，但因为不兼容版本%2$d中的变化内容，它已被禁用。</string>
+    <string name="warning_xposed_min_version">该模块需要较新版本的XposedBridge(%d)，因此无法激活</string>
+    <string name="no_min_version_specified">该模块未指定需要的XposedBridge版本</string>
+    <string name="warning_min_version_too_low">该模块在XposedBridge版本%1$d下创建，但因为不兼容版本%2$d中的变化内容，它已被禁用</string>
     <string name="module_launch">运行界面</string>
     <string name="module_download_updates">下载/更新</string>
     <string name="module_support">支持</string>
@@ -55,12 +84,12 @@
     <string name="menuSearch">搜索</string>
     <string name="menuReload">重新加载</string>
     <string name="changes">变更：</string>
-    <string name="branch_display">(%s 分支)</string>
+    <string name="branch_display">(%s分支)</string>
     <string name="download_author">作者：%s</string>
     <string name="download_unknown_author">未知作者</string>
-    <string name="download_status_installed">已安装(版本 %s)</string>
-    <string name="download_status_update_available">可更新(版本 %1$s \u2192 %2$s)</string>
-    <string name="download_timestamps">添加于 %1$s \u00b7 更新于 %2$s</string>
+    <string name="download_status_installed">已安装(版本%s)</string>
+    <string name="download_status_update_available">可更新(版本%1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">添加于%1$s \u00b7 更新于%2$s</string>
     <string name="download_sorting_title">排序方式</string>
     <string name="download_sorting_status">按状态排序</string>
     <string name="download_sorting_updated">按最后更新时间排序</string>
@@ -75,13 +104,18 @@
     <string name="download_section_older">30天前</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">安装</string>
+    <string name="settings_install_mode">安装方式</string>
+    <string name="install_mode_normal">经典（直接写入/system）</string>
+    <string name="install_mode_recovery_auto">Recovery（自动刷入zip）</string>
+    <string name="install_mode_recovery_manual">Recovery（手动刷入 zip写入到SD内存卡）</string>
     <string name="settings_group_download">下载</string>
     <string name="settings_enable_downloads">启用下载</string>
-    <string name="settings_enable_downloads_summary">允许Xposed安装器检查更新和新模块</string>
+    <string name="settings_enable_downloads_summary">允许Xposed安装器检查更新和安装新模块</string>
     <string name="settings_group_experimental">实验性</string>
     <string name="settings_performance_experiment">性能试验</string>
-    <string name="settings_performance_experiment_summary">如果您启用该选项，您的系统性能可能更好、更差或没有变化。请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启。</string>
-
+    <string name="settings_performance_experiment_summary">如果您启用该选项，您的系统性能可能更好、更差或没有变化，请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启</string>
+    
     <!--  Logs tab  -->
     <string name="logs_load_failed">无法读取日志：</string>
     <string name="logs_save_failed">无法将日志写入SD卡：</string>
@@ -89,14 +123,14 @@
 
     <!-- About tab -->
     <string name="about_developers_label">主要开发者：</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 与 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">请<b>不</b>要直接联系我们获取帮助，使用下面的链接。</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a>与<a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">请不要直接联系我们获取帮助，使用下面的链接</string>
     <string name="about_translator_label">翻译：</string>
-    <string name="translator">Cye3s, liveasx</string>
+    <string name="translator">Cye3s, Asx</string>
     <string name="about_version_label">应用程序版本：</string>
     <string name="about_source_label">源码：</string>
     <string name="about_support_label">获取支持：</string>
-    <string name="about_support_warning">该链接<b>只</b>适用于安装器和框架！如果您想获得模块相关的帮助支持，<b>不</b>要点击它，请联系模块作者。</string>
+    <string name="about_support_warning">该链接只适用于安装器和框架！如果您想获得模块相关的帮助支持，不要点击它，请联系模块作者</string>
     <string name="about_libraries_label">使用的库：</string>
 
     <!-- DownloadView -->
