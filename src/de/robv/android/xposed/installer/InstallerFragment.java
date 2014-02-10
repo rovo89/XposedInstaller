@@ -782,7 +782,7 @@ public class InstallerFragment extends Fragment {
 			return;
 
 		List<String> messages = new LinkedList<String>();
-		if (mRootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages) != 0) {
+		if (mRootUtil.execute("stop; start", messages) != 0) {
 			messages.add("");
 			messages.add(getString(R.string.reboot_failed));
 			showAlert(TextUtils.join("\n", messages).trim());
