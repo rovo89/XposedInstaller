@@ -32,6 +32,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
@@ -182,6 +183,23 @@ public class InstallerFragment extends Fragment {
 				});
 			}
 		});
+
+		if (!XposedApp.getPreferences().getBoolean("hide_install_warning", false)) {
+			final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
+			new AlertDialog.Builder(getActivity())
+			.setTitle(R.string.install_warning_title)
+			.setView(dontShowAgainView)
+			.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					CheckBox checkBox = (CheckBox) dontShowAgainView.findViewById(android.R.id.checkbox);
+					if (checkBox.isChecked())
+						XposedApp.getPreferences().edit().putBoolean("hide_install_warning", true).commit();
+				}
+			})
+			.setCancelable(false)
+			.show();
+		}
 
 		return v;
 	}

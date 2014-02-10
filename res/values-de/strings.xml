@@ -40,6 +40,9 @@
     <string name="manual_flash_note">Bitte installiere %s von der SD-Karte, um den Vorgang abzuschließen.</string>
     <string name="reboot_confirmation">Möchtest du jetzt neustarten?</string>
     <string name="reboot_recovery_confirmation">Möchtest du jetzt in den Recovery-Modus booten?</string>
+    <string name="install_warning_title">Vorsicht!</string>
+    <string name="install_warning">In manchen Fällen wird das Gerät nicht mehr korrekt starten, nachdem du Xposed installiert hast.\n\nFalls dir \"Soft Brick\" und \"Bootloop\" nichts sagen oder du nicht weißt, wie du dich aus einer solchen Situation befreien kannst, solltest du Xposed <b>NICHT</b> installieren!\n\nIn jedem Fall ist es sehr empfehlenswert, ein aktuelles Backup zu haben.</string>
+    <string name="dont_show_again">Nicht wieder anzeigen</string>
 
     <!--  File operations -->
     <string name="root_failed">Root-Zugriff fehlgeschlagen\n\nStelle sicher, dass das Gerät korrekt gerootet ist und Shell-Kommandos nicht blockiert werden.</string>
