@@ -7,6 +7,9 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import android.text.Html;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.util.Log;
 import android.util.Pair;
 
@@ -110,6 +113,26 @@ public class RepoParser {
 		} catch (NumberFormatException ex) {
 			return -1;
 		}
+	}
+
+	public static Spanned parseSimpleHtml(String source) {
+		source = source.replaceAll("<li>", "\t\u0095 ");
+		source = source.replaceAll("</li>", "<br>");
+		Spanned html = Html.fromHtml(source);
+
+		// trim trailing newlines
+		int len = html.length();
+		int end = len;
+		for (int i = len - 1; i >= 0; i--) {
+			if (html.charAt(i) != '\n')
+				break;
+			end = i;
+		}
+
+		if (end == len)
+			return html;
+		else
+			return new SpannableStringBuilder(html, 0, end);
 	}
 
 	protected ModuleVersion readModuleVersion(Module module) throws XmlPullParserException, IOException {

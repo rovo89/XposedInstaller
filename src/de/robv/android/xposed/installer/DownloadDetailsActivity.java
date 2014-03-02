@@ -1,20 +1,33 @@
 package de.robv.android.xposed.installer;
 
-import android.app.FragmentTransaction;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v13.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 
 public class DownloadDetailsActivity extends XposedDropdownNavActivity {
+
+	private ViewPager mPager;
+	private String[] mPageTitles;
+	private String mPackageName;
+
+	private static final int DOWNLOAD_DESCRIPTION = 0;
+	private static final int DOWNLOAD_VERSIONS = 1;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		String packageName = getIntent().getData().getSchemeSpecificPart();
-		DownloadDetailsFragment detailsFragment = DownloadDetailsFragment.newInstance(packageName);
+		setNavItem(XposedDropdownNavActivity.TAB_DOWNLOAD);
+		setContentView(R.layout.activity_download_details);
 
-		FragmentTransaction tx = getFragmentManager().beginTransaction();
-		tx.replace(android.R.id.content, detailsFragment);
-		tx.commit();
+		mPackageName = getIntent().getData().getSchemeSpecificPart();
+
+		mPageTitles = new String[] {getString(R.string.description_page), getString(R.string.versions_page)};
+		mPager = (ViewPager) findViewById(R.id.download_pager);
+		mPager.setAdapter(new ScreenSlidePagerAdapter(getFragmentManager()));
 	}
 
 	@Override
@@ -28,4 +41,33 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity {
 		intent.putExtra(XposedInstallerActivity.EXTRA_OPEN_TAB, TAB_DOWNLOAD);
 		return intent;
 	}
+
+	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+		public ScreenSlidePagerAdapter(FragmentManager fm) {
+			super(fm);
+		}
+
+		@Override
+		public Fragment getItem(int position) {
+			switch (position) {
+				case DOWNLOAD_DESCRIPTION:
+					return DownloadDetailsFragment.newInstance(mPackageName);
+				case DOWNLOAD_VERSIONS:
+					return DownloadDetailsVersionsFragment.newInstance(mPackageName);
+				default:
+					return null;
+			}
+		}
+
+		@Override
+		public int getCount() {
+			return mPageTitles.length;
+		}
+
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return mPageTitles[position];
+		}
+	}
+
 }

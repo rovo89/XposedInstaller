@@ -41,18 +41,6 @@
             android:orientation="vertical" >
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/versions"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textStyle="bold" />
-
-        <de.robv.android.xposed.installer.widget.ExpandableStaticListView
-            android:id="@+id/listVersions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </ScrollView>
