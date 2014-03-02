@@ -187,7 +187,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 				builder.show();
 				return true;
 		}
-	    return super.onOptionsItemSelected(item);
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
@@ -310,7 +310,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 		public void notifyDataSetChanged() {
 			setNotifyOnChange(false);
 			mAdapter.sort(null);
-		    super.notifyDataSetChanged();
+			super.notifyDataSetChanged();
 		}
 
 		@Override

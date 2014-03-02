@@ -65,9 +65,9 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 	}
 	
 	private static String getPackageName(Intent intent) {
-        Uri uri = intent.getData();
-        return (uri != null) ? uri.getSchemeSpecificPart() : null;
-    }
+		Uri uri = intent.getData();
+		return (uri != null) ? uri.getSchemeSpecificPart() : null;
+	}
 	
 
 

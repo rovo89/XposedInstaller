@@ -306,7 +306,7 @@ public class RepoLoader {
 				if (connection != null && connection instanceof HttpURLConnection)
 					((HttpURLConnection) connection).disconnect();
 				if (in != null)
-	                try { in.close(); } catch (IOException ignored) {}
+					try { in.close(); } catch (IOException ignored) {}
 				if (out != null)
 					try { out.close(); } catch (IOException ignored) {}
 			}
