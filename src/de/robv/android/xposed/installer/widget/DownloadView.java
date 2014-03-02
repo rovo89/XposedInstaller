@@ -95,11 +95,8 @@ public class DownloadView extends LinearLayout {
 				txtInfo.setVisibility(View.VISIBLE);
 				txtInfo.setText(R.string.download_view_no_url);
 				return;
-			}
-
-			btnDownload.setVisibility(View.VISIBLE);
-
-			if (mInfo == null) {
+			} else if (mInfo == null) {
+				btnDownload.setVisibility(View.VISIBLE);
 				btnDownloadCancel.setVisibility(View.GONE);
 				btnInstall.setVisibility(View.GONE);
 				progressBar.setVisibility(View.GONE);
@@ -109,6 +106,7 @@ public class DownloadView extends LinearLayout {
 					case DownloadManager.STATUS_PENDING:
 					case DownloadManager.STATUS_PAUSED:
 					case DownloadManager.STATUS_RUNNING:
+						btnDownload.setVisibility(View.GONE);
 						btnDownloadCancel.setVisibility(View.VISIBLE);
 						btnInstall.setVisibility(View.GONE);
 						progressBar.setVisibility(View.VISIBLE);
@@ -126,6 +124,7 @@ public class DownloadView extends LinearLayout {
 						break;
 
 					case DownloadManager.STATUS_FAILED:
+						btnDownload.setVisibility(View.VISIBLE);
 						btnDownloadCancel.setVisibility(View.GONE);
 						btnInstall.setVisibility(View.GONE);
 						progressBar.setVisibility(View.GONE);
@@ -134,6 +133,7 @@ public class DownloadView extends LinearLayout {
 						break;
 
 					case DownloadManager.STATUS_SUCCESSFUL:
+						btnDownload.setVisibility(View.GONE);
 						btnDownloadCancel.setVisibility(View.GONE);
 						btnInstall.setVisibility(View.VISIBLE);
 						progressBar.setVisibility(View.GONE);
