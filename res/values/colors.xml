@@ -9,7 +9,13 @@
 
     <!-- light theme-->
     <color name="app_background_light">#e5e5e5</color>
+    <color name="card_background_light">#fff</color>
+    <color name="card_background_pressed_light">#dfdfdf</color>
+    <color name="card_shadow_light">#dbdbdb</color>
 
     <!-- dark theme -->
+    <color name="card_background_dark">#292929</color>
+    <color name="card_background_pressed_dark">#464646</color>
+    <color name="card_shadow_dark">#111</color>
 
 </resources>

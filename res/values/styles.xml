@@ -6,11 +6,15 @@
         name="Theme.Light"
         parent="android:Theme.Holo.Light.DarkActionBar" >
         <item name="android:windowBackground">@color/app_background_light</item>
+        <item name="background_card">@drawable/background_card_light</item>
+        <item name="background_card_pressed">@drawable/background_card_pressed_light</item>
     </style>
 
     <style
         name="Theme.Dark"
         parent="android:Theme.Holo" >
+        <item name="background_card">@drawable/background_card_dark</item>
+        <item name="background_card_pressed">@drawable/background_card_pressed_dark</item>
     </style>
 
 </resources>
