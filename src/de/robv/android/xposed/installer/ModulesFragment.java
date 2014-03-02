@@ -14,6 +14,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
@@ -83,10 +85,16 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		setListAdapter(mAdapter);
 		setEmptyText(getActivity().getString(R.string.no_xposed_modules_found));
 		getListView().setFastScrollEnabled(true);
-		getListView().setDivider(getResources().getDrawable(R.color.list_divider));
-		getListView().setDividerHeight(1);
 		registerForContextMenu(getListView());
 		mModuleUtil.addListener(this);
+
+		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		int eightDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
+		getListView().setDivider(null);
+		getListView().setDividerHeight(eightDp);
+		getListView().setPadding(eightDp, eightDp, eightDp, eightDp);
+		getListView().setClipToPadding(false);
+
 	}
 
 	@Override
@@ -245,7 +253,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 	private class ModuleAdapter extends ArrayAdapter<InstalledModule> {
 		public ModuleAdapter(Context context) {
-			super(context, R.layout.list_item_module, R.id.text);
+			super(context, R.layout.list_item_module, R.id.title);
 		}
 
 		@Override
@@ -268,6 +276,10 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			}
 
 			InstalledModule item = getItem(position);
+
+			TextView version = (TextView) view.findViewById(R.id.version_name);
+			version.setText(item.versionName);
+
 			// Store the package name in some views' tag for later access
 			((CheckBox) view.findViewById(R.id.checkbox)).setTag(item.packageName);
 			view.setTag(item.packageName);

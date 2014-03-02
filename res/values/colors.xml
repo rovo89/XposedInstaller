@@ -6,6 +6,8 @@
     <color name="welcome_update_available">@color/download_status_update_available</color>
     <color name="list_divider">#ff0099cc</color>
     <color name="list_header">#ff0099cc</color>
+    <color name="secondary_text">#d5d5d5</color>
+    <color name="module_warning">#ff0000</color>
 
     <!-- light theme-->
     <color name="app_background_light">#e5e5e5</color>
