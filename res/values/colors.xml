@@ -7,4 +7,9 @@
     <color name="list_divider">#ff0099cc</color>
     <color name="list_header">#ff0099cc</color>
 
+    <!-- light theme-->
+    <color name="app_background_light">#e5e5e5</color>
+
+    <!-- dark theme -->
+
 </resources>

@@ -54,7 +54,8 @@ public abstract class XposedDropdownNavActivity extends XposedBaseActivity {
 			navigationItemList.add(makeNavigationItem(getString(R.string.tabAbout), AboutFragment.class));
 		}
 
-		SimpleAdapter adapter = new SimpleAdapter(this, navigationItemList,
+		SimpleAdapter adapter = new SimpleAdapter(getActionBar().getThemedContext(),
+				navigationItemList,
 				android.R.layout.simple_spinner_dropdown_item,
 				new String[] { "title" },
 				new int[] { android.R.id.text1 });

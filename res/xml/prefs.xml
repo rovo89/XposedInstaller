@@ -24,6 +24,15 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="group_app"
+        android:title="@string/settings_group_app" >
+        <CheckBoxPreference
+            android:key="use_dark_theme"
+            android:title="@string/settings_enable_dark_theme"
+            android:summary="@string/settings_enable_dark_theme_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="group_experimental"
         android:title="@string/settings_group_experimental" >
         <CheckBoxPreference

@@ -19,6 +19,7 @@
         android:allowBackup="false"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:theme="@style/Theme.Light"
         android:name=".XposedApp" >
         <activity
             android:name=".WelcomeActivity"
