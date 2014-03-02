@@ -6,4 +6,7 @@
         format="reference" />
     <attr name="background_card_pressed"
         format="reference" />
+    <attr name="pager_tab_strip_bg"
+        format="reference" />
+
 </resources>

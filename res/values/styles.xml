@@ -8,6 +8,7 @@
         <item name="android:windowBackground">@color/app_background_light</item>
         <item name="background_card">@drawable/background_card_light</item>
         <item name="background_card_pressed">@drawable/background_card_pressed_light</item>
+        <item name="pager_tab_strip_bg">@color/pager_tab_strip_bg_light</item>
     </style>
 
     <style
@@ -15,6 +16,7 @@
         parent="android:Theme.Holo" >
         <item name="background_card">@drawable/background_card_dark</item>
         <item name="background_card_pressed">@drawable/background_card_pressed_dark</item>
+        <item name="pager_tab_strip_bg">@color/pager_tab_strip_bg_dark</item>
     </style>
 
 </resources>
