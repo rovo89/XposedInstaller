@@ -75,6 +75,11 @@
     <string name="download_section_older">30天前</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">安装</string>
+    <string name="settings_install_mode">安装方式</string>
+    <string name="install_mode_normal">经典 (直接写入 /system)</string>
+    <string name="install_mode_recovery_auto">Recovery (自动刷 zip 包)</string>
+    <string name="install_mode_recovery_manual">Recovery (只将 zip 写入 SD 卡以手动刷入)</string>
     <string name="settings_group_download">下载</string>
     <string name="settings_enable_downloads">启用下载</string>
     <string name="settings_enable_downloads_summary">允许Xposed安装器检查更新和新模块</string>
