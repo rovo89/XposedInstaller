@@ -116,6 +116,8 @@
     <string name="settings_enable_downloads">Downloads aktivieren</string>
     <string name="settings_enable_downloads_summary">Xposed Installer die Suche nach Aktualisierungen und neuen Modulen erlauben</string>
     <string name="settings_group_experimental">Experimente</string>
+    <string name="settings_disable_resources">Ressourcen-APIs deaktivieren</string>
+    <string name="settings_disable_resources_summary">Workaround für Konflikte mit \"Theming Engines\"\n<b>VORSICHT:</b> Module, die Ressourcen verändern, werden mit dieser Einstellung nicht funktionieren.</string>
     <string name="settings_performance_experiment">Performance-Experiment</string>
     <string name="settings_performance_experiment_summary">Falls du diese Einstellung aktivierst, wird sich die Leistung Ihres System entweder verschlechtern, verbessern oder gar nicht verändern. Teste sie und berichte, welches Verhalten du beobachten kannst. Nachdem du diese Einstellung geändert hast, musst du das Framework neu installieren und das Gerät neustarten.</string>
 
