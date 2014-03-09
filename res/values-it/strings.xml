@@ -3,6 +3,9 @@
 
     <!-- General/various strings -->
     <string name="app_name">Xposed Installer</string>
+    <string name="menuSend">Invia</string>
+    <string name="menuSaveToSd">Sava su scheda SD</string>
+    <string name="xposed_not_active">L\'ultima versione di Xposed non è attiva. Hai installato il framework e riavviato?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Benvenuto in <b>Xposed Installer</b>!\nScegli cosa desideri fare:</string>
@@ -16,12 +19,14 @@
     <string name="welcome_update_available">Uno o più aggiornamenti per moduli sono disponibili.</string>
     <string name="tabSettings">Impostazioni</string>
     <string name="tabSettingsDescription">In questa sezione è possibile configurare Xposed Installer ed il framework.</string>
-    <string name="tabAbout">About</string>
+    <string name="tabLogs">Log</string>
+    <string name="tabLogsDescription">Visualizza e salva/invia i log del framework Xposed.</string>
+    <string name="tabAbout">Informazioni</string>
     <string name="tabAboutDescription">Qui è possibile conoscere chi ha creato Xposed, come richiedere supporto, ecc.</string>
 
     <!-- Installer tab -->
     <string name="install">Installa/Aggiorna</string>
-    <string name="uninstall">Rimuovi</string>
+    <string name="uninstall">Disinstalla</string>
     <string name="installedVersion">attiva</string>
     <string name="latestVersion">ultima</string>
     <string name="versions">Versioni:</string>
@@ -30,6 +35,34 @@
     <string name="areyousure">Sei sicuro?</string>
     <string name="phone_not_compatible">Xposed non è (ancora) compatibile con l\'SDK Android %1$d o con l\'architettura (%2$s) del tuo processore.</string>
     <string name="not_tested_but_compatible">Xposed non è stato testato con l\'SDK Android %d, ma sembra essere compatibile. Puoi provare ad installarlo, se sei avventuroso.</string>
+    <string name="reboot_failed">Riavvio fallito. Si prega di utilizzare la normale procedura di riavvio del dispositivo.</string>
+    <string name="auto_flash_note">%s dovrebbe essere flashato automaticamente dopo avere riavviato in modalità recovery.</string>
+    <string name="manual_flash_note">Flasha %s dalla scheda SD per completare l'\'installazione.</string>
+    <string name="reboot_recovery_confirmation">Vuoi riavviare in modalità recovery?</string>
+
+    <!--  File operations -->
+    <string name="root_failed">Impossibile ottenere i permessi di root.\n\nAssicurati che il tuo dispositivo sia rootato correttamente e che non siano bloccati i comandi shell.</string>
+    <string name="file_extract_failed">Impossibile estrarre %s</string>
+    <string name="file_mounting_writable">Monto %s in scrittura&#8230;</string>
+    <string name="file_mount_writable_failed">Impossibile montare %s in scrittura</string>
+    <string name="file_trying_to_continue">Provo a continuare&#8230;</string>
+    <string name="file_backup_already_exists">Il backup esiste già in %s</string>
+    <string name="file_backup_not_found">Nessun backup trovato in %s</string>
+    <string name="file_backup_failed">Impossibile creare il backup di %s</string>
+    <string name="file_backup_successful">Backup creato in %s</string>
+    <string name="file_backup_restoring">Ripristinare il backup da %s</string>
+    <string name="file_copying">Sto copiando %s&#8230;</string>
+    <string name="file_copy_failed">Impossibile copiare %1$s in %2$s</string>
+    <string name="file_move_failed">Impossibile spostare %1$s in %2$s</string>
+    <string name="file_set_perms_failed">Impossibile impostare i permessi per %s</string>
+    <string name="file_set_owner_failed">Impossibile impostare il proprietario per %s</string>
+    <string name="file_removing">Rimuovendo %s&#8230;</string>
+    <string name="file_remove_failed">Impossibile rimuovere %s</string>
+    <string name="file_creating_directory">Sto creando la cartella %s&#8230;</string>
+    <string name="file_create_directory_failed">Impossibile creare la cartella %s</string>
+    <string name="file_writing_recovery_command">Sto scrivendo i comandi per la recovery&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Impossibile scrivere i comandi per la recovery. Prova ad utilizzare un metodo di installazione diverso.</string>
+    <string name="file_done">Fatto! I cambiamenti saranno attivi dopo avere riavviato.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Il modulo Xposed non è stato ancora attivato</string>
@@ -40,6 +73,11 @@
     <string name="warning_xposed_min_version">Questo modulo richiede una nuova versione (%d) di XposedBridge, di conseguenza non può essere attivato.</string>
     <string name="no_min_version_specified">Questo modulo non specifica la versione di XposedBridge di cui ha bisogno.</string>
     <string name="warning_min_version_too_low">Questo modulo è stato creato per la versione %1$d di XposedBridge, ma a causa di incompatibilità con la versione %2$d è stato disattivato.</string>
+    <string name="module_launch">Lancia UI</string>
+    <string name="module_download_updates">Scarica/Aggiorna</string>
+    <string name="module_support">Supporta</string>
+    <string name="module_app_info">Info app</string>
+    <string name="module_uninstall">Disinstalla</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Cerca</string>
@@ -65,6 +103,11 @@
     <string name="download_section_older">Oltre 30 giorni fa</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">Installazione</string>
+    <string name="settings_install_mode">Modalità installazione</string>
+    <string name="install_mode_normal">Classica (scrivi direttamente in /system)</string>
+    <string name="install_mode_recovery_auto">Recovery (flasha automaticamente lo zip)</string>
+    <string name="install_mode_recovery_manual">Recovery (salva lo zip su scheda SD, flasha manualmente)</string>
     <string name="settings_group_download">Download</string>
     <string name="settings_enable_downloads">Abilita downloads</string>
     <string name="settings_enable_downloads_summary">Permetti a Xposed Installer di controllare eventuali aggiornamenti e nuovi moduli</string>
@@ -72,12 +115,17 @@
     <string name="settings_performance_experiment">Esperimento performance</string>
     <string name="settings_performance_experiment_summary">Se attivi questo, la performance del sistema potrebbe aumentare, diminuire o restare invariata. Sei libero di testarla e segnalarci gli effetti che essa ha avuto. È necessario reinstallare il framework e riavviare dopo aver cambiato questo.</string>
 
+    <!--  Logs tab  -->
+    <string name="logs_load_failed">Impossibile leggere il log:</string>
+    <string name="logs_save_failed">Impossibile salvare su SD il log:</string>
+    <string name="sdcard_not_writable">Scheda SD non trovato o non scrivibile</string>
+
     <!-- About tab -->
     <string name="about_developers_label">Sviluppatori principali:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> e <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning"><b>Non</b> contattare direttamente gli sviluppatori per supporto, usa i link in basso.</string>
     <string name="about_translator_label">Tradotto da:</string>
-    <string name="translator">Vincenzo Cerminara</string>
+    <string name="translator">Vincenzo Cerminara e Manuel Valentino</string>
     <string name="about_version_label">Versione applicazione:</string>
     <string name="about_source_label">Codice sorgente:</string>
     <string name="about_support_label">Ottieni supporto:</string>
