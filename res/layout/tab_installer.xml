@@ -30,11 +30,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:text="@string/installedVersion" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:text="@string/latestVersion" />
             </TableRow>
 
@@ -51,12 +53,14 @@
                     android:id="@+id/app_process_installed_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:text="@string/none" />
 
                 <TextView
                     android:id="@+id/app_process_latest_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:text="@string/none" />
             </TableRow>
 
@@ -73,12 +77,14 @@
                     android:id="@+id/jar_installed_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:text="@string/none" />
 
                 <TextView
                     android:id="@+id/jar_latest_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:text="@string/none" />
             </TableRow>
         </TableLayout>
