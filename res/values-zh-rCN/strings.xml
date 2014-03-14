@@ -30,9 +30,9 @@
     <string name="installedVersion">激活</string>
     <string name="latestVersion">程序自带</string>
     <string name="versions">版本：</string>
-    <string name="soft_reboot">软重启</string>
-    <string name="reboot">重启</string>
-    <string name="areyousure">您确定？</string>
+    <string name="soft_reboot">快速重启</string>
+    <string name="reboot">正常重启</string>
+    <string name="areyousure">您确定重启？</string>
     <string name="phone_not_compatible">Xposed目前不兼容 Android SDK 版本 %1$d 或者您的处理器架构(%2$s)。</string>
     <string name="not_tested_but_compatible">Xposed未在 Android SDK 版本 %d 上测试，但它似乎是可兼容的。如果您热爱冒险，您可以试试安装它。</string>
 
@@ -54,7 +54,7 @@
     <!-- Download tab -->
     <string name="menuSearch">搜索</string>
     <string name="menuReload">重新加载</string>
-    <string name="changes">变更：</string>
+    <string name="changes">更新日志：</string>
     <string name="branch_display">(%s 分支)</string>
     <string name="download_author">作者：%s</string>
     <string name="download_unknown_author">未知作者</string>
@@ -91,7 +91,7 @@
     <string name="about_developers_label">主要开发者：</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 与 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">请<b>不</b>要直接联系我们获取帮助，使用下面的链接。</string>
-    <string name="about_translator_label">翻译：</string>
+    <string name="about_translator_label">汉化修正：</string>
     <string name="translator">Cye3s, liveasx</string>
     <string name="about_version_label">应用程序版本：</string>
     <string name="about_source_label">源码：</string>
