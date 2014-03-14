@@ -5,16 +5,16 @@
     <string name="app_name">Xposed Yükləyici</string>
     <string name="menuSend">Göndər</string>
     <string name="menuSaveToSd">Yaddaş kartında saxla</string>
-    <string name="xposed_not_active">Xposed\'in son versiyası aktiv deyil. Framework\'i yükləmisiz və cihazı yenidən başlatmısız?</string>
+    <string name="xposed_not_active">Xposed\'in son versiyası aktiv deyil. Framework\'i yükləmisiz? vəya cihazı yenidən başlatmısız?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Xoş Gəlmişsiniz <b>Xposed Yükləyici</b>!\nZəhmət olmasa nə istədiyinizi seçin:</string>
+    <string name="welcome">Xoş Gəlmişsiniz <b>Xposed Yükləyici</b>!\nZəhmət olmasa sizə uyğun olanı seçin:</string>
     <string name="tabInstall">Framework</string>
     <string name="tabInstallDescription">Burada siz Xposed Framework\'ünü idarə edə bilərsiniz, hansı ki modulların istifadəsi üçün lazımdır.</string>
     <string name="tabModules">Modullar</string>
     <string name="tabModulesDescription">Framework hərhansı funksionallıq əlavə etmir. Bunun üçün o modullara ehtiyacınız var. Bu şöbədə modulları yüklədiktən sonra aktivləşdirə bilərsiniz.</string>
     <string name="tabDownload">Yüklə</string>
-    <string name="tabDownloadDescription">Bu şöbə sizə modulların deposuna girmək üçün icazə verir, belə ki siz istədiyiniz axtara,yükləyə və güncəl saxlaya bilərsiniz.</string>
+    <string name="tabDownloadDescription">Bu şöbə sizə modulların deposuna girmək üçün icazə verir, belə ki siz istədiyinizi axtara,yükləyə və güncəl saxlaya bilərsiniz.</string>
     <string name="welcome_framework_update_available">Xposed framework üçün yeniləmə mövcuddur.</string>
     <string name="welcome_update_available">Bir və ya bir neçə yeniləmə mövcuddur.</string>
     <string name="tabSettings">Parametrlər</string>
@@ -30,11 +30,11 @@
     <string name="installedVersion">aktiv</string>
     <string name="latestVersion">paketlənmiş</string>
     <string name="versions">Versiyalar:</string>
-    <string name="soft_reboot">Soft yenidən başlat</string>
+    <string name="soft_reboot">Cəld yenidən başlat</string>
     <string name="reboot">Yenidən başlat</string>
-    <string name="areyousure">Əminsiz?</string>
+    <string name="areyousure">Əminsiniz?</string>
     <string name="phone_not_compatible">Xposed Android SDK versiyası %1$d ya da sizin prosessor arxitektura(%2$s)\'sı ilə uyğun deyil.</string>
-    <string name="not_tested_but_compatible">Xposed Android SDK versiya %d ilə test edilməyib, ancaq uyğun olduğu görünür. Əgər macəra sevirsənizsə,yükləyə bilərsiz :).</string>
+    <string name="not_tested_but_compatible">Xposed Android SDK versiya %d ilə test edilməyib, ancaq uyğun olduğu görünür. Əgər macəra sevirsinizsə,yükləyə bilərsiz :).</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed modulu hələ ki aktiv deyil</string>
@@ -56,11 +56,11 @@
     <string name="menuReload">Yenidən yüklə</string>
     <string name="changes">Dəyişikliklər:</string>
     <string name="branch_display">(%s köməkçi)</string>
-    <string name="download_author">tərəfindən %s</string>
+    <string name="download_author">%s tərəfindən</string>
     <string name="download_unknown_author">bilinməyən müəllif</string>
-    <string name="download_status_installed">Quraşdırıldı (versiya %s)</string>
-    <string name="download_status_update_available">Yeniləmə mövcuddur (versiya %1$s \u2192 %2$s)</string>
-    <string name="download_timestamps">Əlavə olundu %1$s \u00b7 Yeniləndi on %2$s</string>
+    <string name="download_status_installed">Quraşdırıldı (%s versiya)</string>
+    <string name="download_status_update_available">Yeniləmə mövcuddur (%1$s versiya \u2192 %2$s)</string>
+    <string name="download_timestamps">%1$s Əlavə olundu \u00b7 %2$s Yeniləndi </string>
     <string name="download_sorting_title">Çeşidləmə növü</string>
     <string name="download_sorting_status">Statusa görə çeşidlə</string>
     <string name="download_sorting_updated">Axırıncı yeniləməyə görə çeşidlə</string>
@@ -76,7 +76,7 @@
 
     <!-- Settings tab -->
     <string name="settings_group_download">Yüklə</string>
-    <string name="settings_enable_downloads">Yükləmələri aktiv et</string>
+    <string name="settings_enable_downloads">Yükləmələri aktiv edin</string>
     <string name="settings_enable_downloads_summary">Xposed Yükləyiciyə yeni modullara və yeniləmələrin olub-olmadığına yoxlamağa icazə ver.</string>
     <string name="settings_group_experimental">Təcrübi</string>
     <string name="settings_performance_experiment">İcra təcrübəsi</string>
@@ -106,8 +106,8 @@
     <string name="download_view_no_url">Yükləmə URL\'sı aktiv deyil</string>
     <string name="download_view_running">Yükləmə çalışır (%1$,d of %2$,d kB)</string>
     <string name="download_view_waiting">Yükləmə gözləyir</string>
-    <string name="download_view_successful">Yükləmə müvəffəqiyyətlidir</string>
-    <string name="download_view_failed">Yükləmə uğursuzdur (səhv %d)</string>
+    <string name="download_view_successful">Yükləmə başa çatdı</string>
+    <string name="download_view_failed">Yükləmə uğursuzdur (%d səhv )</string>
 
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">MD5 məbləği səhvdir (yükləndi: %1$s, gözlənilirdi: %2$s)</string>
@@ -118,6 +118,6 @@
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Yükləmə %1$s uğursuz oldu: %2$d (%3$s)</string>
     <string name="repo_download_failed">Yükləmə %1$s uğursuz oldu: %2$s</string>
-    <string name="repo_load_failed">Depoya çata bilmədi burdan %1$s:\n%2$s</string>
+    <string name="repo_load_failed">Depoya çata bilmədi %1$s:\n%2$s</string>
 
 </resources>

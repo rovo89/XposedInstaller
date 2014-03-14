@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- General/various strings -->
+    <string name="app_name">Xposed Installer</string>
+    <string name="menuSend">Изпрати</string>
+    <string name="menuSaveToSd">Запиши в SD картата</string>
+    <string name="xposed_not_active">Последната версия на Xposed не е активна. Инсталирахте ли framework и рестартирахте ли?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome">Добре дошли в <b>Xposed Installer</b>!\nМоля изберете какво желаете да направите:</string>
+    <string name="tabInstall">Framework</string>
+    <string name="tabInstallDescription">От тук можете да управлявате Xposed framework, който е необходим за да работят модулите.</string>
+    <string name="tabModules">Модули</string>
+    <string name="tabModulesDescription">Самият framework не добавя никаква функционалност. За тази цел се нуждаете от модули. В тази секция можете да активирате модулите, след като ги изтеглите.</string>
+    <string name="tabDownload">Изтегляне</string>
+    <string name="tabDownloadDescription">Този раздел Ви дава достъп до хранилището с модули, където можете да ги търсите и изтегляте, а също така да ги държите обновени.</string>
+    <string name="welcome_framework_update_available">Налично е обновление за Xposed framework (%s).</string>
+    <string name="welcome_update_available">Налични са едно или повече обновления за модулите.</string>
+    <string name="tabSettings">Настройки</string>
+    <string name="tabSettingsDescription">Отидете в този раздел за да настроите Xposed Installer и framework.</string>
+    <string name="tabLogs">Дневници</string>
+    <string name="tabLogsDescription">Показва и записва/изпраща дневници за Xposed framework.</string>
+    <string name="tabAbout">Относно</string>
+    <string name="tabAboutDescription">Научете за хората създали Xposed, къде да намерите поддръжка и т.н.</string>
+
+    <!-- Installer tab -->
+    <string name="install">Инсталирай/Обнови</string>
+    <string name="uninstall">Премахни</string>
+    <string name="installedVersion">активна</string>
+    <string name="latestVersion">последна</string>
+    <string name="versions">Версии:</string>
+    <string name="soft_reboot">Софт рестарт</string>
+    <string name="reboot">Рестарт</string>
+    <string name="areyousure">Сигурни ли сте?</string>
+    <string name="phone_not_compatible">Xposed не е съвместим с Android SDK версия %1$d или с архитектурата на вашия процесор (%2$s).</string>
+    <string name="not_tested_but_compatible">Xposed не е изпробван с SDK версия %d, но изглежда е съвместим. Може да го инсталирате, ако се смятате за подготвени.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Модула за Xposed не е активиран</string>
+    <string name="module_empty_description">(няма описание)</string>
+    <string name="module_no_ui">Този модул няма потребителски интерфейс</string>
+    <string name="no_xposed_modules_found">Не са намерени модули за Xposed!</string>
+    <string name="xposed_module_list_updated">Списъка с Xposed модули е обновен\nПромените ще бъдат активни след рестарт</string>
+    <string name="warning_xposed_min_version">Този модул изисква най-новият XposedBridge версия (%d) и не може да се активира.</string>
+    <string name="no_min_version_specified">Този модул не указва нужната версия на XposedBridge.</string>
+    <string name="warning_min_version_too_low">Този модул е създаден за XposedBridge версия %1$d, но поради несъвместимост с версия %2$d, е изключен.</string>
+    <string name="module_launch">Стартирай UI</string>
+    <string name="module_download_updates">Изтегляне/Обновяване</string>
+    <string name="module_support">Поддръжка</string>
+    <string name="module_app_info">Информация</string>
+    <string name="module_uninstall">Премахни</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Търси</string>
+    <string name="menuReload">Презаревди</string>
+    <string name="changes">Промени:</string>
+    <string name="branch_display">(%s branch)</string>
+    <string name="download_author">от %s</string>
+    <string name="download_unknown_author">неизвестен автор</string>
+    <string name="download_status_installed">Инсталиран (версия %s)</string>
+    <string name="download_status_update_available">Налично обновление (версия %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Добавен на %1$s \u00b7 Обновен на %2$s</string>
+    <string name="download_sorting_title">Подреждане</string>
+    <string name="download_sorting_status">Подреди по статус</string>
+    <string name="download_sorting_updated">Подреди по последно обновление</string>
+    <string name="download_sorting_created">Подреди по дата на създаване</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Налично обновление</string>
+    <string name="download_section_installed">Инсталиран</string>
+    <string name="download_section_not_installed">Не е инсталиран</string>
+    <string name="download_section_24h">Преди 24 часа</string>
+    <string name="download_section_7d">Преди 7 дни</string>
+    <string name="download_section_30d">Преди 30 дни</string>
+    <string name="download_section_older">Преди повече от 30 дни</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Изтегляне</string>
+    <string name="settings_enable_downloads">Позволи изтегляния</string>
+    <string name="settings_enable_downloads_summary">Позволи на Xposed Installer да проверява за обновления и нови модули</string>
+    <string name="settings_group_experimental" tools:ignore="UnusedResources">Производителност</string>
+    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Експеримент за производителност</string>
+    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Ако позволите това, производителността на системата може да се увеличи, да се намали или да се запази. Чувствайте се свободни да пробвате и да дадете отзиви. Необходимо е да преинсталирате framework и да рестартирате след промяна на тази настройка.</string>
+
+    <!--  Logs tab  -->
+    <string name="logs_load_failed">Неможе да се прочете дневника:</string>
+    <string name="logs_save_failed">Дневника неможе да се запише на SD картата:</string>
+    <string name="sdcard_not_writable">SD картата не съществува, или не е за запис</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Разработчици:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> и <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">Моля <b>не</b> се свързвайте с нс директно, използвайте долния линк.</string>
+    <string name="about_translator_label">Преводач:</string>
+    <string name="translator">mamutcho</string>
+    <string name="about_version_label">Версия:</string>
+    <string name="about_source_label">Изходен код:</string>
+    <string name="about_support_label">Поддръжка на:</string>
+    <string name="about_support_warning">Тази връзка е за инсталатора <b>само</b> на framework! Ако имате нужда от помощ с някой от модулите, <b>не</b> я използвайте, свържете се с автора на модула.</string>
+    <string name="about_libraries_label">Използвано библиотеки:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Изтегли</string>
+    <string name="download_view_install">Инсталирай</string>
+    <string name="download_view_cancel">Отказ</string>
+    <string name="download_view_no_url">Няма наличен URL за изтегляне</string>
+    <string name="download_view_running">Изтегляне (%1$,d от %2$,d kB)</string>
+    <string name="download_view_waiting">Подготовка за изтегляне</string>
+    <string name="download_view_successful">Успешно изтегляне</string>
+    <string name="download_view_failed">Неуспешно изтеглен (грешка %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">Некоректна MD5 сума (изтеглено: %1$s, очаквано: %2$s)</string>
+    <string name="download_could_not_read_file">Не може да се зареди изтегления файл: %s</string>
+    <string name="download_no_valid_apk">Изтегления файл не е валидно приложение (или е несъвместино)</string>
+    <string name="download_incorrect_package_name">Името на пакета е грешно (изтеглено: %1$s, очаквано: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Изтеглянето на %1$s е неуспешно: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Изтеглянето на %1$s е неуспешно: %2$s</string>
+    <string name="repo_load_failed">Не може да се зареди хранилището от %1$s:\n%2$s</string>
+
+</resources>
