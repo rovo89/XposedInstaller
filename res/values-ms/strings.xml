@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- General/various strings -->
     <string name="app_name">Pemasangan Xposed</string>
@@ -78,9 +78,9 @@
     <string name="settings_group_download">muat turun</string>
     <string name="settings_enable_downloads">Membolehkan Muat turun</string>
     <string name="settings_enable_downloads_summary">Benarkan Xposed Installer utk memeriksa kemaskini dan modul terbaru</string>
-    <string name="settings_group_experimental" tools:ignore="UnusedResources">Eksperimen</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Prestasi experimen</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Jika anda membolehkan ini, Prestasi sistem anda mungkin sama ada kenaikan, penurunan atau tetap sama. Jangan ragu untuk mencuba dan membuat laporan yang kesan yang anda lihat (atau jika tidak ada pada semua). Anda perlu memasang semula framework dan reboot selepas menukar ini.</string>
+    <string name="settings_group_experimental">Eksperimen</string>
+    <string name="settings_performance_experiment">Prestasi experimen</string>
+    <string name="settings_performance_experiment_summary">Jika anda membolehkan ini, Prestasi sistem anda mungkin sama ada kenaikan, penurunan atau tetap sama. Jangan ragu untuk mencuba dan membuat laporan yang kesan yang anda lihat (atau jika tidak ada pada semua). Anda perlu memasang semula framework dan reboot selepas menukar ini.</string>
 
     <!--  Logs tab  -->
     <string name="logs_load_failed">Tidak boleh membaca log:</string>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- General/various strings -->
     <string name="app_name">Xposed Telepítő</string>
@@ -78,9 +78,9 @@
     <string name="settings_group_download">Letöltések</string>
     <string name="settings_enable_downloads">Letöltések engedélyezése</string>
     <string name="settings_enable_downloads_summary">Engedélyezd az Xposed Telepítőnek, hogy frissítéseket és új modulokat keressen</string>
-    <string name="settings_group_experimental" tools:ignore="UnusedResources">Kísérlet</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Teljesítménykísérlet</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Ha ezt engedélyezed, a rendszer teljesítménye lehet, hogy növekszik, csökken vagy nem változik. Nyugodtan próbáld ki és jelezz vissza, hogy melyik hatást látod (vagy hogy nincs semmilyen). Újra kell telepítened a keretrendszert és újraindítanod az eszközt, miután ezt megváltoztatod.</string>
+    <string name="settings_group_experimental">Kísérlet</string>
+    <string name="settings_performance_experiment">Teljesítménykísérlet</string>
+    <string name="settings_performance_experiment_summary">Ha ezt engedélyezed, a rendszer teljesítménye lehet, hogy növekszik, csökken vagy nem változik. Nyugodtan próbáld ki és jelezz vissza, hogy melyik hatást látod (vagy hogy nincs semmilyen). Újra kell telepítened a keretrendszert és újraindítanod az eszközt, miután ezt megváltoztatod.</string>
 
     <!-- Logs tab -->
     <string name="logs_load_failed">Nem lehetett olvasni a naplót:</string>

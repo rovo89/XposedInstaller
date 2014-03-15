@@ -8,21 +8,21 @@
     <string name="xposed_not_active">Najnovšia verzia Xposed nie je aktuálne aktívna. Nainštalovali ste framework a vykonali reštart?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Vitajte v <b>Xposed Inštalátore</b>!\nProsím vyberte, čo chcete robiť:</string>
+    <string name="welcome">Vitajte v <b>Xposed Inštalátori</b>!\nProsím, vyberte, čo chcete robiť:</string>
     <string name="tabInstall">Framework</string>
     <string name="tabInstallDescription">Tu môžete spravovať Xposed framework, ktorý je nutný pre fungovanie modulov.</string>
     <string name="tabModules">Moduly</string>
     <string name="tabModulesDescription">Samotný framework neposkytuje žiadne funkcie. Tieto funkcie poskytujú rôzne moduly. V tejto sekcii môžete aktivovať moduly po ich inštalácií.</string>
     <string name="tabDownload">Sťahovanie</string>
-    <string name="tabDownloadDescription">Táto sekcia Vám umožní pristupovať k repozitáru s modulmi, takže môžete vyhľadávať a sťahovať tie, ktoré sa Vám páčia a udržiavať ich stále aktuálne.</string>
-    <string name="welcome_framework_update_available">Je dostupná aktualizácia pre Xposed framework.</string>
+    <string name="tabDownloadDescription">Táto sekcia vám umožní pristupovať k repozitáru s modulmi, takže môžete vyhľadávať a sťahovať tie, ktoré sa vám páčia a udržiavať ich stále aktuálne.</string>
+    <string name="welcome_framework_update_available">Je dostupná aktualizácia pre Xposed framework (%s).</string>
     <string name="welcome_update_available">Je dostupná jedna alebo viac aktualizácií pre moduly.</string>
     <string name="tabSettings">Nastavenia</string>
     <string name="tabSettingsDescription">Prejdite do tejto sekcie pre nastavenie Xposed Inštalátora a frameworku.</string>
     <string name="tabLogs">Záznamy</string>
     <string name="tabLogsDescription">Zobraziť a uložiť/odoslať záznamy Xposed frameworku.</string>
     <string name="tabAbout">O aplikácii</string>
-    <string name="tabAboutDescription">Dozveďte sa viac o ľuďoch, ktorí vytvorili Xposed, kde môžete získať podporu pre túto aplikáciu, atď.</string>
+    <string name="tabAboutDescription">Zistite viac o ľuďoch, ktorí vytvorili Xposed, kde môžete získať podporu pre túto aplikáciu, atď.</string>
 
     <!-- Installer tab -->
     <string name="install">Inštalovať/Aktualizovať</string>
@@ -32,20 +32,52 @@
     <string name="versions">Verzie:</string>
     <string name="soft_reboot">Softvérový reštart</string>
     <string name="reboot">Reštart</string>
-    <string name="areyousure">Ste si istí?</string>
-    <string name="phone_not_compatible">Xposed (zatiaľ) nie je kompatibilný s verziou Android SDK %1$d alebo s architektúrou procesora (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed nebol testovaný s Android SDK verziou %d, ale zdá sa byť kompatibilný. Môžete ho instalovať na vlastné riziko.</string>
+    <string name="areyousure">Ste si istý?</string>
+    <string name="phone_not_compatible">Xposed nie je (zatiaľ) kompatibilný s verziou Android SDK %1$d alebo s architektúrou procesora (%2$s).</string>
+    <string name="not_tested_but_compatible">Xposed nebol testovaný s verziou Android SDK %d, ale zdá sa byť kompatibilný. Môžete ho instalovať na vlastné riziko.</string>
+    <string name="reboot_failed">Reštart zlyhal. Prosím, použite normálnu funkciu zariadenia pre reštart.</string>
+    <string name="auto_flash_note">Zip %s by mal byť automaticky flashnutý hneď, ako stlačíte tlačidlo \"OK\".</string>
+    <string name="manual_flash_note">Prosím, flashnite %s z karty SD na dokončenie operácie.</string>
+    <string name="reboot_confirmation">Chcete reštartovať teraz?</string>
+    <string name="reboot_recovery_confirmation">Chcete reštartovať do recovery teraz?</string>
+    <string name="install_warning_title">Buďte opatrný!</string>
+    <string name="install_warning">V niektorých prípadoch sa vaše zariadenie nemusí spustiť po inštalácii Xposedu.\n\nAk ste nikdy predtým nepočuli o problémoch, ako sú \"soft brick\" a \"bootloop\", alebo ak neviete, ako sa dostať z takejto situácie, <b>NEINŠTALUJTE</b> Xposed!\n\nV každom prípade je odporúčané si vytvoriť zálohu.</string>
+    <string name="dont_show_again">Nezobrazovať znovu</string>
 
+    <!--  File operations -->
+    <string name="root_failed">Nepodarilo sa získať root prístup.\n\nUistite sa, že je zariadenie správne rootnuté a príkazy konzoly nie sú blokované.</string>
+    <string name="file_extract_failed">Nemožno rozbaliť %s</string>
+    <string name="file_mounting_writable">Pripájanie %s na zápis&#8230;</string>
+    <string name="file_mount_writable_failed">Nemožno pripojiť %s na zápis</string>
+    <string name="file_trying_to_continue">Pokus o pokračovanie&#8230;</string>
+    <string name="file_backup_already_exists">Záloha už existuje v %s</string>
+    <string name="file_backup_not_found">Nebola nájdená žiadna záloha v %s</string>
+    <string name="file_backup_failed">Nepodarilo sa vytvoriť zálohu %s</string>
+    <string name="file_backup_successful">Záloha bola vytvorená v %s</string>
+    <string name="file_backup_restoring">Obnovovanie zálohy z %s</string>
+    <string name="file_copying">Kopírovanie %s&#8230;</string>
+    <string name="file_copy_failed">Nemožno kopírovať %1$s do %2$s</string>
+    <string name="file_move_failed">Nemožno presunúť %1$s do %2$s</string>
+    <string name="file_set_perms_failed">Nemožno nastaviť oprávnenia pre %s</string>
+    <string name="file_set_owner_failed">Nemožno nastaviť vlastníka pre %s</string>
+    <string name="file_removing">Odstraňovanie %s&#8230;</string>
+    <string name="file_remove_failed">Nemožno odstrániť %s</string>
+    <string name="file_creating_directory">Vytváranie adresára %s&#8230;</string>
+    <string name="file_create_directory_failed">Nemožno vytvoriť adresár %s</string>
+    <string name="file_writing_recovery_command">Zápis recovery príkazu&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Zápis recovery príkazu zlyhal. Prosím, použite inú metódu inštalácie.</string>
+    <string name="file_done">Hotovo! Zmeny sa stanú aktívnymi po reštarte.</string>
+	
     <!-- Modules tab -->
-    <string name="module_is_not_activated_yet">Xposed modul nie je zatiaľ aktivovaný</string>
+    <string name="module_is_not_activated_yet">Xposed modul zatiaľ nie je aktivovaný</string>
     <string name="module_empty_description">(popis nie je k dispozícii)</string>
-    <string name="module_no_ui">Tento modul neposkytuje užívateľské rozhranie</string>
+    <string name="module_no_ui">Tento modul neposkytuje používateľské rozhranie</string>
     <string name="no_xposed_modules_found">Neboli nájdené žiadne Xposed moduly!</string>
     <string name="xposed_module_list_updated">Zoznam Xposed modulov bol aktualizovaný\nZmeny sa prejavia po reštarte</string>
     <string name="warning_xposed_min_version">Tento modul vyžaduje novšiu verziu XposedBridge (%d) a preto nemôže byť aktivovaný.</string>
     <string name="no_min_version_specified">Tento modul nešpecifikuje verziu XposedBridge, ktorú potrebuje.</string>
     <string name="warning_min_version_too_low">Tento modul bol vytvorený pre verziu XposedBridge %1$d, ale kvôli nekompatibilným zmenám vo verzii %2$d bol deaktivovaný.</string>
-    <string name="module_launch">Spustiť</string>
+    <string name="module_launch">Spustiť používateľské rozhranie</string>
     <string name="module_download_updates">Stiahnuť/Aktualizácie</string>
     <string name="module_support">Podpora</string>
     <string name="module_app_info">Informácie o aplikácii</string>
@@ -74,11 +106,18 @@
     <string name="download_section_30d">Za posledných 30 dní</string>
     <string name="download_section_older">Pred viac ako 30 dňami</string>
 
-     <!-- Settings tab -->
+    <!-- Settings tab -->
+    <string name="settings_group_installation">Inštalácia</string>
+    <string name="settings_install_mode">Režim inštalácie</string>
+    <string name="install_mode_normal">Klasický (zapísať priamo do /system)</string>
+    <string name="install_mode_recovery_auto">Recovery (automaticky flashnúť zip)</string>
+    <string name="install_mode_recovery_manual">Recovery (zapísať zip na kartu SD, flashnúť ručne)</string>
     <string name="settings_group_download">Sťahovanie</string>
     <string name="settings_enable_downloads">Povoliť sťahovania</string>
     <string name="settings_enable_downloads_summary">Povoliť Xposed Inštalátoru kontrolovanie nových modulov a aktualizácií</string>
     <string name="settings_group_experimental">Experimentálne</string>
+    <string name="settings_disable_resources">Zakázať zmenu zdrojov</string>
+    <string name="settings_disable_resources_summary">Riešenie konfliktov s témami\n<b>VAROVANIE:</b> Ak je táto možnosť povolená, moduly, ktoré sa snažia zmeniť zdroje, nebudú fungovať.</string>
     <string name="settings_performance_experiment">Experiment s výkonom</string>
     <string name="settings_performance_experiment_summary">Ak povolíte túto možnosť, výkon systému sa môže buď zvýšiť, znížiť alebo zostať rovnaký. Nebojte sa vyskúšať experiment s výkonom a podajte správu o efekte, ktorý vidíte (nemusí byť však vôbec žiadny). Po zmene tejto možnosti je nutné znovu inštalovať framework a vykonať reštart zariadenia.</string>
 
@@ -90,7 +129,7 @@
     <!-- About tab -->
     <string name="about_developers_label">Hlavní vývojári:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> a <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Prosím <b>nekontaktujte</b> nás priamo za účelom podpory, je na to je určený odkaz nižšie.</string>
+    <string name="about_developers_warning">Prosím, <b>nekontaktujte</b> nás priamo za účelom podpory, je na to je určený odkaz nižšie.</string>
     <string name="about_translator_label">Prekladateľ:</string>
     <string name="translator">pyler</string>
     <string name="about_version_label">Verzia aplikácie:</string>
@@ -110,7 +149,7 @@
     <string name="download_view_failed">Sťahovanie zlyhalo (chyba %d)</string>
 
     <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">Kontrolný súčet MD5 nie je správny (stiahnuté: %1$s, očakávané: %2$s)</string>
+    <string name="download_md5sum_incorrect">Kontrolný súčet MD5 je nesprávny (stiahnuté: %1$s, očakávané: %2$s)</string>
     <string name="download_could_not_read_file">Nemožno čítať stiahnutý súbor: %s</string>
     <string name="download_no_valid_apk">Stiahnutý súbor nie je platný APK súbor (alebo nie je kompatibilný)</string>
     <string name="download_incorrect_package_name">Názov balíka nie je správny (stiahnuté: %1$s, očakávané: %2$s)</string>

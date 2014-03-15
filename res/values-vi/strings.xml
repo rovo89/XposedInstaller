@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- General/various strings -->
     <string name="app_name">Xposed Installer</string>
@@ -78,9 +78,9 @@
     <string name="settings_group_download">Tải xuống</string>
     <string name="settings_enable_downloads">Cho phép tải xuống</string>
     <string name="settings_enable_downloads_summary">Cho phép Xposed Installer tìm các bản cập nhật</string>
-    <string name="settings_group_experimental" tools:ignore="UnusedResources">Thử nghiệm</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Thử nghiệm hiệu năng</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Nếu bật tính năng này, hiệu năng hệ thống của bạn có thể tăng, giảm, hoặc giữ nguyên như cũ.  Nếu muốn, hãy thử và cho chúng tôi biết kết quả (ngay cả khi không thấy có thay đổi gì). Bạn phải cài lại framework và khởi động lại sau khi thay đổi tuỳ chọn này.</string>
+    <string name="settings_group_experimental">Thử nghiệm</string>
+    <string name="settings_performance_experiment">Thử nghiệm hiệu năng</string>
+    <string name="settings_performance_experiment_summary">Nếu bật tính năng này, hiệu năng hệ thống của bạn có thể tăng, giảm, hoặc giữ nguyên như cũ.  Nếu muốn, hãy thử và cho chúng tôi biết kết quả (ngay cả khi không thấy có thay đổi gì). Bạn phải cài lại framework và khởi động lại sau khi thay đổi tuỳ chọn này.</string>
 
     <!--  Logs tab  -->
     <string name="logs_load_failed">Không thể đọc bản ghi:</string>

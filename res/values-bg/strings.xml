@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- General/various strings -->
     <string name="app_name">Xposed Installer</string>
@@ -78,9 +78,9 @@
     <string name="settings_group_download">Изтегляне</string>
     <string name="settings_enable_downloads">Позволи изтегляния</string>
     <string name="settings_enable_downloads_summary">Позволи на Xposed Installer да проверява за обновления и нови модули</string>
-    <string name="settings_group_experimental" tools:ignore="UnusedResources">Производителност</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Експеримент за производителност</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Ако позволите това, производителността на системата може да се увеличи, да се намали или да се запази. Чувствайте се свободни да пробвате и да дадете отзиви. Необходимо е да преинсталирате framework и да рестартирате след промяна на тази настройка.</string>
+    <string name="settings_group_experimental">Производителност</string>
+    <string name="settings_performance_experiment">Експеримент за производителност</string>
+    <string name="settings_performance_experiment_summary">Ако позволите това, производителността на системата може да се увеличи, да се намали или да се запази. Чувствайте се свободни да пробвате и да дадете отзиви. Необходимо е да преинсталирате framework и да рестартирате след промяна на тази настройка.</string>
 
     <!--  Logs tab  -->
     <string name="logs_load_failed">Неможе да се прочете дневника:</string>
