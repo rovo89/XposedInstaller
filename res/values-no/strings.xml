@@ -26,7 +26,7 @@
 
     <!-- Installer tab -->
     <string name="install">Installer/Oppdater</string>
-    <string name="uninstall">AvInstallatør</string>
+    <string name="uninstall">Avinstaler</string>
     <string name="installedVersion">aktiv</string>
     <string name="latestVersion">bundet</string>
     <string name="versions">Versjoner:</string>
@@ -49,7 +49,7 @@
     <string name="module_download_updates">Last ned/Oppdateringer</string>
     <string name="module_support">Støtte</string>
     <string name="module_app_info">App info</string>
-    <string name="module_uninstall">AvInstallatør</string>
+    <string name="module_uninstall">Avinstaller</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Søk</string>
@@ -58,7 +58,7 @@
     <string name="branch_display">(%s arm)</string>
     <string name="download_author">av %s</string>
     <string name="download_unknown_author">Ukjent forfatter</string>
-    <string name="download_status_installed">Installatørt (versjon %s)</string>
+    <string name="download_status_installed">Instalert (versjon %s)</string>
     <string name="download_status_update_available">Oppdatering tilgjengelig (versjon %1$s \u2192 %2$s)</string>
     <string name="download_timestamps">Lagt til den %1$s \u00b7 Oppdatert den %2$s</string>
     <string name="download_sorting_title">Sorterings rekkefølge</string>
@@ -67,8 +67,8 @@
     <string name="download_sorting_created">Sorter etter dato lagt</string>
     <string name="download_section_framework">Konstruksjon</string>
     <string name="download_section_update_available">Oppdatering tilgjengelig</string>
-    <string name="download_section_installed">Installatørt</string>
-    <string name="download_section_not_installed">Ikke Installatørt</string>
+    <string name="download_section_installed">Innstalert</string>
+    <string name="download_section_not_installed">Ikke Innstalert</string>
     <string name="download_section_24h">Siste 24 timer</string>
     <string name="download_section_7d">siste 7 dager</string>
     <string name="download_section_30d">Siste 30 dager</string>
