@@ -100,7 +100,12 @@ public class LogsFragment extends Fragment {
 			logContent.append('\n');
 			logContent.append(e.getMessage());
 		}
-		mTxtLog.setText(logContent.toString());
+
+		if (logContent.length() > 0)
+			mTxtLog.setText(logContent.toString());
+		else
+			mTxtLog.setText(R.string.log_is_empty);
+
 		mSVLog.post(new Runnable() {
 			@Override
 			public void run() {

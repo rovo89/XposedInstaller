@@ -129,6 +129,7 @@
     <string name="menuClearLog">Log jetzt leeren</string>
     <string name="logs_cleared">Log wurde geleert</string>
     <string name="logs_clear_failed">Konnte Log nicht leeren:</string>
+    <string name="log_is_empty">Log ist leer</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Hauptentwickler:</string>
