@@ -47,7 +47,7 @@
     <!--  File operations -->
     <!-- <string name="root_failed">Failed to get root access.\n\nMake sure your device is rooted properly and you have not blocked shell commands.</string> -->
     <string name="file_extract_failed">Kan %s niet uitpakken</string>
-    <!-- <string name="file_mounting_writable">Mounting %s writable&#8230;</string> -->
+    <string name="file_mounting_writable">Mounting %s beschrijfbaar&#8230;</string>
     <!-- <string name="file_mount_writable_failed">Could not mount %s writable</string> -->
     <!-- <string name="file_trying_to_continue">Trying to continue anyway&#8230;</string> -->
     <string name="file_backup_already_exists">Back-up bestaat al op %s</string>
