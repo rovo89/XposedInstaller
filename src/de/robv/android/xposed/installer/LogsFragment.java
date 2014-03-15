@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Calendar;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 
 public class LogsFragment extends Fragment {
 	private File mFileDebugLog = new File(XposedApp.BASE_DIR + "log/debug.log");
+	private static final int MAX_LOG_SIZE = 2*1024*1024; // 2 MB
 	private TextView mTxtLog;
 	private ScrollView mSVLog;
 	private HorizontalScrollView mHSVLog;
@@ -76,6 +78,12 @@ public class LogsFragment extends Fragment {
 		StringBuilder logContent = new StringBuilder(15 * 1024);
 		try {
 			FileInputStream fis = new FileInputStream(mFileDebugLog);
+			long skipped = skipLargeFile(fis, mFileDebugLog.length());
+			if (skipped > 0) {
+				logContent.append("-----------------\n");
+				logContent.append(getResources().getString(R.string.log_too_large, MAX_LOG_SIZE / 1024, skipped / 1024));
+				logContent.append("\n-----------------\n\n");
+			}
 			Reader reader = new InputStreamReader(fis);
 			char[] temp = new char[1024];
 			int read;
@@ -128,6 +136,15 @@ public class LogsFragment extends Fragment {
 			FileInputStream in = new FileInputStream(mFileDebugLog);
 			FileOutputStream out = new FileOutputStream(targetFile);
 
+			long skipped = skipLargeFile(in, mFileDebugLog.length());
+			if (skipped > 0) {
+				StringBuilder logContent = new StringBuilder(512);
+				logContent.append("-----------------\n");
+				logContent.append(getResources().getString(R.string.log_too_large, MAX_LOG_SIZE / 1024, skipped / 1024));
+				logContent.append("\n-----------------\n\n");
+				out.write(logContent.toString().getBytes());
+			}
+
 			byte[] buffer = new byte[1024];
 			int len;
 			while ((len = in.read(buffer)) > 0){
@@ -143,5 +160,17 @@ public class LogsFragment extends Fragment {
 		}
 
 		Toast.makeText(getActivity(), targetFile.toString(), Toast.LENGTH_LONG).show();
+	}
+
+	private long skipLargeFile(InputStream is, long length) throws IOException {
+		if (length < MAX_LOG_SIZE)
+			return 0;
+
+		long skipped = length - MAX_LOG_SIZE;
+		is.skip(skipped);
+		while (is.read() != '\n') {
+			skipped++;
+		}
+		return skipped;
 	}
 }
