@@ -61,7 +61,7 @@
     <string name="file_set_perms_failed">Kan rechten voor %s niet veranderen</string>
     <string name="file_set_owner_failed">Kan eigenaar voor %s niet veranderen</string>
     <string name="file_removing">Bezig met verwijderen van %s&#8230;</string>
-    <string name="file_remove_failed">Kan %s niet verwjideren</string>
+    <string name="file_remove_failed">Kan %s niet verwijderen</string>
     <string name="file_creating_directory">Map %s aan het maken&#8230;</string>
     <string name="file_create_directory_failed">Kan de map %s niet maken</string>
     <string name="file_writing_recovery_command">Herstel commando aan het schrijven&#8230;</string>
