@@ -8,17 +8,27 @@ import de.robv.android.xposed.installer.util.NavUtil;
 public abstract class XposedBaseActivity extends Activity {
 	public boolean leftActivityWithSlideAnim = false;
 
+	private boolean mDarkThemeEnabled;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceBundle) {
 		super.onCreate(savedInstanceBundle);
 
-		if (XposedApp.getPreferences().getBoolean("use_dark_theme", false))
+		mDarkThemeEnabled = XposedApp.getPreferences().getBoolean("use_dark_theme", false);
+		if (mDarkThemeEnabled)
 			setTheme(R.style.Theme_Dark);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
+
+		boolean darkThemeEnabled = XposedApp.getPreferences().getBoolean("use_dark_theme", false);
+		if (mDarkThemeEnabled != darkThemeEnabled) {
+			mDarkThemeEnabled = darkThemeEnabled;
+			recreate();
+		}
+
 		if (leftActivityWithSlideAnim)
 			NavUtil.setTransitionSlideLeave(this);
 		leftActivityWithSlideAnim = false;

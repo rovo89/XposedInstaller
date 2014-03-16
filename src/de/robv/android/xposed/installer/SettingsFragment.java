@@ -61,5 +61,15 @@ public class SettingsFragment extends PreferenceFragment {
 				return (enabled == mDisableResourcesFlag.exists());
 			}
 		});
+
+		CheckBoxPreference prefUseDarkTheme = (CheckBoxPreference) findPreference("use_dark_theme");
+		prefUseDarkTheme.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				getActivity().recreate();
+				return true;
+			}
+		});
+
 	}
 }
