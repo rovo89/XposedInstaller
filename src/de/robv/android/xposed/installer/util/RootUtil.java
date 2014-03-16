@@ -36,7 +36,8 @@ public class RootUtil {
 			}
 		}
 
-		if (mLastExitCode == OnCommandResultListener.WATCHDOG_EXIT)
+		if (mLastExitCode == OnCommandResultListener.WATCHDOG_EXIT
+		   || mLastExitCode == OnCommandResultListener.SHELL_DIED)
 			dispose();
 	}
 
@@ -67,7 +68,7 @@ public class RootUtil {
 
 		waitForCommandFinished();
 
-		if (mLastExitCode != 0) {
+		if (mLastExitCode != OnCommandResultListener.SHELL_RUNNING) {
 			dispose();
 			return false;
 		}
