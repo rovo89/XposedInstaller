@@ -84,6 +84,7 @@
         </TableLayout>
 
         <TextView
+            android:background="@drawable/text_button"
             android:id="@+id/framework_install_mode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
