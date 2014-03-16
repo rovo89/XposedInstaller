@@ -36,12 +36,12 @@
     <string name="phone_not_compatible">Xposed is (nog) niet compatibel met Android SDK-versie %1$d van uw processor architectuur (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed is nog niet getest met Android SDK-versie %d, maar het lijkt compatibel te zijn. U kunt het proberen te installeren als u het wilt proberen.</string>
     <string name="reboot_failed">Reboot mislukt. Herstart het apparaat handmatig.</string>
-    <string name="auto_flash_note">%s wordt automatisch geflast wanneer je op "Oke" drukt.</string>
+    <string name="auto_flash_note">%s wordt automatisch geflast wanneer u op "Oke" drukt.</string>
     <string name="manual_flash_note">Flash %s van de SD-kaart om de handeling te voltooien.</string>
-    <string name="reboot_confirmation">Wil je nu herstarten?</string>
-    <string name="reboot_recovery_confirmation">Wil je nu herstarten in de recovery?</string>
+    <string name="reboot_confirmation">Wilt u nu herstarten?</string>
+    <string name="reboot_recovery_confirmation">Wilt u nu herstarten in de recovery?</string>
     <string name="install_warning_title">Pas op!</string>
-    <string name="install_warning">In sommige gevallen kan het apparaat niet meer opstarten na het installeren van Xposed.\n\nAls je nog nooit gehoord hebt van \"soft brick\" of \"bootloop\" of als je niet weet hoe dit hesteld moet worden, installeer Xposed dan <b>NIET</b>!\n\nIn ieder geval het hebben van een recente back-up is sterk aanbevolen!</string>
+    <string name="install_warning">In sommige gevallen kan het apparaat niet meer opstarten na het installeren van Xposed.\n\nAls u nog nooit gehoord heeft van \"soft brick\" of \"bootloop\" of als u niet weet hoe dit hesteld moet worden, installeer Xposed dan <b>NIET</b>!\n\nIn ieder geval het hebben van een recente back-up is sterk aanbevolen!</string>
     <string name="dont_show_again">Niet opnieuw tonen</string>
 
     <!--  File operations -->
