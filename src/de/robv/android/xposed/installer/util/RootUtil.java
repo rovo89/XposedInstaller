@@ -82,7 +82,9 @@ public class RootUtil {
 		if (mShell == null)
 			return;
 
-		mShell.close();
+		try {
+			mShell.close();
+		} catch (Exception ignored) {}
 		mShell = null;
 
 		mCallbackThread.quit();
