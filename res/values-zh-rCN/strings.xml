@@ -35,7 +35,39 @@
     <string name="areyousure">您确定？</string>
     <string name="phone_not_compatible">Xposed 目前不兼容 Android SDK 版本 %1$d 或者您的处理器架构 (%2$s)。</string>
     <string name="not_tested_but_compatible">Xposed 未在 Android SDK 版本 %d 上测试，但它似乎是可兼容的。如果您热爱冒险，您可以试试安装它。</string>
-
+    <string name="reboot_failed">重启失败。请使用设备的标准重启功能。</string>
+    <string name="auto_flash_note">当你按下 OK 后，%s 将会被自动刷入设备。</string>
+    <string name="manual_flash_note">请将 %s 从 SD 卡刷入设备以完成操作。</string>
+    <string name="reboot_confirmation">您现在要重启吗？</string>
+    <string name="reboot_recovery_confirmation">您现在要重启进入 Recovery 模式吗？</string>
+    <string name="install_warning_title">小心！</string>
+    <string name="install_warning">某些情况下，您的设备将在安装 Xposed 之后无法启动。\n\n如果您之前没有听说过“软变砖”或“无限重启”，或者您不知道如何从这种情况恢复，请<b>不要</b>安装 Xposed！\n\n无论如何，强烈建议准备好最近的备份。</string>
+    <string name="dont_show_again">不要再显示这个</string>
+    
+    <!--  File operations -->
+    <string name="root_failed">无法获取 root 权限。\n\n请确认您的设备已经正确的 root 以及您没有屏蔽 shell 命令。</string>
+    <string name="file_extract_failed">无法提取 %s</string>
+    <string name="file_mounting_writable">正在挂载 %s 为可写入&#8230;</string>
+    <string name="file_mount_writable_failed">无法将 %s 可写入挂载</string>
+    <string name="file_trying_to_continue">正在尝试继续&#8230;</string>
+    <string name="file_backup_already_exists">备份已经存在于 %s</string>
+    <string name="file_backup_not_found">没有在 %s 找到备份</string>
+    <string name="file_backup_failed">无法创建 %s 的备份</string>
+    <string name="file_backup_successful">成功备份于 %s</string>
+    <string name="file_backup_restoring">正在从 %s 恢复备份</string>
+    <string name="file_copying">正在复制 %s&#8230;</string>
+    <string name="file_copy_failed">无法将 %1$s 复制到 %2$s</string>
+    <string name="file_move_failed">无法将 %1$s 移动到 %2$s</string>
+    <string name="file_set_perms_failed">无法为 %s 设置权限</string>
+    <string name="file_set_owner_failed">无法为 %s 设置所有者</string>
+    <string name="file_removing">正在删除 %s&#8230;</string>
+    <string name="file_remove_failed">无法删除 %s</string>
+    <string name="file_creating_directory">正在创建目录 %s&#8230;</string>
+    <string name="file_create_directory_failed">无法创建目录 %s</string>
+    <string name="file_writing_recovery_command">正在写入 Recovery 命令&#8230;</string>
+    <string name="file_writing_recovery_command_failed">写入 Recovery 命令失败。请换一种安装方式。</string>
+    <string name="file_done">完成！修改将于重启之后生效。</string>
+    
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed 模块未激活</string>
     <string name="module_empty_description">(未提供描述)</string>
@@ -84,6 +116,8 @@
     <string name="settings_enable_downloads">启用下载</string>
     <string name="settings_enable_downloads_summary">允许 Xposed 安装器检查更新和新模块</string>
     <string name="settings_group_experimental">实验性</string>
+    <string name="settings_disable_resources">禁用资源钩子</string>
+    <string name="settings_disable_resources_summary">解决与主题引擎的冲突。\n<b>警告:</b> 启用这个选项将会导致修改资源的模块停止工作。</string>
     <string name="settings_performance_experiment">性能试验</string>
     <string name="settings_performance_experiment_summary">如果您启用该选项，您的系统性能可能更好、更差或没有变化。请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启。</string>
 
@@ -91,6 +125,11 @@
     <string name="logs_load_failed">无法读取日志：</string>
     <string name="logs_save_failed">无法将日志写入 SD 卡：</string>
     <string name="sdcard_not_writable">未找到 SD 卡或不可写入</string>
+    <string name="log_too_large">日志文件大于 %1$,d kB，已跳过开头的 %2$,d kB</string>
+    <string name="menuClearLog">清理日志</string>
+    <string name="logs_cleared">日志已被清理</string>
+    <string name="logs_clear_failed">无法清理日志：</string>
+    <string name="log_is_empty">日志为空</string>
 
     <!-- About tab -->
     <string name="about_developers_label">主要开发者：</string>
