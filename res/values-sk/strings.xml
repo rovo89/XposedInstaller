@@ -20,7 +20,7 @@
     <string name="tabSettings">Nastavenia</string>
     <string name="tabSettingsDescription">Prejdite do tejto sekcie pre nastavenie Xposed Inštalátora a frameworku.</string>
     <string name="tabLogs">Záznamy</string>
-    <string name="tabLogsDescription">Zobraziť a uložiť/odoslať záznamy Xposed frameworku.</string>
+    <string name="tabLogsDescription">Zobraziť, uložiť, odoslať a vymazať záznamy Xposed frameworku.</string>
     <string name="tabAbout">O aplikácii</string>
     <string name="tabAboutDescription">Zistite viac o ľuďoch, ktorí vytvorili Xposed, kde môžete získať podporu pre túto aplikáciu, atď.</string>
 
@@ -36,7 +36,7 @@
     <string name="phone_not_compatible">Xposed nie je (zatiaľ) kompatibilný s verziou Android SDK %1$d alebo s architektúrou procesora (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed nebol testovaný s verziou Android SDK %d, ale zdá sa byť kompatibilný. Môžete ho instalovať na vlastné riziko.</string>
     <string name="reboot_failed">Reštart zlyhal. Prosím, použite normálnu funkciu zariadenia pre reštart.</string>
-    <string name="auto_flash_note">Zip %s by mal byť automaticky flashnutý hneď, ako stlačíte tlačidlo \"OK\".</string>
+    <string name="auto_flash_note">%s by mal byť automaticky flashnutý hneď, ako stlačíte tlačidlo \"OK\".</string>
     <string name="manual_flash_note">Prosím, flashnite %s z karty SD na dokončenie operácie.</string>
     <string name="reboot_confirmation">Chcete reštartovať teraz?</string>
     <string name="reboot_recovery_confirmation">Chcete reštartovať do recovery teraz?</string>
@@ -65,7 +65,7 @@
     <string name="file_creating_directory">Vytváranie adresára %s&#8230;</string>
     <string name="file_create_directory_failed">Nemožno vytvoriť adresár %s</string>
     <string name="file_writing_recovery_command">Zápis recovery príkazu&#8230;</string>
-    <string name="file_writing_recovery_command_failed">Zápis recovery príkazu zlyhal. Prosím, použite inú metódu inštalácie.</string>
+    <string name="file_writing_recovery_command_failed">Zápis recovery príkazu zlyhal. Prosím, použite iný režim inštalácie.</string>
     <string name="file_done">Hotovo! Zmeny sa stanú aktívnymi po reštarte.</string>
 	
     <!-- Modules tab -->
@@ -119,17 +119,22 @@
     <string name="settings_disable_resources">Zakázať zmenu zdrojov</string>
     <string name="settings_disable_resources_summary">Riešenie konfliktov s témami\n<b>VAROVANIE:</b> Ak je táto možnosť povolená, moduly, ktoré sa snažia zmeniť zdroje, nebudú fungovať.</string>
     <string name="settings_performance_experiment">Experiment s výkonom</string>
-    <string name="settings_performance_experiment_summary">Ak povolíte túto možnosť, výkon systému sa môže buď zvýšiť, znížiť alebo zostať rovnaký. Nebojte sa vyskúšať experiment s výkonom a podajte správu o efekte, ktorý vidíte (nemusí byť však vôbec žiadny). Po zmene tejto možnosti je nutné znovu inštalovať framework a vykonať reštart zariadenia.</string>
+    <string name="settings_performance_experiment_summary">Ak povolíte túto možnosť, výkon systému sa môže buď zvýšiť, znížiť, alebo zostať rovnaký. Nebojte sa vyskúšať experiment s výkonom a podajte správu o efekte, ktorý vidíte (nemusí byť však vôbec žiadny). Po zmene tejto možnosti je nutné znovu nainštalovať framework a vykonať reštart zariadenia.</string>
 
     <!--  Logs tab  -->
     <string name="logs_load_failed">Nemožno čítať záznam:</string>
     <string name="logs_save_failed">Nemožno zapísať záznam na kartu SD:</string>
     <string name="sdcard_not_writable">Karta SD nebola nájdená alebo nie je zapisovateľná</string>
+    <string name="log_too_large">Súbor záznamu je väčší než %1$,d kB, preskočených prvých %2$,d kB</string>
+    <string name="menuClearLog">Vymazať záznam</string>
+    <string name="logs_cleared">Záznam bol úspešne vymazaný</string>
+    <string name="logs_clear_failed">Nemožno vymazať záznam:</string>
+    <string name="log_is_empty">Záznam je prázdny</string>
     
     <!-- About tab -->
     <string name="about_developers_label">Hlavní vývojári:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> a <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Prosím, <b>nekontaktujte</b> nás priamo za účelom podpory, je na to je určený odkaz nižšie.</string>
+    <string name="about_developers_warning">Prosím, <b>nekontaktujte</b> nás priamo za účelom podpory, na to je určený odkaz nižšie.</string>
     <string name="about_translator_label">Prekladateľ:</string>
     <string name="translator">pyler</string>
     <string name="about_version_label">Verzia aplikácie:</string>
