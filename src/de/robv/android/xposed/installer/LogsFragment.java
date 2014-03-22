@@ -190,10 +190,19 @@ public class LogsFragment extends Fragment {
 			return 0;
 
 		long skipped = length - MAX_LOG_SIZE;
-		is.skip(skipped);
-		while (is.read() != '\n') {
+		long yetToSkip = skipped;
+		do {
+			yetToSkip -= is.skip(yetToSkip);
+		} while (yetToSkip > 0);
+
+		int c;
+		do {
+			c = is.read();
+			if (c == -1)
+				break;
 			skipped++;
-		}
+		} while (c != '\n');
+
 		return skipped;
 	}
 }
