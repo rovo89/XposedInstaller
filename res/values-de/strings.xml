@@ -109,17 +109,17 @@
     <!-- Settings tab -->
     <string name="settings_group_installation">Installation</string>
     <string name="settings_install_mode">Installationsmodus</string>
-    <string name="install_mode_normal">Klassisch (/system direkt ändern)</string>
+    <string name="install_mode_normal">Klassisch (/system direkt beschreiben)</string>
     <string name="install_mode_recovery_auto">Recovery (ZIP automatisch installieren)</string>
     <string name="install_mode_recovery_manual">Recovery (ZIP auf SD-Karte schreiben, selbst installieren)</string>
     <string name="settings_group_download">Download</string>
     <string name="settings_enable_downloads">Downloads aktivieren</string>
     <string name="settings_enable_downloads_summary">Xposed Installer die Suche nach Aktualisierungen und neuen Modulen erlauben</string>
-    <string name="settings_group_experimental">Experimente</string>
+    <string name="settings_group_experimental">Experimentell</string>
     <string name="settings_disable_resources">Ressourcen-APIs deaktivieren</string>
     <string name="settings_disable_resources_summary">Workaround für Konflikte mit \"Theming Engines\"\n<b>VORSICHT:</b> Module, die Ressourcen verändern, werden mit dieser Einstellung nicht funktionieren.</string>
     <string name="settings_performance_experiment">Performance-Experiment</string>
-    <string name="settings_performance_experiment_summary">Falls du diese Einstellung aktivierst, wird sich die Leistung Ihres System entweder verschlechtern, verbessern oder gar nicht verändern. Teste sie und berichte, welches Verhalten du beobachten kannst. Nachdem du diese Einstellung geändert hast, musst du das Framework neu installieren und das Gerät neustarten.</string>
+    <string name="settings_performance_experiment_summary">Falls du diese Einstellung aktivierst, wird sich die Leistung deines Systems entweder verschlechtern, verbessern oder gar nicht verändern. Teste sie und berichte, welches Verhalten du beobachten kannst. Nachdem du diese Einstellung geändert hast, musst du das Framework neu installieren und das Gerät neustarten.</string>
 
     <!--  Logs tab  -->
     <string name="logs_load_failed">Log konnte nicht gelesen werden:</string>
