@@ -42,6 +42,12 @@ under the Apache License 2.0 (see: StringUtils.containsWhitespace())
 
 
 This product includes the StickyListHeaders library:
-Copyright 2013 Emil Sjölander
+Copyright 2012-2013 Emil Sjölander
 Licensed under the Apache License, Version 2.0
 https://github.com/emilsjolander/StickyListHeaders
+
+
+This product includes the libsuperuser library:
+Copyright 2012-2013 Jorrit "Chainfire" Jongma
+Licensed under the Apache License, Version 2.0
+https://github.com/Chainfire/libsuperuser

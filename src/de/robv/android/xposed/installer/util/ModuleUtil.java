@@ -126,6 +126,10 @@ public final class ModuleUtil {
 		return mFramework;
 	}
 
+	public String getFrameworkPackageName() {
+		return mFrameworkPackageName;
+	}
+
 	public boolean isFramework(String packageName) {
 		return mFrameworkPackageName.equals(packageName);
 	}
@@ -167,7 +171,7 @@ public final class ModuleUtil {
 		return result;
 	}
 
-	public synchronized void updateModulesList() {
+	public synchronized void updateModulesList(boolean showToast) {
 		try {
 			Log.i(XposedApp.TAG, "updating modules.list");
 			int installedXposedVersion = InstallerFragment.getJarInstalledVersion();
@@ -188,7 +192,8 @@ public final class ModuleUtil {
 
 			FileUtils.setPermissions(MODULES_LIST_FILE, 00664, -1, -1);
 
-			Toast.makeText(mApp, R.string.xposed_module_list_updated, Toast.LENGTH_SHORT).show();
+			if (showToast)
+				Toast.makeText(mApp, R.string.xposed_module_list_updated, Toast.LENGTH_SHORT).show();
 		} catch (IOException e) {
 			Log.e(XposedApp.TAG, "cannot write " + MODULES_LIST_FILE, e);
 			Toast.makeText(mApp, "cannot write " +  MODULES_LIST_FILE, Toast.LENGTH_SHORT).show();

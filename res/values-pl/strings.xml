@@ -6,7 +6,6 @@
     <string name="install">Zainstaluj lub uaktualnij</string>
     <string name="uninstall">Odinstaluj i przywróć systemowe procesy</string>
     <string name="installedVersion">aktywna</string>
-    <string name="none">---</string>
     <string name="latestVersion">w pakiecie</string>
     <string name="versions">Wersje:</string>
     <string name="soft_reboot">Miękki restart</string>

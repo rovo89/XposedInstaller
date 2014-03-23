@@ -3,13 +3,11 @@ package de.robv.android.xposed.installer;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.regex.Matcher;
@@ -18,29 +16,48 @@ import java.util.regex.Pattern;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.FileUtils;
+import android.os.Looper;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
+import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
+import de.robv.android.xposed.installer.util.RootUtil;
 
 public class InstallerFragment extends Fragment {
 	private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
 	private String APP_PROCESS_NAME = null;
 	private String XPOSEDTEST_NAME = null;
-	private final String BINARIES_FOLDER = getBinariesFolder();
+	private final String BINARIES_FOLDER = AssetUtil.getBinariesFolder();
 	private static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
+	private static final String JAR_PATH_NEWVERSION = JAR_PATH + ".newversion";
 	private static int JAR_LATEST_VERSION = -1;
 	private final LinkedList<String> mCompatibilityErrors = new LinkedList<String>();
+	private RootUtil mRootUtil = new RootUtil();
+
+	private ProgressDialog dlgProgress;
+	private TextView txtAppProcessInstalledVersion, txtAppProcessLatestVersion;
+	private TextView txtJarInstalledVersion, txtJarLatestVersion;
+	private TextView txtInstallError, txtInstallMode;
+	private Button btnInstall, btnUninstall, btnSoftReboot, btnReboot;
+
+	private static final int INSTALL_MODE_NORMAL = 0;
+	private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
+	private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -48,6 +65,9 @@ public class InstallerFragment extends Fragment {
 		Activity activity = getActivity();
 		if (activity instanceof XposedDropdownNavActivity)
 			((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_INSTALL);
+
+		dlgProgress = new ProgressDialog(activity);
+		dlgProgress.setIndeterminate(true);
 	}
 
 	@Override
@@ -55,17 +75,27 @@ public class InstallerFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_installer, container, false);
 
-		final TextView txtAppProcessInstalledVersion = (TextView) v.findViewById(R.id.app_process_installed_version);
-		final TextView txtAppProcessLatestVersion = (TextView) v.findViewById(R.id.app_process_latest_version);
-		final TextView txtJarInstalledVersion = (TextView) v.findViewById(R.id.jar_installed_version);
-		final TextView txtJarLatestVersion = (TextView) v.findViewById(R.id.jar_latest_version);
+		txtAppProcessInstalledVersion = (TextView) v.findViewById(R.id.app_process_installed_version);
+		txtAppProcessLatestVersion = (TextView) v.findViewById(R.id.app_process_latest_version);
+		txtJarInstalledVersion = (TextView) v.findViewById(R.id.jar_installed_version);
+		txtJarLatestVersion = (TextView) v.findViewById(R.id.jar_latest_version);
 
-		final TextView txtInstallError = (TextView) v.findViewById(R.id.framework_install_errors);
+		txtInstallMode = (TextView) v.findViewById(R.id.framework_install_mode);
+		txtInstallError = (TextView) v.findViewById(R.id.framework_install_errors);
 
-		final Button btnInstall = (Button) v.findViewById(R.id.btnInstall);
-		final Button btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
-		final Button btnSoftReboot = (Button) v.findViewById(R.id.btnSoftReboot);
-		final Button btnReboot = (Button) v.findViewById(R.id.btnReboot);
+		btnInstall = (Button) v.findViewById(R.id.btnInstall);
+		btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
+		btnSoftReboot = (Button) v.findViewById(R.id.btnSoftReboot);
+		btnReboot = (Button) v.findViewById(R.id.btnReboot);
+
+		txtInstallMode.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), XposedInstallerActivity.class);
+				intent.putExtra(XposedInstallerActivity.EXTRA_OPEN_TAB, XposedDropdownNavActivity.TAB_SETTINGS);
+				startActivity(intent);
+			}
+		});
 
 		boolean isCompatible = false;
 		if (BINARIES_FOLDER == null) {
@@ -91,10 +121,159 @@ public class InstallerFragment extends Fragment {
 			}
 		}
 
-		final int appProcessInstalledVersion = getInstalledAppProcessVersion();
-		final int appProcessLatestVersion = getLatestAppProcessVersion();
-		final int jarInstalledVersion = getJarInstalledVersion();
-		final int jarLatestVersion = getJarLatestVersion();
+		refreshVersions();
+
+		if (isCompatible) {
+			btnInstall.setOnClickListener(new AsyncClickListener(btnInstall.getText()) {
+				@Override
+				public void onAsyncClick(View v) {
+					final boolean success = install();
+					getActivity().runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							refreshVersions();
+							if (success)
+								ModuleUtil.getInstance().updateModulesList(false);
+						}
+					});
+				}
+			});
+		} else {
+			String errorText = String.format(getString(R.string.phone_not_compatible), Build.VERSION.SDK_INT, Build.CPU_ABI);
+			if (!mCompatibilityErrors.isEmpty())
+				errorText += "\n\n" + TextUtils.join("\n", mCompatibilityErrors);
+			txtInstallError.setText(errorText);
+			txtInstallError.setTextColor(Color.RED);
+			txtInstallError.setVisibility(View.VISIBLE);
+			btnInstall.setEnabled(false);
+		}
+
+		btnUninstall.setOnClickListener(new AsyncClickListener(btnUninstall.getText()) {
+			@Override
+			public void onAsyncClick(View v) {
+				uninstall();
+				getActivity().runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						refreshVersions();
+					}
+				});
+			}
+		});
+		btnReboot.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				areYouSure(R.string.reboot, new AsyncDialogClickListener(btnReboot.getText()) {
+					@Override
+					public void onAsyncClick(DialogInterface dialog, int which) {
+						reboot(null);
+					}
+				});
+			}
+		});
+
+		btnSoftReboot.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				areYouSure(R.string.soft_reboot, new AsyncDialogClickListener(btnSoftReboot.getText()) {
+					@Override
+					public void onAsyncClick(DialogInterface dialog, int which) {
+						softReboot();
+					}
+				});
+			}
+		});
+
+		if (!XposedApp.getPreferences().getBoolean("hide_install_warning", false)) {
+			final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
+			new AlertDialog.Builder(getActivity())
+			.setTitle(R.string.install_warning_title)
+			.setView(dontShowAgainView)
+			.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					CheckBox checkBox = (CheckBox) dontShowAgainView.findViewById(android.R.id.checkbox);
+					if (checkBox.isChecked())
+						XposedApp.getPreferences().edit().putBoolean("hide_install_warning", true).commit();
+				}
+			})
+			.setCancelable(false)
+			.show();
+		}
+
+		return v;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		SpannableStringBuilder installModeText = new SpannableStringBuilder(getString(R.string.settings_install_mode));
+		installModeText.append(":\n");
+		installModeText.setSpan(new StyleSpan(Typeface.BOLD), 0, installModeText.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+		installModeText.append(getInstallModeText());
+		txtInstallMode.setText(installModeText);
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		mRootUtil.dispose();
+	}
+
+	private abstract class AsyncClickListener implements View.OnClickListener {
+		private final CharSequence mProgressDlgText;
+
+		public AsyncClickListener(CharSequence progressDlgText) {
+			mProgressDlgText = progressDlgText;
+		}
+
+		@Override
+		public final void onClick(final View v) {
+			if (mProgressDlgText != null) {
+				dlgProgress.setMessage(mProgressDlgText);
+				dlgProgress.show();
+			}
+			new Thread() {
+				public void run() {
+					onAsyncClick(v);
+					dlgProgress.dismiss();
+				}
+			}.start();
+		}
+
+		protected abstract void onAsyncClick(View v);
+	}
+
+	private abstract class AsyncDialogClickListener implements DialogInterface.OnClickListener {
+		private final CharSequence mProgressDlgText;
+
+		public AsyncDialogClickListener(CharSequence progressDlgText) {
+			mProgressDlgText = progressDlgText;
+		}
+
+		@Override
+		public void onClick(final DialogInterface dialog, final int which) {
+			if (mProgressDlgText != null) {
+				dlgProgress.setMessage(mProgressDlgText);
+				dlgProgress.show();
+			}
+			new Thread() {
+				public void run() {
+					onAsyncClick(dialog, which);
+					dlgProgress.dismiss();
+				}
+			}.start();
+		}
+
+		protected abstract void onAsyncClick(DialogInterface dialog, int which);
+	}
+
+	private void refreshVersions() {
+		int appProcessInstalledVersion = getInstalledAppProcessVersion();
+		int appProcessLatestVersion = getLatestAppProcessVersion();
+		int jarInstalledVersion = getJarInstalledVersion();
+		int jarLatestVersion = getJarLatestVersion();
 
 		txtAppProcessInstalledVersion.setText(versionToText(appProcessInstalledVersion));
 		txtAppProcessLatestVersion.setText(versionToText(appProcessLatestVersion));
@@ -110,81 +289,33 @@ public class InstallerFragment extends Fragment {
 			txtJarInstalledVersion.setTextColor(Color.RED);
 		else
 			txtJarInstalledVersion.setTextColor(Color.GREEN);
-
-
-		if (isCompatible) {
-			btnInstall.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					showAlert(install());
-					txtAppProcessInstalledVersion.setText(versionToText(getInstalledAppProcessVersion()));
-					txtAppProcessInstalledVersion.setTextColor(Color.GREEN);
-					txtJarInstalledVersion.setText(versionToText(getJarInstalledVersion()));
-					txtJarInstalledVersion.setTextColor(Color.GREEN);
-
-					ModuleUtil.getInstance().updateModulesList();
-				}
-			});
-		} else {
-			String errorText = String.format(getString(R.string.phone_not_compatible), Build.VERSION.SDK_INT, Build.CPU_ABI);
-			if (!mCompatibilityErrors.isEmpty())
-				errorText += "\n\n" + TextUtils.join("\n", mCompatibilityErrors);
-			txtInstallError.setText(errorText);
-			txtInstallError.setTextColor(Color.RED);
-			txtInstallError.setVisibility(View.VISIBLE);
-			btnInstall.setEnabled(false);
-		}
-
-		btnUninstall.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				showAlert(uninstall());
-				txtAppProcessInstalledVersion.setText(versionToText(getInstalledAppProcessVersion()));
-				txtAppProcessInstalledVersion.setTextColor(Color.RED);
-				txtJarInstalledVersion.setText(versionToText(getJarInstalledVersion()));
-				txtJarInstalledVersion.setTextColor(Color.RED);
-			}
-		});
-		btnReboot.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				areYouSure(R.string.reboot, new OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						showAlert(reboot());
-					}
-				});
-			}
-		});
-
-		btnSoftReboot.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				areYouSure(R.string.soft_reboot, new OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						showAlert(softReboot());
-					}
-				});
-			}
-		});
-
-		return v;
 	}
 
 	private String versionToText(int version) {
 		return (version == 0) ? getString(R.string.none) : Integer.toString(version);
 	}
 
-	private void showAlert(String result) {
-		new AlertDialog.Builder(getActivity())
+	private void showAlert(final String result) {
+		if (Looper.myLooper() != Looper.getMainLooper()) {
+			getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					showAlert(result);
+				}
+			});
+			return;
+		}
+
+		AlertDialog dialog = new AlertDialog.Builder(getActivity())
 		.setMessage(result)
 		.setPositiveButton(android.R.string.ok, null)
-		.create()
-		.show();
+		.create();
+		dialog.show();
+		TextView txtMessage = (TextView) dialog.findViewById(android.R.id.message);
+		txtMessage.setTextSize(14);
 	}
 
-	private void areYouSure(int messageTextId, OnClickListener yesHandler) {
+	private void areYouSure(int messageTextId, DialogInterface.OnClickListener yesHandler) {
 		new AlertDialog.Builder(getActivity())
 		.setTitle(messageTextId)
 		.setMessage(R.string.areyousure)
@@ -195,14 +326,26 @@ public class InstallerFragment extends Fragment {
 		.show();
 	}
 
-	private static String getBinariesFolder() {
-		if (Build.CPU_ABI.startsWith("armeabi")) {
-			return "arm/";
-		} else if (Build.CPU_ABI.startsWith("x86")) {
-			return "x86/";
-		} else {
-			return null;
+	private void showConfirmDialog(final String message, final DialogInterface.OnClickListener yesHandler,
+			final DialogInterface.OnClickListener noHandler) {
+		if (Looper.myLooper() != Looper.getMainLooper()) {
+			getActivity().runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					showConfirmDialog(message, yesHandler, noHandler);
+				}
+			});
+			return;
 		}
+
+		AlertDialog dialog = new AlertDialog.Builder(getActivity())
+		.setMessage(message)
+		.setPositiveButton(android.R.string.yes, yesHandler)
+		.setNegativeButton(android.R.string.no, noHandler)
+		.create();
+		dialog.show();
+		TextView txtMessage = (TextView) dialog.findViewById(android.R.id.message);
+		txtMessage.setTextSize(14);
 	}
 
 	private boolean checkCompatibility() {
@@ -215,7 +358,7 @@ public class InstallerFragment extends Fragment {
 			if (XPOSEDTEST_NAME == null)
 				return false;
 
-			File testFile = writeAssetToCacheFile(XPOSEDTEST_NAME, "xposedtest", 00700);
+			File testFile = AssetUtil.writeAssetToCacheFile(XPOSEDTEST_NAME, "xposedtest", 00700);
 			if (testFile == null) {
 				mCompatibilityErrors.add("could not write xposedtest to cache");
 				return false;
@@ -249,7 +392,7 @@ public class InstallerFragment extends Fragment {
 			if (APP_PROCESS_NAME == null)
 				return false;
 
-			File testFile = writeAssetToCacheFile(APP_PROCESS_NAME, "app_process", 00700);
+			File testFile = AssetUtil.writeAssetToCacheFile(APP_PROCESS_NAME, "app_process", 00700);
 			if (testFile == null) {
 				mCompatibilityErrors.add("could not write app_process to cache");
 				return false;
@@ -315,8 +458,8 @@ public class InstallerFragment extends Fragment {
 
 	public static int getJarInstalledVersion() {
 		try {
-			if (new File(JAR_PATH + ".newversion").exists())
-				return getJarVersion(new FileInputStream(JAR_PATH + ".newversion"));
+			if (new File(JAR_PATH_NEWVERSION).exists())
+				return getJarVersion(new FileInputStream(JAR_PATH_NEWVERSION));
 			else
 				return getJarVersion(new FileInputStream(JAR_PATH));
 		} catch (IOException e) {
@@ -335,7 +478,7 @@ public class InstallerFragment extends Fragment {
 		return JAR_LATEST_VERSION;
 	}
 
-	public static int getJarVersion(InputStream is) throws IOException {
+	private static int getJarVersion(InputStream is) throws IOException {
 		JarInputStream jis = new JarInputStream(is);
 		JarEntry entry;
 		try {
@@ -357,123 +500,332 @@ public class InstallerFragment extends Fragment {
 		return 0;
 	}
 
-	private String install() {
-		File appProcessFile = writeAssetToCacheFile(APP_PROCESS_NAME, "app_process", 00700);
-		if (appProcessFile == null)
-			return "Could not find asset \"app_process\"";
+	private boolean startShell() {
+		if (mRootUtil.startShell())
+			return true;
 
-		File jarFile = writeAssetToFile("XposedBridge.jar", new File(JAR_PATH + ".newversion"), 00644);
-		if (jarFile == null)
-			return "Could not find asset \"XposedBridge.jar\"";
-
-		writeAssetToFile(APP_PROCESS_NAME, new File(XposedApp.BASE_DIR + "bin/app_process"), 00600);
-		writeAssetToSdcardFile("Xposed-Disabler-Recovery.zip", 00644);
-
-		String result = executeScript("install.sh");
-
-		appProcessFile.delete();
-
-		return result;
+		showAlert(getString(R.string.root_failed));
+		return false;
 	}
 
-	private String uninstall() {
-		new File(JAR_PATH).delete();
-		new File(JAR_PATH + ".newversion").delete();
-		new File(XposedApp.BASE_DIR + "bin/app_process").delete();
-		return executeScript("uninstall.sh");
+	private int getInstallMode() {
+		int mode = XposedApp.getPreferences().getInt("install_mode", INSTALL_MODE_NORMAL);
+		if (mode < INSTALL_MODE_NORMAL || mode > INSTALL_MODE_RECOVERY_MANUAL)
+			mode = INSTALL_MODE_NORMAL;
+		return mode;
 	}
 
-	private String softReboot() {
-		return executeScript("soft_reboot.sh");
-	}
-
-	private String reboot() {
-		return executeScript("reboot.sh");
-	}
-
-	private String executeScript(String name) {
-		File scriptFile = writeAssetToCacheFile(name, 00700);
-		if (scriptFile == null)
-			return "Could not find asset \"" + name + "\"";
-
-		File busybox = writeAssetToCacheFile(BINARIES_FOLDER + "busybox-xposed", "busybox-xposed", 00700);
-		if (busybox == null) {
-			scriptFile.delete();
-			return "Could not find asset \"busybox-xposed\"";
+	private String getInstallModeText() {
+		final int installMode = getInstallMode();
+		switch (installMode) {
+			case INSTALL_MODE_NORMAL:
+				return getString(R.string.install_mode_normal);
+			case INSTALL_MODE_RECOVERY_AUTO:
+				return getString(R.string.install_mode_recovery_auto);
+			case INSTALL_MODE_RECOVERY_MANUAL:
+				return getString(R.string.install_mode_recovery_manual);
 		}
+		throw new IllegalStateException("unknown install mode " + installMode);
+	}
 
+	private boolean install() {
+		final int installMode = getInstallMode();
+
+		if (!startShell())
+			return false;
+
+		List<String> messages = new LinkedList<String>();
+		boolean showAlert = true;
 		try {
-			Process p = Runtime.getRuntime().exec(
-					new String[] {
-						"su",
-						"-c",
-						scriptFile.getAbsolutePath() + " 2>&1"
-					});
-			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			BufferedReader stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-			StringBuilder sb = new StringBuilder();
-			String line;
-			while ((line = stdout.readLine()) != null) {
-				sb.append(line);
-				sb.append('\n');
+			messages.add(getString(R.string.file_copying, "Xposed-Disabler-Recovery.zip"));
+			if (AssetUtil.writeAssetToSdcardFile("Xposed-Disabler-Recovery.zip", 00644) == null) {
+				messages.add("");
+				messages.add(getString(R.string.file_extract_failed, "Xposed-Disabler-Recovery.zip"));
+				return false;
 			}
-			while ((line = stderr.readLine()) != null) {
-				sb.append(line);
-				sb.append('\n');
-			}
-			stdout.close();
-			return sb.toString();
 
-		} catch (IOException e) {
-			StringWriter sw = new StringWriter();
-			e.printStackTrace(new PrintWriter(sw));
-			return sw.toString();
+			File appProcessFile = AssetUtil.writeAssetToFile(APP_PROCESS_NAME, new File(XposedApp.BASE_DIR + "bin/app_process"), 00700);
+			if (appProcessFile == null) {
+				showAlert(getString(R.string.file_extract_failed, "app_process"));
+				return false;
+			}
+
+			if (installMode == INSTALL_MODE_NORMAL) {
+				// Normal installation
+				messages.add(getString(R.string.file_mounting_writable, "/system"));
+				if (mRootUtil.executeWithBusybox("mount -o remount,rw /system", messages) != 0) {
+					messages.add(getString(R.string.file_mount_writable_failed, "/system"));
+					messages.add(getString(R.string.file_trying_to_continue));
+				}
+
+				if (new File("/system/bin/app_process.orig").exists()) {
+					messages.add(getString(R.string.file_backup_already_exists, "/system/bin/app_process.orig"));
+				} else {
+					if (mRootUtil.executeWithBusybox("cp -a /system/bin/app_process /system/bin/app_process.orig", messages) != 0) {
+						messages.add("");
+						messages.add(getString(R.string.file_backup_failed, "/system/bin/app_process"));
+						return false;
+					} else {
+						messages.add(getString(R.string.file_backup_successful, "/system/bin/app_process.orig"));
+					}
+
+					mRootUtil.executeWithBusybox("sync", messages);
+				}
+
+				messages.add(getString(R.string.file_copying, "app_process"));
+				if (mRootUtil.executeWithBusybox("cp -a " + appProcessFile.getAbsolutePath() + " /system/bin/app_process", messages) != 0) {
+					messages.add("");
+					messages.add(getString(R.string.file_copy_failed, "app_process", "/system/bin"));
+					return false;
+				}
+				if (mRootUtil.executeWithBusybox("chmod 755 /system/bin/app_process", messages) != 0) {
+					messages.add("");
+					messages.add(getString(R.string.file_set_perms_failed, "/system/bin/app_process"));
+					return false;
+				}
+				if (mRootUtil.executeWithBusybox("chown root:shell /system/bin/app_process", messages) != 0) {
+					messages.add("");
+					messages.add(getString(R.string.file_set_owner_failed, "/system/bin/app_process"));
+					return false;
+				}
+
+			} else if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
+				if (!prepareAutoFlash(messages, "Xposed-Installer-Recovery.zip"))
+					return false;
+
+			} else if (installMode == INSTALL_MODE_RECOVERY_MANUAL) {
+				if (!prepareManualFlash(messages, "Xposed-Installer-Recovery.zip"))
+					return false;
+			}
+
+			File blocker = new File(XposedApp.BASE_DIR + "conf/disabled");
+			if (blocker.exists()) {
+				messages.add(getString(R.string.file_removing, blocker.getAbsolutePath()));
+				if (mRootUtil.executeWithBusybox("rm " + blocker.getAbsolutePath(), messages) != 0) {
+					messages.add("");
+					messages.add(getString(R.string.file_remove_failed, blocker.getAbsolutePath()));
+					return false;
+				}
+			}
+
+			messages.add(getString(R.string.file_copying, "XposedBridge.jar"));
+			File jarFile = AssetUtil.writeAssetToFile("XposedBridge.jar", new File(JAR_PATH_NEWVERSION), 00644);
+			if (jarFile == null) {
+				messages.add("");
+				messages.add(getString(R.string.file_extract_failed, "XposedBridge.jar"));
+				return false;
+			}
+
+			mRootUtil.executeWithBusybox("sync", messages);
+
+			showAlert = false;
+			messages.add("");
+			if (installMode == INSTALL_MODE_NORMAL)
+				offerReboot(messages);
+			else
+				offerRebootToRecovery(messages, "Xposed-Installer-Recovery.zip", installMode);
+
+			return true;
+
 		} finally {
-			scriptFile.delete();
-			busybox.delete();
+			AssetUtil.removeBusybox();
+
+			if (showAlert)
+				showAlert(TextUtils.join("\n", messages).trim());
 		}
 	}
 
-	private File writeAssetToCacheFile(String name, int mode) {
-		return writeAssetToCacheFile(name, name, mode);
-	}
+	private boolean uninstall() {
+		final int installMode = getInstallMode();
 
-	private File writeAssetToCacheFile(String assetName, String fileName, int mode) {
-		return writeAssetToFile(assetName, new File(getActivity().getCacheDir(), fileName), mode);
-	}
+		new File(JAR_PATH_NEWVERSION).delete();
+		new File(JAR_PATH).delete();
+		new File(XposedApp.BASE_DIR + "bin/app_process").delete();
 
-	private File writeAssetToSdcardFile(String name, int mode) {
-		return writeAssetToSdcardFile(name, name, mode);
-	}
+		if (!startShell())
+			return false;
 
-	private File writeAssetToSdcardFile(String assetName, String fileName, int mode) {
-		File dir = Environment.getExternalStorageDirectory();
-		dir.mkdirs();
-		return writeAssetToFile(assetName, new File(dir, fileName), mode);
-	}
-
-	private File writeAssetToFile(String assetName, File targetFile, int mode) {
+		List<String> messages = new LinkedList<String>();
+		boolean showAlert = true;
 		try {
-			InputStream in = getActivity().getAssets().open(assetName);
-			FileOutputStream out = new FileOutputStream(targetFile);
+			if (installMode == INSTALL_MODE_NORMAL) {
+				messages.add(getString(R.string.file_mounting_writable, "/system"));
+				if (mRootUtil.executeWithBusybox("mount -o remount,rw /system", messages) != 0) {
+					messages.add(getString(R.string.file_mount_writable_failed, "/system"));
+					messages.add(getString(R.string.file_trying_to_continue));
+				}
 
-			byte[] buffer = new byte[1024];
-			int len;
-			while ((len = in.read(buffer)) > 0){
-				out.write(buffer, 0, len);
+				messages.add(getString(R.string.file_backup_restoring, "/system/bin/app_process.orig"));
+				if (!new File("/system/bin/app_process.orig").exists()) {
+					messages.add("");
+					messages.add(getString(R.string.file_backup_not_found, "/system/bin/app_process.orig"));
+					return false;
+				}
+
+				if (mRootUtil.executeWithBusybox("mv /system/bin/app_process.orig /system/bin/app_process", messages) != 0) {
+					messages.add("");
+					messages.add(getString(R.string.file_move_failed, "/system/bin/app_process.orig", "/system/bin/app_process"));
+					return false;
+				}
+				if (mRootUtil.executeWithBusybox("chmod 755 /system/bin/app_process", messages) != 0) {
+					messages.add("");
+					messages.add(getString(R.string.file_set_perms_failed, "/system/bin/app_process"));
+					return false;
+				}
+				if (mRootUtil.executeWithBusybox("chown root:shell /system/bin/app_process", messages) != 0) {
+					messages.add("");
+					messages.add(getString(R.string.file_set_owner_failed, "/system/bin/app_process"));
+					return false;
+				}
+				// Might help on some SELinux-enforced ROMs, shouldn't hurt on others
+				mRootUtil.execute("/system/bin/restorecon /system/bin/app_process", null);
+
+			} else if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
+				if (!prepareAutoFlash(messages, "Xposed-Disabler-Recovery.zip"))
+					return false;
+
+			} else if (installMode == INSTALL_MODE_RECOVERY_MANUAL) {
+				if (!prepareManualFlash(messages, "Xposed-Disabler-Recovery.zip"))
+					return false;
 			}
-			in.close();
-			out.close();
 
-			FileUtils.setPermissions(targetFile.getAbsolutePath(), mode, -1, -1);
+			showAlert = false;
+			messages.add("");
+			if (installMode == INSTALL_MODE_NORMAL)
+				offerReboot(messages);
+			else
+				offerRebootToRecovery(messages, "Xposed-Disabler-Recovery.zip", installMode);
 
-			return targetFile;
-		} catch (IOException e) {
-			e.printStackTrace();
-			if (targetFile != null)
-				targetFile.delete();
+			return true;
 
-			return null;
+		} finally {
+			AssetUtil.removeBusybox();
+
+			if (showAlert)
+				showAlert(TextUtils.join("\n", messages).trim());
 		}
+	}
+
+	private boolean prepareAutoFlash(List<String> messages, String file) {
+		if (mRootUtil.execute("ls /cache/recovery", null) != 0) {
+			messages.add(getString(R.string.file_creating_directory, "/cache/recovery"));
+			if (mRootUtil.executeWithBusybox("mkdir /cache/recovery", messages) != 0) {
+				messages.add("");
+				messages.add(getString(R.string.file_create_directory_failed, "/cache/recovery"));
+				return false;
+			}
+		}
+
+		messages.add(getString(R.string.file_copying, file));
+		File tempFile = AssetUtil.writeAssetToCacheFile(file, 00644);
+		if (tempFile == null) {
+			messages.add("");
+			messages.add(getString(R.string.file_extract_failed, file));
+			return false;
+		}
+
+		if (mRootUtil.executeWithBusybox("cp -a " + tempFile.getAbsolutePath() + " /cache/recovery/" + file, messages) != 0) {
+			messages.add("");
+			messages.add(getString(R.string.file_copy_failed, file, "/cache"));
+			tempFile.delete();
+			return false;
+		}
+
+		tempFile.delete();
+
+		messages.add(getString(R.string.file_writing_recovery_command));
+		if (mRootUtil.execute("echo \"--update_package=/cache/recovery/" + file + "\n--show_text\" > /cache/recovery/command", messages) != 0) {
+			messages.add("");
+			messages.add(getString(R.string.file_writing_recovery_command_failed));
+			return false;
+		}
+
+		return true;
+	}
+
+	private boolean prepareManualFlash(List<String> messages, String file) {
+		messages.add(getString(R.string.file_copying, file));
+		if (AssetUtil.writeAssetToSdcardFile(file, 00644) == null) {
+			messages.add("");
+			messages.add(getString(R.string.file_extract_failed, file));
+			return false;
+		}
+
+		return true;
+	}
+
+	private void offerReboot(List<String> messages) {
+		messages.add(getString(R.string.file_done));
+		messages.add("");
+		messages.add(getString(R.string.reboot_confirmation));
+		showConfirmDialog(TextUtils.join("\n", messages).trim(),
+			new AsyncDialogClickListener(getString(R.string.reboot)) {
+				@Override
+				protected void onAsyncClick(DialogInterface dialog, int which) {
+					reboot(null);
+				}
+			}, null);
+	}
+
+	private void offerRebootToRecovery(List<String> messages, final String file, final int installMode) {
+		if (installMode == INSTALL_MODE_RECOVERY_AUTO)
+			messages.add(getString(R.string.auto_flash_note, file));
+		else
+			messages.add(getString(R.string.manual_flash_note, file));
+
+		messages.add("");
+		messages.add(getString(R.string.reboot_recovery_confirmation));
+		showConfirmDialog(TextUtils.join("\n", messages).trim(),
+			new AsyncDialogClickListener(getString(R.string.reboot)) {
+				@Override
+				protected void onAsyncClick(DialogInterface dialog, int which) {
+					reboot("recovery");
+				}
+			},
+			new AsyncDialogClickListener(null) {
+				@Override
+				protected void onAsyncClick(DialogInterface dialog, int which) {
+					if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
+						// clean up to avoid unwanted flashing
+						mRootUtil.executeWithBusybox("rm /cache/recovery/command", null);
+						mRootUtil.executeWithBusybox("rm /cache/recovery/" + file, null);
+						AssetUtil.removeBusybox();
+					}
+				}
+			});
+	}
+
+	private void softReboot() {
+		if (!startShell())
+			return;
+
+		List<String> messages = new LinkedList<String>();
+		if (mRootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages) != 0) {
+			messages.add("");
+			messages.add(getString(R.string.reboot_failed));
+			showAlert(TextUtils.join("\n", messages).trim());
+		}
+	}
+
+	private void reboot(String mode) {
+		if (!startShell())
+			return;
+
+		List<String> messages = new LinkedList<String>();
+
+		String command = "reboot";
+		if (mode != null) {
+			command += " " + mode;
+			if (mode.equals("recovery"))
+				// create a flag used by some kernels to boot into recovery
+				mRootUtil.executeWithBusybox("touch /cache/recovery/boot", messages);
+		}
+
+		if (mRootUtil.executeWithBusybox(command, messages) != 0) {
+			messages.add("");
+			messages.add(getString(R.string.reboot_failed));
+			showAlert(TextUtils.join("\n", messages).trim());
+		}
+		AssetUtil.removeBusybox();
 	}
 }

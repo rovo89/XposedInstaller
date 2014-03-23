@@ -1,9 +1,21 @@
 <resources>
 
-    <string-array name="download_sort_order" translateable="false">
+    <string-array name="download_sort_order" translatable="false">
         <item>@string/download_sorting_status</item>
         <item>@string/download_sorting_updated</item>
         <item>@string/download_sorting_created</item>
+    </string-array>
+
+    <string-array name="install_mode_texts" translatable="false">
+        <item>@string/install_mode_normal</item>
+        <item>@string/install_mode_recovery_auto</item>
+        <item>@string/install_mode_recovery_manual</item>
+    </string-array>
+
+    <string-array name="install_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
 
 </resources>

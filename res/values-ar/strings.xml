@@ -23,7 +23,6 @@
     <string name="install">تثبيت/تحديث</string>
     <string name="uninstall">إلغاء تثبيت</string>
     <string name="installedVersion">تنشيط</string>
-    <string name="none">---</string>
     <string name="latestVersion">تجميع</string>
     <string name="versions">إصدارات:</string>
     <string name="soft_reboot">اعادة تشغيل سريعة</string>
@@ -83,7 +82,7 @@
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> و <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">الرجاء القيام <b>لا</b> اتصل بنا مباشرة للدعم، واستخدام الارتباط الموجود أدناه.</string>
     <string name="about_translator_label">ترجمات:</string>
-    <string name="translator" />
+    <string name="translator">aljohanei</string>
     <string name="about_version_label">إصدار من هذا التطبيق:</string>
     <string name="about_source_label">التعليمات البرمجية المصدر:</string>
     <string name="about_support_label">الحصول على الدعم في:</string>

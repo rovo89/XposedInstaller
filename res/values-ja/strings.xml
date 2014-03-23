@@ -16,7 +16,7 @@
     <string name="tabModulesDescription">"フレームワーク単体では何もできないのでモジュールが別途必要です。モジュールのインストール後ここで有効化してください。"</string>
     <string name="tabDownload">ダウンロード</string>
     <string name="tabDownloadDescription">モジュールのレポジトリにアクセスして検索やダウンロードをします。</string>
-    <string name="welcome_framework_update_available">Xposedフレームワークの更新があります。</string>
+    <string name="welcome_framework_update_available">Xposedフレームワークの更新があります。 (%s)</string>
     <string name="welcome_update_available">モジュールの更新があります。</string>
     <string name="tabSettings">設定</string>
     <string name="tabSettingsDescription">Xposedインストーラとフレームワークの設定をします。</string>
@@ -29,7 +29,6 @@
     <string name="install">インストール/更新</string>
     <string name="uninstall">アンインストール</string>
     <string name="installedVersion">動作中</string>
-    <string name="none">---</string>
     <string name="latestVersion">内蔵</string>
     <string name="versions">バージョン:</string>
     <string name="soft_reboot">簡易再起動</string>
@@ -37,6 +36,38 @@
     <string name="areyousure">実行しますか?</string>
     <string name="phone_not_compatible">Xposedは(まだ)Android SDK バージョン %1$d やプロセッサ (%2$s)に非対応です。</string>
     <string name="not_tested_but_compatible">XposedはまだAndroid SDK バージョン %dでテストされていませんが、対応しているか試したい場合はインストールしてみてください。</string>
+    <string name="reboot_failed">再起動に失敗しました。通常の再起動をしてください。</string>
+    <string name="auto_flash_note">%s は"OK"を押した後自動的にインストールされます。</string>
+    <string name="manual_flash_note">%sをSDカードからインストールすればこの操作は完了です。</string>
+    <string name="reboot_confirmation">再起動しますか?</string>
+    <string name="reboot_recovery_confirmation">リカバリへ再起動しますか?</string>
+    <string name="install_warning_title">注意!</string>
+    <string name="install_warning">Xposedをインストールした後起動しなくなる場合があります。\n\n \"仮文鎮\"や\"ブートループ\"になったことがない場合やその状態からの復旧方法を知らない場合、Xposedをインストール<b>しないでください</b>!\n\nどんな場合でもバックアップしておくことは大切です。</string>
+    <string name="dont_show_again">二度と表示しない</string>
+    
+    <!-- File operations -->
+    <string name="root_failed">rootアクセスの取得に失敗しました。\n\n端末がrootedか、シェルコマンドをブロックしていないか確認してください。</string>
+    <string name="file_extract_failed">%sを抽出できません</string>
+    <string name="file_mounting_writable">%sを書き込み可能にしています&#8230;</string>
+    <string name="file_mount_writable_failed">%sを書き込み可能にできません</string>
+    <string name="file_trying_to_continue">続行します&#8230;</string>
+    <string name="file_backup_already_exists">%sにバックアップがすでにあります</string>
+    <string name="file_backup_not_found">%sにバックアップはありません</string>
+    <string name="file_backup_failed">%sのバックアップを作成できませんでした</string>
+    <string name="file_backup_successful">%sにバックアップしました</string>
+    <string name="file_backup_restoring">%sから復元中</string>
+    <string name="file_copying">%sをコピー中&#8230;</string>
+    <string name="file_copy_failed">%1$sを%2$sへコピーできません</string>
+    <string name="file_move_failed">%1$sを%2$sへ移動できません</string>
+    <string name="file_set_perms_failed">%sの権限をセットできません</string>
+    <string name="file_set_owner_failed">%sのオーナーをセットできません</string>
+    <string name="file_removing">%sを削除中&#8230;</string>
+    <string name="file_remove_failed">%sを削除できません</string>
+    <string name="file_creating_directory">フォルダ%sを作成中&#8230;</string>
+    <string name="file_create_directory_failed">フォルダ%sを作成できません</string>
+    <string name="file_writing_recovery_command">リカバリコマンドを書き込み中&#8230;</string>
+    <string name="file_writing_recovery_command_failed">リカバリコマンドを書き込めません。ほかの方法を使ってください。</string>
+    <string name="file_done">完了! 再起動してください。</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposedモジュールがまだ有効にされていません</string>
@@ -78,10 +109,17 @@
     <string name="download_section_older">30日以上前</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">インストール</string>
+    <string name="settings_install_mode">インストール方法</string>
+    <string name="install_mode_normal">クラシック(/systemに直接書き込む)</string>
+    <string name="install_mode_recovery_auto">リカバリ(自動でzipインストール)</string>
+    <string name="install_mode_recovery_manual">リカバリ(zipをSDカードに書き込み手動でインストール)</string>
     <string name="settings_group_download">ダウンロード</string>
     <string name="settings_enable_downloads">ダウンロードを有効化</string>
     <string name="settings_enable_downloads_summary">Xposedインストーラやモジュールの更新を定期的に確認するようにします。</string>
     <string name="settings_group_experimental">実験的</string>
+    <string name="settings_disable_resources">リソースフックを無効化</string>
+    <string name="settings_disable_resources_summary">テーマエンジンとの競合を解消します。\n<b>警告:</b>このオプションを有効化するとリソースをフックするモジュールが動作しなくなります。</string>
     <string name="settings_performance_experiment">パフォーマンス実験</string>
     <string name="settings_performance_experiment_summary">これを有効にするとパフォーマンスに影響が出る可能性があります。どうか試してみて効果があるかないか報告してください。有効にした後はフレームワークを再インストールして再起動してください。</string>
 
@@ -89,6 +127,11 @@
     <string name="logs_load_failed">ログを読み込めません:</string>
     <string name="logs_save_failed">SDカードにログを書き込めません:</string>
     <string name="sdcard_not_writable">SDカードが無いか書き込み可能でありません。</string>
+    <string name="log_too_large">ログファイルが%1$,d kB以上であるため先頭%2$,d kBをスキップしました。</string>
+    <string name="menuClearLog">ログの消去</string>
+    <string name="logs_cleared">ログを消去しました。</string>
+    <string name="logs_clear_failed">ログを消去できませんでした:</string>
+    <string name="log_is_empty">ログはありません</string>
 
     <!-- About tab -->
     <string name="about_developers_label">メイン開発者:</string>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- General/various strings -->
     <string name="app_name">Xposed Installer</string>
@@ -15,7 +15,7 @@
     <string name="tabModulesDescription">Das Framework selbst bringt keinerlei Funktionalität mit, dafür sind sogenannte Module zuständig. In diesem Bereich kannst du installierte Module aktivieren.</string>
     <string name="tabDownload">Download</string>
     <string name="tabDownloadDescription">Dieser Bereich gibt dir Zugriff auf eine Sammlung von Modulen, aus der du gewünschte Module herunterladen und immer aktuell halten kannst.</string>
-    <string name="welcome_framework_update_available">Es ist eine Aktualisierung für das Xposed-Framework verfügbar.</string>
+    <string name="welcome_framework_update_available">Es ist eine Aktualisierung für das Xposed-Framework verfügbar (%s).</string>
     <string name="welcome_update_available">Es sind Aktualisierungen für Module verfügbar.</string>
     <string name="tabSettings">Einstellungen</string>
     <string name="tabSettingsDescription">In diesem Bereich kannst du den Xposed Installer und das Xposed-Framework anpassen.</string>
@@ -28,7 +28,6 @@
     <string name="install">Installieren/Aktualisieren</string>
     <string name="uninstall">Deinstallieren</string>
     <string name="installedVersion">Aktiv</string>
-    <string name="none">---</string>
     <string name="latestVersion">Mitgeliefert</string>
     <string name="versions">Versionen:</string>
     <string name="soft_reboot">Software-Neustart</string>
@@ -36,6 +35,38 @@
     <string name="areyousure">Bist du sicher?</string>
     <string name="phone_not_compatible">Xposed ist (noch) nicht mit der Android-SDK-Version %1$d oder deiner Prozessor-Architektur (%2$s) kompatibel.</string>
     <string name="not_tested_but_compatible">Xposed wurde noch nicht mit der Android-SDK-Version %d getestet, aber es scheint kompatibel damit zu sein. Wenn du abenteuerlustig bist, kannst die Installation versuchen.</string>
+    <string name="reboot_failed">Neustart fehlgeschlagen. Bitte verwende die normale Neustartfunktion des Geräts.</string>
+    <string name="auto_flash_note">%s sollte automatisch installiert werden, sobald du "OK" drückst.</string>
+    <string name="manual_flash_note">Bitte installiere %s von der SD-Karte, um den Vorgang abzuschließen.</string>
+    <string name="reboot_confirmation">Möchtest du jetzt neustarten?</string>
+    <string name="reboot_recovery_confirmation">Möchtest du jetzt in den Recovery-Modus booten?</string>
+    <string name="install_warning_title">Vorsicht!</string>
+    <string name="install_warning">In manchen Fällen wird das Gerät nicht mehr korrekt starten, nachdem du Xposed installiert hast.\n\nFalls dir \"Soft Brick\" und \"Bootloop\" nichts sagen oder du nicht weißt, wie du dich aus einer solchen Situation befreien kannst, solltest du Xposed <b>NICHT</b> installieren!\n\nIn jedem Fall ist es sehr empfehlenswert, ein aktuelles Backup zu haben.</string>
+    <string name="dont_show_again">Nicht wieder anzeigen</string>
+
+    <!--  File operations -->
+    <string name="root_failed">Root-Zugriff fehlgeschlagen\n\nStelle sicher, dass das Gerät korrekt gerootet ist und Shell-Kommandos nicht blockiert werden.</string>
+    <string name="file_extract_failed">%s konnte nicht entpackt werden</string>
+    <string name="file_mounting_writable">Mounte %s beschreibbar&#8230;</string>
+    <string name="file_mount_writable_failed">%s konnte nicht beschreibbar gemacht werden</string>
+    <string name="file_trying_to_continue">Versuche dennoch fortzusetzen&#8230;</string>
+    <string name="file_backup_already_exists">Backup existiert bereits unter %s</string>
+    <string name="file_backup_not_found">Kein Backup unter %s gefunden</string>
+    <string name="file_backup_failed">Backup von %s konnte nicht erstellt werden</string>
+    <string name="file_backup_successful">Backup wurde unter %s erstellt</string>
+    <string name="file_backup_restoring">Stelle Backup von %s wieder her&#8230;</string>
+    <string name="file_copying">Kopiere %s&#8230;</string>
+    <string name="file_copy_failed">Konnte %1$s nicht nach %2$s kopieren</string>
+    <string name="file_move_failed">Konnte %1$s nicht nach %2$s verschieben</string>
+    <string name="file_set_perms_failed">Berechtigungen für %s konnten nicht gesetzt werden</string>
+    <string name="file_set_owner_failed">Besitzer für %s konnte nicht gesetzt werden</string>
+    <string name="file_removing">Entferne %s&#8230;</string>
+    <string name="file_remove_failed">%s konnte nicht entfernt werden</string>
+    <string name="file_creating_directory">Erstelle Verzeichnis %s&#8230;</string>
+    <string name="file_create_directory_failed">Konnte Verzeichnis %s nicht anlegen</string>
+    <string name="file_writing_recovery_command">Schreibe Recovery-Kommando&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Schreiben des Recovery-Kommands ist fehlgeschlagen. Bitte verwende eine andere Installationsweise.</string>
+    <string name="file_done">Fertig! Änderungen werden nach einem Neustart sichtbar.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed-Modul ist noch nicht aktiv</string>
@@ -76,17 +107,29 @@
     <string name="download_section_older">Vor mehr als 30 Tagen</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">Installation</string>
+    <string name="settings_install_mode">Installationsmodus</string>
+    <string name="install_mode_normal">Klassisch (/system direkt beschreiben)</string>
+    <string name="install_mode_recovery_auto">Recovery (ZIP automatisch installieren)</string>
+    <string name="install_mode_recovery_manual">Recovery (ZIP auf SD-Karte schreiben, selbst installieren)</string>
     <string name="settings_group_download">Download</string>
     <string name="settings_enable_downloads">Downloads aktivieren</string>
     <string name="settings_enable_downloads_summary">Xposed Installer die Suche nach Aktualisierungen und neuen Modulen erlauben</string>
-    <string name="settings_group_experimental">Experimente</string>
+    <string name="settings_group_experimental">Experimentell</string>
+    <string name="settings_disable_resources">Ressourcen-APIs deaktivieren</string>
+    <string name="settings_disable_resources_summary">Workaround für Konflikte mit \"Theming Engines\"\n<b>VORSICHT:</b> Module, die Ressourcen verändern, werden mit dieser Einstellung nicht funktionieren.</string>
     <string name="settings_performance_experiment">Performance-Experiment</string>
-    <string name="settings_performance_experiment_summary">Falls du diese Einstellung aktivierst, wird sich die Leistung Ihres System entweder verschlechtern, verbessern oder gar nicht verändern. Teste sie und berichte, welches Verhalten du beobachten kannst. Nachdem du diese Einstellung geändert hast, musst du das Framework neu installieren und das Gerät neustarten.</string>
+    <string name="settings_performance_experiment_summary">Falls du diese Einstellung aktivierst, wird sich die Leistung deines Systems entweder verschlechtern, verbessern oder gar nicht verändern. Teste sie und berichte, welches Verhalten du beobachten kannst. Nachdem du diese Einstellung geändert hast, musst du das Framework neu installieren und das Gerät neustarten.</string>
 
     <!--  Logs tab  -->
     <string name="logs_load_failed">Log konnte nicht gelesen werden:</string>
     <string name="logs_save_failed">Log konnte nicht auf der SD-Karte gespeichert werden:</string>
     <string name="sdcard_not_writable">SD-Karte wurde nicht gefunden oder ist nicht beschreibbar</string>
+    <string name="log_too_large">Log ist größer als %1$,d kB, die ersten %2$,d kB wurden übersprungen</string>
+    <string name="menuClearLog">Log jetzt leeren</string>
+    <string name="logs_cleared">Log wurde geleert</string>
+    <string name="logs_clear_failed">Konnte Log nicht leeren:</string>
+    <string name="log_is_empty">Log ist leer</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Hauptentwickler:</string>
