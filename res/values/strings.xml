@@ -30,6 +30,7 @@
     <string name="installedVersion">active</string>
     <string name="latestVersion">bundled</string>
     <string name="versions">Versions:</string>
+    <string name="install_header_reboot">Reboot</string>
     <string name="soft_reboot">Soft reboot</string>
     <string name="reboot">Reboot</string>
     <string name="areyousure">Are you sure?</string>
