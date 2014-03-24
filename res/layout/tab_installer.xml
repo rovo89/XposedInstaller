@@ -14,6 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
+            android:background="?attr/background_card"
             android:stretchColumns="0,1,2" >
 
             <TableRow
@@ -92,9 +94,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
+            android:text="@string/settings_install_mode"
             android:textAllCaps="true"
-            android:textStyle="bold"
-            android:text="@string/settings_install_mode" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/framework_install_mode"
@@ -107,17 +109,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:textStyle="bold"
             android:textColor="@color/warning"
+            android:textStyle="bold"
             android:visibility="gone" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
+            android:text="@string/tabInstall"
             android:textAllCaps="true"
-            android:textStyle="bold"
-            android:text="@string/tabInstall" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnInstall"
@@ -136,9 +138,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="16dp"
+            android:text="@string/install_header_reboot"
             android:textAllCaps="true"
-            android:textStyle="bold"
-            android:text="@string/install_header_reboot" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnSoftReboot"
@@ -151,7 +153,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/reboot" />
-
     </LinearLayout>
 
 </ScrollView>
