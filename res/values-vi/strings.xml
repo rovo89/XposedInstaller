@@ -35,6 +35,38 @@
     <string name="areyousure">Bạn chắc chắn?</string>
     <string name="phone_not_compatible">Xposed chưa tương thích với Android SDK bản %1$d hoặc kiến trúc bộ xử lý của bạn (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed chưa được thử nghiệm trên Android SDK bản %d, nhưng có thể tương thích. Bạn có thể cài nếu bạn muốn thử.</string>
+   <string name="reboot_failed">Không thể khởi động lại. Vui lòng sử dụng chức năng khởi động lại của thiết bị.</string>
+    <string name="auto_flash_note">%s sẽ được cài đặt tự động khi bạn bấm "OK".</string>
+    <string name="manual_flash_note">Vui lòng cài %s từ thẻ SD để kết thúc quá trình.</string>
+    <string name="reboot_confirmation">Bạn có muốn khởi động lại không?</string>
+    <string name="reboot_recovery_confirmation">Bạn có muốn khởi động lại vào recovery không?</string>
+    <string name="install_warning_title">Hãy cẩn thận!</string>
+    <string name="install_warning">Trong một số trường hợp, thiết bị của bạn có thể không khởi động được sau khi cài Xposed.\n\nNếu bạn chưa từng nghe nói về \"soft brick\" và \"bootloop\" hoặc nếu bạn không biết cách xử lý trong tình huống đó, thì <b>ĐỪNG</b> cài Xposed!\n\nDù thế nào, bạn cũng nên có một bản sao lưu mới.</string>
+    <string name="dont_show_again">Đừng hiện lại nữa</string>
+
+	<!--  File operations -->
+    <string name="root_failed">Không thể lấy quyền root.\n\nHãy đảm bảo rằng thiết bị của bạn đã root và bạn không chặn các lệnh shell.</string>
+    <string name="file_extract_failed">Không thể giải nén %s</string>
+    <string name="file_mounting_writable">Đặt chế độ ghi cho %s &#8230;</string>
+    <string name="file_mount_writable_failed">Không thể đặt chế độ ghi cho %s</string>
+    <string name="file_trying_to_continue">Cứ thử tiếp&#8230;</string>
+    <string name="file_backup_already_exists">Đã có bản sao lưu ở %s</string>
+    <string name="file_backup_not_found">Không thấy bản sao lưu nào ở %s</string>
+    <string name="file_backup_failed">Không thể tạo bản sao lưu cho %s</string>
+    <string name="file_backup_successful">Đã tạo bản sao lưu ở %s</string>
+    <string name="file_backup_restoring">Đang khôi phục bản sao lưu từ %s</string>
+    <string name="file_copying">Đang chép %s&#8230;</string>
+    <string name="file_copy_failed">Không thể chép %1$s vào %2$s</string>
+    <string name="file_move_failed">Không thể chuyển %1$s đến %2$s</string>
+    <string name="file_set_perms_failed">Không thể đặt quyền cho %s</string>
+    <string name="file_set_owner_failed">Không thể đặt chủ sở hữu cho %s</string>
+    <string name="file_removing">Đang xoá %s&#8230;</string>
+    <string name="file_remove_failed">Không thể xoá %s</string>
+    <string name="file_creating_directory">Đang tạo thư mục %s&#8230;</string>
+    <string name="file_create_directory_failed">Không thể tạo thư mục %s</string>
+    <string name="file_writing_recovery_command">Đang viết lệnh cho recovery&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Không thể viết lệnh cho recovery. Hãy dùng cách khác để cài.</string>
+    <string name="file_done">Xong! Các thay đổi sẽ có hiệu lực khi khởi động lại thiết bị.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Module chưa bật</string>
@@ -75,17 +107,30 @@
     <string name="download_section_older">Hơn 30 ngày trước</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">Cài đặt</string>
+    <string name="settings_install_mode">Chế độ cài đặt</string>
+    <string name="install_mode_normal">Kiểu cũ (ghi trực tiếp vào /system)</string>
+    <string name="install_mode_recovery_auto">Recovery (tự động flash tập tin zip)</string>
+    <string name="install_mode_recovery_manual">Recovery (tạo tập tin zip trên thẻ SD, flash thủ công)</string>
     <string name="settings_group_download">Tải xuống</string>
     <string name="settings_enable_downloads">Cho phép tải xuống</string>
     <string name="settings_enable_downloads_summary">Cho phép Xposed Installer tìm các bản cập nhật</string>
     <string name="settings_group_experimental">Thử nghiệm</string>
+    <string name="settings_disable_resources">Ngắt các kết nối tài nguyên</string>
+    <string name="settings_disable_resources_summary">Tránh xung đột với các máy giao diện\n<b>CẢNH BÁO:</b> Các module cần thay đổi tài nguyên sẽ không hoạt động khi bật tính năng này.</string>
     <string name="settings_performance_experiment">Thử nghiệm hiệu năng</string>
     <string name="settings_performance_experiment_summary">Nếu bật tính năng này, hiệu năng hệ thống của bạn có thể tăng, giảm, hoặc giữ nguyên như cũ.  Nếu muốn, hãy thử và cho chúng tôi biết kết quả (ngay cả khi không thấy có thay đổi gì). Bạn phải cài lại framework và khởi động lại sau khi thay đổi tuỳ chọn này.</string>
 
     <!--  Logs tab  -->
-    <string name="logs_load_failed">Không thể đọc bản ghi:</string>
-    <string name="logs_save_failed">Không thể ghi bản ghi vào thẻ SD:</string>
+    <string name="logs_load_failed">Không thể đọc nhật ký:</string>
+    <string name="logs_save_failed">Không thể ghi nhật ký vào thẻ SD:</string>
     <string name="sdcard_not_writable">Không tìm thấy thẻ SD hoặc thẻ không ghi lên được</string>
+    <string name="log_too_large">Tập tin nhật ký lớn hơn %1$,d kB, bỏ qua %2$,d kB đầu tiên</string>
+    <string name="menuClearLog">Xoá nhật ký</string>
+    <string name="logs_cleared">Đã xoá nhật ký</string>
+    <string name="logs_clear_failed">Không thể xoá nhật ký:</string>
+    <string name="log_is_empty">Nhật ký trống</string>
+
 
     <!-- About tab -->
     <string name="about_developers_label">Các tác giả chính:</string>
@@ -110,7 +155,7 @@
     <string name="download_view_failed">Tải xuống không thành công (lỗi %d)</string>
 
     <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">Sai tổng MD5 (đã tải: %1$s, cần tải: %2$s)</string>
+    <string name="download_md5sum_incorrect">Sai mã MD5 (đã tải: %1$s, cần tải: %2$s)</string>
     <string name="download_could_not_read_file">Không thể đọc tập tin đã tải: %s</string>
     <string name="download_no_valid_apk">Tập tin đã tải không phải là một APK hợp lệ (hoặc không tương thích)</string>
     <string name="download_incorrect_package_name">Sai tên gói (đã tải: %1$s, cần tải: %2$s)</string>
