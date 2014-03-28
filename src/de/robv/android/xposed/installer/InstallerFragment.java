@@ -573,7 +573,8 @@ public class InstallerFragment extends Fragment {
 				}
 
 				messages.add(getString(R.string.file_copying, "app_process"));
-				if (mRootUtil.executeWithBusybox("cp -a " + appProcessFile.getAbsolutePath() + " /system/bin/app_process", messages) != 0) {
+				if (mRootUtil.executeWithBusybox("cp -a " + appProcessFile.getAbsolutePath() + " /system/bin/app_process.tmp", messages) != 0
+					|| mRootUtil.executeWithBusybox("mv /system/bin/app_process.tmp /system/bin/app_process", messages) != 0) {
 					messages.add("");
 					messages.add(getString(R.string.file_copy_failed, "app_process", "/system/bin"));
 					return false;
