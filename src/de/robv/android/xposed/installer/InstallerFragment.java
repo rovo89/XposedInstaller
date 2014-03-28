@@ -816,12 +816,9 @@ public class InstallerFragment extends Fragment {
 		String command = "reboot";
 		if (mode != null) {
 			command += " " + mode;
-			if (mode.equals("recovery"))
-				// create a flag used by some kernels to boot into recovery
-				mRootUtil.executeWithBusybox("touch /cache/recovery/boot", messages);
 		}
 
-		if (mRootUtil.executeWithBusybox(command, messages) != 0) {
+		if (mRootUtil.execute(command, messages) != 0) {
 			messages.add("");
 			messages.add(getString(R.string.reboot_failed));
 			showAlert(TextUtils.join("\n", messages).trim());
