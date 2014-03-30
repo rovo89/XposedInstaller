@@ -35,7 +35,7 @@
     <string name="areyousure">Bạn chắc chắn?</string>
     <string name="phone_not_compatible">Xposed chưa tương thích với Android SDK bản %1$d hoặc kiến trúc bộ xử lý của bạn (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed chưa được thử nghiệm trên Android SDK bản %d, nhưng có thể tương thích. Bạn có thể cài nếu bạn muốn thử.</string>
-   <string name="reboot_failed">Không thể khởi động lại. Vui lòng sử dụng chức năng khởi động lại của thiết bị.</string>
+    <string name="reboot_failed">Không thể khởi động lại. Vui lòng sử dụng chức năng khởi động lại của thiết bị.</string>
     <string name="auto_flash_note">%s sẽ được cài đặt tự động khi bạn bấm "OK".</string>
     <string name="manual_flash_note">Vui lòng cài %s từ thẻ SD để kết thúc quá trình.</string>
     <string name="reboot_confirmation">Bạn có muốn khởi động lại không?</string>
@@ -44,7 +44,7 @@
     <string name="install_warning">Trong một số trường hợp, thiết bị của bạn có thể không khởi động được sau khi cài Xposed.\n\nNếu bạn chưa từng nghe nói về \"soft brick\" và \"bootloop\" hoặc nếu bạn không biết cách xử lý trong tình huống đó, thì <b>ĐỪNG</b> cài Xposed!\n\nDù thế nào, bạn cũng nên có một bản sao lưu mới.</string>
     <string name="dont_show_again">Đừng hiện lại nữa</string>
 
-	<!--  File operations -->
+    <!--  File operations -->
     <string name="root_failed">Không thể lấy quyền root.\n\nHãy đảm bảo rằng thiết bị của bạn đã root và bạn không chặn các lệnh shell.</string>
     <string name="file_extract_failed">Không thể giải nén %s</string>
     <string name="file_mounting_writable">Đặt chế độ ghi cho %s &#8230;</string>
