@@ -8,7 +8,7 @@
     <string name="xposed_not_active">Последната версия на Xposed не е активна. Инсталирахте ли framework и рестартирахте ли?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Добре дошли в <b>Xposed Installer</b>!\nМоля изберете какво желаете да направите:</string>
+    <string name="welcome">Добре дошли в <b>Xposed Installer</b>!\nМоля, изберете какво желаете да направите:</string>
     <string name="tabInstall">Framework</string>
     <string name="tabInstallDescription">От тук можете да управлявате Xposed framework, който е необходим за да работят модулите.</string>
     <string name="tabModules">Модули</string>
@@ -53,7 +53,7 @@
 
     <!-- Download tab -->
     <string name="menuSearch">Търси</string>
-    <string name="menuReload">Презаревди</string>
+    <string name="menuReload">Презареди</string>
     <string name="changes">Промени:</string>
     <string name="branch_display">(%s branch)</string>
     <string name="download_author">от %s</string>
@@ -83,21 +83,21 @@
     <string name="settings_performance_experiment_summary">Ако позволите това, производителността на системата може да се увеличи, да се намали или да се запази. Чувствайте се свободни да пробвате и да дадете отзиви. Необходимо е да преинсталирате framework и да рестартирате след промяна на тази настройка.</string>
 
     <!--  Logs tab  -->
-    <string name="logs_load_failed">Неможе да се прочете дневника:</string>
-    <string name="logs_save_failed">Дневника неможе да се запише на SD картата:</string>
+    <string name="logs_load_failed">Не може да се прочете дневника:</string>
+    <string name="logs_save_failed">Дневника не може да се запише на SD картата:</string>
     <string name="sdcard_not_writable">SD картата не съществува, или не е за запис</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Разработчици:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> и <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Моля <b>не</b> се свързвайте с нс директно, използвайте долния линк.</string>
+    <string name="about_developers_warning">Моля <b>не</b> се свързвайте с нас директно, използвайте долния линк.</string>
     <string name="about_translator_label">Преводач:</string>
     <string name="translator">mamutcho</string>
     <string name="about_version_label">Версия:</string>
     <string name="about_source_label">Изходен код:</string>
     <string name="about_support_label">Поддръжка на:</string>
     <string name="about_support_warning">Тази връзка е за инсталатора <b>само</b> на framework! Ако имате нужда от помощ с някой от модулите, <b>не</b> я използвайте, свържете се с автора на модула.</string>
-    <string name="about_libraries_label">Използвано библиотеки:</string>
+    <string name="about_libraries_label">Използвани библиотеки:</string>
 
     <!-- DownloadView -->
     <string name="download_view_download">Изтегли</string>
@@ -110,10 +110,10 @@
     <string name="download_view_failed">Неуспешно изтеглен (грешка %d)</string>
 
     <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">Некоректна MD5 сума (изтеглено: %1$s, очаквано: %2$s)</string>
+    <string name="download_md5sum_incorrect">Некоректна MD5 сума (изтеглени: %1$s, очаквани: %2$s)</string>
     <string name="download_could_not_read_file">Не може да се зареди изтегления файл: %s</string>
     <string name="download_no_valid_apk">Изтегления файл не е валидно приложение (или е несъвместино)</string>
-    <string name="download_incorrect_package_name">Името на пакета е грешно (изтеглено: %1$s, очаквано: %2$s)</string>
+    <string name="download_incorrect_package_name">Името на пакета е грешно (изтеглени: %1$s, очаквани: %2$s)</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Изтеглянето на %1$s е неуспешно: %2$d (%3$s)</string>
