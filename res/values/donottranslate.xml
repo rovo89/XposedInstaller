@@ -5,7 +5,7 @@
     <string name="xposedbridge">XposedBridge.jar</string>
     <string name="none">---</string>
     <string name="about_source">https://github.com/rovo89</string>
-    <string name="about_support">http://forum.xda-developers.com/showthread.php?t=1574401</string>
+    <string name="about_support">http://forum.xda-developers.com/apps/xposed</string>
     <string name="about_libraries"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a>\n<a href="https://github.com/Chainfire/libsuperuser">libsuperuser</a></string>
 
 </resources>
