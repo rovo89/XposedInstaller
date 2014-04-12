@@ -47,24 +47,24 @@
     <!-- File operations -->
     <string name="root_failed">Nepodařilo se získat oprávnění root.\n\nUjistěte se, že vaše je správně rootnuté a nejsou blokované přikazy shellu.</string>
     <string name="file_extract_failed">Nepodařilo se extrahovat %s</string>
-    <string name="file_mounting_writable">Připojuji %s v režimu pro zápis...</string>
+    <string name="file_mounting_writable">Připojuji %s v režimu pro zápis&#8230;</string>
     <string name="file_mount_writable_failed">Nelze připojit %s v režimu pro zápis</string>
-    <string name="file_trying_to_continue">Pokus o zotavení...</string>
+    <string name="file_trying_to_continue">Pokus o zotavení&#8230;</string>
     <string name="file_backup_already_exists">Záloha v %s již existuje</string>
     <string name="file_backup_not_found">Žádná záloha nenalezena v %s</string>
     <string name="file_backup_failed">Selhalo vytvoření zálohy %s</string>
     <string name="file_backup_successful">Záloha v %s vytvořena</string>
     <string name="file_backup_restoring">Obnovování zálohy z %s</string>
-    <string name="file_copying">Kopíruji %s...</string>
+    <string name="file_copying">Kopíruji %s&#8230;</string>
     <string name="file_copy_failed">Nelze zkopírovat  %1$s do %2$s</string>
     <string name="file_move_failed">Nelze přesunout %1$s do %2$s</string>
     <string name="file_set_perms_failed">Nelze nastavit oprávnění u %s</string>
     <string name="file_set_owner_failed">Nepodařilo se nastavit vlastníka u %s</string>
-    <string name="file_removing">Maže se %s...</string>
+    <string name="file_removing">Maže se %s&#8230;</string>
     <string name="file_remove_failed">Nepodařilo se odstranit %s</string>
-    <string name="file_creating_directory">Vytváří se adresář %s...</string>
+    <string name="file_creating_directory">Vytváří se adresář %s&#8230;</string>
     <string name="file_create_directory_failed">Nepodařilo se vytvořit adresář %s</string>
-    <string name="file_writing_recovery_command">Zapisují se příkazy recovery...</string>
+    <string name="file_writing_recovery_command">Zapisují se příkazy recovery&#8230;</string>
     <string name="file_writing_recovery_command_failed">Zápis příkazů recovery selhal. Použijte prosím jiný způsob instalace.</string>
     <string name="file_done">Hotovo. Změny se projeví po restartu zařízení.</string>
 
@@ -118,8 +118,8 @@
     <string name="settings_group_experimental">Experimentální</string>
     <string name="settings_disable_resources">Zakázat ovlivňování prostředků</string>
     <string name="settings_disable_resources_summary">(Resource hooks)\nŘeší konflikt s tématy (theme engines).\n<b>VAROVÁNÍ:</b> Je-li aktivní, moduly měnící prostředky nebudou správně pracovat.</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Experimentální výkon</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Zapnutím této volby se systém může zrychlit, ale také zpomalit, nebo zůstat stejný. Tuto vlastnost je vhodné řádně otestovat. Po změně této hodnoty je nutné přeinstalovat framework a restartovat.</string>
+    <string name="settings_performance_experiment">Experimentální výkon</string>
+    <string name="settings_performance_experiment_summary">Zapnutím této volby se systém může zrychlit, ale také zpomalit, nebo zůstat stejný. Tuto vlastnost je vhodné řádně otestovat. Po změně této hodnoty je nutné přeinstalovat framework a restartovat.</string>
 
     <!-- Logs tab -->
     <string name="logs_load_failed">Nepodařilo se načíst log:</string>
