@@ -45,26 +45,26 @@
     <string name="dont_show_again">ห้ามแสดงอีก</string>
 
     <!--  File operations -->
-    <string name="root_failed">Failed to get root access.\n\nMake sure your device is rooted properly and you have not blocked shell commands.</string>
-    <string name="file_extract_failed">Could not extract %s</string>
+    <string name="root_failed">ไม่สามารถใช้สิทธิ์ root\n\nแน่ใจนะว่าเครื่องคุณรูทมาถูกต้องแล้ว และคุณไม่ได้บล๊อค shell commands</string>
+    <string name="file_extract_failed">ไม่สามารถแตกไฟล์ %s</string>
     <string name="file_mounting_writable">Mounting %s writable&#8230;</string>
     <string name="file_mount_writable_failed">Could not mount %s writable</string>
-    <string name="file_trying_to_continue">Trying to continue anyway&#8230;</string>
-    <string name="file_backup_already_exists">Backup already exists at %s</string>
-    <string name="file_backup_not_found">No backup found at %s</string>
-    <string name="file_backup_failed">Failed to create a backup of %s</string>
-    <string name="file_backup_successful">Created backup at %s</string>
-    <string name="file_backup_restoring">Restoring backup from %s</string>
-    <string name="file_copying">Copying %s&#8230;</string>
-    <string name="file_copy_failed">Could not copy %1$s to %2$s</string>
-    <string name="file_move_failed">Could not move %1$s to %2$s</string>
-    <string name="file_set_perms_failed">Could not set permissions for %s</string>
-    <string name="file_set_owner_failed">Could not set owner for %s</string>
-    <string name="file_removing">Removing %s&#8230;</string>
-    <string name="file_remove_failed">Could not remove %s</string>
-    <string name="file_creating_directory">Creating directory %s&#8230;</string>
-    <string name="file_create_directory_failed">Could not create directory %s</string>
-    <string name="file_writing_recovery_command">Writing recovery command&#8230;</string>
+    <string name="file_trying_to_continue">จะพยายามทำต่อไป&#8230;</string>
+    <string name="file_backup_already_exists">มีแบ๊คอัพแล้วที่ %s</string>
+    <string name="file_backup_not_found">ไม่มีแบ๊คอัพที่ %s</string>
+    <string name="file_backup_failed">สร้างแบ๊คอัพของ %s ไม่สำเร็จ</string>
+    <string name="file_backup_successful">สร้างแบ๊คอัพแล้วที่ %s</string>
+    <string name="file_backup_restoring">กำลังกู้คืนจากแบ๊คอัพที่ %s</string>
+    <string name="file_copying">กำลังคัดลอก %s&#8230;</string>
+    <string name="file_copy_failed">ไม่สามารถคัดลอก %1$s ไปยัง %2$s</string>
+    <string name="file_move_failed">ไม่สามารถย้าย %1$s ไปยัง %2$s</string>
+    <string name="file_set_perms_failed">ไม่สามารถตั้ง permissions สำหรับ %s</string>
+    <string name="file_set_owner_failed">ไม่สามารถตั้ง owner สำหรับ %s</string>
+    <string name="file_removing">กำลังนำ %s ออก&#8230;</string>
+    <string name="file_remove_failed">ไม่สามารถนำ %s ออก</string>
+    <string name="file_creating_directory">กำลังสร้างไดเรคทอรี %s&#8230;</string>
+    <string name="file_create_directory_failed">ไม่สามารถสร้างร้างไดเรคทอรี %s</string>
+    <string name="file_writing_recovery_command">กำลังเขียนคำสั่ง recovery&#8230;</string>
     <string name="file_writing_recovery_command_failed">Writing recovery command failed. Please use a different installation method.</string>
     <string name="file_done">Done! Changes will become active on reboot.</string>
 
@@ -154,10 +154,10 @@
     <string name="download_view_failed">ดาวน์โหลดไม่สำเร็จ (error %d)</string>
 
     <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">MD5 sum is incorrect (downloaded: %1$s, expected: %2$s)</string>
-    <string name="download_could_not_read_file">Could not read downloaded file: %s</string>
-    <string name="download_no_valid_apk">Downloaded file is not a valid APK (or incompatible)</string>
-    <string name="download_incorrect_package_name">Package name is incorrect (downloaded: %1$s, expected: %2$s)</string>
+    <string name="download_md5sum_incorrect">MD5 sum ไม่ถูกต้อง (ที่ดาวน์โหลด: %1$s, ที่คาดไว้: %2$s)</string>
+    <string name="download_could_not_read_file">ไม่สามารถอ่านไฟล์ที่ดาวน์โหลดมา: %s</string>
+    <string name="download_no_valid_apk">ไฟล์ที่ดาวน์โหลดมาไม่ใช่ APK ที่ถูกต้อง (หรือไม่ก็ไม่รองรับ)</string>
+    <string name="download_incorrect_package_name">ชื่อแพ็คเกจไม่ถูกต้อง (ที่ดาวน์โหลด: %1$s, ที่คาดไว้: %2$s)</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Downloading %1$s failed: %2$d (%3$s)</string>
