@@ -144,14 +144,14 @@
     <string name="about_libraries_label">Used libraries:</string>
 
     <!-- DownloadView -->
-    <string name="download_view_download">Download</string>
-    <string name="download_view_install">Install</string>
-    <string name="download_view_cancel">Cancel</string>
+    <string name="download_view_download">ดาวน์โหลด</string>
+    <string name="download_view_install">ติดตั้ง</string>
+    <string name="download_view_cancel">ยกเลิก</string>
     <string name="download_view_no_url">No download URL available</string>
-    <string name="download_view_running">Download is running (%1$,d of %2$,d kB)</string>
-    <string name="download_view_waiting">Download is waiting</string>
-    <string name="download_view_successful">Download successful</string>
-    <string name="download_view_failed">Download failed (error %d)</string>
+    <string name="download_view_running">กำลังดาวน์โหลด (%1$,d จาก %2$,d kB)</string>
+    <string name="download_view_waiting">กำลังรอดาวน์โหลด</string>
+    <string name="download_view_successful">ดานว์โหลดสำเร็จ</string>
+    <string name="download_view_failed">ดาวน์โหลดไม่สำเร็จ (error %d)</string>
 
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">MD5 sum is incorrect (downloaded: %1$s, expected: %2$s)</string>
