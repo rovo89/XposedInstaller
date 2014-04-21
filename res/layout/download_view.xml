@@ -4,34 +4,39 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
+        <TextView
+            android:id="@+id/txtInfo"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
         <Button
             android:id="@+id/btnDownload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="40dip"
+            android:minHeight="30dip"
             android:text="@string/download_view_download"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:ignore="ButtonStyle" />
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <Button
             android:id="@+id/btnDownloadCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="40dip"
+            android:minHeight="30dip"
             android:text="@string/download_view_cancel"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone"
-            tools:ignore="ButtonOrder,ButtonStyle" />
+            tools:ignore="ButtonOrder" />
 
         <Button
             android:id="@+id/btnInstall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="40dip"
+            android:minHeight="30dip"
             android:text="@string/download_view_install"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:visibility="gone"
-            tools:ignore="ButtonStyle" />
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -40,11 +45,5 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/txtInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </merge>
