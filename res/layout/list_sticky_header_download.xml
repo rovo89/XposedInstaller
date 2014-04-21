@@ -7,7 +7,7 @@
         android:id="@android:id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dip"
+        android:layout_margin="4dip"
         android:textAllCaps="true"
         android:textColor="@color/list_header"
         android:textAppearance="?android:attr/textAppearanceSmallInverse"

@@ -13,7 +13,7 @@
         android:padding="8dip"
         android:clipToPadding="false"
         android:divider="@android:color/transparent"
-        android:dividerHeight="8dip" >
+        android:dividerHeight="6dip" >
     </com.emilsjolander.components.stickylistheaders.StickyListHeadersListView>
 
 </LinearLayout>

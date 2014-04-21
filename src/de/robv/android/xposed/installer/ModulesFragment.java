@@ -89,9 +89,10 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		mModuleUtil.addListener(this);
 
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
 		int eightDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
 		getListView().setDivider(null);
-		getListView().setDividerHeight(eightDp);
+		getListView().setDividerHeight(sixDp);
 		getListView().setPadding(eightDp, eightDp, eightDp, eightDp);
 		getListView().setClipToPadding(false);
 
