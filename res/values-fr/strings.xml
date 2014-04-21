@@ -36,8 +36,8 @@
     <string name="phone_not_compatible">Xposed n\'est pas (encore) compatible avec Android SDK version %1$d ou l\'architecture de votre processeur (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed n\'a pas été testé avec Android SDK version %d, mais il semble compatible. Vous pouvez tenter de l\'installer si vous vous sentez l\'âme d\'un aventurier.</string>
     <string name="reboot_failed">Le redémarrage a échoué. Veuillez utiliser la fonction redémarrage de l\'appareil.</string>
-    <string name="auto_flash_note">%s sera automatiquement installé dès que vous aurez appuyé sur "OK".</string>
-    <string name="manual_flash_note">Veuillez installer %s depuis la carte SD pour terminer l\'opération.</string>
+    <string name="auto_flash_note">%s sera automatiquement flashé dès que vous aurez appuyé sur "OK".</string>
+    <string name="manual_flash_note">Veuillez flasher %s depuis la carte SD pour terminer l\'opération.</string>
     <string name="reboot_confirmation">Voulez-vous redémarrer maintenant ?</string>
     <string name="reboot_recovery_confirmation">Voulez-vous redémarrer en recovery maintenant ?</string>
     <string name="install_warning_title">Soyez prudent !</string>
@@ -45,9 +45,9 @@
     <string name="dont_show_again">Ne plus afficher</string>
 
     <!--  File operations -->
-    <string name="root_failed">Échec accès root.\n\nAssurez-vous que votre appareil soit correctement rooté et de ne pas avoir bloqué les commandes shell.</string>
+    <string name="root_failed">Échec accès root.\n\nAssurez-vous que votre appareil soit correctement rooté et que vous n'\ayez pas bloqué les commandes shell.</string>
     <string name="file_extract_failed">Impossible d\'extraire %s</string>
-    <string name="file_mounting_writable">Montage %s en écriture&#8230;</string>
+    <string name="file_mounting_writable">Montage de %s en écriture&#8230;</string>
     <string name="file_mount_writable_failed">Impossible de monter %s en écriture</string>
     <string name="file_trying_to_continue">Continuer quand même&#8230;</string>
     <string name="file_backup_already_exists">Sauvegarde déjà existante à %s</string>
@@ -55,12 +55,12 @@
     <string name="file_backup_failed">Échec de la création d\'une sauvegarde de %s</string>
     <string name="file_backup_successful">Sauvegarde créée à %s</string>
     <string name="file_backup_restoring">Restauration de la sauvegarde depuis %s</string>
-    <string name="file_copying">Copiage %s&#8230;</string>
+    <string name="file_copying">Copie de %s&#8230;</string>
     <string name="file_copy_failed">Impossible de copier de %1$s à %2$s</string>
     <string name="file_move_failed">Impossible de déplacer de %1$s à %2$s</string>
     <string name="file_set_perms_failed">Impossible de définir les autorisations pour %s</string>
     <string name="file_set_owner_failed">Impossible de définir le propriétaire pour %s</string>
-    <string name="file_removing">Suppression %s&#8230;</string>
+    <string name="file_removing">Suppression de %s&#8230;</string>
     <string name="file_remove_failed">Impossible de supprimer %s</string>
     <string name="file_creating_directory">Création du répertoire %s&#8230;</string>
     <string name="file_create_directory_failed">Impossible de créer le répertoire %s</string>
@@ -110,13 +110,13 @@
     <string name="settings_group_installation">Installation</string>
     <string name="settings_install_mode">Mode d\'installation</string>
     <string name="install_mode_normal">Classique (installer directement dans /system)</string>
-    <string name="install_mode_recovery_auto">Recovery (zip installé automatiquement)</string>
-    <string name="install_mode_recovery_manual">Recovery (zip sur la carte SD, à installer manuellement)</string>    
+    <string name="install_mode_recovery_auto">Recovery (zip flashé automatiquement)</string>
+    <string name="install_mode_recovery_manual">Recovery (zip sur la carte SD, à flasher manuellement)</string>    
     <string name="settings_group_download">Téléchargements</string>
     <string name="settings_enable_downloads">Activer les téléchargements</string>
     <string name="settings_enable_downloads_summary">Autoriser l\'installateur Xposed à chercher des mises à jour et de nouveaux modules</string>
     <string name="settings_group_experimental">Expérimental</string>
-    <string name="settings_disable_resources">Désactiver resource hooks</string>
+    <string name="settings_disable_resources">Désactiver \"resource hooks\"</string>
     <string name="settings_disable_resources_summary">Solution pour éviter les conflits avec les moteurs de thème\n<b>ATTENTION:</b> Les modules qui essaient de modifier les ressources ne fonctionneront pas si vous activez ceci.</string>    
     <string name="settings_performance_experiment">Expérimentation pour les performances</string>
     <string name="settings_performance_experiment_summary">Si vous activez ceci, les performances de votre système peuvent être améliorées, diminuées ou rester identiques. N`hésitez pas à essayer et à nous rapporter les effets obtenus (ou s\'il n\'y en a pas eu). Vous devez réinstaller le framework et redémarrer après avoir changé ce paramètre.</string>
@@ -125,7 +125,7 @@
     <string name="logs_load_failed">Impossible de lire le journal:</string>
     <string name="logs_save_failed">Impossible d\'écrire le journal:</string>
     <string name="sdcard_not_writable">Carte SD non trouvée ou en lecture seule</string>
-    <string name="log_too_large">Le fichier du journal est plus grand que %1$,d kB, ignoré le premier %2$,d kB</string>
+    <string name="log_too_large">Le fichier du journal est plus grand que %1$,d kB, les premiers %2$,d kB ont été ignorés</string>
     <string name="menuClearLog">Effacer le journal</string>
     <string name="logs_cleared">Journal effacé</string>
     <string name="logs_clear_failed">Impossible d\'effacer le journal:</string>
