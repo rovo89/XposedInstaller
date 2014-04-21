@@ -37,7 +37,7 @@ public class DownloadView extends LinearLayout {
 		btnDownload = (Button) findViewById(R.id.btnDownload);
 		btnDownloadCancel = (Button) findViewById(R.id.btnDownloadCancel);
 		btnInstall = (Button) findViewById(R.id.btnInstall);
-		
+
 		btnDownload.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -48,18 +48,18 @@ public class DownloadView extends LinearLayout {
 					new DownloadMonitor().start();
 			}
 		});
-		
+
 		btnDownloadCancel.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (mInfo == null)
 					return;
-				
+
 				DownloadsUtil.removeById(getContext(), mInfo.id);
 				// UI update will happen automatically by the DownloadMonitor
 			}
 		});
-		
+
 		btnInstall.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -124,7 +124,7 @@ public class DownloadView extends LinearLayout {
 									mInfo.bytesDownloaded / 1024, mInfo.totalSize / 1024));
 						}
 						break;
-	
+
 					case DownloadManager.STATUS_FAILED:
 						btnDownloadCancel.setVisibility(View.GONE);
 						btnInstall.setVisibility(View.GONE);
@@ -132,7 +132,7 @@ public class DownloadView extends LinearLayout {
 						txtInfo.setVisibility(View.VISIBLE);
 						txtInfo.setText(getContext().getString(R.string.download_view_failed, mInfo.reason));
 						break;
-	
+
 					case DownloadManager.STATUS_SUCCESSFUL:
 						btnDownloadCancel.setVisibility(View.GONE);
 						btnInstall.setVisibility(View.VISIBLE);

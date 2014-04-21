@@ -88,7 +88,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 		mRepoLoader.addListener(this, true);
 		mModuleUtil.addListener(this);
 		lv.setAdapter(mAdapter);
-		
+
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -194,7 +194,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 	public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
 		return AnimatorUtil.createSlideAnimation(this, nextAnim);
 	}
-	
+
 	@Override
 	public void onRepoReloaded(final RepoLoader loader) {
 		if (mAdapter == null)
@@ -437,7 +437,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 			if (installed == null)
 				return INSTALL_STATUS_NOT_INSTALLED;
 
-			return installed.isUpdate(getLatestVersion()) ? INSTALL_STATUS_HAS_UPDATE : INSTALL_STATUS_INSTALLED; 
+			return installed.isUpdate(getLatestVersion()) ? INSTALL_STATUS_HAS_UPDATE : INSTALL_STATUS_INSTALLED;
 		}
 
 		public long getCreationDate() {

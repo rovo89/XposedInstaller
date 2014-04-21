@@ -20,7 +20,7 @@ public class Module {
 	public final List<String> screenshots = new ArrayList<String>();
 	public long created = -1;
 	public long updated = -1;
-	
+
 	/*package*/ Module(Repository repository) {
 		this.repository = repository;
 	}

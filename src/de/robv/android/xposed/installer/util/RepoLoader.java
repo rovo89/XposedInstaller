@@ -34,7 +34,7 @@ public class RepoLoader {
 	private XposedApp mApp = null;
 	private SharedPreferences mPref;
 	private ConnectivityManager mConMgr;
-	
+
 	private Map<String, ModuleGroup> mModules = new HashMap<String, ModuleGroup>(0);
 	private boolean mIsLoading = false;
 	private boolean mReloadTriggeredOnce = false;
@@ -42,27 +42,27 @@ public class RepoLoader {
 	private Object mFirstLoadFinishedLock = new Object();
 	private final List<String> mMessages = new LinkedList<String>();
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
-	
+
 	private RepoLoader() {
 		mApp = XposedApp.getInstance();
 		mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
 		mConMgr = (ConnectivityManager) mApp.getSystemService(Context.CONNECTIVITY_SERVICE);
 	}
-	
+
 	public static synchronized RepoLoader getInstance() {
 		if (mInstance == null)
 			mInstance = new RepoLoader();
 		return mInstance;
 	}
-	
+
 	public Map<String, ModuleGroup> getModules() {
 		return mModules;
 	}
-	
+
 	public ModuleGroup getModuleGroup(String packageName) {
 		return mModules.get(packageName);
 	}
-	
+
 	public Module getModule(String packageName) {
 		ModuleGroup group = mModules.get(packageName);
 		if (group == null)
@@ -104,7 +104,7 @@ public class RepoLoader {
 			mIsLoading = true;
 		}
 		mApp.updateProgressIndicator();
-		
+
 		new Thread("RepositoryReload") {
 			public void run() {
 				mMessages.clear();
@@ -178,7 +178,7 @@ public class RepoLoader {
 	public String[] getRepositories() {
 		return mPref.getString("repositories", "http://dl.xposed.info/repo.xml.gz").split("\\|");
 	}
-	
+
 	public void setRepositories(String... repos) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < repos.length; i++) {
@@ -245,30 +245,30 @@ public class RepoLoader {
 			FileOutputStream out = null;
 			try {
 				File cacheFile = getRepoCacheFile(repo);
-				
+
 				connection = new URL(repo).openConnection();
 				connection.setDoOutput(false);
 				connection.setConnectTimeout(30000);
 				connection.setReadTimeout(30000);
-				
+
 				if (connection instanceof HttpURLConnection) {
 					// disable transparent gzip encoding for gzipped files
 					if (repo.endsWith(".gz"))
 						connection.addRequestProperty("Accept-Encoding", "identity");
-					
+
 					if (cacheFile.exists()) {
 						String modified = mPref.getString("repo_" + repo + "_modified", null);
 						String etag = mPref.getString("repo_" + repo + "_etag", null);
-						
+
 						if (modified != null)
 							connection.addRequestProperty("If-Modified-Since", modified);
 						if (etag != null)
 							connection.addRequestProperty("If-None-Match", etag);
 					}
 				}
-				
+
 				connection.connect();
-				
+
 				if (connection instanceof HttpURLConnection) {
 					HttpURLConnection httpConnection = (HttpURLConnection) connection;
 					int responseCode = httpConnection.getResponseCode();
@@ -279,7 +279,7 @@ public class RepoLoader {
 						continue;
 					}
 				}
-				
+
 				in = connection.getInputStream();
 				out = new FileOutputStream(cacheFile);
 				byte buf[] = new byte[1024];
@@ -287,18 +287,18 @@ public class RepoLoader {
 				while ((read = in.read(buf)) != -1) {
 					out.write(buf, 0, read);
 				}
-				
+
 				if (connection instanceof HttpURLConnection) {
 					HttpURLConnection httpConnection = (HttpURLConnection) connection;
 					String modified = httpConnection.getHeaderField("Last-Modified");
 					String etag = httpConnection.getHeaderField("ETag");
-					
+
 					mPref.edit()
 						.putString("repo_" + repo + "_modified", modified)
 						.putString("repo_" + repo + "_etag", etag)
 						.commit();
 				}
-				
+
 			} catch (Throwable t) {
 				mMessages.add(mApp.getString(R.string.repo_download_failed, repo, t.getMessage()));
 
@@ -329,7 +329,7 @@ public class RepoLoader {
 
 		String[] repos = getRepositories();
 		for (String repo : repos) {
-			InputStream in = null; 
+			InputStream in = null;
 			try {
 				File cacheFile = getRepoCacheFile(repo);
 				if (!cacheFile.exists())
@@ -362,20 +362,20 @@ public class RepoLoader {
 
 		mModules = modules;
 	}
-	
-	
+
+
 	public void addListener(RepoListener listener, boolean triggerImmediately) {
 		if (!mListeners.contains(listener))
 			mListeners.add(listener);
-		
+
 		if (triggerImmediately)
 			listener.onRepoReloaded(this);
 	}
-	
+
 	public void removeListener(RepoListener listener) {
 		mListeners.remove(listener);
 	}
-	
+
 	public interface RepoListener {
 		/**
 		 * Called whenever the list of modules from repositories has been successfully reloaded

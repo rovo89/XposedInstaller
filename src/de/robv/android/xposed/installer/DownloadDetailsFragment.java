@@ -45,11 +45,11 @@ public class DownloadDetailsFragment extends Fragment {
 
 	public static DownloadDetailsFragment newInstance(String packageName) {
 		DownloadDetailsFragment fragment = new DownloadDetailsFragment();
-		
+
 		Bundle args = new Bundle();
 		args.putString(ARGUMENT_PACKAGE, packageName);
 		fragment.setArguments(args);
-		
+
 		return fragment;
 	}
 
@@ -78,7 +78,7 @@ public class DownloadDetailsFragment extends Fragment {
 			author.setText(getString(R.string.download_author, module.author));
 		else
 			author.setText(R.string.download_unknown_author);
-		
+
 		TextView description = (TextView) view.findViewById(R.id.download_description);
 		if (module.description != null) {
 			if (module.descriptionIsHtml) {
@@ -117,7 +117,7 @@ public class DownloadDetailsFragment extends Fragment {
 		source = source.replaceAll("<li>", "\t• ");
 		source = source.replaceAll("</li>", "<br>");
 		Spanned html = Html.fromHtml(source);
-		
+
 		// trim trailing newlines
 		int len = html.length();
 		int end = len;
@@ -126,7 +126,7 @@ public class DownloadDetailsFragment extends Fragment {
 				break;
 			end = i;
 		}
-		
+
 		if (end == len)
 			return html;
 		else
@@ -138,7 +138,7 @@ public class DownloadDetailsFragment extends Fragment {
 		return AnimatorUtil.createSlideAnimation(this, nextAnim);
 	}
 
-	
+
 	private class VersionsAdapter extends BaseExpandableListAdapter {
 		private final LayoutInflater mLayoutInflater;
 

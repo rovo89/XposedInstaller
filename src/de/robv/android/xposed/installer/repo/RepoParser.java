@@ -33,7 +33,7 @@ public class RepoParser {
 		while (parser.nextTag() == XmlPullParser.START_TAG) {
 			String tagName = parser.getName();
 			if (tagName.equals("name")) {
-				repository.name = parser.nextText(); 
+				repository.name = parser.nextText();
 			} else if (tagName.equals("module")) {
 				Module module = readModule(repository);
 				if (module != null)

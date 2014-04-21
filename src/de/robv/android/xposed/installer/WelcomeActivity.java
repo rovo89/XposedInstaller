@@ -32,7 +32,7 @@ public class WelcomeActivity extends XposedBaseActivity implements ModuleListene
 		setContentView(R.layout.activity_welcome);
 
 		mAdapter = new WelcomeAdapter(this);
-		// TODO add proper description texts and load them from resources, add icons, make it more fancy, ... 
+		// TODO add proper description texts and load them from resources, add icons, make it more fancy, ...
 		mAdapter.add(new WelcomeItem(R.string.tabInstall, R.string.tabInstallDescription));
 		mAdapter.add(new WelcomeItem(R.string.tabModules, R.string.tabModulesDescription));
 		mAdapter.add(new WelcomeItem(R.string.tabDownload, R.string.tabDownloadDescription));

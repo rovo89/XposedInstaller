@@ -293,12 +293,12 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				warningText.setVisibility(View.VISIBLE);
 			} else if (installedXposedVersion != 0 && item.minVersion > installedXposedVersion) {
 				checkbox.setEnabled(false);
-				warningText.setText(String.format(getString(R.string.warning_xposed_min_version), 
+				warningText.setText(String.format(getString(R.string.warning_xposed_min_version),
 						item.minVersion));
 				warningText.setVisibility(View.VISIBLE);
 			} else if (item.minVersion < ModuleUtil.MIN_MODULE_VERSION) {
 				checkbox.setEnabled(false);
-				warningText.setText(String.format(getString(R.string.warning_min_version_too_low), 
+				warningText.setText(String.format(getString(R.string.warning_min_version_too_low),
 						item.minVersion, ModuleUtil.MIN_MODULE_VERSION));
 				warningText.setVisibility(View.VISIBLE);
 			} else {

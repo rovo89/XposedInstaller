@@ -26,7 +26,7 @@ public final class AnimatorUtil {
 		int parentWidth = fragment.getActivity().findViewById(android.R.id.content).getWidth();
 		if (left)
 			parentWidth = -parentWidth;
-		
+
 		int from, to;
 		if (in) {
 			from = parentWidth;
@@ -35,7 +35,7 @@ public final class AnimatorUtil {
 			from = 0;
 			to = parentWidth;
 		}
-		
+
 		ObjectAnimator animator = ObjectAnimator.ofFloat(fragment, "x", from, to);
 		animator.setDuration(fragment.getResources().getInteger(android.R.integer.config_mediumAnimTime));
 		return animator;
