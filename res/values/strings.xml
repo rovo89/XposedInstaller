@@ -128,6 +128,7 @@
     <string name="settings_theme">Theme</string>
     <string name="settings_theme_light">Light</string>
     <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_black">Black (useful for AMOLED screens)</string>
 
     <!--  Logs tab  -->
     <string name="logs_load_failed">Could not read log:</string>

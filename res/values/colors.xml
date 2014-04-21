@@ -23,4 +23,7 @@
     <color name="card_shadow_dark">#111</color>
     <color name="pager_tab_strip_bg_dark">#222</color>
 
+    <!-- black theme -->
+    <color name="app_background_black">#000000</color>
+
 </resources>

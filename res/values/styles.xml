@@ -23,4 +23,9 @@
         <item name="download_status_installed">@android:color/holo_orange_light</item>
     </style>
 
+    <style
+        name="Theme.Dark.Black" >
+        <item name="android:windowBackground">@color/app_background_black</item>
+    </style>
+
 </resources>
