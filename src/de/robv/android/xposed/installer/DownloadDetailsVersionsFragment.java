@@ -2,6 +2,7 @@ package de.robv.android.xposed.installer;
 
 import java.io.File;
 
+import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
@@ -18,34 +19,29 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import de.robv.android.xposed.installer.repo.Module;
-import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.HashUtil;
-import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.widget.DownloadView;
 
 public class DownloadDetailsVersionsFragment extends ListFragment {
+	private DownloadDetailsActivity mActivity;
+	private static VersionsAdapter sAdapter;
 
-	public static final String ARGUMENT_PACKAGE = "package";
-	private static Module mModule;
-	private static VersionsAdapter mAdapter;
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		mActivity = (DownloadDetailsActivity) activity;
+	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		Bundle args = getArguments();
-
-		String mPackageName = args.getString(ARGUMENT_PACKAGE);
-		ModuleGroup moduleGroup = RepoLoader.getInstance().waitForFirstLoadFinished().getModuleGroup(mPackageName);
-		mModule = moduleGroup.getModule();
-
-		mAdapter = new VersionsAdapter(getActivity());
-		mAdapter.addAll(mModule.versions);
-		setListAdapter(mAdapter);
+		sAdapter = new VersionsAdapter(getActivity());
+		sAdapter.addAll(mActivity.getModule().versions);
+		setListAdapter(sAdapter);
 
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
@@ -55,16 +51,6 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 		getListView().setPadding(eightDp, eightDp, eightDp, eightDp);
 		getListView().setClipToPadding(false);
 
-	}
-
-	public static DownloadDetailsVersionsFragment newInstance(String packageName) {
-		DownloadDetailsVersionsFragment fragment = new DownloadDetailsVersionsFragment();
-
-		Bundle args = new Bundle();
-		args.putString(ARGUMENT_PACKAGE, packageName);
-		fragment.setArguments(args);
-
-		return fragment;
 	}
 
 	static class ViewHolder {
@@ -108,7 +94,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 			}
 
 			holder.downloadView.setUrl(item.downloadLink);
-			holder.downloadView.setTitle(mModule.name);
+			holder.downloadView.setTitle(mActivity.getModule().name);
 			holder.downloadView.setDownloadFinishedCallback(new DownloadModuleCallback(item));
 
 			if (item.changelog != null && !item.changelog.isEmpty()) {

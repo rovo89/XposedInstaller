@@ -6,12 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import de.robv.android.xposed.installer.repo.Module;
+import de.robv.android.xposed.installer.repo.ModuleGroup;
+import de.robv.android.xposed.installer.util.RepoLoader;
 
 public class DownloadDetailsActivity extends XposedDropdownNavActivity {
 
 	private ViewPager mPager;
 	private String[] mPageTitles;
 	private String mPackageName;
+	private ModuleGroup mModuleGroup;
+	private Module mModule;
 
 	private static final int DOWNLOAD_DESCRIPTION = 0;
 	private static final int DOWNLOAD_VERSIONS = 1;
@@ -24,10 +29,16 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity {
 		setContentView(R.layout.activity_download_details);
 
 		mPackageName = getIntent().getData().getSchemeSpecificPart();
+		mModuleGroup = RepoLoader.getInstance().waitForFirstLoadFinished().getModuleGroup(mPackageName);
+		mModule = mModuleGroup.getModule();
 
 		mPageTitles = new String[] {getString(R.string.description_page), getString(R.string.versions_page)};
 		mPager = (ViewPager) findViewById(R.id.download_pager);
 		mPager.setAdapter(new ScreenSlidePagerAdapter(getFragmentManager()));
+	}
+
+	public Module getModule() {
+		return mModule;
 	}
 
 	@Override
@@ -51,9 +62,9 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity {
 		public Fragment getItem(int position) {
 			switch (position) {
 				case DOWNLOAD_DESCRIPTION:
-					return DownloadDetailsFragment.newInstance(mPackageName);
+					return new DownloadDetailsFragment();
 				case DOWNLOAD_VERSIONS:
-					return DownloadDetailsVersionsFragment.newInstance(mPackageName);
+					return new DownloadDetailsVersionsFragment();
 				default:
 					return null;
 			}

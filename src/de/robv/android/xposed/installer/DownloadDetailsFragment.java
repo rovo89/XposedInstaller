@@ -1,6 +1,7 @@
 package de.robv.android.xposed.installer;
 
 import android.animation.Animator;
+import android.app.Activity;
 import android.app.Fragment;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -14,32 +15,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import de.robv.android.xposed.installer.repo.Module;
-import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.util.AnimatorUtil;
-import de.robv.android.xposed.installer.util.RepoLoader;
 
 public class DownloadDetailsFragment extends Fragment {
-	public static final String ARGUMENT_PACKAGE = "package";
+	private DownloadDetailsActivity mActivity;
 
-	public static DownloadDetailsFragment newInstance(String packageName) {
-		DownloadDetailsFragment fragment = new DownloadDetailsFragment();
-
-		Bundle args = new Bundle();
-		args.putString(ARGUMENT_PACKAGE, packageName);
-		fragment.setArguments(args);
-
-		return fragment;
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		mActivity = (DownloadDetailsActivity) activity;
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		final View view = inflater.inflate(R.layout.download_details, container, false);
-
-		Bundle args = getArguments();
-		String packageName = args.getString(ARGUMENT_PACKAGE);
-		ModuleGroup moduleGroup = RepoLoader.getInstance().waitForFirstLoadFinished().getModuleGroup(packageName);
-		Module module = moduleGroup.getModule();
+		final Module module = mActivity.getModule();
 
 		TextView title = (TextView) view.findViewById(R.id.download_title);
 		title.setText(module.name);
