@@ -26,10 +26,13 @@
     <PreferenceCategory
         android:key="group_app"
         android:title="@string/settings_group_app" >
-        <CheckBoxPreference
-            android:key="use_dark_theme"
-            android:title="@string/settings_enable_dark_theme"
-            android:summary="@string/settings_enable_dark_theme_summary" />
+        <de.robv.android.xposed.installer.widget.IntegerListPreference
+            android:key="theme"
+            android:title="@string/settings_theme"
+            android:summary="%s"
+            android:entries="@array/theme_texts"
+            android:entryValues="@array/theme_values"
+            android:defaultValue="0" />
     </PreferenceCategory>
 
     <PreferenceCategory
