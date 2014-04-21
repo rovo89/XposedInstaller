@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.widget.TextView;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.util.RepoLoader;
@@ -26,12 +27,19 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity {
 		super.onCreate(savedInstanceState);
 
 		setNavItem(XposedDropdownNavActivity.TAB_DOWNLOAD);
-		setContentView(R.layout.activity_download_details);
 
 		mPackageName = getIntent().getData().getSchemeSpecificPart();
 		mModuleGroup = RepoLoader.getInstance().waitForFirstLoadFinished().getModuleGroup(mPackageName);
+		if (mModuleGroup == null) {
+			setContentView(R.layout.activity_download_details_not_found);
+			TextView txtMessage = (TextView) findViewById(android.R.id.message);
+			txtMessage.setText(getResources().getString(R.string.download_details_not_found, mPackageName));
+			return;
+		}
+
 		mModule = mModuleGroup.getModule();
 
+		setContentView(R.layout.activity_download_details);
 		mPageTitles = new String[] {getString(R.string.description_page), getString(R.string.versions_page)};
 		mPager = (ViewPager) findViewById(R.id.download_pager);
 		mPager.setAdapter(new ScreenSlidePagerAdapter(getFragmentManager()));
