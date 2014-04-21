@@ -19,7 +19,6 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -116,7 +115,6 @@ public class InstallerFragment extends Fragment {
 			isCompatible = checkCompatibility();
 			if (isCompatible) {
 				txtInstallError.setText(String.format(getString(R.string.not_tested_but_compatible), Build.VERSION.SDK_INT));
-				txtInstallError.setTextColor(Color.YELLOW);
 				txtInstallError.setVisibility(View.VISIBLE);
 			}
 		}
@@ -143,7 +141,6 @@ public class InstallerFragment extends Fragment {
 			if (!mCompatibilityErrors.isEmpty())
 				errorText += "\n\n" + TextUtils.join("\n", mCompatibilityErrors);
 			txtInstallError.setText(errorText);
-			txtInstallError.setTextColor(Color.RED);
 			txtInstallError.setVisibility(View.VISIBLE);
 			btnInstall.setEnabled(false);
 		}
@@ -281,14 +278,14 @@ public class InstallerFragment extends Fragment {
 		txtJarLatestVersion.setText(versionToText(jarLatestVersion));
 
 		if (appProcessInstalledVersion < appProcessLatestVersion)
-			txtAppProcessInstalledVersion.setTextColor(Color.RED);
+			txtAppProcessInstalledVersion.setTextColor(getResources().getColor(R.color.warning));
 		else
-			txtAppProcessInstalledVersion.setTextColor(Color.GREEN);
+			txtAppProcessInstalledVersion.setTextColor(getResources().getColor(R.color.darker_green));
 
 		if (jarInstalledVersion < jarLatestVersion)
-			txtJarInstalledVersion.setTextColor(Color.RED);
+			txtJarInstalledVersion.setTextColor(getResources().getColor(R.color.warning));
 		else
-			txtJarInstalledVersion.setTextColor(Color.GREEN);
+			txtJarInstalledVersion.setTextColor(getResources().getColor(R.color.darker_green));
 	}
 
 	private String versionToText(int version) {

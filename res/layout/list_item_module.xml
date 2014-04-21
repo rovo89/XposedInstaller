@@ -40,7 +40,7 @@
                 android:gravity="right"
                 android:textIsSelectable="false"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/secondary_text" />
+                android:textColor="@android:color/tertiary_text_dark" />
         </LinearLayout>
 
         <TextView
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/module_warning"
+            android:textColor="@color/warning"
             android:visibility="gone" />
     </LinearLayout>
 

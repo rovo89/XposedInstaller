@@ -1,14 +1,14 @@
 <resources>
 
-    <color name="download_status_installed">#ffffbb33</color>
-    <color name="download_status_update_available">#ff66ff00</color>
+    <color name="list_header">@android:color/holo_blue_light</color>
+    <color name="list_divider">@color/list_header</color>
+    <color name="warning">@android:color/holo_red_light</color>
+    <color name="warning_box">@android:color/holo_red_dark</color>
+    <color name="pager_tab_strip">#fff</color>
+    <color name="download_status_update_available">@color/darker_green</color>
     <color name="welcome_framework_update_available">@color/download_status_update_available</color>
     <color name="welcome_update_available">@color/download_status_update_available</color>
-    <color name="list_divider">#ff0099cc</color>
-    <color name="list_header">#ff0099cc</color>
-    <color name="secondary_text">#d5d5d5</color>
-    <color name="module_warning">#ff0000</color>
-    <color name="pager_tab_strip">#fff</color>
+    <color name="darker_green">#ff22aa00</color>
 
     <!-- light theme-->
     <color name="app_background_light">#e5e5e5</color>

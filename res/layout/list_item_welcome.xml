@@ -53,7 +53,7 @@
         android:layout_below="@android:id/text2"
         android:text="@string/xposed_not_active"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#ffff0000"
+        android:textColor="@color/warning"
         android:visibility="gone" />
 
 </RelativeLayout>

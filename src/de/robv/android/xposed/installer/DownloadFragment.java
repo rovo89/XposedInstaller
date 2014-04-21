@@ -46,6 +46,7 @@ import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
+import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class DownloadFragment extends Fragment implements RepoListener, ModuleListener {
 	private SharedPreferences mPref;
@@ -292,7 +293,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 				txtStatus.setVisibility(View.VISIBLE);
 			} else if (installStatus == DownloadItem.INSTALL_STATUS_INSTALLED) {
 				txtStatus.setText(getContext().getString(R.string.download_status_installed, installed.versionName));
-				txtStatus.setTextColor(getResources().getColor(R.color.download_status_installed));
+				txtStatus.setTextColor(ThemeUtil.getThemeColor(getContext(), R.attr.download_status_installed));
 				txtStatus.setVisibility(View.VISIBLE);
 			} else {
 				txtStatus.setVisibility(View.GONE);
