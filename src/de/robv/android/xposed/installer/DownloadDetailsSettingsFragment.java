@@ -23,7 +23,10 @@ public class DownloadDetailsSettingsFragment extends PreferenceFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		Module module = mActivity.getModule();
+		final Module module = mActivity.getModule();
+		if (module == null)
+			return;
+
 		final String packageName = module.packageName;
 
 		PreferenceManager prefManager = getPreferenceManager();

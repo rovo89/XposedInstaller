@@ -29,8 +29,11 @@ public class DownloadDetailsFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		final View view = inflater.inflate(R.layout.download_details, container, false);
 		final Module module = mActivity.getModule();
+		if (module == null)
+			return null;
+
+		final View view = inflater.inflate(R.layout.download_details, container, false);
 
 		TextView title = (TextView) view.findViewById(R.id.download_title);
 		title.setText(module.name);

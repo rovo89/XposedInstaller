@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
@@ -40,9 +41,13 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
+		final Module module = mActivity.getModule();
+		if (module == null)
+			return;
+
 		sAdapter = new VersionsAdapter(getActivity());
 		RepoLoader repoLoader = RepoLoader.getInstance();
-		for (ModuleVersion version : mActivity.getModule().versions) {
+		for (ModuleVersion version : module.versions) {
 			if (repoLoader.isVersionShown(version))
 				sAdapter.add(version);
 		}
