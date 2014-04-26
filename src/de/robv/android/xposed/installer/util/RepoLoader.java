@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.text.TextUtils;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
@@ -34,6 +35,7 @@ public class RepoLoader {
 	private static RepoLoader mInstance = null;
 	private XposedApp mApp = null;
 	private SharedPreferences mPref;
+	private SharedPreferences mModulePref;
 	private ConnectivityManager mConMgr;
 
 	private Map<String, ModuleGroup> mModules = new HashMap<String, ModuleGroup>(0);
@@ -45,11 +47,14 @@ public class RepoLoader {
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
 
 	private ReleaseType mGlobalReleaseType = ReleaseType.STABLE;
+	private final Map<String, ReleaseType> mLocalReleaseTypes = new HashMap<String, ReleaseType>();
 
 	private RepoLoader() {
 		mApp = XposedApp.getInstance();
 		mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
+		mModulePref = mApp.getSharedPreferences("module_settings", Context.MODE_PRIVATE);
 		mConMgr = (ConnectivityManager) mApp.getSystemService(Context.CONNECTIVITY_SERVICE);
+
 		setReleaseTypeGlobal(XposedApp.getPreferences().getString("release_type_global", "stable"));
 	}
 
@@ -64,6 +69,35 @@ public class RepoLoader {
 		if (mGlobalReleaseType != relType) {
 			mGlobalReleaseType = relType;
 			notifyListeners();
+		}
+	}
+
+	public void setReleaseTypeLocal(String packageName, String relTypeString) {
+		boolean notify = false;
+		synchronized (mLocalReleaseTypes) {
+			if (!mLocalReleaseTypes.containsKey(packageName))
+				return;
+
+			ReleaseType relType = (!TextUtils.isEmpty(relTypeString)) ? ReleaseType.fromString(relTypeString) : null;
+			if (mLocalReleaseTypes.get(packageName) != relType) {
+				mLocalReleaseTypes.put(packageName, relType);
+				notify = true;
+			}
+		}
+
+		if (notify)
+			notifyListeners();
+	}
+
+	private ReleaseType getReleaseTypeLocal(String packageName) {
+		synchronized (mLocalReleaseTypes) {
+			if (mLocalReleaseTypes.containsKey(packageName))
+				return mLocalReleaseTypes.get(packageName);
+
+			String value = mModulePref.getString(packageName + "_release_type", null);
+			ReleaseType result = (!TextUtils.isEmpty(value)) ? ReleaseType.fromString(value) : null;
+			mLocalReleaseTypes.put(packageName, result);
+			return result;
 		}
 	}
 
@@ -94,7 +128,7 @@ public class RepoLoader {
 	}
 
 	public boolean isVersionShown(ModuleVersion version) {
-		ReleaseType localSetting = null; // TODO store per-module settings
+		ReleaseType localSetting = getReleaseTypeLocal(version.module.packageName);
 		if (localSetting != null)
 			return version.relType.ordinal() <= localSetting.ordinal();
 		else

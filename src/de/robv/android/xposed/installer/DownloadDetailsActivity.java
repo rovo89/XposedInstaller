@@ -13,6 +13,7 @@ import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
+
 public class DownloadDetailsActivity extends XposedDropdownNavActivity implements RepoListener {
 
 	private ViewPager mPager;
@@ -24,21 +25,26 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 
 	private static final int DOWNLOAD_DESCRIPTION = 0;
 	private static final int DOWNLOAD_VERSIONS = 1;
+	private static final int DOWNLOAD_SETTINGS = 2;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		sRepoLoader.addListener(this, false);
-
-		setNavItem(XposedDropdownNavActivity.TAB_DOWNLOAD);
-
 		mPackageName = getIntent().getData().getSchemeSpecificPart();
 		mModuleGroup = sRepoLoader.getModuleGroup(mPackageName);
-		if (mModuleGroup != null) {
+		if (mModuleGroup != null)
 			mModule = mModuleGroup.getModule();
 
+		super.onCreate(savedInstanceState);
+		sRepoLoader.addListener(this, false);
+		setNavItem(XposedDropdownNavActivity.TAB_DOWNLOAD);
+
+		if (mModuleGroup != null) {
 			setContentView(R.layout.activity_download_details);
-			mPageTitles = new String[] {getString(R.string.description_page), getString(R.string.versions_page)};
+			mPageTitles = new String[] {
+				getString(R.string.download_details_page_description),
+				getString(R.string.download_details_page_versions),
+				getString(R.string.download_details_page_settings),
+			};
 			mPager = (ViewPager) findViewById(R.id.download_pager);
 			mPager.setAdapter(new ScreenSlidePagerAdapter(getFragmentManager()));
 
@@ -102,6 +108,8 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 					return new DownloadDetailsFragment();
 				case DOWNLOAD_VERSIONS:
 					return new DownloadDetailsVersionsFragment();
+				case DOWNLOAD_SETTINGS:
+					return new DownloadDetailsSettingsFragment();
 				default:
 					return null;
 			}
