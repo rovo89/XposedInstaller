@@ -44,18 +44,27 @@ public class RepoLoader {
 	private final List<String> mMessages = new LinkedList<String>();
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
 
-	private ReleaseType mGlobalReleaseType = ReleaseType.STABLE; // TODO add setting
+	private ReleaseType mGlobalReleaseType = ReleaseType.STABLE;
 
 	private RepoLoader() {
 		mApp = XposedApp.getInstance();
 		mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
 		mConMgr = (ConnectivityManager) mApp.getSystemService(Context.CONNECTIVITY_SERVICE);
+		setReleaseTypeGlobal(XposedApp.getPreferences().getString("release_type_global", "stable"));
 	}
 
 	public static synchronized RepoLoader getInstance() {
 		if (mInstance == null)
 			mInstance = new RepoLoader();
 		return mInstance;
+	}
+
+	public void setReleaseTypeGlobal(String relTypeString) {
+		ReleaseType relType = ReleaseType.fromString(relTypeString);
+		if (mGlobalReleaseType != relType) {
+			mGlobalReleaseType = relType;
+			notifyListeners();
+		}
 	}
 
 	public Map<String, ModuleGroup> getModules() {
@@ -130,9 +139,8 @@ public class RepoLoader {
 					});
 				}
 
-				for (RepoListener listener : mListeners) {
-					listener.onRepoReloaded(mInstance);
-				}
+				notifyListeners();
+
 				synchronized (this) {
 					mIsLoading = false;
 				}
@@ -180,9 +188,7 @@ public class RepoLoader {
 
 			mModules = new HashMap<String, ModuleGroup>();
 		}
-		for (RepoListener listener : mListeners) {
-			listener.onRepoReloaded(mInstance);
-		}
+		notifyListeners();
 	}
 
 	public String[] getRepositories() {
@@ -384,6 +390,12 @@ public class RepoLoader {
 
 	public void removeListener(RepoListener listener) {
 		mListeners.remove(listener);
+	}
+
+	private void notifyListeners() {
+		for (RepoListener listener : mListeners) {
+			listener.onRepoReloaded(mInstance);
+		}
 	}
 
 	public interface RepoListener {

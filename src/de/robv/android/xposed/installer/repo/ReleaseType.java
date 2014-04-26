@@ -7,7 +7,7 @@ public enum ReleaseType {
 	BETA (R.string.reltype_beta, R.string.reltype_beta_summary),
 	EXPERIMENTAL (R.string.reltype_experimental, R.string.reltype_experimental_summary);
 
-	public static ReleaseType fromRepoXml(String value) {
+	public static ReleaseType fromString(String value) {
 		if (value == null || value.equals("stable"))
 			return STABLE;
 		else if (value.equals("beta"))

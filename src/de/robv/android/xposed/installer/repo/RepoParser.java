@@ -153,7 +153,7 @@ public class RepoParser {
 					return null;
 				}
 			} else if (tagName.equals("reltype")) {
-				version.relType = ReleaseType.fromRepoXml(parser.nextText());
+				version.relType = ReleaseType.fromString(parser.nextText());
 			} else if (tagName.equals("download")) {
 				version.downloadLink = parser.nextText();
 			} else if (tagName.equals("md5sum")) {

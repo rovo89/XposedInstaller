@@ -43,6 +43,14 @@ public class SettingsFragment extends PreferenceFragment {
 			}
 		});
 
+		findPreference("release_type_global").setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference, Object newValue) {
+				RepoLoader.getInstance().setReleaseTypeGlobal((String) newValue);
+				return true;
+			}
+		});
+
 		CheckBoxPreference prefDisableResources = (CheckBoxPreference) findPreference("disable_resources");
 		prefDisableResources.setChecked(mDisableResourcesFlag.exists());
 		prefDisableResources.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {

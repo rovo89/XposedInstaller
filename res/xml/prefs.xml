@@ -21,6 +21,13 @@
             android:key="enable_downloads"
             android:summary="@string/settings_enable_downloads_summary"
             android:title="@string/settings_enable_downloads" />
+        <de.robv.android.xposed.installer.widget.ListPreferenceSummaryFix
+            android:key="release_type_global"
+            android:title="@string/settings_release_type"
+            android:summary="%s"
+            android:entries="@array/release_type_texts"
+            android:entryValues="@array/release_type_values"
+            android:defaultValue="stable" />
     </PreferenceCategory>
 
     <PreferenceCategory

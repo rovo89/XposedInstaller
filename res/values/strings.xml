@@ -124,6 +124,7 @@
     <string name="settings_group_download">Download</string>
     <string name="settings_enable_downloads">Enable downloads</string>
     <string name="settings_enable_downloads_summary">Allow Xposed Installer to check for updates and new modules</string>
+    <string name="settings_release_type">Versions to be shown</string>
     <string name="settings_group_experimental">Experimental</string>
     <string name="settings_disable_resources">Disabled resource hooks</string>
     <string name="settings_disable_resources_summary">Workaround for conflicts with theming engines\n<b>WARNING:</b> Modules which try to change resources will not work when this is enabled.</string>
