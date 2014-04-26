@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -39,7 +38,6 @@ import com.emilsjolander.components.stickylistheaders.StickyListHeadersAdapter;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
-import de.robv.android.xposed.installer.util.AnimatorUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
@@ -189,11 +187,6 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
-		return AnimatorUtil.createSlideAnimation(this, nextAnim);
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import android.animation.Animator;
 import android.app.Activity;
 import android.app.Fragment;
 import android.graphics.Typeface;
@@ -16,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.RepoParser;
-import de.robv.android.xposed.installer.util.AnimatorUtil;
 
 public class DownloadDetailsFragment extends Fragment {
 	private DownloadDetailsActivity mActivity;
@@ -70,10 +68,5 @@ public class DownloadDetailsFragment extends Fragment {
 		}
 
 		return view;
-	}
-
-	@Override
-	public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
-		return AnimatorUtil.createSlideAnimation(this, nextAnim);
 	}
 }
