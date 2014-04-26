@@ -87,7 +87,6 @@
     <string name="menuSearch">搜索</string>
     <string name="menuReload">重新加载</string>
     <string name="changes">变更：</string>
-    <string name="branch_display">(%s 分支)</string>
     <string name="download_author">作者：%s</string>
     <string name="download_unknown_author">未知作者</string>
     <string name="download_status_installed">已安装(版本 %s)</string>

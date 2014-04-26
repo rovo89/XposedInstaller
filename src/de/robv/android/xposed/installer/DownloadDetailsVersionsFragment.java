@@ -55,7 +55,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 
 	static class ViewHolder {
 		TextView txtVersion;
-		TextView txtBranch;
+		TextView txtRelType;
 		DownloadView downloadView;
 		TextView txtChangesTitle;
 		TextView txtChanges;
@@ -75,7 +75,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 				view = inflater.inflate(R.layout.list_item_version, null, true);
 				ViewHolder viewHolder = new ViewHolder();
 				viewHolder.txtVersion = (TextView) view.findViewById(R.id.txtVersion);
-				viewHolder.txtBranch = (TextView) view.findViewById(R.id.txtBranch);
+				viewHolder.txtRelType = (TextView) view.findViewById(R.id.txtRelType);
 				viewHolder.downloadView = (DownloadView) view.findViewById(R.id.downloadView);
 				viewHolder.txtChangesTitle = (TextView) view.findViewById(R.id.txtChangesTitle);
 				viewHolder.txtChanges = (TextView) view.findViewById(R.id.txtChanges);
@@ -86,12 +86,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 			ModuleVersion item = (ModuleVersion) getItem(position);
 
 			holder.txtVersion.setText(item.name);
-			if (item.branch != null && !item.branch.isEmpty()) {
-				holder.txtBranch.setText(getResources().getString(R.string.branch_display, item.branch));
-				holder.txtBranch.setVisibility(View.VISIBLE);
-			} else {
-				holder.txtBranch.setVisibility(View.GONE);
-			}
+			holder.txtRelType.setText(item.relType.getTitleId());
 
 			holder.downloadView.setUrl(item.downloadLink);
 			holder.downloadView.setTitle(mActivity.getModule().name);

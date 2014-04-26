@@ -55,7 +55,6 @@
     <string name="menuSearch">검색</string>
     <string name="menuReload">새로고침</string>
     <string name="changes">변경 이력 : </string>
-    <string name="branch_display">(%s branch)</string>
     <string name="download_author">개발자 : %s</string>
     <string name="download_unknown_author">정의된 개발자 이름 없음.</string>
     <string name="download_status_installed">설치됨 (version %s)</string>

@@ -55,7 +55,6 @@
     <string name="menuSearch">Arama</string>
     <string name="menuReload">Yenile</string>
     <string name="changes">Değişiklikler:</string>
-    <string name="branch_display">(%s sınıf)</string>
     <string name="download_author">Yapımcı %s</string>
     <string name="download_unknown_author">Bilinmeyen yapımcı</string>
     <string name="download_status_installed">Yüklenmiş (versiyon %s)</string>

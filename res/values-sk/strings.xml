@@ -87,7 +87,6 @@
     <string name="menuSearch">Hľadať</string>
     <string name="menuReload">Obnoviť</string>
     <string name="changes">Zmeny:</string>
-    <string name="branch_display">(vetva %s)</string>
     <string name="download_author">od %s</string>
     <string name="download_unknown_author">neznámy autor</string>
     <string name="download_status_installed">Nainštalované (verzia %s)</string>

@@ -55,7 +55,6 @@
     <string name="menuSearch">Αναζήτηση</string>
     <string name="menuReload">Ανανέωση</string>
     <string name="changes">Αλλαγές:</string>
-    <string name="branch_display">(%s branch)</string>
     <string name="download_author">από %s</string>
     <string name="download_unknown_author">άγνωστος δημιουργός</string>
     <string name="download_status_installed">Εγκατεστημένη (έκδοση %s)</string>

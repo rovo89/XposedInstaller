@@ -87,7 +87,6 @@
     <string name="menuSearch">Cerca</string>
     <string name="menuReload">Actualitza</string>
     <string name="changes">Canvis:</string>
-    <string name="branch_display">(branca %s)</string>
     <string name="download_author">per %s</string>
     <string name="download_unknown_author">autor desconegut</string>
     <string name="download_status_installed">Instal·lat (versió %s)</string>

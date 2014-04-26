@@ -55,7 +55,6 @@
     <string name="menuSearch">Keresés</string>
     <string name="menuReload">Újratöltés</string>
     <string name="changes">Változások:</string>
-    <string name="branch_display">(%s branch)</string>
     <string name="download_author">%s-tól</string>
     <string name="download_unknown_author">ismeretlen készítő</string>
     <string name="download_status_installed">Telepítve (verzió %s)</string>

@@ -55,7 +55,6 @@
     <string name="menuSearch">Cari</string>
     <string name="menuReload">Reload</string>
     <string name="changes">Perubahan:</string>
-    <string name="branch_display">(%s cawangan)</string>
     <string name="download_author">Oleh %s</string>
     <string name="download_unknown_author">Pemilik tidak diketahui</string>
     <string name="download_status_installed">Pemasangan(versi %s)</string>

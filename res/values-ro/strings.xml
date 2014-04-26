@@ -55,7 +55,6 @@
     <string name="menuSearch">Cautare</string>
     <string name="menuReload">Reincarcare</string>
     <string name="changes">Noutati:</string>
-    <string name="branch_display">(%s branch)</string>
     <string name="download_author">de %s</string>
     <string name="download_unknown_author">autor necunoscut</string>
     <string name="download_status_installed">Instalat (versiunea %s)</string>

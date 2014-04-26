@@ -55,7 +55,6 @@
     <string name="menuSearch">Søk</string>
     <string name="menuReload">Last inn på ny</string>
     <string name="changes">Endringer:</string>
-    <string name="branch_display">(%s arm)</string>
     <string name="download_author">av %s</string>
     <string name="download_unknown_author">Ukjent forfatter</string>
     <string name="download_status_installed">Instalert (versjon %s)</string>

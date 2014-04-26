@@ -87,7 +87,6 @@
     <string name="menuSearch">Suchen</string>
     <string name="menuReload">Neu laden</string>
     <string name="changes">Änderungen:</string>
-    <string name="branch_display">(%s branch)</string>
     <string name="download_author">von %s</string>
     <string name="download_unknown_author">Unbekannt</string>
     <string name="download_status_installed">Installiert (Version %s)</string>
