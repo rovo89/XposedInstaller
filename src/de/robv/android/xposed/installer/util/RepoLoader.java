@@ -25,6 +25,7 @@ import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
+import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.repo.Repository;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
@@ -42,6 +43,8 @@ public class RepoLoader {
 	private Object mFirstLoadFinishedLock = new Object();
 	private final List<String> mMessages = new LinkedList<String>();
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
+
+	private ReleaseType mGlobalReleaseType = ReleaseType.STABLE; // TODO add setting
 
 	private RepoLoader() {
 		mApp = XposedApp.getInstance();
@@ -74,12 +77,19 @@ public class RepoLoader {
 		if (module == null || module.versions.isEmpty())
 			return null;
 
-		// TODO implement logic for branches
 		for (ModuleVersion version : module.versions) {
-			if (version.downloadLink != null)
+			if (version.downloadLink != null && isVersionShown(version))
 				return version;
 		}
 		return null;
+	}
+
+	public boolean isVersionShown(ModuleVersion version) {
+		ReleaseType localSetting = null; // TODO store per-module settings
+		if (localSetting != null)
+			return version.relType.ordinal() <= localSetting.ordinal();
+		else
+			return version.relType.ordinal() <= mGlobalReleaseType.ordinal();
 	}
 
 	public ModuleVersion getLatestVersion(String packageName) {

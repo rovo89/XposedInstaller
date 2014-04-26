@@ -23,6 +23,7 @@ import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.HashUtil;
+import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.widget.DownloadView;
 
 public class DownloadDetailsVersionsFragment extends ListFragment {
@@ -40,7 +41,11 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
 
 		sAdapter = new VersionsAdapter(getActivity());
-		sAdapter.addAll(mActivity.getModule().versions);
+		RepoLoader repoLoader = RepoLoader.getInstance();
+		for (ModuleVersion version : mActivity.getModule().versions) {
+			if (repoLoader.isVersionShown(version))
+				sAdapter.add(version);
+		}
 		setListAdapter(sAdapter);
 
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
