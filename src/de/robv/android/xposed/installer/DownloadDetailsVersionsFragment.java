@@ -21,10 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
+import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.HashUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
+import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.widget.DownloadView;
 
 public class DownloadDetailsVersionsFragment extends ListFragment {
@@ -72,9 +74,13 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 	}
 
 	private class VersionsAdapter extends ArrayAdapter<ModuleVersion> {
+		private final int mColorRelTypeStable;
+		private final int mColorRelTypeOthers;
 
 		public VersionsAdapter(Context context) {
 			super(context, R.layout.list_item_version);
+			mColorRelTypeStable = ThemeUtil.getThemeColor(getContext(), android.R.attr.textColorTertiary);
+			mColorRelTypeOthers = getResources().getColor(R.color.warning);
 		}
 
 		@Override
@@ -97,6 +103,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 
 			holder.txtVersion.setText(item.name);
 			holder.txtRelType.setText(item.relType.getTitleId());
+			holder.txtRelType.setTextColor(item.relType == ReleaseType.STABLE ? mColorRelTypeStable : mColorRelTypeOthers);
 
 			holder.downloadView.setUrl(item.downloadLink);
 			holder.downloadView.setTitle(mActivity.getModule().name);

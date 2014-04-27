@@ -26,6 +26,7 @@
             android:gravity="right"
             android:layout_weight="1"
             android:layout_marginLeft="4dp"
+            android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textIsSelectable="false"
             android:textStyle="italic" />
