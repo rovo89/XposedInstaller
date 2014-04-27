@@ -42,7 +42,7 @@ public class RepoParser {
 				if (module != null)
 					repository.modules.put(module.packageName, module);
 			} else {
-				skip();
+				skip(true);
 			}
 		}
 
@@ -92,7 +92,7 @@ public class RepoParser {
 				if (version != null)
 					module.versions.add(version);
 			} else {
-				skip();
+				skip(true);
 			}
 		}
 
@@ -163,17 +163,21 @@ public class RepoParser {
 				if (isHtml != null && isHtml.equals("true"))
 					version.changelogIsHtml = true;
 				version.changelog = parser.nextText();
+			} else if (tagName.equals("branch")) {
+				// obsolete
+				skip(false);
 			} else {
-				skip();
+				skip(true);
 			}
 		}
 
 		return version;
 	}
 
-	protected void skip() throws XmlPullParserException, IOException {
+	protected void skip(boolean showWarning) throws XmlPullParserException, IOException {
 		parser.require(XmlPullParser.START_TAG, null, null);
-		Log.w(TAG, "skipping unknown/erronous tag: " + parser.getPositionDescription());
+		if (showWarning)
+			Log.w(TAG, "skipping unknown/erronous tag: " + parser.getPositionDescription());
 		int level = 1;
 		while (level > 0) {
 			int eventType = parser.next();
