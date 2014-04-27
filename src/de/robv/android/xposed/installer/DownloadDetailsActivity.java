@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.TextView;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
+import de.robv.android.xposed.installer.util.ModuleUtil;
+import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
@@ -47,6 +49,11 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 			};
 			mPager = (ViewPager) findViewById(R.id.download_pager);
 			mPager.setAdapter(new ScreenSlidePagerAdapter(getFragmentManager()));
+
+			// Updates available => start on the versions page
+			InstalledModule installed = ModuleUtil.getInstance().getModule(mPackageName);
+			if (installed != null && installed.isUpdate(sRepoLoader.getLatestVersion(mModule)))
+				mPager.setCurrentItem(DOWNLOAD_VERSIONS);
 
 		} else {
 			setContentView(R.layout.activity_download_details_not_found);
