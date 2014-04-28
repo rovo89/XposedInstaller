@@ -91,20 +91,6 @@
         </TableLayout>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:text="@string/settings_install_mode"
-            android:textAllCaps="true"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/framework_install_mode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
             android:id="@+id/framework_install_errors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -133,6 +119,20 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="@string/uninstall" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:text="@string/settings_install_mode"
+            android:textAllCaps="true"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/framework_install_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
 
         <TextView
             android:layout_width="match_parent"
