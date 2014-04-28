@@ -36,6 +36,7 @@ import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
+import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class ModulesFragment extends ListFragment implements ModuleListener {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
@@ -290,10 +291,10 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			TextView descriptionText = (TextView) view.findViewById(R.id.description);
 			if (!item.getDescription().isEmpty()) {
 				descriptionText.setText(item.getDescription());
-				descriptionText.setTextColor(0xFF777777);
+				descriptionText.setTextColor(ThemeUtil.getThemeColor(getContext(), android.R.attr.textColorSecondary));
 			} else {
-				descriptionText.setText(getActivity().getString(R.string.module_empty_description));
-				descriptionText.setTextColor(0xFFCC7700);
+				descriptionText.setText(getString(R.string.module_empty_description));
+				descriptionText.setTextColor(getResources().getColor(R.color.warning));
 			}
 
 			CheckBox checkbox = (CheckBox) view.findViewById(R.id.checkbox);
