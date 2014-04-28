@@ -42,6 +42,9 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 
 		if (mModuleGroup != null) {
 			setContentView(R.layout.activity_download_details);
+
+			((TextView) findViewById(android.R.id.title)).setText(mModule.name);
+
 			mPageTitles = new String[] {
 				getString(R.string.download_details_page_description),
 				getString(R.string.download_details_page_versions),
