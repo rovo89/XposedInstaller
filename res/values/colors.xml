@@ -1,7 +1,6 @@
 <resources>
 
     <color name="list_header">@android:color/holo_blue_light</color>
-    <color name="list_divider">@color/list_header</color>
     <color name="warning">@android:color/holo_red_light</color>
     <color name="warning_box">@android:color/holo_red_dark</color>
     <color name="pager_tab_strip">#fff</color>
