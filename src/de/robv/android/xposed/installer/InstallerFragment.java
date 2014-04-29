@@ -31,7 +31,9 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
+import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
+import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class InstallerFragment extends Fragment {
 	private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
@@ -47,7 +49,7 @@ public class InstallerFragment extends Fragment {
 	private ProgressDialog dlgProgress;
 	private TextView txtAppProcessInstalledVersion, txtAppProcessLatestVersion;
 	private TextView txtJarInstalledVersion, txtJarLatestVersion;
-	private TextView txtInstallError;
+	private TextView txtInstallError, txtKnownIssue;
 	private Button btnInstallMode, btnInstall, btnUninstall, btnSoftReboot, btnReboot;
 
 	private static final int INSTALL_MODE_NORMAL = 0;
@@ -77,6 +79,7 @@ public class InstallerFragment extends Fragment {
 
 		btnInstallMode = (Button) v.findViewById(R.id.framework_install_mode);
 		txtInstallError = (TextView) v.findViewById(R.id.framework_install_errors);
+		txtKnownIssue = (TextView) v.findViewById(R.id.framework_known_issue);
 
 		btnInstall = (Button) v.findViewById(R.id.btnInstall);
 		btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
@@ -194,6 +197,8 @@ public class InstallerFragment extends Fragment {
 			.show();
 		}
 
+		refreshKnownIssue();
+
 		return v;
 	}
 
@@ -281,6 +286,48 @@ public class InstallerFragment extends Fragment {
 
 	private String versionToText(int version) {
 		return (version == 0) ? getString(R.string.none) : Integer.toString(version);
+	}
+
+	private void refreshKnownIssue() {
+		String issueName = null;
+		String issueLink = null;
+
+		if (new File("/system/framework/core.jar.jex").exists()) {
+			issueName = "Aliyun OS";
+			issueLink = "http://forum.xda-developers.com/showpost.php?p=52289793&postcount=5";
+
+		} else if (new File("/data/miui/DexspyInstaller.jar").exists() || checkClassExists("miui.dexspy.DexspyInstaller")) {
+			issueName = "MIUI/Dexspy";
+			issueLink = "http://forum.xda-developers.com/showpost.php?p=52291098&postcount=6";
+		}
+
+		if (issueName != null) {
+			final String issueLinkFinal = issueLink;
+			txtKnownIssue.setText(getString(R.string.install_known_issue, issueName));
+			txtKnownIssue.setVisibility(View.VISIBLE);
+			txtKnownIssue.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					NavUtil.startURL(getActivity(), issueLinkFinal);
+				}
+			});
+			if (btnInstall.isEnabled())
+				btnInstall.setTextColor(getResources().getColor(R.color.warning));
+			txtInstallError.setTextColor(ThemeUtil.getThemeColor(getActivity(), android.R.attr.textColorTertiary));
+		} else {
+			txtKnownIssue.setVisibility(View.GONE);
+			btnInstall.setTextColor(ThemeUtil.getThemeColor(getActivity(), android.R.attr.textColorPrimary));
+			txtInstallError.setTextColor(getResources().getColor(R.color.warning));
+		}
+	}
+
+	private static boolean checkClassExists(String className) {
+		try {
+			Class.forName(className);
+			return true;
+		} catch (ClassNotFoundException e) {
+			return false;
+		}
 	}
 
 	private void showAlert(final String result) {

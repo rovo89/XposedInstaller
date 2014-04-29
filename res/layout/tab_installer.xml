@@ -91,12 +91,19 @@
         </TableLayout>
 
         <TextView
+            android:id="@+id/framework_known_issue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/warning"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/framework_install_errors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:textColor="@color/warning"
-            android:textStyle="bold"
             android:visibility="gone" />
 
         <TextView
