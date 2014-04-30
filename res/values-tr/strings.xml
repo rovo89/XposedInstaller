@@ -75,8 +75,8 @@
     <string name="download_section_older">30 günden daha önce</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_download">ındir</string>
-    <string name="settings_enable_downloads">indirmeleri etkinleştir</string>
+    <string name="settings_group_download">İndir</string>
+    <string name="settings_enable_downloads">İndirmeleri etkinleştir</string>
     <string name="settings_enable_downloads_summary">Xposed Yükleyici güncellemeleri ve yeni modülleri otomatik kontrol etmek için ektinleştirin</string>
     <string name="settings_group_experimental">Deneysel</string>
     <string name="settings_performance_experiment">Performans deneyleri</string>
@@ -100,24 +100,24 @@
     <string name="about_libraries_label">Kullanılan kütüphaneler:</string>
 
     <!-- DownloadView -->
-    <string name="download_view_download">ındir</string>
+    <string name="download_view_download">İndir</string>
     <string name="download_view_install">Yükle</string>
-    <string name="download_view_cancel">ıptal</string>
-    <string name="download_view_no_url">ındirme URL adresi yok</string>
-    <string name="download_view_running">ındirme sürüyor (%1$,d kalan %2$,d kB)</string>
-    <string name="download_view_waiting">ındirme bekliyor</string>
-    <string name="download_view_successful">ındirme tamamlandı</string>
-    <string name="download_view_failed">ındirme tamamlanamadı (hata %d)</string>
+    <string name="download_view_cancel">İptal</string>
+    <string name="download_view_no_url">İndirme URL adresi yok</string>
+    <string name="download_view_running">İndirme sürüyor (%1$,d kalan %2$,d kB)</string>
+    <string name="download_view_waiting">İndirme bekliyor</string>
+    <string name="download_view_successful">İndirme tamamlandı</string>
+    <string name="download_view_failed">İndirme tamamlanamadı (hata %d)</string>
 
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">MD5 toplamı yanlış (indirilen: %1$s, beklenen: %2$s)</string>
-    <string name="download_could_not_read_file">ındirilen dosya okunamadı: %s</string>
-    <string name="download_no_valid_apk">ındirilen dosya geçerli Apk dosyası değil (veya uyumsuz)</string>
+    <string name="download_could_not_read_file">İndirilen dosya okunamadı: %s</string>
+    <string name="download_no_valid_apk">İndirilen dosya geçerli Apk dosyası değil (veya uyumsuz)</string>
     <string name="download_incorrect_package_name">Paket adı yanlış (indirilen: %1$s, beklenen: %2$s)</string>
 
     <!-- RepoLoader -->
-    <string name="repo_download_failed_http">ındirme %1$s başarısız: %2$d (%3$s)</string>
-    <string name="repo_download_failed">ındirme %1$s başarısız: %2$s</string>
+    <string name="repo_download_failed_http">İndirme %1$s başarısız: %2$d (%3$s)</string>
+    <string name="repo_download_failed">İndirme %1$s başarısız: %2$s</string>
     <string name="repo_load_failed">Depodan yüklenemiyor %1$s:\n%2$s</string>
 
 </resources>
