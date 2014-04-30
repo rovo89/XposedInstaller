@@ -19,8 +19,8 @@ public final class NotificationUtil {
 	private static Context sContext = null;
 	private static NotificationManager sNotificationManager;
 
-	private static final int NOTIFICATION_MODULE_NOT_ACTIVATED_YET = 0;
-	private static final int NOTIFICATION_MODULES_UPDATED = 1;
+	public static final int NOTIFICATION_MODULE_NOT_ACTIVATED_YET = 0;
+	public static final int NOTIFICATION_MODULES_UPDATED = 1;
 
 	private static final int PENDING_INTENT_OPEN_MODULES = 0;
 	private static final int PENDING_INTENT_OPEN_INSTALL = 1;
@@ -33,6 +33,14 @@ public final class NotificationUtil {
 
 		sContext = XposedApp.getInstance();
 		sNotificationManager = (NotificationManager) sContext.getSystemService(Context.NOTIFICATION_SERVICE);
+	}
+
+	public static void cancel(int id) {
+		sNotificationManager.cancel(id);
+	}
+
+	public static void cancelAll() {
+		sNotificationManager.cancelAll();
 	}
 
 	public static void showNotActivatedNotification(String packageName, String appName) {

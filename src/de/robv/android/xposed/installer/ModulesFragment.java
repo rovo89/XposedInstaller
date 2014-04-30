@@ -35,6 +35,7 @@ import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
+import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
@@ -96,7 +97,12 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		getListView().setDividerHeight(sixDp);
 		getListView().setPadding(eightDp, eightDp, eightDp, eightDp);
 		getListView().setClipToPadding(false);
+	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		NotificationUtil.cancelAll();
 	}
 
 	@Override

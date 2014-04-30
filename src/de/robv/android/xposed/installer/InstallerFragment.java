@@ -32,6 +32,7 @@ import android.widget.TextView;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
+import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
@@ -206,6 +207,7 @@ public class InstallerFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 		btnInstallMode.setText(getInstallModeText());
+		NotificationUtil.cancel(NotificationUtil.NOTIFICATION_MODULES_UPDATED);
 	}
 
 	@Override
