@@ -56,7 +56,8 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 		}
 
 		if (mModuleUtil.isModuleEnabled(packageName)) {
-			mModuleUtil.updateModulesList(true);
+			mModuleUtil.updateModulesList(false);
+			NotificationUtil.showModulesUpdatedNotification();
 		} else {
 			NotificationUtil.showNotActivatedNotification(packageName, module.getAppName());
 		}

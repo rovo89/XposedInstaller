@@ -61,6 +61,8 @@
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".util.NotificationUtil$RebootReceiver" android:exported="false" />
     </application>
 
 </manifest>
