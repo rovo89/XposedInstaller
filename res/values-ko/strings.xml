@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed 설치 도구</string>
     <string name="menuSend">보내기</string>
     <string name="menuSaveToSd">내장 메모리에 저장</string>
     <string name="xposed_not_active">현재 최신 버전의 Xposed 프레임워크가 활성화되지 않고 있습니다. 프레임워크 설치 후 시스템을 재시작하세요.</string>

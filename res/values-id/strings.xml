@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Installer Xposed</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Selamat datang di <b>Installer Xposed</b>!\nPilih pilihan Anda:</string>

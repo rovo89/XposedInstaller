@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed Yükləyici</string>
     <string name="menuSend">Göndər</string>
     <string name="menuSaveToSd">Yaddaş kartında saxla</string>
     <string name="xposed_not_active">Xposed\'in son versiyası aktiv deyil. Framework\'i yükləmisiz? vəya cihazı yenidən başlatmısız?</string>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="translator">czeci</string>
-    <string name="app_name">Instalator Xposed</string>
     <string name="tabModules">Moduły</string>
     <string name="install">Zainstaluj lub uaktualnij</string>
     <string name="uninstall">Odinstaluj i przywróć systemowe procesy</string>

@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed安裝器</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">歡迎使用<b>Xposed安裝器</b>!\n請選擇您想進行的操作：</string>

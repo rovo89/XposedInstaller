@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Εγκατάσταση Xposed</string>
     <string name="menuSend">Αποστολή</string>
     <string name="menuSaveToSd">Αποθήκευση στην κάρτα SD</string>
     <string name="xposed_not_active">Η τελευταία έκδοση του Xposed δεν είναι ενεργή προς το παρόν. Εγκαταστήσατε το framework και επανεκκινήσατε;</string>

@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">התקנת Xposed</string>
 	<string name="menuSend">שלח</string>
     <string name="menuSaveToSd">שמור לכרטיס זיכרון</string>
     <string name="xposed_not_active">הגרסה האחרונה של Xposed לא פעילה כרגע. התקנת את הסביבה והפעלת מחדש?</string>

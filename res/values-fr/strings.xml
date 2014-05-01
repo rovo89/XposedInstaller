@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed Installer</string>
     <string name="menuSend">Envoyer</string>
     <string name="menuSaveToSd">Sauver sur la carte SD</string>
     <string name="xposed_not_active">"La dernière version d'Xposed est inactive. Avez-vous installé le framework et redémarré ?"</string>

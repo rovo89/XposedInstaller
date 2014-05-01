@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Pemasangan Xposed</string>
     <string name="menuSend">Menghantar</string>
     <string name="menuSaveToSd">Simpan Ke Kad SD</string>
     <string name="xposed_not_active">Versi terbaru Xposed masih tidak aktif. Adakah anda ingin memasang framework dan reboot?</string>

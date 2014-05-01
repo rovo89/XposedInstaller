@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposedインストーラ</string>
     <string name="menuSend">送信</string>
     <string name="menuSaveToSd">SDカードに保存</string>
     <string name="xposed_not_active">最新版のXposedが動作していません。フレームワークをインストールして再起動しましたか?</string>

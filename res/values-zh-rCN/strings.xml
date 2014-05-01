@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed 安装器</string>
     <string name="menuSend">发送</string>
     <string name="menuSaveToSd">发送到 SD 卡</string>
     <string name="xposed_not_active">最新版本的 Xposed 当前未激活。您是否已安装框架并重启？</string>

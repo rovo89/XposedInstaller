@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Instal·lador Xposed</string>
     <string name="menuSend">Envia</string>
     <string name="menuSaveToSd">Envia a la targeta SD</string>
     <string name="xposed_not_active">La última versió de Xposed no està activa. Heu instal·lat el framework i reiniciat?</string>

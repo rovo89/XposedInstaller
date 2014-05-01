@@ -2,7 +2,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 <!-- General/various strings -->
-<string name="app_name">Xposed Installer</string>
 <string name="menuSend">Pošalji</string>
 <string name="menuSaveToSd">Snimi na SD kartu</string>
 <string name="xposed_not_active">Poslednja verzija Xposed programa trenutno nije aktivna. Da li ste instalirali framework i restartovali uređaj?</string>

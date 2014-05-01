@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed Telepítő</string>
     <string name="menuSend">Küldés</string>
     <string name="menuSaveToSd">SD kártyára mentés</string>
     <string name="xposed_not_active">Az Xposed legfrissebb verziója jelenleg nem aktív. Telepítetted a keretrendszert és újraindítottad az eszközt?</string>

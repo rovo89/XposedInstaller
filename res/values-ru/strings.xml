@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed Installer</string>
     <string name="menuSend">Отправить</string>
     <string name="menuSaveToSd">Сохранить на SD-карту</string>
     <string name="xposed_not_active">Последняя версия Xposed в настоящее время не активна. Уверены, что Вы установили фреймворк и перезагрузили устройство?</string>

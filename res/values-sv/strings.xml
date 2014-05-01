@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed Installer</string>
     <string name="menuSend">Skicka</string>
     <string name="menuSaveToSd">Spara till SD-kort</string>
     <string name="xposed_not_active">Senaste versionen av Xposed är inte aktiverad. Har du installerat ramverket och startat om?</string>

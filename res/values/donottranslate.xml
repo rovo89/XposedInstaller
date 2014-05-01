@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="app_name">Xposed Installer</string>
     <string name="app_process">app_process</string>
     <string name="xposedbridge">XposedBridge.jar</string>
     <string name="none">---</string>

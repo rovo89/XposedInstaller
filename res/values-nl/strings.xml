@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed Installer</string>
     <string name="menuSend">Deel</string>
     <string name="menuSaveToSd">Opslaan op SD-kaart</string>
     <string name="xposed_not_active">De laatste versie van Xposed is momenteel niet actief. Heeft u het framework geïnstalleerd en het systeem herstart?</string>

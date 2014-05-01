@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed Installer</string>
     <string name="menuSend">Gửi</string>
     <string name="menuSaveToSd">Lưu vào thẻ SD</string>
     <string name="xposed_not_active">Phiên bản mới nhất của Xposed chưa hoạt động. Bạn đã cài framework và khởi động lại chưa?</string>

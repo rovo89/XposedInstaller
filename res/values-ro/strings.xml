@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed Installer</string>
     <string name="menuSend">Trimite</string>
     <string name="menuSaveToSd">Salveaza pe cardul SD</string>
     <string name="xposed_not_active">Cea mai recenta versiune de Xposed nu este inca activa. Ati instalat framework-ul si ati repornit ?</string>

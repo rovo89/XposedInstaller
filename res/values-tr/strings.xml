@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed Yükleyici</string>
     <string name="menuSend">Gönder</string>
     <string name="menuSaveToSd">SD Karta kaydet</string>
     <string name="xposed_not_active">Xposed en son sürümü şu anda aktif değildir. Şimdi Frameworku kurmak ve yeniden başlatmak istermisiniz?</string>

@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Instalador do Xposed</string>
     <string name="menuSend">Enviar</string>
     <string name="menuSaveToSd">Salvar para o cartão SD</string>
     <string name="xposed_not_active">A versão mais recente do Xposed ainda não foi ativada. Você instalou o framework e reiniciou o dispositivo?</string>

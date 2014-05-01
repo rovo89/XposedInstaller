@@ -2,7 +2,6 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed Installer</string>
     <string name="menuSend">ส่ง</string>
     <string name="menuSaveToSd">เซฟไปที่ SD การ์ด</string>
     <string name="xposed_not_active">เวอร์ชั่นช่าสุดของ Xposed ยังไม่ทำงาน คุณติดตั้งเฟรมเวิร์คและรีบู๊ตแล้วหรือยัง</string>
