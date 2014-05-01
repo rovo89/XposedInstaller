@@ -7,8 +7,7 @@
     <string name="xposed_not_active">最新版のXposedが動作していません。フレームワークをインストールして再起動しましたか?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome"><b>Xposedインストーラ</b>にようこそ"!
-したいことを選んでください:"</string>
+    <string name="welcome"><b>Xposedインストーラ</b>にようこそ"!\nしたいことを選んでください:"</string>
     <string name="tabInstall">フレームワーク</string>
     <string name="tabInstallDescription">モジュールの動作に必要なXposedフレームワークの管理をします。</string>
     <string name="tabModules">モジュール</string>
@@ -43,7 +42,8 @@
     <string name="install_warning_title">注意!</string>
     <string name="install_warning">Xposedをインストールした後起動しなくなる場合があります。\n\n \"仮文鎮\"や\"ブートループ\"になったことがない場合やその状態からの復旧方法を知らない場合、Xposedをインストール<b>しないでください</b>!\n\nどんな場合でもバックアップしておくことは大切です。</string>
     <string name="dont_show_again">二度と表示しない</string>
-    
+    <string name="install_known_issue">お使いのROMには互換性の問題(\"%s\")があるようです。Xposedをインストールできない可能性があります。ここをタップすると詳細を表示します。</string>
+
     <!-- File operations -->
     <string name="root_failed">rootアクセスの取得に失敗しました。\n\n端末がrootedか、シェルコマンドをブロックしていないか確認してください。</string>
     <string name="file_extract_failed">%sを抽出できません</string>
@@ -73,8 +73,9 @@
     <string name="module_empty_description">(説明なし)</string>
     <string name="module_no_ui">このモジュールにはUIがありません</string>
     <string name="no_xposed_modules_found">Xposedモジュールが見つかりません!</string>
-    <string name="xposed_module_list_updated">"Xposedモジュールが更新されました。
-変更は再起動後に反映されます。"</string>
+    <string name="xposed_module_list_updated">"Xposedモジュールが更新されました。\n変更は再起動後に反映されます。"</string>
+    <string name="xposed_module_updated_notification_title">Xposedモジュールが更新されました</string>
+    <string name="xposed_module_updated_notification">再起動してください。</string>
     <string name="warning_xposed_min_version">このモジュールはXposedBridgeの新しいバージョン (%d) が必要なので有効にできません。</string>
     <string name="no_min_version_specified">このモジュールは必要なXposedBridgeバージョンを指定していません。</string>
     <string name="warning_min_version_too_low">このモジュールはXposedBridge バージョン %1$d向けに作成されましたが、 バージョン %2$dでは互換性がないため無効にされました。</string>
@@ -88,6 +89,16 @@
     <string name="menuSearch">検索</string>
     <string name="menuReload">再読み込み</string>
     <string name="changes">変更点:</string>
+    <string name="download_details_page_description">説明</string>
+    <string name="download_details_page_versions">バージョン</string>
+    <string name="download_details_page_settings">設定</string>
+    <string name="reltype_stable">安定版</string>
+    <string name="reltype_stable_summary">安定版(バグが少なめ)</string>
+    <string name="reltype_beta">ベータ版</string>
+    <string name="reltype_beta_summary">ベータ版(バグがある可能性有り)</string>
+    <string name="reltype_experimental">実験的</string>
+    <string name="reltype_experimental_summary">実験的(バグが多め)</string>
+    <string name="reltype_use_global_summary">優先設定を使う</string>
     <string name="download_author">制作者: %s</string>
     <string name="download_unknown_author">制作者不明</string>
     <string name="download_status_installed">インストール済み (バージョン %s)</string>
@@ -105,6 +116,7 @@
     <string name="download_section_7d">7日以内</string>
     <string name="download_section_30d">30日以内</string>
     <string name="download_section_older">30日以上前</string>
+    <string name="download_details_not_found">パッケージ名\"%s\"のモジュールはレポジトリに存在しません。</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">インストール</string>
@@ -115,11 +127,17 @@
     <string name="settings_group_download">ダウンロード</string>
     <string name="settings_enable_downloads">ダウンロードを有効化</string>
     <string name="settings_enable_downloads_summary">Xposedインストーラやモジュールの更新を定期的に確認するようにします。</string>
+    <string name="settings_release_type">表示するバージョン</string>
     <string name="settings_group_experimental">実験的</string>
     <string name="settings_disable_resources">リソースフックを無効化</string>
     <string name="settings_disable_resources_summary">テーマエンジンとの競合を解消します。\n<b>警告:</b>このオプションを有効化するとリソースをフックするモジュールが動作しなくなります。</string>
     <string name="settings_performance_experiment">パフォーマンス実験</string>
     <string name="settings_performance_experiment_summary">これを有効にするとパフォーマンスに影響が出る可能性があります。どうか試してみて効果があるかないか報告してください。有効にした後はフレームワークを再インストールして再起動してください。</string>
+    <string name="settings_group_app">アプリ</string>
+    <string name="settings_theme">テーマ</string>
+    <string name="settings_theme_light">ライト</string>
+    <string name="settings_theme_dark">ダーク</string>
+    <string name="settings_theme_black">黒(AMOLED端末におすすめ)</string>
 
     <!-- Logs tab -->
     <string name="logs_load_failed">ログを読み込めません:</string>
@@ -162,7 +180,6 @@
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">%1$sのダウンロード失敗: %2$d (%3$s)</string>
     <string name="repo_download_failed">%1$sのダウンロード失敗: %2$s</string>
-    <string name="repo_load_failed">"%1$sからレポジトリを読み込めません:
-%2$s"</string>
+    <string name="repo_load_failed">"%1$sからレポジトリを読み込めません:\n%2$s"</string>
 
 </resources>
