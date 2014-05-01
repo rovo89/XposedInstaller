@@ -39,7 +39,7 @@
             android:summary="%s"
             android:entries="@array/theme_texts"
             android:entryValues="@array/theme_values"
-            android:defaultValue="0" />
+            android:defaultValue="1" />
     </PreferenceCategory>
 
     <PreferenceCategory

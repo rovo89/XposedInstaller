@@ -17,7 +17,7 @@ public final class ThemeUtil {
 	};
 
 	public static int getSelectTheme() {
-		int theme = XposedApp.getPreferences().getInt("theme", 0);
+		int theme = XposedApp.getPreferences().getInt("theme", 1);
 		return (theme >= 0 && theme < THEMES.length) ? theme : 0;
 	}
 
