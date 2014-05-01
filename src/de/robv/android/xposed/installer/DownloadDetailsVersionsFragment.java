@@ -47,6 +47,8 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 		if (module == null)
 			return;
 
+		setEmptyText(getString(R.string.download_no_versions));
+
 		sAdapter = new VersionsAdapter(getActivity());
 		RepoLoader repoLoader = RepoLoader.getInstance();
 		for (ModuleVersion version : module.versions) {
