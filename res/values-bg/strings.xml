@@ -87,7 +87,6 @@
     <string name="menuSearch">Търси</string>
     <string name="menuReload">Презареди</string>
     <string name="changes">Промени:</string>
-    <string name="branch_display">(%s branch)</string>
     <string name="download_author">от %s</string>
     <string name="download_unknown_author">неизвестен автор</string>
     <string name="download_status_installed">Инсталиран (версия %s)</string>

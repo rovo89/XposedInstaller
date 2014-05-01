@@ -55,7 +55,6 @@
     <string name="menuSearch">חיפוש</string>
     <string name="menuReload">רענן</string>
     <string name="changes">שינויים:</string>
-    <string name="branch_display">(%s branch)</string>
     <string name="download_author">על ידי %s</string>
     <string name="download_unknown_author">מפתח לא ידוע</string>
     <string name="download_status_installed">מותקן (גרסה %s)</string>

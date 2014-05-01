@@ -87,7 +87,6 @@
     <string name="menuSearch">ค้นหา</string>
     <string name="menuReload">โหลดใหม่</string>
     <string name="changes">การเปลี่ยนแปลง:</string>
-    <string name="branch_display">(%s แบรนช์)</string>
     <string name="download_author">โดย %s</string>
     <string name="download_unknown_author">ไม่ทราบผู้สร้าง</string>
     <string name="download_status_installed">ติดตั้งแล้ว (เวอร์ชั่น %s)</string>

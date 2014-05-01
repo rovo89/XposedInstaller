@@ -1,10 +1,29 @@
 <resources>
 
-    <color name="download_status_installed">#ffffbb33</color>
-    <color name="download_status_update_available">#ff66ff00</color>
+    <color name="list_header">@android:color/holo_blue_light</color>
+    <color name="warning">@android:color/holo_red_light</color>
+    <color name="warning_box">@android:color/holo_red_dark</color>
+    <color name="pager_tab_strip">#fff</color>
+    <color name="download_details_title">#777</color>
+    <color name="download_status_update_available">@color/darker_green</color>
     <color name="welcome_framework_update_available">@color/download_status_update_available</color>
     <color name="welcome_update_available">@color/download_status_update_available</color>
-    <color name="list_divider">#ff0099cc</color>
-    <color name="list_header">#ff0099cc</color>
+    <color name="darker_green">#ff22aa00</color>
+
+    <!-- light theme-->
+    <color name="app_background_light">#e5e5e5</color>
+    <color name="card_background_light">#fff</color>
+    <color name="card_background_pressed_light">#dfdfdf</color>
+    <color name="card_shadow_light">#dbdbdb</color>
+    <color name="pager_tab_strip_bg_light">#222</color>
+
+    <!-- dark theme -->
+    <color name="card_background_dark">#363636</color>
+    <color name="card_background_pressed_dark">#505050</color>
+    <color name="card_shadow_dark">#161616</color>
+    <color name="pager_tab_strip_bg_dark">#222</color>
+
+    <!-- black theme -->
+    <color name="app_background_black">#000000</color>
 
 </resources>

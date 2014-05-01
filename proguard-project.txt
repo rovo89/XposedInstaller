@@ -1,0 +1,30 @@
+-dontobfuscate
+
+# These are mostly picked from proguard-android-optimize.txt
+-optimizations !code/allocation/variable,!code/simplification/cast,!field/*,!class/merging/*
+-optimizationpasses 5
+-allowaccessmodification
+-dontpreverify
+
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-verbose
+
+# For enumeration classes, see http://proguard.sourceforge.net/manual/examples.html#enumerations
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+
+# The support library contains references to newer platform versions.
+# Don't warn about those in case this app is linking against an older
+# platform version.  We know about them, and they are safe.
+-dontwarn android.support.**
+
+# These are ok as well
+-dontwarn android.os.FileUtils
+-dontwarn com.emilsjolander.components.stickylistheaders.**

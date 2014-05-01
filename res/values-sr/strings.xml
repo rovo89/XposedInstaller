@@ -87,7 +87,6 @@
 <string name="menuSearch">Pretraži</string>
 <string name="menuReload">Učitaj ponovo</string>
 <string name="changes">Promene:</string>
-<string name="branch_display">(%s odeljak)</string>
 <string name="download_author">Od %s</string>
 <string name="download_unknown_author">Nepoznat autor</string>
 <string name="download_status_installed">Instalirano (verzija %s)</string>

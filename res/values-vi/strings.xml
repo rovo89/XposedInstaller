@@ -87,7 +87,6 @@
     <string name="menuSearch">Tìm kiếm</string>
     <string name="menuReload">Tải lại</string>
     <string name="changes">Các thay đổi:</string>
-    <string name="branch_display">(nhánh %s)</string>
     <string name="download_author">bởi %s</string>
     <string name="download_unknown_author">không rõ tác giả</string>
     <string name="download_status_installed">Đã cài (bản %s)</string>

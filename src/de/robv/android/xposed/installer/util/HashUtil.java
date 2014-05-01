@@ -17,11 +17,11 @@ public class HashUtil {
 			throw new IllegalArgumentException(e);
 		}
 	}
-	
+
 	public static final String md5(String input) {
 		return hash(input, "MD5");
 	}
-	
+
 	public static final String sha1(String input) {
 		return hash(input, "SHA-1");
 	}

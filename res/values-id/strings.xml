@@ -50,7 +50,6 @@
     <string name="menuSearch">Cari</string>
     <string name="menuReload">Reload</string>
     <string name="changes">Perubahan:</string>
-    <string name="branch_display">(cabang %s)</string>
     <string name="download_author">oleh %s</string>
     <string name="download_unknown_author">pembuat tdk diketahui</string>
     <string name="download_status_installed">Terinstall (versi %s)</string>

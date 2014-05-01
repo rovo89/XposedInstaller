@@ -89,7 +89,6 @@
     <string name="menuSearch">検索</string>
     <string name="menuReload">再読み込み</string>
     <string name="changes">変更点:</string>
-    <string name="branch_display">(%s ブランチ)</string>
     <string name="download_author">制作者: %s</string>
     <string name="download_unknown_author">制作者不明</string>
     <string name="download_status_installed">インストール済み (バージョン %s)</string>

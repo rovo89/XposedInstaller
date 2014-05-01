@@ -30,6 +30,7 @@
     <string name="installedVersion">active</string>
     <string name="latestVersion">bundled</string>
     <string name="versions">Versions:</string>
+    <string name="install_header_reboot">Reboot</string>
     <string name="soft_reboot">Soft reboot</string>
     <string name="reboot">Reboot</string>
     <string name="areyousure">Are you sure?</string>
@@ -43,6 +44,7 @@
     <string name="install_warning_title">Be careful!</string>
     <string name="install_warning">In some cases, your device might no longer boot after installing Xposed.\n\nIf you never heard about \"soft brick\" and \"bootloop\" before or if you don\'t know how to recover from such a situation, do <b>NOT</b> install Xposed!\n\nIn any case, having a recent backup is highly recommended.</string>
     <string name="dont_show_again">Don\'t show this again</string>
+    <string name="install_known_issue">There seems to be a known incompatibility (\"%s\") with your ROM. You should probably not install Xposed. Click here for more information.</string>
 
     <!--  File operations -->
     <string name="root_failed">Failed to get root access.\n\nMake sure your device is rooted properly and you have not blocked shell commands.</string>
@@ -74,6 +76,8 @@
     <string name="module_no_ui">This module does not provide a user interface</string>
     <string name="no_xposed_modules_found">No Xposed modules were found!</string>
     <string name="xposed_module_list_updated">Xposed module list was updated\nChanges will become active on reboot</string>
+    <string name="xposed_module_updated_notification_title">Xposed module updated</string>
+    <string name="xposed_module_updated_notification">Reboot to activate changes</string>
     <string name="warning_xposed_min_version">This module requires a newer XposedBridge version (%d) and thus cannot be activated.</string>
     <string name="no_min_version_specified">This module does not specify the XposedBridge version it needs.</string>
     <string name="warning_min_version_too_low">This module was created for XposedBridge version %1$d, but due to incompatible changes in version %2$d, it has been disabled.</string>
@@ -87,7 +91,16 @@
     <string name="menuSearch">Search</string>
     <string name="menuReload">Reload</string>
     <string name="changes">Changes:</string>
-    <string name="branch_display">(%s branch)</string>
+    <string name="download_details_page_description">Description</string>
+    <string name="download_details_page_versions">Versions</string>
+    <string name="download_details_page_settings">Settings</string>
+    <string name="reltype_stable">Stable</string>
+    <string name="reltype_stable_summary">Stable (low risk of bugs)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (some bugs to be expected)</string>
+    <string name="reltype_experimental">Experimental</string>
+    <string name="reltype_experimental_summary">Experimental (high risk of bugs)</string>
+    <string name="reltype_use_global_summary">Use global setting</string>
     <string name="download_author">by %s</string>
     <string name="download_unknown_author">unknown author</string>
     <string name="download_status_installed">Installed (version %s)</string>
@@ -105,6 +118,7 @@
     <string name="download_section_7d">Last 7 days</string>
     <string name="download_section_30d">Last 30 days</string>
     <string name="download_section_older">More than 30 days ago</string>
+    <string name="download_details_not_found">There is no module with package name \"%s\" in the repository.</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">Installation</string>
@@ -115,11 +129,17 @@
     <string name="settings_group_download">Download</string>
     <string name="settings_enable_downloads">Enable downloads</string>
     <string name="settings_enable_downloads_summary">Allow Xposed Installer to check for updates and new modules</string>
+    <string name="settings_release_type">Versions to be shown</string>
     <string name="settings_group_experimental">Experimental</string>
     <string name="settings_disable_resources">Disabled resource hooks</string>
     <string name="settings_disable_resources_summary">Workaround for conflicts with theming engines\n<b>WARNING:</b> Modules which try to change resources will not work when this is enabled.</string>
     <string name="settings_performance_experiment" tools:ignore="UnusedResources">Performance experiment</string>
     <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">If you enable this, your system performance might either increase, decrease or stay the same. Feel free to try it and report back which effect you see (or if there is none at all). You need to reinstall the framework and reboot after changing this.</string>
+    <string name="settings_group_app">Application</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_theme_black">Black (useful for AMOLED screens)</string>
 
     <!--  Logs tab  -->
     <string name="logs_load_failed">Could not read log:</string>

@@ -1,6 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import android.animation.Animator;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -10,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import de.robv.android.xposed.installer.util.AnimatorUtil;
 
 public class AboutFragment extends Fragment {
 	@Override
@@ -50,10 +48,5 @@ public class AboutFragment extends Fragment {
 		}
 
 		return v;
-	}
-
-	@Override
-	public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
-		return AnimatorUtil.createSlideAnimation(this, nextAnim);
 	}
 }

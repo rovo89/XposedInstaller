@@ -55,7 +55,6 @@
     <string name="menuSearch">Sök</string>
     <string name="menuReload">Ladda om</string>
     <string name="changes">Ändringar:</string>
-    <string name="branch_display">(%s branch)</string>
     <string name="download_author">av %s</string>
     <string name="download_unknown_author">okänd skapare</string>
     <string name="download_status_installed">Installerad (version %s)</string>

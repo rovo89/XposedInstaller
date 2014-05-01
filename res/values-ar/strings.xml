@@ -50,7 +50,6 @@
     <string name="menuSearch">بحث</string>
     <string name="menuReload">إعادة تحميل</string>
     <string name="changes">التغييرات:</string>
-    <string name="branch_display">(%s branch)</string>
     <string name="download_author">من قبل %s</string>
     <string name="download_unknown_author">مؤلف غير معروف</string>
     <string name="download_status_installed">تثبيت (version %s)</string>

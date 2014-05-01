@@ -55,7 +55,6 @@
     <string name="menuSearch">Axtar</string>
     <string name="menuReload">Yenidən yüklə</string>
     <string name="changes">Dəyişikliklər:</string>
-    <string name="branch_display">(%s köməkçi)</string>
     <string name="download_author">%s tərəfindən</string>
     <string name="download_unknown_author">bilinməyən müəllif</string>
     <string name="download_status_installed">Quraşdırıldı (%s versiya)</string>

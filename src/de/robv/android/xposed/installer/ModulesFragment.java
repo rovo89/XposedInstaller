@@ -14,6 +14,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
@@ -33,7 +35,9 @@ import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
+import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
+import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class ModulesFragment extends ListFragment implements ModuleListener {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
@@ -83,10 +87,22 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		setListAdapter(mAdapter);
 		setEmptyText(getActivity().getString(R.string.no_xposed_modules_found));
 		getListView().setFastScrollEnabled(true);
-		getListView().setDivider(getResources().getDrawable(R.color.list_divider));
-		getListView().setDividerHeight(1);
 		registerForContextMenu(getListView());
 		mModuleUtil.addListener(this);
+
+		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
+		int eightDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
+		getListView().setDivider(null);
+		getListView().setDividerHeight(sixDp);
+		getListView().setPadding(eightDp, eightDp, eightDp, eightDp);
+		getListView().setClipToPadding(false);
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		NotificationUtil.cancelAll();
 	}
 
 	@Override
@@ -245,7 +261,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 	private class ModuleAdapter extends ArrayAdapter<InstalledModule> {
 		public ModuleAdapter(Context context) {
-			super(context, R.layout.list_item_module, R.id.text);
+			super(context, R.layout.list_item_module, R.id.title);
 		}
 
 		@Override
@@ -268,6 +284,10 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			}
 
 			InstalledModule item = getItem(position);
+
+			TextView version = (TextView) view.findViewById(R.id.version_name);
+			version.setText(item.versionName);
+
 			// Store the package name in some views' tag for later access
 			((CheckBox) view.findViewById(R.id.checkbox)).setTag(item.packageName);
 			view.setTag(item.packageName);
@@ -277,10 +297,10 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			TextView descriptionText = (TextView) view.findViewById(R.id.description);
 			if (!item.getDescription().isEmpty()) {
 				descriptionText.setText(item.getDescription());
-				descriptionText.setTextColor(0xFF777777);
+				descriptionText.setTextColor(ThemeUtil.getThemeColor(getContext(), android.R.attr.textColorSecondary));
 			} else {
-				descriptionText.setText(getActivity().getString(R.string.module_empty_description));
-				descriptionText.setTextColor(0xFFCC7700);
+				descriptionText.setText(getString(R.string.module_empty_description));
+				descriptionText.setTextColor(getResources().getColor(R.color.warning));
 			}
 
 			CheckBox checkbox = (CheckBox) view.findViewById(R.id.checkbox);
@@ -293,12 +313,12 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				warningText.setVisibility(View.VISIBLE);
 			} else if (installedXposedVersion != 0 && item.minVersion > installedXposedVersion) {
 				checkbox.setEnabled(false);
-				warningText.setText(String.format(getString(R.string.warning_xposed_min_version), 
+				warningText.setText(String.format(getString(R.string.warning_xposed_min_version),
 						item.minVersion));
 				warningText.setVisibility(View.VISIBLE);
 			} else if (item.minVersion < ModuleUtil.MIN_MODULE_VERSION) {
 				checkbox.setEnabled(false);
-				warningText.setText(String.format(getString(R.string.warning_min_version_too_low), 
+				warningText.setText(String.format(getString(R.string.warning_min_version_too_low),
 						item.minVersion, ModuleUtil.MIN_MODULE_VERSION));
 				warningText.setVisibility(View.VISIBLE);
 			} else {

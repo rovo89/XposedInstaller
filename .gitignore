@@ -1,2 +1,8 @@
-/gen
-/bin
+.idea/
+bin/
+gen/
+out/
+*.apk
+*.iml
+proguard/
+proguard_logs/

@@ -1,1 +1,3 @@
 *.sh eol=lf
+*.java text
+*.xml text

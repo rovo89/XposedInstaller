@@ -87,7 +87,6 @@
     <string name="menuSearch">Zoeken</string>
     <string name="menuReload">Vernieuwen</string>
     <string name="changes">Veranderingen:</string>
-    <string name="branch_display">(%s branch)</string>
     <string name="download_author">door %s</string>
     <string name="download_unknown_author">onbekende auteur</string>
     <string name="download_status_installed">Geïnstalleerd (versie %s)</string>

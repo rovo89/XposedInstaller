@@ -2,18 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?android:attr/listPreferredItemHeight"
-    android:paddingBottom="4dip"
-    android:paddingRight="?android:attr/scrollbarSize"
-    android:paddingTop="4dip" >
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    android:minHeight="?android:attr/listPreferredItemHeight" >
 
     <TextView
         android:id="@android:id/text1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="?android:attr/listPreferredItemPaddingLeft"
-        android:textAppearance="?android:attr/textAppearanceListItem"
-        android:textStyle="bold" />
+        android:textAppearance="?android:attr/textAppearanceListItem" />
 
     <TextView
         android:id="@+id/txtFrameworkUpdateAvailable"
@@ -53,7 +52,7 @@
         android:layout_below="@android:id/text2"
         android:text="@string/xposed_not_active"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#ffff0000"
+        android:textColor="@color/warning"
         android:visibility="gone" />
 
 </RelativeLayout>

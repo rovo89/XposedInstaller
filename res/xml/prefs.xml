@@ -21,6 +21,25 @@
             android:key="enable_downloads"
             android:summary="@string/settings_enable_downloads_summary"
             android:title="@string/settings_enable_downloads" />
+        <de.robv.android.xposed.installer.widget.ListPreferenceSummaryFix
+            android:key="release_type_global"
+            android:title="@string/settings_release_type"
+            android:summary="%s"
+            android:entries="@array/release_type_texts"
+            android:entryValues="@array/release_type_values"
+            android:defaultValue="stable" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="group_app"
+        android:title="@string/settings_group_app" >
+        <de.robv.android.xposed.installer.widget.IntegerListPreference
+            android:key="theme"
+            android:title="@string/settings_theme"
+            android:summary="%s"
+            android:entries="@array/theme_texts"
+            android:entryValues="@array/theme_values"
+            android:defaultValue="0" />
     </PreferenceCategory>
 
     <PreferenceCategory

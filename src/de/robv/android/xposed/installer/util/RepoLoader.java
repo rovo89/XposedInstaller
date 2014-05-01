@@ -19,12 +19,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.text.TextUtils;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
+import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.repo.Repository;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
@@ -33,8 +35,9 @@ public class RepoLoader {
 	private static RepoLoader mInstance = null;
 	private XposedApp mApp = null;
 	private SharedPreferences mPref;
+	private SharedPreferences mModulePref;
 	private ConnectivityManager mConMgr;
-	
+
 	private Map<String, ModuleGroup> mModules = new HashMap<String, ModuleGroup>(0);
 	private boolean mIsLoading = false;
 	private boolean mReloadTriggeredOnce = false;
@@ -42,27 +45,70 @@ public class RepoLoader {
 	private Object mFirstLoadFinishedLock = new Object();
 	private final List<String> mMessages = new LinkedList<String>();
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
-	
+
+	private ReleaseType mGlobalReleaseType = ReleaseType.STABLE;
+	private final Map<String, ReleaseType> mLocalReleaseTypes = new HashMap<String, ReleaseType>();
+
 	private RepoLoader() {
 		mApp = XposedApp.getInstance();
 		mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
+		mModulePref = mApp.getSharedPreferences("module_settings", Context.MODE_PRIVATE);
 		mConMgr = (ConnectivityManager) mApp.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		setReleaseTypeGlobal(XposedApp.getPreferences().getString("release_type_global", "stable"));
 	}
-	
+
 	public static synchronized RepoLoader getInstance() {
 		if (mInstance == null)
 			mInstance = new RepoLoader();
 		return mInstance;
 	}
-	
+
+	public void setReleaseTypeGlobal(String relTypeString) {
+		ReleaseType relType = ReleaseType.fromString(relTypeString);
+		if (mGlobalReleaseType != relType) {
+			mGlobalReleaseType = relType;
+			notifyListeners();
+		}
+	}
+
+	public void setReleaseTypeLocal(String packageName, String relTypeString) {
+		boolean notify = false;
+		synchronized (mLocalReleaseTypes) {
+			if (!mLocalReleaseTypes.containsKey(packageName))
+				return;
+
+			ReleaseType relType = (!TextUtils.isEmpty(relTypeString)) ? ReleaseType.fromString(relTypeString) : null;
+			if (mLocalReleaseTypes.get(packageName) != relType) {
+				mLocalReleaseTypes.put(packageName, relType);
+				notify = true;
+			}
+		}
+
+		if (notify)
+			notifyListeners();
+	}
+
+	private ReleaseType getReleaseTypeLocal(String packageName) {
+		synchronized (mLocalReleaseTypes) {
+			if (mLocalReleaseTypes.containsKey(packageName))
+				return mLocalReleaseTypes.get(packageName);
+
+			String value = mModulePref.getString(packageName + "_release_type", null);
+			ReleaseType result = (!TextUtils.isEmpty(value)) ? ReleaseType.fromString(value) : null;
+			mLocalReleaseTypes.put(packageName, result);
+			return result;
+		}
+	}
+
 	public Map<String, ModuleGroup> getModules() {
 		return mModules;
 	}
-	
+
 	public ModuleGroup getModuleGroup(String packageName) {
 		return mModules.get(packageName);
 	}
-	
+
 	public Module getModule(String packageName) {
 		ModuleGroup group = mModules.get(packageName);
 		if (group == null)
@@ -74,12 +120,19 @@ public class RepoLoader {
 		if (module == null || module.versions.isEmpty())
 			return null;
 
-		// TODO implement logic for branches
 		for (ModuleVersion version : module.versions) {
-			if (version.downloadLink != null)
+			if (version.downloadLink != null && isVersionShown(version))
 				return version;
 		}
 		return null;
+	}
+
+	public boolean isVersionShown(ModuleVersion version) {
+		ReleaseType localSetting = getReleaseTypeLocal(version.module.packageName);
+		if (localSetting != null)
+			return version.relType.ordinal() <= localSetting.ordinal();
+		else
+			return version.relType.ordinal() <= mGlobalReleaseType.ordinal();
 	}
 
 	public ModuleVersion getLatestVersion(String packageName) {
@@ -104,7 +157,7 @@ public class RepoLoader {
 			mIsLoading = true;
 		}
 		mApp.updateProgressIndicator();
-		
+
 		new Thread("RepositoryReload") {
 			public void run() {
 				mMessages.clear();
@@ -120,9 +173,8 @@ public class RepoLoader {
 					});
 				}
 
-				for (RepoListener listener : mListeners) {
-					listener.onRepoReloaded(mInstance);
-				}
+				notifyListeners();
+
 				synchronized (this) {
 					mIsLoading = false;
 				}
@@ -170,15 +222,13 @@ public class RepoLoader {
 
 			mModules = new HashMap<String, ModuleGroup>();
 		}
-		for (RepoListener listener : mListeners) {
-			listener.onRepoReloaded(mInstance);
-		}
+		notifyListeners();
 	}
 
 	public String[] getRepositories() {
 		return mPref.getString("repositories", "http://dl.xposed.info/repo.xml.gz").split("\\|");
 	}
-	
+
 	public void setRepositories(String... repos) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < repos.length; i++) {
@@ -245,30 +295,30 @@ public class RepoLoader {
 			FileOutputStream out = null;
 			try {
 				File cacheFile = getRepoCacheFile(repo);
-				
+
 				connection = new URL(repo).openConnection();
 				connection.setDoOutput(false);
 				connection.setConnectTimeout(30000);
 				connection.setReadTimeout(30000);
-				
+
 				if (connection instanceof HttpURLConnection) {
 					// disable transparent gzip encoding for gzipped files
 					if (repo.endsWith(".gz"))
 						connection.addRequestProperty("Accept-Encoding", "identity");
-					
+
 					if (cacheFile.exists()) {
 						String modified = mPref.getString("repo_" + repo + "_modified", null);
 						String etag = mPref.getString("repo_" + repo + "_etag", null);
-						
+
 						if (modified != null)
 							connection.addRequestProperty("If-Modified-Since", modified);
 						if (etag != null)
 							connection.addRequestProperty("If-None-Match", etag);
 					}
 				}
-				
+
 				connection.connect();
-				
+
 				if (connection instanceof HttpURLConnection) {
 					HttpURLConnection httpConnection = (HttpURLConnection) connection;
 					int responseCode = httpConnection.getResponseCode();
@@ -279,7 +329,7 @@ public class RepoLoader {
 						continue;
 					}
 				}
-				
+
 				in = connection.getInputStream();
 				out = new FileOutputStream(cacheFile);
 				byte buf[] = new byte[1024];
@@ -287,18 +337,18 @@ public class RepoLoader {
 				while ((read = in.read(buf)) != -1) {
 					out.write(buf, 0, read);
 				}
-				
+
 				if (connection instanceof HttpURLConnection) {
 					HttpURLConnection httpConnection = (HttpURLConnection) connection;
 					String modified = httpConnection.getHeaderField("Last-Modified");
 					String etag = httpConnection.getHeaderField("ETag");
-					
+
 					mPref.edit()
 						.putString("repo_" + repo + "_modified", modified)
 						.putString("repo_" + repo + "_etag", etag)
 						.commit();
 				}
-				
+
 			} catch (Throwable t) {
 				mMessages.add(mApp.getString(R.string.repo_download_failed, repo, t.getMessage()));
 
@@ -306,7 +356,7 @@ public class RepoLoader {
 				if (connection != null && connection instanceof HttpURLConnection)
 					((HttpURLConnection) connection).disconnect();
 				if (in != null)
-	                try { in.close(); } catch (IOException ignored) {}
+					try { in.close(); } catch (IOException ignored) {}
 				if (out != null)
 					try { out.close(); } catch (IOException ignored) {}
 			}
@@ -329,7 +379,7 @@ public class RepoLoader {
 
 		String[] repos = getRepositories();
 		for (String repo : repos) {
-			InputStream in = null; 
+			InputStream in = null;
 			try {
 				File cacheFile = getRepoCacheFile(repo);
 				if (!cacheFile.exists())
@@ -362,20 +412,26 @@ public class RepoLoader {
 
 		mModules = modules;
 	}
-	
-	
+
+
 	public void addListener(RepoListener listener, boolean triggerImmediately) {
 		if (!mListeners.contains(listener))
 			mListeners.add(listener);
-		
+
 		if (triggerImmediately)
 			listener.onRepoReloaded(this);
 	}
-	
+
 	public void removeListener(RepoListener listener) {
 		mListeners.remove(listener);
 	}
-	
+
+	private void notifyListeners() {
+		for (RepoListener listener : mListeners) {
+			listener.onRepoReloaded(mInstance);
+		}
+	}
+
 	public interface RepoListener {
 		/**
 		 * Called whenever the list of modules from repositories has been successfully reloaded

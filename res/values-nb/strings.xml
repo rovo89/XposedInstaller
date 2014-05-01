@@ -87,7 +87,6 @@
     <string name="menuSearch">Søk</string>
     <string name="menuReload">Oppdater</string>
     <string name="changes">Endringer:</string>
-    <string name="branch_display">(%s gren)</string>
     <string name="download_author">av %s</string>
     <string name="download_unknown_author">ukjent utvikler</string>
     <string name="download_status_installed">Installert (versjon %s)</string>

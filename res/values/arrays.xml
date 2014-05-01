@@ -18,4 +18,42 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="theme_texts" translatable="false">
+        <item>@string/settings_theme_light</item>
+        <item>@string/settings_theme_dark</item>
+        <item>@string/settings_theme_black</item>
+    </string-array>
+
+    <string-array name="theme_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="release_type_texts" translatable="false">
+        <item>@string/reltype_stable_summary</item>
+        <item>@string/reltype_beta_summary</item>
+        <item>@string/reltype_experimental_summary</item>
+    </string-array>
+
+    <string-array name="release_type_values" translatable="false">
+        <item>stable</item>
+        <item>beta</item>
+        <item>experimental</item>
+    </string-array>
+
+    <string-array name="module_release_type_texts" translatable="false">
+        <item>@string/reltype_use_global_summary</item>
+        <item>@string/reltype_stable_summary</item>
+        <item>@string/reltype_beta_summary</item>
+        <item>@string/reltype_experimental_summary</item>
+    </string-array>
+
+    <string-array name="module_release_type_values" translatable="false">
+        <item></item>
+        <item>stable</item>
+        <item>beta</item>
+        <item>experimental</item>
+    </string-array>
+
 </resources>

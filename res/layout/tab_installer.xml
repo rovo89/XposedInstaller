@@ -13,8 +13,9 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
+            android:background="?attr/background_card"
             android:stretchColumns="0,1,2" >
 
             <TableRow
@@ -30,11 +31,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:text="@string/installedVersion" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:text="@string/latestVersion" />
             </TableRow>
 
@@ -51,12 +54,14 @@
                     android:id="@+id/app_process_installed_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:text="@string/none" />
 
                 <TextView
                     android:id="@+id/app_process_latest_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:text="@string/none" />
             </TableRow>
 
@@ -73,30 +78,41 @@
                     android:id="@+id/jar_installed_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:text="@string/none" />
 
                 <TextView
                     android:id="@+id/jar_latest_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="right"
                     android:text="@string/none" />
             </TableRow>
         </TableLayout>
 
         <TextView
-            android:background="@drawable/text_button"
-            android:id="@+id/framework_install_mode"
+            android:id="@+id/framework_known_issue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp" />
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/warning"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/framework_install_errors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/warning"
             android:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:text="@string/tabInstall"
+            android:textAllCaps="true"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnInstall"
@@ -108,13 +124,35 @@
             android:id="@+id/btnUninstall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="@string/uninstall" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:text="@string/settings_install_mode"
+            android:textAllCaps="true"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/framework_install_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:text="@string/install_header_reboot"
+            android:textAllCaps="true"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnSoftReboot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="@string/soft_reboot" />
 
         <Button
@@ -122,7 +160,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/reboot" />
-
     </LinearLayout>
 
 </ScrollView>

@@ -9,8 +9,6 @@ import android.app.ActionBar;
 import android.app.ActionBar.OnNavigationListener;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -36,9 +34,6 @@ public abstract class XposedDropdownNavActivity extends XposedBaseActivity {
 
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
-		NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		nm.cancelAll();
-
 		final ActionBar bar = getActionBar();
 		bar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		bar.setDisplayShowTitleEnabled(false);
@@ -54,7 +49,8 @@ public abstract class XposedDropdownNavActivity extends XposedBaseActivity {
 			navigationItemList.add(makeNavigationItem(getString(R.string.tabAbout), AboutFragment.class));
 		}
 
-		SimpleAdapter adapter = new SimpleAdapter(this, navigationItemList,
+		SimpleAdapter adapter = new SimpleAdapter(getActionBar().getThemedContext(),
+				navigationItemList,
 				android.R.layout.simple_spinner_dropdown_item,
 				new String[] { "title" },
 				new int[] { android.R.id.text1 });

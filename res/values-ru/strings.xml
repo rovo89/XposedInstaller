@@ -87,7 +87,6 @@
     <string name="menuSearch">Поиск</string>
     <string name="menuReload">Перезагрузка</string>
     <string name="changes">Изменения:</string>
-    <string name="branch_display">(ветка %s)</string>
     <string name="download_author">от %s</string>
     <string name="download_unknown_author">неизвестный автор</string>
     <string name="download_status_installed">Установлено (версия %s)</string>

@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="@string/about_developers_warning"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ffffbb33" />
+            android:textColor="?attr/text_important" />
 
         <TextView
             android:id="@+id/about_translator_label"
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:text="@string/about_support_warning"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ffffbb33" />
+            android:textColor="?attr/text_important" />
 
         <TextView
             android:layout_width="match_parent"

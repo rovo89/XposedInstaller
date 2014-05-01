@@ -4,15 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="6dip"
     tools:context=".DownloadFragment" >
 
     <com.emilsjolander.components.stickylistheaders.StickyListHeadersListView
         android:id="@+id/listModules"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@color/list_divider"
-        android:dividerHeight="1px" >
+        android:padding="8dip"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="6dip" >
     </com.emilsjolander.components.stickylistheaders.StickyListHeadersListView>
 
 </LinearLayout>

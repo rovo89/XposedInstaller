@@ -37,7 +37,7 @@ public class DownloadView extends LinearLayout {
 		btnDownload = (Button) findViewById(R.id.btnDownload);
 		btnDownloadCancel = (Button) findViewById(R.id.btnDownloadCancel);
 		btnInstall = (Button) findViewById(R.id.btnInstall);
-		
+
 		btnDownload.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -48,18 +48,18 @@ public class DownloadView extends LinearLayout {
 					new DownloadMonitor().start();
 			}
 		});
-		
+
 		btnDownloadCancel.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (mInfo == null)
 					return;
-				
+
 				DownloadsUtil.removeById(getContext(), mInfo.id);
 				// UI update will happen automatically by the DownloadMonitor
 			}
 		});
-		
+
 		btnInstall.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -95,11 +95,8 @@ public class DownloadView extends LinearLayout {
 				txtInfo.setVisibility(View.VISIBLE);
 				txtInfo.setText(R.string.download_view_no_url);
 				return;
-			}
-
-			btnDownload.setVisibility(View.VISIBLE);
-
-			if (mInfo == null) {
+			} else if (mInfo == null) {
+				btnDownload.setVisibility(View.VISIBLE);
 				btnDownloadCancel.setVisibility(View.GONE);
 				btnInstall.setVisibility(View.GONE);
 				progressBar.setVisibility(View.GONE);
@@ -109,6 +106,7 @@ public class DownloadView extends LinearLayout {
 					case DownloadManager.STATUS_PENDING:
 					case DownloadManager.STATUS_PAUSED:
 					case DownloadManager.STATUS_RUNNING:
+						btnDownload.setVisibility(View.GONE);
 						btnDownloadCancel.setVisibility(View.VISIBLE);
 						btnInstall.setVisibility(View.GONE);
 						progressBar.setVisibility(View.VISIBLE);
@@ -124,16 +122,18 @@ public class DownloadView extends LinearLayout {
 									mInfo.bytesDownloaded / 1024, mInfo.totalSize / 1024));
 						}
 						break;
-	
+
 					case DownloadManager.STATUS_FAILED:
+						btnDownload.setVisibility(View.VISIBLE);
 						btnDownloadCancel.setVisibility(View.GONE);
 						btnInstall.setVisibility(View.GONE);
 						progressBar.setVisibility(View.GONE);
 						txtInfo.setVisibility(View.VISIBLE);
 						txtInfo.setText(getContext().getString(R.string.download_view_failed, mInfo.reason));
 						break;
-	
+
 					case DownloadManager.STATUS_SUCCESSFUL:
+						btnDownload.setVisibility(View.GONE);
 						btnDownloadCancel.setVisibility(View.GONE);
 						btnInstall.setVisibility(View.VISIBLE);
 						progressBar.setVisibility(View.GONE);

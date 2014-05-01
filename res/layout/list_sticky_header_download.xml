@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingRight="?android:attr/scrollbarSize" >
+    android:layout_height="wrap_content" >
 
     <TextView
         android:id="@android:id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="?android:attr/listPreferredItemPaddingLeft"
-        android:background="@color/list_header"
-        android:paddingBottom="2dip"
-        android:paddingLeft="4dip"
-        android:paddingTop="2dip"
+        android:layout_margin="4dip"
         android:textAllCaps="true"
+        android:textColor="@color/list_header"
         android:textAppearance="?android:attr/textAppearanceSmallInverse"
         android:textStyle="bold" />
 

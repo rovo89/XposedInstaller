@@ -55,7 +55,6 @@
     <string name="menuSearch">Pesquisar</string>
     <string name="menuReload">Recarregar</string>
     <string name="changes">Novidades:</string>
-    <string name="branch_display">(%s marca)</string>
     <string name="download_author">por %s</string>
     <string name="download_unknown_author">autor desconhecido</string>
     <string name="download_status_installed">Instalado (versão %s)</string>

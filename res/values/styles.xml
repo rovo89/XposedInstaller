@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <style
+        name="Theme.Light"
+        parent="android:Theme.Holo.Light.DarkActionBar" >
+        <item name="android:windowBackground">@color/app_background_light</item>
+        <item name="background_card">@drawable/background_card_light</item>
+        <item name="background_card_pressed">@drawable/background_card_pressed_light</item>
+        <item name="pager_tab_strip_bg">@color/pager_tab_strip_bg_light</item>
+        <item name="text_important">@android:color/holo_red_light</item>
+        <item name="download_status_installed">@android:color/holo_orange_dark</item>
+    </style>
+
+    <style
+        name="Theme.Dark"
+        parent="android:Theme.Holo" >
+        <item name="background_card">@drawable/background_card_dark</item>
+        <item name="background_card_pressed">@drawable/background_card_pressed_dark</item>
+        <item name="pager_tab_strip_bg">@color/pager_tab_strip_bg_dark</item>
+        <item name="text_important">@android:color/holo_orange_light</item>
+        <item name="download_status_installed">@android:color/holo_orange_light</item>
+    </style>
+
+    <style
+        name="Theme.Dark.Black" >
+        <item name="android:windowBackground">@color/app_background_black</item>
+    </style>
+
+</resources>
