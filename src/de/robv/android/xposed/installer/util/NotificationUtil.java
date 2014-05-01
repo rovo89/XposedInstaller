@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.XposedInstallerActivity;
@@ -26,6 +27,7 @@ public final class NotificationUtil {
 	private static final int PENDING_INTENT_OPEN_INSTALL = 1;
 	private static final int PENDING_INTENT_SOFT_REBOOT = 2;
 	private static final int PENDING_INTENT_REBOOT = 3;
+	private static final int PENDING_INTENT_ACTIVATE_MODULE_AND_REBOOT = 4;
 
 	public static void init() {
 		if (sContext != null)
@@ -59,6 +61,23 @@ public final class NotificationUtil {
 			.setContentIntent(pModulesTab)
 			.setAutoCancel(true)
 			.setSmallIcon(android.R.drawable.ic_dialog_info);
+
+		if (Build.VERSION.SDK_INT >= 16) {
+			Intent iActivateAndReboot = new Intent(sContext, RebootReceiver.class);
+			iActivateAndReboot.putExtra(RebootReceiver.EXTRA_ACTIVATE_MODULE, packageName);
+			PendingIntent pActivateAndReboot = PendingIntent.getBroadcast(sContext, PENDING_INTENT_ACTIVATE_MODULE_AND_REBOOT,
+					iActivateAndReboot, PendingIntent.FLAG_UPDATE_CURRENT);
+
+			NotificationCompat.BigTextStyle notiStyle = new NotificationCompat.BigTextStyle();
+			notiStyle.setBigContentTitle(title);
+			notiStyle.bigText(sContext.getString(R.string.module_is_not_activated_yet_detailed, appName));
+			builder.setStyle(notiStyle);
+
+			// Only show the quick activation button if any module has been enabled before,
+			// to ensure that the user know the way to disable the module later.
+			if (!ModuleUtil.getInstance().getEnabledModules().isEmpty())
+				builder.addAction(R.drawable.ic_menu_refresh, sContext.getString(R.string.activate_and_reboot), pActivateAndReboot);
+		}
 
 		sNotificationManager.notify(packageName, NOTIFICATION_MODULE_NOT_ACTIVATED_YET, builder.build());
 	}
@@ -99,9 +118,26 @@ public final class NotificationUtil {
 
 	public static class RebootReceiver extends BroadcastReceiver {
 		public static String EXTRA_SOFT_REBOOT = "soft";
+		public static String EXTRA_ACTIVATE_MODULE = "activate_module";
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
+			/*
+			 *  Close the notification bar in order to see the toast
+			 *  that module was enabled successfully.
+			 *  Furthermore, if SU permissions haven't been granted yet,
+			 *  the SU dialog will be prompted behind the expanded notification
+			 *  panel and is therefore not visible to the user.
+			 */
+			sContext.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+			cancelAll();
+
+			if (intent.hasExtra(EXTRA_ACTIVATE_MODULE)) {
+				String packageName = intent.getStringExtra(EXTRA_ACTIVATE_MODULE);
+				ModuleUtil.getInstance().setModuleEnabled(packageName, true);
+				Toast.makeText(sContext, R.string.module_activated, Toast.LENGTH_SHORT).show();
+			}
+
 			RootUtil rootUtil = new RootUtil();
 			if (!rootUtil.startShell()) {
 				Log.e(XposedApp.TAG, "Could not start root shell");
