@@ -2,50 +2,82 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="app_name">Xposed Installatør</string>
+    <string name="app_name">Xposed Installer</string>
     <string name="menuSend">Send</string>
-    <string name="menuSaveToSd">Lagre på SD kort</string>
-    <string name="xposed_not_active">Den siste versjonen av Xposed er ikke aktiv. Har du instalert konstruksjonen og starta på nytt?</string>
+    <string name="menuSaveToSd">Lagre på SD-kort</string>
+    <string name="xposed_not_active">Den siste versjonen av Xposed er ikke aktiv. Installerte du og restartet enheten?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Velkommen til <b>Xposed Installatør</b>!\nVenligst velg hva du vil gjøre:</string>
-    <string name="tabInstall">konstruksjon</string>
-    <string name="tabInstallDescription">Her kan du behandle Xposed konstruksjonen, Som er nødvendig for at moduler skal virke.</string>
+    <string name="welcome">Velkommen til  <b>Xposed Installer</b>!\nVennligst velg hva du ønsker å gjøre:</string>
+    <string name="tabInstall">Rammeverk</string>
+    <string name="tabInstallDescription">Her kan du behandle Xposed Framework, som er nødvendig for at moduler skal fungere.</string>
     <string name="tabModules">Moduler</string>
-    <string name="tabModulesDescription">Konstruksjonen selv legger ikke til noen funksjoner. Du trenger moduler for det. I denne seksjonen kan du aktivere moduler etter at du har instalert dem.</string>
+    <string name="tabModulesDescription">Rammeverket i seg selv legger ikke til funksjoner, men du trenger moduler for det. I denne seksjonen så kan du aktivere moduler etter at du har installert dem.</string>
     <string name="tabDownload">Last ned</string>
-    <string name="tabDownloadDescription">Denne seksjonen gir deg tilgang til en pakkebrønn med moduler, så du kan søke og laste ned modulene du liker og halde dem oppdatert.</string>
-    <string name="welcome_framework_update_available">En oppdatering for Xposed konstruksjonen er tilgjengelig (%s).</string>
-    <string name="welcome_update_available">En eller flere oppdateringer for moduler er tilgjengelige.</string>
-    <string name="tabSettings">Instillinger</string>
-    <string name="tabSettingsDescription">Gå til denne seksjonen for å konfigurere Xposed Installatør og konstruksjonen.</string>
+    <string name="tabDownloadDescription">Denne seksjonen gir deg tilgang til en pakkebrønn som inneholder moduler, slik at du kan søke etter og laste ned de modulene du ønsker og for å holde dem oppdaterte.</string>
+    <string name="welcome_framework_update_available">En oppdatering for Xposed Framework er tilgjengelig (%s).</string>
+    <string name="welcome_update_available">En eller flere oppdatering(er) for moduler er tilgjengelig.</string>
+    <string name="tabSettings">Innstillinger</string>
+    <string name="tabSettingsDescription">Gå til denne seksjonen for å konfigurere Xposed Installeren og rammeverk.</string>
     <string name="tabLogs">Logger</string>
-    <string name="tabLogsDescription"> Vis og lagre/Send logger av Xposed konstruksjonen.</string>
+    <string name="tabLogsDescription">Vis og lagre/send logger av Xposed rammeverket.</string>
     <string name="tabAbout">Om</string>
-    <string name="tabAboutDescription">Lær om folka som lagte Xposed, Hvor du får støtte for denne appen osv.</string>
+    <string name="tabAboutDescription">Lær om menneskene som har laget Xposed, hvor du kan få støtte for denne appen etc.</string>
 
     <!-- Installer tab -->
     <string name="install">Installer/Oppdater</string>
-    <string name="uninstall">Avinstaler</string>
-    <string name="installedVersion">aktiv</string>
-    <string name="latestVersion">bundet</string>
+    <string name="uninstall">Avinstaller</string>
+    <string name="installedVersion">aktive</string>
+    <string name="latestVersion">buntet</string>
     <string name="versions">Versjoner:</string>
-    <string name="soft_reboot">myk omstart</string>
-    <string name="reboot">omstart</string>
+    <string name="soft_reboot">Soft restart</string>
+    <string name="reboot">Restart</string>
     <string name="areyousure">Er du sikker?</string>
-    <string name="phone_not_compatible">Xposed er ikke ennå kompatibel med Android SDK versjon %1$d eller prosessor arkitekturen din (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed har ikke blitt testet med Android SDK versjon %d, men det ser ut til at den er kompatibel. Du kan prøve å Installatøre viss du føler deg eventyrlysten.</string>
+    <string name="phone_not_compatible">Xposed er ikke (enda) kompitabel med Android SDK-versjon %1$d eller din prosessorarkitektur (%2$s).</string>
+    <string name="not_tested_but_compatible">Xposed har ikke blitt testet med Android SDK versjon %d, men den ser ut til å være kompitabel. Du kan prøve å installere hvis du føler deg tøff.</string>
+    <string name="reboot_failed">Restart failet. Vennligst bruk enhetens normale restartfunksjon.</string>
+    <string name="auto_flash_note">%s skal normalt flashes automatisk når du trykker "OK".</string>
+    <string name="manual_flash_note">Vennligst flash %s fra SD-kortet for å fullføre operasjonen.</string>
+    <string name="reboot_confirmation">Ønsker du å restarte nå?</string>
+    <string name="reboot_recovery_confirmation">Ønsker du å restarte inn til recovery nå?</string>
+    <string name="install_warning_title">Vær forsiktig!</string>
+    <string name="install_warning">I noen tilfeller så vil ikke enheten din starte etter at du har installert Xposed..\n\nHvis du aldri har hørt om \"soft brick\" og \"bootloop\" før, eller om du ikke vet hvordan du kommer deg ut fra en slik situasjon, <b>IKKE</b> installer Xposed!\n\nI de fleste tilfeller så er en backup høyt anbefalt å ha liggende.</string>
+    <string name="dont_show_again">Ikke vis dette igjen</string>
+
+    <!--  File operations -->
+    <string name="root_failed">Klarte ikke å få root-tilgang.\n\nSørg for at enheten din er rootet riktig og at du ikke har blokkert shell-kommandoer.</string>
+    <string name="file_extract_failed">Kunne ikke pakke ut %s</string>
+    <string name="file_mounting_writable">Monterer %s skrivbar&#8230;</string>
+    <string name="file_mount_writable_failed">Kunne ikke montere %s skrivbar</string>
+    <string name="file_trying_to_continue">Prøver å fortsette fordi om&#8230;</string>
+    <string name="file_backup_already_exists">Backup eksisterer allerede i %s</string>
+    <string name="file_backup_not_found">Ingen backup funnet i %s</string>
+    <string name="file_backup_failed">Kunne ikke opprette backup av %s</string>
+    <string name="file_backup_successful">Opprettet backup i %s</string>
+    <string name="file_backup_restoring">Gjenoppretter backup fra %s</string>
+    <string name="file_copying">Kopierer %s&#8230;</string>
+    <string name="file_copy_failed">Kunne ikke kopiere %1$s til %2$s</string>
+    <string name="file_move_failed">Kunne ikke flytte  %1$s til %2$s</string>
+    <string name="file_set_perms_failed">Kunne ikke sette tillatelse for %s</string>
+    <string name="file_set_owner_failed">Kunne ikke sette eier for %s</string>
+    <string name="file_removing">Fjerner %s&#8230;</string>
+    <string name="file_remove_failed">Kunne ikke fjerne %s</string>
+    <string name="file_creating_directory">Oppretter filbane %s&#8230;</string>
+    <string name="file_create_directory_failed">Kunne ikke opprette filbane %s</string>
+    <string name="file_writing_recovery_command">Skriver recovery-kommando&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Skriving av recovery-kommando failet. Vennligst bruk en annen installasjonsmetode.</string>
+    <string name="file_done">Ferdig! Endringer vil bli aktive etter restart.</string>
 
     <!-- Modules tab -->
-    <string name="module_is_not_activated_yet">Xposed modul er ikke aktivert ennå.</string>
-    <string name="module_empty_description">(Ingen beskrivelse gitt)</string>
-    <string name="module_no_ui">Denne modulen har ikke et brukergrensesnitt</string>
-    <string name="no_xposed_modules_found">Ingen Xposed moduler funnet!</string>
-    <string name="xposed_module_list_updated">Xposed modul listen ble oppdatert\nEndringer vil bli aktive ved neste omstart</string>
-    <string name="warning_xposed_min_version">Denne modulen krever en nyere XposedBridge versjon (%d) og kan derfor ikke bli aktivert.</string>
-    <string name="no_min_version_specified">Denne modulen sier ikke hvilken XposedBridge versjon den trenger.</string>
-    <string name="warning_min_version_too_low">Denne modulen er lagt for XposedBridge versjon %1$d, men på grunn av inkompatible endringer i versjon %2$d, har den blitt deaktivert.</string>
-    <string name="module_launch">Start UI</string>
+    <string name="module_is_not_activated_yet">Xposed modul er ikke aktivert enda</string>
+    <string name="module_empty_description">(ingen beskrivelse er gitt)</string>
+    <string name="module_no_ui">Denne modulen gir ikke et brukergrensesnitt</string>
+    <string name="no_xposed_modules_found">Ingen Xposed moduler ble funnet!</string>
+    <string name="xposed_module_list_updated">Xposed modul-liste var oppdatert\nEndringer vil bli aktivert etter restart</string>
+    <string name="warning_xposed_min_version">Denne modulen krever en nyere versjon av XposedBridge (%d) og kan dermed ikke aktiveres.</string>
+    <string name="no_min_version_specified">Denne modulen spesifiserer ikke hvilken versjon av XposedBridge den krever.</string>
+    <string name="warning_min_version_too_low">Denne modulen var laget for XposedBridge versjon %1$d, men grunnet uforenlige endringer i versjon %2$d, er den blitt deaktivert.</string>
+    <string name="module_launch">Kjør UI</string>
     <string name="module_download_updates">Last ned/Oppdateringer</string>
     <string name="module_support">Støtte</string>
     <string name="module_app_info">App info</string>
@@ -53,71 +85,83 @@
 
     <!-- Download tab -->
     <string name="menuSearch">Søk</string>
-    <string name="menuReload">Last inn på ny</string>
+    <string name="menuReload">Oppdater</string>
     <string name="changes">Endringer:</string>
-    <string name="branch_display">(%s arm)</string>
+    <string name="branch_display">(%s gren)</string>
     <string name="download_author">av %s</string>
-    <string name="download_unknown_author">Ukjent forfatter</string>
-    <string name="download_status_installed">Instalert (versjon %s)</string>
+    <string name="download_unknown_author">ukjent utvikler</string>
+    <string name="download_status_installed">Installert (versjon %s)</string>
     <string name="download_status_update_available">Oppdatering tilgjengelig (versjon %1$s \u2192 %2$s)</string>
-    <string name="download_timestamps">Lagt til den %1$s \u00b7 Oppdatert den %2$s</string>
-    <string name="download_sorting_title">Sorterings rekkefølge</string>
+    <string name="download_timestamps">Lagt til %1$s \u00b7 Oppdatert %2$s</string>
+    <string name="download_sorting_title">Sorteringsrekkefølge</string>
     <string name="download_sorting_status">Sorter etter status</string>
-    <string name="download_sorting_updated">Sorter etter sist oppdatering</string>
-    <string name="download_sorting_created">Sorter etter dato lagt</string>
-    <string name="download_section_framework">Konstruksjon</string>
+    <string name="download_sorting_updated">Sorter etter siste oppdatering</string>
+    <string name="download_sorting_created">Sorter etter opprettelsesdato</string>
+    <string name="download_section_framework">Rammeverk</string>
     <string name="download_section_update_available">Oppdatering tilgjengelig</string>
-    <string name="download_section_installed">Innstalert</string>
-    <string name="download_section_not_installed">Ikke Innstalert</string>
-    <string name="download_section_24h">Siste 24 timer</string>
-    <string name="download_section_7d">siste 7 dager</string>
-    <string name="download_section_30d">Siste 30 dager</string>
+    <string name="download_section_installed">Installert</string>
+    <string name="download_section_not_installed">Ikke installert</string>
+    <string name="download_section_24h">Siste 24 timene</string>
+    <string name="download_section_7d">Siste 7 dagene</string>
+    <string name="download_section_30d">Siste 30 dagene</string>
     <string name="download_section_older">Mer enn 30 dager siden</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">Installasjon</string>
+    <string name="settings_install_mode">Installasjonsmodus</string>
+    <string name="install_mode_normal">Klassisk (skriv direkte til /system)</string>
+    <string name="install_mode_recovery_auto">Recovery (flash zip automatisk)</string>
+    <string name="install_mode_recovery_manual">Recovery (skriv zip til SD-kort, flash manuelt)</string>
     <string name="settings_group_download">Last ned</string>
     <string name="settings_enable_downloads">Aktiver nedlastinger</string>
-    <string name="settings_enable_downloads_summary">Tillat Xposed Installatør å se etter oppdateringer og nye moduler.</string>
-    <string name="settings_group_experimental">Eksperimentel</string>
-    <string name="settings_performance_experiment">Ytelse eksperiment</string>
-    <string name="settings_performance_experiment_summary">Visst du aktivere denne, vil enten ytelsen stige, synke eller forbli den samme. Du må gjerne prøve den og raportere tilbake effektene du ser (Eller visst det ikke er noen i det hele tatt). Du må reInstallatøre Konstruksjonen og starte på nytt etter du har endret dette.</string>
+    <string name="settings_enable_downloads_summary">Tillat Xposed Installer å sjekke etter oppdateringer og nye moduler</string>
+    <string name="settings_group_experimental">Eksperimentell</string>
+    <string name="settings_disable_resources">Deaktiver ressurshooks</string>
+    <string name="settings_disable_resources_summary">Løsning på konflikter med temamotorer\n<b>ADVARSEL:</b> Moduler som prøver å endre ressurser vil ikke fungere når dette er deaktivert.</string>
+    <string name="settings_performance_experiment">Ytelseseksperiment</string>
+    <string name="settings_performance_experiment_summary">Hvis du aktiverer dette så kan systemytelsen din enten øke, senkes eller forbli det samme. Prøv det gjerne ut og rapporter tilbake med resultatene dine (hvis det i det hele tatt er noen). Du vil trenger å reinstallere rammeverket og restarte enheten din etter å ha endret dette valget.</string>
 
     <!--  Logs tab  -->
     <string name="logs_load_failed">Kunne ikke lese logg:</string>
-    <string name="logs_save_failed">Kunne ikke skrive logg til SD kort:</string>
-    <string name="sdcard_not_writable">SD ikke funnet eller ikke skrivbart</string>
+    <string name="logs_save_failed">Kunne ikke skrive logg til SD-kort:</string>
+    <string name="sdcard_not_writable">SD-kort ikke funnet eller ikke skrivbar</string>
+    <string name="log_too_large">Loggfil er større enn %1$,d kB, hoppet over første %2$,d kB</string>
+    <string name="menuClearLog">Fjern logg nå</string>
+    <string name="logs_cleared">Logg fjernet suksessfult</string>
+    <string name="logs_clear_failed">Kunne ikke fjerne loggen:</string>
+    <string name="log_is_empty">Logg er tom</string>
 
     <!-- About tab -->
-    <string name="about_developers_label">Hoved utviklere:</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> og <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Venligst <b>ikke</b> kontakt oss direkte for støtte, bruk linken under.</string>
+    <string name="about_developers_label">Hovedutvikler:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">Vennligst <b>ikke</b> kontakt oss direkte for støtte. Bruk linken nedenfor.</string>
     <string name="about_translator_label">Oversetter:</string>
-    <string name="translator">rosaage</string>
-    <string name="about_version_label">Versjon av denne appen:</string>
-    <string name="about_source_label">Kilde kode:</string>
-    <string name="about_support_label">Få støtte på:</string>
-    <string name="about_support_warning">Denne linken er <b>kun</b> for Installatøren og Konstruksjonen! Visst du treng hjelp med en modul, <b>ikke</b> bruk den, kontakt heller personen som lagte modulen.</string>
-    <string name="about_libraries_label">Brukte biblioteker:</string>
+    <string name="translator">LordManhattan, rosaage</string>
+    <string name="about_version_label">Versjon av appen:</string>
+    <string name="about_source_label">Kildekode:</string>
+    <string name="about_support_label">Få hjelp hos:</string>
+    <string name="about_support_warning">Denne linken er <b>kun</b> for installeren og rammeverket! Hvis du trenger hjelp med en modul, så <b>ikke</b> bruk den. Kontakt modulutvikleren i stedet.</string>
+    <string name="about_libraries_label">Brukte bibliotek:</string>
 
     <!-- DownloadView -->
     <string name="download_view_download">Last ned</string>
     <string name="download_view_install">Installer</string>
     <string name="download_view_cancel">Avbryt</string>
-    <string name="download_view_no_url">Ingen nedlastings URL tilgjengelig</string>
-    <string name="download_view_running">Nedlasting kjører (%1$,d av %2$,d kB)</string>
+    <string name="download_view_no_url">Ingen nedlastings-URL tilgjengelig</string>
+    <string name="download_view_running">Nedlasting kjører (%1$,d of %2$,d kB)</string>
     <string name="download_view_waiting">Nedlasting venter</string>
-    <string name="download_view_successful">Nedlasting suksessfull</string>
-    <string name="download_view_failed">Nedlasting feilet (Feil %d)</string>
+    <string name="download_view_successful">Nedlasting ferdig</string>
+    <string name="download_view_failed">Nedlasting feilet (feil %d)</string>
 
     <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">MD5 sum er feil (Lastet ned: %1$s, Forventa: %2$s)</string>
+    <string name="download_md5sum_incorrect">MD5 sum er feil (lastet ned: %1$s, forventet: %2$s)</string>
     <string name="download_could_not_read_file">Kunne ikke lese nedlastet fil: %s</string>
-    <string name="download_no_valid_apk">Nedlastet fil er ikke en gyldig APK (eller inkompatibel)</string>
-    <string name="download_incorrect_package_name">Pakke navn er feil (Lastet ned: %1$s, forventa: %2$s)</string>
+    <string name="download_no_valid_apk">Nedlastet fil er ikke en gyldig APK (eller ikke kompatibel)</string>
+    <string name="download_incorrect_package_name">Pakkenavn er feil  (lastet ned: %1$s, forventet: %2$s)</string>
 
     <!-- RepoLoader -->
-    <string name="repo_download_failed_http">Nedlasting av %1$s feilet: %2$d (%3$s)</string>
-    <string name="repo_download_failed">Nedlasting av %1$s feilet: %2$s</string>
-    <string name="repo_load_failed">Kan ikke laste pakkebrønn fra %1$s:\n%2$s</string>
+    <string name="repo_download_failed_http">Laster ned %1$s feilet: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Laster ned %1$s feilet: %2$s</string>
+    <string name="repo_load_failed">Kan ikke laste inn pakkebrønn fra %1$s:\n%2$s</string>
 
 </resources>
