@@ -109,8 +109,8 @@ public final class NotificationUtil {
 			PendingIntent pReboot = PendingIntent.getBroadcast(sContext, PENDING_INTENT_REBOOT,
 					iReboot, PendingIntent.FLAG_UPDATE_CURRENT);
 
-			builder.addAction(0, sContext.getString(R.string.soft_reboot), pSoftReboot);
 			builder.addAction(0, sContext.getString(R.string.reboot), pReboot);
+			builder.addAction(0, sContext.getString(R.string.soft_reboot), pSoftReboot);
 		}
 
 		sNotificationManager.notify(null, NOTIFICATION_MODULES_UPDATED, builder.build());
