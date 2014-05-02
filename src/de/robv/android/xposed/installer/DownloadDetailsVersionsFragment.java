@@ -47,15 +47,31 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 		if (module == null)
 			return;
 
-		setEmptyText(getString(R.string.download_no_versions));
+		if (module.versions.isEmpty()) {
+			setEmptyText(getString(R.string.download_no_versions));
+			setListShown(true);
+		} else {
+			RepoLoader repoLoader = RepoLoader.getInstance();
+			if (!repoLoader.isVersionShown(module.versions.get(0))) {
+				TextView txtHeader = new TextView(getActivity());
+				txtHeader.setText(R.string.download_test_version_not_shown);
+				txtHeader.setTextColor(getResources().getColor(R.color.warning));
+				txtHeader.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						mActivity.gotoPage(DownloadDetailsActivity.DOWNLOAD_SETTINGS);
+					}
+				});
+				getListView().addHeaderView(txtHeader);
+			}
 
-		sAdapter = new VersionsAdapter(getActivity());
-		RepoLoader repoLoader = RepoLoader.getInstance();
-		for (ModuleVersion version : module.versions) {
-			if (repoLoader.isVersionShown(version))
-				sAdapter.add(version);
+			sAdapter = new VersionsAdapter(getActivity());
+			for (ModuleVersion version : module.versions) {
+				if (repoLoader.isVersionShown(version))
+					sAdapter.add(version);
+			}
+			setListAdapter(sAdapter);
 		}
-		setListAdapter(sAdapter);
 
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
@@ -64,7 +80,12 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 		getListView().setDividerHeight(sixDp);
 		getListView().setPadding(eightDp, eightDp, eightDp, eightDp);
 		getListView().setClipToPadding(false);
+	}
 
+	@Override
+	public void onDestroyView() {
+		super.onDestroyView();
+		setListAdapter(null);
 	}
 
 	static class ViewHolder {

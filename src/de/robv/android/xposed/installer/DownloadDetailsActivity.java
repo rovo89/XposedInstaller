@@ -25,9 +25,9 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 	private ModuleGroup mModuleGroup;
 	private Module mModule;
 
-	private static final int DOWNLOAD_DESCRIPTION = 0;
-	private static final int DOWNLOAD_VERSIONS = 1;
-	private static final int DOWNLOAD_SETTINGS = 2;
+	public static final int DOWNLOAD_DESCRIPTION = 0;
+	public static final int DOWNLOAD_VERSIONS = 1;
+	public static final int DOWNLOAD_SETTINGS = 2;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,10 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 
 	public Module getModule() {
 		return mModule;
+	}
+
+	public void gotoPage(int page) {
+		mPager.setCurrentItem(page);
 	}
 
 	@Override
