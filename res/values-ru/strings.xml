@@ -71,6 +71,9 @@
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Модуль Xposed еще не активирован</string>
+    <string name="module_is_not_activated_yet_detailed">%s установлен, но ещё не активирован.</string>
+    <string name="activate_and_reboot">Активировать и перезагрузить</string>
+    <string name="module_activated">Модуль Xposed был активирован</string>
     <string name="module_empty_description">(описание отсутствует)</string>
     <string name="module_no_ui">Этот модуль не содержит пользовательского интерфейса</string>
     <string name="no_xposed_modules_found">Модули Xposed не найдены!</string>
@@ -118,7 +121,8 @@
     <string name="download_section_30d">Последние 30 дней</string>
     <string name="download_section_older">Более 30 дней назад</string>
     <string name="download_details_not_found">Модуль с именем пакета \"%s\" отсутствует в репозитории.</string>
-    <string name="download_no_versions">Отсутствуют версии, соответствующие параметрам типа Вашего релиза (или же автор пока ничего не выложил).</string>
+    <string name="download_no_versions">Автор ещё ничего не выложил.</string>
+    <string name="download_test_version_not_shown">Доступна тестовая версия, однако, она не отображается из-за Ваших глобальных или специфичных для модуля настроек.</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">Установка</string>
