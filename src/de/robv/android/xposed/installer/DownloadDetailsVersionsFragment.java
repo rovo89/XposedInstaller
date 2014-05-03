@@ -1,6 +1,8 @@
 package de.robv.android.xposed.installer;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.util.Date;
 
 import android.app.Activity;
 import android.app.ListFragment;
@@ -91,12 +93,14 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 	static class ViewHolder {
 		TextView txtVersion;
 		TextView txtRelType;
+		TextView txtUploadDate;
 		DownloadView downloadView;
 		TextView txtChangesTitle;
 		TextView txtChanges;
 	}
 
 	private class VersionsAdapter extends ArrayAdapter<ModuleVersion> {
+		private final DateFormat mDateFormatter = DateFormat.getDateInstance(DateFormat.SHORT);
 		private final int mColorRelTypeStable;
 		private final int mColorRelTypeOthers;
 
@@ -115,6 +119,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 				ViewHolder viewHolder = new ViewHolder();
 				viewHolder.txtVersion = (TextView) view.findViewById(R.id.txtVersion);
 				viewHolder.txtRelType = (TextView) view.findViewById(R.id.txtRelType);
+				viewHolder.txtUploadDate = (TextView) view.findViewById(R.id.txtUploadDate);
 				viewHolder.downloadView = (DownloadView) view.findViewById(R.id.downloadView);
 				viewHolder.txtChangesTitle = (TextView) view.findViewById(R.id.txtChangesTitle);
 				viewHolder.txtChanges = (TextView) view.findViewById(R.id.txtChanges);
@@ -127,6 +132,13 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 			holder.txtVersion.setText(item.name);
 			holder.txtRelType.setText(item.relType.getTitleId());
 			holder.txtRelType.setTextColor(item.relType == ReleaseType.STABLE ? mColorRelTypeStable : mColorRelTypeOthers);
+
+			if (item.uploaded > 0) {
+				holder.txtUploadDate.setText(mDateFormatter.format(new Date(item.uploaded)));
+				holder.txtUploadDate.setVisibility(View.VISIBLE);
+			} else {
+				holder.txtUploadDate.setVisibility(View.GONE);
+			}
 
 			holder.downloadView.setUrl(item.downloadLink);
 			holder.downloadView.setTitle(mActivity.getModule().name);

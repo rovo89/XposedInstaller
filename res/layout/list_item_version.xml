@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/background_card"
     android:orientation="vertical"
-    android:padding="8dip"
-    android:background="?attr/background_card" >
+    android:padding="8dip" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,23 +14,38 @@
             android:id="@+id/txtVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
             android:layout_marginRight="4dp"
+            android:layout_weight="1"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textIsSelectable="false" />
 
-        <TextView
-            android:id="@+id/txtRelType"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:layout_weight="1"
             android:layout_marginLeft="4dp"
-            android:textAllCaps="true"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textIsSelectable="false"
-            android:textStyle="italic" />
+            android:layout_weight="1"
+            android:gravity="right"
+            android:orientation="vertical" >
 
+            <TextView
+                android:id="@+id/txtRelType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textIsSelectable="false"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/txtUploadDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="?android:attr/textColorTertiary"
+                android:textIsSelectable="false"
+                android:textStyle="italic" />
+        </LinearLayout>
     </LinearLayout>
 
     <de.robv.android.xposed.installer.widget.DownloadView

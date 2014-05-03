@@ -140,6 +140,8 @@ public class RepoParser {
 		final int startDepth = parser.getDepth();
 		ModuleVersion version = new ModuleVersion(module);
 
+		version.uploaded = parseTimestamp("uploaded");
+
 		while (parser.nextTag() == XmlPullParser.START_TAG) {
 			String tagName = parser.getName();
 			if (tagName.equals("name")) {
