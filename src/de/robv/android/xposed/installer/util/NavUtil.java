@@ -1,6 +1,7 @@
 package de.robv.android.xposed.installer.util;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import de.robv.android.xposed.installer.XposedBaseActivity;
 
 public final class NavUtil {
 	public static final String FINISH_ON_UP_NAVIGATION = "finish_on_up_navigation";
+	public static final Uri EXAMPLE_URI = Uri.fromParts("http", "//example.org", null);
 
 	public static void setTransitionSlideEnter(Activity activity) {
 		activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -39,6 +41,13 @@ public final class NavUtil {
 	public static void startURL(Context context, Uri uri) {
 		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 		intent.putExtra(Browser.EXTRA_APPLICATION_ID, context.getPackageName());
+
+		if (uri.getHost().equals("repo.xposed.info")) {
+			Intent browser = new Intent(Intent.ACTION_VIEW, EXAMPLE_URI);
+			ComponentName browserApp = browser.resolveActivity(context.getPackageManager());
+			intent.setComponent(browserApp);
+		}
+
 		context.startActivity(intent);
 	}
 
