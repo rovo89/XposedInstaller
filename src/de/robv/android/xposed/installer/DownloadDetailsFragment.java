@@ -2,12 +2,9 @@ package de.robv.android.xposed.installer;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
-import android.text.style.StyleSpan;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.RepoParser;
+import de.robv.android.xposed.installer.util.NavUtil;
+import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class DownloadDetailsFragment extends Fragment {
 	private DownloadDetailsActivity mActivity;
@@ -56,13 +55,23 @@ public class DownloadDetailsFragment extends Fragment {
 
 		ViewGroup moreInfoContainer = (ViewGroup) view.findViewById(R.id.download_moreinfo_container);
 		for (Pair<String,String> moreInfoEntry : module.moreInfo) {
-			TextView moreInfoView = (TextView) inflater.inflate(R.layout.download_moreinfo, moreInfoContainer, false);
+			View moreInfoView = inflater.inflate(R.layout.download_moreinfo, moreInfoContainer, false);
+			TextView txtTitle = (TextView) moreInfoView.findViewById(android.R.id.title);
+			TextView txtValue = (TextView) moreInfoView.findViewById(android.R.id.message);
 
-			SpannableStringBuilder ssb = new SpannableStringBuilder(moreInfoEntry.first);
-			ssb.append(": ");
-			ssb.setSpan(new StyleSpan(Typeface.BOLD), 0, ssb.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-			ssb.append(moreInfoEntry.second);
-			moreInfoView.setText(ssb);
+			txtTitle.setText(moreInfoEntry.first + ":");
+			txtValue.setText(moreInfoEntry.second);
+
+			final Uri link = NavUtil.parseURL(moreInfoEntry.second);
+			if (link != null) {
+				txtValue.setTextColor(ThemeUtil.getThemeColor(getActivity(), android.R.attr.textColorLink));
+				moreInfoView.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						NavUtil.startURL(getActivity(), link);
+					}
+				});
+			}
 
 			moreInfoContainer.addView(moreInfoView);
 		}
