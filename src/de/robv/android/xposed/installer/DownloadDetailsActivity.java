@@ -1,11 +1,15 @@
 package de.robv.android.xposed.installer;
 
+import java.util.List;
+
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import de.robv.android.xposed.installer.repo.Module;
@@ -31,7 +35,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		mPackageName = getIntent().getData().getSchemeSpecificPart();
+		mPackageName = getModulePackageName();
 		mModuleGroup = sRepoLoader.getModuleGroup(mPackageName);
 		if (mModuleGroup != null)
 			mModule = mModuleGroup.getModule();
@@ -72,6 +76,24 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 				}
 			});
 		}
+	}
+
+	private String getModulePackageName() {
+		Uri uri = getIntent().getData();
+		if (uri == null)
+			return null;
+
+		String scheme = uri.getScheme();
+		if (TextUtils.isEmpty(scheme)) {
+			return null;
+		} else if (scheme.equals("package")) {
+			return uri.getSchemeSpecificPart();
+		} else if (scheme.equals("http")) {
+			List<String> segments = uri.getPathSegments();
+			if (segments.size() > 1)
+				return segments.get(1);
+		}
+		return null;
 	}
 
 	@Override

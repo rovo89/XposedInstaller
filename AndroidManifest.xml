@@ -21,37 +21,43 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Light"
         android:name=".XposedApp" >
+
         <activity
             android:name=".WelcomeActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".XposedInstallerActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true">
         </activity>
+
         <activity
             android:name=".DownloadDetailsActivity"
             android:configChanges="orientation|screenSize">
-			<intent-filter>
-			    <action android:name="de.robv.android.xposed.installer.DOWNLOAD_DETAILS" />
-			    <data android:scheme="package" />
-			    <category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
+            <intent-filter>
+                <action android:name="de.robv.android.xposed.installer.DOWNLOAD_DETAILS" />
+                <data android:scheme="package" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="http" android:host="repo.xposed.info" android:pathPrefix="/module/" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
         </activity>
-
 
         <receiver android:name=".PackageChangeReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <action android:name="android.intent.action.PACKAGE_CHANGED" />
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
-
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
