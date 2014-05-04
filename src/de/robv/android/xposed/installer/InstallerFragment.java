@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
 import java.util.regex.Matcher;
@@ -46,6 +47,7 @@ public class InstallerFragment extends Fragment {
 	private static int JAR_LATEST_VERSION = -1;
 	private final LinkedList<String> mCompatibilityErrors = new LinkedList<String>();
 	private RootUtil mRootUtil = new RootUtil();
+	private boolean mHadSegmentationFault = false;
 
 	private ProgressDialog dlgProgress;
 	private TextView txtAppProcessInstalledVersion, txtAppProcessLatestVersion;
@@ -198,8 +200,6 @@ public class InstallerFragment extends Fragment {
 			.show();
 		}
 
-		refreshKnownIssue();
-
 		return v;
 	}
 
@@ -208,6 +208,8 @@ public class InstallerFragment extends Fragment {
 		super.onResume();
 		btnInstallMode.setText(getInstallModeText());
 		NotificationUtil.cancel(NotificationUtil.NOTIFICATION_MODULES_UPDATED);
+		mHadSegmentationFault = false;
+		refreshKnownIssue();
 	}
 
 	@Override
@@ -301,6 +303,10 @@ public class InstallerFragment extends Fragment {
 		} else if (new File("/data/miui/DexspyInstaller.jar").exists() || checkClassExists("miui.dexspy.DexspyInstaller")) {
 			issueName = "MIUI/Dexspy";
 			issueLink = "http://forum.xda-developers.com/showpost.php?p=52291098&postcount=6";
+
+		} else if (mHadSegmentationFault) {
+			issueName = "Segmentation fault";
+			issueLink = "http://forum.xda-developers.com/showpost.php?p=52292102&postcount=7";
 		}
 
 		if (issueName != null) {
@@ -350,6 +356,9 @@ public class InstallerFragment extends Fragment {
 		dialog.show();
 		TextView txtMessage = (TextView) dialog.findViewById(android.R.id.message);
 		txtMessage.setTextSize(14);
+
+		mHadSegmentationFault = result.toLowerCase(Locale.US).contains("segmentation fault");
+		refreshKnownIssue();
 	}
 
 	private void areYouSure(int messageTextId, DialogInterface.OnClickListener yesHandler) {
@@ -383,6 +392,9 @@ public class InstallerFragment extends Fragment {
 		dialog.show();
 		TextView txtMessage = (TextView) dialog.findViewById(android.R.id.message);
 		txtMessage.setTextSize(14);
+
+		mHadSegmentationFault = message.toLowerCase(Locale.US).contains("segmentation fault");
+		refreshKnownIssue();
 	}
 
 	private boolean checkCompatibility() {
