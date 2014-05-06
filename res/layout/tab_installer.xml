@@ -29,6 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:textStyle="italic"
                 android:text="@string/tap_to_dismiss" />
         </LinearLayout>
 
