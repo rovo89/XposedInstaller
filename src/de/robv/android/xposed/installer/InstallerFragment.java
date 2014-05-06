@@ -71,45 +71,6 @@ public class InstallerFragment extends Fragment {
 
 		dlgProgress = new ProgressDialog(activity);
 		dlgProgress.setIndeterminate(true);
-
-		/* Detection of reverts to /system/bin/app_process.
-		 * LastSeenBinary can be:
-		 *   missing - do nothing
-		 *   -1      - Uninstall was performed, check if an Xposed binary didn't reappear
-		 *   >= 0    - Make sure a downgrade or non-xposed binary doesn't occur
-		 *             Also auto-update the value to the latest version found
-		 */
-		int lastSeenBinary = XposedApp.getPreferences().getInt(PREF_LAST_SEEN_BINARY, Integer.MIN_VALUE);
-		if (lastSeenBinary != Integer.MIN_VALUE) {
-			final View vInstallRevertedWarning = getView().findViewById(R.id.install_reverted_warning);
-			final TextView txtInstallRevertedWarning = (TextView) getView().findViewById(R.id.install_reverted_warning_text);
-			vInstallRevertedWarning.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// Stop tracking and dismiss the info panel
-					XposedApp.getPreferences().edit().remove(PREF_LAST_SEEN_BINARY).commit();
-					vInstallRevertedWarning.setVisibility(View.GONE);
-				}
-			});
-
-			if (lastSeenBinary < 0 && appProcessInstalledVersion > 0) {
-				// Uninstall was previously completed but an Xposed binary has reappeared
-				txtInstallRevertedWarning.setText(getString(R.string.uninstall_reverted,
-						versionToText(appProcessInstalledVersion)));
-				vInstallRevertedWarning.setVisibility(View.VISIBLE);
-			} else  if (appProcessInstalledVersion < lastSeenBinary) {
-				// Previously installed binary was either restored to stock or downgraded, probably
-				// following a reboot on a locked system
-				txtInstallRevertedWarning.setText(getString(R.string.install_reverted,
-						versionToText(lastSeenBinary), versionToText(appProcessInstalledVersion)));
-				vInstallRevertedWarning.setVisibility(View.VISIBLE);
-			} else if (appProcessInstalledVersion > lastSeenBinary) {
-				// Current binary is newer, register it and keep monitoring for future downgrades
-				XposedApp.getPreferences().edit().putInt(PREF_LAST_SEEN_BINARY, appProcessInstalledVersion).commit();
-			} else {
-				// All is ok
-			}
-		}
 	}
 
 	@Override
@@ -259,6 +220,45 @@ public class InstallerFragment extends Fragment {
 			})
 			.setCancelable(false)
 			.show();
+		}
+
+		/* Detection of reverts to /system/bin/app_process.
+		 * LastSeenBinary can be:
+		 *   missing - do nothing
+		 *   -1      - Uninstall was performed, check if an Xposed binary didn't reappear
+		 *   >= 0    - Make sure a downgrade or non-xposed binary doesn't occur
+		 *             Also auto-update the value to the latest version found
+		 */
+		int lastSeenBinary = XposedApp.getPreferences().getInt(PREF_LAST_SEEN_BINARY, Integer.MIN_VALUE);
+		if (lastSeenBinary != Integer.MIN_VALUE) {
+			final View vInstallRevertedWarning = v.findViewById(R.id.install_reverted_warning);
+			final TextView txtInstallRevertedWarning = (TextView) v.findViewById(R.id.install_reverted_warning_text);
+			vInstallRevertedWarning.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					// Stop tracking and dismiss the info panel
+					XposedApp.getPreferences().edit().remove(PREF_LAST_SEEN_BINARY).commit();
+					vInstallRevertedWarning.setVisibility(View.GONE);
+				}
+			});
+
+			if (lastSeenBinary < 0 && appProcessInstalledVersion > 0) {
+				// Uninstall was previously completed but an Xposed binary has reappeared
+				txtInstallRevertedWarning.setText(getString(R.string.uninstall_reverted,
+						versionToText(appProcessInstalledVersion)));
+				vInstallRevertedWarning.setVisibility(View.VISIBLE);
+			} else  if (appProcessInstalledVersion < lastSeenBinary) {
+				// Previously installed binary was either restored to stock or downgraded, probably
+				// following a reboot on a locked system
+				txtInstallRevertedWarning.setText(getString(R.string.install_reverted,
+						versionToText(lastSeenBinary), versionToText(appProcessInstalledVersion)));
+				vInstallRevertedWarning.setVisibility(View.VISIBLE);
+			} else if (appProcessInstalledVersion > lastSeenBinary) {
+				// Current binary is newer, register it and keep monitoring for future downgrades
+				XposedApp.getPreferences().edit().putInt(PREF_LAST_SEEN_BINARY, appProcessInstalledVersion).commit();
+			} else {
+				// All is ok
+			}
 		}
 
 		return v;
