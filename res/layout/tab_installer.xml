@@ -10,6 +10,29 @@
         android:orientation="vertical"
         android:padding="8dp" >
 
+        <LinearLayout
+            android:id="@+id/install_reverted_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
+            android:background="?attr/background_card"
+            android:visibility="gone" >
+            <TextView
+                android:id="@+id/install_reverted_warning_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/warning"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:textStyle="italic"
+                android:text="@string/tap_to_dismiss" />
+        </LinearLayout>
+
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

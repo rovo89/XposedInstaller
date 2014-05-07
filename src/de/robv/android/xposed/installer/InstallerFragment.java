@@ -49,6 +49,9 @@ public class InstallerFragment extends Fragment {
 	private RootUtil mRootUtil = new RootUtil();
 	private boolean mHadSegmentationFault = false;
 
+	private static final String PREF_LAST_SEEN_BINARY = "last_seen_binary";
+	private int appProcessInstalledVersion;
+
 	private ProgressDialog dlgProgress;
 	private TextView txtAppProcessInstalledVersion, txtAppProcessLatestVersion;
 	private TextView txtJarInstalledVersion, txtJarLatestVersion;
@@ -134,6 +137,13 @@ public class InstallerFragment extends Fragment {
 							refreshVersions();
 							if (success)
 								ModuleUtil.getInstance().updateModulesList(false);
+
+							// Start tracking the last seen version, irrespective of the installation method and the outcome.
+							// 0 or a stale version might be registered, if a recovery installation was requested
+							// It will get up to date when the last seen version is updated on a later panel startup
+							XposedApp.getPreferences().edit().putInt(PREF_LAST_SEEN_BINARY, appProcessInstalledVersion).commit();
+							// Dismiss any warning already being displayed
+							getView().findViewById(R.id.install_reverted_warning).setVisibility(View.GONE);
 						}
 					});
 				}
@@ -155,6 +165,18 @@ public class InstallerFragment extends Fragment {
 					@Override
 					public void run() {
 						refreshVersions();
+
+						// Update tracking of the last seen version
+						if (appProcessInstalledVersion == 0) {
+							// Uninstall completed, check if an Xposed binary doesn't reappear
+							XposedApp.getPreferences().edit().putInt(PREF_LAST_SEEN_BINARY, -1).commit();
+						} else {
+							// Xposed binary still in place.
+							// Stop tracking last seen version, as uninstall might complete later or not
+							XposedApp.getPreferences().edit().remove(PREF_LAST_SEEN_BINARY).commit();
+						}
+						// Dismiss any warning already being displayed
+						getView().findViewById(R.id.install_reverted_warning).setVisibility(View.GONE);
 					}
 				});
 			}
@@ -198,6 +220,45 @@ public class InstallerFragment extends Fragment {
 			})
 			.setCancelable(false)
 			.show();
+		}
+
+		/* Detection of reverts to /system/bin/app_process.
+		 * LastSeenBinary can be:
+		 *   missing - do nothing
+		 *   -1      - Uninstall was performed, check if an Xposed binary didn't reappear
+		 *   >= 0    - Make sure a downgrade or non-xposed binary doesn't occur
+		 *             Also auto-update the value to the latest version found
+		 */
+		int lastSeenBinary = XposedApp.getPreferences().getInt(PREF_LAST_SEEN_BINARY, Integer.MIN_VALUE);
+		if (lastSeenBinary != Integer.MIN_VALUE) {
+			final View vInstallRevertedWarning = v.findViewById(R.id.install_reverted_warning);
+			final TextView txtInstallRevertedWarning = (TextView) v.findViewById(R.id.install_reverted_warning_text);
+			vInstallRevertedWarning.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					// Stop tracking and dismiss the info panel
+					XposedApp.getPreferences().edit().remove(PREF_LAST_SEEN_BINARY).commit();
+					vInstallRevertedWarning.setVisibility(View.GONE);
+				}
+			});
+
+			if (lastSeenBinary < 0 && appProcessInstalledVersion > 0) {
+				// Uninstall was previously completed but an Xposed binary has reappeared
+				txtInstallRevertedWarning.setText(getString(R.string.uninstall_reverted,
+						versionToText(appProcessInstalledVersion)));
+				vInstallRevertedWarning.setVisibility(View.VISIBLE);
+			} else  if (appProcessInstalledVersion < lastSeenBinary) {
+				// Previously installed binary was either restored to stock or downgraded, probably
+				// following a reboot on a locked system
+				txtInstallRevertedWarning.setText(getString(R.string.install_reverted,
+						versionToText(lastSeenBinary), versionToText(appProcessInstalledVersion)));
+				vInstallRevertedWarning.setVisibility(View.VISIBLE);
+			} else if (appProcessInstalledVersion > lastSeenBinary) {
+				// Current binary is newer, register it and keep monitoring for future downgrades
+				XposedApp.getPreferences().edit().putInt(PREF_LAST_SEEN_BINARY, appProcessInstalledVersion).commit();
+			} else {
+				// All is ok
+			}
 		}
 
 		return v;
@@ -267,7 +328,7 @@ public class InstallerFragment extends Fragment {
 	}
 
 	private void refreshVersions() {
-		int appProcessInstalledVersion = getInstalledAppProcessVersion();
+		appProcessInstalledVersion = getInstalledAppProcessVersion();
 		int appProcessLatestVersion = getLatestAppProcessVersion();
 		int jarInstalledVersion = getJarInstalledVersion();
 		int jarLatestVersion = getJarLatestVersion();

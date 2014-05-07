@@ -44,6 +44,9 @@
     <string name="install_warning">In some cases, your device might no longer boot after installing Xposed.\n\nIf you never heard about \"soft brick\" and \"bootloop\" before or if you don\'t know how to recover from such a situation, do <b>NOT</b> install Xposed!\n\nIn any case, having a recent backup is highly recommended.</string>
     <string name="dont_show_again">Don\'t show this again</string>
     <string name="install_known_issue">There seems to be a known issue (\"%s\") with your ROM. Installing Xposed might not work or lead to severe problems. Click here for details about the issue.</string>
+    <string name="install_reverted">app_process version \"%1$s\" has been installed previously but version \"%2$s\" was found now. If you didn\'t expect an old file to be restored, you might want to try installalling via recovery (auto or manual).</string>
+    <string name="uninstall_reverted">app_process was uninstalled previously but version \"%s\" was found now. If you didn\'t expect an old file to be restored, you might want to try uninstalling via recovery (auto or manual).</string>
+    <string name="tap_to_dismiss">Tap to dismiss</string>
 
     <!--  File operations -->
     <string name="root_failed">Failed to get root access.\n\nMake sure your device is rooted properly and you have not blocked shell commands.</string>
