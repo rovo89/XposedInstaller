@@ -43,6 +43,9 @@
     <string name="install_warning">Xposedをインストールした後起動しなくなる場合があります。\n\n \"仮文鎮\"や\"ブートループ\"を知らない場合やその状態からの復旧方法を理解していない場合、Xposedをインストール<b>しないでください</b>!\n\nどんな場合でもバックアップしておくことは大切です。</string>
     <string name="dont_show_again">二度と表示しない</string>
     <string name="install_known_issue">お使いのROMには互換性の問題(\"%s\")があるようです。Xposedをインストールしても動作しなかったり重大な問題が起きる可能性があります。ここをタップすると詳細を表示します。</string>
+    <string name="install_reverted">app_processバージョン\"%1$s\"をインストールしましたが、バージョン\"%2$s\"が見つかりました。古いファイルが復元されるのを防ぐにはリカバリ(自動か手動)からインストールしてください。</string>
+    <string name="uninstall_reverted">app_processをアンインストールしましたが、バージョン\"%s\"が見つかりました。古いファイルが復元されるのを防ぐにはリカバリ(自動か手動)からアンインストールしてください。</string>
+     <string name="tap_to_dismiss">タップで無視</string>
 
     <!-- File operations -->
     <string name="root_failed">rootアクセスの取得に失敗しました。\n\n端末がrootedか、シェルコマンドをブロックしていないか確認してください。</string>
