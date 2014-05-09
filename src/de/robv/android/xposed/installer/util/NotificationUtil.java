@@ -60,7 +60,7 @@ public final class NotificationUtil {
 			.setTicker(title)
 			.setContentIntent(pModulesTab)
 			.setAutoCancel(true)
-			.setSmallIcon(android.R.drawable.ic_dialog_info);
+			.setSmallIcon(R.drawable.ic_notification);
 
 		if (Build.VERSION.SDK_INT >= 16) {
 			Intent iActivateAndReboot = new Intent(sContext, RebootReceiver.class);
@@ -97,7 +97,7 @@ public final class NotificationUtil {
 			.setTicker(title)
 			.setContentIntent(pInstallTab)
 			.setAutoCancel(true)
-			.setSmallIcon(android.R.drawable.ic_dialog_info);
+			.setSmallIcon(R.drawable.ic_notification);
 
 		if (Build.VERSION.SDK_INT >= 16) {
 			Intent iSoftReboot = new Intent(sContext, RebootReceiver.class);
