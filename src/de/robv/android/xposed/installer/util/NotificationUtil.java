@@ -134,7 +134,9 @@ public final class NotificationUtil {
 
 			if (intent.hasExtra(EXTRA_ACTIVATE_MODULE)) {
 				String packageName = intent.getStringExtra(EXTRA_ACTIVATE_MODULE);
-				ModuleUtil.getInstance().setModuleEnabled(packageName, true);
+				ModuleUtil moduleUtil = ModuleUtil.getInstance();
+				moduleUtil.setModuleEnabled(packageName, true);
+				moduleUtil.updateModulesList(false);
 				Toast.makeText(sContext, R.string.module_activated, Toast.LENGTH_SHORT).show();
 			}
 
