@@ -28,8 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LogsFragment extends Fragment {
-	private File mFileDebugLog = new File(XposedApp.BASE_DIR + "log/debug.log");
-	private File mFileDebugLogOld = new File(XposedApp.BASE_DIR + "log/debug.log.old");
+	private File mFileErrorLog = new File(XposedApp.BASE_DIR + "log/error.log");
+	private File mFileErrorLogOld = new File(XposedApp.BASE_DIR + "log/error.log.old");
 	private static final int MAX_LOG_SIZE = 2*1024*1024; // 2 MB
 	private TextView mTxtLog;
 	private ScrollView mSVLog;
@@ -50,7 +50,7 @@ public class LogsFragment extends Fragment {
 		mTxtLog = (TextView) v.findViewById(R.id.txtLog);
 		mSVLog = (ScrollView) v.findViewById(R.id.svLog);
 		mHSVLog = (HorizontalScrollView) v.findViewById(R.id.hsvLog);
-		reloadDebugLog();
+		reloadErrorLog();
 		return v;
 	}
 
@@ -63,7 +63,7 @@ public class LogsFragment extends Fragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menu_refresh:
-			reloadDebugLog();
+			reloadErrorLog();
 			return true;
 		case R.id.menu_send:
 			send();
@@ -78,11 +78,11 @@ public class LogsFragment extends Fragment {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void reloadDebugLog() {
+	private void reloadErrorLog() {
 		StringBuilder logContent = new StringBuilder(15 * 1024);
 		try {
-			FileInputStream fis = new FileInputStream(mFileDebugLog);
-			long skipped = skipLargeFile(fis, mFileDebugLog.length());
+			FileInputStream fis = new FileInputStream(mFileErrorLog);
+			long skipped = skipLargeFile(fis, mFileErrorLog.length());
 			if (skipped > 0) {
 				logContent.append("-----------------\n");
 				logContent.append(getResources().getString(R.string.log_too_large, MAX_LOG_SIZE / 1024, skipped / 1024));
@@ -122,10 +122,10 @@ public class LogsFragment extends Fragment {
 
 	private void clear() {
 		try {
-			new FileOutputStream(mFileDebugLog).close();;
-			mFileDebugLogOld.delete();
+			new FileOutputStream(mFileErrorLog).close();;
+			mFileErrorLogOld.delete();
 			Toast.makeText(getActivity(), R.string.logs_cleared, Toast.LENGTH_SHORT).show();
-			reloadDebugLog();
+			reloadErrorLog();
 		} catch (IOException e) {
 			Toast.makeText(getActivity(),
 					getResources().getString(R.string.logs_clear_failed) + "\n" + e.getMessage(),
@@ -137,7 +137,7 @@ public class LogsFragment extends Fragment {
 	private void send() {
 		Intent sendIntent = new Intent();
 		sendIntent.setAction(Intent.ACTION_SEND);
-		sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mFileDebugLog));
+		sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mFileErrorLog));
 		sendIntent.setType("application/text"); // text/plain is handled wrongly by too many apps
 		startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.menuSend)));
 	}
@@ -150,16 +150,16 @@ public class LogsFragment extends Fragment {
 		}
 
 		Calendar now = Calendar.getInstance();
-		String filename = String.format("xposed_%s_%04d%02d%02d_%02d%02d%02d.log", "debug",
+		String filename = String.format("xposed_%s_%04d%02d%02d_%02d%02d%02d.log", "error",
 				now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH),
 				now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
 		File targetFile = new File(getActivity().getExternalFilesDir(null), filename);
 
 		try {
-			FileInputStream in = new FileInputStream(mFileDebugLog);
+			FileInputStream in = new FileInputStream(mFileErrorLog);
 			FileOutputStream out = new FileOutputStream(targetFile);
 
-			long skipped = skipLargeFile(in, mFileDebugLog.length());
+			long skipped = skipLargeFile(in, mFileErrorLog.length());
 			if (skipped > 0) {
 				StringBuilder logContent = new StringBuilder(512);
 				logContent.append("-----------------\n");

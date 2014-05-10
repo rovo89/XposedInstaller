@@ -65,6 +65,12 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 				mPref.edit().putBoolean("cleaned_up_sdcard", true).apply();
 			}
 		}
+
+		if (!mPref.getBoolean("cleaned_up_debug_log", false)) {
+			new File(XposedApp.BASE_DIR + "log/debug.log").delete();
+			new File(XposedApp.BASE_DIR + "log/debug.log.old").delete();
+			mPref.edit().putBoolean("cleaned_up_debug_log", true).apply();
+		}
 	}
 
 	private void mkdirAndChmod(String dir, int permissions) {
