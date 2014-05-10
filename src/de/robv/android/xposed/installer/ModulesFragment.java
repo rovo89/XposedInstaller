@@ -146,7 +146,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 		if (packageName.equals(NOT_ACTIVE_NOTE_TAG)) {
 			Intent intent = new Intent(getActivity(), XposedInstallerActivity.class);
-			intent.putExtra(XposedInstallerActivity.EXTRA_OPEN_TAB, XposedDropdownNavActivity.TAB_INSTALL);
+			intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedDropdownNavActivity.TAB_INSTALL);
 			startActivity(intent);
 			return;
 		}

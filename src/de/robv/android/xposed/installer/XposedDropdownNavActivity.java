@@ -63,7 +63,7 @@ public abstract class XposedDropdownNavActivity extends XposedBaseActivity {
 
 				if (navigateViaIntent()) {
 					Intent intent = new Intent(XposedDropdownNavActivity.this, XposedInstallerActivity.class);
-					intent.putExtra(XposedInstallerActivity.EXTRA_OPEN_TAB, itemPosition);
+					intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, itemPosition);
 					intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					startActivity(intent);
 					finish();

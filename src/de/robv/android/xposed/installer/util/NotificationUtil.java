@@ -47,7 +47,7 @@ public final class NotificationUtil {
 
 	public static void showNotActivatedNotification(String packageName, String appName) {
 		Intent iModulesTab = new Intent(sContext, XposedInstallerActivity.class);
-		iModulesTab.putExtra(XposedInstallerActivity.EXTRA_OPEN_TAB, XposedInstallerActivity.TAB_MODULES);
+		iModulesTab.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedInstallerActivity.TAB_MODULES);
 		iModulesTab.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
 		PendingIntent pModulesTab = PendingIntent.getActivity(sContext, PENDING_INTENT_OPEN_MODULES,
@@ -84,7 +84,7 @@ public final class NotificationUtil {
 
 	public static void showModulesUpdatedNotification() {
 		Intent iInstallTab = new Intent(sContext, XposedInstallerActivity.class);
-		iInstallTab.putExtra(XposedInstallerActivity.EXTRA_OPEN_TAB, XposedInstallerActivity.TAB_INSTALL);
+		iInstallTab.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedInstallerActivity.TAB_INSTALL);
 		iInstallTab.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		PendingIntent pInstallTab = PendingIntent.getActivity(sContext, PENDING_INTENT_OPEN_INSTALL,
 				iInstallTab, PendingIntent.FLAG_UPDATE_CURRENT);

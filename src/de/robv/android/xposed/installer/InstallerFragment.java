@@ -96,7 +96,7 @@ public class InstallerFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), XposedInstallerActivity.class);
-				intent.putExtra(XposedInstallerActivity.EXTRA_OPEN_TAB, XposedDropdownNavActivity.TAB_SETTINGS);
+				intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedDropdownNavActivity.TAB_SETTINGS);
 				startActivity(intent);
 			}
 		});

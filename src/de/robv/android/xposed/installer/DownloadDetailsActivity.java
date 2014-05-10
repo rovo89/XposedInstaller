@@ -128,7 +128,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 	@Override
 	protected Intent getParentIntent() {
 		Intent intent = new Intent(this, XposedInstallerActivity.class);
-		intent.putExtra(XposedInstallerActivity.EXTRA_OPEN_TAB, TAB_DOWNLOAD);
+		intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, TAB_DOWNLOAD);
 		return intent;
 	}
 

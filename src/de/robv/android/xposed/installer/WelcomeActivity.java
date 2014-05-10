@@ -46,7 +46,7 @@ public class WelcomeActivity extends XposedBaseActivity implements ModuleListene
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Intent intent = new Intent(WelcomeActivity.this, XposedInstallerActivity.class);
-				intent.putExtra(XposedInstallerActivity.EXTRA_OPEN_TAB, position);
+				intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, position);
 				intent.putExtra(NavUtil.FINISH_ON_UP_NAVIGATION, true);
 				startActivity(intent);
 				NavUtil.setTransitionSlideEnter(WelcomeActivity.this);
