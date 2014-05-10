@@ -647,6 +647,9 @@ public class InstallerFragment extends Fragment {
 		List<String> messages = new LinkedList<String>();
 		boolean showAlert = true;
 		try {
+			messages.add(getString(R.string.sdcard_location, XposedApp.getInstance().getExternalFilesDir(null)));
+			messages.add("");
+
 			messages.add(getString(R.string.file_copying, "Xposed-Disabler-Recovery.zip"));
 			if (AssetUtil.writeAssetToSdcardFile("Xposed-Disabler-Recovery.zip", 00644) == null) {
 				messages.add("");
@@ -758,6 +761,9 @@ public class InstallerFragment extends Fragment {
 		List<String> messages = new LinkedList<String>();
 		boolean showAlert = true;
 		try {
+			messages.add(getString(R.string.sdcard_location, XposedApp.getInstance().getExternalFilesDir(null)));
+			messages.add("");
+
 			if (installMode == INSTALL_MODE_NORMAL) {
 				messages.add(getString(R.string.file_mounting_writable, "/system"));
 				if (mRootUtil.executeWithBusybox("mount -o remount,rw /system", messages) != 0) {

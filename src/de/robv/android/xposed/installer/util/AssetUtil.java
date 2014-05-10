@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.AssetManager;
 import android.os.Build;
-import android.os.Environment;
 import android.os.FileUtils;
 import android.util.Log;
 import de.robv.android.xposed.installer.XposedApp;
@@ -44,8 +43,7 @@ public class AssetUtil {
 	}
 
 	public static File writeAssetToSdcardFile(String assetName, String fileName, int mode) {
-		File dir = Environment.getExternalStorageDirectory();
-		dir.mkdirs();
+		File dir = XposedApp.getInstance().getExternalFilesDir(null);
 		return writeAssetToFile(assetName, new File(dir, fileName), mode);
 	}
 
