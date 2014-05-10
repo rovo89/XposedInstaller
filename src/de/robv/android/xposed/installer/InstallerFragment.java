@@ -40,7 +40,6 @@ import de.robv.android.xposed.installer.util.ThemeUtil;
 public class InstallerFragment extends Fragment {
 	private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
 	private String APP_PROCESS_NAME = null;
-	private String XPOSEDTEST_NAME = null;
 	private final String BINARIES_FOLDER = AssetUtil.getBinariesFolder();
 	private static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
 	private static final String JAR_PATH_NEWVERSION = JAR_PATH + ".newversion";
@@ -106,17 +105,14 @@ public class InstallerFragment extends Fragment {
 			// incompatible processor architecture
 		} else if (Build.VERSION.SDK_INT == 15) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk15";
-			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk15";
 			isCompatible = checkCompatibility();
 
 		} else if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT <= 19) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
-			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
 			isCompatible = checkCompatibility();
 
 		} else if (Build.VERSION.SDK_INT > 19) {
 			APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
-			XPOSEDTEST_NAME = BINARIES_FOLDER + "xposedtest_sdk16";
 			isCompatible = checkCompatibility();
 			if (isCompatible) {
 				txtInstallError.setText(String.format(getString(R.string.not_tested_but_compatible), Build.VERSION.SDK_INT));
@@ -460,41 +456,7 @@ public class InstallerFragment extends Fragment {
 
 	private boolean checkCompatibility() {
 		mCompatibilityErrors.clear();
-		return checkXposedTestCompatibility() && checkAppProcessCompatibility();
-	}
-
-	private boolean checkXposedTestCompatibility() {
-		try {
-			if (XPOSEDTEST_NAME == null)
-				return false;
-
-			File testFile = AssetUtil.writeAssetToCacheFile(XPOSEDTEST_NAME, "xposedtest", 00700);
-			if (testFile == null) {
-				mCompatibilityErrors.add("could not write xposedtest to cache");
-				return false;
-			}
-
-			Process p = Runtime.getRuntime().exec(testFile.getAbsolutePath());
-
-			BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			String result = stdout.readLine();
-			stdout.close();
-
-			BufferedReader stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-			String errorLine;
-			while ((errorLine = stderr.readLine()) != null) {
-				mCompatibilityErrors.add(errorLine);
-			}
-			stderr.close();
-
-			p.destroy();
-
-			testFile.delete();
-			return result != null && result.equals("OK");
-		} catch (IOException e) {
-			mCompatibilityErrors.add(e.getMessage());
-			return false;
-		}
+		return checkAppProcessCompatibility();
 	}
 
 	private boolean checkAppProcessCompatibility() {
