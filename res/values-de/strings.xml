@@ -45,7 +45,7 @@
     <string name="dont_show_again">Nicht wieder anzeigen</string>
     <string name="install_known_issue">Es scheint eine bekannte Inkompatibilität (\"%s\") mit deinem ROM zu geben. Du solltest Xposed wahrscheinlich nicht installieren. Klicke hier für mehr Informationen.</string>
 
-    <!--  File operations -->
+    <!-- File operations -->
     <string name="root_failed">Root-Zugriff fehlgeschlagen\n\nStelle sicher, dass das Gerät korrekt gerootet ist und Shell-Kommandos nicht blockiert werden.</string>
     <string name="file_extract_failed">%s konnte nicht entpackt werden</string>
     <string name="file_mounting_writable">Mounte %s beschreibbar&#8230;</string>
@@ -145,7 +145,7 @@
     <string name="settings_theme_dark">Dunkel</string>
     <string name="settings_theme_black">Schwarz (nützlich für AMOLED-Bildschirme)</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Log konnte nicht gelesen werden:</string>
     <string name="logs_save_failed">Log konnte nicht auf der SD-Karte gespeichert werden:</string>
     <string name="sdcard_not_writable">SD-Karte wurde nicht gefunden oder ist nicht beschreibbar</string>

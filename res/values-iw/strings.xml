@@ -2,7 +2,7 @@
 <resources>
 
     <!-- General/various strings -->
-	<string name="menuSend">שלח</string>
+    <string name="menuSend">שלח</string>
     <string name="menuSaveToSd">שמור לכרטיס זיכרון</string>
     <string name="xposed_not_active">הגרסה האחרונה של Xposed לא פעילה כרגע. התקנת את הסביבה והפעלת מחדש?</string>
 
@@ -18,7 +18,7 @@
     <string name="welcome_update_available">קיים עדכון למודול אחד או יותר.</string>
     <string name="tabSettings">הגדרות</string>
     <string name="tabSettingsDescription">עבור לחלק זה כדי להגיד את סביבת Xposed ואת אפליקציה זו.</string>
-	<string name="tabLogs">לוג</string>
+    <string name="tabLogs">לוג</string>
     <string name="tabLogsDescription">הצגה, שמירה ושליחה של הלוג של Xposed.</string>
     <string name="tabAbout">אודות</string>
     <string name="tabAboutDescription">למד על האנשים אשר יצרו את Xposed, איפה לקבל תמיכה על אפליקציה זו ועוד.</string>
@@ -35,6 +35,8 @@
     <string name="phone_not_compatible">Xposed לא תומכת (עדיין) באנדרואיד SDK גרסה %1$d או ארכיטקטורת המעבד שלך (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed לא נוסה עם אנדרואיד SDK גרסה %d, אבל נראה שהיא נתמכת. ניתן להתקין אם אתה מרגיש הרפתקן.</string>
 
+    <!-- File operations -->
+
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">מודול עוד לא מופעל</string>
     <string name="module_empty_description">(הסבר לא קיים)</string>
@@ -44,7 +46,7 @@
     <string name="warning_xposed_min_version">מודול זה דורש גרסה עדכנית יותר של סביבת XposedBridge (%d) ולכן לא ניתן להפעילו.</string>
     <string name="no_min_version_specified">מודול זה אינו מספק את הגרסה של סביבת XposedBridge שהוא צריך.</string>
     <string name="warning_min_version_too_low">מודול זה פותח עבור XposedBridge בגרסה %1$d, אבל בעקרבות שינויים בגרסה %2$d, הוא בוטל.</string>
-	<string name="module_launch">פתח ממשק</string>
+    <string name="module_launch">פתח ממשק</string>
     <string name="module_download_updates">הורד/התקן</string>
     <string name="module_support">תמיכה</string>
     <string name="module_app_info">מידע על האפליקציה</string>
@@ -80,11 +82,11 @@
     <string name="settings_performance_experiment">ניסוי ביצועים</string>
     <string name="settings_performance_experiment_summary">אם הינך מאפשר זאת, הביצועים של המערכת שלך יכולים להשתפר, לגרוע או להישאר זהים. הרגישו חופשי לנסות ולדווח לי את התוצאות (אם יש). אתה צריך להתקין מחדש את הסביבה ולהפעיל מחדש את המכשיר כדי להחיל את השינויים.</string>
 
-	<!-- Logs tab -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">לא ניתן לקרוא את הלוג:</string>
     <string name="logs_save_failed">לא ניתן לשמור את הלוג לכרטיס הזיכרון:</string>
     <string name="sdcard_not_writable">כרטיס זיכרון לא נמצא, או לא ניתן לכתיבה</string>
-	
+
     <!-- About tab -->
     <string name="about_developers_label">מפתחים ראשיים:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> ו <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>

@@ -43,7 +43,7 @@
     <string name="install_warning">In sommige gevallen kan het apparaat niet meer opstarten na het installeren van Xposed.\n\nAls u nog nooit gehoord heeft van \"soft brick\" of \"bootloop\" of als u niet weet hoe dit hesteld moet worden, installeer Xposed dan <b>NIET</b>!\n\nHet hebben van een recente back-up is in ieder geval sterk aanbevolen!</string>
     <string name="dont_show_again">Niet opnieuw tonen</string>
 
-    <!--  File operations -->
+    <!-- File operations -->
     <string name="root_failed">Het krijgen van root-toegang is mislukt.\n\nZorg ervoor dat uw apparaat goed geroot is en dat shell commando\'s niet geblokkeerd worden.</string>
     <string name="file_extract_failed">Kan %s niet uitpakken</string>
     <string name="file_mounting_writable">Mounting %s beschrijfbaar&#8230;</string>
@@ -119,7 +119,7 @@
     <string name="settings_performance_experiment">Prestatie-experiment</string>
     <string name="settings_performance_experiment_summary">Als u dit inschakelt, kunnen uw systeemprestaties verhogen, verminderen of hetzelfde blijven. Het is gratis te proberen, laat ons weten welk effect u ziet (ook als er helemaal geen effect is). U moet het framework herinstalleren en herstarten nadat u dit veranderd hebt.</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Kan logboek niet lezen:</string>
     <string name="logs_save_failed">Kan niet schrijven naar SD-kaart:</string>
     <string name="sdcard_not_writable">SD-kaart niet gevonden of niet schrijfbaar</string>

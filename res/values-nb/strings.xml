@@ -43,7 +43,7 @@
     <string name="install_warning">I noen tilfeller så vil ikke enheten din starte etter at du har installert Xposed..\n\nHvis du aldri har hørt om \"soft brick\" og \"bootloop\" før, eller om du ikke vet hvordan du kommer deg ut fra en slik situasjon, <b>IKKE</b> installer Xposed!\n\nI de fleste tilfeller så er en backup høyt anbefalt å ha liggende.</string>
     <string name="dont_show_again">Ikke vis dette igjen</string>
 
-    <!--  File operations -->
+    <!-- File operations -->
     <string name="root_failed">Klarte ikke å få root-tilgang.\n\nSørg for at enheten din er rootet riktig og at du ikke har blokkert shell-kommandoer.</string>
     <string name="file_extract_failed">Kunne ikke pakke ut %s</string>
     <string name="file_mounting_writable">Monterer %s skrivbar&#8230;</string>
@@ -119,7 +119,7 @@
     <string name="settings_performance_experiment">Ytelseseksperiment</string>
     <string name="settings_performance_experiment_summary">Hvis du aktiverer dette så kan systemytelsen din enten øke, senkes eller forbli det samme. Prøv det gjerne ut og rapporter tilbake med resultatene dine (hvis det i det hele tatt er noen). Du vil trenger å reinstallere rammeverket og restarte enheten din etter å ha endret dette valget.</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Kunne ikke lese logg:</string>
     <string name="logs_save_failed">Kunne ikke skrive logg til SD-kort:</string>
     <string name="sdcard_not_writable">SD-kort ikke funnet eller ikke skrivbar</string>

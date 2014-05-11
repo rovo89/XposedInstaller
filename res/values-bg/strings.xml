@@ -119,8 +119,7 @@
     <string name="settings_performance_experiment">Експеримент за производителност</string>
     <string name="settings_performance_experiment_summary">Ако позволите това, производителността на системата може да се увеличи, да се намали или да се запази. Чувствайте се свободни да пробвате и да дадете отзиви. Необходимо е да преинсталирате framework и да рестартирате след промяна на тази настройка.</string>
 
-
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Не може да се прочете дневника:</string>
     <string name="logs_save_failed">Дневника не може да се запише на SD картата:</string>
     <string name="sdcard_not_writable">SD картата не съществува, или не е за запис</string>

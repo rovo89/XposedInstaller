@@ -35,6 +35,8 @@
     <string name="phone_not_compatible">Xposed nu este compatibil (inca) cu versiunea de Android SDK %1$d sau cu arhitectura procesorului (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed nu a fost testat cu versiunea de Android SDK %d, dar pare a fi compatibil. Puteti incerca sa-l instalati daca vreti sa experimentati ceva nou.</string>
 
+    <!-- File operations -->
+
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed nu este inca activ</string>
     <string name="module_empty_description">(fara descriere)</string>
@@ -80,7 +82,7 @@
     <string name="settings_performance_experiment">Experiment de performanta</string>
     <string name="settings_performance_experiment_summary">Daca activati , performanta sistemului poate creste, descreste sau ramane la fel. Sunteti liber sa-l incercati si sa raportati ce efect ati simtit (sau daca nu a existat unul). Este necesar sa reinstalati framework-ul si sa reporniti dupa aceasta modificare.</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Log-ul nu a putut fi citit:</string>
     <string name="logs_save_failed">Log-ul nu a putut fi scris pe cardul SD :</string>
     <string name="sdcard_not_writable">Cardul SD nu a fost gasit sau nu poate fi scris</string>

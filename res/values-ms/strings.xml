@@ -35,6 +35,8 @@
     <string name="phone_not_compatible">Xposed tidak (lagi) sesuai dengan versi Android SDK %1$d atau akitek pemprosessan anda (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed belum lagi diuji dengan versi Android SDK %d, tetapi kelihatan sesuai. Anda boleh mencuba memasangnya jika anda fikirkan sesuatu cabaran.</string>
 
+    <!-- File operations -->
+
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed modul belum aktif lagi</string>
     <string name="module_empty_description">(Keterangan tidak tersedia)</string>
@@ -80,7 +82,7 @@
     <string name="settings_performance_experiment">Prestasi experimen</string>
     <string name="settings_performance_experiment_summary">Jika anda membolehkan ini, Prestasi sistem anda mungkin sama ada kenaikan, penurunan atau tetap sama. Jangan ragu untuk mencuba dan membuat laporan yang kesan yang anda lihat (atau jika tidak ada pada semua). Anda perlu memasang semula framework dan reboot selepas menukar ini.</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Tidak boleh membaca log:</string>
     <string name="logs_save_failed">Tidak boleh menulis log ke Kad SD:</string>
     <string name="sdcard_not_writable">Kad SD tidak ditemui atau hanya baca sahaja</string>

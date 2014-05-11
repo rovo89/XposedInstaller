@@ -35,6 +35,8 @@
     <string name="phone_not_compatible">지금 이 시스템의 안드로이드 ADK 버전%1$d이나 프로세서 아키텍쳐와 호환되지 않습니다. (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed 프레임워크의 지금 이 시스템의 안드로이드 ADK 버전%d에 대한 호환성이 확인되지 않았으나 호환의 가능성은 있습니다. 실험적으로 설치를 시도하실 순 있습니다.\n(단, 호환성에 대한 사전 확인이 되지 않은 프레임워크를 설치한 뒤 무한한 반복적 재시작이 발생할 수 있으며, 이에 대한 <b>최종 사용상 책임은 행위자 본인에게 있습니다</b>.)</string>
 
+    <!-- File operations -->
+
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed 모듈이 아직 활성화 되지 않았습니다.</string>
     <string name="module_empty_description">(설명없음)</string>
@@ -80,7 +82,7 @@
     <string name="settings_performance_experiment">성능에 대한 실험적인 기능 들</string>
     <string name="settings_performance_experiment_summary">이를 활성화하면 Xposed 모듈의 속도가 빨라질 수도, 나빠질 수도, 별 변화가 없을 수 있습니다.\n시도해 보고 생긴 달라진 점이나 문제점을 개발자에게 전달해 완성도를 높여줄 수 있습니다./n이를 활성화하거나 비활성화 한 뒤엔 Xposed 프레임워크를 재설치 해야 적용이 됩니다.</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">내역을 읽을 수 없습니다 : </string>
     <string name="logs_save_failed">내장 메모리에 내역을 저장할 수 없습니다 : </string>
     <string name="sdcard_not_writable">내장 메모리에 데이터를 쓸 수 없거나 내장 메모리를 찾을 수 없습니다.</string>

@@ -30,6 +30,8 @@
     <string name="phone_not_compatible">اكسبود ليس (حتى الآن) متوافق مع الإصدار الروبوت SDK %1$d أو هندسة المعالج (%2$s).</string>
     <string name="not_tested_but_compatible">لم يتم اختباره اكسبود مع الروبوت الإصدار SDK %d, ولكن يبدو أن تكون متوافقة. يمكنك محاولة تثبيته إذا كنت تشعر المغامرة.</string>
 
+    <!-- File operations -->
+
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">لم يتم تنشيط الوحدة النمطية إكسبوسيد بعد</string>
     <string name="module_empty_description">(لا يوجد وصف المقدمة)</string>
@@ -74,6 +76,8 @@
     <string name="settings_group_experimental">التجريبية</string>
     <string name="settings_performance_experiment">تجربة الأداء</string>
     <string name="settings_performance_experiment_summary">إذا قمت بتمكين هذا، أداء النظام الخاص بك قد أما زيادة أو إنقاص أو البقاء نفس. لا تتردد في جربة وتقريراً عن تأثير الذي تراه (أو إذا كان هناك لا شيء على الإطلاق). كنت بحاجة إلى تثبيت الإطار وإعادة تشغيل الكمبيوتر بعد تغيير هذا.</string>
+
+    <!-- Logs tab  -->
 
     <!-- About tab -->
     <string name="about_developers_label">مطوري الرئيسية:</string>

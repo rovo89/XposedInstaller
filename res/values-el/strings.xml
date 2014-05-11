@@ -35,6 +35,8 @@
     <string name="phone_not_compatible">Το Xposed δεν είναι (ακόμα) συμβατό με την έκδοση %1$d του Android SDK ή την αρχιτεκτονική (%2$s) του επεξεργαστή σας.</string>
     <string name="not_tested_but_compatible">Το Xposed δεν έχει τεσταριστεί με την έκδοση %d του Android SDK, αλλά φαίνεται να είναι συμβατό. Μπορείτε να δοκιμάσετε να το εγκαταστήσετε αν είστε ριψοκίνδυνος τύπος.</string>
 
+    <!-- File operations -->
+
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Το Xposed module δεν έχει ενεργοποιηθεί ακόμα</string>
     <string name="module_empty_description">(δεν υπάρχει περιγραφεί)</string>
@@ -80,7 +82,7 @@
     <string name="settings_performance_experiment">Πείραμα έπίδοσης</string>
     <string name="settings_performance_experiment_summary">Αν ενεργοποιήσετε αυτήν την επιλογή, η επίδοση του συστήματος σας μπορεί είτε να μεγαλώσει, είτε να μικραίνει ή να μείνει ίδια. Δοκιμάστε το ελεύθερα και αναφέρετε τι αποτέλεσμα έχει (ή το ότι δεν έχει αποτέλεσμα). Μπορείτε να επαναεγκαταστήσετε το framework και να επανεκκινήσετε αφού αλλάξετε αυτήν την επιλογή.</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Αδυναμία διαβάσματος των αρχείων καταγραφής:</string>
     <string name="logs_save_failed">Αδυναμία αποθήκευσης του αρχείου καταγραφής στην κάρτα SD:</string>
     <string name="sdcard_not_writable">Η κάρτα SD δεν βρέθηκε ή δεν είναι εγγράψιμη</string>

@@ -119,7 +119,7 @@
     <string name="settings_performance_experiment">Experimentální výkon</string>
     <string name="settings_performance_experiment_summary">Zapnutím této volby se systém může zrychlit, ale také zpomalit, nebo zůstat stejný. Tuto vlastnost je vhodné řádně otestovat. Po změně této hodnoty je nutné přeinstalovat framework a restartovat.</string>
 
-    <!-- Logs tab -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Nepodařilo se načíst log:</string>
     <string name="logs_save_failed">Nepodařilo se uložit log na SD kartu:</string>
     <string name="sdcard_not_writable">SD karta nebyla nenalezena nebo na ni nelze zapisovat</string>

@@ -23,7 +23,7 @@
     <string name="tabAbout">Quant a</string>
     <string name="tabAboutDescription">Informació sobre les persones que van crear Xposed, on obtenir ajuda per a aquesta aplicació, etc</string>
 
-    <!-- Instal·ler tab -->
+    <!-- Installer tab -->
     <string name="install">Instal·la / Actualitza</string>
     <string name="uninstall">Desinstal·la</string>
     <string name="installedVersion">actiu</string>
@@ -43,7 +43,7 @@
     <string name="install_warning">En alguns casos, el vostre dispositiu potser no torna a iniciar-se després d\'instal·lar Xposed.\n\nIf you never heard about \"soft brick\" and \"bootloop\" before or if you don\'t know how to recover from such a situation, do <b>NOT</b> install Xposed!\n\nIn any case, having a recent backup is highly recommended.</string>
     <string name="dont_show_again">No ho tornis a mostrar</string>
 
-    <!--  File operations -->
+    <!-- File operations -->
     <string name="root_failed">No s\'ha pogut obtenir accés de superusuari.\n\nComproveu que el dispositiu està ben rootejat i que no heu bloquejat comandes shell.</string>
     <string name="file_extract_failed">No s\'ha pogut extreure %s</string>
     <string name="file_mounting_writable">Muntant %s amb permisos d\'escriptura&#8230;</string>
@@ -81,7 +81,7 @@
     <string name="module_support">Suport</string>
     <string name="module_app_info">Informació de l\'aplicació</string>
     <string name="module_uninstall">Desinstal·la</string>
-	
+
     <!-- Download tab -->
     <string name="menuSearch">Cerca</string>
     <string name="menuReload">Actualitza</string>
@@ -119,7 +119,7 @@
     <string name="settings_performance_experiment">Experiment de rendiment</string>
     <string name="settings_performance_experiment_summary">Si ho activeu, el rendiment del sistema podria augmentar, disminuir o quedar-se igual. No dubteu en provar i informar dels efectes que es noten (o si no n\'hi ha cap en absolut). Cal tornar a instal·lar el framework i reiniciar després de canviar això.</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">No s\'ha pogut llegir el registre:</string>
     <string name="logs_save_failed">No s\'ha pogut escriure el registre a la targeta SD:</string>
     <string name="sdcard_not_writable">No s\'ha trobat la targeta SD o no s\'hi pot escriure</string>
@@ -128,7 +128,7 @@
     <string name="logs_cleared">Registre net</string>
     <string name="logs_clear_failed">No s\'ha pogut netejar el registre:</string>
     <string name="log_is_empty">El registre està buit</string>
-    
+
     <!-- About tab -->
     <string name="about_developers_label">Desenvolupadors principals:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> i <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>

@@ -22,7 +22,7 @@
     <string name="tabLogsDescription">Отображение и сохранение/отправка журнала Xposed framework.</string>
     <string name="tabAbout">О программе</string>
     <string name="tabAboutDescription">Узнайте о людях, которые создали Xposed, о том, где можно получить поддержку и т.д.</string>
-  
+
     <!-- Installer tab -->
     <string name="install">Установить/Обновить</string>
     <string name="uninstall">Удалить</string>
@@ -45,7 +45,7 @@
     <string name="dont_show_again">Больше не показывать</string>
     <string name="install_known_issue">Похоже, присутствует известная несовместимость (\"%s\") с Вашей прошивкой. Пожалуй, Вам не стоит устанавливать Xposed. Нажмите здесь для дополнительной информации.</string>
 
-    <!--  File operations -->
+    <!-- File operations -->
     <string name="root_failed">Сбой получения прав рут-доступа.\n\nУбедитесь, что на устройстве есть рут и команды оболочки не блокируются.</string>
     <string name="file_extract_failed">Невозможно извлечь %s</string>
     <string name="file_mounting_writable">Установка %s для записи&#8230;</string>
@@ -88,7 +88,7 @@
     <string name="module_support">Поддержка</string>
     <string name="module_app_info">О приложении</string>
     <string name="module_uninstall">Удалить</string>
-    
+
     <!-- Download tab -->
     <string name="menuSearch">Поиск</string>
     <string name="menuReload">Повторная загрузка</string>
@@ -145,7 +145,7 @@
     <string name="settings_theme_dark">Тёмная</string>
     <string name="settings_theme_black">Чёрная (подходит для экранов AMOLED)</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Невозможно прочитать журнал:</string>
     <string name="logs_save_failed">Невозможно записать журнал на SD-карту:</string>
     <string name="sdcard_not_writable">SD-карта не найдена или запись на неё невозможна</string>
@@ -166,7 +166,7 @@
     <string name="about_support_label">Поддержка и обсуждение:</string>
     <string name="about_support_warning">Эта ссылка <b>только</b> на Xposed Installer и фреймворк! Если Вам нужна поддержка по какому-либо модулю - <b>НЕ</b> используйте её, связывайтесь с автором модуля.</string>
     <string name="about_libraries_label">Использованные библиотеки:</string>
-    
+
     <!-- DownloadView -->
     <string name="download_view_download">Загрузка</string>
     <string name="download_view_install">Установка</string>
@@ -176,13 +176,13 @@
     <string name="download_view_waiting">Ожидание загрузки</string>
     <string name="download_view_successful">Загрузка прошла успешно</string>
     <string name="download_view_failed">Ошибка загрузки (%d)</string>
-   
+
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">Сумма MD5 не совпадает (загружено: %1$s, ожидалось: %2$s)</string>
     <string name="download_could_not_read_file">Невозможно прочесть загруженный файл: %s</string>
     <string name="download_no_valid_apk">Загруженный файл не является APK (или несовместим)</string>
     <string name="download_incorrect_package_name">Некорректное название пакета (загружено: %1$s, ожидалось: %2$s)</string>
-   
+
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Загрузка %1$s прервана: %2$d (%3$s)</string>
     <string name="repo_download_failed">Загрузка %1$s прервана: %2$s</string>

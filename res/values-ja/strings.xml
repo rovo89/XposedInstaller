@@ -45,8 +45,8 @@
     <string name="install_known_issue">お使いのROMには互換性の問題(\"%s\")があるようです。Xposedをインストールしても動作しなかったり重大な問題が起きる可能性があります。ここをタップすると詳細を表示します。</string>
     <string name="install_reverted">app_processバージョン\"%1$s\"をインストールしましたが、バージョン\"%2$s\"が見つかりました。古いファイルが復元されるのを防ぐにはリカバリ(自動か手動)からインストールしてください。</string>
     <string name="uninstall_reverted">app_processをアンインストールしましたが、バージョン\"%s\"が見つかりました。古いファイルが復元されるのを防ぐにはリカバリ(自動か手動)からアンインストールしてください。</string>
-     <string name="tap_to_dismiss">タップで無視</string>
-     <string name="sdcard_location">SDカード: %s</string>
+    <string name="tap_to_dismiss">タップで無視</string>
+    <string name="sdcard_location">SDカード: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">rootアクセスの取得に失敗しました。\n\n端末がrootedか、シェルコマンドをブロックしていないか確認してください。</string>
@@ -148,7 +148,7 @@
     <string name="settings_theme_dark">ダーク</string>
     <string name="settings_theme_black">黒(AMOLED端末におすすめ)</string>
 
-    <!-- Logs tab -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">ログを読み込めません:</string>
     <string name="logs_save_failed">SDカードにログを書き込めません:</string>
     <string name="sdcard_not_writable">SDカードが無いか書き込み可能でありません。</string>

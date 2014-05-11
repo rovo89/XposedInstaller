@@ -42,8 +42,8 @@
     <string name="install_warning_title">小心！</string>
     <string name="install_warning">某些情况下，您的设备将在安装 Xposed 之后无法启动。\n\n如果您之前没有听说过“软变砖”或“无限重启”，或者您不知道如何从这种情况恢复，请<b>不要</b>安装 Xposed！\n\n无论如何，强烈建议准备好最近的备份。</string>
     <string name="dont_show_again">不要再显示这个</string>
-    
-    <!--  File operations -->
+
+    <!-- File operations -->
     <string name="root_failed">无法获取 root 权限。\n\n请确认您的设备已经正确的 root 以及您没有屏蔽 shell 命令。</string>
     <string name="file_extract_failed">无法提取 %s</string>
     <string name="file_mounting_writable">正在挂载 %s 为可写入&#8230;</string>
@@ -66,7 +66,7 @@
     <string name="file_writing_recovery_command">正在写入 Recovery 命令&#8230;</string>
     <string name="file_writing_recovery_command_failed">写入 Recovery 命令失败。请换一种安装方式。</string>
     <string name="file_done">完成！修改将于重启之后生效。</string>
-    
+
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed 模块未激活</string>
     <string name="module_empty_description">(未提供描述)</string>
@@ -119,7 +119,7 @@
     <string name="settings_performance_experiment">性能试验</string>
     <string name="settings_performance_experiment_summary">如果您启用该选项，您的系统性能可能更好、更差或没有变化。请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启。</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">无法读取日志：</string>
     <string name="logs_save_failed">无法将日志写入 SD 卡：</string>
     <string name="sdcard_not_writable">未找到 SD 卡或不可写入</string>

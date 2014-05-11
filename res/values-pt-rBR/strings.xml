@@ -35,6 +35,8 @@
     <string name="phone_not_compatible">O Xposed não é compatível (ainda) com o Android SDK versão %1$d ou a arquitetura do seu processador (%2$s).</string>
     <string name="not_tested_but_compatible">O Xposed não foi testado com o Android SDK versão %d, mas parece ser compatível. Você pode tentar instalá-lo se estiver se sentido aventureiro.</string>
 
+    <!-- File operations -->
+
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">O módulo do Xposed ainda não foi ativado</string>
     <string name="module_empty_description">(nenhuma descrição fornecida)</string>
@@ -80,7 +82,7 @@
     <string name="settings_performance_experiment">Experiência de performance</string>
     <string name="settings_performance_experiment_summary">Ao ativar isso, a performance do seu sistema pode melhorar, piorar ou ficar na mesma. Sinta-se livre para experimentar e me reportar os efeitos (ou ausência deles). Você precisa reinstalar o framework e reiniciar após ativar esta opção.</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Não foi possível ler o registro:</string>
     <string name="logs_save_failed">Não foi possível gravar o registro no cartão SD:</string>
     <string name="sdcard_not_writable">O cartão SD não foi encontrado ou não permitiu a gravaçãSo</string>

@@ -30,6 +30,8 @@
     <string name="phone_not_compatible">Xposed non è (ancora) compatibile con l\'SDK Android %1$d o con l\'architettura (%2$s) del tuo processore.</string>
     <string name="not_tested_but_compatible">Xposed non è stato testato con l\'SDK Android %d, ma sembra essere compatibile. Puoi provare ad installarlo, se sei avventuroso.</string>
 
+    <!-- File operations -->
+
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Il modulo Xposed non è stato ancora attivato</string>
     <string name="module_empty_description">(descrizione non disponibile)</string>
@@ -70,6 +72,8 @@
     <string name="settings_performance_experiment">Esperimento performance</string>
     <string name="settings_performance_experiment_summary">Se attivi questo, la performance del sistema potrebbe aumentare, diminuire o restare invariata. Sei libero di testarla e segnalarci gli effetti che essa ha avuto. È necessario reinstallare il framework e riavviare dopo aver cambiato questo.</string>
 
+    <!-- Logs tab  -->
+
     <!-- About tab -->
     <string name="about_developers_label">Sviluppatori principali:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> e <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
@@ -81,7 +85,7 @@
     <string name="about_support_label">Ottieni supporto:</string>
     <string name="about_support_warning">Questo link è <b>solo</b> per l\'installer ed il framework! Se hai bisogno di supporto per un modulo, <b>non</b> usare questo, contatta l\'autore del modulo.</string>
     <string name="about_libraries_label">Librerie utilizzate:</string>
-    
+
     <!-- DownloadView -->
     <string name="download_view_download">Download</string>
     <string name="download_view_install">Installa</string>

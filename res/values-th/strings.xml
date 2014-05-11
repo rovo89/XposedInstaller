@@ -43,7 +43,7 @@
     <string name="install_warning">บางกรณี อุปกรณ์ของคุณอาจบู๊ตไม่ได้อีกหลังติดตั้ง Xposed\n\nถ้าคุณไม่เคยได้ยิน \"soft brick\" และ \"bootloop\" มาก่อน หรือไม่รู้ว่าจะแก้ปัญหาอย่างไรหลังเกิดปัญหาเหล่านั้น <b>อย่า</b>ติดตั้ง Xposed!\n\nอย่างไรก็ตาม การแบ๊คอัพข้อมูลไว้ก่อนก็เป็นสิ่งที่ดี</string>
     <string name="dont_show_again">ห้ามแสดงอีก</string>
 
-    <!--  File operations -->
+    <!-- File operations -->
     <string name="root_failed">ไม่สามารถใช้สิทธิ์ root\n\nแน่ใจนะว่าเครื่องคุณรูทมาถูกต้องแล้ว และคุณไม่ได้บล๊อค shell commands</string>
     <string name="file_extract_failed">ไม่สามารถแตกไฟล์ %s</string>
     <string name="file_mounting_writable">กำลังเมานท์ %s ที่เขียนได้&#8230;</string>
@@ -119,7 +119,7 @@
     <string name="settings_performance_experiment">การทดลองเกี่ยวกับประสิทธิภาพ</string>
     <string name="settings_performance_experiment_summary">ถ้าคุณเปิดโหมดนี้ ประสิทธิภาพเครื่องคุณอาจดีขึ้น ด้อยลงหรือเท่าเดิม ถ้าคุณลองแล้วให้รายการงานกลับมาด้วยว่าใช้แล้วเป็นอย่างไร (หรือไม่เป็นอะไรเลย) คุณจะต้องติดตั้งเฟรมเวิร์คใหม่และรีบู๊ตเมื่อคุณเปิด/ปิดโหมดนี้</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">อ่าน log ไม่ได้:</string>
     <string name="logs_save_failed">เขียน log ไปยัง SD การ์ดไม่ได้:</string>
     <string name="sdcard_not_writable">SD การ์ดไม่พบหรือไม่สามารถเขียนได้</string>

@@ -35,6 +35,8 @@
     <string name="phone_not_compatible">Xposed Android SDK versiyası %1$d ya da sizin prosessor arxitektura(%2$s)\'sı ilə uyğun deyil.</string>
     <string name="not_tested_but_compatible">Xposed Android SDK versiya %d ilə test edilməyib, ancaq uyğun olduğu görünür. Əgər macəra sevirsinizsə,yükləyə bilərsiz :).</string>
 
+    <!-- File operations -->
+
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed modulu hələ ki aktiv deyil</string>
     <string name="module_empty_description">(heç bir məlumatla təmin olunmayıb)</string>
@@ -80,7 +82,7 @@
     <string name="settings_performance_experiment">İcra təcrübəsi</string>
     <string name="settings_performance_experiment_summary">Əgər bunu aktiv etsəniz,sistem istifadəsi zəifləyə,arta və ya olduğu kimi qala bilər. Cəhd etməkdən çəkinməyin və bu barədə məruzə verin. Bunu dəyişdiktən sonra framework\'ü yenidən quraşdırmalı və cihazı yenidən başlatmalısınız.</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Loqu oxuya bilmədi:</string>
     <string name="logs_save_failed">Loqu yaddaş kartına yaza bilmədi:</string>
     <string name="sdcard_not_writable">Yaddaş kartı tapılmadı və ya yazmaq üçün icazə yoxdur</string>

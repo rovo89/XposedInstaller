@@ -43,7 +43,7 @@
     <string name="install_warning">Trong một số trường hợp, thiết bị của bạn có thể không khởi động được sau khi cài Xposed.\n\nNếu bạn chưa từng nghe nói về \"soft brick\" và \"bootloop\" hoặc nếu bạn không biết cách xử lý trong tình huống đó, thì <b>ĐỪNG</b> cài Xposed!\n\nDù thế nào, bạn cũng nên có một bản sao lưu mới.</string>
     <string name="dont_show_again">Đừng hiện lại nữa</string>
 
-    <!--  File operations -->
+    <!-- File operations -->
     <string name="root_failed">Không thể lấy quyền root.\n\nHãy đảm bảo rằng thiết bị của bạn đã root và bạn không chặn các lệnh shell.</string>
     <string name="file_extract_failed">Không thể giải nén %s</string>
     <string name="file_mounting_writable">Đặt chế độ ghi cho %s &#8230;</string>
@@ -119,7 +119,7 @@
     <string name="settings_performance_experiment">Thử nghiệm hiệu năng</string>
     <string name="settings_performance_experiment_summary">Nếu bật tính năng này, hiệu năng hệ thống của bạn có thể tăng, giảm, hoặc giữ nguyên như cũ.  Nếu muốn, hãy thử và cho chúng tôi biết kết quả (ngay cả khi không thấy có thay đổi gì). Bạn phải cài lại framework và khởi động lại sau khi thay đổi tuỳ chọn này.</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Không thể đọc nhật ký:</string>
     <string name="logs_save_failed">Không thể ghi nhật ký vào thẻ SD:</string>
     <string name="sdcard_not_writable">Không tìm thấy thẻ SD hoặc thẻ không ghi lên được</string>
@@ -128,7 +128,6 @@
     <string name="logs_cleared">Đã xoá nhật ký</string>
     <string name="logs_clear_failed">Không thể xoá nhật ký:</string>
     <string name="log_is_empty">Nhật ký trống</string>
-
 
     <!-- About tab -->
     <string name="about_developers_label">Các tác giả chính:</string>

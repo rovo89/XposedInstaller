@@ -49,7 +49,7 @@
     <string name="tap_to_dismiss">Tap to dismiss</string>
     <string name="sdcard_location">SD card: %s</string>
 
-    <!--  File operations -->
+    <!-- File operations -->
     <string name="root_failed">Failed to get root access.\n\nMake sure your device is rooted properly and you have not blocked shell commands.</string>
     <string name="file_extract_failed">Could not extract %s</string>
     <string name="file_mounting_writable">Mounting %s writable&#8230;</string>
@@ -149,7 +149,7 @@
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_theme_black">Black (useful for AMOLED screens)</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Could not read log:</string>
     <string name="logs_save_failed">Could not write log to SD card:</string>
     <string name="sdcard_not_writable">SD card not found or not writable</string>

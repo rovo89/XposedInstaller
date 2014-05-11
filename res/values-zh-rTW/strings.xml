@@ -30,6 +30,8 @@
     <string name="phone_not_compatible">Xposed目前不相容 Android SDK 版本 %1$d 或者您的處理器架構(%2$s)。</string>
     <string name="not_tested_but_compatible">Xposed未在 Android SDK 版本 %d 上測試，但它似乎是可相容的。如果您熱愛冒險，您可以試試安裝它。</string>
 
+    <!-- File operations -->
+
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed模組未啟動</string>
     <string name="module_empty_description">(未提供描述)</string>
@@ -69,6 +71,8 @@
     <string name="settings_group_experimental">實驗性</string>
     <string name="settings_performance_experiment">性能試驗</string>
     <string name="settings_performance_experiment_summary">如果您啟用該選項，您的系統性能可能更好、更差或沒有變化。請隨意試用並回報您觀察到的效果(或者根本沒變化)。修改選項後您需要重新安裝框架並重啟。</string>
+
+    <!-- Logs tab  -->
 
     <!-- About tab -->
     <string name="about_developers_label">主要開發者：</string>

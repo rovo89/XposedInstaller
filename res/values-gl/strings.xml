@@ -30,6 +30,8 @@
     <string name="phone_not_compatible">Xposed non é (aínda) compatible coa versión do Android SDK %1$d ou arquitectura de procesador (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed non foi probado coa versión do Android SDK %d, pero parece ser apoiada. Podes probar instala-lo sentir aventureiro.</string>
 
+    <!-- File operations -->
+
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed módulo aínda non está activo</string>
     <string name="module_empty_description">(Sen descrición se forneceu)</string>
@@ -69,6 +71,8 @@
     <string name="settings_group_experimental">Experimental</string>
     <string name="settings_performance_experiment">Performance experiment</string>
     <string name="settings_performance_experiment_summary">Se permitir tanto, o rendemento do sistema pode aumentar, diminuír ou permanecer o mesmo. Síntase libre para probar e informar o efecto do que é (ou se non hai ningún efecto). Ten que reinstalar o Stock Framework e reiniciar despois de cambiar esto.</string>
+
+    <!-- Logs tab  -->
 
     <!-- About tab -->
     <string name="about_developers_label">Desarrolladores principales:</string>

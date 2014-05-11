@@ -45,7 +45,7 @@
     <string name="dont_show_again">Bunu bir daha gösterme</string>
     <string name="install_known_issue">Kullandığınız rom sürümü ile (\"%s\") Bilinen bir uyumsuzluk sorunu var gibi görünüyor. Muhtemelen Xposed yüklemeniz gerekir. Daha fazla bilgi için buraya tıklayın.</string>
 
-    <!--  File operations -->
+    <!-- File operations -->
     <string name="root_failed">Root erişimi alınamadı.\n\nLütfen cihazınının root erişiminin açık olduğuna ve komut alabildiğine emin olun.</string>
     <string name="file_extract_failed">Dosya %s ayıklanamadı</string>
     <string name="file_mounting_writable">Montaj %s yazıabilir&#8230;</string>
@@ -145,7 +145,7 @@
     <string name="settings_theme_dark">Karanlık</string>
     <string name="settings_theme_black">Siyah (AMOLED ekranlar için yararlı)</string>
 
-    <!--  Logs tab  -->
+    <!-- Logs tab  -->
     <string name="logs_load_failed">Log kayıtları okunamadı:</string>
     <string name="logs_save_failed">Log kayıtlarını SD karta yazamadı:</string>
     <string name="sdcard_not_writable">SD kart yazılabilir değil veya bulunamadı</string>

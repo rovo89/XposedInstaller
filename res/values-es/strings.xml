@@ -15,8 +15,8 @@
     <string name="welcome_update_available">Una o más actualizaciones para los módulos están disponibles.</string>
     <string name="tabSettings">Ajustes</string>
     <string name="tabSettingsDescription">Ven a esta sección para configurar el instalador Xposed y el framework.</string>
-    <string name="tabAbout">Acerca de</string>
     <string name="tabLogsDescription">Mira y guarda/envía logs de Xposed Framework.</string>
+    <string name="tabAbout">Acerca de</string>
     <string name="tabAboutDescription">Información sobre las personas que crearon Xposed, dónde obtener ayuda para esta aplicación, etc</string>
 
     <!-- Installer tab -->
@@ -28,11 +28,13 @@
     <string name="soft_reboot">Reinicio Software</string>
     <string name="reboot">Reinicio</string>
     <string name="areyousure">¿Estás seguro?</string>
+    <string name="phone_not_compatible">Xposed no es (todavía) compatible con la versión de Android SDK %1$d o la arquitectura de su procesador (%2$s).</string>
+    <string name="not_tested_but_compatible">Xposed no ha sido probado con la versión de Android SDK %d, pero parece ser compatible. Usted puede tratar de instalarlo si se siente aventurero.</string>
     <string name="install_warning_title">¡Ten cuidado!</string>
     <string name="install_warning">En algunos casos, el dispositivo podría no volver a arrancar después de instalar Xposed. \n\nSi nunca ha escuchado hablar de softbrick o bootloop antes o si no sabe cómo recuperar el dispositivo de una situación de este tipo, <b>NO</b> instale Xposed! \n\nEn cualquier caso, es muy recomendable tener una copia de seguridad reciente.</string>
     <string name="dont_show_again">No volver a mostrar</string>
-    <string name="phone_not_compatible">Xposed no es (todavía) compatible con la versión de Android SDK %1$d o la arquitectura de su procesador (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed no ha sido probado con la versión de Android SDK %d, pero parece ser compatible. Usted puede tratar de instalarlo si se siente aventurero.</string>
+
+    <!-- File operations -->
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Módulo Xposed aún no está activo</string>
@@ -67,17 +69,19 @@
     <string name="download_section_older">Hace más de 30 días</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_download">Descargar</string>
     <string name="settings_group_installation">Instalación</string>
     <string name="settings_install_mode">Modo de instalación</string>
     <string name="install_mode_normal">Clasica (instalar en /system)</string>
     <string name="install_mode_recovery_auto">Recovery (flashear zip automáticamente)</string>
     <string name="install_mode_recovery_manual">Recovery (poner zip en la tarjeta SD y flashear manualmente)</string>
-    <string name="settings_group_experimental">Experimental</string>
+    <string name="settings_group_download">Descargar</string>
     <string name="settings_enable_downloads">Activar descargas</string>
     <string name="settings_enable_downloads_summary">Permitir a Instalador Xposed comprobar si hay actualizaciones y nuevos módulos</string>
+    <string name="settings_group_experimental">Experimental</string>
     <string name="settings_performance_experiment">Performance experiment</string>
     <string name="settings_performance_experiment_summary">Si habilita esto, el rendimiento del sistema puede aumentar, disminuir o permanecer igual. No dude en probar e informar cuyo efecto se ve (o si no hay ninguno en absoluto). Es necesario volver a instalar el Stock Framework y reiniciar después de cambiar esto.</string>
+
+    <!-- Logs tab  -->
 
     <!-- About tab -->
     <string name="about_developers_label">Desarrolladores principales:</string>

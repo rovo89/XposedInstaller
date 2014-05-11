@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="translator">czeci</string>
+
+    <!-- General/various strings -->
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome">Witamy <b>w aplikacji Xposed</b>!\nProszę wybierz co chcesz zrobić:</string>
+    <string name="tabInstall">Framework</string>
+    <string name="tabInstallDescription">Tutaj możesz zarządzać procesem framework dostarczonym przez aplikację Xposed, która jest niezbędna do pracy modułów.</string>
     <string name="tabModules">Moduły</string>
+    <string name="tabModulesDescription">"Proces framework nie dodaje żadnych funkcji. Do tego potrzebujesz modułów. W tej sekcji można włączyć moduły po ich zainstalowaniu."</string>
+    <string name="tabDownload">Pobierz</string>
+    <string name="tabDownloadDescription">Ta sekcja umożliwia dostęp do repozytorium modułów, dzięki czemu można wyszukać i pobrać te, które lubisz i aktualizować je na bieżąco.</string>
+    <string name="welcome_framework_update_available">Aktualizacja procesu framework dostarczanego przez aplikację Xposed jest dostępna.</string>
+    <string name="welcome_update_available">Jedna lub więcej aktualizacji dla modułów jest dostępna.</string>
+    <string name="tabSettings">Ustawienia</string>
+    <string name="tabSettingsDescription">Przejdź do tej sekcji, aby skonfigurować aplikację Xposed i proces framework.</string>
+    <string name="tabAbout">O aplikacji</string>
+    <string name="tabAboutDescription">Dowiedz się o ludziach, którzy stworzyli Xposed, od których można uzyskać wsparcie dla tej aplikacji, itp.</string>
+
+    <!-- Installer tab -->
     <string name="install">Zainstaluj lub uaktualnij</string>
     <string name="uninstall">Odinstaluj i przywróć systemowe procesy</string>
     <string name="installedVersion">aktywna</string>
@@ -12,6 +29,10 @@
     <string name="areyousure">Czy jesteś pewien?</string>
     <string name="phone_not_compatible">Xposed nie jest (jeszcze) kompatybilne z Android SDK wersją %1$d lub z twoją architektórą procesora (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed nie był testowany z tą wersją Android SDK %d, ale wygląda na to, że jest kompatybilna. Możesz spróbować instalacji jeśli czujesz się odważny.</string>
+
+    <!-- File operations -->
+
+    <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Moduł Xposed nie jest jeszcze aktywny</string>
     <string name="module_empty_description">(brak dołączonego opisu)</string>
     <string name="module_no_ui">Ten moduł nie zawiera interfejsu użytkownika</string>
@@ -20,6 +41,8 @@
     <string name="warning_xposed_min_version">Ten moduł wymaga nowszej wersji XposedBridge (%d) i nie może być aktywowany.</string>
     <string name="no_min_version_specified">Ten moduł nie określa wymaganej wersji XposedBridge.</string>
     <string name="warning_min_version_too_low">Ten moduł był stworzony dla XposedBridge w wersji %1$d, ale przez niekompatybilne zmiany w wersji %2$d, został wyłączony.</string>
+
+    <!-- Download tab -->
     <string name="menuSearch">Szukaj</string>
     <string name="menuReload">Przeładuj</string>
     <string name="changes">Zmiany:</string>
@@ -38,15 +61,26 @@
     <string name="download_section_7d">Ostatnie 7 dni</string>
     <string name="download_section_30d">Ostatnie 30 dni</string>
     <string name="download_section_older">Więcej niż 30 dni temu</string>
+
+    <!-- Settings tab -->
     <string name="settings_group_download">Pobierz</string>
     <string name="settings_enable_downloads">Włącz pobieranie</string>
     <string name="settings_enable_downloads_summary">Zezwól aplikacji Xposed na sprawdzanie dostępności aktualizacji i nowych modułów</string>
     <string name="settings_group_experimental">Eksperyment</string>
     <string name="settings_performance_experiment">Wyniki eksperymentu</string>
     <string name="settings_performance_experiment_summary">Jeśli to włączysz, wydajność systemu może albo się zwiększyć, zmniejszyć lub pozostać taka sama. Prosimy spróbować i zaraportować nam, który efekt widzisz. Musisz zainstalować ponownie framework i zresetować telefon po zmianie tego.</string>
+
+    <!-- Logs tab  -->
+
+    <!-- About tab -->
+    <string name="about_developers_label">Moi deweloperzy:</string>
+    <string name="translator">czeci</string>
+    <string name="about_version_label">Wersja tej aplikacji:</string>
     <string name="about_source_label">Źródło kodu:</string>
     <string name="about_support_label">Uzyskaj wsparcie z:</string>
     <string name="about_libraries_label">Używane biblioteki:</string>
+
+    <!-- DownloadView -->
     <string name="download_view_download">Pobierz</string>
     <string name="download_view_install">Instaluj</string>
     <string name="download_view_cancel">Anuluj</string>
@@ -55,25 +89,16 @@
     <string name="download_view_waiting">Pobieranie oczekuje</string>
     <string name="download_view_successful">Pobieranie zakończone</string>
     <string name="download_view_failed">Błędne pobranie (błąd %d)</string>
+
+    <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">Suma MD5 jest niepoprawna (pobrano: %1$s, przewidziano: %2$s)</string>
     <string name="download_could_not_read_file">Nie można odczytać pliku ściągniętego: %s</string>
     <string name="download_no_valid_apk">Ściągnięte pliki nie są poprawne (lub niekompatybilne)</string>
     <string name="download_incorrect_package_name">Nazwa paczki jest niewłaściwa (pobrano: %1$s, przewidziano: %2$s)</string>
+
+    <!-- RepoLoader -->
     <string name="repo_download_failed_http">Pobieranie %1$s błędne: %2$d (%3$s)</string>
     <string name="repo_download_failed">Pobieranie %1$s błędne: %2$s</string>
     <string name="repo_load_failed">Nie można załadować repozytorium z %1$s:\n%2$s"</string>
-    <string name="about_developers_label">Moi deweloperzy:</string>
-    <string name="about_version_label">Wersja tej aplikacji:</string>
-    <string name="welcome">Witamy <b>w aplikacji Xposed</b>!\nProszę wybierz co chcesz zrobić:</string>
-    <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Tutaj możesz zarządzać procesem framework dostarczonym przez aplikację Xposed, która jest niezbędna do pracy modułów.</string>
-    <string name="tabModulesDescription">"Proces framework nie dodaje żadnych funkcji. Do tego potrzebujesz modułów. W tej sekcji można włączyć moduły po ich zainstalowaniu."</string>
-    <string name="tabDownload">Pobierz</string>
-    <string name="tabDownloadDescription">Ta sekcja umożliwia dostęp do repozytorium modułów, dzięki czemu można wyszukać i pobrać te, które lubisz i aktualizować je na bieżąco.</string>
-    <string name="welcome_framework_update_available">Aktualizacja procesu framework dostarczanego przez aplikację Xposed jest dostępna.</string>
-    <string name="welcome_update_available">Jedna lub więcej aktualizacji dla modułów jest dostępna.</string>
-    <string name="tabSettings">Ustawienia</string>
-    <string name="tabSettingsDescription">Przejdź do tej sekcji, aby skonfigurować aplikację Xposed i proces framework.</string>
-    <string name="tabAbout">O aplikacji</string>
-    <string name="tabAboutDescription">Dowiedz się o ludziach, którzy stworzyli Xposed, od których można uzyskać wsparcie dla tej aplikacji, itp.</string>
+
 </resources>
