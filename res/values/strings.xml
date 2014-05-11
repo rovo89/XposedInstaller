@@ -4,6 +4,7 @@
     <!-- General/various strings -->
     <string name="menuSend">Send</string>
     <string name="menuSaveToSd">Save to SD card</string>
+    <string name="whichApplication">Complete action using</string>
     <string name="xposed_not_active">The latest version of Xposed is currently not active. Did you install the framework and reboot?</string>
 
     <!-- Welcome screen / main sections -->
