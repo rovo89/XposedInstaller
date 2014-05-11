@@ -42,7 +42,7 @@ public final class NavUtil {
 		Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 		intent.putExtra(Browser.EXTRA_APPLICATION_ID, context.getPackageName());
 
-		if (uri.getHost().equals("repo.xposed.info")) {
+		if ("http".equals(uri.getScheme()) && "repo.xposed.info".equals(uri.getHost())) {
 			Intent browser = new Intent(Intent.ACTION_VIEW, EXAMPLE_URI);
 			ComponentName browserApp = browser.resolveActivity(context.getPackageManager());
 			intent.setComponent(browserApp);
