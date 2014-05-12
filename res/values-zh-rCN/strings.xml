@@ -45,7 +45,7 @@
     <string name="dont_show_again">不要再显示这个</string>
     <string name="install_known_issue">Xposed 与您的 ROM 似乎存在已知的问题 (\"%s\")。安装 Xposed 可能无法正常工作，或是引发一系列问题。点击这里获知详情。</string>
     <string name="install_reverted">之前已经安装版本为 \"%1$s\" 的 app_process，但是现在找到的版本却是 \"%2$s\"。如果您不希望一个旧文件被还原，也许您应该试试通过 Recovery 安装（自动或手动）。</string>
-    <string name="uninstall_reverted">之前已经卸载版本为 \"%1$s\" 的 app_process，但是现在找到的版本却是 \"%2$s\"。如果您不希望一个旧文件被还原，也许您应该试试通过 Recovery 安装（自动或手动）。</string>
+    <string name="uninstall_reverted">app_process 之前已被卸载，现在却找到了版本为 \"%s\" 的。如果您不希望一个旧文件被还原，也许您应该试试通过 Recovery 卸载（自动或手动）。</string>
     <string name="tap_to_dismiss">轻按以消除</string>
     <string name="sdcard_location">SD 卡: %s</string>
 
