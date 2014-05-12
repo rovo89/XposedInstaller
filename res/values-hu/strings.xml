@@ -29,20 +29,61 @@
     <string name="installedVersion">aktív</string>
     <string name="latestVersion">a csomagban</string>
     <string name="versions">Verziók:</string>
+    <string name="install_header_reboot">Újraindítás</string>
     <string name="soft_reboot">Gyors újraindítás</string>
     <string name="reboot">Újraindítás</string>
     <string name="areyousure">Biztos vagy benne?</string>
     <string name="phone_not_compatible">Az Xposed (még) nem kompatibilis a %1$d verziójú Android SDK-val vagy a processzor architektúráddal (%2$s).</string>
     <string name="not_tested_but_compatible">Az Xposed nem volt tesztelve a %d verziójú Android SDK-val, de úgy tűnik, kompatibilis. Megpróbálhatod telepíteni ha elég kalandvágyó vagy.</string>
+    <string name="reboot_failed">Újraindítás sikertelen. Kérlek használd az eszköz rendes újraindítási funkcióját.</string>
+    <string name="auto_flash_note">%s automatikusan flashelve lesz amint megnyomod az "OK"-ot.</string>
+    <string name="manual_flash_note">Kérlek flasheld %s-t az SD kártyáról a művelet befejezéséhez.</string>
+    <string name="reboot_confirmation">Újra akarsz indítani most?</string>
+    <string name="reboot_recovery_confirmation">Újra akarsz indítani recoverybe most?</string>
+    <string name="install_warning_title">Légy óvatos!</string>
+    <string name="install_warning">Néhány esetben az eszközöd talán nem fog bootolni az Xposed telepítése után. Ha sosem hallottál a \"soft brick\"-ről vagy a \"bootloop\"-ról vagy ha nem tudod, hogyan térj vissza egy ilyen helyzetből, <b>NE</b> telepítsd az Xposed-ot. Egy friss mentés megléte erősen ajánlott minden esetben.</string>
+    <string name="dont_show_again">Ne mutasd még egyszer</string>
+    <string name="install_known_issue">Úgy tűnik ismert probléma (\"%s\") van a telepített ROM-mal. Az Xposed telepítése nem működhet vagy súlyos problémákhoz vezethet. Kattints ide a probléma részleteiért.</string>
+    <string name="install_reverted">A \"%1$s\" verziójú app_process lett telepítve korábban, de a \"%2$s\" verziójú található meg most. Ha nem akartad, hogy a régi fájl legyen visszállítva, megpróbálhatod a telepítést recovery-n keresztül (automatikus vagy kézi).</string>
+    <string name="uninstall_reverted">Az app_process el lett korábban távolítva, de a \"%s\" verziójú található meg most. Ha nem akartad, hogy a régi fájl legyen visszaállítva, megpróbálhatod a telepítést recovery-n keresztül (automatikus vagy kézi).</string>
+    <string name="tap_to_dismiss">Érints meg az eltüntetéshez</string>
+    <string name="sdcard_location">SD kártya: %s</string>
 
     <!-- File operations -->
+    <string name="root_failed">Rendszergazda jogok kérése sikertelen.\n\nEllenőrizd, hogy az eszközöd megfelelően van-e rootolva és nincsenek-e blokkolva a shell parancsok.</string>
+    <string name="file_extract_failed">Nem lehetett kicsomagolni: %s</string>
+    <string name="file_mounting_writable">%s csatolása írhatóként&#8230;</string>
+    <string name="file_mount_writable_failed">Nem sikerült %s-t írhatóként csatolni</string>
+    <string name="file_trying_to_continue">Tovább próbálkozunk ennek ellenére&#8230;</string>
+    <string name="file_backup_already_exists">Már létezik mentés: %s</string>
+    <string name="file_backup_not_found">Nem található mentés: %s</string>
+    <string name="file_backup_failed">Mentés készítése sikertelen: %s</string>
+    <string name="file_backup_successful">Mentés elkészítve: %s</string>
+    <string name="file_backup_restoring">Visszállítás mentésből: %s</string>
+    <string name="file_copying">Másolás %s&#8230;</string>
+    <string name="file_copy_failed">Nem sikerült a másolás: %1$s -> %2$s</string>
+    <string name="file_move_failed">Nem sikerült a mozgatás: %1$s -> %2$s</string>
+    <string name="file_set_perms_failed">Engedélyek beállítása sikertelen: %s</string>
+    <string name="file_set_owner_failed">Tulajdonos beállítása sikertelen: %s</string>
+    <string name="file_removing">Eltávolítás %s&#8230;</string>
+    <string name="file_remove_failed">Nem sikerült eltávolítani a %s-t</string>
+    <string name="file_creating_directory">Könyvtár készítése %s&#8230;</string>
+    <string name="file_create_directory_failed">Nem sikerült elkészíteni a %s könyvtárat</string>
+    <string name="file_writing_recovery_command">Recovery parancs írása&#8230;</string>
+    <string name="file_writing_recovery_command_failed">A recovery parancs írása nem sikerült. Kérlek használj egy másik telepítési módszert.</string>
+    <string name="file_done">Kész! A változtatások újraindítás után fognak életbe lépni.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Az Xposed modul még nincs aktiválva</string>
+    <string name="module_is_not_activated_yet_detailed">%s telepítve lett, de még nincs aktiválva.</string>
+    <string name="activate_and_reboot">Aktiválás és újraindítás</string>
+    <string name="module_activated">Az Xposed modul aktiválva lett</string>
     <string name="module_empty_description">(nincs leírás)</string>
     <string name="module_no_ui">A modulnak nincs felhasználói felülete</string>
     <string name="no_xposed_modules_found">Nem található Xposed modul!</string>
     <string name="xposed_module_list_updated">Az Xposed modul lista frissült\nA változtatások újraindítás után lépnek életbe</string>
+    <string name="xposed_module_updated_notification_title">Xposed modul frissítve</string>
+    <string name="xposed_module_updated_notification">Újraindítás a változtatások aktiválásához</string>
     <string name="warning_xposed_min_version">A modulhoz frissebb XposedBridge verzió (%d) szükséges, ezért nem aktiválható.</string>
     <string name="no_min_version_specified">A modul nem tünteti fel a szükséges XposedBridge verziót.</string>
     <string name="warning_min_version_too_low">Ez a modul a(z) %1$d verziójú XposedBridge-hoz lett készítve, de a(z) %2$d verzió összeférhetetlen változtatásai miatt le lett tiltva.</string>
@@ -56,6 +97,16 @@
     <string name="menuSearch">Keresés</string>
     <string name="menuReload">Újratöltés</string>
     <string name="changes">Változások:</string>
+    <string name="download_details_page_description">Leírás</string>
+    <string name="download_details_page_versions">Verziók</string>
+    <string name="download_details_page_settings">Beállítások</string>
+    <string name="reltype_stable">Stabil</string>
+    <string name="reltype_stable_summary">Stabil (hibák kis eséllyel)</string>
+    <string name="reltype_beta">Béta</string>
+    <string name="reltype_beta_summary">Béta (néhány hiba várható)</string>
+    <string name="reltype_experimental">Kísérleti</string>
+    <string name="reltype_experimental_summary">Kísérleti (hibák nagy eséllyel)</string>
+    <string name="reltype_use_global_summary">Globális beállítások használata</string>
     <string name="download_author">%s-tól</string>
     <string name="download_unknown_author">ismeretlen készítő</string>
     <string name="download_status_installed">Telepítve (verzió %s)</string>
@@ -73,19 +124,40 @@
     <string name="download_section_7d">Elmúlt 7 napban</string>
     <string name="download_section_30d">Elmúlt 30 napban</string>
     <string name="download_section_older">Több, mint 30 napja</string>
+    <string name="download_details_not_found">Nincs ilyen csomagnevű (\"%s\") modul a gyűjteményben.</string>
+    <string name="download_no_versions">A készítő nem tötött fel még semmit.</string>
+    <string name="download_test_version_not_shown">Egy teszt verzió elérhető, de nincs megjelenítve a globális vagy modul-specifikus beállításaid miatt.</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">Telepítés</string>
+    <string name="settings_install_mode">Telepítés módja</string>
+    <string name="install_mode_normal">Klasszikus (/system-re írás közvetlenül)</string>
+    <string name="install_mode_recovery_auto">Recovery (automatikus zip flashelés)</string>
+    <string name="install_mode_recovery_manual">Recovery (zip kiírása az SD kártyára, manuális flashelés)</string>
     <string name="settings_group_download">Letöltések</string>
     <string name="settings_enable_downloads">Letöltések engedélyezése</string>
     <string name="settings_enable_downloads_summary">Engedélyezd az Xposed Telepítőnek, hogy frissítéseket és új modulokat keressen</string>
+    <string name="settings_release_type">Megjelenítendő verziók</string>
     <string name="settings_group_experimental">Kísérlet</string>
+    <string name="settings_disable_resources">"Resource hook"-ok letiltva</string>
+    <string name="settings_disable_resources_summary">Megoldás a témamotorokkal való konfliktusokra.\n<b>FIGYELEM:</b> A resource-okat módosítani próbáló modulok nem fognak működni, ha ez engedélyezve van.</string>
     <string name="settings_performance_experiment">Teljesítménykísérlet</string>
     <string name="settings_performance_experiment_summary">Ha ezt engedélyezed, a rendszer teljesítménye lehet, hogy növekszik, csökken vagy nem változik. Nyugodtan próbáld ki és jelezz vissza, hogy melyik hatást látod (vagy hogy nincs semmilyen). Újra kell telepítened a keretrendszert és újraindítanod az eszközt, miután ezt megváltoztatod.</string>
+    <string name="settings_group_app">Alkalmazás</string>
+    <string name="settings_theme">Téma</string>
+    <string name="settings_theme_light">Világos</string>
+    <string name="settings_theme_dark">Sötét</string>
+    <string name="settings_theme_black">Fekete (AMOLED képernyőkön hasznos)</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">Nem lehetett olvasni a naplót:</string>
     <string name="logs_save_failed">Nem lehetett a naplót az SD kártyára írni:</string>
     <string name="sdcard_not_writable">SD kártya nem található vagy nem írható</string>
+    <string name="log_too_large">A napló nagyobb, mint %1$,d kB, első %2$,d kB kihagyva</string>
+    <string name="menuClearLog">Napló ürítése most</string>
+    <string name="logs_cleared">Napló sikeresen ürítve</string>
+    <string name="logs_clear_failed">Nem lehetett üríteni a naplót:</string>
+    <string name="log_is_empty">A napló üres</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Fő fejlesztők:</string>
