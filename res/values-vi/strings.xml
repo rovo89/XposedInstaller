@@ -29,6 +29,7 @@
     <string name="installedVersion">đang hoạt động</string>
     <string name="latestVersion">đi kèm</string>
     <string name="versions">Phiên bản:</string>
+    <string name="install_header_reboot">Khởi động lại</string>
     <string name="soft_reboot">Khởi động lại mềm</string>
     <string name="reboot">Khởi động lại</string>
     <string name="areyousure">Bạn chắc chắn?</string>
@@ -42,6 +43,11 @@
     <string name="install_warning_title">Hãy cẩn thận!</string>
     <string name="install_warning">Trong một số trường hợp, thiết bị của bạn có thể không khởi động được sau khi cài Xposed.\n\nNếu bạn chưa từng nghe nói về \"soft brick\" và \"bootloop\" hoặc nếu bạn không biết cách xử lý trong tình huống đó, thì <b>ĐỪNG</b> cài Xposed!\n\nDù thế nào, bạn cũng nên có một bản sao lưu mới.</string>
     <string name="dont_show_again">Đừng hiện lại nữa</string>
+    <string name="install_known_issue">Bản ROM của bạn đã được thông báo là gặp truc trặc (\"%s\") với Xposed. Ứng dụng có thể không hoạt động hoặc gặp lỗi nghiêm trọng. Hãy bấm vào đây để xem chi tiết vấn đề.</string>
+    <string name="install_reverted">app_process bản \"%1$s\" đã được cài đặt từ trước nhưng bản hiện tại lại là \"%2$s\". Nếu bạn không muốn khôi phục lại một tập tin cũ, hãy thử cài đặt qua recovery (tự động hoặc thủ công).</string>
+    <string name="uninstall_reverted">app_process đã bị xoá từ trước, còn bản hiện tại đang được cài là \"%s\". Nếu bạn không muốn khôi phục lại một tập tin cũ, hãy thử cài đặt qua recovery (tự động hoặc thủ công).</string>
+    <string name="tap_to_dismiss">Bấm để đóng lại</string>
+    <string name="sdcard_location">Thẻ SD: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Không thể lấy quyền root.\n\nHãy đảm bảo rằng thiết bị của bạn đã root và bạn không chặn các lệnh shell.</string>
@@ -69,10 +75,15 @@
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Module chưa bật</string>
+    <string name="module_is_not_activated_yet_detailed">%s đã được cài, nhưng chưa được kích hoạt.</string>
+    <string name="activate_and_reboot">Kích hoạt và khởi động lại</string>
+    <string name="module_activated">Module của Xposed đã được kích hoạt</string>
     <string name="module_empty_description">(không có phần miêu tả)</string>
     <string name="module_no_ui">Module này không có giao diện</string>
     <string name="no_xposed_modules_found">Không tìm thấy module nào!</string>
     <string name="xposed_module_list_updated">Danh sách module đã được cập nhật\nCác thay đổi sẽ có hiệu lực sau khi khởi động lại</string>
+    <string name="xposed_module_updated_notification_title">Module của Xposed đã được cập nhật</string>
+    <string name="xposed_module_updated_notification">Khởi động lại để áp dụng ác thay đổi</string>
     <string name="warning_xposed_min_version">Module này cần bản XposedBridge mới (%d) nên hiện tại không thể bật.</string>
     <string name="no_min_version_specified">Module này không yêu cầu cụ thể phiên bản XposedBridge nào.</string>
     <string name="warning_min_version_too_low">Module này được viết cho XposedBridge bản %1$d, nhưng do không tương thích với các thay đổi trong bản %2$d, nên đã bị tắt.</string>
@@ -86,6 +97,16 @@
     <string name="menuSearch">Tìm kiếm</string>
     <string name="menuReload">Tải lại</string>
     <string name="changes">Các thay đổi:</string>
+    <string name="download_details_page_description">Miêu tả</string>
+    <string name="download_details_page_versions">Phiên bản</string>
+    <string name="download_details_page_settings">Thiết lập</string>
+    <string name="reltype_stable">Ổn định</string>
+    <string name="reltype_stable_summary">Ổn định (ít khả năng lỗi)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (có thể chứa lỗi)</string>
+    <string name="reltype_experimental">Thử nghiệm</string>
+    <string name="reltype_experimental_summary">Thử nghiệm (nhiều khả năng lỗi)</string>
+    <string name="reltype_use_global_summary">Dùng thiết lập chung</string>
     <string name="download_author">bởi %s</string>
     <string name="download_unknown_author">không rõ tác giả</string>
     <string name="download_status_installed">Đã cài (bản %s)</string>
@@ -103,6 +124,9 @@
     <string name="download_section_7d">7 ngày trước</string>
     <string name="download_section_30d">30 ngày trước</string>
     <string name="download_section_older">Hơn 30 ngày trước</string>
+    <string name="download_details_not_found">Không có module nào mang tên \"%s\" trong kho lưu trữ.</string>
+    <string name="download_no_versions">Tác giả chưa tải gì lên.</string>
+    <string name="download_test_version_not_shown">Có bản cập nhật beta, nhưng không được hiển thị do thiết lập chung hoặc riêng từng module của bạn..</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">Cài đặt</string>
@@ -113,11 +137,17 @@
     <string name="settings_group_download">Tải xuống</string>
     <string name="settings_enable_downloads">Cho phép tải xuống</string>
     <string name="settings_enable_downloads_summary">Cho phép Xposed Installer tìm các bản cập nhật</string>
+    <string name="settings_release_type">Phiên bản được hiển thị</string>
     <string name="settings_group_experimental">Thử nghiệm</string>
     <string name="settings_disable_resources">Ngắt các kết nối tài nguyên</string>
     <string name="settings_disable_resources_summary">Tránh xung đột với các máy giao diện\n<b>CẢNH BÁO:</b> Các module cần thay đổi tài nguyên sẽ không hoạt động khi bật tính năng này.</string>
     <string name="settings_performance_experiment">Thử nghiệm hiệu năng</string>
     <string name="settings_performance_experiment_summary">Nếu bật tính năng này, hiệu năng hệ thống của bạn có thể tăng, giảm, hoặc giữ nguyên như cũ.  Nếu muốn, hãy thử và cho chúng tôi biết kết quả (ngay cả khi không thấy có thay đổi gì). Bạn phải cài lại framework và khởi động lại sau khi thay đổi tuỳ chọn này.</string>
+    <string name="settings_group_app">Ứng dụng</string>
+    <string name="settings_theme">Kiểu giao diện</string>
+    <string name="settings_theme_light">Sáng</string>
+    <string name="settings_theme_dark">Tối</string>
+    <string name="settings_theme_black">Đen (phù hợp với màn hình AMOLED)</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">Không thể đọc nhật ký:</string>
