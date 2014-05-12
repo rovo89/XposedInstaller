@@ -29,20 +29,61 @@
     <string name="installedVersion">activ</string>
     <string name="latestVersion">Grupate</string>
     <string name="versions">Versiuni:</string>
+    <string name="install_header_reboot">Repornire</string>
     <string name="soft_reboot">Repornire soft:</string>
     <string name="reboot">Repornire</string>
     <string name="areyousure">Sunteti sigur ?</string>
     <string name="phone_not_compatible">Xposed nu este compatibil (inca) cu versiunea de Android SDK %1$d sau cu arhitectura procesorului (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed nu a fost testat cu versiunea de Android SDK %d, dar pare a fi compatibil. Puteti incerca sa-l instalati daca vreti sa experimentati ceva nou.</string>
+    <string name="reboot_failed">Repornirea a esuat. Va rugam utilizati functia nativa a dispozitivului.</string>
+    <string name="auto_flash_note">%s ar trebui sa se instaleze automat dupa ce apasati "OK".</string>
+    <string name="manual_flash_note">Va rugam instalati %s de pe cartela SD pentru a finaliza operatiunea.</string>
+    <string name="reboot_confirmation">Confirmati repornirea ?</string>
+    <string name="reboot_recovery_confirmation">Reporniti acum ?</string>
+    <string name="install_warning_title">Procedati cu grija !</string>
+    <string name="install_warning">In anumite cazuri dispozitivul nu va porni dupa instalarea Xposed. \n\nIf daca nu ati auzit despre \"soft brick\" si \"bootloop\" pana acum si nu stiti cum sa remediati o astfel de problema,  <b>NU</b> instalati Xposed!\n\nin nici un caz. A avea un backup recent este de preferat.</string>
+    <string name="dont_show_again">Nu mai afisati.</string>
+    <string name="install_known_issue">Se pare ca exista o problema cunoscuta (\"%s\") cu acest ROM. Instalarea Xposed ar putea esua sau duce la probleme serioase. Apasati aici pentru detalii despre aceasta problema.</string>
+    <string name="install_reverted">Versiunea de app_process \"%1$s\" a fost instalata anterior dar versiunea \"%2$s\" nu a fost gasita acum. Daca nu v-ati asteptat ca fisierul vechi sa fie restaurat, ati putea incerca instalarea din recovery(auto sau manual).</string>
+    <string name="uninstall_reverted">App_process a fost dezinstalat anterior dar versiunea \"%s\" a fost gasita acum. Daca nu v-ati asteptat ca un fisier vechi sa fie restaurat, ati putea incerca dezinstalarea din recovery (auto sau manual).</string>
+    <string name="tap_to_dismiss">Apasati pentru a ascunde</string>
+    <string name="sdcard_location">Cardul SD: %s</string>
 
     <!-- File operations -->
+    <string name="root_failed">Accesul la root a esuat.\n\nAsigurati-va ca dispozitivul este rootat corespunzator iar comenzile de tip shell nu sunt blocate.</string>
+    <string name="file_extract_failed">Nu a putut extrage %s</string>
+    <string name="file_mounting_writable">Montez %s ca inscriptibil&#8230;</string>
+    <string name="file_mount_writable_failed">Nu a putut fi montat %s ca inscriptibil</string>
+    <string name="file_trying_to_continue">Continuati oricum&#8230;</string>
+    <string name="file_backup_already_exists">Backup-ul exista deja in %s</string>
+    <string name="file_backup_not_found">Nici un backup gasit in %s</string>
+    <string name="file_backup_failed">Crearea backup-ului in %s a esuat.</string>
+    <string name="file_backup_successful">Backup creat in %s</string>
+    <string name="file_backup_restoring">Restaurare backup din %s</string>
+    <string name="file_copying">Copiez %s&#8230;</string>
+    <string name="file_copy_failed">Nu a putut fi copiat %1$s in %2$s</string>
+    <string name="file_move_failed">Nu a putut fi mutat %1$s in %2$s</string>
+    <string name="file_set_perms_failed">Permisiunile nu pot fi setate pentru %s</string>
+    <string name="file_set_owner_failed">Nu a putut fi setat proprietarul pentru %s</string>
+    <string name="file_removing">Se sterge %s&#8230;</string>
+    <string name="file_remove_failed">Nu a putut fi sters %s</string>
+    <string name="file_creating_directory">Se creaza folderul %s&#8230;</string>
+    <string name="file_create_directory_failed">Folderul nu a putut fi creat %s</string>
+    <string name="file_writing_recovery_command">Se scrie comanda de recovery&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Scrierea comenzii de recoverii a esuat. Va rog alegeti o metoda de instalare diferita.</string>
+    <string name="file_done">Realizat! Modificarile vor deveni active la repornire.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed nu este inca activ</string>
+    <string name="module_is_not_activated_yet_detailed">%s a fost instalat, dar nu este inca activ.</string>
+    <string name="activate_and_reboot">Activare si repornire.</string>
+    <string name="module_activated">Modulul Xposed nu a fost inca activat.</string>
     <string name="module_empty_description">(fara descriere)</string>
     <string name="module_no_ui">Acest modul nu ofera o interfata pentru utilizator</string>
     <string name="no_xposed_modules_found">Nu au fost gasite module Xposed!</string>
     <string name="xposed_module_list_updated">Lista modulelor Xposed a fost actualizata\nModificarile vor deveni active dupa repornire</string>
+    <string name="xposed_module_updated_notification_title">Modulul Xposed a fost actualizat.</string>
+    <string name="xposed_module_updated_notification">Reporniti pentru a activa modificarile.</string>
     <string name="warning_xposed_min_version">Acest modul necesita o versiune mai nou de XposedBridge  (%d) si nu poate fi activat.</string>
     <string name="no_min_version_specified">Acest modul nu specifica ce versiune de XposedBridge este necesara.</string>
     <string name="warning_min_version_too_low">Acest modul a fost creat pentru versiunea de XposedBridge %1$d, dar din cauza unor modificari incompatibile in versiunea %2$d, a fost dezactivat.</string>
@@ -56,6 +97,16 @@
     <string name="menuSearch">Cautare</string>
     <string name="menuReload">Reincarcare</string>
     <string name="changes">Noutati:</string>
+    <string name="download_details_page_description">Descriere</string>
+    <string name="download_details_page_versions">Versiuni</string>
+    <string name="download_details_page_settings">Setari</string>
+    <string name="reltype_stable">Stabil</string>
+    <string name="reltype_stable_summary">Stabil (risc scazut de probleme)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (pot aparea unele probleme)</string>
+    <string name="reltype_experimental">Experimental</string>
+    <string name="reltype_experimental_summary">Experimental (risc crescut de probleme)</string>
+    <string name="reltype_use_global_summary">Utilizeaza setarile globale</string>
     <string name="download_author">de %s</string>
     <string name="download_unknown_author">autor necunoscut</string>
     <string name="download_status_installed">Instalat (versiunea %s)</string>
@@ -73,19 +124,40 @@
     <string name="download_section_7d">Ultimele 7 zile</string>
     <string name="download_section_30d">Ultimele 30 zile</string>
     <string name="download_section_older">Mai mult de 30 de zile in urma</string>
+    <string name="download_details_not_found">Nu este nici un modul cu numele \"%s\" in arhiva.</string>
+    <string name="download_no_versions">Autorul nu a incarcat nimic inca.</string>
+    <string name="download_test_version_not_shown">O versiune de test este disponibila, insa nu este afisata din cauza setarile globale sau per modul.</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">Instalare</string>
+    <string name="settings_install_mode">Modul instalarii</string>
+    <string name="install_mode_normal">Clasic (scriere direct in /system)</string>
+    <string name="install_mode_recovery_auto">Recovery (instalare .zip automat)</string>
+    <string name="install_mode_recovery_manual">Recovery (scriere pe cardul SD, instalare manuala)</string>
     <string name="settings_group_download">Descarca</string>
     <string name="settings_enable_downloads">Activeaza descarcari</string>
     <string name="settings_enable_downloads_summary">Permiteti Xposed Installer sa verifice daca exista actualizari sau module noi</string>
+    <string name="settings_release_type">Versiune de afisat</string>
     <string name="settings_group_experimental">Experimental</string>
+    <string name="settings_disable_resources">Dezactivare resource hooks</string>
+    <string name="settings_disable_resources_summary">Solutie pentru conflictele cu teme\n<b>ATENTIE:</b> Modulele care vor incerca sa modifice resursele nu vor functiona cand aceasta este activata.</string>
     <string name="settings_performance_experiment">Experiment de performanta</string>
     <string name="settings_performance_experiment_summary">Daca activati , performanta sistemului poate creste, descreste sau ramane la fel. Sunteti liber sa-l incercati si sa raportati ce efect ati simtit (sau daca nu a existat unul). Este necesar sa reinstalati framework-ul si sa reporniti dupa aceasta modificare.</string>
+    <string name="settings_group_app">Aplicatie</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Aprins</string>
+    <string name="settings_theme_dark">Intunecat</string>
+    <string name="settings_theme_black">Negru (util pentru afisaj AMOLED)</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">Log-ul nu a putut fi citit:</string>
     <string name="logs_save_failed">Log-ul nu a putut fi scris pe cardul SD :</string>
     <string name="sdcard_not_writable">Cardul SD nu a fost gasit sau nu poate fi scris</string>
+    <string name="log_too_large">Fisierul de log mai mare de %1$,d kB, sariti primii %2$,d kB</string>
+    <string name="menuClearLog">Curata log-ul acum</string>
+    <string name="logs_cleared">Log curatat</string>
+    <string name="logs_clear_failed">Log-ul nu a putut fi curatat:</string>
+    <string name="log_is_empty">Log-ul este gol</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Dezvoltatori:</string>
