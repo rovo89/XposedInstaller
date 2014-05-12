@@ -44,10 +44,10 @@
     <string name="install_warning">Bazı durumlarda Xposed yüklendikten sonra telefonunuz soft brick olabilir\n\nEğer \"soft brick\" veya \"bootloop\" gibi terimleri duymadıysanız\veya bunlar hakkında bilginiz yoksa Xposedi <b>YÜKLEMEYİN</b> Ya da yüklemeden önce\n\nMutlaka telefonunuzu yedekleyin.</string>
     <string name="dont_show_again">Bunu bir daha gösterme</string>
     <string name="install_known_issue">Kullandığınız rom sürümü ile (\"%s\") Bilinen bir uyumsuzluk sorunu var gibi görünüyor. Muhtemelen Xposed yüklemeniz gerekir. Daha fazla bilgi için buraya tıklayın.</string>
-    <string name="install_reverted">TRANSLATE_THIS: app_process versiyonu \"%1$s\" sisteme yüklenmiş.Ancak \"%2$s\" bulundu. Eğer eski dosyayı kurtarmak veya geri yüklemek istiyorsanız, recovery menüden(otomatik yada or manuel)denemyebilirsiniz.</string>
-    <string name="uninstall_reverted">TRANSLATE_THIS: app_process sistemden kaldırıldı ancak \"%s\" versiyonu bulundu.Eğer eski dosyayı kurtarmak veya geri yüklemek istiyorsanız, recovery menüden(otomatik yada or manuel)denemyebilirsiniz.</string>
-    <string name="tap_to_dismiss">TRANSLATE_THIS: Kapatmak için dokunun</string>
-    <string name="sdcard_location">TRANSLATE_THIS: SD Kart: %s</string>
+    <string name="install_reverted">app_process versiyonu \"%1$s\" sisteme yüklenmiş.Ancak \"%2$s\" bulundu. Eğer eski dosyayı kurtarmak veya geri yüklemek istiyorsanız, recovery menüden(otomatik yada or manuel)denemyebilirsiniz.</string>
+    <string name="uninstall_reverted">app_process sistemden kaldırıldı ancak \"%s\" versiyonu bulundu.Eğer eski dosyayı kurtarmak veya geri yüklemek istiyorsanız, recovery menüden(otomatik yada or manuel)denemyebilirsiniz.</string>
+    <string name="tap_to_dismiss">Kapatmak için dokunun</string>
+    <string name="sdcard_location">SD Kart: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Root erişimi alınamadı.\n\nLütfen cihazınının root erişiminin açık olduğuna ve komut alabildiğine emin olun.</string>
