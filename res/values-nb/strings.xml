@@ -29,7 +29,7 @@
     <string name="installedVersion">aktive</string>
     <string name="latestVersion">buntet</string>
     <string name="versions">Versjoner:</string>
-    <string name="install_header_reboot">TRANSLATE_THIS: Reboot</string>
+    <string name="install_header_reboot">Restart</string>
     <string name="soft_reboot">Soft restart</string>
     <string name="reboot">Restart</string>
     <string name="areyousure">Er du sikker?</string>
