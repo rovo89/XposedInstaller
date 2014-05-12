@@ -86,7 +86,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		reloadModules.run();
 		setListAdapter(mAdapter);
 		setEmptyText(getActivity().getString(R.string.no_xposed_modules_found));
-		getListView().setFastScrollEnabled(true);
 		registerForContextMenu(getListView());
 		mModuleUtil.addListener(this);
 
