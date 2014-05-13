@@ -75,9 +75,9 @@
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed module is nog niet geactiveerd</string>
-    <string name="module_is_not_activated_yet_detailed">TRANSLATE_THIS: %s has been installed, but is not activated yet.</string>
-    <string name="activate_and_reboot">TRANSLATE_THIS: Activate and reboot</string>
-    <string name="module_activated">TRANSLATE_THIS: Xposed module has been activated</string>
+    <string name="module_is_not_activated_yet_detailed">%s werdt geinstalleerd, maar is nog niet geactiveerd.</string>
+    <string name="activate_and_reboot">Activeer en herstart</string>
+    <string name="module_activated">Xposed module is geactiveerd</string>
     <string name="module_empty_description">(geen beschrijving beschikbaar)</string>
     <string name="module_no_ui">Deze module heeft geen interface beschikbaar</string>
     <string name="no_xposed_modules_found">Geen Xposed modules gevonden!</string>
