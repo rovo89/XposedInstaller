@@ -134,7 +134,8 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 													
 							List<ModuleVersion> versions = mActivity.getModule().versions;
 							for (int i = 1; i < versions.size(); i++) {
-								sAdapter.add(versions.get(i));
+								if (RepoLoader.getInstance().isVersionShown(versions.get(i)))
+									sAdapter.add(versions.get(i));
 							}
 						}
 					});
