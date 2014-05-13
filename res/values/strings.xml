@@ -97,6 +97,7 @@
     <string name="menuSearch">Search</string>
     <string name="menuReload">Reload</string>
     <string name="changes">Changes:</string>
+    <string name="morecard">More</string>
     <string name="download_details_page_description">Description</string>
     <string name="download_details_page_versions">Versions</string>
     <string name="download_details_page_settings">Settings</string>

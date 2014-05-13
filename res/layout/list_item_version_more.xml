@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/background_card"
+    android:orientation="vertical"
+    android:padding="8dip" >        
+
+    <TextView
+        android:id="@+id/txtMoreVersions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/morecard"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="italic" />
+
+</LinearLayout>

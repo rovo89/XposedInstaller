@@ -3,6 +3,7 @@ package de.robv.android.xposed.installer;
 import java.io.File;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.ListFragment;
@@ -17,6 +18,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -68,11 +70,15 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 			}
 
 			sAdapter = new VersionsAdapter(getActivity());
-			for (ModuleVersion version : module.versions) {
-				if (repoLoader.isVersionShown(version))
-					sAdapter.add(version);
+			
+			if (module.versions.size() > 1) {
+				sAdapter.add(module.versions.get(0));
+				sAdapter.add(module.versions.get(1));
+			} else {
+				sAdapter.add(module.versions.get(0));
 			}
-			setListAdapter(sAdapter);
+			
+			setListAdapter(sAdapter);		
 		}
 
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -103,6 +109,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 		private final DateFormat mDateFormatter = DateFormat.getDateInstance(DateFormat.SHORT);
 		private final int mColorRelTypeStable;
 		private final int mColorRelTypeOthers;
+		private boolean moreshown;
 
 		public VersionsAdapter(Context context) {
 			super(context, R.layout.list_item_version);
@@ -113,9 +120,29 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View view = convertView;
-			if (view == null) {
+			if (view == null || view.getTag() == null) {
 				LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				view = inflater.inflate(R.layout.list_item_version, null, true);
+				
+				if (position == 1 && !moreshown) {
+					view = inflater.inflate(R.layout.list_item_version_more, null, true);
+					view.setOnClickListener(new OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							sAdapter.remove(sAdapter.getItem(1));
+							sAdapter.moreshown = true;						
+													
+							List<ModuleVersion> versions = mActivity.getModule().versions;
+							for (int i = 1; i < versions.size(); i++) {
+								sAdapter.add(versions.get(i));
+							}
+						}
+					});
+					return view;
+				} else {
+					view = inflater.inflate(R.layout.list_item_version, null, true);					
+				}
+				
 				ViewHolder viewHolder = new ViewHolder();
 				viewHolder.txtVersion = (TextView) view.findViewById(R.id.txtVersion);
 				viewHolder.txtRelType = (TextView) view.findViewById(R.id.txtRelType);
@@ -128,7 +155,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 
 			ViewHolder holder = (ViewHolder) view.getTag();
 			ModuleVersion item = (ModuleVersion) getItem(position);
-
+			
 			holder.txtVersion.setText(item.name);
 			holder.txtRelType.setText(item.relType.getTitleId());
 			holder.txtRelType.setTextColor(item.relType == ReleaseType.STABLE ? mColorRelTypeStable : mColorRelTypeOthers);
