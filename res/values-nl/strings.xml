@@ -29,25 +29,31 @@
     <string name="installedVersion">actief</string>
     <string name="latestVersion">Laatste versie</string>
     <string name="versions">Versies:</string>
+    <string name="install_header_reboot">Herstart</string>
     <string name="soft_reboot">Herstart systeem</string>
     <string name="reboot">Herstart apparaat</string>
     <string name="areyousure">Weet u het zeker?</string>
     <string name="phone_not_compatible">Xposed is (nog) niet compatibel met Android SDK-versie %1$d van uw processor architectuur (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed is nog niet getest met Android SDK-versie %d, maar het lijkt compatibel te zijn. U kunt het proberen te installeren als u het wilt proberen.</string>
-    <string name="reboot_failed">Reboot mislukt. Herstart het apparaat handmatig.</string>
-    <string name="auto_flash_note">%s wordt automatisch geflast wanneer u op "Oke" drukt.</string>
+    <string name="reboot_failed">Herstart mislukt. Herstart het apparaat handmatig.</string>
+    <string name="auto_flash_note">%s wordt automatisch geflasht wanneer u op "Oke" drukt.</string>
     <string name="manual_flash_note">Flash %s van de SD-kaart om de handeling te voltooien.</string>
     <string name="reboot_confirmation">Wilt u nu herstarten?</string>
     <string name="reboot_recovery_confirmation">Wilt u nu herstarten in de recovery?</string>
     <string name="install_warning_title">Pas op!</string>
-    <string name="install_warning">In sommige gevallen kan het apparaat niet meer opstarten na het installeren van Xposed.\n\nAls u nog nooit gehoord heeft van \"soft brick\" of \"bootloop\" of als u niet weet hoe dit hesteld moet worden, installeer Xposed dan <b>NIET</b>!\n\nHet hebben van een recente back-up is in ieder geval sterk aanbevolen!</string>
+    <string name="install_warning">In sommige gevallen kan het apparaat niet meer opstarten na het installeren van Xposed.\n\nAls u nog nooit gehoord heeft van \"soft brick\" of \"bootloop\" of als u niet weet hoe dit hersteld moet worden, installeer Xposed dan <b>NIET</b>!\n\nHet hebben van een recente back-up is in ieder geval sterk aanbevolen!</string>
     <string name="dont_show_again">Niet opnieuw tonen</string>
+    <string name="install_known_issue">Er blijkt een bekend probleem te zijn(\"%s\") met uw ROM. Xposed installeren werkt mogelijk niet of kan tot ernstige problemen leiden. Klik hier voor details.</string>
+    <string name="install_reverted">app_process versie \"%1$s\" is voordien geïnstalleerd maar versie \"%2$s\" werd nu gevonden. Als je niet verwachte dat een oud bestand werd hersteld, zou je misschien willen proberen installeren via recovery (auto of manueel).</string>
+    <string name="uninstall_reverted">app_process was voordien verwijderd maar versie \"%s\" werd nu gevonden. Als je niet verwachte dat een oud bestand werd hersteld, zou je misschien willen proberen installeren via recovery (auto of manueel).</string>
+    <string name="tap_to_dismiss">Tik om te verlaten</string>
+    <string name="sdcard_location">SD kaart: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Het krijgen van root-toegang is mislukt.\n\nZorg ervoor dat uw apparaat goed geroot is en dat shell commando\'s niet geblokkeerd worden.</string>
     <string name="file_extract_failed">Kan %s niet uitpakken</string>
-    <string name="file_mounting_writable">Mounting %s beschrijfbaar&#8230;</string>
-    <string name="file_mount_writable_failed">Kan %s niet schrijfbaar mounten</string>
+    <string name="file_mounting_writable">Mounten %s beschrijfbaar&#8230;</string>
+    <string name="file_mount_writable_failed">Kan %s niet beschrijfbaar mounten</string>
     <string name="file_trying_to_continue">Probeer toch door te gaan&#8230;</string>
     <string name="file_backup_already_exists">Back-up bestaat al op %s</string>
     <string name="file_backup_not_found">Geen back-up gevonden op %s</string>
@@ -69,10 +75,15 @@
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed module is nog niet geactiveerd</string>
+    <string name="module_is_not_activated_yet_detailed">%s werdt geinstalleerd, maar is nog niet geactiveerd.</string>
+    <string name="activate_and_reboot">Activeer en herstart</string>
+    <string name="module_activated">Xposed module is geactiveerd</string>
     <string name="module_empty_description">(geen beschrijving beschikbaar)</string>
     <string name="module_no_ui">Deze module heeft geen interface beschikbaar</string>
     <string name="no_xposed_modules_found">Geen Xposed modules gevonden!</string>
     <string name="xposed_module_list_updated">De module-lijst van Xposed is bijgewerkt\nVeranderingen worden actief bij herstart</string>
+    <string name="xposed_module_updated_notification_title">Xposed module bijgewerkt</string>
+    <string name="xposed_module_updated_notification">Herstart om de veranderingen te activeren</string>
     <string name="warning_xposed_min_version">Deze module heeft een nieuwere versie van XposedBridge nodig (%d) en kan dus niet geactiveerd worden.</string>
     <string name="no_min_version_specified">Deze module heeft geen benodigde versie van XposedBridge opgegeven.</string>
     <string name="warning_min_version_too_low">Deze module werd gecreëerd voor XposedBridge versie %1$d, maar door veranderingen in versie %2$d, is het uitgeschakeld.</string>
@@ -86,6 +97,16 @@
     <string name="menuSearch">Zoeken</string>
     <string name="menuReload">Vernieuwen</string>
     <string name="changes">Veranderingen:</string>
+    <string name="download_details_page_description">Omschrijving</string>
+    <string name="download_details_page_versions">Versies</string>
+    <string name="download_details_page_settings">Instellingen</string>
+    <string name="reltype_stable">Stabiel</string>
+    <string name="reltype_stable_summary">Stabiel (laag risico op bugs)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (enkele bugs te verwachten)</string>
+    <string name="reltype_experimental">Experimenteel</string>
+    <string name="reltype_experimental_summary">Experimenteel (hoog risico op bugs)</string>
+    <string name="reltype_use_global_summary">Gebruik globale instelling</string>
     <string name="download_author">door %s</string>
     <string name="download_unknown_author">onbekende auteur</string>
     <string name="download_status_installed">Geïnstalleerd (versie %s)</string>
@@ -103,6 +124,9 @@
     <string name="download_section_7d">Laatste 7 dagen</string>
     <string name="download_section_30d">Laatste 30 dagen</string>
     <string name="download_section_older">Meer dan 30 dagen geleden</string>
+    <string name="download_details_not_found">Er is geen module met pakketnaam \"%s\" in de opslagruimte.</string>
+    <string name="download_no_versions">De auteur heeft nog niks geüpload.</string>
+    <string name="download_test_version_not_shown">Er is een test versie beschikbaar, maar deze wordt niet getoond door uw globale of module-specifieke instellingen.</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">Installatie</string>
@@ -113,11 +137,17 @@
     <string name="settings_group_download">Download</string>
     <string name="settings_enable_downloads">Downloads inschakelen</string>
     <string name="settings_enable_downloads_summary">Xposed Installer toestaan te controleren op updates en nieuwe modules</string>
+    <string name="settings_release_type">Versies die worden getoond</string>
     <string name="settings_group_experimental">Experimenteel</string>
     <string name="settings_disable_resources">Resource-hooks uitschakelen</string>
     <string name="settings_disable_resources_summary">Tijdelijke oplossing voor conflicten met thema-applicaties\n<b>WAARSCHUWING:</b> Modules die resources proberen te veranderen werken niet wanneer deze optie geactiveerd is.</string>
     <string name="settings_performance_experiment">Prestatie-experiment</string>
     <string name="settings_performance_experiment_summary">Als u dit inschakelt, kunnen uw systeemprestaties verhogen, verminderen of hetzelfde blijven. Het is gratis te proberen, laat ons weten welk effect u ziet (ook als er helemaal geen effect is). U moet het framework herinstalleren en herstarten nadat u dit veranderd hebt.</string>
+    <string name="settings_group_app">Applicaties</string>
+    <string name="settings_theme">Thema</string>
+    <string name="settings_theme_light">Licht</string>
+    <string name="settings_theme_dark">Donker</string>
+    <string name="settings_theme_black">Zwart (nuttig voor AMOLED schermen)</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">Kan logboek niet lezen:</string>
@@ -132,12 +162,12 @@
     <!-- About tab -->
     <string name="about_developers_label">Hoofdontwikkelaars:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> en <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Contacteer ons alstublieft <b>niet</b> direct voor ondersteuning: gebruik de onderstaande link. (Onder de titel "Krijg ondersteuning op")</string>
+    <string name="about_developers_warning">Contacteer ons alstublieft <b>niet</b> direct voor ondersteuning: gebruik de onderstaande link. (Onder de titel "Krijg ondersteuning")</string>
     <string name="about_translator_label">Het framework is naar het Nederlands vertaald door:</string>
     <string name="translator"><a href="https://github.com/Martinusbe">Martin Coulon (Martinusbe)</a>, <a href="http://code.gertlily.com/">Gert-Jan Anema (GertlilyNL)</a> &amp; <a href="https://github.com/lionzeye">Leonard Simonse (lionzeye)</a></string>
     <string name="about_version_label">Versie van deze app:</string>
     <string name="about_source_label">Broncode:</string>
-    <string name="about_support_label">Krijg ondersteuning op:</string>
+    <string name="about_support_label">Krijg ondersteuning:</string>
     <string name="about_support_warning">Deze link is <b>enkel</b> voor deze applicatie en het Xposed Framework! Als u hulp nodig heeft met een module, gebruik in dat geval deze optie <b>niet</b>: contacteer de auteur van de betreffende module.</string>
     <string name="about_libraries_label">Gebruikte bibliotheken:</string>
 

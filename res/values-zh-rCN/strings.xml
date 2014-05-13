@@ -29,6 +29,7 @@
     <string name="installedVersion">激活</string>
     <string name="latestVersion">程序自带</string>
     <string name="versions">版本：</string>
+    <string name="install_header_reboot">重启</string>
     <string name="soft_reboot">软重启</string>
     <string name="reboot">重启</string>
     <string name="areyousure">您确定？</string>
@@ -42,6 +43,11 @@
     <string name="install_warning_title">小心！</string>
     <string name="install_warning">某些情况下，您的设备将在安装 Xposed 之后无法启动。\n\n如果您之前没有听说过“软变砖”或“无限重启”，或者您不知道如何从这种情况恢复，请<b>不要</b>安装 Xposed！\n\n无论如何，强烈建议准备好最近的备份。</string>
     <string name="dont_show_again">不要再显示这个</string>
+    <string name="install_known_issue">Xposed 与您的 ROM 似乎存在已知的问题 (\"%s\")。安装 Xposed 可能无法正常工作，或是引发一系列问题。点击这里获知详情。</string>
+    <string name="install_reverted">之前已经安装版本为 \"%1$s\" 的 app_process，但是现在找到的版本却是 \"%2$s\"。如果您不希望一个旧文件被还原，也许您应该试试通过 Recovery 安装（自动或手动）。</string>
+    <string name="uninstall_reverted">app_process 之前已被卸载，现在却找到了版本为 \"%s\" 的。如果您不希望一个旧文件被还原，也许您应该试试通过 Recovery 卸载（自动或手动）。</string>
+    <string name="tap_to_dismiss">轻按以消除</string>
+    <string name="sdcard_location">SD 卡: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">无法获取 root 权限。\n\n请确认您的设备已经正确的 root 以及您没有屏蔽 shell 命令。</string>
@@ -69,10 +75,15 @@
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed 模块未激活</string>
+    <string name="module_is_not_activated_yet_detailed">已安装 %s，但尚未激活。</string>
+    <string name="activate_and_reboot">激活并重启</string>
+    <string name="module_activated">Xposed 模块已被激活</string>
     <string name="module_empty_description">(未提供描述)</string>
     <string name="module_no_ui">该模块未提供用户界面</string>
     <string name="no_xposed_modules_found">未找到 Xposed 模块！</string>
     <string name="xposed_module_list_updated">Xposed 模块列表已更新\n重启后更改将生效</string>
+    <string name="xposed_module_updated_notification_title">Xposed 模块已更新</string>
+    <string name="xposed_module_updated_notification">重启以激活更新。</string>
     <string name="warning_xposed_min_version">该模块需要较新版本的 XposedBridge (%d)，因此无法激活。</string>
     <string name="no_min_version_specified">该模块未指定需要的 XposedBridge 版本。</string>
     <string name="warning_min_version_too_low">该模块在 XposedBridge 版本 %1$d 下创建，但因为不兼容版本 %2$d 中的变化内容，它已被禁用。</string>
@@ -86,6 +97,16 @@
     <string name="menuSearch">搜索</string>
     <string name="menuReload">重新加载</string>
     <string name="changes">变更：</string>
+    <string name="download_details_page_description">描述</string>
+    <string name="download_details_page_versions">版本</string>
+    <string name="download_details_page_settings">设置</string>
+    <string name="reltype_stable">稳定版</string>
+    <string name="reltype_stable_summary">稳定版（低故障率）</string>
+    <string name="reltype_beta">测试版</string>
+    <string name="reltype_beta_summary">测试版（预计存在一些问题）</string>
+    <string name="reltype_experimental">实验版</string>
+    <string name="reltype_experimental_summary">实验版（高故障率）</string>
+    <string name="reltype_use_global_summary">使用全局设置</string>
     <string name="download_author">作者：%s</string>
     <string name="download_unknown_author">未知作者</string>
     <string name="download_status_installed">已安装(版本 %s)</string>
@@ -103,6 +124,9 @@
     <string name="download_section_7d">最近 7 天</string>
     <string name="download_section_30d">最近 30 天</string>
     <string name="download_section_older">30 天前</string>
+    <string name="download_details_not_found">无法在仓库中找到名为 \"%s\" 的模块。</string>
+    <string name="download_no_versions">作者还没有上传任何版本。</string>
+    <string name="download_test_version_not_shown">有新的测试版可用。根据您的全局或模块设置，未被显示。</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">安装</string>
@@ -113,11 +137,17 @@
     <string name="settings_group_download">下载</string>
     <string name="settings_enable_downloads">启用下载</string>
     <string name="settings_enable_downloads_summary">允许 Xposed 安装器检查更新和新模块</string>
+    <string name="settings_release_type">将显示的版本</string>
     <string name="settings_group_experimental">实验性</string>
     <string name="settings_disable_resources">禁用资源钩子</string>
     <string name="settings_disable_resources_summary">解决与主题引擎的冲突。\n<b>警告:</b> 启用这个选项将会导致修改资源的模块停止工作。</string>
     <string name="settings_performance_experiment">性能试验</string>
     <string name="settings_performance_experiment_summary">如果您启用该选项，您的系统性能可能更好、更差或没有变化。请随意试用并回报您观察到的效果(或者根本没变化)。修改选项后您需要重新安装框架并重启。</string>
+    <string name="settings_group_app">应用</string>
+    <string name="settings_theme">主题</string>
+    <string name="settings_theme_light">浅色</string>
+    <string name="settings_theme_dark">暗色</string>
+    <string name="settings_theme_black">黑色 (对 AMOLED 屏幕有帮助)</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">无法读取日志：</string>

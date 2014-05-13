@@ -29,6 +29,7 @@
     <string name="installedVersion">動作中</string>
     <string name="latestVersion">内蔵</string>
     <string name="versions">バージョン:</string>
+    <string name="install_header_reboot">再起動</string>
     <string name="soft_reboot">簡易再起動</string>
     <string name="reboot">再起動</string>
     <string name="areyousure">実行しますか?</string>

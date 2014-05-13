@@ -44,6 +44,10 @@
     <string name="install_warning">In manchen Fällen wird das Gerät nicht mehr korrekt starten, nachdem du Xposed installiert hast.\n\nFalls dir \"Soft Brick\" und \"Bootloop\" nichts sagen oder du nicht weißt, wie du dich aus einer solchen Situation befreien kannst, solltest du Xposed <b>NICHT</b> installieren!\n\nIn jedem Fall ist es sehr empfehlenswert, ein aktuelles Backup zu haben.</string>
     <string name="dont_show_again">Nicht wieder anzeigen</string>
     <string name="install_known_issue">Es scheint eine bekannte Inkompatibilität (\"%s\") mit deinem ROM zu geben. Du solltest Xposed wahrscheinlich nicht installieren. Klicke hier für mehr Informationen.</string>
+    <string name="install_reverted">Version \"%1$s\" von app_process war zuvor installiert, aber jetzt wurde Version \"%2$s\" gefunden. Wenn du nicht erwartet hast, dass eine alte Datei wiederhergestellt wird, könntest du die Installation per Recovery (automatisch oder manuell) versuchen.</string>
+    <string name="uninstall_reverted">app_process wurde zuvor deinstalliert, aber jetzt wurde Version \"%s\" gefunden. Wenn du nicht erwartet hast, dass eine alte Datei wiederhergestellt wird, könntest du die Deinstallation per Recovery (automatisch oder manuell) versuchen.</string>
+    <string name="tap_to_dismiss">Antippen zum Ausblenden</string>
+    <string name="sdcard_location">SD-Karte: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Root-Zugriff fehlgeschlagen\n\nStelle sicher, dass das Gerät korrekt gerootet ist und Shell-Kommandos nicht blockiert werden.</string>

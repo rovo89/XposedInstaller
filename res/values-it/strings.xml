@@ -2,6 +2,9 @@
 <resources>
 
     <!-- General/various strings -->
+    <string name="menuSend">Invia</string>
+    <string name="menuSaveToSd">Salva sulla scheda SD</string>
+    <string name="xposed_not_active">L\'ultima versione di Xposed al momento non è attiva. Hai installato il framework e riavviato?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Benvenuto in <b>Xposed Installer</b>!\nScegli cosa desideri fare:</string>
@@ -15,7 +18,9 @@
     <string name="welcome_update_available">Uno o più aggiornamenti per moduli sono disponibili.</string>
     <string name="tabSettings">Impostazioni</string>
     <string name="tabSettingsDescription">In questa sezione è possibile configurare Xposed Installer ed il framework.</string>
-    <string name="tabAbout">About</string>
+    <string name="tabLogs">Log</string>
+    <string name="tabLogsDescription">Mostra e salva/invia log di Xposed framework.</string>
+    <string name="tabAbout">Informazioni</string>
     <string name="tabAboutDescription">Qui è possibile conoscere chi ha creato Xposed, come richiedere supporto, ecc.</string>
 
     <!-- Installer tab -->
@@ -24,28 +29,84 @@
     <string name="installedVersion">attiva</string>
     <string name="latestVersion">ultima</string>
     <string name="versions">Versioni:</string>
+    <string name="install_header_reboot">Riavvia</string>
     <string name="soft_reboot">Riavvio soft</string>
     <string name="reboot">Riavvio</string>
     <string name="areyousure">Sei sicuro?</string>
     <string name="phone_not_compatible">Xposed non è (ancora) compatibile con l\'SDK Android %1$d o con l\'architettura (%2$s) del tuo processore.</string>
     <string name="not_tested_but_compatible">Xposed non è stato testato con l\'SDK Android %d, ma sembra essere compatibile. Puoi provare ad installarlo, se sei avventuroso.</string>
+    <string name="reboot_failed">Riavvio fallito. Usa la funzione riavvia del dispositivo.</string>
+    <string name="auto_flash_note">%s sarà flashato automaticamente una volta premuto "OK".</string>
+    <string name="manual_flash_note">È necessario flashare %s dalla scheda SD per completare l\'operazione.</string>
+    <string name="reboot_confirmation">Vuoi riavviare ora?</string>
+    <string name="reboot_recovery_confirmation">Vuoi riavviare in recovery ora?</string>
+    <string name="install_warning_title">Sii prudente!</string>
+    <string name="install_warning">In alcuni casi, il dispositivo potrebbe non accendersi più dopo l\'installazione di Xposed.\n\nSe non hai mai sentito parlare di \"soft brick\" e \"bootloop\" prima d\'ora o se non si è capaci di ripristinare il dispositivo <b>NON</b> installare Xposed!\n\nIn molti casi. avere un backup recente è altamente raccomandato.</string>
+    <string name="dont_show_again">Non mostrare più</string>
+    <string name="install_known_issue">Sembra esserci un problema noto (\"%s\") con la tua ROM. Installando Xposed potrebbe non funzionare o causare gravi problemi. Clicca qui per dettagli sul problema.</string>
+    <string name="install_reverted">la versione di app_process \"%1$s\" è stata installata precedentemente ma la versione \"%2$s\" è stata trovata ora. Se non si deve ripristinare un vecchio file puoi provare ad installare via recovery (automaticamente o manualmente).</string>
+    <string name="uninstall_reverted">app_process è stato disinstallato precedentemente ma la versione \"%s\" è stata trovata ora. Se non si deve ripristinare un vecchio file puoi provare ad installare via recovery (automaticamente o manualmente).</string>
+    <string name="tap_to_dismiss">Tocca per chiudere</string>
+    <string name="sdcard_location">Scheda SD: %s</string>
 
     <!-- File operations -->
+    <string name="root_failed">Impossibile ottenere l\'accesso root.\n\nAssicurati di avere correttamente i permessi e di non aver bloccato comandi shell.</string>
+    <string name="file_extract_failed">Impossibile estrarre %s</string>
+    <string name="file_mounting_writable">Montaggio di %s in modalità scrittura&#8230;</string>
+    <string name="file_mount_writable_failed">Impossibile montare %s in modalità scrittura</string>
+    <string name="file_trying_to_continue">Cerco di continuare comunque&#8230;</string>
+    <string name="file_backup_already_exists">Il backup esiste già in %s</string>
+    <string name="file_backup_not_found">Nessun backup trovato in %s</string>
+    <string name="file_backup_failed">Backup di %s fallito</string>
+    <string name="file_backup_successful">Backup creato in %s</string>
+    <string name="file_backup_restoring">Ripristino backup da %s</string>
+    <string name="file_copying">Copia di %s&#8230;</string>
+    <string name="file_copy_failed">Impossibile copiare %1$s in %2$s</string>
+    <string name="file_move_failed">Impossibile spostare %1$s in %2$s</string>
+    <string name="file_set_perms_failed">Impossibile impostare i permessi di %s</string>
+    <string name="file_set_owner_failed">Impossibile impostare il proprietario di %s</string>
+    <string name="file_removing">Rimozione %s&#8230;</string>
+    <string name="file_remove_failed">Impossibile rimuovere %s</string>
+    <string name="file_creating_directory">Creazione della directory%s&#8230;</string>
+    <string name="file_create_directory_failed">Impossibile creare la directory %s</string>
+    <string name="file_writing_recovery_command">Scrittura comando recovery&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Scrittura comando recovery fallita. Usa un metodo di installazione differente.</string>
+    <string name="file_done">Fatto! I cambiamenti saranno attivi dopo il riavvio.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Il modulo Xposed non è stato ancora attivato</string>
+    <string name="module_is_not_activated_yet_detailed">%s è stato installato, ma non è ancora attivo.</string>
+    <string name="activate_and_reboot">Attiva e riavvia</string>
+    <string name="module_activated">Il modulo è stato attivato</string>
     <string name="module_empty_description">(descrizione non disponibile)</string>
     <string name="module_no_ui">Questo modulo non dispone di un\'interfaccia utente</string>
     <string name="no_xposed_modules_found">Nessun modulo Xposed trovato!</string>
     <string name="xposed_module_list_updated">La lista dei moduli Xposed è stata aggiornata\nI cambiamenti saranno attivi al riavvio</string>
+    <string name="xposed_module_updated_notification_title">Modulo Xposed aggiornato</string>
+    <string name="xposed_module_updated_notification">Riavvia per attivare i cambiamenti</string>
     <string name="warning_xposed_min_version">Questo modulo richiede una nuova versione (%d) di XposedBridge, di conseguenza non può essere attivato.</string>
     <string name="no_min_version_specified">Questo modulo non specifica la versione di XposedBridge di cui ha bisogno.</string>
     <string name="warning_min_version_too_low">Questo modulo è stato creato per la versione %1$d di XposedBridge, ma a causa di incompatibilità con la versione %2$d è stato disattivato.</string>
+    <string name="module_launch">Launch UI</string>
+    <string name="module_download_updates">Scarica/Aggiorna</string>
+    <string name="module_support">Supporto</string>
+    <string name="module_app_info">Info App</string>
+    <string name="module_uninstall">Disinstalla</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Cerca</string>
     <string name="menuReload">Aggiorna</string>
     <string name="changes">Cambia:</string>
+    <string name="download_details_page_description">Descrizione</string>
+    <string name="download_details_page_versions">Versioni</string>
+    <string name="download_details_page_settings">Impostazioni</string>
+    <string name="reltype_stable">Stabile</string>
+    <string name="reltype_stable_summary">Stabile (basso rischio di bug)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (è possibile incontrare bug)</string>
+    <string name="reltype_experimental">Sperimentale</string>
+    <string name="reltype_experimental_summary">Sperimentale (alto rischio di bug)</string>
+    <string name="reltype_use_global_summary">Usa impostazioni globali</string>
     <string name="download_author">di %s</string>
     <string name="download_unknown_author">autore sconosciuto</string>
     <string name="download_status_installed">Installato (versione %s)</string>
@@ -63,16 +124,40 @@
     <string name="download_section_7d">Ultimi 7 giorni</string>
     <string name="download_section_30d">Ultimi 30 giorni</string>
     <string name="download_section_older">Oltre 30 giorni fa</string>
+    <string name="download_details_not_found">Nessun modulo con il nome \"%s\" trovato nei repository.</string>
+    <string name="download_no_versions">L\'autore non ha ancora caricato niente.</string>
+    <string name="download_test_version_not_shown">È diponibile una versione di test, tuttavia non è mostrata a causa delle tue impostazioni globali o specifiche del modulo.</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">Installazione</string>
+    <string name="settings_install_mode">Modalità di installazione</string>
+    <string name="install_mode_normal">Classica (scrivi direttamente su /system)</string>
+    <string name="install_mode_recovery_auto">Recovery (flasha un file zip automaticamente)</string>
+    <string name="install_mode_recovery_manual">Recovery (Scrivi il file zip sulla scheda SD, flash  manuale)</string>
     <string name="settings_group_download">Download</string>
     <string name="settings_enable_downloads">Abilita downloads</string>
     <string name="settings_enable_downloads_summary">Permetti a Xposed Installer di controllare eventuali aggiornamenti e nuovi moduli</string>
+    <string name="settings_release_type">Versioni da mostrare</string>
     <string name="settings_group_experimental">Sperimentale</string>
+    <string name="settings_disable_resources">Disabilita agganci alle risorse</string>
+    <string name="settings_disable_resources_summary">Soluzioni di conflitti con i theme engine\n<b>ATTENZIONE:</b> I moduli che cambiano le risorse non funzioneranno attivando questa funzione.</string>
     <string name="settings_performance_experiment">Esperimento performance</string>
     <string name="settings_performance_experiment_summary">Se attivi questo, la performance del sistema potrebbe aumentare, diminuire o restare invariata. Sei libero di testarla e segnalarci gli effetti che essa ha avuto. È necessario reinstallare il framework e riavviare dopo aver cambiato questo.</string>
+    <string name="settings_group_app">Applicazione</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Chiaro</string>
+    <string name="settings_theme_dark">Scuro</string>
+    <string name="settings_theme_black">Nero (utile per schermi AMOLED)</string>
 
     <!-- Logs tab  -->
+    <string name="logs_load_failed">Impossibile leggere il log:</string>
+    <string name="logs_save_failed">Impossibile scrivere il log sulla scheda SD:</string>
+    <string name="sdcard_not_writable">Scheda SD non trovata o non scrivibile</string>
+    <string name="log_too_large">Il file di log è più grande di %1$,d kB, saltati i primi %2$,d kB</string>
+    <string name="menuClearLog">Svuota log ora</string>
+    <string name="logs_cleared">Log svuotato con successo</string>
+    <string name="logs_clear_failed">Impossibile svuotare il log:</string>
+    <string name="log_is_empty">Il Log è vuoto</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Sviluppatori principali:</string>

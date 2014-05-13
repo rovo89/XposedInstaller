@@ -44,6 +44,10 @@
     <string name="install_warning">Bazı durumlarda Xposed yüklendikten sonra telefonunuz soft brick olabilir\n\nEğer \"soft brick\" veya \"bootloop\" gibi terimleri duymadıysanız\veya bunlar hakkında bilginiz yoksa Xposedi <b>YÜKLEMEYİN</b> Ya da yüklemeden önce\n\nMutlaka telefonunuzu yedekleyin.</string>
     <string name="dont_show_again">Bunu bir daha gösterme</string>
     <string name="install_known_issue">Kullandığınız rom sürümü ile (\"%s\") Bilinen bir uyumsuzluk sorunu var gibi görünüyor. Muhtemelen Xposed yüklemeniz gerekir. Daha fazla bilgi için buraya tıklayın.</string>
+    <string name="install_reverted">app_process versiyonu \"%1$s\" sisteme yüklenmiş.Ancak \"%2$s\" bulundu. Eğer eski dosyayı kurtarmak veya geri yüklemek istiyorsanız, recovery menüden(otomatik yada or manuel)denemyebilirsiniz.</string>
+    <string name="uninstall_reverted">app_process sistemden kaldırıldı ancak \"%s\" versiyonu bulundu.Eğer eski dosyayı kurtarmak veya geri yüklemek istiyorsanız, recovery menüden(otomatik yada or manuel)denemyebilirsiniz.</string>
+    <string name="tap_to_dismiss">Kapatmak için dokunun</string>
+    <string name="sdcard_location">SD Kart: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Root erişimi alınamadı.\n\nLütfen cihazınının root erişiminin açık olduğuna ve komut alabildiğine emin olun.</string>
@@ -160,7 +164,7 @@
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Lütfen bizimle <b>direkt</b> olarak iletişim yerine aşağıdaki linki kullanın.</string>
     <string name="about_translator_label">Çevirmen:</string>
-    <string name="translator">thenorth</string>
+    <string name="translator">TheNorth</string>
     <string name="about_version_label">Uygulama sürümü:</string>
     <string name="about_source_label">Kaynak kodu:</string>
     <string name="about_support_label">Destek almak için:</string>
