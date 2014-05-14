@@ -4,7 +4,7 @@
     <!-- General/various strings -->
     <string name="menuSend">Odoslať</string>
     <string name="menuSaveToSd">Uložiť na kartu SD</string>
-    <string name="xposed_not_active">Najnovšia verzia Xposed nie je aktuálne aktívna. Nainštalovali ste framework a vykonali reštart?</string>
+    <string name="xposed_not_active">Najnovšia verzia Xposed nie je aktuálne aktívna. Nainštalovali ste framework a reštartovali zariadenie?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Vitajte v <b>Xposed Installeri</b>!\nProsím, vyberte, čo chcete robiť:</string>
@@ -100,11 +100,11 @@
     <string name="download_details_page_description">Popis</string>
     <string name="download_details_page_versions">Verzie</string>
     <string name="download_details_page_settings">Nastavenia</string>
-    <string name="reltype_stable">Stabilné</string>
+    <string name="reltype_stable">Stabilná</string>
     <string name="reltype_stable_summary">Stabilné (nízke riziko chýb)</string>
     <string name="reltype_beta">Beta</string>
     <string name="reltype_beta_summary">Beta (očakávané nejaké chyby)</string>
-    <string name="reltype_experimental">Experimentálne</string>
+    <string name="reltype_experimental">Experimentálna</string>
     <string name="reltype_experimental_summary">Experimentálne (vysoké riziko chýb)</string>
     <string name="reltype_use_global_summary">Použiť globálne nastavenie</string>
     <string name="download_author">od %s</string>
