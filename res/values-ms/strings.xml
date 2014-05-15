@@ -141,6 +141,8 @@
     <string name="settings_group_experimental">Pengujian</string>
     <string name="settings_disable_resources">Matikan resource hooks</string>
     <string name="settings_disable_resources_summary">Melihat sekeliling untuk konflik dengan enjin tema\n<b>AMARAN:</b> Yang mana Modul yg cuba ditukar resources tidak akan berfungsi jika ini dihidupkan.</string>
+    <string name="settings_performance_experiment">Kemajuan Pengujian</string>
+    <string name="settings_performance_experiment_summary">Jika anda hidupkan ini, sistem anda mungkin akan meningkat atau sebaliknya, atau masih kekal pada tahap asal. Luangkan masa untuk mencuba dan laporkan sekiranya anda melihat atau merasai kesannya (atau langsung tiada apa²). Anda perlu memasang semula framework dan hidupkan semula selepas menukar ini.</string>
     <string name="settings_group_app">Aplikasi</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Cerah</string>
