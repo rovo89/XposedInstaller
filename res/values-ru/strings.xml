@@ -7,7 +7,7 @@
     <string name="xposed_not_active">Последняя версия Xposed в настоящее время не активна. Уверены, что Вы установили фреймворк и перезагрузили устройство?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Добро пожаловать в <b>Xposed Installer</b>!\nПожалуйста, выберите, что бы Вы хотели сделать:</string>
+    <string name="welcome">Добро пожаловать в <b>Xposed Installer</b>!\nПожалуйста, выберите, что Вам нужно:</string>
     <string name="tabInstall">Фреймворк</string>
     <string name="tabInstallDescription">Здесь Вы можете настроить Xposed framework, необходимый для работы модулей.</string>
     <string name="tabModules">Модули</string>
@@ -100,7 +100,7 @@
     <string name="download_details_page_description">Описание</string>
     <string name="download_details_page_versions">Версии</string>
     <string name="download_details_page_settings">Настройки</string>
-    <string name="reltype_stable">Стабильые</string>
+    <string name="reltype_stable">Стабильные</string>
     <string name="reltype_stable_summary">Стабильные (небольшой риск ошибок)</string>
     <string name="reltype_beta">Бета</string>
     <string name="reltype_beta_summary">Бета (могут быть некоторые ошибки)</string>
