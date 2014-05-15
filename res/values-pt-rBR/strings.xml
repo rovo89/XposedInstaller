@@ -29,20 +29,61 @@
     <string name="installedVersion">ativa</string>
     <string name="latestVersion">disponível</string>
     <string name="versions">Versões:</string>
+    <string name="install_header_reboot">Reiniciar</string>
     <string name="soft_reboot">Reinício suave</string>
     <string name="reboot">Reiniciar</string>
     <string name="areyousure">Tem certeza?</string>
     <string name="phone_not_compatible">O Xposed não é compatível (ainda) com o Android SDK versão %1$d ou a arquitetura do seu processador (%2$s).</string>
     <string name="not_tested_but_compatible">O Xposed não foi testado com o Android SDK versão %d, mas parece ser compatível. Você pode tentar instalá-lo se estiver se sentido aventureiro.</string>
+    <string name="reboot_failed">Falha ao reiniciar. Por favor reinicie o aparelho pelo menu do sistema.</string>
+    <string name="auto_flash_note">%s deve ser "flasheado" assim que você pressionar "OK".</string>
+    <string name="manual_flash_note">Por favor faça flash de %s a partir do cartão SD para completar a operação.</string>
+    <string name="reboot_confirmation">Deseja reiniciar agora?</string>
+    <string name="reboot_recovery_confirmation">Deseja reiniciar em modo de recuperação agora?</string>
+    <string name="install_warning_title">Tenha cuidado!</string>
+    <string name="install_warning">Em alguns casos, oaparelho pode não iniciar mais depois de instalar o Xposed.\n\nSe você nunca ouviu falar em \"soft brick\" e \"bootloop\" antes ou você não sabe se recuperar dessa situação, <b>NÃO</b> instale o Xposed!\n\nEm qualquer caso, ter um back-up recente é altamente recomendado.</string>
+    <string name="dont_show_again">Não mostrar novamente</string>
+    <string name="install_known_issue">Parece ser um problema conhecido (\"%s\") com a sua ROM. Instalar o Xposed pode lhe colocar em sérios problemas. Clique aqui para obter detalhes sobre o problema.</string>
+    <string name="install_reverted">a versão do app_process \"%1$s\" foi instalada anteriormente mas a \"%2$s\" foi encontrada agora. Se você não esperava a restauração de um arquivo antigo, talvez deva tentar a instalação via recuperação (automática ou manual).</string>
+    <string name="uninstall_reverted">o app_process foi desinstalado antes mas a versão \"%s\" foi encontrada. Se você não esperava a restauração de um arquivo antigo, você pode querer tentar desinstalar via recuperação (automática ou manual).</string>
+    <string name="tap_to_dismiss">Toque para dispensar</string>
+    <string name="sdcard_location">Cartão SD: %s</string>
 
     <!-- File operations -->
+    <string name="root_failed">Falha ao obter acesso root.\n\nCertifique-se de que o aparelho tem root funcionando e o app tem autorização para acessá-lo.</string>
+    <string name="file_extract_failed">Não foi possível extrair %s</string>
+    <string name="file_mounting_writable">Montando %s como gravável&#8230;</string>
+    <string name="file_mount_writable_failed">Não foi possível montar %s como gravável</string>
+    <string name="file_trying_to_continue">Tentando continuar assim mesmo&#8230;</string>
+    <string name="file_backup_already_exists">Back-up já existe em %s</string>
+    <string name="file_backup_not_found">Nenhum back-up encontrado em %s</string>
+    <string name="file_backup_failed">Falha ao criar backup em %s</string>
+    <string name="file_backup_successful">Back-up criado em %s</string>
+    <string name="file_backup_restoring">Restaurando back-up de %s</string>
+    <string name="file_copying">Copiando %s&#8230;</string>
+    <string name="file_copy_failed">Não foi possível copiar %1$s para %2$s</string>
+    <string name="file_move_failed">Não foi possível  mover %1$s para %2$s</string>
+    <string name="file_set_perms_failed">Não foi possível definir permissões para %s</string>
+    <string name="file_set_owner_failed">Não foi possível definir propriedade para %s</string>
+    <string name="file_removing">Removendo %s&#8230;</string>
+    <string name="file_remove_failed">Não foi possível remover %s</string>
+    <string name="file_creating_directory">Criando diretório %s&#8230;</string>
+    <string name="file_create_directory_failed">Não foi possível criar o diretório %s</string>
+    <string name="file_writing_recovery_command">Escrevendo o comando de recuperação&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Falha ao escrever o comando de recuperação. Por favor use um método de instalação diferente.</string>
+    <string name="file_done">Feito! As mudanças serão ativadas após reiniciar o aparelho.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">O módulo do Xposed ainda não foi ativado</string>
+    <string name="module_is_not_activated_yet_detailed">%s foi instalado, mas não foi ativado ainda.</string>
+    <string name="activate_and_reboot">Ativar e reiniciar</string>
+    <string name="module_activated">Módulo Xposed ativado</string>
     <string name="module_empty_description">(nenhuma descrição fornecida)</string>
     <string name="module_no_ui">Este módulo não possui uma interface de usuário</string>
     <string name="no_xposed_modules_found">Nenhum módulo encontrado!</string>
     <string name="xposed_module_list_updated">A lista de módulos do Xposed foi atualizada\nAs mudanças serão efetivadas ao reiniciar</string>
+    <string name="xposed_module_updated_notification_title">Módulo Xposed atualizado</string>
+    <string name="xposed_module_updated_notification">Reinicie para efetivar as mudanças</string>
     <string name="warning_xposed_min_version">Este módulo requer uma versão do XposedBridge mais recente (%d) e não pode ser ativado.</string>
     <string name="no_min_version_specified">Este módulo não especifica a versão do XposedBridge que ele precisa.</string>
     <string name="warning_min_version_too_low">Este módulo foi criado para a XposedBridge versão %1$d, mas devido a incompatibilidade na versão %2$d, foi desabilitado.</string>
@@ -56,9 +97,19 @@
     <string name="menuSearch">Pesquisar</string>
     <string name="menuReload">Recarregar</string>
     <string name="changes">Novidades:</string>
+    <string name="download_details_page_description">Descrição</string>
+    <string name="download_details_page_versions">Versões</string>
+    <string name="download_details_page_settings">Configurações</string>
+    <string name="reltype_stable">Estável</string>
+    <string name="reltype_stable_summary">Estável (baixo risco de bugs)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (alguns bugs podem aparecer)</string>
+    <string name="reltype_experimental">Experimental</string>
+    <string name="reltype_experimental_summary">Experimental (alto risco de bugs)</string>
+    <string name="reltype_use_global_summary">Usar configuração global</string>
     <string name="download_author">por %s</string>
     <string name="download_unknown_author">autor desconhecido</string>
-    <string name="download_status_installed">Instalado (versão %s)</string>
+    <string name="download_status_installed">Instalada (versão %s)</string>
     <string name="download_status_update_available">Atualização disponível (versão %1$s \u2192 %2$s)</string>
     <string name="download_timestamps">Adicionado em %1$s \u00b7 Atualizado em %2$s</string>
     <string name="download_sorting_title">Ordem de classificação</string>
@@ -73,19 +124,40 @@
     <string name="download_section_7d">Últimos 7 dias</string>
     <string name="download_section_30d">Últimos 30 dias</string>
     <string name="download_section_older">Mais de 30 dias atrás</string>
+    <string name="download_details_not_found">Não há módulo com o nome de pacote \"%s\" no repositório.</string>
+    <string name="download_no_versions">O autor não enviou nada ainda.</string>
+    <string name="download_test_version_not_shown">Uma versão de testes está disponível, entretanto não é exibida devido às suas configurações globais ou específicas de módulo.</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">Instalação</string>
+    <string name="settings_install_mode">Modo de instalação</string>
+    <string name="install_mode_normal">Clássico (gravar direto em /system)</string>
+    <string name="install_mode_recovery_auto">Via recuperação (instalar zip automaticamente)</string>
+    <string name="install_mode_recovery_manual">Via recuperação (gravar zip no cartão SD, e fazer flash manualmente)</string>
     <string name="settings_group_download">Baixar</string>
     <string name="settings_enable_downloads">Ativar downloads</string>
-    <string name="settings_enable_downloads_summary">Permitir ao Instalador ao Xposed verificar atualizações para módulos e o framework</string>
+    <string name="settings_enable_downloads_summary">Permitir ao Instalador ao Xposed verificar atualizações para os módulos e o framework</string>
+    <string name="settings_release_type">Versões a serem mostradas</string>
     <string name="settings_group_experimental">Experimental</string>
+    <string name="settings_disable_resources">Desabilitar prender recursos</string>
+    <string name="settings_disable_resources_summary">Solução para conflitos com temas - theme engine \n<b>AVISO:</b> Módulos que tentam alterar recursos não funcionarão com esta opção ativada.</string>
     <string name="settings_performance_experiment">Experiência de performance</string>
     <string name="settings_performance_experiment_summary">Ao ativar isso, a performance do seu sistema pode melhorar, piorar ou ficar na mesma. Sinta-se livre para experimentar e me reportar os efeitos (ou ausência deles). Você precisa reinstalar o framework e reiniciar após ativar esta opção.</string>
+    <string name="settings_group_app">Aplicativo</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Claro</string>
+    <string name="settings_theme_dark">Escuro</string>
+    <string name="settings_theme_black">Preto (Bom em telas AMOLED)</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">Não foi possível ler o registro:</string>
     <string name="logs_save_failed">Não foi possível gravar o registro no cartão SD:</string>
     <string name="sdcard_not_writable">O cartão SD não foi encontrado ou não permitiu a gravaçãSo</string>
+    <string name="log_too_large">O registro está com mais de %1$,d kB, ignorados os primeiros %2$,d kB</string>
+    <string name="menuClearLog">Limpar o registro agora</string>
+    <string name="logs_cleared">Limpeza do registro realizada</string>
+    <string name="logs_clear_failed">Não foi possível limpar o registro:</string>
+    <string name="log_is_empty">O registro está vazio</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Principais desenvolvedores:</string>
