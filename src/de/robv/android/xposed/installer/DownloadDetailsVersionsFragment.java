@@ -27,6 +27,7 @@ import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.HashUtil;
+import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.widget.DownloadView;
@@ -67,7 +68,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 				getListView().addHeaderView(txtHeader);
 			}
 
-			sAdapter = new VersionsAdapter(getActivity());
+			sAdapter = new VersionsAdapter(mActivity, mActivity.getInstalledModule());
 			for (ModuleVersion version : module.versions) {
 				if (repoLoader.isVersionShown(version))
 					sAdapter.add(version);
@@ -91,6 +92,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 	}
 
 	static class ViewHolder {
+		TextView txtStatus;
 		TextView txtVersion;
 		TextView txtRelType;
 		TextView txtUploadDate;
@@ -103,11 +105,21 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 		private final DateFormat mDateFormatter = DateFormat.getDateInstance(DateFormat.SHORT);
 		private final int mColorRelTypeStable;
 		private final int mColorRelTypeOthers;
+		private final int mColorInstalled;
+		private final int mColorUpdateAvailable;
+		private final String mTextInstalled;
+		private final String mTextUpdateAvailable;
+		private final int mInstalledVersionCode;
 
-		public VersionsAdapter(Context context) {
+		public VersionsAdapter(Context context, InstalledModule installed) {
 			super(context, R.layout.list_item_version);
-			mColorRelTypeStable = ThemeUtil.getThemeColor(getContext(), android.R.attr.textColorTertiary);
+			mColorRelTypeStable = ThemeUtil.getThemeColor(context, android.R.attr.textColorTertiary);
 			mColorRelTypeOthers = getResources().getColor(R.color.warning);
+			mColorInstalled = ThemeUtil.getThemeColor(context, R.attr.download_status_installed);
+			mColorUpdateAvailable = getResources().getColor(R.color.download_status_update_available);
+			mTextInstalled = getString(R.string.download_section_installed) + ":";
+			mTextUpdateAvailable = getString(R.string.download_section_update_available) + ":";
+			mInstalledVersionCode = (installed != null) ? installed.versionCode : -1;
 		}
 
 		@Override
@@ -117,6 +129,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 				LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				view = inflater.inflate(R.layout.list_item_version, null, true);
 				ViewHolder viewHolder = new ViewHolder();
+				viewHolder.txtStatus = (TextView) view.findViewById(R.id.txtStatus);
 				viewHolder.txtVersion = (TextView) view.findViewById(R.id.txtVersion);
 				viewHolder.txtRelType = (TextView) view.findViewById(R.id.txtRelType);
 				viewHolder.txtUploadDate = (TextView) view.findViewById(R.id.txtUploadDate);
@@ -138,6 +151,18 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 				holder.txtUploadDate.setVisibility(View.VISIBLE);
 			} else {
 				holder.txtUploadDate.setVisibility(View.GONE);
+			}
+
+			if (item.code <= 0 || mInstalledVersionCode <= 0 || item.code < mInstalledVersionCode) {
+				holder.txtStatus.setVisibility(View.GONE);
+			} else if (item.code == mInstalledVersionCode) {
+				holder.txtStatus.setText(mTextInstalled);
+				holder.txtStatus.setTextColor(mColorInstalled);
+				holder.txtStatus.setVisibility(View.VISIBLE);
+			} else { // item.code > mInstalledVersionCode
+				holder.txtStatus.setText(mTextUpdateAvailable);
+				holder.txtStatus.setTextColor(mColorUpdateAvailable);
+				holder.txtStatus.setVisibility(View.VISIBLE);
 			}
 
 			holder.downloadView.setUrl(item.downloadLink);

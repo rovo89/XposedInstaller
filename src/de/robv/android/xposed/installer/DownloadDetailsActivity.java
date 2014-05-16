@@ -31,6 +31,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 	private static RepoLoader sRepoLoader = RepoLoader.getInstance();
 	private ModuleGroup mModuleGroup;
 	private Module mModule;
+	private InstalledModule mInstalledModule;
 
 	public static final int DOWNLOAD_DESCRIPTION = 0;
 	public static final int DOWNLOAD_VERSIONS = 1;
@@ -42,6 +43,8 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 		mModuleGroup = sRepoLoader.getModuleGroup(mPackageName);
 		if (mModuleGroup != null)
 			mModule = mModuleGroup.getModule();
+
+		mInstalledModule = ModuleUtil.getInstance().getModule(mPackageName);
 
 		super.onCreate(savedInstanceState);
 		sRepoLoader.addListener(this, false);
@@ -61,8 +64,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 			mPager.setAdapter(new ScreenSlidePagerAdapter(getFragmentManager()));
 
 			// Updates available => start on the versions page
-			InstalledModule installed = ModuleUtil.getInstance().getModule(mPackageName);
-			if (installed != null && installed.isUpdate(sRepoLoader.getLatestVersion(mModule)))
+			if (mInstalledModule != null && mInstalledModule.isUpdate(sRepoLoader.getLatestVersion(mModule)))
 				mPager.setCurrentItem(DOWNLOAD_VERSIONS);
 
 		} else {
@@ -107,6 +109,10 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 
 	public Module getModule() {
 		return mModule;
+	}
+
+	public InstalledModule getInstalledModule() {
+		return mInstalledModule;
 	}
 
 	public void gotoPage(int page) {
