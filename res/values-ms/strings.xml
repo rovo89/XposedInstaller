@@ -4,7 +4,7 @@
     <!-- General/various strings -->
     <string name="menuSend">Menghantar</string>
     <string name="menuSaveToSd">Simpan Ke SD Kad</string>
-    <string name="xposed_not_active">The latest version of Xposed is currently not active. Did you install the framework and reboot?</string>
+    <string name="xposed_not_active">Versi terkini Xposed masih tidak aktif. Adakah anda memasang framework dan hidupkan semula?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Selamat Datang <b>Xposed Installer</b>!\nSila pilih apa yang anda mahukan:</string>
