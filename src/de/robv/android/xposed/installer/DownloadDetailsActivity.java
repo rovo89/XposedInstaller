@@ -19,16 +19,18 @@ import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
+import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
 
-public class DownloadDetailsActivity extends XposedDropdownNavActivity implements RepoListener {
+public class DownloadDetailsActivity extends XposedDropdownNavActivity implements RepoListener, ModuleListener {
 
 	private ViewPager mPager;
 	private String[] mPageTitles;
 	private String mPackageName;
 	private static RepoLoader sRepoLoader = RepoLoader.getInstance();
+	private static ModuleUtil sModuleUtil = ModuleUtil.getInstance();
 	private ModuleGroup mModuleGroup;
 	private Module mModule;
 	private InstalledModule mInstalledModule;
@@ -48,6 +50,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 
 		super.onCreate(savedInstanceState);
 		sRepoLoader.addListener(this, false);
+		sModuleUtil.addListener(this);
 		setNavItem(XposedDropdownNavActivity.TAB_DOWNLOAD);
 
 		if (mModuleGroup != null) {
@@ -105,6 +108,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 	protected void onDestroy() {
 		super.onDestroy();
 		sRepoLoader.removeListener(this);
+		sModuleUtil.removeListener(this);
 	}
 
 	public Module getModule() {
@@ -119,14 +123,29 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 		mPager.setCurrentItem(page);
 	}
 
-	@Override
-	public void onRepoReloaded(RepoLoader loader) {
+	private void reload() {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				recreate();
 			}
 		});
+	}
+
+	@Override
+	public void onRepoReloaded(RepoLoader loader) {
+		reload();
+	}
+
+	@Override
+	public void onInstalledModulesReloaded(ModuleUtil moduleUtil) {
+		reload();
+	}
+
+	@Override
+	public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module) {
+		if (packageName.equals(mPackageName))
+			reload();
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
