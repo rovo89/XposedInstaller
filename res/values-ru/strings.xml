@@ -7,7 +7,7 @@
     <string name="xposed_not_active">Последняя версия Xposed в настоящее время не активна. Уверены, что Вы установили фреймворк и перезагрузили устройство?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Добро пожаловать в <b>Xposed Installer</b>!\nПожалуйста, выберите, что бы Вы хотели сделать:</string>
+    <string name="welcome">Добро пожаловать в <b>Xposed Installer</b>!\nПожалуйста, выберите, что Вам нужно:</string>
     <string name="tabInstall">Фреймворк</string>
     <string name="tabInstallDescription">Здесь Вы можете настроить Xposed framework, необходимый для работы модулей.</string>
     <string name="tabModules">Модули</string>
@@ -18,8 +18,8 @@
     <string name="welcome_update_available">Доступны обновления для модулей.</string>
     <string name="tabSettings">Настройки</string>
     <string name="tabSettingsDescription">Выберите этот раздел для настройки Xposed Installer и фреймворка.</string>
-    <string name="tabLogs">Журналы</string>
-    <string name="tabLogsDescription">Отображение и сохранение/отправка журнала Xposed framework.</string>
+    <string name="tabLogs">Журнал</string>
+    <string name="tabLogsDescription">Отображение, сохранение и отправка журнала Xposed framework.</string>
     <string name="tabAbout">О программе</string>
     <string name="tabAboutDescription">Узнайте о людях, которые создали Xposed, о том, где можно получить поддержку и т.д.</string>
 
@@ -100,12 +100,12 @@
     <string name="download_details_page_description">Описание</string>
     <string name="download_details_page_versions">Версии</string>
     <string name="download_details_page_settings">Настройки</string>
-    <string name="reltype_stable">Стабильно</string>
-    <string name="reltype_stable_summary">Стабильно (небольшой риск ошибок)</string>
+    <string name="reltype_stable">Стабильные</string>
+    <string name="reltype_stable_summary">Стабильные (небольшой риск ошибок)</string>
     <string name="reltype_beta">Бета</string>
     <string name="reltype_beta_summary">Бета (могут быть некоторые ошибки)</string>
-    <string name="reltype_experimental">Экспериментально</string>
-    <string name="reltype_experimental_summary">Экспериментально (высокий риск ошибок)</string>
+    <string name="reltype_experimental">Экспериментальные</string>
+    <string name="reltype_experimental_summary">Экспериментальные (высокий риск ошибок)</string>
     <string name="reltype_use_global_summary">Использовать глобальные настройки</string>
     <string name="download_author">от %s</string>
     <string name="download_unknown_author">автор неизвестен</string>
@@ -132,15 +132,15 @@
     <string name="settings_group_installation">Установка</string>
     <string name="settings_install_mode">Режим установки</string>
     <string name="install_mode_normal">Классический (запись непосредственно в /system)</string>
-    <string name="install_mode_recovery_auto">Восстановление (автоматическая прошивка zip)</string>
-    <string name="install_mode_recovery_manual">Восстановление (запись zip на SD-карту, прошивка вручную)</string>
+    <string name="install_mode_recovery_auto">Из режима восстановления (автоматическая прошивка zip)</string>
+    <string name="install_mode_recovery_manual">Из режима восстановления (запись zip на SD-карту, прошивка вручную)</string>
     <string name="settings_group_download">Загрузка</string>
     <string name="settings_enable_downloads">Разрешить загрузку</string>
     <string name="settings_enable_downloads_summary">Разрешить проверять обновления Xposed Installer и модулей для него</string>
     <string name="settings_release_type">Отображаемые версии</string>
     <string name="settings_group_experimental">Экспериментальные функции</string>
-    <string name="settings_disable_resources">Отключение ресурсных привязок</string>
-    <string name="settings_disable_resources_summary">Обработка конфликтов с инструментами оформления\n<b>ПРЕДУПРЕЖДЕНИЕ:</b> Модули, пытающиеся отключить ресурсы, не будут работать при включении этой функции.</string>
+    <string name="settings_disable_resources">Не изменять ресурсы</string>
+    <string name="settings_disable_resources_summary">Обработка конфликтов с инструментами оформления.\n<b>ПРЕДУПРЕЖДЕНИЕ:</b> Модули, пытающиеся изменить ресурсы, не будут работать при включении этой функции.</string>
     <string name="settings_performance_experiment">Эксперимент с производительностью</string>
     <string name="settings_performance_experiment_summary">Если активировать эту опцию, производительность устройства может увеличиться, уменьшиться или остаться на прежнем уровне. Попробуйте и поделитесь достигнутым результатом. Для того чтобы изменения вступили в силу, необходимо переустановить фреймворк и перезагрузить устройство.</string>
     <string name="settings_group_app">Приложение</string>
