@@ -3,121 +3,193 @@
 
     <!-- General/various strings -->
     <string name="menuSend">Menghantar</string>
-    <string name="menuSaveToSd">Simpan Ke Kad SD</string>
-    <string name="xposed_not_active">Versi terbaru Xposed masih tidak aktif. Adakah anda ingin memasang framework dan reboot?</string>
+    <string name="menuSaveToSd">Simpan Ke SD Kad</string>
+    <string name="xposed_not_active">Versi terkini Xposed masih tidak aktif. Adakah anda memasang framework dan hidupkan semula?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Selamat datang <b>Pemasangan Xposed</b>!\nSila pilih apa yang and mahukan:</string>
+    <string name="welcome">Selamat Datang <b>Xposed Installer</b>!\nSila pilih apa yang anda mahukan:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Disini anda boleh menguruskan Xposed framework, yang mana keperluan untuk setiap modul berfungsi.</string>
+    <string name="tabInstallDescription">Disini anda boleh mengurus Xposed framework, yang mana memerlukan moduls untuk berfungsi.</string>
     <string name="tabModules">Modul</string>
-    <string name="tabModulesDescription">Framework bekerja sendiri samaada \'atau tidak memasukkan sebarang fungsi. Anda perlu modul untuk itu. Dalam seksyen ini anda boleh aktifkan modul selepas anda telah memasangnya.</string>
-    <string name="tabDownload">Muat Turun</string>
-    <string name="tabDownloadDescription">Pada seksyen ini memberikan anda akses repositori daripada modul, jadi anda boleh mencari dan muat turun salah satu yang anda suka dan pastikan yang terkini.</string>
-    <string name="welcome_framework_update_available">Sebahagian kemas kini untuk Xposed framework tersedia (%s).</string>
-    <string name="welcome_update_available">Satu atau lebih kemas kini(s) modul tersedia.</string>
+    <string name="tabModulesDescription">Framework tidak bekerja sendiri\'anda perlu tambahkan lain2 fungsi. Jika anda memerlukan modul utk itu. Dibahagian ini anda boleh aktifkan module selepas anda memasang semuanya.</string>
+    <string name="tabDownload">Muat turun</string>
+    <string name="tabDownloadDescription">Bahagian ini memberikan anda kebenaran utk akses module repositori, jadi anda boleh mencari dan muat turun salah satu yang anda suka dan terkini.</string>
+    <string name="welcome_framework_update_available">Terdapat kemaskini terbaru Xposed framework tersedia (%s).</string>
+    <string name="welcome_update_available">Satu atau lebih kemaskini(s) untuk module tersedia.</string>
     <string name="tabSettings">Tetapan</string>
-    <string name="tabSettingsDescription">Pergi ke bahagian ini untuk mengkonfigurasi pemasangan Xposed dan framework.</string>
-    <string name="tabLogs">Log</string>
-    <string name="tabLogsDescription">Tunjuk dan simpan/hantar log bagi Xposed framework.</string>
+    <string name="tabSettingsDescription">Pergi kebahagian ini untuk mengenal pasti Xposed Installer dan framework.</string>
+    <string name="tabLogs">Logs</string>
+    <string name="tabLogsDescription">Papar dan simpan/hantar log daripada Xposed framework.</string>
     <string name="tabAbout">Mengenai</string>
-    <string name="tabAboutDescription">Pelajari mengenai seseorang yang mencipta Xposed, dimana untuk dapatkan sokongan untuk aplikasi ini dan lain-lain.</string>
+    <string name="tabAboutDescription">Mengenali mengenai siapa orang yang mencipta Xposed, dan dimana untuk mendapat bantuan untuk aplikasi ini dan lain².</string>
 
     <!-- Installer tab -->
     <string name="install">Memasang/Kemaskini</string>
     <string name="uninstall">Nyah Pasang</string>
     <string name="installedVersion">Aktif</string>
-    <string name="latestVersion">dibundle</string>
+    <string name="latestVersion">bundled</string>
     <string name="versions">Versi:</string>
-    <string name="soft_reboot">Reboot Perlahan</string>
-    <string name="reboot">Reboot</string>
-    <string name="areyousure">Adakah anda pasti?</string>
-    <string name="phone_not_compatible">Xposed tidak (lagi) sesuai dengan versi Android SDK %1$d atau akitek pemprosessan anda (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed belum lagi diuji dengan versi Android SDK %d, tetapi kelihatan sesuai. Anda boleh mencuba memasangnya jika anda fikirkan sesuatu cabaran.</string>
+    <string name="install_header_reboot">Hidupkan Semula</string>
+    <string name="soft_reboot">Hidup smula secara perlahan</string>
+    <string name="reboot">Hidupkan semula</string>
+    <string name="areyousure">Anda Pasti?</string>
+    <string name="phone_not_compatible">Xposed tidak lagi (sesuai) menyokong dengan Android SDK versi %1$d atau kerangka prosessor anda (%2$s).</string>
+    <string name="not_tested_but_compatible">Xposed belum pernah diuji dengan Android SDK versi %d, tetapi kelihatan bersesuaian. Anda boleh mencuba memasang jika anda ingin melalui sesuatu yang mencabar.</string>
+    <string name="reboot_failed">Hidupkan semula gagal. Sila gunakan peranti\'s hidupkan smula secara biasa.</string>
+    <string name="auto_flash_note">%s Akan flash secara automatik jika anda menekan "OK".</string>
+    <string name="manual_flash_note">Sila flash %s daripada SD Kad untuk fungsi sepenunhya.</string>
+    <string name="reboot_confirmation">Adakah anda mahu menghidupkan semula sekarang?</string>
+    <string name="reboot_recovery_confirmation">Adakah anda mahu hidupkan semala secara mod pemulihan sekarang?</string>
+    <string name="install_warning_title">Berhati²!</string>
+    <string name="install_warning">Ada sesetengah kes, peranti anda mungkin tidak dapat hidupkan semula selepas memasang Xposed.\n\nJika anda tidak peduli mengenainya \"soft brick\" and \"bootloop\" sebelum anda lakukan dan\'tidak tahu bagaimana untuk pemulihan dari sebarang situasi, Jangan <b>Tidak</b> Memasang Xposed!\n\nada sesetengah kes, digalakkan anda membuat sandaran.</string>
+    <string name="dont_show_again">Jangan\' tunjukkan ini lagi</string>
+    <string name="install_known_issue">Dimana kelihatan sebarang isu(\"%s\") dengan ROM anda. Pemasangan Xposed mungkin tidak berfungsi atau mengalami masalah atau sedikit gangguan. Klik disini untuk penjelasan mengenai isu.</string>
+    <string name="install_reverted">app_proses versi \"%1$s\" telah dipasang dengan versi yang lepas \"%2$s\" ditemui. Jika anda tidak\' merasakan file lama dikembalikan, anda mungkin mahu mencuba untuk memasang secara mod pemulihan (auto or manual).</string>
+    <string name="uninstall_reverted">app_proses telah dinyah pasang versi sebelumnya \"%s\" telah ditemui. Jika anda tidak\'merasakan file lama boleh dikembalikan, mungkin anda mahu mencuba untuk mennyah pasang secara mod pemulihan (auto or manual).</string>
+    <string name="tap_to_dismiss">Sentuh untuk abaikan</string>
+    <string name="sdcard_location">SD Kad: %s</string>
 
     <!-- File operations -->
+    <string name="root_failed">Gagal untuk mendapat kebenaran root.\n\nPastikan peranti anda telah di\'root secara sempurna dan anda tidak menghalang shell commands.</string>
+    <string name="file_extract_failed">Tidak boleh diektrak %s</string>
+    <string name="file_mounting_writable">Memasukkan %s ditulis&#8230;</string>
+    <string name="file_mount_writable_failed">Tidak boleh dimasukkan %s ditulis</string>
+    <string name="file_trying_to_continue">Cuba untuk teruskan&#8230;</string>
+    <string name="file_backup_already_exists">Sandaran telah ada di %s</string>
+    <string name="file_backup_not_found">Sandaran tidak ditemui di %s</string>
+    <string name="file_backup_failed">Gagal untuk membuat sandaran %s</string>
+    <string name="file_backup_successful">Membuat sandaran di %s</string>
+    <string name="file_backup_restoring">Mengembalikan sandaran daripada %s</string>
+    <string name="file_copying">Menyalin %s&#8230;</string>
+    <string name="file_copy_failed">Tidak boleh menyalin %1$s ke %2$s</string>
+    <string name="file_move_failed">Tidak boleh pindah %1$s ke %2$s</string>
+    <string name="file_set_perms_failed">Tidak boleh set kebenaran untuk %s</string>
+    <string name="file_set_owner_failed">Tidak boleh set pemilik untuk %s</string>
+    <string name="file_removing">Membuang %s&#8230;</string>
+    <string name="file_remove_failed">Tidak boleh buang %s</string>
+    <string name="file_creating_directory">Mencipta direktori %s&#8230;</string>
+    <string name="file_create_directory_failed">Tidak boleh mencipta direktori %s</string>
+    <string name="file_writing_recovery_command">Menulis command pemulihan&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Menulis command pemulihan gagal. Sila gunakan cara lain untuk memasang alat.</string>
+    <string name="file_done">Selesai! Perubahan akan aktif selepas dihidupkan semula.</string>
 
     <!-- Modules tab -->
-    <string name="module_is_not_activated_yet">Xposed modul belum aktif lagi</string>
-    <string name="module_empty_description">(Keterangan tidak tersedia)</string>
-    <string name="module_no_ui">Modul ini tidak menyediakan antara muka pengguna</string>
-    <string name="no_xposed_modules_found">Xposed module ditemui!</string>
-    <string name="xposed_module_list_updated">Senarai Xposed modul telah dikemaskini\nDitukar dan aktif selepas reboot</string>
-    <string name="warning_xposed_min_version">Modul ini memerlukan XposedBridge versi terbaru (%d) dan itu tidak boleh diaktifkan.</string>
-    <string name="no_min_version_specified">Modul ini tidak menyatakan versi XposedBridge yang diperlukan.</string>
-    <string name="warning_min_version_too_low">Modul ini telah dicipta untuk versi XposedBridge %1$d, tetapi disebabkan oleh perubahan yang tidak serasi dalam versi %2$d, ianya telah dilumpuhkan.</string>
+    <string name="module_is_not_activated_yet">Xposed modul tidak diaktifkan lagi</string>
+    <string name="module_is_not_activated_yet_detailed">%s telah dipasang, tetapi tidak aktif lagi.</string>
+    <string name="activate_and_reboot">Aktif dan hidupkan semula</string>
+    <string name="module_activated">Xposed modul telah diaktifkan</string>
+    <string name="module_empty_description">(Tidak ada senarai disediakan)</string>
+    <string name="module_no_ui">Modul ini tidak menyediakan paparan pemuka pengguna</string>
+    <string name="no_xposed_modules_found">Xposed modul tidak ditemui!</string>
+    <string name="xposed_module_list_updated">Senarai Xposed modul telah dikemaskini\nPenukaran akan aktif selepas dihidupkan semula</string>
+    <string name="xposed_module_updated_notification_title">Xposed modul dikemaskini</string>
+    <string name="xposed_module_updated_notification">Hidupkan semula untuk diaktifkan perubahan</string>
+    <string name="warning_xposed_min_version">Modul ini memerlukan XposedBridge versi terbaru (%d) sebab itu tidak dapat diaktifkan.</string>
+    <string name="no_min_version_specified">Modul seperti tidak sesuai dengan XposedBridge versi yg dikehendaki.</string>
+    <string name="warning_min_version_too_low">Modul ini dibuat untuk XposedBridge versi %1$d, tetapi disebabkan tidak sesuai kepada perubahan mengikut versi %2$d, maka telah dimatikan.</string>
     <string name="module_launch">Lancarkan UI</string>
     <string name="module_download_updates">Muat Turun/Kemaskini</string>
-    <string name="module_support">Sokongan</string>
-    <string name="module_app_info">Mengenai Aplikasi</string>
+    <string name="module_support">Bantuan</string>
+    <string name="module_app_info">App info</string>
     <string name="module_uninstall">Nyah Pasang</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Cari</string>
-    <string name="menuReload">Reload</string>
-    <string name="changes">Perubahan:</string>
+    <string name="menuReload">Mengisi</string>
+    <string name="changes">Tukar:</string>
+    <string name="download_details_page_description">Senarai</string>
+    <string name="download_details_page_versions">Versi</string>
+    <string name="download_details_page_settings">Tetapan</string>
+    <string name="reltype_stable">Stabil</string>
+    <string name="reltype_stable_summary">Stabil(risiko bug rendah)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta(sesetengah bug dikesan)</string>
+    <string name="reltype_experimental">Pengujian</string>
+    <string name="reltype_experimental_summary">Pengujian(risiko bugs tinggi)</string>
+    <string name="reltype_use_global_summary">Gunakan tetapan global</string>
     <string name="download_author">Oleh %s</string>
-    <string name="download_unknown_author">Pemilik tidak diketahui</string>
-    <string name="download_status_installed">Pemasangan(versi %s)</string>
-    <string name="download_status_update_available">Kemaskini tersedia (versi %1$s \u2192 %2$s)</string>
-    <string name="download_timestamps">Ditambah pada %1$s \u00b7 Kemaskini %2$s</string>
-    <string name="download_sorting_title">Perintah susunan</string>
-    <string name="download_sorting_status">Susunan secara status</string>
-    <string name="download_sorting_updated">Susunan mengikut kemaskini terakhir</string>
-    <string name="download_sorting_created">Susunan mengikut tarikh dicipta</string>
+    <string name="download_unknown_author">Tidak tahu pemilik</string>
+    <string name="download_status_installed">Telah Dipasang (versi %s)</string>
+    <string name="download_status_update_available">Terdapat kemaskini (versi %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Ditambah pada %1$s \u00b7 Kemaskini pada %2$s</string>
+    <string name="download_sorting_title">Susunan singkatanr</string>
+    <string name="download_sorting_status">Susun mengikut status</string>
+    <string name="download_sorting_updated">Susun mengikut kemaskini terakhir</string>
+    <string name="download_sorting_created">Susun mengikut tarikh cipta</string>
     <string name="download_section_framework">Framework</string>
-    <string name="download_section_update_available">Kemaskini tersedia</string>
-    <string name="download_section_installed">Dipasangkan</string>
+    <string name="download_section_update_available">Terdapat kemaskini</string>
+    <string name="download_section_installed">Telah dipasang</string>
     <string name="download_section_not_installed">Tidak dipasang</string>
-    <string name="download_section_24h">Selepas 24 jam</string>
-    <string name="download_section_7d">Selepas 7 hari</string>
-    <string name="download_section_30d">Selepas 30 hari</string>
+    <string name="download_section_24h">24 jam lepas</string>
+    <string name="download_section_7d">7 hari lepas</string>
+    <string name="download_section_30d">30 hari lepas</string>
     <string name="download_section_older">Lebih daripada 30 hari lepas</string>
+    <string name="download_details_not_found">Tidak ada modul dengan nama package \"%s\" didalam repositori.</string>
+    <string name="download_no_versions">Pemilik tidak\' memuat naik apa² lagi.</string>
+    <string name="download_test_version_not_shown">Terdapat versi percubaan, walau bagaimana itu tidak\' ditunjukkan memandangkan masalah global atau tetapan modul-specific.</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_download">muat turun</string>
-    <string name="settings_enable_downloads">Membolehkan Muat turun</string>
-    <string name="settings_enable_downloads_summary">Benarkan Xposed Installer utk memeriksa kemaskini dan modul terbaru</string>
-    <string name="settings_group_experimental">Eksperimen</string>
-    <string name="settings_performance_experiment">Prestasi experimen</string>
-    <string name="settings_performance_experiment_summary">Jika anda membolehkan ini, Prestasi sistem anda mungkin sama ada kenaikan, penurunan atau tetap sama. Jangan ragu untuk mencuba dan membuat laporan yang kesan yang anda lihat (atau jika tidak ada pada semua). Anda perlu memasang semula framework dan reboot selepas menukar ini.</string>
+    <string name="settings_group_installation">Memasang</string>
+    <string name="settings_install_mode">Mod Pemasangan</string>
+    <string name="install_mode_normal">Secra klasik (Tulis kepada /sistem terus)</string>
+    <string name="install_mode_recovery_auto">Pemulihan(flash zip secara automatik)</string>
+    <string name="install_mode_recovery_manual">Pemulihan (tulis zip ke SD Kad, flash secara manual)</string>
+    <string name="settings_group_download">Muat turun</string>
+    <string name="settings_enable_downloads">Boleh dimuat turun</string>
+    <string name="settings_enable_downloads_summary">Benarkan Xposed Installer untuk memeriksa kemaskini dan modul terbaru</string>
+    <string name="settings_release_type">Versi akan dipaparkan</string>
+    <string name="settings_group_experimental">Pengujian</string>
+    <string name="settings_disable_resources">Matikan resource hooks</string>
+    <string name="settings_disable_resources_summary">Melihat sekeliling untuk konflik dengan enjin tema\n<b>AMARAN:</b> Yang mana Modul yg cuba ditukar resources tidak akan berfungsi jika ini dihidupkan.</string>
+    <string name="settings_performance_experiment">Kemajuan Pengujian</string>
+    <string name="settings_performance_experiment_summary">Jika anda hidupkan ini, sistem anda mungkin akan meningkat atau sebaliknya, atau masih kekal pada tahap asal. Luangkan masa untuk mencuba dan laporkan sekiranya anda melihat atau merasai kesannya (atau langsung tiada apa²). Anda perlu memasang semula framework dan hidupkan semula selepas menukar ini.</string>
+    <string name="settings_group_app">Aplikasi</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Cerah</string>
+    <string name="settings_theme_dark">Gelap</string>
+    <string name="settings_theme_black">Hitam (sesuai untuk AMOLED screens)</string>
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Tidak boleh membaca log:</string>
-    <string name="logs_save_failed">Tidak boleh menulis log ke Kad SD:</string>
-    <string name="sdcard_not_writable">Kad SD tidak ditemui atau hanya baca sahaja</string>
+    <string name="logs_load_failed">Log tidak boleh baca:</string>
+    <string name="logs_save_failed">Log tidak boleh tulis ke SD kad:</string>
+    <string name="sdcard_not_writable">SD Kad tak ditemui atau tidak boleh ditulis</string>
+    <string name="log_too_large">Log file Terlalu besar  %1$,d kB, abaikan shj %2$,d kB</string>
+    <string name="menuClearLog">Bersihkan log sekarang</string>
+    <string name="logs_cleared">Log berjaya dibersihkan</string>
+    <string name="logs_clear_failed">Log tidak boleh bersihkan:</string>
+    <string name="log_is_empty">Log kosong</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Main developers:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Dilarang <b>tidak</b> menghubungi kami secara terus untuk sokongan,gunakan link dibawah.</string>
+    <string name="about_developers_warning">Jangan <b>Tidak</b> menghubungi kami secara langsung untuk sokongan, gunakan link dibawah.</string>
     <string name="about_translator_label">Penterjemah:</string>
-    <string name="translator">Jay3Belas</string>
-    <string name="about_version_label">Versi Aplikasi ini:</string>
-    <string name="about_source_label">Source code:</string>
+    <string name="translator"></string>
+    <string name="about_version_label">Versi aplikasi ini:</string>
+    <string name="about_source_label">Source Kod:</string>
     <string name="about_support_label">Dapatkan bantuan di:</string>
-    <string name="about_support_warning">Link ini adalah untuk pemasangan dan framework <b>sahaja</b>! Jika anda perlu bantuan mengenai modul, Jangan <b>tidak</b> menggunanya, hubungi pemilik modul sebaliknya.</string>
-    <string name="about_libraries_label">Perpustakaan digunakan:</string>
+    <string name="about_support_warning">Link ini untuk pemasangan dan framework <b>sahaja</b>! Jika anda perlu bantuan berkenaan modul, jangan <b>tidak</b> gunakan, hubungi pemilik module berkenaan.</string>
+    <string name="about_libraries_label">Pustaka digunakan:</string>
 
     <!-- DownloadView -->
     <string name="download_view_download">Muat Turun</string>
-    <string name="download_view_install">Memasang</string>
+    <string name="download_view_install">Pasang</string>
     <string name="download_view_cancel">Batal</string>
-    <string name="download_view_no_url">Tidak ada URL link</string>
+    <string name="download_view_no_url">Tidak ada URL muat turun tersedia</string>
     <string name="download_view_running">Muat turun sedang berjalan (%1$,d of %2$,d kB)</string>
     <string name="download_view_waiting">Muat turun sedang menunggu</string>
     <string name="download_view_successful">Muat turun berjaya</string>
     <string name="download_view_failed">Muat turun gagal (error %d)</string>
 
     <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">MD5 sum tidak betul (downloaded: %1$s, expected: %2$s)</string>
-    <string name="download_could_not_read_file">Tidak dapat membaca fail yang dimuat turun: %s</string>
-    <string name="download_no_valid_apk">File yg dimuat turun adalah tidak sah APK (atau tidak serasi)</string>
-    <string name="download_incorrect_package_name">Nama pakej tidak betul (downloaded: %1$s, expected: %2$s)</string>
+    <string name="download_md5sum_incorrect">MD5 sum ada betul (muat turun: %1$s, berbaki: %2$s)</string>
+    <string name="download_could_not_read_file">Tidak boleh baca file yg dimuat turun: %s</string>
+    <string name="download_no_valid_apk">File yg dimuat turun tidak sah APK (atau tidak sesuai)</string>
+    <string name="download_incorrect_package_name">Nama package tidak betul (muat turun: %1$s, berbaki: %2$s)</string>
 
     <!-- RepoLoader -->
-    <string name="repo_download_failed_http">Memuat turun %1$s failed: %2$d (%3$s)</string>
-    <string name="repo_download_failed">Memuat turun %1$s failed: %2$s</string>
-    <string name="repo_load_failed">Tidak dapat memuat repositori dari %1$s:\n%2$s</string>
+    <string name="repo_download_failed_http">Muat turun %1$s gagal: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Muat turun %1$s gagal: %2$s</string>
+    <string name="repo_load_failed">Tidak boleh mengisi repositor daripada %1$s:\n%2$s</string>
 
 </resources>
