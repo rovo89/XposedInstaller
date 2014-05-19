@@ -29,6 +29,7 @@
     <string name="installedVersion">активна</string>
     <string name="latestVersion">последна</string>
     <string name="versions">Версии:</string>
+    <string name="install_header_reboot">Рестартиране</string>
     <string name="soft_reboot">Софт рестарт</string>
     <string name="reboot">Рестарт</string>
     <string name="areyousure">Сигурни ли сте?</string>
@@ -42,6 +43,11 @@
     <string name="install_warning_title">Бъдете внимателни!</string>
     <string name="install_warning">В някои случаи е възможно, след инсталиране на Xposed вашето устройство да не стартира.\n\nАко никога не сте чували за \"soft brick\" и \"bootloop\" или ако незнаете как да възстановите устройството в такава ситуация, <b>НЕ</b> инсталирайте Xposed!\n\nВъв всеки случай се препоръчва да имате скорошно резервно копие.</string>
     <string name="dont_show_again">Не показвай отново</string>
+    <string name="install_known_issue">Изглежда, че съществува известен проблем (\"%s\") с Вашия ROM. Инсталирането на Xposed може да не работи или да доведе до някои проблеми. Натиснете тук за повече информация относно този проблем.</string>
+    <string name="install_reverted">app_process версия \"%1$s\" е инсталиран, но е открита версия \"%2$s\". Ако не очаквате да се възстанови стария файл, може да опитате инсталиране през recovery (автоматично или ръчно).</string>
+    <string name="uninstall_reverted">app_process беше деинсталиран, но е открита версия \"%s\". Ако не очаквате да се възстанови стария файл, може да опитате деинсталиране през recovery (автоматично или ръчно).</string>
+    <string name="tap_to_dismiss">Докоснете за отказ</string>
+    <string name="sdcard_location">SD карта: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Няма root достъп.\n\nУбедете се, че устройството Ви е root-нато и не сте блокирали shell командите.</string>
@@ -69,10 +75,15 @@
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Модула за Xposed не е активиран</string>
+    <string name="module_is_not_activated_yet_detailed">%s беше инсталиран, но все още не е активиран.</string>
+    <string name="activate_and_reboot">Активирай и рестартирай</string>
+    <string name="module_activated">Xposed модула е активиран</string>
     <string name="module_empty_description">(няма описание)</string>
     <string name="module_no_ui">Този модул няма потребителски интерфейс</string>
     <string name="no_xposed_modules_found">Не са намерени модули за Xposed!</string>
     <string name="xposed_module_list_updated">Списъка с Xposed модули е обновен\nПромените ще бъдат активни след рестарт</string>
+    <string name="xposed_module_updated_notification_title">Обновен е Xposed модул</string>
+    <string name="xposed_module_updated_notification">Рестартирай за прилагана на промените</string>
     <string name="warning_xposed_min_version">Този модул изисква най-новият XposedBridge версия (%d) и не може да се активира.</string>
     <string name="no_min_version_specified">Този модул не указва нужната версия на XposedBridge.</string>
     <string name="warning_min_version_too_low">Този модул е създаден за XposedBridge версия %1$d, но поради несъвместимост с версия %2$d, е изключен.</string>
@@ -86,6 +97,16 @@
     <string name="menuSearch">Търси</string>
     <string name="menuReload">Презареди</string>
     <string name="changes">Промени:</string>
+    <string name="download_details_page_description">Описание</string>
+    <string name="download_details_page_versions">Версии</string>
+    <string name="download_details_page_settings">Настройки</string>
+    <string name="reltype_stable">Стабилна</string>
+    <string name="reltype_stable_summary">Стабилна (малък риск за грешки)</string>
+    <string name="reltype_beta">Бета</string>
+    <string name="reltype_beta_summary">Бета (очакват се някои грешки)</string>
+    <string name="reltype_experimental">Експериментална</string>
+    <string name="reltype_experimental_summary">Експериментална (висок риск за грешки)</string>
+    <string name="reltype_use_global_summary">Използвай глобална настройка</string>
     <string name="download_author">от %s</string>
     <string name="download_unknown_author">неизвестен автор</string>
     <string name="download_status_installed">Инсталиран (версия %s)</string>
@@ -103,6 +124,9 @@
     <string name="download_section_7d">Преди 7 дни</string>
     <string name="download_section_30d">Преди 30 дни</string>
     <string name="download_section_older">Преди повече от 30 дни</string>
+    <string name="download_details_not_found">В хранилището не съществува модул с име на пакета \"%s\".</string>
+    <string name="download_no_versions">Авторът все още не е качил нищо.</string>
+    <string name="download_test_version_not_shown">Налична е тестова версия, но тя не се показва поради Вашите специфични настройки.</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">Инсталиране</string>
@@ -113,11 +137,17 @@
     <string name="settings_group_download">Изтегляне</string>
     <string name="settings_enable_downloads">Позволи изтегляния</string>
     <string name="settings_enable_downloads_summary">Позволи на Xposed Installer да проверява за обновления и нови модули</string>
+    <string name="settings_release_type">Показвай версии</string>
     <string name="settings_group_experimental">Експериментално</string>
     <string name="settings_disable_resources">Изключевно прихващане на ресурси</string>
     <string name="settings_disable_resources_summary">Решаване на конфликти с темите\n<b>ВНИМАНИЕ:</b> Модули които се опитват да променят ресурсите няма да работят.</string>
     <string name="settings_performance_experiment">Експеримент за производителност</string>
     <string name="settings_performance_experiment_summary">Ако позволите това, производителността на системата може да се увеличи, да се намали или да се запази. Чувствайте се свободни да пробвате и да дадете отзиви. Необходимо е да преинсталирате framework и да рестартирате след промяна на тази настройка.</string>
+    <string name="settings_group_app">Приложение</string>
+    <string name="settings_theme">Тема</string>
+    <string name="settings_theme_light">Светла</string>
+    <string name="settings_theme_dark">Тъмна</string>
+    <string name="settings_theme_black">Черна (за AMOLED екрани)</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">Не може да се прочете дневника:</string>
