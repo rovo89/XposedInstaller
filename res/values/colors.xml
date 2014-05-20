@@ -25,5 +25,8 @@
 
     <!-- black theme -->
     <color name="app_background_black">#000000</color>
+    <color name="card_background_black">#181818</color>
+    <color name="card_background_pressed_black">#303030</color>
+    <color name="card_shadow_black">#121212</color>
 
 </resources>

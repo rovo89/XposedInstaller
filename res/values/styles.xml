@@ -26,6 +26,8 @@
     <style
         name="Theme.Dark.Black" >
         <item name="android:windowBackground">@color/app_background_black</item>
+        <item name="background_card">@drawable/background_card_black</item>
+        <item name="background_card_pressed">@drawable/background_card_pressed_black</item>
     </style>
 
 </resources>
