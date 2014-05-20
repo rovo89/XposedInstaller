@@ -9,7 +9,7 @@
     <!-- Welcome screen / main sections -->
     <string name="welcome">Bienvenue dans <b>l\'installateur Xposed</b> !\nVeuillez choisir ce que vous voulez faire:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Ici vous pouvez manager le framework Xposed, qui est nécessaire au fonctionnement de n\'importe quel module.</string>
+    <string name="tabInstallDescription">Ici vous pouvez gérer le framework Xposed, qui est nécessaire au fonctionnement de n\'importe quel module.</string>
     <string name="tabModules">Modules</string>
     <string name="tabModulesDescription">Le framework en lui-même n\'apporte aucune fonctionnalité, vous avez besoin de modules pour ça. Dans cette section vous pouvez activer les modules après les avoir installé.</string>
     <string name="tabDownload">Téléchargements</string>

@@ -2,6 +2,9 @@
 <resources>
 
     <!-- General/various strings -->
+    <string name="menuSend">Enviar</string>
+    <string name="menuSaveToSd">Guardar en la memoria SD</string>
+    <string name="xposed_not_active">La última versión de Xposed no esta activa en este momento. ¿Instaló y reinició?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Bienvenido a <b>Instalador Xposed</b>!\nEscoja lo que quiere hacer:</string>
@@ -10,12 +13,13 @@
     <string name="tabModules">Módulos</string>
     <string name="tabModulesDescription">Xposed Framework en sí no añade ninguna funcionalidad. Necesitará módulos para eso. En esta sección puede activar módulos después de haberlos instalado.</string>
     <string name="tabDownload">Descarga</string>
-    <string name="tabDownloadDescription">Esta sección le permite acceder a un repositorio de módulos, por lo que puede buscar y descargar los que más le gusten y mantenerlos al día.</string>
+    <string name="tabDownloadDescription">Esta sección le permite acceder a un repositorio de módulos, en el cual puede buscar y descargar los que más le gusten y mantenerlos al día.</string>
     <string name="welcome_framework_update_available">Una actualización para Xposed Framework está disponible.</string>
     <string name="welcome_update_available">Una o más actualizaciones para los módulos están disponibles.</string>
     <string name="tabSettings">Ajustes</string>
-    <string name="tabSettingsDescription">Ven a esta sección para configurar el instalador Xposed y el framework.</string>
-    <string name="tabLogsDescription">Mira y guarda/envía logs de Xposed Framework.</string>
+    <string name="tabSettingsDescription">Venga a esta sección para configurar el Instalador Xposed y el Framework.</string>
+    <string name="tabLogs">Historial/Logs</string>
+    <string name="tabLogsDescription">Mire, guarde y envíe logs de Xposed Framework.</string>
     <string name="tabAbout">Acerca de</string>
     <string name="tabAboutDescription">Información sobre las personas que crearon Xposed, dónde obtener ayuda para esta aplicación, etc</string>
 
@@ -25,31 +29,84 @@
     <string name="installedVersion">Activo</string>
     <string name="latestVersion">Incluido</string>
     <string name="versions">Versión:</string>
-    <string name="soft_reboot">Reinicio Software</string>
-    <string name="reboot">Reinicio</string>
-    <string name="areyousure">¿Estás seguro?</string>
+    <string name="install_header_reboot">Reiniciar</string>
+    <string name="soft_reboot">Reinicio Suave</string>
+    <string name="reboot">Reiniciar</string>
+    <string name="areyousure">¿Está seguro?</string>
     <string name="phone_not_compatible">Xposed no es (todavía) compatible con la versión de Android SDK %1$d o la arquitectura de su procesador (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed no ha sido probado con la versión de Android SDK %d, pero parece ser compatible. Usted puede tratar de instalarlo si se siente aventurero.</string>
-    <string name="install_warning_title">¡Ten cuidado!</string>
-    <string name="install_warning">En algunos casos, el dispositivo podría no volver a arrancar después de instalar Xposed. \n\nSi nunca ha escuchado hablar de softbrick o bootloop antes o si no sabe cómo recuperar el dispositivo de una situación de este tipo, <b>NO</b> instale Xposed! \n\nEn cualquier caso, es muy recomendable tener una copia de seguridad reciente.</string>
+    <string name="reboot_failed">El reinicio falló. Por favor utilice el reinicio normal del dispositivo.</string>
+    <string name="auto_flash_note">%s debería ser re-establecido después de presionar "OK".</string>
+    <string name="manual_flash_note">Por favor re establezca %s de la memoria SD para completar la operación.</string>
+    <string name="reboot_confirmation">¿Desea reiniciar ahora?</string>
+    <string name="reboot_recovery_confirmation">¿Desea reiniciar en modo recovery ahora?</string>
+    <string name="install_warning_title">¡Tenga cuidado!</string>
+    <string name="install_warning">En algunos casos, el dispositivo podría no volver a arrancar después de instalar Xposed. \n\nSi nunca escuchó hablar de softbrick o bootloop antes o si no sabe cómo recuperar el dispositivo de una situación de este tipo, <b>NO</b> instale Xposed! \n\nEn cualquier caso, es muy recomendable tener una copia de seguridad reciente.</string>
     <string name="dont_show_again">No volver a mostrar</string>
+    <string name="install_known_issue">Parece haber un problema (\"%s\") con su ROM. Instalar Xposed puede no funcionar o producir problemas severos. Haga click aquí para obtener detalles acerca del problema.</string>
+    <string name="install_reverted">La versión \"%1$s\" de app_process fue previamente instalada pero se ahora se encontró la versión \"%2$s\" . Si usted no esperaba que un archivo antiguo fuera restaurado, puede probar instalar en modo de recuperación (automatico o manual).</string>
+    <string name="uninstall_reverted">app_process fue desinstalado previamente pero ahora se encontró la versión \"%s\" . Si usted no esperaba que un archivo antiguo fuera restaurado, puede probar desinstalar en modo de recuperación (automático o manual).</string>
+    <string name="tap_to_dismiss">Toque para descartar.</string>
+    <string name="sdcard_location">Memoria SD: %s</string>
 
     <!-- File operations -->
+    <string name="root_failed">No se pudo obtener acceso de raíz.\n\nAsegurese de que su dispositivo esté rooteado apropiadamente y que los comandos de shell no estén bloqueados.</string>
+    <string name="file_extract_failed">No se pudo extraer %s</string>
+    <string name="file_mounting_writable">Montando %s escribible&#8230;</string>
+    <string name="file_mount_writable_failed">No se pudo montar el escribible %s </string>
+    <string name="file_trying_to_continue">Intentando continuar&#8230;</string>
+    <string name="file_backup_already_exists">El backup ya existe en %s</string>
+    <string name="file_backup_not_found">No se encontró backup en %s</string>
+    <string name="file_backup_failed">Fallo creando el backup %s</string>
+    <string name="file_backup_successful">Backup creado %s</string>
+    <string name="file_backup_restoring">Restaurando backup de %s</string>
+    <string name="file_copying">Copiando %s&#8230;</string>
+    <string name="file_copy_failed">No se pudo copiar %1$s a %2$s</string>
+    <string name="file_move_failed">No se pudo mover %1$s a %2$s</string>
+    <string name="file_set_perms_failed">No se pudo asignar permisos para %s</string>
+    <string name="file_set_owner_failed">No se pudo asignar el dueño %s</string>
+    <string name="file_removing">Eliminando %s&#8230;</string>
+    <string name="file_remove_failed">No se pudo eliminar %s</string>
+    <string name="file_creating_directory">Creando directorio %s&#8230;</string>
+    <string name="file_create_directory_failed">No se pudo crear el directorio %s</string>
+    <string name="file_writing_recovery_command">Escribiendo comando de recuperación&#8230;</string>
+    <string name="file_writing_recovery_command_failed">La escritura del comando de recuperación falló. Por favor utilice otro método de instalación.</string>
+    <string name="file_done">Hecho! Los cambios serán activados cuando se reinicie.</string>
 
     <!-- Modules tab -->
-    <string name="module_is_not_activated_yet">Módulo Xposed aún no está activo</string>
+    <string name="module_is_not_activated_yet">Módulo Xposed aún no activo</string>
+    <string name="module_is_not_activated_yet_detailed"> %s ha sido instalado, pero no está activo aún.</string>
+    <string name="activate_and_reboot">Activar y reiniciar</string>
+    <string name="module_activated">El módulo de Xposed ha sido activado</string>
     <string name="module_empty_description">(No se proporcionó descripción)</string>
     <string name="module_no_ui">Este módulo no proporciona una interfaz de usuario</string>
     <string name="no_xposed_modules_found">No se encontraron módulos!</string>
     <string name="xposed_module_list_updated">Lista de modulos Xposed actualizada\nLos cambios se activaran al reiniciar</string>
-    <string name="warning_xposed_min_version">Este modulo requiere una versión mas reciente de XposedBridge (%d) y por lo tanto no se puede activar.</string>
-    <string name="no_min_version_specified">Este modulo no especifica la version de XposedBridge que necesita.</string>
-    <string name="warning_min_version_too_low">Este modulo fue creado para la version %1$d de XposedBridge, pero debido a un cambio incompatible en la versión %2$d, ha sido desactivado.</string>
+    <string name="xposed_module_updated_notification_title">Módulo de Xposed actualizado</string>
+    <string name="xposed_module_updated_notification">Reiniciar para activar los cambios</string>
+    <string name="warning_xposed_min_version">Este modulo requiere una versión más reciente de XposedBridge (%d) y por lo tanto no se puede activar.</string>
+    <string name="no_min_version_specified">Este modulo no especifica la versión de XposedBridge que necesita.</string>
+    <string name="warning_min_version_too_low">Este módulo fue creado para la versión %1$d de XposedBridge, pero debido a un cambio incompatible en la versión %2$d, ha sido desactivado.</string>
+    <string name="module_launch">Lanzar Interfaz/UI</string>
+    <string name="module_download_updates">Descarga/Actualizaciones</string>
+    <string name="module_support">Ayuda</string>
+    <string name="module_app_info">Información del app</string>
+    <string name="module_uninstall">Desinstalar</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Buscar</string>
     <string name="menuReload">Recargar</string>
     <string name="changes">Cambios:</string>
+    <string name="download_details_page_description">Descripción</string>
+    <string name="download_details_page_versions">Versiones</string>
+    <string name="download_details_page_settings">Configuración</string>
+    <string name="reltype_stable">Estable</string>
+    <string name="reltype_stable_summary">Estable (bajo riesgo de bugs/errores)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (se esperan algunos bugs/errores)</string>
+    <string name="reltype_experimental">Experimental</string>
+    <string name="reltype_experimental_summary">Experimental (alto riesgo de bugs/errores)</string>
+    <string name="reltype_use_global_summary">Usar la configuración global</string>
     <string name="download_author">Por %s</string>
     <string name="download_unknown_author">Autor desconocido</string>
     <string name="download_status_installed">Instalada (versión %s)</string>
@@ -67,6 +124,9 @@
     <string name="download_section_7d">Últimos 7 días</string>
     <string name="download_section_30d">Últimos 30 días</string>
     <string name="download_section_older">Hace más de 30 días</string>
+    <string name="download_details_not_found">No hay módulos en el repositorio cuyo nombre de paquete sea \"%s\" .</string>
+    <string name="download_no_versions">El autor no ha subido nada aún.</string>
+    <string name="download_test_version_not_shown">Una versión de prueba está disponible, pero no se muestra por sus configuraciónes globales o de módulo.</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">Instalación</string>
@@ -77,29 +137,45 @@
     <string name="settings_group_download">Descargar</string>
     <string name="settings_enable_downloads">Activar descargas</string>
     <string name="settings_enable_downloads_summary">Permitir a Instalador Xposed comprobar si hay actualizaciones y nuevos módulos</string>
+    <string name="settings_release_type">Versiones a mostrar</string>
     <string name="settings_group_experimental">Experimental</string>
-    <string name="settings_performance_experiment">Performance experiment</string>
+    <string name="settings_disable_resources">Desactivar ganchos de fuente.</string>
+    <string name="settings_disable_resources_summary">Workaround para conflictos con motores de temas \n<b>ALERTA:</b> Los modulos a los que está intentando cambiar recursos no funcionarán cuando estto se active.</string>
+    <string name="settings_performance_experiment">Experimento de rendimiento</string>
     <string name="settings_performance_experiment_summary">Si habilita esto, el rendimiento del sistema puede aumentar, disminuir o permanecer igual. No dude en probar e informar cuyo efecto se ve (o si no hay ninguno en absoluto). Es necesario volver a instalar el Stock Framework y reiniciar después de cambiar esto.</string>
+    <string name="settings_group_app">Aplicación</string>
+    <string name="settings_theme">Interfaz</string>
+    <string name="settings_theme_light">Clara</string>
+    <string name="settings_theme_dark">Oscura</string>
+    <string name="settings_theme_black">Negra (recomendada para pantallas AMOLED)</string>
 
     <!-- Logs tab  -->
+    <string name="logs_load_failed">No se pudo leer el log:</string>
+    <string name="logs_save_failed">No se pudo escribir el log en la memoria SD:</string>
+    <string name="sdcard_not_writable">No se encontró memoria SD o no se pudo escribir en ella.</string>
+    <string name="log_too_large">El tamaño del log es mayor a %1$,d kB, se ignoraron los primeros %2$,d kB</string>
+    <string name="menuClearLog">Limpiar log ahora.</string>
+    <string name="logs_cleared">El log fue limpiado correctamente</string>
+    <string name="logs_clear_failed">No se pudo limpiar el log:</string>
+    <string name="log_is_empty">El log está vacío.</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Desarrolladores principales:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> y <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Por favor <b>no</b> se ponga en contacto con nosotros directamente para obtener soporte, utilice el siguiente enlace.</string>
+    <string name="about_developers_warning">Por favor, <b>no</b> se ponga en contacto con nosotros directamente para obtener soporte, utilice el siguiente enlace.</string>
     <string name="about_translator_label">Traductor:</string>
-    <string name="translator">David_Vaz</string>
-    <string name="about_version_label">Versión de esta aplicación:</string>
+    <string name="translator">David_Vaz y juanjorogo</string>
+    <string name="about_version_label">Versión de la aplicación:</string>
     <string name="about_source_label">Código fuente:</string>
     <string name="about_support_label">Recibe soporte en:</string>
-    <string name="about_support_warning">Este enlace es <b>sólo</b> para Xposed Framework! Si necesitas ayuda con un módulo, <b>no</b> uses este enlace, contacta con el autor del módulo.</string>
+    <string name="about_support_warning">Este enlace es <b>sólo</b> para Xposed Framework! Si necesita ayuda con un módulo, <b>no</b> use este enlace, contacte con el autor del módulo.</string>
     <string name="about_libraries_label">Librerias usadas:</string>
 
     <!-- DownloadView -->
     <string name="download_view_download">Descarga</string>
     <string name="download_view_install">Instalar</string>
     <string name="download_view_cancel">Cancelar</string>
-    <string name="download_view_no_url">No link de descarga disponible</string>
+    <string name="download_view_no_url">No hay link de descarga disponible</string>
     <string name="download_view_running">La descarga se está ejecutando (%1$,d of %2$,d kB)</string>
     <string name="download_view_waiting">Esperando para descargar&#8230;</string>
     <string name="download_view_successful">Descarga finalizada</string>
@@ -112,8 +188,8 @@
     <string name="download_incorrect_package_name">Nombre del paquete incorrecto (descargado: %1$s, original: %2$s)</string>
 
     <!-- RepoLoader -->
-    <string name="repo_download_failed_http">Descargando %1$s fallido: %2$d (%3$s)</string>
-    <string name="repo_download_failed">Descargando %1$s fallido: %2$s</string>
+    <string name="repo_download_failed_http">Descarga %1$s fallida: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Descarga %1$s fallida: %2$s</string>
     <string name="repo_load_failed">No se puede cargar el repositorio de %1$s:\n%2$s</string>
 
 </resources>
