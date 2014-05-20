@@ -42,7 +42,11 @@
     <string name="install_warning_title">ระวังนะ!</string>
     <string name="install_warning">บางกรณี อุปกรณ์ของคุณอาจบู๊ตไม่ได้อีกหลังติดตั้ง Xposed\n\nถ้าคุณไม่เคยได้ยิน \"soft brick\" และ \"bootloop\" มาก่อน หรือไม่รู้ว่าจะแก้ปัญหาอย่างไรหลังเกิดปัญหาเหล่านั้น <b>อย่า</b>ติดตั้ง Xposed!\n\nอย่างไรก็ตาม การแบ๊คอัพข้อมูลไว้ก่อนก็เป็นสิ่งที่ดี</string>
     <string name="dont_show_again">ห้ามแสดงอีก</string>
-
+    <string name="install_known_issue">รู้สึกว่าตรงนั้นมีปัญหา (\"%s\") เกี่ยวกับรอมของคุณ. การติดตั้ง Xposed อาจจะไม่ทำงานหรืออาจเกิดปัญหาหลายอย่าง กรุณาคลิกตรงนี้เพื่อดูรายละเอียดของปัญหา.</string>
+    <string name="install_reverted">app_process version \"%1$s\" ได้ทำการติดตั้งมาก่อนหน้านี้แล้ว แต่ \"%2$s\" ตอนนี้มีแล้ว. ถ้าคุณไม่ได้หวังเกี่ยวกับการกู้ไฟล์เก่า, คุณสามารถติดตั้งผ่านตัว Recovery (อัตโนมัติหรือทำเอง).</string>
+    <string name="uninstall_reverted">app_process ได้ทำการถอนไปก่อนหน้านี้แต่ \"%s\" ตอนนี้มีแล้ว. ถ้าคุณไม่ได้คาดหวังเกี่ยวกับการกู้ไฟล์ , คุณสามารถถอนมันผ่าน Recovery (อัตโนมัติ หรือ ทำเอง).</string>
+    <string name="tap_to_dismiss">แตะเพื่อยกเลิก</string>
+    <string name="sdcard_location">SD card: %s</string>
     <!-- File operations -->
     <string name="root_failed">ไม่สามารถใช้สิทธิ์ root\n\nแน่ใจนะว่าเครื่องคุณรูทมาถูกต้องแล้ว และคุณไม่ได้บล๊อค shell commands</string>
     <string name="file_extract_failed">ไม่สามารถแตกไฟล์ %s</string>
@@ -69,10 +73,15 @@
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">โมดูล Xposed ยังไม่ถูกเปิดใช้งาน</string>
+    <string name="module_is_not_activated_yet_detailed">%s ติดตั้งแล้วเรียบร้อย, แต่ยังไม่เปิดใช้งาน.</string>
+    <string name="activate_and_reboot">เปิดใช้งานและรีบูท</string>
+    <string name="module_activated">โมดูลเปิดใช้งานแล้วเรียบร้อย</string>
     <string name="module_empty_description">(ไม่มีคำอธิบาย)</string>
     <string name="module_no_ui">โมดูลนี้ไม่มหน้าตาแอพลิเคชั่น</string>
     <string name="no_xposed_modules_found">ไม่พบโมดูล Xposed!</string>
     <string name="xposed_module_list_updated">อัพเดตรายการโมดูล Xposed แล้ว\nการเปลี่ยนแปลงจะปรากฏหลังรีบู๊ต</string>
+    <string name="xposed_module_updated_notification_title">โมดูล Xposed อัพเดทแล้ว</string>
+    <string name="xposed_module_updated_notification">รีบูทเพื่อให้การเปลี่ยนแปลงเสร็จสมบูรณ์</string>
     <string name="warning_xposed_min_version">โมดูลนี้ต้องการ XposedBridge เวอร์ชั่นที่ใหม่กว่า (%d) ดังนั้นมันจึงยังเปิดใช้งานไม่ได้</string>
     <string name="no_min_version_specified">โมดูลนี้ไม่ได้บอกว่ามันต้องใช้ XposedBridge เวอร์ชั่นไหน</string>
     <string name="warning_min_version_too_low">โมดูลนี้ถูกสร้างมาสำหรับ XposedBridge เวอร์ชั่น %1$d แต่เนื่องจากการเปลี่ยนแปลงที่ไม่รองรับในเวอร์ชั่น %2$d ทำให้มันถูกปิดการทำงาน</string>
@@ -86,6 +95,16 @@
     <string name="menuSearch">ค้นหา</string>
     <string name="menuReload">โหลดใหม่</string>
     <string name="changes">การเปลี่ยนแปลง:</string>
+    <string name="download_details_page_description">รายละเอียด</string>
+    <string name="download_details_page_versions">เวอร์ชั่น</string>
+    <string name="download_details_page_settings">ตั้งค่า</string>
+    <string name="reltype_stable">เสถียร</string>
+    <string name="reltype_stable_summary">เสถียรมาก (การที่จะเจ๊งต่ำ)</string>
+    <string name="reltype_beta">เบต้า</string>
+    <string name="reltype_beta_summary">เบต้า (ยังมีบั๊คอยู่)</string>
+    <string name="reltype_experimental">ทดลอง</string>
+    <string name="reltype_experimental_summary">ทดลอง (การที่จะเจ๊งสูง)</string>
+    <string name="reltype_use_global_summary">ใช้การตั้งค่าสากล</string>
     <string name="download_author">โดย %s</string>
     <string name="download_unknown_author">ไม่ทราบผู้สร้าง</string>
     <string name="download_status_installed">ติดตั้งแล้ว (เวอร์ชั่น %s)</string>
@@ -103,6 +122,9 @@
     <string name="download_section_7d">7 วันที่ผ่านมา</string>
     <string name="download_section_30d">30 วันที่ผ่านมา</string>
     <string name="download_section_older">นานกว่า 30 วันที่ผ่านมา</string>
+    <string name="download_details_not_found">ที่นี่ไม่มีโมดูลกับแพ็คเกจชื่อ \"%s\" ใน Repository.</string>
+    <string name="download_no_versions">บรรณาธิการยังไม่ได้อัพโหลดสิ่งใดๆในนี้.</string>
+    <string name="download_test_version_not_shown">เวอร์ชั่นทดสอบพร้อมแล้ว , อย่างไรก็ตาม มันจะไม่แสดง ใน สากล และ เฉพาะรุ่นของโมดูล.</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">การติดตั้ง</string>
@@ -118,6 +140,11 @@
     <string name="settings_disable_resources_summary">แก้ปัญหากับเอนจิ้นการธีม\n<b>คำเตือน:</b> โมดูลที่พยายามจะเปลี่ยนแปลง resources จะไม่สามารถทำงานได้หากเปิดโหมดนี้</string>
     <string name="settings_performance_experiment">การทดลองเกี่ยวกับประสิทธิภาพ</string>
     <string name="settings_performance_experiment_summary">ถ้าคุณเปิดโหมดนี้ ประสิทธิภาพเครื่องคุณอาจดีขึ้น ด้อยลงหรือเท่าเดิม ถ้าคุณลองแล้วให้รายการงานกลับมาด้วยว่าใช้แล้วเป็นอย่างไร (หรือไม่เป็นอะไรเลย) คุณจะต้องติดตั้งเฟรมเวิร์คใหม่และรีบู๊ตเมื่อคุณเปิด/ปิดโหมดนี้</string>
+    <string name="settings_group_app">แอพพลิเคชั่น</string>
+    <string name="settings_theme">ธีม</string>
+    <string name="settings_theme_light">เบาบาง</string>
+    <string name="settings_theme_dark">ดำมืด</string>
+    <string name="settings_theme_black">ดำมืด (สำหรับหน้าจอ AMOLED)</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">อ่าน log ไม่ได้:</string>
