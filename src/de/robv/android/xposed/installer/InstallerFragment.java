@@ -364,6 +364,11 @@ public class InstallerFragment extends Fragment {
 		} else if (mHadSegmentationFault) {
 			issueName = "Segmentation fault";
 			issueLink = "http://forum.xda-developers.com/showpost.php?p=52292102&postcount=7";
+
+		} else if (checkClassExists("com.huawei.android.content.res.ResourcesEx")
+				|| checkClassExists("android.content.res.NubiaResources")) {
+			issueName = "Resources subclass";
+			issueLink = "http://forum.xda-developers.com/showpost.php?p=52801382&postcount=8";
 		}
 
 		if (issueName != null) {
