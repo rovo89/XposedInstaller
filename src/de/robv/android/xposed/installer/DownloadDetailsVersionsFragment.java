@@ -209,12 +209,13 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 					if (!moduleVersion.md5sum.equals(actualMd5Sum)) {
 						Toast.makeText(context, context.getString(R.string.download_md5sum_incorrect,
 								actualMd5Sum, moduleVersion.md5sum), Toast.LENGTH_LONG).show();
-
+						DownloadsUtil.removeById(context, info.id);
 						return;
 					}
 				} catch (Exception e) {
 					Toast.makeText(context, context.getString(R.string.download_could_not_read_file,
 							e.getMessage()), Toast.LENGTH_LONG).show();
+					DownloadsUtil.removeById(context, info.id);
 					return;
 				}
 			}
@@ -224,6 +225,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 
 			if (packageInfo == null) {
 				Toast.makeText(context, R.string.download_no_valid_apk, Toast.LENGTH_LONG).show();
+				DownloadsUtil.removeById(context, info.id);
 				return;
 			}
 
@@ -232,7 +234,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 						context.getString(R.string.download_incorrect_package_name,
 								packageInfo.packageName, moduleVersion.module.packageName),
 						Toast.LENGTH_LONG).show();
-
+				DownloadsUtil.removeById(context, info.id);
 				return;
 			}
 
