@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- General/various strings -->
     <string name="menuSend">發送</string>
@@ -141,8 +141,8 @@
     <string name="settings_group_experimental">實驗性</string>
     <string name="settings_disable_resources">禁用資源鈎子</string>
     <string name="settings_disable_resources_summary">解決與主題引擎的衝突。\n<b>警告:</b> 啓用這個選項將會導致修改資源的模塊停止工作。</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">性能試驗</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">如果您啟用該選項，您的系統性能可能更好、更差或沒有變化。請隨意試用並回報您觀察到的效果(或者根本沒變化)。修改選項後您需要重新安裝框架並重啟。</string>
+    <string name="settings_performance_experiment">性能試驗</string>
+    <string name="settings_performance_experiment_summary">如果您啟用該選項，您的系統性能可能更好、更差或沒有變化。請隨意試用並回報您觀察到的效果(或者根本沒變化)。修改選項後您需要重新安裝框架並重啟。</string>
     <string name="settings_group_app">應用</string>
     <string name="settings_theme">主題</string>
     <string name="settings_theme_light">淺色</string>
