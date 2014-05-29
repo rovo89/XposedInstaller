@@ -40,7 +40,7 @@
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed 모듈이 아직 활성화 되지 않았습니다.</string>
     <string name="module_empty_description">(설명없음)</string>
-    <string name="module_no_ui">이 모듈은 UI(사용자 환경)를 제공하지 않습니다./n따라서 이 모듈은 활성화 하더라도 어플리케이션의 형태로 실행되어 화면에 출력되는 바는 없습니다.</string>
+    <string name="module_no_ui">이 모듈은 UI(사용자 환경)를 제공하지 않습니다.\n따라서 이 모듈은 활성화 하더라도 어플리케이션의 형태로 실행되어 화면에 출력되는 바는 없습니다.</string>
     <string name="no_xposed_modules_found">그 어떠한 Xposed 모듈도 찾을 수 없습니다.</string>
     <string name="xposed_module_list_updated">Xposed 모듈이 업데이트 되었습니다.\n변경 사항은 시스템을 <b>재시작</b> 해야 반영됩니다.</string>
     <string name="warning_xposed_min_version">이 모듈은 새로운 XposedBridge이 요구되며 (%d) 이러한 이유로 활성화 될 수 없습니다.</string>
@@ -80,7 +80,7 @@
     <string name="settings_enable_downloads_summary">Xposed 설치 도구의 내려받기 기능을 활성화합니다.</string>
     <string name="settings_group_experimental">실험적인 기능 들</string>
     <string name="settings_performance_experiment">성능에 대한 실험적인 기능 들</string>
-    <string name="settings_performance_experiment_summary">이를 활성화하면 Xposed 모듈의 속도가 빨라질 수도, 나빠질 수도, 별 변화가 없을 수 있습니다.\n시도해 보고 생긴 달라진 점이나 문제점을 개발자에게 전달해 완성도를 높여줄 수 있습니다./n이를 활성화하거나 비활성화 한 뒤엔 Xposed 프레임워크를 재설치 해야 적용이 됩니다.</string>
+    <string name="settings_performance_experiment_summary">이를 활성화하면 Xposed 모듈의 속도가 빨라질 수도, 나빠질 수도, 별 변화가 없을 수 있습니다.\n시도해 보고 생긴 달라진 점이나 문제점을 개발자에게 전달해 완성도를 높여줄 수 있습니다.\n이를 활성화하거나 비활성화 한 뒤엔 Xposed 프레임워크를 재설치 해야 적용이 됩니다.</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">내역을 읽을 수 없습니다 : </string>
@@ -110,7 +110,7 @@
     <string name="download_view_failed">다운로드가 실패했습니다. (에러코드 %d)</string>
 
     <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">MD5 무결성 검사를 통과하지 못했습니다./n(현재 내려받은 것 : %1$s, 내려받았어야 할 것 : %2$s)</string>
+    <string name="download_md5sum_incorrect">MD5 무결성 검사를 통과하지 못했습니다.\n(현재 내려받은 것 : %1$s, 내려받았어야 할 것 : %2$s)</string>
     <string name="download_could_not_read_file">내려받은 파일을 읽을 수 없습니다 : %s</string>
     <string name="download_no_valid_apk">내려받은 파일이 올바른 앱이 아니거나 호환되지 않습니다.</string>
     <string name="download_incorrect_package_name">앱의 이름이 올바르지 않습니다. (현재 내려받은 것 : %1$s, 내려받았어야 할 것 : %2$s)</string>
