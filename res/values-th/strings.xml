@@ -47,6 +47,7 @@
     <string name="uninstall_reverted">app_process ได้ทำการถอนไปก่อนหน้านี้แต่ \"%s\" ตอนนี้มีแล้ว. ถ้าคุณไม่ได้คาดหวังเกี่ยวกับการกู้ไฟล์ , คุณสามารถถอนมันผ่าน Recovery (อัตโนมัติ หรือ ทำเอง).</string>
     <string name="tap_to_dismiss">แตะเพื่อยกเลิก</string>
     <string name="sdcard_location">SD card: %s</string>
+
     <!-- File operations -->
     <string name="root_failed">ไม่สามารถใช้สิทธิ์ root\n\nแน่ใจนะว่าเครื่องคุณรูทมาถูกต้องแล้ว และคุณไม่ได้บล๊อค shell commands</string>
     <string name="file_extract_failed">ไม่สามารถแตกไฟล์ %s</string>
