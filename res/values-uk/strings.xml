@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- General/various strings -->
     <string name="menuSend">Надіслати</string>
@@ -141,8 +141,8 @@
     <string name="settings_group_experimental">Експериментальні</string>
     <string name="settings_disable_resources">Відключено зміну ресурсів</string>
     <string name="settings_disable_resources_summary">Виправлення конфліктів з темами оформлення\n<b>УВАГА:</b> Модулі, що намагаються змінювати ресурси працювати не будуть доки цей пункт активний.</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Експериментальна продуктивність</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">При активації продуктивність Вашої системи може як збільшитися так і зменшитися або лишитися без змін. Не бійтеся спробувати та розповісти про свій досвід, щоб про це могли дізнатися інші. Після цих змін Вам потрібно буде перевстановити Фреймворк та перезавантажитися.</string>
+    <string name="settings_performance_experiment">Експериментальна продуктивність</string>
+    <string name="settings_performance_experiment_summary">При активації продуктивність Вашої системи може як збільшитися так і зменшитися або лишитися без змін. Не бійтеся спробувати та розповісти про свій досвід, щоб про це могли дізнатися інші. Після цих змін Вам потрібно буде перевстановити Фреймворк та перезавантажитися.</string>
     <string name="settings_group_app">Додаток</string>
     <string name="settings_theme">Тема</string>
     <string name="settings_theme_light">Світла</string>
