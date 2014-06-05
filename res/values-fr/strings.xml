@@ -44,8 +44,8 @@
     <string name="install_warning">Dans certains cas, votre appareil pourrait ne plus démarrer après avoir installé le framework Xposed.\n\nSi vous n\'avez jamais entendu parler de \"soft brick\" et de \"bootloop\" avant ou si vous ne savez pas comment récupérer d\'une telle situation, n\'installez <b>PAS</b> le framework Xposed !\n\nDans tous les cas, il est fortement recommandé d\'avoir une sauvegarde récente.</string>
     <string name="dont_show_again">Ne plus afficher</string>
     <string name="install_known_issue">Il semble y avoir un problème connu (\"%s\") avec votre ROM. Installer le framework Xposed pourrait ne pas fonctionner ou provoquer des problèmes. Appuyez ici pour plus de détails.</string>
-    <string name="install_reverted">La version \"%1$s\" de app_process a été installée dernièrement, mais la version \"%2$s\" vient d\'être détectée. Si vous ne vous attendiez pas à voir l\’ancienne version restaurée, vous devriez tenter l\'installation via recovery (auto ou manuel).</string>
-    <string name="uninstall_reverted">app_process a été désinstallé dernièrement, mais la version \"%s\" vient d\'être détectée. Si vous ne vous attendiez pas à voir l\’ancienne version restaurée, vous devriez tenter la désinstallation via recovery (auto ou manuel).</string>
+    <string name="install_reverted">La version \"%1$s\" de app_process a été installée dernièrement, mais la version \"%2$s\" vient d\'être détectée. Si vous ne vous attendiez pas à voir l\'ancienne version restaurée, vous devriez tenter l\'installation via recovery (auto ou manuel).</string>
+    <string name="uninstall_reverted">app_process a été désinstallé dernièrement, mais la version \"%s\" vient d\'être détectée. Si vous ne vous attendiez pas à voir l\'ancienne version restaurée, vous devriez tenter la désinstallation via recovery (auto ou manuel).</string>
     <string name="tap_to_dismiss">Appuyez pour masquer</string>
     <string name="sdcard_location">Carte SD : %s</string>
 
