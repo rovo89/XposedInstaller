@@ -1,8 +1,12 @@
 package de.robv.android.xposed.installer.util;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +40,8 @@ public final class ModuleUtil {
 	private final List<ModuleListener> mListeners = new CopyOnWriteArrayList<ModuleListener>();
 
 	public static int MIN_MODULE_VERSION = 2; // reject modules with xposedminversion below this
+	private long mtime = 0;
+	private HashSet<String> mModulesList = new HashSet<String>();
 	private static final String MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/modules.list";
 
 	private ModuleUtil() {
@@ -154,7 +160,32 @@ public final class ModuleUtil {
 	}
 
 	public boolean isModuleEnabled(String packageName) {
-		return mPref.contains(packageName);
+		return mPref.contains(packageName) && isModuleActualEnabled(getModule(packageName).app.sourceDir);
+	}
+
+	private boolean isModuleActualEnabled(String modulePath) {
+		File modulesList = new File(MODULES_LIST_FILE);
+		if (!modulesList.isFile()) {
+			return false;
+		}
+		long time = modulesList.lastModified();
+		if (mtime < time) {
+			synchronized (this) {
+				mModulesList.clear();
+				try {
+					String line;
+					BufferedReader reader = new BufferedReader(new FileReader(modulesList));
+					while ((line = reader.readLine()) != null) {
+						mModulesList.add(line.trim());
+					}
+					reader.close();
+				} catch (IOException e) {
+					return false;
+				}
+			}
+			mtime = modulesList.lastModified();
+		}
+		return mModulesList.contains(modulePath);
 	}
 
 	public List<InstalledModule> getEnabledModules() {
