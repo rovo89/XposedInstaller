@@ -92,6 +92,7 @@
     <string name="module_support">支持</string>
     <string name="module_app_info">程序信息</string>
     <string name="module_uninstall">卸载</string>
+    <string name="show_all_modules">显示所有模块</string>
 
     <!-- Download tab -->
     <string name="menuSearch">搜索</string>
