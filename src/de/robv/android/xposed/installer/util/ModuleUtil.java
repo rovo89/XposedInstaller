@@ -40,8 +40,8 @@ public final class ModuleUtil {
 	private final List<ModuleListener> mListeners = new CopyOnWriteArrayList<ModuleListener>();
 
 	public static int MIN_MODULE_VERSION = 2; // reject modules with xposedminversion below this
-	private long mtime = 0;
-	private HashSet<String> mModulesList = new HashSet<String>();
+	private static long mtime = 0;
+	private static HashSet<String> mModulesList = new HashSet<String>();
 	private static final String MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/modules.list";
 
 	private ModuleUtil() {
