@@ -161,9 +161,9 @@
 
     <!-- About tab -->
     <string name="about_developers_label">Hovedutvikler:</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> og <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Vennligst <b>ikke</b> kontakt oss direkte for støtte. Bruk linken nedenfor.</string>
-    <string name="about_translator_label">Oversetter:</string>
+    <string name="about_translator_label">Oversettere:</string>
     <string name="translator">LordManhattan, rosaage, TrekHackz</string>
     <string name="about_version_label">Versjon av appen:</string>
     <string name="about_source_label">Kildekode:</string>
