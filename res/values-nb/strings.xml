@@ -21,7 +21,7 @@
     <string name="tabLogs">Logger</string>
     <string name="tabLogsDescription">Vis og lagre/send logger av Xposed Framework.</string>
     <string name="tabAbout">Om</string>
-    <string name="tabAboutDescription">Lær mer om menneskene som har utviklet Xposed, hvor du kan få støtte for denne appen etc.</string>
+    <string name="tabAboutDescription">Lær mer om folkene som har utviklet Xposed, hvor du kan få støtte for denne appen etc.</string>
 
     <!-- Installer tab -->
     <string name="install">Installer/Oppdater</string>
