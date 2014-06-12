@@ -163,8 +163,8 @@
     <string name="about_developers_label">मुख्य प्रोग्राम लेखक:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">कृपया हमें मदद के लिए  <b>ना</b> संपर्क कटे। नीचे के लिंक का इस्तमाल करे हमसे संपर्क करने के लिए।</string>
-    <string name="about_translator_label">ट्रांसलेटर</string>
-    <string name="translator"></string>
+    <string name="about_translator_label">ट्रांसलेटर : <a href="http://forum.xda-developers.com/member.php?u=4396418">Boggartfly</a></string>
+    <string name="translator"><a href="http://forum.xda-developers.com/member.php?u=4396418">Boggartfly</a></string>
     <string name="about_version_label">वर्जन इस अप्प का:</string>
     <string name="about_source_label">सोर्से कोड:</string>
     <string name="about_support_label">सपोर्ट पाए इस लिंक पर:</string>
