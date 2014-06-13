@@ -30,13 +30,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import de.robv.android.xposed.installer.repo.Module;
+import de.robv.android.xposed.installer.repo.RepoDb;
+import de.robv.android.xposed.installer.repo.RepoDb.RowNotFoundException;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.NotificationUtil;
-import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class ModulesFragment extends ListFragment implements ModuleListener {
@@ -47,7 +47,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	private static String PLAY_STORE_LABEL = null;
 	private int installedXposedVersion;
 	private ModuleUtil mModuleUtil;
-	private RepoLoader mRepoLoader;
 	private ModuleAdapter mAdapter = null;
 	private PackageManager mPm = null;
 
@@ -55,7 +54,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mModuleUtil = ModuleUtil.getInstance();
-		mRepoLoader = RepoLoader.getInstance();
 		mPm = getActivity().getPackageManager();
 		if (PLAY_STORE_LABEL == null) {
 			try {
@@ -169,11 +167,12 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		if (getSettingsIntent(installedModule.packageName) == null)
 			menu.removeItem(R.id.menu_launch);
 
-		Module downloadModule = mRepoLoader.getModule(installedModule.packageName);
-		if (downloadModule == null) {
+		try {
+			String support = RepoDb.getModuleSupport(installedModule.packageName);
+			if (NavUtil.parseURL(support) == null)
+				menu.removeItem(R.id.menu_support);
+		} catch (RowNotFoundException e) {
 			menu.removeItem(R.id.menu_download_updates);
-			menu.removeItem(R.id.menu_support);
-		} else if (NavUtil.parseURL(downloadModule.support) == null) {
 			menu.removeItem(R.id.menu_support);
 		}
 
@@ -202,8 +201,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				return true;
 
 			case R.id.menu_support:
-				Module downloadModule = mRepoLoader.getModule(module.packageName);
-				NavUtil.startURL(getActivity(), downloadModule.support);
+				NavUtil.startURL(getActivity(), RepoDb.getModuleSupport(module.packageName));
 				return true;
 
 			case R.id.menu_play_store:

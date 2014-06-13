@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import de.robv.android.xposed.installer.repo.Module;
-import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
@@ -31,7 +30,6 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 	private String mPackageName;
 	private static RepoLoader sRepoLoader = RepoLoader.getInstance();
 	private static ModuleUtil sModuleUtil = ModuleUtil.getInstance();
-	private ModuleGroup mModuleGroup;
 	private Module mModule;
 	private InstalledModule mInstalledModule;
 
@@ -42,9 +40,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		mPackageName = getModulePackageName();
-		mModuleGroup = sRepoLoader.getModuleGroup(mPackageName);
-		if (mModuleGroup != null)
-			mModule = mModuleGroup.getModule();
+		mModule = sRepoLoader.getModule(mPackageName);
 
 		mInstalledModule = ModuleUtil.getInstance().getModule(mPackageName);
 
@@ -53,7 +49,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 		sModuleUtil.addListener(this);
 		setNavItem(XposedDropdownNavActivity.TAB_DOWNLOAD);
 
-		if (mModuleGroup != null) {
+		if (mModule != null) {
 			setContentView(R.layout.activity_download_details);
 
 			((TextView) findViewById(android.R.id.title)).setText(mModule.name);

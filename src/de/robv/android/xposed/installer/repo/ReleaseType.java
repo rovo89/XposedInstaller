@@ -7,6 +7,8 @@ public enum ReleaseType {
 	BETA (R.string.reltype_beta, R.string.reltype_beta_summary),
 	EXPERIMENTAL (R.string.reltype_experimental, R.string.reltype_experimental_summary);
 
+	private static final ReleaseType[] sValuesCache = values();
+
 	public static ReleaseType fromString(String value) {
 		if (value == null || value.equals("stable"))
 			return STABLE;
@@ -18,6 +20,9 @@ public enum ReleaseType {
 			return STABLE;
 	}
 
+	public static ReleaseType fromOrdinal(int ordinal) {
+		return sValuesCache[ordinal];
+	}
 
 	private final int mTitleId;
 	private final int mSummaryId;

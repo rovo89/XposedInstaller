@@ -24,12 +24,11 @@ import android.widget.Toast;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.Module;
-import de.robv.android.xposed.installer.repo.ModuleGroup;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.repo.ReleaseType;
+import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.repo.Repository;
-import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 
 public class RepoLoader {
 	private static RepoLoader mInstance = null;
@@ -38,7 +37,6 @@ public class RepoLoader {
 	private SharedPreferences mModulePref;
 	private ConnectivityManager mConMgr;
 
-	private Map<String, ModuleGroup> mModules = new HashMap<String, ModuleGroup>(0);
 	private boolean mIsLoading = false;
 	private boolean mReloadTriggeredOnce = false;
 	private boolean mFirstLoadFinished = false;
@@ -54,6 +52,7 @@ public class RepoLoader {
 		mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
 		mModulePref = mApp.getSharedPreferences("module_settings", Context.MODE_PRIVATE);
 		mConMgr = (ConnectivityManager) mApp.getSystemService(Context.CONNECTIVITY_SERVICE);
+		RepoDb.init(mApp);
 
 		setReleaseTypeGlobal(XposedApp.getPreferences().getString("release_type_global", "stable"));
 	}
@@ -68,6 +67,7 @@ public class RepoLoader {
 		ReleaseType relType = ReleaseType.fromString(relTypeString);
 		if (mGlobalReleaseType != relType) {
 			mGlobalReleaseType = relType;
+			// TODO Update latest version in DB for all modules
 			notifyListeners();
 		}
 	}
@@ -86,6 +86,7 @@ public class RepoLoader {
 		}
 
 		if (notify)
+			// TODO Update latest version in DB for this module
 			notifyListeners();
 	}
 
@@ -101,19 +102,8 @@ public class RepoLoader {
 		}
 	}
 
-	public Map<String, ModuleGroup> getModules() {
-		return mModules;
-	}
-
-	public ModuleGroup getModuleGroup(String packageName) {
-		return mModules.get(packageName);
-	}
-
 	public Module getModule(String packageName) {
-		ModuleGroup group = mModules.get(packageName);
-		if (group == null)
-			return null;
-		return group.getModule();
+		return RepoDb.getModuleByPackageName(packageName);
 	}
 
 	public ModuleVersion getLatestVersion(Module module) {
@@ -133,11 +123,6 @@ public class RepoLoader {
 			return version.relType.ordinal() <= localSetting.ordinal();
 		else
 			return version.relType.ordinal() <= mGlobalReleaseType.ordinal();
-	}
-
-	public ModuleVersion getLatestVersion(String packageName) {
-		Module module = getModule(packageName);
-		return (module != null) ? getLatestVersion(module) : null;
 	}
 
 	public void triggerReload(final boolean force) {
@@ -220,7 +205,7 @@ public class RepoLoader {
 			if (mIsLoading)
 				return;
 
-			mModules = new HashMap<String, ModuleGroup>();
+			// TODO Should we clear the DB here?
 		}
 		notifyListeners();
 	}
@@ -243,32 +228,14 @@ public class RepoLoader {
 		if (!mApp.areDownloadsEnabled())
 			return false;
 
-		Map<String, InstalledModule> installedModules = ModuleUtil.getInstance().getModules();
-		for (InstalledModule installed : installedModules.values()) {
-			Module download = getModule(installed.packageName);
-			if (download == null)
-				continue;
-
-			if (installed.isUpdate(getLatestVersion(download)))
-				return true;
-		}
-		return false;
+		return RepoDb.hasModuleUpdates();
 	}
 
 	public String getFrameworkUpdateVersion() {
 		if (!mApp.areDownloadsEnabled())
 			return null;
 
-		InstalledModule installed = ModuleUtil.getInstance().getFramework();
-		if (installed == null) // would be strange if this happened...
-			return null;
-
-		Module download = getModule(installed.packageName);
-		if (download == null)
-			return null;
-
-		ModuleVersion version = getLatestVersion(download);
-		return installed.isUpdate(version) ? version.name : null;
+		return RepoDb.getFrameworkUpdateVersion();
 	}
 
 	private File getRepoCacheFile(String repo) {
@@ -375,8 +342,6 @@ public class RepoLoader {
 	}
 
 	private void parseFiles() {
-		Map<String, ModuleGroup> modules = new HashMap<String, ModuleGroup>();
-
 		String[] repos = getRepositories();
 		for (String repo : repos) {
 			InputStream in = null;
@@ -392,12 +357,9 @@ public class RepoLoader {
 				RepoParser parser = new RepoParser(in);
 				Repository repository = parser.parse();
 
+				long repoId = RepoDb.getOrInsertRepository(repo);
 				for (Module mod : repository.modules.values()) {
-					ModuleGroup existing = modules.get(mod.packageName);
-					if (existing != null)
-						existing.addModule(mod);
-					else
-						modules.put(mod.packageName, new ModuleGroup(mod));
+					RepoDb.insertModule(repoId, mod);
 				}
 
 			} catch (Throwable t) {
@@ -410,7 +372,8 @@ public class RepoLoader {
 			}
 		}
 
-		mModules = modules;
+		// TODO Set ModuleColumns.PREFERRED for modules which appear in multiple repositories
+		// TODO Remove outdated repositories
 	}
 
 

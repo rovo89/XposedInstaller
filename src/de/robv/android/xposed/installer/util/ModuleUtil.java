@@ -22,6 +22,7 @@ import de.robv.android.xposed.installer.InstallerFragment;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
+import de.robv.android.xposed.installer.repo.RepoDb;
 
 
 public final class ModuleUtil {
@@ -62,17 +63,30 @@ public final class ModuleUtil {
 		mApp.updateProgressIndicator();
 
 		Map<String, InstalledModule> modules = new HashMap<String, ModuleUtil.InstalledModule>();
+		RepoDb.beginTransation();
+		try {
+			RepoDb.deleteAllInstalledModules();
 
-		for (PackageInfo pkg : mPm.getInstalledPackages(PackageManager.GET_META_DATA)) {
-			ApplicationInfo app = pkg.applicationInfo;
-			if (!app.enabled)
-				continue;
+			for (PackageInfo pkg : mPm.getInstalledPackages(PackageManager.GET_META_DATA)) {
+				ApplicationInfo app = pkg.applicationInfo;
+				if (!app.enabled)
+					continue;
 
-			if (app.metaData != null && app.metaData.containsKey("xposedmodule"))
-				modules.put(pkg.packageName, new InstalledModule(pkg, false));
-			else if (isFramework(pkg.packageName))
-				mFramework = new InstalledModule(pkg, true);
+				InstalledModule installed = null;
+				if (app.metaData != null && app.metaData.containsKey("xposedmodule")) {
+					installed = new InstalledModule(pkg, false);
+					modules.put(pkg.packageName, installed);
+				} else if (isFramework(pkg.packageName)) {
+					mFramework = installed = new InstalledModule(pkg, true);
+				}
 
+				if (installed != null)
+					RepoDb.insertInstalledModule(installed);
+			}
+
+			RepoDb.setTransactionSuccessful();
+		} finally {
+			RepoDb.endTransation();
 		}
 
 		mInstalledModules = modules;
@@ -90,6 +104,7 @@ public final class ModuleUtil {
 		try {
 			pkg = mPm.getPackageInfo(packageName, PackageManager.GET_META_DATA);
 		} catch (NameNotFoundException e) {
+			RepoDb.deleteInstalledModule(packageName);
 			InstalledModule old = mInstalledModules.remove(packageName);
 			if (old != null) {
 				for (ModuleListener listener : mListeners) {
@@ -102,12 +117,14 @@ public final class ModuleUtil {
 		ApplicationInfo app = pkg.applicationInfo;
 		if (app.enabled && app.metaData != null && app.metaData.containsKey("xposedmodule")) {
 			InstalledModule module = new InstalledModule(pkg, false);
+			RepoDb.insertInstalledModule(module);
 			mInstalledModules.put(packageName, module);
 			for (ModuleListener listener : mListeners) {
 				listener.onSingleInstalledModuleReloaded(mInstance, packageName, module);
 			}
 			return module;
 		} else {
+			RepoDb.deleteInstalledModule(packageName);
 			InstalledModule old = mInstalledModules.remove(packageName);
 			if (old != null) {
 				for (ModuleListener listener : mListeners) {
