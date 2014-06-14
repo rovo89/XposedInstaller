@@ -53,6 +53,7 @@ public final class RepoDb extends SQLiteOpenHelper {
 		db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MORE_INFO);
 
 		DownloadsUtil.clearCache(null);
+		RepoLoader.getInstance().resetLastUpdateCheck();
 	}
 
 	private void createTempTables(SQLiteDatabase db) {

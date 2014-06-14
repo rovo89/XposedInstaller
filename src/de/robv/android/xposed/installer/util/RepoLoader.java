@@ -43,6 +43,7 @@ public class RepoLoader {
 	private final Map<String, ReleaseType> mLocalReleaseTypes = new HashMap<String, ReleaseType>();
 
 	private RepoLoader() {
+		mInstance = this;
 		mApp = XposedApp.getInstance();
 		mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
 		mModulePref = mApp.getSharedPreferences("module_settings", Context.MODE_PRIVATE);
@@ -54,7 +55,7 @@ public class RepoLoader {
 
 	public static synchronized RepoLoader getInstance() {
 		if (mInstance == null)
-			mInstance = new RepoLoader();
+			new RepoLoader();
 		return mInstance;
 	}
 
