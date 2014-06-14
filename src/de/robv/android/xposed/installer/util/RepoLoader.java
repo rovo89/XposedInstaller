@@ -24,7 +24,7 @@ import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoParser;
-import de.robv.android.xposed.installer.repo.Repository;
+import de.robv.android.xposed.installer.repo.RepoParser.RepoParserCallback;
 import de.robv.android.xposed.installer.util.DownloadsUtil.SyncDownloadInfo;
 
 public class RepoLoader {
@@ -268,13 +268,14 @@ public class RepoLoader {
 				if (repo.endsWith(".gz"))
 					in = new GZIPInputStream(in);
 
+				final long repoId = RepoDb.getOrInsertRepository(repo);
 				RepoParser parser = new RepoParser(in);
-				Repository repository = parser.parse();
-
-				long repoId = RepoDb.getOrInsertRepository(repo);
-				for (Module mod : repository.modules.values()) {
-					RepoDb.insertModule(repoId, mod);
-				}
+				parser.parse(new RepoParserCallback() {
+					@Override
+					public void newModule(Module module) {
+						RepoDb.insertModule(repoId, module);
+					}
+				});
 
 			} catch (Throwable t) {
 				mMessages.add(mApp.getString(R.string.repo_load_failed, repo, t.getMessage()));

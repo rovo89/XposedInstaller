@@ -18,18 +18,22 @@ public class RepoParser {
 	protected final static String NS = null;
 	protected final XmlPullParser parser;
 
+	public interface RepoParserCallback {
+		public void newModule(Module module);
+	}
+
 	public RepoParser(InputStream is) throws XmlPullParserException, IOException {
 		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 		parser = factory.newPullParser();
 		parser.setInput(is, null);
 	}
 
-	public Repository parse() throws XmlPullParserException, IOException {
+	public Repository parse(RepoParserCallback callback) throws XmlPullParserException, IOException {
 		parser.nextTag();
-		return readRepo();
+		return readRepo(callback);
 	}
 
-	protected Repository readRepo() throws XmlPullParserException, IOException {
+	protected Repository readRepo(RepoParserCallback callback) throws XmlPullParserException, IOException {
 		parser.require(XmlPullParser.START_TAG, NS, "repository");
 		Repository repository = new Repository();
 
@@ -40,7 +44,7 @@ public class RepoParser {
 			} else if (tagName.equals("module")) {
 				Module module = readModule(repository);
 				if (module != null)
-					repository.modules.put(module.packageName, module);
+					callback.newModule(module);
 			} else {
 				skip(true);
 			}
