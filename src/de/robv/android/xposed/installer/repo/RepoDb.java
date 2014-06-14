@@ -17,6 +17,7 @@ import de.robv.android.xposed.installer.repo.RepoDbDefinitions.MoreInfoColumns;
 import de.robv.android.xposed.installer.repo.RepoDbDefinitions.OverviewColumns;
 import de.robv.android.xposed.installer.repo.RepoDbDefinitions.OverviewColumnsIndexes;
 import de.robv.android.xposed.installer.repo.RepoDbDefinitions.RepositoriesColumns;
+import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.RepoLoader;
@@ -50,6 +51,8 @@ public final class RepoDb extends SQLiteOpenHelper {
 		db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MODULES);
 		db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MODULE_VERSIONS);
 		db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MORE_INFO);
+
+		DownloadsUtil.clearCache(null);
 	}
 
 	private void createTempTables(SQLiteDatabase db) {

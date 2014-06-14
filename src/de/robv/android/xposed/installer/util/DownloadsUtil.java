@@ -1,6 +1,12 @@
 package de.robv.android.xposed.installer.util;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,12 +17,17 @@ import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
 import android.app.DownloadManager.Request;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import de.robv.android.xposed.installer.R;
+import de.robv.android.xposed.installer.XposedApp;
 
 public class DownloadsUtil {
 	public static final String MIME_TYPE_APK = "application/vnd.android.package-archive";
 	private static final Map<String, DownloadFinishedCallback> mCallbacks = new HashMap<String, DownloadFinishedCallback>();
+	private static final XposedApp mApp = XposedApp.getInstance();
+	private static final SharedPreferences mPref = mApp.getSharedPreferences("download_cache", Context.MODE_PRIVATE);
 
 	public static DownloadInfo add(Context context, String title, String url, DownloadFinishedCallback callback) {
 		removeAllForUrl(context, url);
@@ -183,6 +194,7 @@ public class DownloadsUtil {
 		callback.onDownloadFinished(context, info);
 	}
 
+
 	public static class DownloadInfo implements Comparable<DownloadInfo> {
 		public final long id;
 		public final String url;
@@ -218,6 +230,111 @@ public class DownloadsUtil {
 
 	public static interface DownloadFinishedCallback {
 		public void onDownloadFinished(Context context, DownloadInfo info);
+	}
+
+
+	public static SyncDownloadInfo downloadSynchronously(String url, File target) {
+		// TODO Potential parameter?
+		final boolean useNotModifiedTags = true;
+
+		URLConnection connection = null;
+		InputStream in = null;
+		FileOutputStream out = null;
+		try {
+			connection = new URL(url).openConnection();
+			connection.setDoOutput(false);
+			connection.setConnectTimeout(30000);
+			connection.setReadTimeout(30000);
+
+			if (connection instanceof HttpURLConnection) {
+				// Disable transparent gzip encoding for gzipped files
+				if (url.endsWith(".gz"))
+					connection.addRequestProperty("Accept-Encoding", "identity");
+
+				if (useNotModifiedTags) {
+					String modified = mPref.getString("download_" + url + "_modified", null);
+					String etag = mPref.getString("download_" + url + "_etag", null);
+
+					if (modified != null)
+						connection.addRequestProperty("If-Modified-Since", modified);
+					if (etag != null)
+						connection.addRequestProperty("If-None-Match", etag);
+				}
+			}
+
+			connection.connect();
+
+			if (connection instanceof HttpURLConnection) {
+				HttpURLConnection httpConnection = (HttpURLConnection) connection;
+				int responseCode = httpConnection.getResponseCode();
+				if (responseCode == HttpURLConnection.HTTP_NOT_MODIFIED) {
+					return new SyncDownloadInfo(SyncDownloadInfo.STATUS_NOT_MODIFIED, null);
+				} else if (responseCode < 200 || responseCode >= 300) {
+					return new SyncDownloadInfo(SyncDownloadInfo.STATUS_FAILED,
+						mApp.getString(R.string.repo_download_failed_http, url, responseCode,
+								httpConnection.getResponseMessage()));
+				}
+			}
+
+			in = connection.getInputStream();
+			out = new FileOutputStream(target);
+			byte buf[] = new byte[1024];
+			int read;
+			while ((read = in.read(buf)) != -1) {
+				out.write(buf, 0, read);
+			}
+
+			if (useNotModifiedTags && connection instanceof HttpURLConnection) {
+				HttpURLConnection httpConnection = (HttpURLConnection) connection;
+				String modified = httpConnection.getHeaderField("Last-Modified");
+				String etag = httpConnection.getHeaderField("ETag");
+
+				mPref.edit()
+					.putString("download_" + url + "_modified", modified)
+					.putString("download_" + url + "_etag", etag)
+					.commit();
+			}
+
+			return new SyncDownloadInfo(SyncDownloadInfo.STATUS_SUCCESS, null);
+
+		} catch (Throwable t) {
+			return new SyncDownloadInfo(SyncDownloadInfo.STATUS_FAILED,
+				mApp.getString(R.string.repo_download_failed, url, t.getMessage()));
+
+		} finally {
+			if (connection != null && connection instanceof HttpURLConnection)
+				((HttpURLConnection) connection).disconnect();
+			if (in != null)
+				try { in.close(); } catch (IOException ignored) {}
+			if (out != null)
+				try { out.close(); } catch (IOException ignored) {}
+		}
+	}
+
+	public static void clearCache(String url) {
+		if (url != null) {
+			mPref.edit()
+				.remove("repo_" + url + "_modified")
+				.remove("repo_" + url + "_etag")
+				.apply();
+		} else {
+			mPref.edit().clear().apply();
+		}
+	}
+
+
+	public static class SyncDownloadInfo {
+		public static final int STATUS_SUCCESS = 0;
+		public static final int STATUS_NOT_MODIFIED = 1;
+		public static final int STATUS_FAILED = 2;
+
+		public final int status;
+		public final String errorMessage;
+
+		private SyncDownloadInfo(int status, String errorMessage) {
+			this.status = status;
+			this.errorMessage = errorMessage;
+		}
 	}
 }
 

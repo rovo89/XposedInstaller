@@ -2,12 +2,8 @@ package de.robv.android.xposed.installer.util;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,6 +25,7 @@ import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.repo.Repository;
+import de.robv.android.xposed.installer.util.DownloadsUtil.SyncDownloadInfo;
 
 public class RepoLoader {
 	private static RepoLoader mInstance = null;
@@ -148,7 +145,6 @@ public class RepoLoader {
 				mMessages.clear();
 
 				downloadFiles();
-				parseFiles();
 
 				for (final String message : mMessages) {
 					XposedApp.runOnUiThread(new Runnable() {
@@ -257,99 +253,17 @@ public class RepoLoader {
 
 		String[] repos = getRepositories();
 		for (String repo : repos) {
-			URLConnection connection = null;
-			InputStream in = null;
-			FileOutputStream out = null;
-			try {
-				File cacheFile = getRepoCacheFile(repo);
+			File cacheFile = getRepoCacheFile(repo);
+			SyncDownloadInfo info = DownloadsUtil.downloadSynchronously(repo, cacheFile);
 
-				connection = new URL(repo).openConnection();
-				connection.setDoOutput(false);
-				connection.setConnectTimeout(30000);
-				connection.setReadTimeout(30000);
-
-				if (connection instanceof HttpURLConnection) {
-					// disable transparent gzip encoding for gzipped files
-					if (repo.endsWith(".gz"))
-						connection.addRequestProperty("Accept-Encoding", "identity");
-
-					if (cacheFile.exists()) {
-						String modified = mPref.getString("repo_" + repo + "_modified", null);
-						String etag = mPref.getString("repo_" + repo + "_etag", null);
-
-						if (modified != null)
-							connection.addRequestProperty("If-Modified-Since", modified);
-						if (etag != null)
-							connection.addRequestProperty("If-None-Match", etag);
-					}
-				}
-
-				connection.connect();
-
-				if (connection instanceof HttpURLConnection) {
-					HttpURLConnection httpConnection = (HttpURLConnection) connection;
-					int responseCode = httpConnection.getResponseCode();
-					if (responseCode == HttpURLConnection.HTTP_NOT_MODIFIED) {
-						continue;
-					} else if (responseCode < 200 || responseCode >= 300) {
-						mMessages.add(mApp.getString(R.string.repo_download_failed_http, repo, responseCode, httpConnection.getResponseMessage()));
-						continue;
-					}
-				}
-
-				in = connection.getInputStream();
-				out = new FileOutputStream(cacheFile);
-				byte buf[] = new byte[1024];
-				int read;
-				while ((read = in.read(buf)) != -1) {
-					out.write(buf, 0, read);
-				}
-
-				if (connection instanceof HttpURLConnection) {
-					HttpURLConnection httpConnection = (HttpURLConnection) connection;
-					String modified = httpConnection.getHeaderField("Last-Modified");
-					String etag = httpConnection.getHeaderField("ETag");
-
-					mPref.edit()
-						.putString("repo_" + repo + "_modified", modified)
-						.putString("repo_" + repo + "_etag", etag)
-						.commit();
-				}
-
-			} catch (Throwable t) {
-				mMessages.add(mApp.getString(R.string.repo_download_failed, repo, t.getMessage()));
-
-			} finally {
-				if (connection != null && connection instanceof HttpURLConnection)
-					((HttpURLConnection) connection).disconnect();
-				if (in != null)
-					try { in.close(); } catch (IOException ignored) {}
-				if (out != null)
-					try { out.close(); } catch (IOException ignored) {}
+			if (info.status != SyncDownloadInfo.STATUS_SUCCESS) {
+				if (info.errorMessage != null)
+					mMessages.add(info.errorMessage);
+				continue;
 			}
-		}
 
-		mPref.edit().putLong("last_update_check", System.currentTimeMillis()).commit();
-	}
-
-	private void removeRepoFile(String repo) {
-		getRepoCacheFile(repo).delete();
-
-		mPref.edit()
-			.remove("repo_" + repo + "_modified")
-			.remove("repo_" + repo + "_etag")
-			.commit();
-	}
-
-	private void parseFiles() {
-		String[] repos = getRepositories();
-		for (String repo : repos) {
 			InputStream in = null;
 			try {
-				File cacheFile = getRepoCacheFile(repo);
-				if (!cacheFile.exists())
-					continue;
-
 				in = new FileInputStream(cacheFile);
 				if (repo.endsWith(".gz"))
 					in = new GZIPInputStream(in);
@@ -364,13 +278,16 @@ public class RepoLoader {
 
 			} catch (Throwable t) {
 				mMessages.add(mApp.getString(R.string.repo_load_failed, repo, t.getMessage()));
-				removeRepoFile(repo);
+				DownloadsUtil.clearCache(repo);
 
 			} finally {
 				if (in != null)
 					try { in.close(); } catch (IOException ignored) {}
+				cacheFile.delete();
 			}
 		}
+
+		mPref.edit().putLong("last_update_check", System.currentTimeMillis()).commit();
 
 		// TODO Set ModuleColumns.PREFERRED for modules which appear in multiple repositories
 		// TODO Remove outdated repositories
