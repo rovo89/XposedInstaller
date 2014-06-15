@@ -17,40 +17,63 @@ public class RepoParser {
 	public final static String TAG = "XposedRepoParser";
 	protected final static String NS = null;
 	protected final XmlPullParser parser;
+	protected RepoParserCallback mCallback;
+	private boolean mRepoEventTriggered = false;
 
 	public interface RepoParserCallback {
-		public void newModule(Module module);
+		public void onRepositoryMetadata(Repository repository);
+		public void onNewModule(Module module);
+		public void onRemoveModule(String packageName);
+		public void onCompleted(Repository repository);
 	}
 
-	public RepoParser(InputStream is) throws XmlPullParserException, IOException {
+	public static void parse(InputStream is, RepoParserCallback callback) throws XmlPullParserException, IOException {
+		new RepoParser(is, callback).readRepo();
+	}
+
+	protected RepoParser(InputStream is, RepoParserCallback callback) throws XmlPullParserException, IOException {
 		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
 		parser = factory.newPullParser();
 		parser.setInput(is, null);
-	}
-
-	public Repository parse(RepoParserCallback callback) throws XmlPullParserException, IOException {
 		parser.nextTag();
-		return readRepo(callback);
+		mCallback = callback;
 	}
 
-	protected Repository readRepo(RepoParserCallback callback) throws XmlPullParserException, IOException {
+	protected void readRepo() throws XmlPullParserException, IOException {
 		parser.require(XmlPullParser.START_TAG, NS, "repository");
 		Repository repository = new Repository();
+		repository.isPartial = "true".equals(parser.getAttributeValue(NS, "partial"));
+		repository.partialUrl = parser.getAttributeValue(NS, "partial-url");
+		repository.version = parser.getAttributeValue(NS, "version");
 
 		while (parser.nextTag() == XmlPullParser.START_TAG) {
 			String tagName = parser.getName();
 			if (tagName.equals("name")) {
 				repository.name = parser.nextText();
 			} else if (tagName.equals("module")) {
+				triggerRepoEvent(repository);
 				Module module = readModule(repository);
 				if (module != null)
-					callback.newModule(module);
+					mCallback.onNewModule(module);
+			} else if (tagName.equals("remove-module")) {
+				triggerRepoEvent(repository);
+				String packageName = readRemoveModule();
+				if (packageName != null)
+					mCallback.onRemoveModule(packageName);
 			} else {
 				skip(true);
 			}
 		}
 
-		return repository;
+		mCallback.onCompleted(repository);
+	}
+
+	private void triggerRepoEvent(Repository repository) {
+		if (mRepoEventTriggered)
+			return;
+
+		mCallback.onRepositoryMetadata(repository);
+		mRepoEventTriggered = true;
 	}
 
 	protected Module readModule(Repository repository) throws XmlPullParserException, IOException {
@@ -178,6 +201,20 @@ public class RepoParser {
 		}
 
 		return version;
+	}
+
+	protected String readRemoveModule() throws XmlPullParserException, IOException {
+		parser.require(XmlPullParser.START_TAG, NS, "remove-module");
+		final int startDepth = parser.getDepth();
+
+		String packageName = parser.getAttributeValue(NS, "package");
+		if (packageName == null) {
+			logError("no package name defined");
+			leave(startDepth);
+			return null;
+		}
+
+		return packageName;
 	}
 
 	protected void skip(boolean showWarning) throws XmlPullParserException, IOException {

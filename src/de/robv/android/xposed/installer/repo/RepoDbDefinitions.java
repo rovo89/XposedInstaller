@@ -4,7 +4,7 @@ import android.database.Cursor;
 import android.provider.BaseColumns;
 
 public class RepoDbDefinitions {
-	public static final int DATABASE_VERSION = 1;
+	public static final int DATABASE_VERSION = 2;
 	public static final String DATABASE_NAME = "repo_cache.db";
 
 
@@ -13,11 +13,17 @@ public class RepoDbDefinitions {
 		public static final String TABLE_NAME = "repositories";
 
 		public static final String URL = "url";
+		public static final String TITLE = "title";
+		public static final String PARTIAL_URL = "partial_url";
+		public static final String VERSION = "version";
 	}
 	static final String SQL_CREATE_TABLE_REPOSITORIES =
 		"CREATE TABLE " + RepositoriesColumns.TABLE_NAME + " (" +
 		RepositoriesColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
 		RepositoriesColumns.URL + " TEXT NOT NULL, " +
+		RepositoriesColumns.TITLE + " TEXT, " +
+		RepositoriesColumns.PARTIAL_URL + " TEXT, " +
+		RepositoriesColumns.VERSION + " TEXT, " +
 		"UNIQUE (" + RepositoriesColumns.URL + ") ON CONFLICT REPLACE)";
 
 

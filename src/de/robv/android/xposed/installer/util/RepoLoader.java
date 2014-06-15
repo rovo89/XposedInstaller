@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.zip.GZIPInputStream;
 
@@ -25,6 +26,7 @@ import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.repo.RepoParser.RepoParserCallback;
+import de.robv.android.xposed.installer.repo.Repository;
 import de.robv.android.xposed.installer.util.DownloadsUtil.SyncDownloadInfo;
 
 public class RepoLoader {
@@ -39,6 +41,9 @@ public class RepoLoader {
 	private final List<String> mMessages = new LinkedList<String>();
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
 
+	private static final String DEFAULT_REPOSITORIES = "http://dl.xposed.info/repo/full.xml.gz";
+	private Map<Long,Repository> mRepositories = null;
+
 	private ReleaseType mGlobalReleaseType = ReleaseType.STABLE;
 	private final Map<String, ReleaseType> mLocalReleaseTypes = new HashMap<String, ReleaseType>();
 
@@ -50,6 +55,7 @@ public class RepoLoader {
 		mConMgr = (ConnectivityManager) mApp.getSystemService(Context.CONNECTIVITY_SERVICE);
 		RepoDb.init(mApp);
 
+		refreshRepositories();
 		setReleaseTypeGlobal(XposedApp.getPreferences().getString("release_type_global", "stable"));
 	}
 
@@ -57,6 +63,35 @@ public class RepoLoader {
 		if (mInstance == null)
 			new RepoLoader();
 		return mInstance;
+	}
+
+	private boolean refreshRepositories() {
+		mRepositories = RepoDb.getRepositories();
+
+		// Unlikely case (usually only during initial load): DB state doesn't fit to configuration
+		boolean needReload = false;
+		String[] config = mPref.getString("repositories", DEFAULT_REPOSITORIES).split("\\|");
+		if (mRepositories.size() != config.length) {
+			needReload = true;
+		} else {
+			int i = 0;
+			for (Repository repo : mRepositories.values()) {
+				if (!repo.url.equals(config[i++])) {
+					needReload = true;
+					break;
+				}
+			}
+		}
+
+		if (!needReload)
+			return false;
+
+		clear(false);
+		for (String url : config) {
+			RepoDb.insertRepository(url);
+		}
+		mRepositories = RepoDb.getRepositories();
+		return true;
 	}
 
 	public void setReleaseTypeGlobal(String relTypeString) {
@@ -96,6 +131,10 @@ public class RepoLoader {
 			mLocalReleaseTypes.put(packageName, result);
 			return result;
 		}
+	}
+
+	public Repository getRepository(long repoId) {
+		return mRepositories.get(repoId);
 	}
 
 	public Module getModule(String packageName) {
@@ -141,7 +180,7 @@ public class RepoLoader {
 			public void run() {
 				mMessages.clear();
 
-				downloadFiles();
+				downloadAndParseFiles();
 
 				for (final String message : mMessages) {
 					XposedApp.runOnUiThread(new Runnable() {
@@ -174,18 +213,19 @@ public class RepoLoader {
 		return mIsLoading;
 	}
 
-	public void clear() {
+	public void clear(boolean notify) {
 		synchronized (this) {
+			// TODO Stop reloading repository when it should be cleared
 			if (mIsLoading)
 				return;
 
-			// TODO Should we clear the DB here?
+			RepoDb.deleteRepositories();
+			DownloadsUtil.clearCache(null);
+			resetLastUpdateCheck();
 		}
-		notifyListeners();
-	}
 
-	public String[] getRepositories() {
-		return mPref.getString("repositories", "http://dl.xposed.info/repo.xml.gz").split("\\|");
+		if (notify)
+			notifyListeners();
 	}
 
 	public void setRepositories(String... repos) {
@@ -196,6 +236,8 @@ public class RepoLoader {
 			sb.append(repos[i]);
 		}
 		mPref.edit().putString("repositories", sb.toString()).commit();
+		if (refreshRepositories())
+			triggerReload(true);
 	}
 
 	public boolean hasModuleUpdates() {
@@ -219,7 +261,7 @@ public class RepoLoader {
 		return new File(mApp.getCacheDir(), filename);
 	}
 
-	private void downloadFiles() {
+	private void downloadAndParseFiles() {
 		long lastUpdateCheck = mPref.getLong("last_update_check", 0);
 		int UPDATE_FREQUENCY = 24 * 60 * 60 * 1000; // TODO make this configurable
 		if (System.currentTimeMillis() < lastUpdateCheck + UPDATE_FREQUENCY)
@@ -229,10 +271,15 @@ public class RepoLoader {
 		if (netInfo == null || !netInfo.isConnected())
 			return;
 
-		String[] repos = getRepositories();
-		for (String repo : repos) {
-			File cacheFile = getRepoCacheFile(repo);
-			SyncDownloadInfo info = DownloadsUtil.downloadSynchronously(repo, cacheFile);
+		for (Entry<Long, Repository> repoEntry : mRepositories.entrySet()) {
+			final long repoId = repoEntry.getKey();
+			final Repository repo = repoEntry.getValue();
+
+			String url = (repo.partialUrl != null && repo.version != null)
+					? String.format(repo.partialUrl, repo.version) : repo.url;
+
+			File cacheFile = getRepoCacheFile(url);
+			SyncDownloadInfo info = DownloadsUtil.downloadSynchronously(url, cacheFile);
 
 			if (info.status != SyncDownloadInfo.STATUS_SUCCESS) {
 				if (info.errorMessage != null)
@@ -243,21 +290,43 @@ public class RepoLoader {
 			InputStream in = null;
 			try {
 				in = new FileInputStream(cacheFile);
-				if (repo.endsWith(".gz"))
+				if (url.endsWith(".gz"))
 					in = new GZIPInputStream(in);
 
-				final long repoId = RepoDb.getOrInsertRepository(repo);
-				RepoParser parser = new RepoParser(in);
-				parser.parse(new RepoParserCallback() {
+				RepoParser.parse(in, new RepoParserCallback() {
 					@Override
-					public void newModule(Module module) {
+					public void onRepositoryMetadata(Repository repository) {
+						if (!repository.isPartial)
+							RepoDb.deleteAllModules(repoId);
+					}
+
+					@Override
+					public void onNewModule(Module module) {
 						RepoDb.insertModule(repoId, module);
+					}
+
+					@Override
+					public void onRemoveModule(String packageName) {
+						RepoDb.deleteModule(repoId, packageName);
+					}
+
+					@Override
+					public void onCompleted(Repository repository) {
+						if (!repository.isPartial) {
+							RepoDb.updateRepository(repoId, repository);
+							repo.name = repository.name;
+							repo.partialUrl = repository.partialUrl;
+							repo.version = repository.version;
+						} else {
+							RepoDb.updateRepositoryVersion(repoId, repository.version);
+							repo.version = repository.version;
+						}
 					}
 				});
 
 			} catch (Throwable t) {
-				mMessages.add(mApp.getString(R.string.repo_load_failed, repo, t.getMessage()));
-				DownloadsUtil.clearCache(repo);
+				mMessages.add(mApp.getString(R.string.repo_load_failed, url, t.getMessage()));
+				DownloadsUtil.clearCache(url);
 
 			} finally {
 				if (in != null)
@@ -269,7 +338,6 @@ public class RepoLoader {
 		mPref.edit().putLong("last_update_check", System.currentTimeMillis()).commit();
 
 		// TODO Set ModuleColumns.PREFERRED for modules which appear in multiple repositories
-		// TODO Remove outdated repositories
 	}
 
 
