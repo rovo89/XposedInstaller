@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.zip.GZIPInputStream;
 
 import android.content.Context;
@@ -178,7 +179,7 @@ public class RepoLoader {
 		new Thread("RepositoryReload") {
 			public void run() {
 				final List<String> messages = new LinkedList<String>();
-				downloadAndParseFiles(messages);
+				boolean hasChanged = downloadAndParseFiles(messages);
 
 				if (!messages.isEmpty()) {
 					XposedApp.runOnUiThread(new Runnable() {
@@ -190,7 +191,8 @@ public class RepoLoader {
 					});
 				}
 
-				notifyListeners();
+				if (hasChanged)
+					notifyListeners();
 
 				synchronized (this) {
 					mIsLoading = false;
@@ -261,16 +263,17 @@ public class RepoLoader {
 		return new File(mApp.getCacheDir(), filename);
 	}
 
-	private void downloadAndParseFiles(List<String> messages) {
+	private boolean downloadAndParseFiles(List<String> messages) {
 		long lastUpdateCheck = mPref.getLong("last_update_check", 0);
 		int UPDATE_FREQUENCY = 24 * 60 * 60 * 1000; // TODO make this configurable
 		if (System.currentTimeMillis() < lastUpdateCheck + UPDATE_FREQUENCY)
-			return;
+			return false;
 
 		NetworkInfo netInfo = mConMgr.getActiveNetworkInfo();
 		if (netInfo == null || !netInfo.isConnected())
-			return;
+			return false;
 
+		final AtomicBoolean hasChanged = new AtomicBoolean(false);
 		for (Entry<Long, Repository> repoEntry : mRepositories.entrySet()) {
 			final long repoId = repoEntry.getKey();
 			final Repository repo = repoEntry.getValue();
@@ -296,18 +299,22 @@ public class RepoLoader {
 				RepoParser.parse(in, new RepoParserCallback() {
 					@Override
 					public void onRepositoryMetadata(Repository repository) {
-						if (!repository.isPartial)
+						if (!repository.isPartial) {
 							RepoDb.deleteAllModules(repoId);
+							hasChanged.set(true);
+						}
 					}
 
 					@Override
 					public void onNewModule(Module module) {
 						RepoDb.insertModule(repoId, module);
+						hasChanged.set(true);
 					}
 
 					@Override
 					public void onRemoveModule(String packageName) {
 						RepoDb.deleteModule(repoId, packageName);
+						hasChanged.set(true);
 					}
 
 					@Override
@@ -338,6 +345,7 @@ public class RepoLoader {
 		mPref.edit().putLong("last_update_check", System.currentTimeMillis()).commit();
 
 		// TODO Set ModuleColumns.PREFERRED for modules which appear in multiple repositories
+		return hasChanged.get();
 	}
 
 
