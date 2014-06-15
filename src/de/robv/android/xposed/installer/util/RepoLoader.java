@@ -38,7 +38,6 @@ public class RepoLoader {
 
 	private boolean mIsLoading = false;
 	private boolean mReloadTriggeredOnce = false;
-	private final List<String> mMessages = new LinkedList<String>();
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
 
 	private static final String DEFAULT_REPOSITORIES = "http://dl.xposed.info/repo/full.xml.gz";
@@ -178,14 +177,15 @@ public class RepoLoader {
 
 		new Thread("RepositoryReload") {
 			public void run() {
-				mMessages.clear();
+				final List<String> messages = new LinkedList<String>();
+				downloadAndParseFiles(messages);
 
-				downloadAndParseFiles();
-
-				for (final String message : mMessages) {
+				if (!messages.isEmpty()) {
 					XposedApp.runOnUiThread(new Runnable() {
 						public void run() {
-							Toast.makeText(mApp, message, Toast.LENGTH_LONG).show();
+							for (String message : messages) {
+								Toast.makeText(mApp, message, Toast.LENGTH_LONG).show();
+							}
 						}
 					});
 				}
@@ -261,7 +261,7 @@ public class RepoLoader {
 		return new File(mApp.getCacheDir(), filename);
 	}
 
-	private void downloadAndParseFiles() {
+	private void downloadAndParseFiles(List<String> messages) {
 		long lastUpdateCheck = mPref.getLong("last_update_check", 0);
 		int UPDATE_FREQUENCY = 24 * 60 * 60 * 1000; // TODO make this configurable
 		if (System.currentTimeMillis() < lastUpdateCheck + UPDATE_FREQUENCY)
@@ -283,7 +283,7 @@ public class RepoLoader {
 
 			if (info.status != SyncDownloadInfo.STATUS_SUCCESS) {
 				if (info.errorMessage != null)
-					mMessages.add(info.errorMessage);
+					messages.add(info.errorMessage);
 				continue;
 			}
 
@@ -325,7 +325,7 @@ public class RepoLoader {
 				});
 
 			} catch (Throwable t) {
-				mMessages.add(mApp.getString(R.string.repo_load_failed, url, t.getMessage()));
+				messages.add(mApp.getString(R.string.repo_load_failed, url, t.getMessage()));
 				DownloadsUtil.clearCache(url);
 
 			} finally {
