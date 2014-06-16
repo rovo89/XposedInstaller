@@ -30,11 +30,13 @@ public final class RepoDb extends SQLiteOpenHelper {
 
 	private static RepoDb mInstance;
 	private static SQLiteDatabase mDb;
+	private static RepoLoader mRepoLoader;
 
-	public synchronized static void init(Context context) {
+	public synchronized static void init(Context context, RepoLoader repoLoader) {
 		if (mInstance != null)
 			throw new IllegalStateException(RepoDb.class.getSimpleName() + " is already initialized");
 
+		mRepoLoader = repoLoader;
 		mInstance = new RepoDb(context);
 		mDb = mInstance.getWritableDatabase();
 		mDb.execSQL("PRAGMA foreign_keys=ON");
@@ -53,7 +55,7 @@ public final class RepoDb extends SQLiteOpenHelper {
 		db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MODULE_VERSIONS);
 		db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MORE_INFO);
 
-		RepoLoader.getInstance().clear(false);
+		mRepoLoader.clear(false);
 	}
 
 	private void createTempTables(SQLiteDatabase db) {
@@ -177,7 +179,7 @@ public final class RepoDb extends SQLiteOpenHelper {
 		values.put(ModulesColumns.CREATED, mod.created);
 		values.put(ModulesColumns.UPDATED, mod.updated);
 
-		ModuleVersion latestVersion = RepoLoader.getInstance().getLatestVersion(mod);
+		ModuleVersion latestVersion = mRepoLoader.getLatestVersion(mod);
 
 		mDb.beginTransaction();
 		try {
@@ -274,7 +276,7 @@ public final class RepoDb extends SQLiteOpenHelper {
 		long moduleId = c.getLong(c.getColumnIndexOrThrow(ModulesColumns._ID));
 		long repoId = c.getLong(c.getColumnIndexOrThrow(ModulesColumns.REPO_ID));
 
-		Module mod = new Module(RepoLoader.getInstance().getRepository(repoId));
+		Module mod = new Module(mRepoLoader.getRepository(repoId));
 		mod.packageName = c.getString(c.getColumnIndexOrThrow(ModulesColumns.PKGNAME));
 		mod.name = c.getString(c.getColumnIndexOrThrow(ModulesColumns.TITLE));
 		mod.summary = c.getString(c.getColumnIndexOrThrow(ModulesColumns.SUMMARY));
@@ -344,7 +346,7 @@ public final class RepoDb extends SQLiteOpenHelper {
 	}
 
 	public static void updateModuleLatestVersion(String packageName) {
-		int maxShownReleaseType = RepoLoader.getInstance().getMaxShownReleaseType(packageName).ordinal();
+		int maxShownReleaseType = mRepoLoader.getMaxShownReleaseType(packageName).ordinal();
 		mDb.execSQL("UPDATE " + ModulesColumns.TABLE_NAME
 			+ " SET " + ModulesColumns.LATEST_VERSION
 				+ " = (SELECT " + ModuleVersionsColumns._ID + " FROM " + ModuleVersionsColumns.TABLE_NAME + " AS v"

@@ -56,7 +56,7 @@ public class RepoLoader {
 		mGlobalReleaseType = ReleaseType.fromString(XposedApp.getPreferences()
 				.getString("release_type_global", "stable"));
 
-		RepoDb.init(mApp);
+		RepoDb.init(mApp, this);
 		refreshRepositories();
 	}
 
