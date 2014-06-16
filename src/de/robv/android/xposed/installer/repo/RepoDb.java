@@ -343,6 +343,27 @@ public final class RepoDb extends SQLiteOpenHelper {
 		return getString(ModulesColumns.TABLE_NAME, ModulesColumns.PKGNAME, packageName, ModulesColumns.SUPPORT);
 	}
 
+	public static void updateModuleLatestVersion(String packageName) {
+		int maxShownReleaseType = RepoLoader.getInstance().getMaxShownReleaseType(packageName).ordinal();
+		mDb.execSQL("UPDATE " + ModulesColumns.TABLE_NAME
+			+ " SET " + ModulesColumns.LATEST_VERSION
+				+ " = (SELECT " + ModuleVersionsColumns._ID + " FROM " + ModuleVersionsColumns.TABLE_NAME + " AS v"
+				+ " WHERE v." + ModuleVersionsColumns.MODULE_ID
+				+ " = " + ModulesColumns.TABLE_NAME + "." + ModulesColumns._ID
+				+ " AND reltype <= ? LIMIT 1)"
+			+ " WHERE " + ModulesColumns.PKGNAME + " = ?",
+			new Object[] { maxShownReleaseType, packageName });
+	}
+
+	public static void updateAllModulesLatestVersion() {
+		String[] projection = new String[] { ModulesColumns.PKGNAME };
+		Cursor c = mDb.query(true, ModulesColumns.TABLE_NAME, projection, null, null, null, null, null, null);
+		while (c.moveToNext()) {
+			updateModuleLatestVersion(c.getString(0));
+		}
+		c.close();
+	}
+
 	public static long insertInstalledModule(InstalledModule installed) {
 		ContentValues values = new ContentValues();
 		values.put(InstalledModulesColumns.PKGNAME, installed.packageName);

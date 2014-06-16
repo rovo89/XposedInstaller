@@ -44,8 +44,8 @@ public class RepoLoader {
 	private static final String DEFAULT_REPOSITORIES = "http://dl.xposed.info/repo/full.xml.gz";
 	private Map<Long,Repository> mRepositories = null;
 
-	private ReleaseType mGlobalReleaseType = ReleaseType.STABLE;
-	private final Map<String, ReleaseType> mLocalReleaseTypes = new HashMap<String, ReleaseType>();
+	private ReleaseType mGlobalReleaseType;
+	private final Map<String, ReleaseType> mLocalReleaseTypesCache = new HashMap<String, ReleaseType>();
 
 	private RepoLoader() {
 		mInstance = this;
@@ -53,10 +53,11 @@ public class RepoLoader {
 		mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
 		mModulePref = mApp.getSharedPreferences("module_settings", Context.MODE_PRIVATE);
 		mConMgr = (ConnectivityManager) mApp.getSystemService(Context.CONNECTIVITY_SERVICE);
-		RepoDb.init(mApp);
+		mGlobalReleaseType = ReleaseType.fromString(XposedApp.getPreferences()
+				.getString("release_type_global", "stable"));
 
+		RepoDb.init(mApp);
 		refreshRepositories();
-		setReleaseTypeGlobal(XposedApp.getPreferences().getString("release_type_global", "stable"));
 	}
 
 	public static synchronized RepoLoader getInstance() {
@@ -96,39 +97,44 @@ public class RepoLoader {
 
 	public void setReleaseTypeGlobal(String relTypeString) {
 		ReleaseType relType = ReleaseType.fromString(relTypeString);
-		if (mGlobalReleaseType != relType) {
-			mGlobalReleaseType = relType;
-			// TODO Update latest version in DB for all modules
-			notifyListeners();
-		}
+		if (mGlobalReleaseType == relType)
+			return;
+
+		mGlobalReleaseType = relType;
+
+		// Updating the latest version for all modules takes a moment
+		new Thread("DBUpdate") {
+			@Override
+			public void run() {
+				RepoDb.updateAllModulesLatestVersion();
+				notifyListeners();
+			}
+		}.start();
 	}
 
 	public void setReleaseTypeLocal(String packageName, String relTypeString) {
-		boolean notify = false;
-		synchronized (mLocalReleaseTypes) {
-			if (!mLocalReleaseTypes.containsKey(packageName))
-				return;
+		ReleaseType relType = (!TextUtils.isEmpty(relTypeString))
+				? ReleaseType.fromString(relTypeString) : null;
 
-			ReleaseType relType = (!TextUtils.isEmpty(relTypeString)) ? ReleaseType.fromString(relTypeString) : null;
-			if (mLocalReleaseTypes.get(packageName) != relType) {
-				mLocalReleaseTypes.put(packageName, relType);
-				notify = true;
-			}
+		if (getReleaseTypeLocal(packageName) == relType)
+			return;
+
+		synchronized (mLocalReleaseTypesCache) {
+			mLocalReleaseTypesCache.put(packageName, relType);
 		}
 
-		if (notify)
-			// TODO Update latest version in DB for this module
-			notifyListeners();
+		RepoDb.updateModuleLatestVersion(packageName);
+		notifyListeners();
 	}
 
 	private ReleaseType getReleaseTypeLocal(String packageName) {
-		synchronized (mLocalReleaseTypes) {
-			if (mLocalReleaseTypes.containsKey(packageName))
-				return mLocalReleaseTypes.get(packageName);
+		synchronized (mLocalReleaseTypesCache) {
+			if (mLocalReleaseTypesCache.containsKey(packageName))
+				return mLocalReleaseTypesCache.get(packageName);
 
 			String value = mModulePref.getString(packageName + "_release_type", null);
 			ReleaseType result = (!TextUtils.isEmpty(value)) ? ReleaseType.fromString(value) : null;
-			mLocalReleaseTypes.put(packageName, result);
+			mLocalReleaseTypesCache.put(packageName, result);
 			return result;
 		}
 	}
@@ -153,11 +159,15 @@ public class RepoLoader {
 	}
 
 	public boolean isVersionShown(ModuleVersion version) {
-		ReleaseType localSetting = getReleaseTypeLocal(version.module.packageName);
+		return version.relType.ordinal() <= getMaxShownReleaseType(version.module.packageName).ordinal();
+	}
+
+	public ReleaseType getMaxShownReleaseType(String packageName) {
+		ReleaseType localSetting = getReleaseTypeLocal(packageName);
 		if (localSetting != null)
-			return version.relType.ordinal() <= localSetting.ordinal();
+			return localSetting;
 		else
-			return version.relType.ordinal() <= mGlobalReleaseType.ordinal();
+			return mGlobalReleaseType;
 	}
 
 	public void triggerReload(final boolean force) {
