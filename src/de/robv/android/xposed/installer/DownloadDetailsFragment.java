@@ -13,7 +13,6 @@ import android.widget.TextView;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.util.NavUtil;
-import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class DownloadDetailsFragment extends Fragment {
 	private DownloadDetailsActivity mActivity;
@@ -64,7 +63,7 @@ public class DownloadDetailsFragment extends Fragment {
 
 			final Uri link = NavUtil.parseURL(moreInfoEntry.second);
 			if (link != null) {
-				txtValue.setTextColor(ThemeUtil.getThemeColor(getActivity(), android.R.attr.textColorLink));
+				txtValue.setTextColor(txtValue.getLinkTextColors());
 				moreInfoView.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
