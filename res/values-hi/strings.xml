@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">भेजो</string>
+    <string name="menuSaveToSd"> SD काऱड पर सेव करे </string>
+    <string name="xposed_not_active">एक्सोसड का सबसे नया वऱजन चालू नही है | क्या आपने एक्सोसड को चालू किया है ?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome"> <b>एक्सोसड ईन्टालर</b> मे आपक स्वागत है!\nक्रिपया निरणय लिजिए की आपको क्या करना है|</string>
+    <string name="tabInstall">फ्रेमवऱक</string>
+    <string name="tabInstallDescription">यहा आप एक्सोसड को समभाल सकते है| यह मौडूल्स के सिये जरूरी है|</string>
+    <string name="tabModules">मौडूल्स</string>
+    <string name="tabModulesDescription">फ्रेमवऱक खुड कुछ नही करता. आपको उसकेलिए मौडूल्स की जरुरत है । इस सेक्शन मे आप मोदुल्स को अच्तिवाते कर सकते है जब आपने उन्हें इनस्टॉल किया हो।</string>
+    <string name="tabDownload">डाउनलोड</string>
+    <string name="tabDownloadDescription">ये सेक्शन आपको मोदुलेस के रिपॉजिटरी को एक्सेस देता है, ताकि आप  जो चाहे ढूँढकर इनस्टॉल कर सकते है।</string>
+    <string name="welcome_framework_update_available">क्स्पोसेद फ्रेमवर्क का अपडेट अवेलेबल है (%s)।</string>
+    <string name="welcome_update_available">एक या अधिक मोदुलेस के लिए अपडेट उपलब्ध है।</string>
+    <string name="tabSettings">सेटिंग्स</string>
+    <string name="tabSettingsDescription">इस सेक्शन में जा कर एक्सपोज्ड इंस्टालर और फ्रेमवर्क को कॉन्फ़िगर कीजिए।</string>
+    <string name="tabLogs">लॉग्स</string>
+    <string name="tabLogsDescription">क्स्पोसेद फ्रेमवर्क के लॉग्स देकिये अथवा भेजिए।</string>
+    <string name="tabAbout">और जानकारी</string>
+    <string name="tabAboutDescription">जनेये एक्स्पोसड किसने बनाया और ग्राहक सुविधा आपको कहा मिल सकती है।</string>
+
+    <!-- Installer tab -->
+    <string name="install">इनस्टॉल/अपडेट</string>
+    <string name="uninstall">उनिन्स्तल</string>
+    <string name="installedVersion">चालू</string>
+    <string name="latestVersion">बंडल</string>
+    <string name="versions">वेर्जन:</string>
+    <string name="install_header_reboot">रिबूट</string>
+    <string name="soft_reboot">नरम रिबूट</string>
+    <string name="reboot">रिबूट</string>
+    <string name="areyousure">क्या आपने इरादा पक्का कर लिया है?</string>
+    <string name="phone_not_compatible">एक्स्पोसड (अभी तक) आपके एंड्राइड सडक  %1$d या आपके प्रोसेसर आर्किटेक्चर (%2$s) के साथ चलता नहीं है।</string>
+    <string name="not_tested_but_compatible">एक्स्पोसड आपके अम्द्रोइद सडके वरजन %d के साथ चला के देखा नहीं गया है, पर लगता है शायद चल जाये. अप्प इनस्टॉल करके देख सकते है अगर आपको साहसई है।</string>
+    <string name="reboot_failed">रिबूट फ़ैल होगया है। किरपिया आपके डिवाइस के सामान्य रिबूट प्रक्रिया चलकर देखे।</string>
+    <string name="auto_flash_note">%s फ़्लैश होना चाहिए जब आप  "ठीक है" दबाए.</string>
+    <string name="manual_flash_note">किरपिया  %s SD कार्ड से फ़्लैश करे ऑपरेशन पूरा करने के लिए।</string>
+    <string name="reboot_confirmation">क्या आप रिबूट करने की अनुमति देंगे?</string>
+    <string name="reboot_recovery_confirmation">क्या आप रिकवरी तक रिबूट करने की अनुमाती देंगे?</string>
+    <string name="install_warning_title">ध्यान से!</string>
+    <string name="install_warning">कभी कब्बर आबका डिवाइस बूट नहीं होगा, अगर आपने कभी\n\nIf  \"सॉफ्ट  ब्रिक\" और \"बूटलूप\" एन शब्दओ के बारे में कभी नहीं सुना जाओ या आप को पता नहीं की ऐसी स्थिति से रिकवर कैसे हिते है, एक्स्पोसड <b>कभी इनस्टॉल ना करे</b>!\n\nकिसी भी स्थिथि में बैकप होना यदेमंद है।</string>
+    <string name="dont_show_again">वापिस मत दिखाओ</string>
+    <string name="install_known_issue">अप्पके रोम के साथ इशू(\"%s\") है। एक्स्पोसड इनस्टॉल करके आपको तकलीफ हो सकती है या बहुत गंभीर समस्या हो सकती है। इस विषय पर और जानकारी के लिए यहाँ क्लिक करे।</string>
+    <string name="install_reverted">आप_प्रोसेस वर्जन \"%1$s\" पहलेसे हे इन्सटाल्ड है पर वर्जन \"%2$s\" अभी मिला है. अगर आपने जुना फाइल नहीं चाहा है तो आप बैकउप के लाइट कोशिश कर सकते है(ऑटोमैटिक या मैन्युअल).</string>
+    <string name="uninstall_reverted">आप_प्रोसेस पहले निकल दिया गया था पर अभी वर्जन  \"%s\" अभी मिला है. अगर आपने जुना फाइल नहीं चाहा है तो आप अनइंस्टॉल करने की कोशिश  कर सकते है(ऑटोमैटिक या मैन्युअल).</string>
+    <string name="tap_to_dismiss">बंद करने के लिए यहाँ दबाए</string>
+    <string name="sdcard_location">असडी कार्ड: %s</string>
+
+    <!-- File operations -->
+    <string name="root_failed">रूट असेस नहीं मिल पाया गई।\n\nएक बार जाच करके जरुर देखे के अपने रूट किया है और जरुरी परमिशन दिए है।</string>
+    <string name="file_extract_failed">%s को एक्सट्रेक्ट न कर सके।</string>
+    <string name="file_mounting_writable">मौन्तिंग %s लिख्नेलायक&#8230;</string>
+    <string name="file_mount_writable_failed">ना कर पाए माउंट %s लिख्नेलायक</string>
+    <string name="file_trying_to_continue">फिर भी कोशिश कर रहे है&#8230;</string>
+    <string name="file_backup_already_exists">बैकप यहाँ पहले से है %s</string>
+    <string name="file_backup_not_found">कोई बैकप ना मिला %s</string>
+    <string name="file_backup_failed">बैकुप ना निकल पाए %s</string>
+    <string name="file_backup_successful">बैकप बना लिया %s</string>
+    <string name="file_backup_restoring">बैकपसे रेस्टोरे कर रहे है %s</string>
+    <string name="file_copying">कॉपी कर रहे है %s&#8230;</string>
+    <string name="file_copy_failed">कॉपी न कट पाए %1$s से %2$s यहाँ तक</string>
+    <string name="file_move_failed">यहा  %1$s से %2$s कॉपी ना कर पाए</string>
+    <string name="file_set_perms_failed">अनुमति ना दे पाए  %s के लिए</string>
+    <string name="file_set_owner_failed">इसका मालिक ना सेट कर सके %s</string>
+    <string name="file_removing">हटा रहे है %s&#8230;</string>
+    <string name="file_remove_failed">ईसे हटा न पाए %s</string>
+    <string name="file_creating_directory">डायरेक्टरी बना रहे है %s&#8230;</string>
+    <string name="file_create_directory_failed">डायरेक्टरी ना बना पाए%s</string>
+    <string name="file_writing_recovery_command">रिकवरी कमांड लिख रहे है&#8230;</string>
+    <string name="file_writing_recovery_command_failed">रिकवरी आदेश असफल हो गए। कोई औए इंस्टालेशन तकनीक इस्तमाल करे।</string>
+    <string name="file_done">हो गया! आपके बदलाव रिबूट पर नजर आयेंगे।</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">एक्स्पोसड मोदुले अभी चालू नहीं है।</string>
+    <string name="module_is_not_activated_yet_detailed">%s इनस्टॉल किया गया है पर वह अभी चालू नहीं है।</string>
+    <string name="activate_and_reboot">चालू करके रिबूट करो</string>
+    <string name="module_activated">एक्स्पोसड मोदुले अभी चालू है</string>
+    <string name="module_empty_description">(इसके बारे में कोई जानकारी नहीं दी गयी है)</string>
+    <string name="module_no_ui">इस मोदुले का यूजर इंटरफ़ेस नहीं है</string>
+    <string name="no_xposed_modules_found">कोई एक्स्पोसड मोदुलेस ना मिले!</string>
+    <string name="xposed_module_list_updated">एक्स्पोसड मोदुले की लिस्ट अपडेट हुई है\nकोई बदलाव रिबूट पर शुरू हो जाएगे</string>
+    <string name="xposed_module_updated_notification_title">एक्स्पोसड मोदुले अपडेट हो गाया है</string>
+    <string name="xposed_module_updated_notification">बदलाव शुरू अर्ने के लिए रिबूट करे</string>
+    <string name="warning_xposed_min_version">इस मोदुले को नए एक्स्पोसडब्रिज वर्शन (%d) की जरुरत है और इसलिए वह चालू नहीं किया जा सकता.</string>
+    <string name="no_min_version_specified">यहाँ मोदुले नहीं बताता की इसे कौनसा एक्स्पोसडब्रिज वर्जन चाहिए।</string>
+    <string name="warning_min_version_too_low">ये मोदुले एक्स्पोसडब्रिज वेर्सिओम %1$d के लिए बनाया गया था, पर कुछ तकनिकी कारणों के वजह से ये वर्जन %2$d के साथ नहीं चलता, इसलिए यह बंद कर सिया है।</string>
+    <string name="module_launch">ऊई चालू करे</string>
+    <string name="module_download_updates">डाउनलोड/उप्दाट्स</string>
+    <string name="module_support">सपोर्ट</string>
+    <string name="module_app_info">आप के बारे में जानकारी</string>
+    <string name="module_uninstall">अनिन्स्ताल</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">धुन्दो</string>
+    <string name="menuReload">रीलोड</string>
+    <string name="changes">बदलाव:</string>
+    <string name="download_details_page_description">अधिक जानकारी</string>
+    <string name="download_details_page_versions">वर्जन्स</string>
+    <string name="download_details_page_settings">सेटिंग्स</string>
+    <string name="reltype_stable">स्थिर</string>
+    <string name="reltype_stable_summary">स्थिर (एरर के कम शमता)</string>
+    <string name="reltype_beta">बीटा</string>
+    <string name="reltype_beta_summary">बीटा (एरर हो सकते है)</string>
+    <string name="reltype_experimental">एक्सपेरिमेंटल</string>
+    <string name="reltype_experimental_summary">एक्सपेरिमेंटल (एरर की शमता है)</string>
+    <string name="reltype_use_global_summary">दुनिया भर की सेटिंग</string>
+    <string name="download_author">लेखक %s</string>
+    <string name="download_unknown_author">अनजान लेखक</string>
+    <string name="download_status_installed">इन्सटाल्ड (वर्जन %s)</string>
+    <string name="download_status_update_available">अपडेट उपलभ्द है (वर्जन %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">एडेड %1$s \u00b7 अपडेट किया है %2$s</string>
+    <string name="download_sorting_title">छटाइ शीर्षक द्वारा</string>
+    <string name="download_sorting_status">छटाइ स्टेटस द्वारा</string>
+    <string name="download_sorting_updated">छटाइ अपडेट द्वारा</string>
+    <string name="download_sorting_created">छटाइ बनाने के समय द्वारा</string>
+    <string name="download_section_framework">फरमवर्क</string>
+    <string name="download_section_update_available">अपडेट उप्लाभ्दा है</string>
+    <string name="download_section_installed">इन्सटाल्ड</string>
+    <string name="download_section_not_installed">इन्सटाल्ड नहीं है</string>
+    <string name="download_section_24h">पिछले २४ घंटे</string>
+    <string name="download_section_7d">पिछले ७ दिन</string>
+    <string name="download_section_30d">पिछले ३० दिन</string>
+    <string name="download_section_older">३०दिन से अधिक</string>
+    <string name="download_details_not_found">रेपोसिट्री में इस नाम \"%s\" से कोई मोदुले नहीं है ।</string>
+    <string name="download_no_versions">लेखक ले कुछ नहीं उओलॉद किया है।</string>
+    <string name="download_test_version_not_shown">टेस्ट वर्शन अवेलेबल है पर आपके सेटिंग्स के वजह से वह दिखाया नहीं जा रहा।</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_installation">इंस्टालेशन</string>
+    <string name="settings_install_mode">इंस्टालेशन मोड</string>
+    <string name="install_mode_normal">क्लासिकल (राइट /सिस्टम दुरेक्ट्ली)</string>
+    <string name="install_mode_recovery_auto">रिकवरी (फ़्लैश ज़िप ऑटोमेटिकली)</string>
+    <string name="install_mode_recovery_manual">रेकोवेय (इप असडी कार्ड पर लिखो, मैन्युअली फ़्लैश करो)</string>
+    <string name="settings_group_download">डाउनलोड</string>
+    <string name="settings_enable_downloads">इनेबल डोव्न्लॉद्स</string>
+    <string name="settings_enable_downloads_summary">एक्स्पोसड इंस्टालर को दोव्न्लॉद्स चालू करने के लिए अनुमति दे</string>
+    <string name="settings_release_type">वेर्सिओंस दिखने</string>
+    <string name="settings_group_experimental">प्रायोगिक</string>
+    <string name="settings_disable_resources">रिसोर्स हुक्स दिअब्ले करे</string>
+    <string name="settings_disable_resources_summary">वोर्कारौंड्स फॉर कोम्फ्लिक्ट्स इन टी\n<b>चेतान्वनी:</b> मोदुलेस जो रिसोर्सेज बदलने की कोशिश करते है वो काम नहीं करेंगे जब यह चालू है।</string>
+    <string name="settings_performance_experiment">परफॉरमेंस प्रयोग</string>
+    <string name="settings_performance_experiment_summary">Iअगर आप यह चालू करेंगे तो आपके सिस्टम का प्र्फोर्मनस बढ़ ,घट अथवा उतना ही रह सकता है। इसे इस्तमाल करने के लिए आप आजाद है और बाद में जरुर बताए की यह आपके लिए कैसे काम करता है। आपको फमेवरक वापिस डालना होगा और रिबूट भी करना होगा।</string>
+    <string name="settings_group_app">एप्लीकेशन</string>
+    <string name="settings_theme">थीम</string>
+    <string name="settings_theme_light">लाइट्स</string>
+    <string name="settings_theme_dark">अँधेर</string>
+    <string name="settings_theme_black">कला (अमोलेड स्क्रीन्स के लिए उपयोगी)</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_load_failed">लोग पढ़ न पाए</string>
+    <string name="logs_save_failed">लोग सद कार्ड पे लिख न पाए</string>
+    <string name="sdcard_not_writable">सड़ कार्ड मिला नहीं अथवा उसपर लिख न पाए</string>
+    <string name="log_too_large">लोग फाइल %1$,d kB, से बड़ा है पहले  %2$,d kB छोड़ दिया</string>
+    <string name="menuClearLog">लोग च्लेअत करो</string>
+    <string name="logs_cleared">लॉग्स क्लियर कर दिए</string>
+    <string name="logs_clear_failed">लोग क्लियर ना कर पाए</string>
+    <string name="log_is_empty">लोग खाली है</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">मुख्य प्रोग्राम लेखक:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">कृपया हमें मदद के लिए  <b>ना</b> संपर्क कटे। नीचे के लिंक का इस्तमाल करे हमसे संपर्क करने के लिए।</string>
+    <string name="about_translator_label">ट्रांसलेटर</string>
+    <string name="translator"><a href="http://forum.xda-developers.com/member.php?u=4396418">Boggartfly</a></string>
+    <string name="about_version_label">वर्जन इस अप्प का:</string>
+    <string name="about_source_label">सोर्से कोड:</string>
+    <string name="about_support_label">सपोर्ट पाए इस लिंक पर:</string>
+    <string name="about_support_warning">यह लिंक <b>सिर्फ</b> इंस्टालर और फ्राम्वार्क के लिए है! अगर आपको मोदुले के लिए मदद चाहिए तो <b>उसे लेखक से संपर्क करे</b></string>
+    <string name="about_libraries_label">इस्तमाल किये हुआ कोड संघ्रह:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">डाउनलोड</string>
+    <string name="download_view_install">इनस्टॉल</string>
+    <string name="download_view_cancel">कैंसिल</string>
+    <string name="download_view_no_url">कोई डाउनलोड यूआरएल उपलभ्द नहीं है</string>
+    <string name="download_view_running">डाउनलोड चालू है (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">डाउनलोड रुका हुआ है</string>
+    <string name="download_view_successful">डाउनलोड पूरा हुआ है</string>
+    <string name="download_view_failed">डाउनलोड फैप ही हय (error %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 सम गलत है (downloaded: %1$s, expected: %2$s)</string>
+    <string name="download_could_not_read_file">डोव्न्लॉदेद फाइल पढ़ ना पाए: %s</string>
+    <string name="download_no_valid_apk">डाउनलोड कियस अपक वैद्य नहीं है (या चल नहीं सकता)</string>
+    <string name="download_incorrect_package_name">पैकेज नाम गलत है (डाउनलोडएड %1$s, expected: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">डाउनलोड %1$s फ़ैल : %2$d (%3$s)</string>
+    <string name="repo_download_failed">डोव्न्लॉदिङ्ग फ़ैल %1$s फ़ैल %2$s</string>
+    <string name="repo_load_failed">इस रिपॉजिटरी से रिसोर्सेज लोड ना कर पाए %1$s:\n%2$s</string>
+
+</resources>
