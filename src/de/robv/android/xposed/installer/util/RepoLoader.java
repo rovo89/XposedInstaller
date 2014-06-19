@@ -301,6 +301,7 @@ public class RepoLoader {
 			}
 
 			InputStream in = null;
+			RepoDb.beginTransation();
 			try {
 				in = new FileInputStream(cacheFile);
 				if (url.endsWith(".gz"))
@@ -341,6 +342,8 @@ public class RepoLoader {
 					}
 				});
 
+				RepoDb.setTransactionSuccessful();
+
 			} catch (Throwable t) {
 				messages.add(mApp.getString(R.string.repo_load_failed, url, t.getMessage()));
 				DownloadsUtil.clearCache(url);
@@ -349,6 +352,7 @@ public class RepoLoader {
 				if (in != null)
 					try { in.close(); } catch (IOException ignored) {}
 				cacheFile.delete();
+				RepoDb.endTransation();
 			}
 		}
 
