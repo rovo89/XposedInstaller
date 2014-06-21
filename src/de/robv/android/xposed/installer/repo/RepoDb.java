@@ -53,6 +53,7 @@ public final class RepoDb extends SQLiteOpenHelper {
 		db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_REPOSITORIES);
 		db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MODULES);
 		db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MODULE_VERSIONS);
+		db.execSQL(RepoDbDefinitions.SQL_CREATE_INDEX_MODULE_VERSIONS_MODULE_ID);
 		db.execSQL(RepoDbDefinitions.SQL_CREATE_TABLE_MORE_INFO);
 
 		mRepoLoader.clear(false);

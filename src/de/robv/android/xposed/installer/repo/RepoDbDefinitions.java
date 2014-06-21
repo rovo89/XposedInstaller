@@ -4,7 +4,7 @@ import android.database.Cursor;
 import android.provider.BaseColumns;
 
 public class RepoDbDefinitions {
-	public static final int DATABASE_VERSION = 2;
+	public static final int DATABASE_VERSION = 3;
 	public static final String DATABASE_NAME = "repo_cache.db";
 
 
@@ -68,6 +68,7 @@ public class RepoDbDefinitions {
 //////////////////////////////////////////////////////////////////////////
 	public static interface ModuleVersionsColumns extends BaseColumns {
 		public static final String TABLE_NAME = "module_versions";
+		public static final String IDX_MODULE_ID = "module_versions_module_id_idx";
 
 		public static final String MODULE_ID = "module_id";
 		public static final String NAME = "name";
@@ -92,6 +93,10 @@ public class RepoDbDefinitions {
 		ModuleVersionsColumns.CHANGELOG_IS_HTML + " INTEGER DEFAULT 0, " +
 		ModuleVersionsColumns.RELTYPE + " INTEGER DEFAULT 0, " +
 		ModuleVersionsColumns.UPLOADED + " INTEGER DEFAULT -1)";
+	static final String SQL_CREATE_INDEX_MODULE_VERSIONS_MODULE_ID =
+			"CREATE INDEX " + ModuleVersionsColumns.IDX_MODULE_ID + " ON " +
+			ModuleVersionsColumns.TABLE_NAME + " (" +
+			ModuleVersionsColumns.MODULE_ID + ")";
 
 
 //////////////////////////////////////////////////////////////////////////
