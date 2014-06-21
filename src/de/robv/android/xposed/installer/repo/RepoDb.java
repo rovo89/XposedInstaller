@@ -358,12 +358,18 @@ public final class RepoDb extends SQLiteOpenHelper {
 	}
 
 	public static void updateAllModulesLatestVersion() {
-		String[] projection = new String[] { ModulesColumns.PKGNAME };
-		Cursor c = mDb.query(true, ModulesColumns.TABLE_NAME, projection, null, null, null, null, null, null);
-		while (c.moveToNext()) {
-			updateModuleLatestVersion(c.getString(0));
+		mDb.beginTransaction();
+		try {
+			String[] projection = new String[] { ModulesColumns.PKGNAME };
+			Cursor c = mDb.query(true, ModulesColumns.TABLE_NAME, projection, null, null, null, null, null, null);
+			while (c.moveToNext()) {
+				updateModuleLatestVersion(c.getString(0));
+			}
+			c.close();
+			mDb.setTransactionSuccessful();
+		} finally {
+			mDb.endTransaction();
 		}
-		c.close();
 	}
 
 	public static long insertInstalledModule(InstalledModule installed) {
