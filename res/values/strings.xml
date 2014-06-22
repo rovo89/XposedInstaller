@@ -96,6 +96,9 @@
     <!-- Download tab -->
     <string name="menuSearch">Search</string>
     <string name="menuReload">Reload</string>
+    <string name="support">Support</string>
+    <string name="source">Source</string>
+    <string name="repository">Repository</string>
     <string name="changes">Changes:</string>
     <string name="download_details_page_description">Description</string>
     <string name="download_details_page_versions">Versions</string>
