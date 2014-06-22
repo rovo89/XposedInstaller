@@ -193,7 +193,7 @@ public final class ModuleUtil {
 			Log.i(XposedApp.TAG, "updating modules.list");
 			int installedXposedVersion = InstallerFragment.getJarInstalledVersion();
 			if (installedXposedVersion == 0) {
-				Toast.makeText(mApp, "The xposed framework is not installed", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mApp, getString(R.string.xposed_framework_is_not_installed), Toast.LENGTH_SHORT).show();
 				return;
 			}
 
@@ -213,7 +213,7 @@ public final class ModuleUtil {
 				Toast.makeText(mApp, R.string.xposed_module_list_updated, Toast.LENGTH_SHORT).show();
 		} catch (IOException e) {
 			Log.e(XposedApp.TAG, "cannot write " + MODULES_LIST_FILE, e);
-			Toast.makeText(mApp, "cannot write " +  MODULES_LIST_FILE, Toast.LENGTH_SHORT).show();
+			Toast.makeText(mApp, getString(R.string.file_write_failed,  MODULES_LIST_FILE), Toast.LENGTH_SHORT).show();
 		}
 	}
 
