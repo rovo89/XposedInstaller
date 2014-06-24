@@ -49,7 +49,7 @@
 
     <!-- Download tab -->
     <string name="menuSearch">Cari</string>
-    <string name="menuReload">Reload</string>
+    <string name="menuReload">Muat ulang</string>
     <string name="changes">Perubahan:</string>
     <string name="download_author">oleh %s</string>
     <string name="download_unknown_author">pembuat tdk diketahui</string>
