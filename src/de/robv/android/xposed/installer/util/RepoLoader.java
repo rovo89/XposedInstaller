@@ -43,6 +43,7 @@ public class RepoLoader {
 	private boolean mReloadTriggeredOnce = false;
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
 
+	private static final int UPDATE_FREQUENCY = 24 * 60 * 60 * 1000;
 	private static final String DEFAULT_REPOSITORIES = "http://dl.xposed.info/repo/full.xml.gz";
 	private Map<Long,Repository> mRepositories = null;
 
@@ -175,10 +176,19 @@ public class RepoLoader {
 	public void triggerReload(final boolean force) {
 		mReloadTriggeredOnce = true;
 
-		if (force)
-			resetLastUpdateCheck();
-
 		if (!mApp.areDownloadsEnabled())
+			return;
+
+		if (force) {
+			resetLastUpdateCheck();
+		} else {
+			long lastUpdateCheck = mPref.getLong("last_update_check", 0);
+			if (System.currentTimeMillis() < lastUpdateCheck + UPDATE_FREQUENCY)
+				return;
+		}
+
+		NetworkInfo netInfo = mConMgr.getActiveNetworkInfo();
+		if (netInfo == null || !netInfo.isConnected())
 			return;
 
 		synchronized (this) {
@@ -192,6 +202,8 @@ public class RepoLoader {
 			public void run() {
 				final List<String> messages = new LinkedList<String>();
 				boolean hasChanged = downloadAndParseFiles(messages);
+
+				mPref.edit().putLong("last_update_check", System.currentTimeMillis()).commit();
 
 				if (!messages.isEmpty()) {
 					XposedApp.runOnUiThread(new Runnable() {
@@ -276,15 +288,6 @@ public class RepoLoader {
 	}
 
 	private boolean downloadAndParseFiles(List<String> messages) {
-		long lastUpdateCheck = mPref.getLong("last_update_check", 0);
-		int UPDATE_FREQUENCY = 24 * 60 * 60 * 1000; // TODO make this configurable
-		if (System.currentTimeMillis() < lastUpdateCheck + UPDATE_FREQUENCY)
-			return false;
-
-		NetworkInfo netInfo = mConMgr.getActiveNetworkInfo();
-		if (netInfo == null || !netInfo.isConnected())
-			return false;
-
 		// These variables don't need to be atomic, just mutable
 		final AtomicBoolean hasChanged = new AtomicBoolean(false);
 		final AtomicInteger insertCounter = new AtomicInteger();
@@ -370,8 +373,6 @@ public class RepoLoader {
 				RepoDb.endTransation();
 			}
 		}
-
-		mPref.edit().putLong("last_update_check", System.currentTimeMillis()).commit();
 
 		// TODO Set ModuleColumns.PREFERRED for modules which appear in multiple repositories
 		return hasChanged.get();
