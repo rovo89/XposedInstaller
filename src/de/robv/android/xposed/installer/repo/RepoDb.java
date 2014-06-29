@@ -1,6 +1,7 @@
 package de.robv.android.xposed.installer.repo;
 
 import java.io.File;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import android.content.ContentValues;
@@ -8,7 +9,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;
 import android.util.Pair;
 import de.robv.android.xposed.installer.repo.RepoDbDefinitions.InstalledModulesColumns;
@@ -123,7 +123,7 @@ public final class RepoDb extends SQLiteOpenHelper {
 	}
 
 	public static Map<Long,Repository> getRepositories() {
-		Map<Long,Repository> result = new ArrayMap<Long, Repository>(1);
+		Map<Long,Repository> result = new LinkedHashMap<Long, Repository>(1);
 
 		String[] projection = new String[] {
 			RepositoriesColumns._ID,
