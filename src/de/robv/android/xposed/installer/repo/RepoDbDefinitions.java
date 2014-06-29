@@ -4,7 +4,7 @@ import android.database.Cursor;
 import android.provider.BaseColumns;
 
 public class RepoDbDefinitions {
-	public static final int DATABASE_VERSION = 3;
+	public static final int DATABASE_VERSION = 4;
 	public static final String DATABASE_NAME = "repo_cache.db";
 
 
@@ -128,7 +128,7 @@ public class RepoDbDefinitions {
 		"CREATE TEMP TABLE " + InstalledModulesColumns.TABLE_NAME + " (" +
 		InstalledModulesColumns.PKGNAME + " TEXT PRIMARY KEY ON CONFLICT REPLACE, " +
 		InstalledModulesColumns.VERSION_CODE + " INTEGER NOT NULL, " +
-		InstalledModulesColumns.VERSION_NAME + " TEXT NOT NULL)";
+		InstalledModulesColumns.VERSION_NAME + " TEXT)";
 
 
 //////////////////////////////////////////////////////////////////////////
