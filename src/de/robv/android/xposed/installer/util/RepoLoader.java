@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.GZIPInputStream;
 
 import android.content.Context;
@@ -18,6 +19,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
@@ -283,7 +285,11 @@ public class RepoLoader {
 		if (netInfo == null || !netInfo.isConnected())
 			return false;
 
+		// These variables don't need to be atomic, just mutable
 		final AtomicBoolean hasChanged = new AtomicBoolean(false);
+		final AtomicInteger insertCounter = new AtomicInteger();
+		final AtomicInteger deleteCounter = new AtomicInteger();
+
 		for (Entry<Long, Repository> repoEntry : mRepositories.entrySet()) {
 			final long repoId = repoEntry.getKey();
 			final Repository repo = repoEntry.getValue();
@@ -293,6 +299,9 @@ public class RepoLoader {
 
 			File cacheFile = getRepoCacheFile(url);
 			SyncDownloadInfo info = DownloadsUtil.downloadSynchronously(url, cacheFile);
+
+			Log.i(XposedApp.TAG, String.format("Downloaded %s with status %d (error: %s), size %d bytes",
+					url, info.status, info.errorMessage, cacheFile.length()));
 
 			if (info.status != SyncDownloadInfo.STATUS_SUCCESS) {
 				if (info.errorMessage != null)
@@ -320,12 +329,14 @@ public class RepoLoader {
 					public void onNewModule(Module module) {
 						RepoDb.insertModule(repoId, module);
 						hasChanged.set(true);
+						insertCounter.incrementAndGet();
 					}
 
 					@Override
 					public void onRemoveModule(String packageName) {
 						RepoDb.deleteModule(repoId, packageName);
 						hasChanged.set(true);
+						deleteCounter.decrementAndGet();
 					}
 
 					@Override
@@ -339,12 +350,16 @@ public class RepoLoader {
 							RepoDb.updateRepositoryVersion(repoId, repository.version);
 							repo.version = repository.version;
 						}
+
+						Log.i(XposedApp.TAG, String.format("Updated repository %s to version %s (%d new / %d removed modules)",
+								repo.url, repo.version, insertCounter.get(), deleteCounter.get()));
 					}
 				});
 
 				RepoDb.setTransactionSuccessful();
 
 			} catch (Throwable t) {
+				Log.e(XposedApp.TAG, "Cannot load repository from " + url, t);
 				messages.add(mApp.getString(R.string.repo_load_failed, url, t.getMessage()));
 				DownloadsUtil.clearCache(url);
 
