@@ -163,6 +163,7 @@
     <string name="logs_cleared">Log successfully cleared</string>
     <string name="logs_clear_failed">Could not clear the log:</string>
     <string name="log_is_empty">Log is empty</string>
+    <string name="logs_saved">Log successfully saved to %s</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Main developers:</string>
