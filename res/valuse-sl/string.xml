@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Pošlji</string>
+    <string name="menuSaveToSd">Shrani na spominsko kartico</string>
+    <string name="xposed_not_active">Zadnja različica Xposed-a trenutno ni omgočena. Ste namestili framework in ponovno zagnali napravo?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome">Dobrodošli v <b>Xposed Installer-ju</b>!\nProsimo, izberite kaj želite narediti:</string>
+    <string name="tabInstall">Framework</string>
+    <string name="tabInstallDescription">Tukaj lahko upravljate z Xposed Framework, kateri je zahtevan za delovanje modulov.</string>
+    <string name="tabModules">Moduli</string>
+    <string name="tabModulesDescription">Framework sam po sebi ne doda nobene funkcionalnosti. Za le-to rabiš module. V tej sekciji jih lahko omogočiš, preden pa jih lahko omogočiš, jih moraš tudi namestiti.</string>
+    <string name="tabDownload">Prenosi</string>
+    <string name="tabDownloadDescription">V tej sekciji imate dostop do repositorijev modulov, kjer jih lahko poiščete in prenesete ter upravljate s posodobitvijo le-teh.</string>
+    <string name="welcome_framework_update_available">Na voljo je posodobitev za Xposed Framework(%s).</string>
+    <string name="welcome_update_available">Na voljo je vsaj ena posodobitev za module.</string>
+    <string name="tabSettings">Nastavitve</string>
+    <string name="tabSettingsDescription">V tej sekciji lahko konfigurirate Xposed Installer ter Framework.</string>
+    <string name="tabLogs">Dnevniki</string>
+    <string name="tabLogsDescription">Prikaži in shrani/pošlji dnevnike Xposed Framework-a.</string>
+    <string name="tabAbout">O programu</string>
+    <string name="tabAboutDescription">Kdo je ustvaril Xposed, kje dobiti podboro itd.</string>
+
+    <!-- Installer tab -->
+    <string name="install">Namesti/Posodobi</string>
+    <string name="uninstall">Odstrani</string>
+    <string name="installedVersion">aktivno</string>
+    <string name="latestVersion">na voljo</string>
+    <string name="versions">Različice:</string>
+    <string name="install_header_reboot">Ponovni zagon</string>
+    <string name="soft_reboot">Hitri ponovni zagon</string>
+    <string name="reboot">Ponovni zagon</string>
+    <string name="areyousure">Ste prepričani?</string>
+    <string name="phone_not_compatible">Xposed (še) ni kompatibilen z Android SDK različice %1$d ali pa z vašo arhitekturo procesorja (%2$s).</string>
+    <string name="not_tested_but_compatible">Xposed ni bil testiran z Android SDK različice %d, vendar je očitno kompatibilen. Lahko ga poskusite namestiti, če se počutite pustolovsko.</string>
+    <string name="reboot_failed">Ponovni zagon spodletel. Prosimo, da to storite ročno.</string>
+    <string name="auto_flash_note">%s bi moral biti nameščen samodejno, ko pritisnete gumb "V redu".</string>
+    <string name="manual_flash_note">Za dokončanje operacije Vas prosimo, da ročno namestite %s iz spominske kartice.</string>
+    <string name="reboot_confirmation">Želite ponovno zagnati napravo zdaj?</string>
+    <string name="reboot_recovery_confirmation">Želite ponovno zagnati napravo v obnovitveni način(recovery) zdaj?</string>
+    <string name="install_warning_title">Bodite pozorni!</string>
+    <string name="install_warning">V nekaterih primerih se lahko zgodi, da se po namestitvi Xposed-a, vaša naprava ne bo več zagnala.\n\nČe še nikoli niste slišali za \"soft brick\" in \"bootloop\", ali če ne veste kako rešiti takšne probleme, potem <b>NE</b> nameščajte Xposed-a!\n\nV vsakem primeru pa vam močno priporočamo, da imate zadnjo varnostno kopijo pri sebi.</string>
+    <string name="dont_show_again">Tega ne prikaži več</string>
+    <string name="install_known_issue">Zaznana je bila znana težava (\"%s\") z Vašim ROM-om. Nameščanje Xposed-a mogoče ne bo delovalo, ali pa lahko privede do nekaterih problemov. Kliknite tukaj za podrobnosti o tej težavi.</string>
+    <string name="install_reverted">app_process različice \"%1$s\" je bil nameščen, vendar pa je sedaj bila najdena nameščena različica \"%2$s\". Če niste pričakovali obnovitve stare datoteke, lahko poskusite nameščanje preko obnovitvenega načina(recovery) (samodejno ali ročno).</string>
+    <string name="uninstall_reverted">app_process je bil odstranjen, vendar pa je sedaj bila najdena nameščena različica \"%s\". Če niste pričakovali obnovitve stare datoteke, lahko poskusite nameščanje preko obnovitvenega načina(recovery) (samodejno ali ročno).</string>
+    <string name="tap_to_dismiss">Skrij</string>
+    <string name="sdcard_location">Spomnska kartica: %s</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Ni uspelo dobiti root dostopa.\n\nPrepričajte se, da je Vaša naprava pravilno \"rootana\" in da niste blokirali dostopa do lupine.</string>
+    <string name="file_extract_failed">Ne morem razžiriti %s</string>
+    <string name="file_mounting_writable">Priklapljam %s kot zapisljivo&#8230;</string>
+    <string name="file_mount_writable_failed">Ne morem priklopiti %s kot zapisljivo</string>
+    <string name="file_trying_to_continue">Vseeno poskusi nadaljevati&#8230;</string>
+    <string name="file_backup_already_exists">Varnostna kopija že obstaja na %s</string>
+    <string name="file_backup_not_found">Nobene varnostne kopije ni bilo mogoče najti na %s</string>
+    <string name="file_backup_failed">Ustvarjanje varnostne kopije %s je spodletelo</string>
+    <string name="file_backup_successful">Varnostna kopija ustvarjena na %s</string>
+    <string name="file_backup_restoring">Obnavljanje varnostne kopije iz %s</string>
+    <string name="file_copying">Kopiram %s&#8230;</string>
+    <string name="file_copy_failed">Ne morem kopirati %1$s v %2$s</string>
+    <string name="file_move_failed">Ne morem premakniti %1$s v %2$s</string>
+    <string name="file_set_perms_failed">Ne morem nastaviti pravic za %s</string>
+    <string name="file_set_owner_failed">Ne morem nastaviti lastnika na %s</string>
+    <string name="file_removing">Odstranjujem %s&#8230;</string>
+    <string name="file_remove_failed">Ne morem odstraniit %s</string>
+    <string name="file_creating_directory">Ustvarjam mapo %s&#8230;</string>
+    <string name="file_create_directory_failed">Ne morem ustvariti mape %s</string>
+    <string name="file_writing_recovery_command">Zapisujem obnovitveni ukaz&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Zapisovanje obnovitvenega ukaza je spodletelo. Prosimo uporabite drugačno namestitveno metodo.</string>
+    <string name="file_done">Dokončano! Spremembe bodo začele veljati po ponovnem zagonu naprave.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed modul še ni omogočen</string>
+    <string name="module_is_not_activated_yet_detailed">%s je bil nameščen, vendar pa še ni omogočen.</string>
+    <string name="activate_and_reboot">Omogoči in ponovno zaženi</string>
+    <string name="module_activated">Xposed modul je bil omogočen</string>
+    <string name="module_empty_description">(opis ni bil podan)</string>
+    <string name="module_no_ui">Ta modul ne vsebuje uporabniškega vmesnika</string>
+    <string name="no_xposed_modules_found">Noben Xposed modul ni bil najden!</string>
+    <string name="xposed_module_list_updated">Seznam Xposed modulov je bil posodobljen\nSpremembe bodo omogočene po ponovnem zagonu naprave</string>
+    <string name="xposed_module_updated_notification_title">Xposed modul posodobljen</string>
+    <string name="xposed_module_updated_notification">Ponovno zaženi za uveljavitev sprememb</string>
+    <string name="warning_xposed_min_version">Ta modul zahteva novejšo različico XposedBridge (%d) in zato ne more biti omogočen.</string>
+    <string name="no_min_version_specified">Ta modul nima določene različice XposedBridge.</string>
+    <string name="warning_min_version_too_low">Ta modul je bil ustvarjen za XposedBridge različice %1$d, vendar pa je zaradi sprememb v zvezi s kompatibilnostjo v različici %2$d, bil le-ta onemogočen.</string>
+    <string name="module_launch">Zaženi uporabniški vmesnik</string>
+    <string name="module_download_updates">Prenosi/Posodobitve</string>
+    <string name="module_support">Podpora</string>
+    <string name="module_app_info">Podatki o aplikaciji</string>
+    <string name="module_uninstall">Odstrani</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Išči</string>
+    <string name="menuReload">Ponovno naloži</string>
+    <string name="changes">Spremembe:</string>
+    <string name="download_details_page_description">Opis</string>
+    <string name="download_details_page_versions">Različice</string>
+    <string name="download_details_page_settings">Nastavitve</string>
+    <string name="reltype_stable">Stabilna</string>
+    <string name="reltype_stable_summary">Stabilna (majhna možnost napak v programu)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (lahko pričakujemo nekaj napak)</string>
+    <string name="reltype_experimental">Poskusna</string>
+    <string name="reltype_experimental_summary">Poskusna (velika možnost napak v programu)</string>
+    <string name="reltype_use_global_summary">Uporabi globalne nastavitve</string>
+    <string name="download_author">od %s</string>
+    <string name="download_unknown_author">neznan navtor</string>
+    <string name="download_status_installed">Nameščeno (različica %s)</string>
+    <string name="download_status_update_available">Posodobitev je na voljo (različica %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Dodano %1$s \u00b7 Posodobljeno %2$s</string>
+    <string name="download_sorting_title">Vrstni red razvrščanja</string>
+    <string name="download_sorting_status">Razvrsti po stanju</string>
+    <string name="download_sorting_updated">Razvrsti po zadnji posodobitvi</string>
+    <string name="download_sorting_created">Razvrsti po datumu ustvarjenja</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Posodobitev je na voljo</string>
+    <string name="download_section_installed">Nameščeno</string>
+    <string name="download_section_not_installed">Ni nameščeno</string>
+    <string name="download_section_24h">Zadnjih 24 ur</string>
+    <string name="download_section_7d">Zadnjih 7 dni</string>
+    <string name="download_section_30d">Zadnjih 30 dni</string>
+    <string name="download_section_older">Več kot 30 dni nazaj</string>
+    <string name="download_details_not_found">Modul z imenom paketa \"%s\" ne obstaja v repozitoriju.</string>
+    <string name="download_no_versions">Ta avtor še ni naložil ničesar.</string>
+    <string name="download_test_version_not_shown">Na voljo je testna različica, vendar pa ni prikazana zaradi globalnih nastavitev ali nastavitev modula.</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_installation">Namestitev</string>
+    <string name="settings_install_mode">Način namestitve</string>
+    <string name="install_mode_normal">Običajni (zapiši v /system mapo)</string>
+    <string name="install_mode_recovery_auto">Obnovitveni(recovery) (namesti zip datoteko samodejno)</string>
+    <string name="install_mode_recovery_manual">Obnovitveni(recovery) (zapiši zip datoteko na spominsko kartico, namestil pa jo bom ročno)</string>
+    <string name="settings_group_download">Prenosi</string>
+    <string name="settings_enable_downloads">Omogoči prenašanje</string>
+    <string name="settings_enable_downloads_summary">Dovoli Xposed Installer-ju preverjanje posodobitev in novih modulov</string>
+    <string name="settings_release_type">Prikazane različice</string>
+    <string name="settings_group_experimental">Poskusne</string>
+    <string name="settings_disable_resources">Onemogoči spreminjanje virov</string>
+    <string name="settings_disable_resources_summary">Rešitev za konflikt s programi za teme\n<b>OPOZORILO:</b> Moduli, ki želije spreminjati vire, ne bodo delovali, ko je ta možnost omogočena.</string>
+    <string name="settings_performance_experiment">Eksperiment zmogljivosti</string>
+    <string name="settings_performance_experiment_summary">Če omogočiš to možnost, lahko Vaša zmogljivost sistema naraste, pade ali ostane enaka. Poskusite to možnost in nam sporočite, če je bila opažena kakšna sprememba. Po spremembi te možnosti morate ponovno namestiti Framework.</string>
+    <string name="settings_group_app">Program</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Svetla</string>
+    <string name="settings_theme_dark">Temna</string>
+    <string name="settings_theme_black">Črna (uporabna za AMOLED zaslone)</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_load_failed">Ne morem prebrati dnevnikov:</string>
+    <string name="logs_save_failed">Ne morem zapistai dnevnikov na spominsko kartico:</string>
+    <string name="sdcard_not_writable">Spominska kartica ni bila najdena ali pa ni zapisljiva</string>
+    <string name="log_too_large">Dnevniška datoteka je večja od %1$,d kB, preskočenih je bilo prvih %2$,d kB</string>
+    <string name="menuClearLog">Počisti dnevnik zdaj</string>
+    <string name="logs_cleared">Dnevnik uspešno počiščen</string>
+    <string name="logs_clear_failed">Ne morem počistiti dnevnika:</string>
+    <string name="log_is_empty">Dnevnik je prazen</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Glavni razvijalci:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> in <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">Prosimo, <b>ne</b> kontaktirajte nas direktno za podporo, raje uporabite spodnjo povezavo.</string>
+    <string name="about_translator_label">Prevajalec:</string>
+    <string name="translator">kv1dr</string>
+    <string name="about_version_label">Različica tega programa:</string>
+    <string name="about_source_label">Izvorna koda:</string>
+    <string name="about_support_label">Dobi podporo tukaj:</string>
+    <string name="about_support_warning">Ta povezava je <b>samo</b> za installer in Framework! Če rabite pomoč v zvezi z moduli, <b>ne</b> uporabljajte te povezave, vendar raje kontaktirajte samega avtorja modula.</string>
+    <string name="about_libraries_label">Uporabljene knižnjice:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Prenesi</string>
+    <string name="download_view_install">Namesti</string>
+    <string name="download_view_cancel">Prekliči</string>
+    <string name="download_view_no_url">Na voljo ni nobenega URL-ja za prenos</string>
+    <string name="download_view_running">Prenašam (%1$,d od %2$,d kB)</string>
+    <string name="download_view_waiting">Čakam na prenos</string>
+    <string name="download_view_successful">Prenos uspešen</string>
+    <string name="download_view_failed">Prenos je spodletel (napaka %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">Seštevek MD5 je napačen (prenešen: %1$s, pričakovan: %2$s)</string>
+    <string name="download_could_not_read_file">Ne morem prebrati prenešene datoteke: %s</string>
+    <string name="download_no_valid_apk">Prenešena datoteke ni veljavnja APK datoteka (ali pa je nekompatibilna)</string>
+    <string name="download_incorrect_package_name">Ime paketa je napačno (prenešeno: %1$s, pričakovano: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Prenašanje %1$s je spodletelo: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Prenašanje %1$s je spodletelo: %2$s</string>
+    <string name="repo_load_failed">Ne morem naložiti repozitorija iz  %1$s:\n%2$s</string>
+
+</resources>
