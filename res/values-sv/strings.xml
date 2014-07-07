@@ -35,13 +35,13 @@
     <string name="areyousure">Är du säker?</string>
     <string name="phone_not_compatible">Xposed är inte (ännu) kompatibel med Android SDK version %1$d eller med din processor arkitektur (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed har inte blivit testad med Android SDK version %d, men den verkar vara kompatibel. Du kan testa att installera ändå om du känner dig modig.</string>
-    <string name="reboot_failed">Omstart misslyckades. Använd apparatens normala omstartsfunktion.</string>
+    <string name="reboot_failed">Omstart misslyckades. Använd enhetens normala omstartsfunktion.</string>
     <string name="auto_flash_note">%s borde bli flashad automatiskt när du trycker "OK".</string>
     <string name="manual_flash_note">Flasha %s från SD-kortet för att slutföra operationen.</string>
     <string name="reboot_confirmation">Vill du starta om nu?</string>
     <string name="reboot_recovery_confirmation">Vill du starta om till recovery nu?</string>
     <string name="install_warning_title">Försiktig!</string>
-    <string name="install_warning">I vissa fall, kan din apparat inte längre starta om efter installerat Xposed.\n\nOm du inte har hört tals om \"soft brick\" och \"bootloop\" förut eller inte vet hur du återställer efter en sådan situation, installera <b>INTE</b> Xposed!\n\nI alla fall, tillgång till en nyligen gjord backup är mycket rekommenderat.</string>
+    <string name="install_warning">I vissa fall, kan din enhet inte längre starta om efter man har installerat Xposed.\n\nOm du inte har hört talas om \"soft brick\" och \"bootloop\" förut eller inte vet hur du återställer efter en sådan situation, installera <b>INTE</b> Xposed!\n\nFör säkerhets skull, rekommenderas det starkt att ha en nyligen gjord backup tillgänglig.</string>
     <string name="dont_show_again">Visa inte detta igen</string>
     <string name="install_known_issue">Det verkar finnas ett känt problem (\"%s\") med din ROM. Installation av Xposed kanske inte fungerar eller leder till omfattande problem. Klicka här för detaljer om problemet.</string>
     <string name="install_reverted">app_process version \"%1$s\" har installerats innan men version \"%2$s\" hittades nu. Om du inte förväntade dig att återställa en gammal fil, kanske du vill prova installera via recovery (auto eller manual).</string>
@@ -50,7 +50,7 @@
     <string name="sdcard_location">SD-kort: %s</string>
 
     <!-- File operations -->
-    <string name="root_failed">Misslyckades att få root-åtkomst.\n\nFörsäkra dig att apparaten är rootad ordentligt och att du inte har blockerat shell-kommandon.</string>
+    <string name="root_failed">Misslyckades att få root-åtkomst.\n\nFörsäkra dig att enheten är rootad ordentligt och att du inte har blockerat shell-kommandon.</string>
     <string name="file_extract_failed">Kunde inte extrahera %s</string>
     <string name="file_mounting_writable">Mountering %s skrivbar&#8230;</string>
     <string name="file_mount_writable_failed">Kunde inte mountera %s som skrivbar</string>
