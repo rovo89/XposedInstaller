@@ -50,11 +50,11 @@
     <string name="sdcard_location">SDカード: %s</string>
 
     <!-- File operations -->
-    <string name="root_failed">ルートアクセスを取得できませんでした。\n\n端末が正常にルート化されているか、シェルコマンドをブロックしていないかを確認してください。</string>
+    <string name="root_failed">ルートアクセスを取得できませんでした。\n\n端末が正しくルート化されているか、シェルコマンドをブロックしていないかを確認してください。</string>
     <string name="file_extract_failed">%sを展開できませんでした</string>
     <string name="file_mounting_writable">%sを書き込み可能でマウント中&#8230;</string>
     <string name="file_mount_writable_failed">%sを書き込み可能でマウントできませんでした</string>
-    <string name="file_trying_to_continue">とにかく続ける&#8230;</string>
+    <string name="file_trying_to_continue">とにかく続けます&#8230;</string>
     <string name="file_backup_already_exists">%sにバックアップが既に存在しています</string>
     <string name="file_backup_not_found">%sにバックアップはありません</string>
     <string name="file_backup_failed">%sのバックアップを作成できませんでした</string>
@@ -132,8 +132,8 @@
     <string name="settings_group_installation">インストール</string>
     <string name="settings_install_mode">インストールモード</string>
     <string name="install_mode_normal">クラシック（/systemに直接書き込む）</string>
-    <string name="install_mode_recovery_auto">リカバリー（自動的にzipをインストール）</string>
-    <string name="install_mode_recovery_manual">リカバリー（zipをSDカードに書き込み手動でインストール)</string>
+    <string name="install_mode_recovery_auto">リカバリー（zipを自動的にインストール）</string>
+    <string name="install_mode_recovery_manual">リカバリー（zipをSDカードに書き込んで手動でインストール)</string>
     <string name="settings_group_download">ダウンロード</string>
     <string name="settings_enable_downloads">ダウンロードを有効化</string>
     <string name="settings_enable_downloads_summary">Xposed Installerに更新や新しいモジュールの確認を許可します。</string>
@@ -147,7 +147,7 @@
     <string name="settings_theme">テーマ</string>
     <string name="settings_theme_light">ライト</string>
     <string name="settings_theme_dark">ダーク</string>
-    <string name="settings_theme_black">黒（AMOLED向き）</string>
+    <string name="settings_theme_black">ブラック（AMOLED向き）</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">ログを読み込めませんでした:</string>
@@ -162,7 +162,7 @@
     <!-- About tab -->
     <string name="about_developers_label">メイン開発者:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a>と<a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">サポートは直接<b>連絡せずに</b>以下のリンクを使ってください。</string>
+    <string name="about_developers_warning">サポートは直接<b>連絡せずに</b>以下のリンクを使用してください。</string>
     <string name="about_translator_label">翻訳:</string>
     <string name="translator"><a href="http://androplus.kagome-kagome.com/">WedyDQ10</a></string>
     <string name="about_version_label">アプリバージョン:</string>
