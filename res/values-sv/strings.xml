@@ -44,7 +44,7 @@
     <string name="install_warning">I vissa fall, kan din enhet inte längre starta om efter man har installerat Xposed.\n\nOm du inte har hört talas om \"soft brick\" och \"bootloop\" förut eller inte vet hur du återställer efter en sådan situation, installera <b>INTE</b> Xposed!\n\nFör säkerhets skull, rekommenderas det starkt att ha en nyligen gjord backup tillgänglig.</string>
     <string name="dont_show_again">Visa inte detta igen</string>
     <string name="install_known_issue">Det verkar finnas ett känt problem (\"%s\") med din ROM. Installation av Xposed kanske inte fungerar eller leder till omfattande problem. Klicka här för detaljer om problemet.</string>
-    <string name="install_reverted">app_process version \"%1$s\" har installerats innan men version \"%2$s\" hittades nu. Om du inte förväntade dig att återställa en gammal fil, kanske du vill prova installera via recovery (auto eller manual).</string>
+    <string name="install_reverted">app_process version \"%1$s\" har installerats tidigare men version \"%2$s\" hittades nu. Om du inte förväntade dig att återställa en gammal fil, kanske du vill prova installera via recovery (auto eller manual).</string>
     <string name="uninstall_reverted">app_process var avinstallerad tidigare men version \"%s\" hittades nu. Om du inte förväntade dig att återställa en gammal fil, kanske du vill prova installera via recovery (auto eller manual).</string>
     <string name="tap_to_dismiss">Tryck för att avvisa</string>
     <string name="sdcard_location">SD-kort: %s</string>
@@ -69,8 +69,8 @@
     <string name="file_remove_failed">Kunde inte ta bort %s</string>
     <string name="file_creating_directory">Skapar mappen %s&#8230;</string>
     <string name="file_create_directory_failed">Kunde inte skapa mappen %s</string>
-    <string name="file_writing_recovery_command">Skriver återställningskommando&#8230;</string>
-    <string name="file_writing_recovery_command_failed">Skrivning av återställningskommando misslyckades. Använd en annan installationsmetod.</string>
+    <string name="file_writing_recovery_command">Skriver recovery-kommando&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Skrivning av recovery-kommando misslyckades. Använd en annan installationsmetod.</string>
     <string name="file_done">Klar! Ändringarna kommer att aktiveras vid omstart.</string>
 
     <!-- Modules tab -->
