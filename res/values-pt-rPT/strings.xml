@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- General/various strings -->
     <string name="menuSend">Enviar</string>
@@ -33,7 +33,7 @@
     <string name="soft_reboot">Reiniciar rápido</string>
     <string name="reboot">Reiniciar</string>
     <string name="areyousure">Tem a certeza?</string>
-    <string name="phone_not_compatible">O Xposed (ainda) não é compatível com a versãi %d do Android SDK ou com a arquitetura do seu processador (%2$s).</string>
+    <string name="phone_not_compatible">O Xposed (ainda) não é compatível com a versãi %1$d do Android SDK ou com a arquitetura do seu processador (%2$s).</string>
     <string name="not_tested_but_compatible">O Xposed não foi testado sem a versão %D do Android SDK, MAS PARECE SER COMPATÍVEL. Pode tentar instalar se se sente um aventureiro.</string>
     <string name="reboot_failed">O reinício falhou. Utilize a função de reiniciar normal.</string>
     <string name="auto_flash_note">%s deve ser flashado automaticamente assim que pressionar "OK".</string>
@@ -95,7 +95,7 @@
 
     <!-- Download tab -->
     <string name="menuSearch">Pesquisar</string>
-    <string name="menuReload">Recarregar/string>
+    <string name="menuReload">Recarregar</string>
     <string name="changes">Alterações:</string>
     <string name="download_details_page_description">Descrição</string>
     <string name="download_details_page_versions">Versões</string>
@@ -141,8 +141,8 @@
     <string name="settings_group_experimental">Experimentais</string>
     <string name="settings_disable_resources">Desativar recursos</string>
     <string name="settings_disable_resources_summary">Alternativa para conflitos com motores de temas\n<b>Aviso:</b> Módulos que tentem alterar recursos não funcionam com isto ativado.</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Experiência de desempenho</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Se ativar isto, o desempenho do seu sistema poderá aumentar, diminuir ou manter-se. Esteja à vontade para o experimentar e relatar qual o efeito que vê (ou se não tiver nenhum). Ao alterar isto tem de reinstalar o framework e reiniciar.</string>
+    <string name="settings_performance_experiment">Experiência de desempenho</string>
+    <string name="settings_performance_experiment_summary">Se ativar isto, o desempenho do seu sistema poderá aumentar, diminuir ou manter-se. Esteja à vontade para o experimentar e relatar qual o efeito que vê (ou se não tiver nenhum). Ao alterar isto tem de reinstalar o framework e reiniciar.</string>
     <string name="settings_group_app">Aplicação</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Luminoso</string>
