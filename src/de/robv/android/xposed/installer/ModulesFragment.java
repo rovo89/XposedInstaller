@@ -1,7 +1,12 @@
 package de.robv.android.xposed.installer;
 
 import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -30,6 +35,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SectionIndexer;
 import android.widget.TextView;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.repo.RepoDb;
@@ -51,6 +57,10 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	private ModuleUtil mModuleUtil;
 	private ModuleAdapter mAdapter = null;
 	private PackageManager mPm = null;
+
+	Object[] reg;							// A,B,C
+	LinkedHashMap<Integer, Integer> sec; 	// 1>1,2>5 (getPositionForSection)
+	LinkedHashMap<Integer, Integer> pos;	// 1>1,2>1 (getSectionForPosition)
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -96,6 +106,8 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		getListView().setDividerHeight(sixDp);
 		getListView().setPadding(eightDp, eightDp, eightDp, eightDp);
 		getListView().setClipToPadding(false);
+		getListView().setFastScrollEnabled(true);
+//		getListView().setFastScrollAlwaysVisible(true);	//to test with only less modules installed
 	}
 
 	@Override
@@ -125,6 +137,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				}
 			});
 			mAdapter.notifyDataSetChanged();
+			genIndexer(mModuleUtil.getModules().values());
 		}
 	};
 
@@ -259,7 +272,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		return intent;
 	}
 
-	private class ModuleAdapter extends ArrayAdapter<InstalledModule> {
+	private class ModuleAdapter extends ArrayAdapter<InstalledModule> implements SectionIndexer {
 		public ModuleAdapter(Context context) {
 			super(context, R.layout.list_item_module, R.id.title);
 		}
@@ -328,5 +341,49 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			return view;
 		}
 
+
+		@Override
+		public Object[] getSections() {
+			return reg;
+		}
+
+		@Override
+		public int getPositionForSection(int section) {
+			int s = section-2;
+			return sec.get(s<0?0:s);
+		}
+
+		@Override
+		public int getSectionForPosition(int position) {
+			try {
+				return pos.get(position);
+			} catch (Exception e) {
+				return 0;
+			}
+		}
+
 	}
+
+	private void genIndexer(Collection<InstalledModule> collection) {
+
+		ArrayList<String> register = new ArrayList<String>();
+		sec = new LinkedHashMap<Integer, Integer>();
+		pos = new LinkedHashMap<Integer, Integer>();
+
+		ArrayList<String> list = new ArrayList<String>();
+		Iterator<InstalledModule> iterator = collection.iterator();
+		while (iterator.hasNext())
+			list.add(iterator.next().getAppName());
+		Collections.sort(list);
+
+		int s=-1;
+		for (int p=1; p<list.size(); p++) {
+			if (register.add( list.get(p).substring(0, 1).toUpperCase(Locale.getDefault()) ))
+				sec.put(++s, p);
+			pos.put(p, s);
+		}
+		reg = register.toArray();
+
+	}
+
 }

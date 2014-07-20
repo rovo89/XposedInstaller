@@ -89,6 +89,8 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 		mModuleUtil.addListener(this);
 		lv.setAdapter(mAdapter);
 
+		lv.setFastScrollEnabled(true);
+
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
