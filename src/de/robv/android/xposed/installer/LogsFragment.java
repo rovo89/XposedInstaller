@@ -182,7 +182,7 @@ public class LogsFragment extends Fragment {
 			return;
 		}
 
-		Toast.makeText(getActivity(), targetFile.toString(), Toast.LENGTH_LONG).show();
+		Toast.makeText(getActivity(), getString(R.string.logs_saved, targetFile.toString()), Toast.LENGTH_LONG).show();
 	}
 
 	private long skipLargeFile(InputStream is, long length) throws IOException {

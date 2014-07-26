@@ -57,8 +57,20 @@ public class DownloadDetailsFragment extends Fragment {
 			View moreInfoView = inflater.inflate(R.layout.download_moreinfo, moreInfoContainer, false);
 			TextView txtTitle = (TextView) moreInfoView.findViewById(android.R.id.title);
 			TextView txtValue = (TextView) moreInfoView.findViewById(android.R.id.message);
-
-			txtTitle.setText(moreInfoEntry.first + ":");
+                        
+                        String labelName = moreInfoEntry.first;
+                        if ("Support".equals(labelName)) {
+                            labelName = getString(R.string.support);
+                        }
+                        else if ("Source".equals(labelName)) {
+                            labelName = getString(R.string.source);
+                        }
+                        else if ("Repository".equals(labelName)) {
+                            labelName = getString(R.string.repository);
+                        }
+                        labelName+=":";
+                        
+			txtTitle.setText(labelName);
 			txtValue.setText(moreInfoEntry.second);
 
 			final Uri link = NavUtil.parseURL(moreInfoEntry.second);
