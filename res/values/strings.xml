@@ -92,6 +92,7 @@
     <string name="module_support">Support</string>
     <string name="module_app_info">App info</string>
     <string name="module_uninstall">Uninstall</string>
+    <string name="show_all_modules">Show All Modules</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Search</string>

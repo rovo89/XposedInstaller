@@ -44,6 +44,7 @@ import de.robv.android.xposed.installer.util.ThemeUtil;
 public class ModulesFragment extends ListFragment implements ModuleListener {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
 	private static final String NOT_ACTIVE_NOTE_TAG = "NOT_ACTIVE_NOTE";
+	private static final String SHOW_ALL_MODULES = "SHOW_ALL_MODULES";
 	private static final String PLAY_STORE_PACKAGE = "com.android.vending";
 	private static final String PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=%s";
 	private static String PLAY_STORE_LABEL = null;
@@ -83,7 +84,16 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		}
 
 		mAdapter = new ModuleAdapter(getActivity());
-		reloadModules.run();
+		String moduleName = getActivity().getIntent().getStringExtra("module");
+		if (moduleName != null && mModuleUtil.isInstalled(moduleName)) {
+			mAdapter.add(mModuleUtil.getModule(moduleName));
+			View showAllModules = getActivity().getLayoutInflater().inflate(
+					R.layout.xposed_show_all_modules, getListView(), false);
+			showAllModules.setTag(SHOW_ALL_MODULES);
+			getListView().addHeaderView(showAllModules);
+		} else {
+			reloadModules.run();
+		}
 		setListAdapter(mAdapter);
 		setEmptyText(getActivity().getString(R.string.no_xposed_modules_found));
 		registerForContextMenu(getListView());
@@ -148,6 +158,10 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			Intent intent = new Intent(getActivity(), XposedInstallerActivity.class);
 			intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedDropdownNavActivity.TAB_INSTALL);
 			startActivity(intent);
+			return;
+		} else if (packageName.equals(SHOW_ALL_MODULES)) {
+			getListView().removeHeaderView(v);
+			getActivity().runOnUiThread(reloadModules);
 			return;
 		}
 
