@@ -2,6 +2,9 @@
 <resources>
 
     <!-- General/various strings -->
+    <string name="menuSend">Mengirim</string>
+    <string name="menuSaveToSd">Simpan ke kartu SD</string>
+    <string name="xposed_not_active">Xposed versi terbaru masih tidak aktif. Apakah anda telah menginstal framework dan reboot?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Selamat datang di <b>Installer Xposed</b>!\nPilih pilihan Anda:</string>
@@ -29,15 +32,55 @@
     <string name="areyousure">Anda yakin?</string>
     <string name="phone_not_compatible">Xposed masih belum tersedia untuk versi Android SDK %1$d atau arsitektur CPU Anda (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed belum dicoba di versi Android SDK %d, tetapi mungkin bekerja. Anda dapat mencobanya jika Anda berani.</string>
+    <string name="reboot_failed">Reboot telah gagal. Silahkan menggunakan cara reboot seperti biasa.</string>
+    <string name="auto_flash_note">%s harus di flash secara otomatis setelah anda tekan "OK".</string>
+    <string name="manual_flash_note">Mohon flash %s dari kartu SD untuk menyelesaikan operasi.</string>
+    <string name="reboot_confirmation">Apakah anda ingin reboot sekarang?</string>
+    <string name="reboot_recovery_confirmation">Apakah anda ingin reboot ke recovery sekarang?</string>
+    <string name="install_warning_title">Hati hati</string>
+    <string name="install_warning">Dalam beberapa kasus, perangkat anda mungkin tidak booting lagi setelah menginstal Xposed.\n\nJika anda sebelumnya tidak tahu apa \"soft brick\" dan \"bootloop\" atau anda tidak tahu caranya memulihkan dari situasi seperti itu, <b>JANGAN</b> menginstal Xposed!\n\nMempunyai backup cadangan terbaru sangat dianjurkan.</string>
+    <string name="dont_show_again">Jangan tunjukan ini lagi</string>
+    <string name="install_known_issue">Tampaknya ada masalah yang diketahui (\"%s\") dengan ROM Anda. Instalasi Xposed mungkin tidak bekerja atau menyebabkan masalah berat. Klik di sini untuk rincian tentang masalah ini.</string>
+    <string name="install_reverted">app_process versi \"%1$s\" telah diinstal sebelumnya tapi versi \"%2$s\" ditemukan sekarang. Jika anda tidak mengharapkan file lama untuk dipulihkan, Anda mungkin ingin mencoba menginstal melalui recovery (otomatis atau manual).</string>
+    <string name="uninstall_reverted">app_process telah sebelumnya dihapus tetapi versi \"%s\" ditemukan sekarang. Jika anda tidak mengharapkan file lama untuk dipulihkan, anda mungkin ingin mencoba menguninstall melalui recovery (otomatis atau manual).</string>
+    <string name="tap_to_dismiss">Tekan untuk mengabaikan</string>
+    <string name="sdcard_location">Kartu SD: %s</string>
 
     <!-- File operations -->
+    <string name="root_failed">Gagal mendapatkan akses root. \n\nPastikan perangkat anda telah di root dengan baik dan anda tidak memblokir perintah shell.</string>
+    <string name="file_extract_failed">Tidak dapat mengekstrak %s</string>
+    <string name="file_mounting_writable">Mount %s untuk ditulis&#8230;</string>
+    <string name="file_mount_writable_failed">Tidak dapat mount %s untuk ditulis</string>
+    <string name="file_trying_to_continue">Mencoba untuk tetap diteruskan&#8230;</string>
+    <string name="file_backup_already_exists">Backup cadangan sudah ada di %s</string>
+    <string name="file_backup_not_found">Backup cadangan tidak di temukan di %s</string>
+    <string name="file_backup_failed">Gagal membuat backup cadangan untuk %s</string>
+    <string name="file_backup_successful">Backup cadangan dibuat di %s</string>
+    <string name="file_backup_restoring">Mengembalikan backup cadangan dari %s</string>
+    <string name="file_copying">Penyalinan%s&#8230;</string>
+    <string name="file_copy_failed">Tidak dapat menyalinkan %1$s ke %2$s</string>
+    <string name="file_move_failed">Tidak dapat memindahkan %1$s ke %2$s</string>
+    <string name="file_set_perms_failed">Tidak dapat set akses untuk %s</string>
+    <string name="file_set_owner_failed">Tidak dapat set pemilik untuk %s</string>
+    <string name="file_removing">Membuang %s&#8230;</string>
+    <string name="file_remove_failed">Tidak dapat membuang %s</string>
+    <string name="file_creating_directory">Membuat direktori %s&#8230;</string>
+    <string name="file_create_directory_failed">Tidak dapat membuat direktori %s</string>
+    <string name="file_writing_recovery_command">Menulis perintah recovery&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Menulis perintah recovery telah gagal. Mohon untuk menggunakan cara instalasi yang berbeda.</string>
+    <string name="file_done">Selesai! Perubahan akan menjadi aktif setelah reboot.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Modul Xposed belum diaktifkan</string>
+    <string name="module_is_not_activated_yet_detailed">%s telah di instal, tetapi belum di aktifkan.</string>
+    <string name="activate_and_reboot">Aktifkan dan reboot</string>
+    <string name="module_activated">Modul Xposed sudah diaktifkan</string>
     <string name="module_empty_description">(tidak ada deskripsi)</string>
     <string name="module_no_ui">Modul ini tidak ada tampilan utama</string>
-    <string name="no_xposed_modules_found">Tidak ada modul Xposed detemukan!</string>
+    <string name="no_xposed_modules_found">Tidak ada modul Xposed ditemukan!</string>
     <string name="xposed_module_list_updated">Daftar modul telah diupdate\nAkan aktif setelah reboot.</string>
+    <string name="xposed_module_updated_notification_title">Modul Xposed telah diupdate</string>
+    <string name="xposed_module_updated_notification">Reboot untuk mengaktifkan perubahan</string>
     <string name="warning_xposed_min_version">Modul ini membutuhkan XposedBridge yang lebih baru (%d) dan tidak dapat diaktifkan.</string>
     <string name="no_min_version_specified">Modul ini tidak memberitahukan versi XposedBridge yang dibutuhkan.</string>
     <string name="warning_min_version_too_low">Modul ini dibuat untuk XposedBridge versi %1$d, tetapi karena ketidakcocoknya di versi %2$d, maka modul dimatikan.</string>
@@ -51,6 +94,16 @@
     <string name="menuSearch">Cari</string>
     <string name="menuReload">Reload</string>
     <string name="changes">Perubahan:</string>
+    <string name="download_details_page_description">Deskripsi</string>
+    <string name="download_details_page_versions">Versi</string>
+    <string name="download_details_page_settings">Pengaturan</string>
+    <string name="reltype_stable">Stabil</string>
+    <string name="reltype_stable_summary">Stabil (resiko rendah untuk bugs)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (mungkin ada beberapa bugs)</string>
+    <string name="reltype_experimental">Eksperimental</string>
+    <string name="reltype_experimental_summary">Eksperimental (resiko tinggi untuk bugs)</string>
+    <string name="reltype_use_global_summary">Memakai pengaturan global</string>
     <string name="download_author">oleh %s</string>
     <string name="download_unknown_author">pembuat tdk diketahui</string>
     <string name="download_status_installed">Terinstall (versi %s)</string>
@@ -68,16 +121,40 @@
     <string name="download_section_7d">Seminggu yang lalu</string>
     <string name="download_section_30d">Sebulan yang lalu</string>
     <string name="download_section_older">Lebih dari sebulan yang lalu</string>
+    <string name="download_details_not_found">Tidak ada modul dengan nama paket \"%s\" di dalam repositori.</string>
+    <string name="download_no_versions">Penulis belum upload apa pun.</string>
+    <string name="download_test_version_not_shown">Sebuah versi uji tersedia, namun tidak ditampilkan karena pengaturan global atau modul-spesifik anda.</string>
 
     <!-- Settings tab -->
+    <string name="settings_group_installation">Instalasi</string>
+    <string name="settings_install_mode">Modus instalasi</string>
+    <string name="install_mode_normal">Klasik (menginstal ke /system langsung)</string>
+    <string name="install_mode_recovery_auto">Recovery (flash zip otomatis)</string>
+    <string name="install_mode_recovery_manual">Recovery (menyimpan zip ke kartu SD, flash secara manual)</string>
     <string name="settings_group_download">Unduh</string>
     <string name="settings_enable_downloads">Aktifkan unduhan</string>
     <string name="settings_enable_downloads_summary">Perbolehkan Xposed untuk mengecek update dan unduhan</string>
+    <string name="settings_release_type">Versi yang akan ditampilkan</string>
     <string name="settings_group_experimental">Uji coba</string>
+    <string name="settings_disable_resources">Kait sumber daya dinonaktifkan</string>
+    <string name="settings_disable_resources_summary">Solusi untuk konflik dengan mesin theming\n<b>PERINGATAN:</b> Modul yang mencoba untuk mengubah sumber daya tidak akan bekerja saat ini diaktifkan.</string>
     <string name="settings_performance_experiment">Uji coba performa</string>
     <string name="settings_performance_experiment_summary">Jika diaktifkan, performa sistem akan naik, turun, atau tetap. Cobalah dan laporkan mana yang cocok (atau tiada). Anda perlu menginstall ulang Xposed dan reboot setelah ini.</string>
+    <string name="settings_group_app">Aplikasi</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Terang</string>
+    <string name="settings_theme_dark">Gelap</string>
+    <string name="settings_theme_black">Hitam (berguna untuk untuk layar AMOLED)</string>
 
     <!-- Logs tab  -->
+    <string name="logs_load_failed">Tidak bisa membaca log:</string>
+    <string name="logs_save_failed">Tidak bisa menulis log ke kartu SD:</string>
+    <string name="sdcard_not_writable">Tidak bisa menemukan kartu SD atau tidak bisa ditulis</string>
+    <string name="log_too_large">Log file lebih besar dari %1$,d kB, dilewati pertama %2$,d kB</string>
+    <string name="menuClearLog">Hapus log sekarang</string>
+    <string name="logs_cleared">Log berhasil dibersihkan</string>
+    <string name="logs_clear_failed">Tidak bisa membersihkan log:</string>
+    <string name="log_is_empty">Log ini kosong</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Pengembang utama:</string>
