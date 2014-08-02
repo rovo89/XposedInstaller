@@ -71,7 +71,7 @@
     <string name="file_create_directory_failed">Kunde inte skapa mapp %s</string>
     <string name="file_writing_recovery_command">Skriver återställningskommando&#8230;</string>
     <string name="file_writing_recovery_command_failed">Skrivning av återställningskommando misslyckades. Använd en annan installationsmetod.</string>
-    <string name="file_done">Klar! Ändringar kommer att aktiveras vid omstart.</string>
+    <string name="file_done">Klar! Ändringarna kommer att aktiveras vid omstart.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed modulen är inte aktiverad ännu</string>
