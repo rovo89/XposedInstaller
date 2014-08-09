@@ -29,9 +29,9 @@
     <string name="installedVersion">ενεργό</string>
     <string name="latestVersion">bundled</string>
     <string name="versions">Εκδόσεις:</string>
-    <string name="install_header_reboot">Reboot</string>
+    <string name="install_header_reboot">Επανεκκίνηση</string>
     <string name="soft_reboot">Soft reboot</string>
-    <string name="reboot">Reboot</string>
+    <string name="reboot">Επανεκκίνηση</string>
     <string name="areyousure">Είστε σίγουρος;</string>
     <string name="phone_not_compatible">Το Xposed δεν είναι (ακόμα) συμβατό με την έκδοση %1$d του Android SDK ή την αρχιτεκτονική (%2$s) του επεξεργαστή σας.</string>
     <string name="not_tested_but_compatible">Το Xposed δεν έχει τεσταριστεί με την έκδοση %d του Android SDK, αλλά φαίνεται να είναι συμβατό. Μπορείτε να δοκιμάσετε να το εγκαταστήσετε αν είστε ριψοκίνδυνος τύπος.</string>
@@ -87,7 +87,7 @@
     <string name="warning_xposed_min_version">Αυτό το module απαιτεί μία νεότερη έκδοση του XposedBridge (%d) και γι\' αυτό δεν μπορεί να ενεργοποιηθεί.</string>
     <string name="no_min_version_specified">Αυτό το module δεν καθορίζει την έκδοση του XposedBridge που χρειάζεται.</string>
     <string name="warning_min_version_too_low">Αυτό το module δημιουργήθηκε για την έκδοση %1$d του XposedBridge, αλλά λόγω ασύμβατων αλλαγών στην έκδοση %2$d, έχει απενεργοποιηθεί.</string>
-    <string name="module_launch">Launch UI</string>
+    <string name="module_launch">Έναρξη UI</string>
     <string name="module_download_updates">Κατέβασμα/Αναβαθμίσεις</string>
     <string name="module_support">Υποστήριξη</string>
     <string name="module_app_info">Πληροφορίες Εφαρμογής</string>
