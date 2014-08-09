@@ -12,7 +12,7 @@
     <string name="tabInstallDescription">Εδώ μπορείτε να διαχειριστείτε το Xposed framework, το οποίο είναι απαραίτητο για οποιοδήποτε module να δουλέψει.</string>
     <string name="tabModules">Modules</string>
     <string name="tabModulesDescription">Το framework δεν προσθέτει καμία λειτουργικότητα από μόνο του. Γι\' αυτό χρειάζεστε modules. Σε αυτό το τμήμα μπορείτε να ενεργοποιήσετε modules αφού τα εγκαταστήσετε πρώτα.</string>
-    <string name="tabDownload">Κατέβασμα</string>
+    <string name="tabDownload">Λήψη</string>
     <string name="tabDownloadDescription">Αυτό το τμήμα σας δίνει πρόσβαση σε ένα αποθετήριο (repository) modules, έτσι ώστε να μπορέσετε να ψάξετε και να κατεβάσετε όποια σας αρέσουν και να τα έχετε αναβαθμισμένα.</string>
     <string name="welcome_framework_update_available">Μία αναβάθμιση για το Xposed framework είναι διαθέσιμη.</string>
     <string name="welcome_update_available">Ένα ή περισσότερα update(s) για τα modules είναι διαθέσιμο/α.</string>
@@ -88,7 +88,7 @@
     <string name="no_min_version_specified">Αυτό το module δεν καθορίζει την έκδοση του XposedBridge που χρειάζεται.</string>
     <string name="warning_min_version_too_low">Αυτό το module δημιουργήθηκε για την έκδοση %1$d του XposedBridge, αλλά λόγω ασύμβατων αλλαγών στην έκδοση %2$d, έχει απενεργοποιηθεί.</string>
     <string name="module_launch">Έναρξη UI</string>
-    <string name="module_download_updates">Κατέβασμα/Αναβαθμίσεις</string>
+    <string name="module_download_updates">Λήψη/Αναβαθμίσεις</string>
     <string name="module_support">Υποστήριξη</string>
     <string name="module_app_info">Πληροφορίες Εφαρμογής</string>
     <string name="module_uninstall">Απεγκατάσταση</string>
@@ -134,8 +134,8 @@
     <string name="install_mode_normal">Κλασικό (εγγραφή στο /system άμεσα)</string>
     <string name="install_mode_recovery_auto">Recovery (flash zip αυτόματα)</string>
     <string name="install_mode_recovery_manual">Recovery (εγγραφή zip στην SD κάρτα, flash χειροκίνητα)</string>
-    <string name="settings_group_download">Κατέβασμα</string>
-    <string name="settings_enable_downloads">Ενεργοποίηση κατεβασμάτων</string>
+    <string name="settings_group_download">Λήψη</string>
+    <string name="settings_enable_downloads">Ενεργοποίηση λήψεων</string>
     <string name="settings_enable_downloads_summary">Να επιτραπεί στην Εγκατάσταση του Xposed να ελέγχει για αναβαθμίσεις και νέα modules</string>
     <string name="settings_release_type">Εμφάνιση εκδόσεων</string>
     <string name="settings_group_experimental">Πειραματικό</string>
@@ -172,24 +172,24 @@
     <string name="about_libraries_label">Χρησιμοποιηθέντες βιβλιοθήκες:</string>
 
     <!-- DownloadView -->
-    <string name="download_view_download">Κατέβασμα</string>
+    <string name="download_view_download">Λήψη</string>
     <string name="download_view_install">Εγκατάσταση</string>
     <string name="download_view_cancel">Ακύρωση</string>
-    <string name="download_view_no_url">Δεν υπάρχει διαθέσιμος σύνδεσμος για κατέβασμα</string>
-    <string name="download_view_running">Το κατέβασμα είναι ενεργό (%1$,d of %2$,d kB)</string>
-    <string name="download_view_waiting">Το κατέβασμα είναι σε αναμονή</string>
-    <string name="download_view_successful">Επιτυχία κατεβάσματος</string>
-    <string name="download_view_failed">Αποτυχία κατεβάσματος (σφάλμα %d)</string>
+    <string name="download_view_no_url">Δεν υπάρχει διαθέσιμος σύνδεσμος για λήψη</string>
+    <string name="download_view_running">Η λήψη είναι ενεργή (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">Η λήψη είναι σε αναμονή</string>
+    <string name="download_view_successful">Επιτυχία λήψης</string>
+    <string name="download_view_failed">Αποτυχία λήψης (σφάλμα %d)</string>
 
     <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">Το MD5 sum είναι λανθασμένο (κατέβηκαν: %1$s, αναμένονταν: %2$s)</string>
-    <string name="download_could_not_read_file">Αδυναμία διαβάσματος του κατεβασμένου αρχείου: %s</string>
-    <string name="download_no_valid_apk">Το κατεβασμένο αρχείο δεν είναι ένα έγκυρο APK (ή ασύμβατο)</string>
-    <string name="download_incorrect_package_name">Το όνομα του πακέτου είναι λανθασμένο (κατέβηκαν: %1$s, αναμένονταν: %2$s)</string>
+    <string name="download_md5sum_incorrect">Το MD5 sum είναι λανθασμένο (λήφθηκαν: %1$s, αναμένονταν: %2$s)</string>
+    <string name="download_could_not_read_file">Αδυναμία διαβάσματος του ληφθέντος αρχείου: %s</string>
+    <string name="download_no_valid_apk">Το ληφθέντο αρχείο δεν είναι ένα έγκυρο APK (ή ασύμβατο)</string>
+    <string name="download_incorrect_package_name">Το όνομα του πακέτου είναι λανθασμένο (λήφθηκαν: %1$s, αναμένονταν: %2$s)</string>
 
     <!-- RepoLoader -->
-    <string name="repo_download_failed_http">Το κατέβασμα %1$s απέτυχε: %2$d (%3$s)</string>
-    <string name="repo_download_failed">Το κατέβασμα %1$s απέτυχε: %2$s</string>
+    <string name="repo_download_failed_http">Η λήψη %1$s απέτυχε: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Η λήψη %1$s απέτυχε: %2$s</string>
     <string name="repo_load_failed">Αδυναμία φόρτωσης αποθετηρίου (repository) από %1$s:\n%2$s</string>
 
 </resources>
