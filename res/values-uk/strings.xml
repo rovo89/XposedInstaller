@@ -189,7 +189,7 @@
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Звантаження %1$s скасовано: %2$d (%3$s)</string>
-    <string name="repo_download_failed">Звантаження %1$s скаовано: %2$s</string>
+    <string name="repo_download_failed">Звантаження %1$s скасовано: %2$s</string>
     <string name="repo_load_failed">Помилка завантаження репозиторію з %1$s:\n%2$s</string>
 
 </resources>
