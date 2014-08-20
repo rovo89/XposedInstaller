@@ -3,7 +3,7 @@
 
     <!-- General/various strings -->
     <string name="menuSend">发送</string>
-    <string name="menuSaveToSd">发送到 SD 卡</string>
+    <string name="menuSaveToSd">保存到 SD 卡</string>
     <string name="xposed_not_active">最新版本的 Xposed 当前未激活。您是否已安装框架并重启？</string>
 
     <!-- Welcome screen / main sections -->
@@ -31,7 +31,7 @@
     <string name="versions">版本：</string>
     <string name="install_header_reboot">重启</string>
     <string name="soft_reboot">软重启</string>
-    <string name="reboot">重启</string>
+    <string name="reboot">重新重启</string>
     <string name="areyousure">您确定？</string>
     <string name="phone_not_compatible">Xposed 目前不兼容 Android SDK 版本 %1$d 或者您的处理器架构 (%2$s)。</string>
     <string name="not_tested_but_compatible">Xposed 未在 Android SDK 版本 %d 上测试，但它似乎是可兼容的。如果您热爱冒险，您可以试试安装它。</string>
@@ -126,7 +126,7 @@
     <string name="download_section_older">30 天前</string>
     <string name="download_details_not_found">无法在仓库中找到名为 \"%s\" 的模块。</string>
     <string name="download_no_versions">作者还没有上传任何版本。</string>
-    <string name="download_test_version_not_shown">有新的测试版可用。根据您的全局或模块设置，未被显示。</string>
+    <string name="download_test_version_not_shown">有新的测试版可用，根据您的全局或模块设置未被显示。</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">安装</string>
@@ -154,9 +154,9 @@
     <string name="logs_save_failed">无法将日志写入 SD 卡：</string>
     <string name="sdcard_not_writable">未找到 SD 卡或不可写入</string>
     <string name="log_too_large">日志文件大于 %1$,d kB，已跳过开头的 %2$,d kB</string>
-    <string name="menuClearLog">清理日志</string>
-    <string name="logs_cleared">日志已被清理</string>
-    <string name="logs_clear_failed">无法清理日志：</string>
+    <string name="menuClearLog">清除日志</string>
+    <string name="logs_cleared">日志已清除</string>
+    <string name="logs_clear_failed">无法清除日志：</string>
     <string name="log_is_empty">日志为空</string>
 
     <!-- About tab -->
@@ -164,7 +164,7 @@
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 与 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">请<b>不</b>要直接联系我们获取帮助，使用下面的链接。</string>
     <string name="about_translator_label">翻译：</string>
-    <string name="translator">Cye3s, liveasx, orzFly</string>
+    <string name="translator">Cye3s, Asx, orzFly</string>
     <string name="about_version_label">应用程序版本：</string>
     <string name="about_source_label">源码：</string>
     <string name="about_support_label">获取支持：</string>
