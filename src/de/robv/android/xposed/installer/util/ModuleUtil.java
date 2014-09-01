@@ -9,16 +9,19 @@ import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.FileUtils;
 import android.util.Log;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.InstallerFragment;
+import de.robv.android.xposed.installer.ModulesFragment;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
@@ -298,7 +301,21 @@ public final class ModuleUtil {
 			if (iconCache != null)
 				return iconCache.newDrawable();
 
-			Drawable result = app.loadIcon(mPm);
+
+			// use current launchable activity's icon, not application icon
+
+			Intent mIntent = new Intent(Intent.ACTION_MAIN);
+			mIntent.addCategory(ModulesFragment.SETTINGS_CATEGORY);
+			mIntent.setPackage(app.packageName);
+			List<ResolveInfo> ris = mPm.queryIntentActivities(mIntent, 0);
+
+			Drawable result;
+			if (ris == null || ris.size() <= 0)
+				result = app.loadIcon(mPm);
+			else
+				result = ris.get(0).activityInfo.loadIcon(mPm);
+
+
 			iconCache = result.getConstantState();
 			return result;
 		}
