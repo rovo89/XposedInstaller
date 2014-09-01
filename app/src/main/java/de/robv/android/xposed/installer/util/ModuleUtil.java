@@ -1,11 +1,13 @@
 package de.robv.android.xposed.installer.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.os.FileUtils;
 import android.util.Log;
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import de.robv.android.xposed.installer.ModulesFragment;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
@@ -186,9 +189,9 @@ public final class ModuleUtil {
 
 	public void setModuleEnabled(String packageName, boolean enabled) {
 		if (enabled)
-			mPref.edit().putInt(packageName, 1).commit();
+			mPref.edit().putInt(packageName, 1).apply();
 		else
-			mPref.edit().remove(packageName).commit();
+			mPref.edit().remove(packageName).apply();
 	}
 
 	public boolean isModuleEnabled(String packageName) {
@@ -348,15 +351,25 @@ public final class ModuleUtil {
 		}
 
 		public boolean isUpdate(ModuleVersion version) {
-			return (version != null) ? version.code > versionCode : false;
+			return (version != null) && version.code > versionCode;
 		}
 
 		public Drawable getIcon() {
 			if (iconCache != null)
 				return iconCache.newDrawable();
 
-			Drawable result = app.loadIcon(mPm);
+			Intent mIntent = new Intent(Intent.ACTION_MAIN);
+			mIntent.addCategory(ModulesFragment.SETTINGS_CATEGORY);
+			mIntent.setPackage(app.packageName);
+			List<ResolveInfo> ris = mPm.queryIntentActivities(mIntent, 0);
+
+			Drawable result;
+			if (ris == null || ris.size() <= 0)
+				result = app.loadIcon(mPm);
+			else
+				result = ris.get(0).activityInfo.loadIcon(mPm);
 			iconCache = result.getConstantState();
+
 			return result;
 		}
 
