@@ -44,7 +44,7 @@
     <string name="dont_show_again">Jangan tampilkan ini lagi</string>
     <string name="install_known_issue">Nampaknya ada isu yang diketahui (\"%s\") dengan ROM Anda. Memasang xposed mungkin saja gagak atau mengarah ke masalah serius. Klik disini untuk penjelasan rinci terhadap isu tersebut.</string>
     <string name="install_reverted">app_process versi \"%1$s\" telah terpasang sebelumnya tetapi versi \"%2$s\" telah ditemukan sekarang. Jika Anda tidak menginginkan berkas lama terpulihkan, Anda mungkin ingin mencoba memasangnya via recovery (otomatis atau manual).</string>
-    <string name="uninstall_reverted">pp_process telah dihapus sebelumnya namun versi \"%s\" telah ditemukan sekarang. Jika Anda tidak menginginkan berkas lama terpulihkan, Anda mungkin ingin mencoba menghapusnya via recovery (otomatis atau manual).</string>
+    <string name="uninstall_reverted">app_process telah dihapus sebelumnya namun versi \"%s\" telah ditemukan sekarang. Jika Anda tidak menginginkan berkas lama terpulihkan, Anda mungkin ingin mencoba menghapusnya via recovery (otomatis atau manual).</string>
     <string name="tap_to_dismiss">Sentuh untuk mengabaikan</string>
     <string name="sdcard_location">Kartu SD: %s</string>
 
