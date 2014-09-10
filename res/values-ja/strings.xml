@@ -4,18 +4,18 @@
     <!-- General/various strings -->
     <string name="menuSend">送信</string>
     <string name="menuSaveToSd">SDカードに保存</string>
-    <string name="xposed_not_active">最新版のXposedが動作していません。フレームワークをインストールして再起動しましたか？</string>
+    <string name="xposed_not_active">最新版のXposedが動作していません。フレームワークをインストールした後再起動しましたか？</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome"><b>Xposed Installer</b>へようこそ！\n操作を選択してください:</string>
     <string name="tabInstall">フレームワーク</string>
     <string name="tabInstallDescription">モジュールの動作に必要なXposedフレームワークの管理をします。</string>
     <string name="tabModules">モジュール</string>
-    <string name="tabModulesDescription">フレームワーク単体では何もできないのでモジュールが別途必要です。モジュールをインストールした後、ここで有効化してください。</string>
+    <string name="tabModulesDescription">フレームワーク単体では何もできないので、モジュールが別途必要です。モジュールをインストールした後、ここで有効化してください。</string>
     <string name="tabDownload">ダウンロード</string>
     <string name="tabDownloadDescription">モジュールのレポジトリにアクセスして検索、ダウンロードや更新をします。</string>
-    <string name="welcome_framework_update_available">Xposedフレームワークの更新があります。 （%s）</string>
-    <string name="welcome_update_available">モジュールの更新があります。</string>
+    <string name="welcome_framework_update_available">Xposedフレームワークが%sに更新されています。</string>
+    <string name="welcome_update_available">インストール済みモジュールが更新されています。</string>
     <string name="tabSettings">設定</string>
     <string name="tabSettingsDescription">Xposed Installerとフレームワークの設定をします。</string>
     <string name="tabLogs">ログ</string>
@@ -39,7 +39,7 @@
     <string name="auto_flash_note">%sは「OK」を押すと自動的にインストールされます。</string>
     <string name="manual_flash_note">操作を完了するにはSDカードから%sをインストールしてください。</string>
     <string name="reboot_confirmation">今すぐ再起動しますか？</string>
-    <string name="reboot_recovery_confirmation">リカバリーで再起動しますか？</string>
+    <string name="reboot_recovery_confirmation">リカバリーへ再起動しますか？</string>
     <string name="install_warning_title">注意！</string>
     <string name="install_warning">Xposedをインストールした後、場合によっては起動しなくなることがあります。\n\n 「仮文鎮」や「ブートループ」を知らない場合やその状態からの復旧方法を理解していないのであれば、Xposedをインストール<b>しないでください</b>！\n\nいずれにせよ、現在のバックアップを取ることを強く推奨します。</string>
     <string name="dont_show_again">次回から表示しない</string>
@@ -54,7 +54,7 @@
     <string name="file_extract_failed">%sを展開できませんでした</string>
     <string name="file_mounting_writable">%sを書き込み可能でマウント中&#8230;</string>
     <string name="file_mount_writable_failed">%sを書き込み可能でマウントできませんでした</string>
-    <string name="file_trying_to_continue">とにかく続けます&#8230;</string>
+    <string name="file_trying_to_continue">エラーが発生しましたが続行します&#8230;</string>
     <string name="file_backup_already_exists">%sにバックアップが既に存在しています</string>
     <string name="file_backup_not_found">%sにバックアップはありません</string>
     <string name="file_backup_failed">%sのバックアップを作成できませんでした</string>
@@ -117,7 +117,7 @@
     <string name="download_sorting_updated">最終更新日</string>
     <string name="download_sorting_created">作成日</string>
     <string name="download_section_framework">フレームワーク</string>
-    <string name="download_section_update_available">更新があります</string>
+    <string name="download_section_update_available">更新あり</string>
     <string name="download_section_installed">インストール済み</string>
     <string name="download_section_not_installed">未インストール</string>
     <string name="download_section_24h">24時間以内</string>
@@ -125,7 +125,7 @@
     <string name="download_section_30d">30日以内</string>
     <string name="download_section_older">30日以上前</string>
     <string name="download_details_not_found">パッケージ名「%s」というモジュールはレポジトリに存在しません。</string>
-    <string name="download_no_versions">制作者がまだモジュールを公開していません。</string>
+    <string name="download_no_versions">開発者がまだモジュールを公開していません。</string>
     <string name="download_test_version_not_shown">テストバージョンがありますが、グローバル設定やモジュール別の設定によって表示されていません。</string>
 
     <!-- Settings tab -->
@@ -162,13 +162,13 @@
     <!-- About tab -->
     <string name="about_developers_label">メイン開発者:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a>と<a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">サポートは直接<b>連絡せずに</b>以下のリンクを使用してください。</string>
+    <string name="about_developers_warning">サポートが必要な場合は直接<b>連絡せずに</b>、「サポート」のリンク先を使用してください。</string>
     <string name="about_translator_label">翻訳:</string>
-    <string name="translator"><a href="http://androplus.kagome-kagome.com/">WedyDQ10</a></string>
+    <string name="translator"><a href="http://androplus.org/">WedyDQ10</a></string>
     <string name="about_version_label">アプリバージョン:</string>
     <string name="about_source_label">ソースコード:</string>
     <string name="about_support_label">サポート:</string>
-    <string name="about_support_warning">このリンクはInstallerとフレームワーク<b>専用</b>です！モジュールの問題は<b>こちらを使わずに</b>モジュールの制作者に連絡してください。</string>
+    <string name="about_support_warning">リンク先のページは<b>Xposed Installerとフレームワーク専用</b>です！モジュールの問題は<b>リンク先のページを使わずに</b>モジュールの開発者に連絡してください。</string>
     <string name="about_libraries_label">使用ライブラリ:</string>
 
     <!-- DownloadView -->
