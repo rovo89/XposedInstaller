@@ -2,55 +2,55 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="menuSend">發送</string>
-    <string name="menuSaveToSd">發送到 SD 卡</string>
-    <string name="xposed_not_active">最新版本的 Xposed 當前未激活。您是否已安裝框架並重啓？</string>
+    <string name="menuSend">傳送</string>
+    <string name="menuSaveToSd">傳送到 SD 卡</string>
+    <string name="xposed_not_active">最新版本的 Xposed 當前未激活。您是否已安裝框架並重新啟動？</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">歡迎使用<b>Xposed安裝器</b>!\n請選擇您想進行的操作：</string>
+    <string name="welcome">歡迎使用<b>Xposed 安裝器</b>!\n請選擇您想進行的操作：</string>
     <string name="tabInstall">框架</string>
-    <string name="tabInstallDescription">此處您能管理Xposed框架，任何模組想正常運行都需要它。</string>
+    <string name="tabInstallDescription">此處您能管理 Xposed 框架，任何模組想正常運作都需要它。</string>
     <string name="tabModules">模組</string>
     <string name="tabModulesDescription">框架本身不增加任何功能。您需要使用模組。安裝模組後在此處啟動它們。</string>
     <string name="tabDownload">下載</string>
-    <string name="tabDownloadDescription">此處您能訪問模組倉庫，您可以搜索並下載您喜歡的模組，並及時更新它們。</string>
-    <string name="welcome_framework_update_available">Xposed框架有更新可用。</string>
+    <string name="tabDownloadDescription">此處您能訪問模組倉庫，您可以搜尋並下載您喜歡的模組，並及時更新它們。</string>
+    <string name="welcome_framework_update_available">Xposed 框架有更新可用。</string>
     <string name="welcome_update_available">一個或多個模組有更新可用。</string>
-    <string name="tabSettings">設置</string>
-    <string name="tabSettingsDescription">此處可配置Xposed安裝器和框架。</string>
-    <string name="tabLogs">日志</string>
-    <string name="tabLogsDescription">顯示並保存/發送 Xposed 框架産生的日志。</string>
+    <string name="tabSettings">設定</string>
+    <string name="tabSettingsDescription">此處可配置 Xposed 安裝器和框架。</string>
+    <string name="tabLogs">日誌</string>
+    <string name="tabLogsDescription">顯示並儲存/傳送 Xposed 框架産生的日誌。</string>
     <string name="tabAbout">關於</string>
-    <string name="tabAboutDescription">瞭解Xposed作者，如何獲取幫助支持等。</string>
+    <string name="tabAboutDescription">瞭解 Xposed 作者，如何取得幫助支援等。</string>
 
     <!-- Installer tab -->
     <string name="install">安裝/更新</string>
-    <string name="uninstall">卸載</string>
+    <string name="uninstall">解除安裝</string>
     <string name="installedVersion">啟動</string>
-    <string name="latestVersion">程式自帶</string>
+    <string name="latestVersion">程式內建</string>
     <string name="versions">版本：</string>
-    <string name="install_header_reboot">重啓</string>
+    <string name="install_header_reboot">重新啟動</string>
     <string name="soft_reboot">軟重啟</string>
     <string name="reboot">重啟</string>
     <string name="areyousure">您確定？</string>
-    <string name="phone_not_compatible">Xposed目前不相容 Android SDK 版本 %1$d 或者您的處理器架構(%2$s)。</string>
-    <string name="not_tested_but_compatible">Xposed未在 Android SDK 版本 %d 上測試，但它似乎是可相容的。如果您熱愛冒險，您可以試試安裝它。</string>
-    <string name="reboot_failed">重啓失敗。請使用設備的標准重啓功能。</string>
-    <string name="auto_flash_note">當你按下 OK 後，%s 將會被自動刷入設備。</string>
-    <string name="manual_flash_note">請將 %s 從 SD 卡刷入設備以完成操作。</string>
-    <string name="reboot_confirmation">您現在要重啓嗎？</string>
-    <string name="reboot_recovery_confirmation">您現在要重啓進入 Recovery 模式嗎？</string>
+    <string name="phone_not_compatible">Xposed 目前不相容 Android SDK 版本 %1$d 或者您的處理器架構(%2$s)。</string>
+    <string name="not_tested_but_compatible">Xposed 未在 Android SDK 版本 %d 上測試，但它似乎是可相容的。如果您熱愛冒險，您可以試試安裝它。</string>
+    <string name="reboot_failed">重新啟動失敗。請使用裝置的標准重啟功能。</string>
+    <string name="auto_flash_note">當你按下 OK 後，%s 將會被自動刷入裝置。</string>
+    <string name="manual_flash_note">請將 %s 從 SD 卡刷入裝置以完成操作。</string>
+    <string name="reboot_confirmation">您現在要重新啟動嗎？</string>
+    <string name="reboot_recovery_confirmation">您現在要重新啟動進入 Recovery 模式嗎？</string>
     <string name="install_warning_title">小心！</string>
-    <string name="install_warning">某些情況下，您的設備將在安裝 Xposed 之後無法啓動。\n\n如果您之前沒有聽說過“軟變磚”或“無限重啓”，或者您不知道如何從這種情況恢複，請"<b>不要</b>"安裝 Xposed！\n\n無論如何，強烈建議准備好最近的備份。</string>
+    <string name="install_warning">某些情況下，您的裝置將在安裝 Xposed 之後無法啟動。\n\n如果您之前沒有聽說過“軟變磚”或“無限重啓”，或者您不知道如何從這種情況恢複，請"<b>不要</b>"安裝 Xposed！\n\n無論如何，強烈建議准備好最近的備份。</string>
     <string name="dont_show_again">不要再顯示這個</string>
     <string name="install_known_issue">Xposed 與您的 ROM 似乎存在已知的問題 (\"%s\")。安裝 Xposed 可能無法正常工作，或是引發一系列問題。點擊這裏獲知詳情。</string>
-    <string name="install_reverted">之前已經安裝版本爲 \"%1$s\" 的 app_process，但是現在找到的版本卻是 \"%2$s\"。如果您不希望一個舊文件被還原，也許您應該試試通過 Recovery 安裝（自動或手動）。</string>
-    <string name="uninstall_reverted">app_process 之前已被卸載，現在卻找到了版本爲 \"%s\" 的。如果您不希望一個舊文件被還原，也許您應該試試通過 Recovery 卸載（自動或手動）。</string>
+    <string name="install_reverted">之前已經安裝版本為 \"%1$s\" 的 app_process，但是現在找到的版本卻是 \"%2$s\"。如果您不希望一個舊文件被還原，也許您應該試試通過 Recovery 安裝（自動或手動）。</string>
+    <string name="uninstall_reverted">app_process 之前已被解除安裝，現在卻找到了版本為 \"%s\" 的。如果您不希望一個舊文件被還原，也許您應該試試通過 Recovery 卸載（自動或手動）。</string>
     <string name="tap_to_dismiss">輕按以消除</string>
     <string name="sdcard_location">SD 卡: %s</string>
 
     <!-- File operations -->
-    <string name="root_failed">無法獲取 root 權限。\n\n請確認您的設備已經正確的 root 以及您沒有屏蔽 shell 命令。</string>
+    <string name="root_failed">無法獲取 root 權限。\n\n請確認您的裝置已經正確的 root 以及您沒有屏蔽 shell 命令。</string>
     <string name="file_extract_failed">無法提取 %s</string>
     <string name="file_mounting_writable">正在挂載 %s 爲可寫入&#8230;</string>
     <string name="file_mount_writable_failed">無法將 %s 可寫入挂載</string>
