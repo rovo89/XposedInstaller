@@ -140,7 +140,7 @@
     <string name="settings_release_type">Versiones a mostrar</string>
     <string name="settings_group_experimental">Experimental</string>
     <string name="settings_disable_resources">Desactivar ganchos de fuente.</string>
-    <string name="settings_disable_resources_summary">Workaround para conflictos con motores de temas \n<b>ALERTA:</b> Los modulos a los que está intentando cambiar recursos no funcionarán cuando estto se active.</string>
+    <string name="settings_disable_resources_summary">Workaround para conflictos con motores de temas \n<b>ALERTA:</b> Los modulos a los que está intentando cambiar recursos no funcionarán cuando esto se active.</string>
     <string name="settings_performance_experiment">Experimento de rendimiento</string>
     <string name="settings_performance_experiment_summary">Si habilita esto, el rendimiento del sistema puede aumentar, disminuir o permanecer igual. No dude en probar e informar cuyo efecto se ve (o si no hay ninguno en absoluto). Es necesario volver a instalar el Stock Framework y reiniciar después de cambiar esto.</string>
     <string name="settings_group_app">Aplicación</string>
