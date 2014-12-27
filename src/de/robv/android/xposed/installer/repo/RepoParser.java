@@ -45,6 +45,7 @@ public class RepoParser {
 		repository.isPartial = "true".equals(parser.getAttributeValue(NS, "partial"));
 		repository.partialUrl = parser.getAttributeValue(NS, "partial-url");
 		repository.version = parser.getAttributeValue(NS, "version");
+		repository.size = parser.getAttributeValue(NS, "size");
 
 		while (parser.nextTag() == XmlPullParser.START_TAG) {
 			String tagName = parser.getName();

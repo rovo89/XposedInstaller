@@ -97,6 +97,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 		TextView txtRelType;
 		TextView txtUploadDate;
 		DownloadView downloadView;
+		TextView txtSize;
 		TextView txtChangesTitle;
 		TextView txtChanges;
 	}
@@ -134,6 +135,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 				viewHolder.txtRelType = (TextView) view.findViewById(R.id.txtRelType);
 				viewHolder.txtUploadDate = (TextView) view.findViewById(R.id.txtUploadDate);
 				viewHolder.downloadView = (DownloadView) view.findViewById(R.id.downloadView);
+				viewHolder.txtSize = (TextView) view.findViewById(R.id.txtSize);
 				viewHolder.txtChangesTitle = (TextView) view.findViewById(R.id.txtChangesTitle);
 				viewHolder.txtChanges = (TextView) view.findViewById(R.id.txtChanges);
 				view.setTag(viewHolder);
@@ -168,6 +170,11 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 			holder.downloadView.setUrl(item.downloadLink);
 			holder.downloadView.setTitle(mActivity.getModule().name);
 			holder.downloadView.setDownloadFinishedCallback(new DownloadModuleCallback(item));
+			
+			if(item.size != null){
+				holder.txtSize.setText("Size: "+item.size+"MB");
+				holder.txtSize.setVisibility(View.VISIBLE);
+			}
 
 			if (item.changelog != null && !item.changelog.isEmpty()) {
 				holder.txtChangesTitle.setVisibility(View.VISIBLE);

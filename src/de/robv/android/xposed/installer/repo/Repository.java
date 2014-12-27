@@ -7,6 +7,7 @@ public class Repository {
 	public boolean isPartial = false;
 	public String partialUrl;
 	public String version;
+	public String size;
 
 	/*package*/ Repository() {};
 }

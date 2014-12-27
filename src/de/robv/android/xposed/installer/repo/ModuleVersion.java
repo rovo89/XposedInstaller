@@ -7,6 +7,7 @@ public class ModuleVersion {
 	public int code;
 	public String downloadLink;
 	public String md5sum;
+	public String size;
 	public String changelog;
 	public boolean changelogIsHtml = false;
 	public ReleaseType relType = ReleaseType.STABLE;
