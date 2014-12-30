@@ -172,7 +172,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 			holder.downloadView.setDownloadFinishedCallback(new DownloadModuleCallback(item));
 			
 			if (item.size != null){
-				holder.txtSize.setText("Size: "+item.size+"MB");
+				holder.txtSize.setText(String.format(getString(R.string.download_view_size), Integer.valueOf(item.size)/1024));
 				holder.txtSize.setVisibility(View.VISIBLE);
 			}
 
