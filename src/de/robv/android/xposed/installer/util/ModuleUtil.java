@@ -302,6 +302,14 @@ public final class ModuleUtil {
 			iconCache = result.getConstantState();
 			return result;
 		}
+		
+		public boolean isInstalledOnInternalStorage(String packageName) {
+			if ((app.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0) {
+				return false;
+			} else {
+				return true;
+			}
+		}
 
 		@Override
 		public String toString() {
