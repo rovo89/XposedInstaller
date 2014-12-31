@@ -303,7 +303,7 @@ public final class ModuleUtil {
 			return result;
 		}
 		
-		public boolean isInstalledOnInternalStorage(String packageName) {
+		public boolean isInstalledOnInternalStorage() {
 			if ((app.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0) {
 				return false;
 			} else {
