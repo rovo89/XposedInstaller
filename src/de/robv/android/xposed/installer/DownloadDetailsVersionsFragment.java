@@ -171,8 +171,8 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 			holder.downloadView.setTitle(mActivity.getModule().name);
 			holder.downloadView.setDownloadFinishedCallback(new DownloadModuleCallback(item));
 			
-			if (item.size != null){
-				holder.txtSize.setText(String.format(getString(R.string.download_view_size), Integer.valueOf(item.size)/1024));
+			if (item.size > 0){
+				holder.txtSize.setText(String.format(getString(R.string.download_view_size), item.size/1024));
 				holder.txtSize.setVisibility(View.VISIBLE);
 			}
 
