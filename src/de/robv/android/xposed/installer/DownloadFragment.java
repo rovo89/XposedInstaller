@@ -61,11 +61,12 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 		mAdapter.setFilterQueryProvider(new FilterQueryProvider() {
 			@Override
 			public Cursor runQuery(CharSequence constraint) {
-				// TODO Instead of this workaround, show a "downloads disabled" message
-				if (XposedApp.getInstance().areDownloadsEnabled())
+				if (XposedApp.getInstance().areDownloadsEnabled()) {
 					return RepoDb.queryModuleOverview(mSortingOrder, constraint);
-				else
+				} else {
+                                        Toast.makeText(getContext(), getString(R.string.download_disabled), Toast.LENGTH_LONG).show();
 					return null;
+				}
 			}
 		});
 		mSortingOrder = mPref.getInt("download_sorting_order", RepoDb.SORT_STATUS);
