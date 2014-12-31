@@ -303,12 +303,13 @@ public final class ModuleUtil {
 			return result;
 		}
 		
-		public boolean isInstalledOnInternalStorage() {
-			if ((app.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0) {
-				return false;
-			} else {
-				return true;
-			}
+		public boolean isInstalledOnExternalStorage() {
+			return (app.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0;
+		}
+
+		public boolean isForwardLocked() {
+                        int FLAG_FORWARD_LOCK = 1<<29;
+			return (app.flags & FLAG_FORWARD_LOCK) != 0;
 		}
 
 		@Override
