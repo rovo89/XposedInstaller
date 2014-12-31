@@ -258,7 +258,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		intent.setClassName(ris.get(0).activityInfo.packageName, ris.get(0).activityInfo.name);
 		return intent;
 	}
-	
+
 	private class ModuleAdapter extends ArrayAdapter<InstalledModule> {
 		public ModuleAdapter(Context context) {
 			super(context, R.layout.list_item_module, R.id.title);
