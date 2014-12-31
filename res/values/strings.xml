@@ -180,7 +180,7 @@
     <string name="download_view_waiting">Download is waiting</string>
     <string name="download_view_successful">Download successful</string>
     <string name="download_view_failed">Download failed (error %d)</string>
-    <string name="download_view_size">Size: %s</string>
+    <string name="download_view_size">Size: %s KB</string>
 
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">MD5 sum is incorrect (downloaded: %1$s, expected: %2$s)</string>
