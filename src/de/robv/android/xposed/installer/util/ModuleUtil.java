@@ -200,8 +200,9 @@ public final class ModuleUtil {
 			PrintWriter modulesList = new PrintWriter(MODULES_LIST_FILE);
 			List<InstalledModule> enabledModules = getEnabledModules();
 			for (InstalledModule module : enabledModules) {
-				if (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION ||
-					module.isInstalledOnExternalStorage() || module.isForwardLocked())
+				if (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)
+					continue;
+				if (module.isInstalledOnExternalStorage() || module.isForwardLocked())
 					continue;
 
 				modulesList.println(module.app.sourceDir);
