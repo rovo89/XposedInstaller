@@ -303,7 +303,7 @@ public final class ModuleUtil {
 			iconCache = result.getConstantState();
 			return result;
 		}
-		
+
 		public boolean isInstalledOnExternalStorage() {
 			return (app.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0;
 		}
