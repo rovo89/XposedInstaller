@@ -75,8 +75,8 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 
 	private void showDisabledDownloadsDialog() {
 		AlertDialog.Builder disabledDownloads = new AlertDialog.Builder(getActivity());
-		disabledDownloads.setTitle(getString(R.string.download_disabled);
-		disabledDownloads.setMessage(getString(R.string.download_disabled_description);
+		disabledDownloads.setTitle(getString(R.string.download_disabled));
+		disabledDownloads.setMessage(getString(R.string.download_disabled_description));
 		disabledDownloads.setPositiveButton(android.R.string.ok,
 				new DialogInterface.OnClickListener() {
 					@Override
