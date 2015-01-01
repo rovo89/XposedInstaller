@@ -64,13 +64,28 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 				if (XposedApp.getInstance().areDownloadsEnabled()) {
 					return RepoDb.queryModuleOverview(mSortingOrder, constraint);
 				} else {
-                                        Toast.makeText(getContext(), getString(R.string.download_disabled), Toast.LENGTH_LONG).show();
+					showDisabledDownloadsDialog();
 					return null;
 				}
 			}
 		});
 		mSortingOrder = mPref.getInt("download_sorting_order", RepoDb.SORT_STATUS);
 		setHasOptionsMenu(true);
+	}
+
+	private void showDisabledDownloadsDialog() {
+		AlertDialog.Builder disabledDownloads = new AlertDialog.Builder(getActivity());
+		disabledDownloads.setTitle(getString(R.string.download_disabled);
+		disabledDownloads.setMessage(getString(R.string.download_disabled_description);
+		disabledDownloads.setPositiveButton(android.R.string.ok,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface disabledDownloads, int id) {
+						disabledDownloads.dismiss();
+					}
+				});
+		disabledDownloads.create();
+		disabledDownloads.show();
 	}
 
 	@Override
