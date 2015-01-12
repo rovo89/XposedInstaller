@@ -226,6 +226,7 @@ public final class RepoDb extends SQLiteOpenHelper {
 		values.put(ModuleVersionsColumns.CHANGELOG_IS_HTML, version.changelogIsHtml);
 		values.put(ModuleVersionsColumns.RELTYPE, version.relType.ordinal());
 		values.put(ModuleVersionsColumns.UPLOADED, version.uploaded);
+		values.put(ModuleVersionsColumns.SIZE, version.size);
 		return mDb.insertOrThrow(ModuleVersionsColumns.TABLE_NAME, null, values);
 	}
 
@@ -297,6 +298,7 @@ public final class RepoDb extends SQLiteOpenHelper {
 			ModuleVersionsColumns.CODE,
 			ModuleVersionsColumns.DOWNLOAD_LINK,
 			ModuleVersionsColumns.MD5SUM,
+			ModuleVersionsColumns.SIZE,
 			ModuleVersionsColumns.CHANGELOG,
 			ModuleVersionsColumns.CHANGELOG_IS_HTML,
 			ModuleVersionsColumns.RELTYPE,
@@ -313,6 +315,7 @@ public final class RepoDb extends SQLiteOpenHelper {
 			version.code = c.getInt(c.getColumnIndexOrThrow(ModuleVersionsColumns.CODE));
 			version.downloadLink = c.getString(c.getColumnIndexOrThrow(ModuleVersionsColumns.DOWNLOAD_LINK));
 			version.md5sum = c.getString(c.getColumnIndexOrThrow(ModuleVersionsColumns.MD5SUM));
+			version.size = c.getLong(c.getColumnIndexOrThrow(ModuleVersionsColumns.SIZE));
 			version.changelog = c.getString(c.getColumnIndexOrThrow(ModuleVersionsColumns.CHANGELOG));
 			version.changelogIsHtml = c.getInt(c.getColumnIndexOrThrow(ModuleVersionsColumns.CHANGELOG_IS_HTML)) > 0;
 			version.relType = ReleaseType.fromOrdinal(c.getInt(c.getColumnIndexOrThrow(ModuleVersionsColumns.RELTYPE)));

@@ -41,6 +41,7 @@ public class RepoDbDefinitions {
 		public static final String SUPPORT = "support";
 		public static final String CREATED = "created";
 		public static final String UPDATED = "updated";
+		public static final String SIZE = "size";
 
 		public static final String PREFERRED = "preferred";
 		public static final String LATEST_VERSION = "latest_version_id";
@@ -75,6 +76,7 @@ public class RepoDbDefinitions {
 		public static final String CODE = "code";
 		public static final String DOWNLOAD_LINK = "download_link";
 		public static final String MD5SUM = "md5sum";
+		public static final String SIZE = "size";
 		public static final String CHANGELOG = "changelog";
 		public static final String CHANGELOG_IS_HTML = "changelog_is_html";
 		public static final String RELTYPE = "reltype";
@@ -89,6 +91,7 @@ public class RepoDbDefinitions {
 		ModuleVersionsColumns.CODE + " INTEGER NOT NULL, " +
 		ModuleVersionsColumns.DOWNLOAD_LINK + " TEXT, " +
 		ModuleVersionsColumns.MD5SUM + " TEXT, " +
+		ModuleVersionsColumns.SIZE + " INTEGER NOT NULL, " +
 		ModuleVersionsColumns.CHANGELOG + " TEXT, " +
 		ModuleVersionsColumns.CHANGELOG_IS_HTML + " INTEGER DEFAULT 0, " +
 		ModuleVersionsColumns.RELTYPE + " INTEGER DEFAULT 0, " +
