@@ -12,6 +12,7 @@ public class ModuleVersion {
 	public boolean changelogIsHtml = false;
 	public ReleaseType relType = ReleaseType.STABLE;
 	public long uploaded = -1;
+	
 	/*package*/ ModuleVersion(Module module) {
 		this.module = module;
 	}
