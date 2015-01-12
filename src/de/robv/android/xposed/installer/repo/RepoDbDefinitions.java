@@ -61,7 +61,7 @@ public class RepoDbDefinitions {
 		ModulesColumns.SUPPORT + " TEXT, " +
 		ModulesColumns.CREATED + " INTEGER DEFAULT -1, " +
 		ModulesColumns.UPDATED + " INTEGER DEFAULT -1, " +
-		ModulesColumns.PREFERRED + " INTEGER DEFAULT 1, " +		
+		ModulesColumns.PREFERRED + " INTEGER DEFAULT 1, " +
 		ModulesColumns.LATEST_VERSION + " INTEGER REFERENCES " + ModuleVersionsColumns.TABLE_NAME + ", " +
 		"UNIQUE (" + ModulesColumns.PKGNAME + ", " + ModulesColumns.REPO_ID + ") ON CONFLICT REPLACE)";
 
