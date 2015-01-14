@@ -202,7 +202,7 @@ public final class ModuleUtil {
 			for (InstalledModule module : enabledModules) {
 				if (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)
 					continue;
-				if (module.isInstalledOnExternalStorage() || module.isForwardLocked())
+				if (module.isInstalledOnExternalStorage() || module.isForwardLocked() || module.isDisabled())
 					continue;
 
 				modulesList.println(module.app.sourceDir);
