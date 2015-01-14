@@ -329,6 +329,10 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				checkbox.setEnabled(false);
 				warningText.setText(getString(R.string.warning_forward_locked));
 				warningText.setVisibility(View.VISIBLE);
+			} else if (item.isDisabled()) {
+				checkbox.setEnabled(false);
+				warningText.setText(getString(R.string.warning_disabled));
+				warningText.setVisibility(View.VISIBLE);
 			} else {
 				checkbox.setEnabled(true);
 				warningText.setVisibility(View.GONE);
