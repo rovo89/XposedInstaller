@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DISABLED;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.os.FileUtils;
@@ -310,6 +311,10 @@ public final class ModuleUtil {
 
 		public boolean isForwardLocked() {
 			return (app.flags & FLAG_FORWARD_LOCK) != 0;
+		}
+
+		public boolean isDisabled() {
+			return mPm.getApplicationEnabledSetting(packageName) == PackageManager.COMPONENT_ENABLED_STATE_DISABLED;
 		}
 
 		@Override
