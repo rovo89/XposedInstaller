@@ -87,6 +87,8 @@
     <string name="warning_xposed_min_version">This module requires a newer XposedBridge version (%d) and thus cannot be activated.</string>
     <string name="no_min_version_specified">This module does not specify the XposedBridge version it needs.</string>
     <string name="warning_min_version_too_low">This module was created for XposedBridge version %1$d, but due to incompatible changes in version %2$d, it has been disabled.</string>
+    <string name="warning_installed_on_external_storage">This module cannot be loaded because it\'s installed on the SD card, please move it to internal storage.</string>
+    <string name="warning_forward_locked">This module cannot be loaded because it\'s is forward-locked, please contact the module\'s developer.</string>
     <string name="module_launch">Launch UI</string>
     <string name="module_download_updates">Download/Updates</string>
     <string name="module_support">Support</string>

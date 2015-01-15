@@ -321,6 +321,14 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				warningText.setText(String.format(getString(R.string.warning_min_version_too_low),
 						item.minVersion, ModuleUtil.MIN_MODULE_VERSION));
 				warningText.setVisibility(View.VISIBLE);
+			} else if (item.isInstalledOnExternalStorage()) {
+				checkbox.setEnabled(false);
+				warningText.setText(getString(R.string.warning_installed_on_external_storage));
+				warningText.setVisibility(View.VISIBLE);
+			} else if (item.isForwardLocked()) {
+				checkbox.setEnabled(false);
+				warningText.setText(getString(R.string.warning_forward_locked));
+				warningText.setVisibility(View.VISIBLE);
 			} else {
 				checkbox.setEnabled(true);
 				warningText.setVisibility(View.GONE);
