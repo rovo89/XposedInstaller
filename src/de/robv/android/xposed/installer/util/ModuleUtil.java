@@ -111,6 +111,9 @@ public final class ModuleUtil {
 					listener.onSingleInstalledModuleReloaded(mInstance, packageName, null);
 				}
 			}
+			if (!app.enabled) {
+				return old;
+			}
 			return null;
 		}
 
