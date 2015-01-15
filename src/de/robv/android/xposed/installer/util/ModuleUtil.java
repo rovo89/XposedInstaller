@@ -312,10 +312,6 @@ public final class ModuleUtil {
 			return (app.flags & FLAG_FORWARD_LOCK) != 0;
 		}
 
-		public boolean isDisabled() {
-			return !app.enabled;
-		}
-
 		@Override
 		public String toString() {
 			return getAppName();
