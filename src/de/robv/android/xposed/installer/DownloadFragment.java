@@ -77,11 +77,14 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 		AlertDialog.Builder disabledDownloads = new AlertDialog.Builder(getActivity());
 		disabledDownloads.setTitle(getString(R.string.download_disabled));
 		disabledDownloads.setMessage(getString(R.string.download_disabled_description));
-		disabledDownloads.setPositiveButton(android.R.string.ok,
+		disabledDownloads.setPositiveButton(R.string.download_open_settings,
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface disabledDownloads, int id) {
-						disabledDownloads.dismiss();
+					Intent intent = new Intent(getActivity(), XposedInstallerActivity.class);
+					intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedDropdownNavActivity.TAB_SETTINGS);
+					startActivity(intent);
+					disabledDownloads.dismiss();
 					}
 				});
 		disabledDownloads.create();
