@@ -129,6 +129,7 @@
     <string name="download_test_version_not_shown">A test version is available, however it isn\'t shown due to your global or module-specific settings.</string>
     <string name="download_disabled">Disabled downloads</string>
     <string name="download_disabled_description">Downloading modules is disabled. Please enable downloads in Settings.</string>
+    <string name="download_open_settings">Open settings</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">Installation</string>
