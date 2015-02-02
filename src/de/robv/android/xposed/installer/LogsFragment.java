@@ -135,7 +135,7 @@ public class LogsFragment extends Fragment {
 	}
 
 	private void send() {
-                File logFile = new File(getActivity().getExternalFilesDir(null) + "/Xposed.log");
+		File logFile = new File(getActivity().getExternalFilesDir(null) + "/Xposed.log");
 		if (logFile.exists()) {
 			logFile.delete();
 		}
