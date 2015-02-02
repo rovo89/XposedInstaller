@@ -135,9 +135,14 @@ public class LogsFragment extends Fragment {
 	}
 
 	private void send() {
+		File logFile = new File(getActivity().getExternalFilesDir(null) + "/Xposed.log");
+		if (logFile.exists()) {
+			logFile.delete();
+		}
+		FileUtils.copyFile(mFileErrorLog, logFile);
 		Intent sendIntent = new Intent();
 		sendIntent.setAction(Intent.ACTION_SEND);
-		sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mFileErrorLog));
+		sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(logFile));
 		sendIntent.setType("application/text"); // text/plain is handled wrongly by too many apps
 		startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.menuSend)));
 	}
