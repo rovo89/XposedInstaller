@@ -27,6 +27,9 @@ public class ExportLogReceiver extends BroadcastReceiver {
 	private static void exportLog(String path) {
 		File src = new File(XposedApp.BASE_DIR + "log/error.log");
 		File dst = new File(path);
+		if (dst.exists()) {
+			dst.delete();
+		}
 		FileUtils.copyFile(src, dst);
 	}
 }
