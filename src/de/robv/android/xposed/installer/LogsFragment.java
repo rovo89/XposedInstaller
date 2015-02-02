@@ -30,7 +30,6 @@ import android.widget.Toast;
 public class LogsFragment extends Fragment {
 	private File mFileErrorLog = new File(XposedApp.BASE_DIR + "log/error.log");
 	private File mFileErrorLogOld = new File(XposedApp.BASE_DIR + "log/error.log.old");
-	private File mLogFile = new File(Environment.getExternalStorageDirectory() + "/Xposed.log");
 	private static final int MAX_LOG_SIZE = 2*1024*1024; // 2 MB
 	private TextView mTxtLog;
 	private ScrollView mSVLog;
@@ -136,13 +135,14 @@ public class LogsFragment extends Fragment {
 	}
 
 	private void send() {
-		if (mLogFile.exists()) {
-			mLogFile.delete();
+                File logFile = new File(getActivity().getExternalFilesDir(null) + "/Xposed.log");
+		if (logFile.exists()) {
+			logFile.delete();
 		}
-		FileUtils.copyFile(mFileErrorLog, mLogFile);
+		FileUtils.copyFile(mFileErrorLog, logFile);
 		Intent sendIntent = new Intent();
 		sendIntent.setAction(Intent.ACTION_SEND);
-		sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mLogFile));
+		sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(logFile));
 		sendIntent.setType("application/text"); // text/plain is handled wrongly by too many apps
 		startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.menuSend)));
 	}
