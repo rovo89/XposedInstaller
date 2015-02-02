@@ -80,6 +80,14 @@
 
         <receiver android:name=".util.NotificationUtil$RebootReceiver"
             android:exported="false" />
+            
+        <receiver android:name=".ExportLogReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="de.robv.android.xposed.installer.EXPORT_LOG" />
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
