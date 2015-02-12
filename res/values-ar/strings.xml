@@ -1,115 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- General/various strings -->
-
-    <!-- Welcome screen / main sections -->
-    <string name="welcome">مرحبا بكم <b>المثبت إكسبوسيد</b>!\nالرجاء اختيار ما تريد القيام به:</string>
+    <string name="app_name">مثبت إكسبوسد</string>
+    <string name="app_process">app_process</string>
+    <string name="xposedbridge">XposedBridge.jar</string>
+    <string name="none">---</string>
+    <string name="about_source">https://github.com/rovo89</string>
+    <string name="about_support">http://forum.xda-developers.com/xposed</string>
+    <string name="about_libraries"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a>"
+"<a href="https://github.com/Chainfire/libsuperuser">libsuperuser</a></string>
+    <string name="menuSend">إرسال</string>
+    <string name="menuSaveToSd">حفظ الى ذاكرة SD</string>
+    <string name="xposed_not_active">الإصدار الأخير من إكسبوسد غير نشط , هل قمت بتثبيته و إعادة التشغيل؟</string>
+    <string name="welcome">اهلاً بك في <b>مثبت إكسبوسد</b>!\nرجاءً إختر ما الذي تريد القيام به:</string>
     <string name="tabInstall">الإطار</string>
-    <string name="tabInstallDescription">هنا يمكنك إدارة إطار إكسبوسيد، والمطلوب لأي وحدات العمل.</string>
-    <string name="tabModules">الوحدات النمطية</string>
-    <string name="tabModulesDescription">الإطار نفسه لا تضيف أي وظيفة. تحتاج الوحدات النمطية لذلك. في هذا القسم يمكنك تنشيط وحدات بعد أن قمت بتثبيت لهم.</string>
-    <string name="tabDownload">تحميل</string>
-    <string name="tabDownloadDescription">هذا القسم يتيح لك الوصول إلى مستودع للوحدات النمطية، حيث يمكنك البحث وتحميل تلك التي تريد والاحتفاظ بها حتى الآن.</string>
-    <string name="welcome_framework_update_available">يتوفر تحديث لإطار إكسبوسيد.</string>
-    <string name="welcome_update_available">تحديث واحد أو أكثر من الوحدات النمطية المتوفرة.</string>
-    <string name="tabSettings">إعدادات</string>
-    <string name="tabSettingsDescription">اذهب إلى هذا القسم لتكوين المثبت إكسبوسيد والإطار.</string>
+    <string name="tabInstallDescription">هنا تستطيع ادارة إعدادات إطار اكسبوسد, وهو ضروري لعمل الإضافات.</string>
+    <string name="tabModules">الإضافات</string>
+    <string name="tabModulesDescription"> الإطار لوحده لا يقوم بأي وظيفة بدون الإضافات. في هذا القسم تستطيع تفعيل الإضافات بعد تثبيتها.</string>
+    <string name="tabDownload">التنزيل</string>
+    <string name="tabDownloadDescription">هذا القسم يتيح لك الوصول الى مستودع الإضافات, تستطيع البحث , تنزيل و تحديث الإضافات التي ترغب بها.</string>
+    <string name="welcome_framework_update_available">يتوفر تحديث جديد لنسخة إطار إكسبوسد. (%s).</string>
+    <string name="welcome_update_available">يوجد تحديث واكثر جديد للإضافات.</string>
+    <string name="tabSettings">الإعدادات</string>
+    <string name="tabSettingsDescription">هذا القسم يتيح لك ضبط اعدادات مثبت و إطار إكسبوسد.</string>
+    <string name="tabLogs">السجلات</string>
+    <string name="tabLogsDescription">استعرض , احفظ و أرسل السجلات من إطار الإكسبوسد.</string>
     <string name="tabAbout">حول</string>
-    <string name="tabAboutDescription">التعرف على الأشخاص الذين تم إنشاؤها إكسبوسيد، حيث للحصول على دعم لهذا التطبيق إلخ.</string>
-
-    <!-- Installer tab -->
+    <string name="tabAboutDescription">مطورين إكسبوسد و الدعم.</string>
     <string name="install">تثبيت/تحديث</string>
-    <string name="uninstall">إلغاء تثبيت</string>
-    <string name="installedVersion">تنشيط</string>
-    <string name="latestVersion">تجميع</string>
-    <string name="versions">إصدارات:</string>
-    <string name="soft_reboot">اعادة تشغيل سريعة</string>
-    <string name="reboot">اعادة التشغيل</string>
+    <string name="uninstall">إلغاء التثبيت</string>
+    <string name="installedVersion">نشط</string>
+    <string name="latestVersion">رقم الإصدار</string>
+    <string name="versions">الإصدارات:</string>
+    <string name="install_header_reboot">إعادة التشغيل</string>
+    <string name="soft_reboot">إعادة تشغيل سريعة</string>
+    <string name="reboot">إعادة تشغيل</string>
     <string name="areyousure">هل أنت متأكد؟</string>
-    <string name="phone_not_compatible">اكسبود ليس (حتى الآن) متوافق مع الإصدار الروبوت SDK %1$d أو هندسة المعالج (%2$s).</string>
-    <string name="not_tested_but_compatible">لم يتم اختباره اكسبود مع الروبوت الإصدار SDK %d, ولكن يبدو أن تكون متوافقة. يمكنك محاولة تثبيته إذا كنت تشعر المغامرة.</string>
+    <string name="phone_not_compatible">إكسبوسد غير متوافق (بعد) مع نسخة اندرويد SDK %1$d أو مع معمارية معالج هاتفك (%2$s).</string>
+    <string name="not_tested_but_compatible">إكسبوسد لم يتم إختباره بعد مع نسخة اندرويد SDK %d , لكن تستطيع المخاطرة بمحاولة تثبيته إذا كنت ترغب بذلك.</string>
+    <string name="reboot_failed">فشل إعادة التشغيل. رجاءً إستخدم خاصية اعادة التشغيل العادية.</string>
+    <string name="auto_flash_note">%s "موافق."سيتم تثبيته تلقائياً بمجرد الضغط على</string>
+    <string name="manual_flash_note">رجاءً قم بتثبيت %s من بطاقة ذاكرة SD لإكمال العملية.</string>
+    <string name="reboot_confirmation">هل تريد إعادة التشغيل الآن؟</string>
+    <string name="reboot_recovery_confirmation">هل تريد إعادة التشغيل الآن للوصول الى الـ recovery?</string>
+    <string name="install_warning_title">كن حذراً!</string>
+    <string name="install_warning">"في بعض الحالات, قد لا يعمل جهازك بعد تثبيت إكسبوسد.
 
-    <!-- File operations -->
+إذا لم تسمع سابقاً عن \"أعطال النظام\" و \"أعطال إعادة التشغيل\" أو لا تعلم كيف تستعيد جهازك في هذه الحالات, "<b>لا تقم</b>" بتثبيت إكسبوسد!
 
-    <!-- Modules tab -->
-    <string name="module_is_not_activated_yet">لم يتم تنشيط الوحدة النمطية إكسبوسيد بعد</string>
-    <string name="module_empty_description">(لا يوجد وصف المقدمة)</string>
-    <string name="module_no_ui">هذه الوحدة النمطية لا توفر واجهة المستخدم</string>
-    <string name="no_xposed_modules_found">لم يتم العثور على أية وحدات إكسبوسيد!</string>
-    <string name="xposed_module_list_updated">"تم تحديث قائمة الوحدة النمطية إكسبوسيد التغييرات سوف تصبح نشطة على إعادة التشغيل"</string>
-    <string name="warning_xposed_min_version">هذه الوحدة يتطلب إصدار أحدث XposedBridge (%d) وبالتالي لا يمكن تفعيلها.</string>
-    <string name="no_min_version_specified">لا تحدد هذه الوحدة النمطية إصدار إكسبوسيدبريدجي يحتاج إليها.</string>
-    <string name="warning_min_version_too_low">تم إنشاء هذه الوحدة لإصدار XposedBridge %1$d, ولكن نظرا للتغيرات غير متوافقة في الإصدار %2$d, فقد تم تعطيله.</string>
+في اي حال من الأحوال, من الأفضل وجود نسخ إحتياطي لجهازك."</string>
+    <string name="dont_show_again">لا تُظهر هذا مجدداً.</string>
+    <string name="install_known_issue">يبدو أن هنالك مشكلة غير معروفة (\"%s\") في ذاكرة التخزين العشوائي. قد لا يعمل إكسبوسد بعد تثبيته أو قد يسبب مشاكل اكبر. إضغط هنا لمعرفة تفاصيل اكثر عن ه.</string>
+    <string name="install_reverted">إصدار app_process  \"%1$s\" قد تم تثبيته سابقاً , لكن الإصدار \"%2$s\" موجود الآن.إذا لم تتوقع إستعادة نسخة قديمة من الملف , قد تود محاولة التثبيت من الـ recovery (تلقائي او يدوي).</string>
+    <string name="uninstall_reverted">app_process قد تم إلغاء تثبيته سابقاً لكن الإصدار \"%s\" متوفر الآن. إذا لم تتوقع إستعادة نسخة قديمة من الملف , قد تود محاولة إالغاء التثبيت من الـ recovery (تلقائي او يدوي).</string>
+    <string name="tap_to_dismiss">إضغط للمتابعة</string>
+    <string name="sdcard_location">بطاقة الذكرة SD: %s</string>
+    <string name="root_failed">فشل الوصول الى الروت.\n\nتأكد من وجود وصول للروت في هاتفك و أنك لم تقم بحجب اوامر التنفيذ (shell commands).</string>
+    <string name="file_extract_failed">فشل إستخراج %s</string>
+    <string name="file_mounting_writable">تركيب %s القابل للكتابة&#8230;</string>
+    <string name="file_mount_writable_failed">لم يتم تركيب %s القابل للكتابة</string>
+    <string name="file_trying_to_continue">محاولة المتابعة على اي حال&#8230;</string>
+    <string name="file_backup_already_exists">النسخة الإحتياطية موجودة مسبقاً في %s</string>
+    <string name="file_backup_not_found">لم يتم العثور على نسخة إحتياطية في %s</string>
+    <string name="file_backup_failed">فشل في عمل نسخ إحتياطي لـ %s</string>
+    <string name="file_backup_successful">عمل نسخ إحتياطي في %s</string>
+    <string name="file_backup_restoring">إستعادة النسخ الإحتياطي من %s</string>
+    <string name="file_copying">نسخ %s&#8230;</string>
+    <string name="file_copy_failed">فشل نسخ %1$s إلى %2$s</string>
+    <string name="file_move_failed">فشل في نقل %1$s إلى %2$s</string>
+    <string name="file_set_perms_failed">فشل في عمل إذن من أجل %s</string>
+    <string name="file_set_owner_failed">فشل في تحديد الملكية من أجل %s</string>
+    <string name="file_removing">حذف %s&#8230;</string>
+    <string name="file_remove_failed">فشل الحذف %s</string>
+    <string name="file_creating_directory">إنشاء دليل %s&#8230;</string>
+    <string name="file_create_directory_failed">فشل في إنشاء دليل من أجل %s</string>
+    <string name="file_writing_recovery_command">كتابة اوامر الإستعادة&#8230;</string>
+    <string name="file_writing_recovery_command_failed">فشل في كتابة اوامر الإستعادة. رجاءً إختر طريقة تثبيت أخرى.</string>
+    <string name="file_done">تم! سيتم تطبيق التغييرات بعد إعادة التشغيل.</string>
+    <string name="module_is_not_activated_yet">إضافة إكسبوسد لم يتم تفعيلها.</string>
+    <string name="module_is_not_activated_yet_detailed">%s تم تثبيتها , لكن لم تُفعل بعد.</string>
+    <string name="activate_and_reboot">فعل و أعد التشغيل.</string>
+    <string name="module_activated">تم تفعيل إضافة الإكسبوسد</string>
+    <string name="module_empty_description">(لا يتوفر وصف)</string>
+    <string name="module_no_ui">هذه الإضافة لا توفر واجهة مستخدم.</string>
+    <string name="no_xposed_modules_found">لايوجد نتائج!</string>
+    <string name="xposed_module_list_updated">تم تحديث قائمة إضافات الإكسبوسد \nسيتم تطبيق التغييرات بعد إعاة التشغيل</string>
+    <string name="xposed_module_updated_notification_title">تم تحديث إضافة إكسبوسد</string>
+    <string name="xposed_module_updated_notification">أعد التشغيل لتطبيق التغييرات.</string>
+    <string name="warning_xposed_min_version">هذه الإضافة تتطلب إصدار احدث من XposedBridge (%d) لذلك لا يمكن تفعيلها.</string>
+    <string name="no_min_version_specified">هذه الإضافة لا تحدد أي إصدار من XposedBridge تحتاج.</string>
+    <string name="warning_min_version_too_low">هذه الإضافة تم إنشائها لإصدار XposedBridge %1$d , لكن نظراً للتغيرات في إصدار XposedBridge %2$d فقد تم تعطيلها.</string>
     <string name="module_launch">بدء تشغيل واجهة المستخدم</string>
-    <string name="module_download_updates">تحميل/تحديث</string>
+    <string name="module_download_updates">تنزيل/تحديث.</string>
     <string name="module_support">الدعم</string>
     <string name="module_app_info">معلومات التطبيق</string>
-    <string name="module_uninstall">إلغاء تثبيت</string>
-
-    <!-- Download tab -->
+    <string name="module_uninstall">إالغاء التثبيت</string>
     <string name="menuSearch">بحث</string>
-    <string name="menuReload">إعادة تحميل</string>
+    <string name="menuReload">إعاة التنزيل</string>
     <string name="changes">التغييرات:</string>
-    <string name="download_author">من قبل %s</string>
-    <string name="download_unknown_author">مؤلف غير معروف</string>
-    <string name="download_status_installed">تثبيت (version %s)</string>
-    <string name="download_status_update_available">تحديث متوفر (version %1$s \u2190 %2$s)</string>
-    <string name="download_timestamps">تشغيل الاضافة %1$s \u00b7 تشغيل التحديث %2$s</string>
-    <string name="download_sorting_title">ترتيب الفرز</string>
-    <string name="download_sorting_status">فرز حسب الحالة</string>
-    <string name="download_sorting_updated">فرز حسب آخر تحديث</string>
-    <string name="download_sorting_created">فرز حسب تاريخ الإنشاء</string>
+    <string name="download_details_page_description">الوصف</string>
+    <string name="download_details_page_versions">الإصدارات</string>
+    <string name="download_details_page_settings">الإعدادات</string>
+    <string name="reltype_stable">مستقر</string>
+    <string name="reltype_stable_summary">مستقر (مخاطر و اخطاء قليلة)</string>
+    <string name="reltype_beta">إصدارأولي</string>
+    <string name="reltype_beta_summary">إصدارأولي (توقع حدوث بعض الأخطاء)</string>
+    <string name="reltype_experimental">إصدار تجريبي</string>
+    <string name="reltype_experimental_summary">إصدار تجريبي (مخاطرة عالية لوجود الأخطاء)</string>
+    <string name="reltype_use_global_summary">إستخدم الإعدادات الإفتراضية</string>
+    <string name="download_author">المطور %s</string>
+    <string name="download_unknown_author">مطور غير معروف</string>
+    <string name="download_status_installed">مثبت (إصدار %s)</string>
+    <string name="download_status_update_available">يتوفر تحديث (إصدار %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">تم إضافته في %1$s \u00b7 تم تحديثه في %2$s</string>
+    <string name="download_sorting_title">التصنيف</string>
+    <string name="download_sorting_status">تصنيف حسب الحالة</string>
+    <string name="download_sorting_updated">تصنيف حسب آخر تحديث</string>
+    <string name="download_sorting_created">تصنيف حسب تاريخ الإنشاء</string>
     <string name="download_section_framework">الإطار</string>
-    <string name="download_section_update_available">تحديث متوفر</string>
-    <string name="download_section_installed">تثبيت</string>
-    <string name="download_section_not_installed">لم يتم تثبيت</string>
-    <string name="download_section_24h">ال 24 ساعة الماضية</string>
-    <string name="download_section_7d">آخر 7 أيام</string>
-    <string name="download_section_30d">آخر 30 يوما</string>
-    <string name="download_section_older">منذ أكثر من 30 يوما</string>
-
-    <!-- Settings tab -->
-    <string name="settings_group_download">تحميل</string>
-    <string name="settings_enable_downloads">تمكين التحميل</string>
-    <string name="settings_enable_downloads_summary">السماح إكسبوسيد المثبت للتحقق من وجود تحديثات ووحدات جديدة</string>
-    <string name="settings_group_experimental">التجريبية</string>
-    <string name="settings_performance_experiment">تجربة الأداء</string>
-    <string name="settings_performance_experiment_summary">إذا قمت بتمكين هذا، أداء النظام الخاص بك قد أما زيادة أو إنقاص أو البقاء نفس. لا تتردد في جربة وتقريراً عن تأثير الذي تراه (أو إذا كان هناك لا شيء على الإطلاق). كنت بحاجة إلى تثبيت الإطار وإعادة تشغيل الكمبيوتر بعد تغيير هذا.</string>
-
-    <!-- Logs tab  -->
-
-    <!-- About tab -->
-    <string name="about_developers_label">مطوري الرئيسية:</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> و <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">الرجاء القيام <b>لا</b> اتصل بنا مباشرة للدعم، واستخدام الارتباط الموجود أدناه.</string>
-    <string name="about_translator_label">ترجمات:</string>
-    <string name="translator">aljohanei</string>
-    <string name="about_version_label">إصدار من هذا التطبيق:</string>
-    <string name="about_source_label">التعليمات البرمجية المصدر:</string>
-    <string name="about_support_label">الحصول على الدعم في:</string>
-    <string name="about_support_warning">هذا الرابط للمثبت، وإطار <b>فقط</b>! إذا كنت بحاجة إلى مساعدة مع وحدة نمطية، <b>لا</b> استخدامها، اتصل بكاتب الوحدة النمطية بدلاً من ذلك.</string>
-    <string name="about_libraries_label">المكتبات المستخدمة:</string>
-
-    <!-- DownloadView -->
-    <string name="download_view_download">تحميل</string>
+    <string name="download_section_update_available">يتوفر تحديث</string>
+    <string name="download_section_installed">مثبت</string>
+    <string name="download_section_not_installed">غير مثبت</string>
+    <string name="download_section_24h">آخر 24 ساعة</string>
+    <string name="download_section_7d">آخر 7 ايام</string>
+    <string name="download_section_30d">آخر 30 يوم</string>
+    <string name="download_section_older">أكثر من 30 يوماً مضت</string>
+    <string name="download_details_not_found">لاتوجد إضافة بالإسم \"%s\" في المستودع.</string>
+    <string name="download_no_versions">المطور لم يقم برفع اي إضافات حتى الآن.</string>
+    <string name="download_test_version_not_shown">يوجد إصدار تجريبي , لكنه لا يظهر نظراً لإستخدامك للإعدادات الإفتراضية أو إعدادات خاصة لإضافة معينه.</string>
+    <string name="settings_group_installation">التثبيت</string>
+    <string name="settings_install_mode">وضع التثبيت</string>
+    <string name="install_mode_normal">عادي (التثبيت في /system directly)</string>
+    <string name="install_mode_recovery_auto">Recovery (تثبيت ملف zip تلقائياً)</string>
+    <string name="install_mode_recovery_manual">Recovery (تثبيت ملف zip الى ذاكرة SD , تثبيت يدوي)</string>
+    <string name="settings_group_download">تنزيل</string>
+    <string name="settings_enable_downloads">تفعيل التنزيلات</string>
+    <string name="settings_enable_downloads_summary">السماح لمثبت إكسبوسد بالبحث عن التحديثات و الإضافات الجديدة.</string>
+    <string name="settings_release_type">عرض الإصدارات</string>
+    <string name="settings_group_experimental">تجريبي</string>
+    <string name="settings_disable_resources">تعطيل إرتباطات الموارد</string>
+    <string name="settings_disable_resources_summary">حلول لتعارضات بعض تطبيقات تغيير المظهر\n<b>تحذير:</b> الإضافات التي تغير الموارد لن تعمل اثناء تفعيل هذا الإختيار</string>
+    <string name="settings_performance_experiment">إختبار الأداء</string>
+    <string name="settings_performance_experiment_summary">إذا قمت بتفعيل هذا الخيار , أداء النظام قد يتحسن , يقل او لن يتغير ابداً. قم بتجربته و ارسل تقريراً بالتغيرات التي تراها في اداء النظام. ستحتاج الى إعادة تثبيت إطار إكسبوسد و إعادة تشغيل الجهاز عند تغييرك لهذا الخيار.</string>
+    <string name="settings_group_app">التطبيق</string>
+    <string name="settings_theme">المظهر</string>
+    <string name="settings_theme_light">خفيف</string>
+    <string name="settings_theme_dark">قاتم</string>
+    <string name="settings_theme_black">اسود (مفيد لشاشات AMOLED)</string>
+    <string name="logs_load_failed">فشل في قراءة السجل:</string>
+    <string name="logs_save_failed">فشل في حفظ السجل لذاكرة SD:</string>
+    <string name="sdcard_not_writable">ذاكرة SD غير موجودة او غير قابلة للكتابة</string>
+    <string name="log_too_large">ملف السجل اكبر من %1$,d kB, تم تخطي اول %2$,d kB</string>
+    <string name="menuClearLog">حذف السجل الآن</string>
+    <string name="logs_cleared">تم حذف السجل بنجاح</string>
+    <string name="logs_clear_failed">فشل حذف السجل:</string>
+    <string name="log_is_empty">السجل فارغ</string>
+    <string name="about_developers_label">المطورون الرئيسيون:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">رجاءً <b>لاتقم</b> بالإتصال بنا مباشرة من أجل الدعم, إستخدم الوصلات في الأسفل.</string>
+    <string name="about_translator_label">المترجم:</string>
+    <string name="translator"><a href="http://twitter.com/thextv">Shabab Alrajhi</a></string>
+    <string name="about_version_label">إصدار هذا التطبيق:</string>
+    <string name="about_source_label">كود المصدر:</string>
+    <string name="about_support_label">الحصول على الدعم:</string>
+    <string name="about_support_warning">هذه الوصلة هي للحصول على المساعدة لمثبت و إطار إكسبوسد <b>فقط</b> , إذا كنت ترغب بالدعم من اجل الإضافات رجاءً <b>إتصل</b> بمطور الإضافة. </string>
+    <string name="about_libraries_label">المصادر المستخدمة:</string>
+    <string name="download_view_download">تنزيل</string>
     <string name="download_view_install">تثبيت</string>
-    <string name="download_view_cancel">الغاء</string>
-    <string name="download_view_no_url">الصفحة غير متوفرة</string>
-    <string name="download_view_running">تحميل قيد التشغيل (%1$,d of %2$,d kB)</string>
-    <string name="download_view_waiting">في انتظار التحميل</string>
-    <string name="download_view_successful">تم التحميل</string>
-    <string name="download_view_failed">فشل التحميل (error %d)</string>
-
-    <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">مجموع MD5 غير صحيحة (downloaded: %1$s, expected: %2$s)</string>
-    <string name="download_could_not_read_file">لا يمكن قراءة الملف الذي تم تنزيله: %s</string>
-    <string name="download_no_valid_apk">الملف الذي تم تنزيله ليس APK صالح (or incompatible)</string>
-    <string name="download_incorrect_package_name">اسم الحزمة غير صحيح (downloaded: %1$s, expected: %2$s)</string>
-
-    <!-- RepoLoader -->
-    <string name="repo_download_failed_http">تحميل %1$s فشل: %2$d (%3$s)</string>
-    <string name="repo_download_failed">تحميل %1$s فشل: %2$s</string>
-    <string name="repo_load_failed">لايمكن التحميل من المستودع %1$s:\n%2$s</string>
-
+    <string name="download_view_cancel">إالغاء</string>
+    <string name="download_view_no_url">لايوجد رابط تنزيل</string>
+    <string name="download_view_running">جارالتنزيل (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">إنتظار التنزيل</string>
+    <string name="download_view_successful">تم التنزيل بنجاح</string>
+    <string name="download_view_failed">فشل التنزيل (خطأ %d)</string>
+    <string name="download_md5sum_incorrect">مقدار MD5 غير صحيح (حمل: %1$s, متوقع: %2$s)</string>
+    <string name="download_could_not_read_file">فشل في قراءة الملف المنزل: %s</string>
+    <string name="download_no_valid_apk">الملف المنزل ليس ملف APK صالح (أو غير مكتمل)</string>
+    <string name="download_incorrect_package_name">إسم الحزمة غير صحيح (حمل: %1$s, متوقع: %2$s)</string>
+    <string name="repo_download_failed_http">جار التنزيل %1$s فشل: %2$d (%3$s)</string>
+    <string name="repo_download_failed">جار التنزيل %1$s فشل: %2$s</string>
+    <string name="repo_load_failed">غير قادر على تنزيل المستودع من %1$s:\n
+	%2$s"</string>
 </resources>
