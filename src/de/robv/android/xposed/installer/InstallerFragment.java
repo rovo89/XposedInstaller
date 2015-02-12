@@ -20,7 +20,6 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -100,6 +99,8 @@ public class InstallerFragment extends Fragment {
 			}
 		});
 
+		// FIXME
+		/*
 		boolean isCompatible = false;
 		if (BINARIES_FOLDER == null) {
 			// incompatible processor architecture
@@ -119,9 +120,12 @@ public class InstallerFragment extends Fragment {
 				txtInstallError.setVisibility(View.VISIBLE);
 			}
 		}
+		*/
 
 		refreshVersions();
 
+		// FIXME
+		/*
 		if (isCompatible) {
 			btnInstall.setOnClickListener(new AsyncClickListener(btnInstall.getText()) {
 				@Override
@@ -177,6 +181,14 @@ public class InstallerFragment extends Fragment {
 				});
 			}
 		});
+		*/
+
+		txtInstallError.setText(R.string.installation_lollipop);
+		txtInstallError.setVisibility(View.VISIBLE);
+		btnInstall.setEnabled(false);
+		btnInstallMode.setEnabled(false);
+		btnUninstall.setEnabled(false);
+
 		btnReboot.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -386,7 +398,8 @@ public class InstallerFragment extends Fragment {
 			txtInstallError.setTextColor(ThemeUtil.getThemeColor(getActivity(), android.R.attr.textColorTertiary));
 		} else {
 			txtKnownIssue.setVisibility(View.GONE);
-			btnInstall.setTextColor(ThemeUtil.getThemeColor(getActivity(), android.R.attr.textColorPrimary));
+			// FIXME
+			//btnInstall.setTextColor(ThemeUtil.getThemeColor(getActivity(), android.R.attr.textColorPrimary));
 			txtInstallError.setTextColor(getResources().getColor(R.color.warning));
 		}
 	}
