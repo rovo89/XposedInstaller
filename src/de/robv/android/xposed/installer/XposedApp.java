@@ -52,7 +52,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 	private void createDirectories() {
 		mkdirAndChmod("bin", 00771);
 		mkdirAndChmod("conf", 00771);
-		mkdirAndChmod("log", 00771);
+		mkdirAndChmod("log", 00777);
 	}
 
 	private void cleanup() {
