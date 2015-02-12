@@ -41,7 +41,7 @@ public class InstallerFragment extends Fragment {
 	private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
 	private String APP_PROCESS_NAME = null;
 	private final String BINARIES_FOLDER = AssetUtil.getBinariesFolder();
-	private static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
+	private static final String JAR_PATH = "/system/framework/XposedBridge.jar";
 	private static final String JAR_PATH_NEWVERSION = JAR_PATH + ".newversion";
 	private static int JAR_LATEST_VERSION = -1;
 	private final LinkedList<String> mCompatibilityErrors = new LinkedList<String>();
