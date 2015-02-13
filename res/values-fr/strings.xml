@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Sombre</string>
     <string name="settings_theme_black">Noir (approprié pour les écrans AMOLED)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Impossible de lire le journal:</string>
     <string name="logs_save_failed">Impossible d\'écrire le journal:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Version de l\'application:</string>
     <string name="about_source_label">Code source:</string>
     <string name="about_support_label">Obtenez du support ici:</string>
-    <string name="about_support_warning">Ce lien est <b>uniquement</b> pour l\'installateur et le framework ! Ne <b>pas</b> l\'utiliser si vous avez besoin d\'aide pour un module, contactez plutôt l\'auteur du module.</string>
     <string name="about_libraries_label">Librairies utilisées:</string>
 
     <!-- DownloadView -->

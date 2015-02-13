@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">כהה</string>
     <string name="settings_theme_black">שחור (שימושי למסכי אמולד)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">לא ניתן לקרוא את הלוג:</string>
     <string name="logs_save_failed">לא ניתן לשמור את הלוג לכרטיס הזיכרון:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">גרסה של אפליקצייה זו:</string>
     <string name="about_source_label">קוד מקור:</string>
     <string name="about_support_label">קבל תמיכה ב:</string>
-    <string name="about_support_warning">לינק זה הוא למתקין ולסביבה <b>בלבד</b>! אם הינך צריך עזרה במודול כלשהו, <b>אל</b> תשתמש בו, אלא פנה למפתח המודול.</string>
     <string name="about_libraries_label">סיפריות בשימוש:</string>
 
     <!-- DownloadView -->

@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Escuro</string>
     <string name="settings_theme_black">Preto (Bom em telas AMOLED)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Não foi possível ler o registro:</string>
     <string name="logs_save_failed">Não foi possível gravar o registro no cartão SD:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Versão deste app:</string>
     <string name="about_source_label">Código fonte:</string>
     <string name="about_support_label">Obtenha suporte em:</string>
-    <string name="about_support_warning">Este link é para o instalador e o framework <b>apenas</b>! Se você precisa de ajuda com um módulo, <b>não</b> o use, contate o desenvolvedor do módulo.</string>
     <string name="about_libraries_label">Bibliotecas usadas:</string>
 
     <!-- DownloadView -->

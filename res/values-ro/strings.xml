@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Intunecat</string>
     <string name="settings_theme_black">Negru (util pentru afisaj AMOLED)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Log-ul nu a putut fi citit:</string>
     <string name="logs_save_failed">Log-ul nu a putut fi scris pe cardul SD :</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Versiunea acestei aplicatii:</string>
     <string name="about_source_label">Cod sursa:</string>
     <string name="about_support_label">Primiti suport la:</string>
-    <string name="about_support_warning">Acest link este pentru installer si framework <b>doar</b>! Daca aveti nevoie de ajutor cu un modul,  <b>nu</b> il utilizato, contactati mai bine dezvoltatorul modulului.</string>
     <string name="about_libraries_label">Librarii utilizate:</string>
 
     <!-- DownloadView -->

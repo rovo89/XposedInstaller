@@ -77,6 +77,8 @@
     <string name="settings_performance_experiment">تجربة الأداء</string>
     <string name="settings_performance_experiment_summary">إذا قمت بتمكين هذا، أداء النظام الخاص بك قد أما زيادة أو إنقاص أو البقاء نفس. لا تتردد في جربة وتقريراً عن تأثير الذي تراه (أو إذا كان هناك لا شيء على الإطلاق). كنت بحاجة إلى تثبيت الإطار وإعادة تشغيل الكمبيوتر بعد تغيير هذا.</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
 
     <!-- About tab -->
@@ -88,7 +90,6 @@
     <string name="about_version_label">إصدار من هذا التطبيق:</string>
     <string name="about_source_label">التعليمات البرمجية المصدر:</string>
     <string name="about_support_label">الحصول على الدعم في:</string>
-    <string name="about_support_warning">هذا الرابط للمثبت، وإطار <b>فقط</b>! إذا كنت بحاجة إلى مساعدة مع وحدة نمطية، <b>لا</b> استخدامها، اتصل بكاتب الوحدة النمطية بدلاً من ذلك.</string>
     <string name="about_libraries_label">المكتبات المستخدمة:</string>
 
     <!-- DownloadView -->

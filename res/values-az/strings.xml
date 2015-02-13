@@ -82,6 +82,8 @@
     <string name="settings_performance_experiment">İcra təcrübəsi</string>
     <string name="settings_performance_experiment_summary">Əgər bunu aktiv etsəniz,sistem istifadəsi zəifləyə,arta və ya olduğu kimi qala bilər. Cəhd etməkdən çəkinməyin və bu barədə məruzə verin. Bunu dəyişdiktən sonra framework\'ü yenidən quraşdırmalı və cihazı yenidən başlatmalısınız.</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Loqu oxuya bilmədi:</string>
     <string name="logs_save_failed">Loqu yaddaş kartına yaza bilmədi:</string>
@@ -96,7 +98,6 @@
     <string name="about_version_label">Proqramın versiyası:</string>
     <string name="about_source_label">Qaynaq kod:</string>
     <string name="about_support_label">Buradan yardım al:</string>
-    <string name="about_support_warning">Bu link <b>yalnızca</b> yükləyici və framework üçündür! Modulla bağlı kömək lazımdırsa, ondan istifadə etməyin, əvəzində modulun müəllifi ilə əlaqə saxlayın.</string>
     <string name="about_libraries_label">İstifadə olunmuş kitabxanalar:</string>
 
     <!-- DownloadView -->

@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Donker</string>
     <string name="settings_theme_black">Zwart (nuttig voor AMOLED schermen)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Kan logboek niet lezen:</string>
     <string name="logs_save_failed">Kan niet schrijven naar SD-kaart:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Versie van deze app:</string>
     <string name="about_source_label">Broncode:</string>
     <string name="about_support_label">Krijg ondersteuning:</string>
-    <string name="about_support_warning">Deze link is <b>enkel</b> voor deze applicatie en het Xposed Framework! Als u hulp nodig heeft met een module, gebruik in dat geval deze optie <b>niet</b>: contacteer de auteur van de betreffende module.</string>
     <string name="about_libraries_label">Gebruikte bibliotheken:</string>
 
     <!-- DownloadView -->

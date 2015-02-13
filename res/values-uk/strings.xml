@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Темна</string>
     <string name="settings_theme_black">Чорна (зручно для екранів AMOLED)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Помилка читання журналу:</string>
     <string name="logs_save_failed">Помилка запису журналу на картку SD:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Версія цього додатку:</string>
     <string name="about_source_label">Вихідний код:</string>
     <string name="about_support_label">Підтримка:</string>
-    <string name="about_support_warning">Це посилання <b>лише</b> для Xposed Installer та Фреймворк! Якщо Вам потрібна допомога з модулями, <b>не</b> користуйтеся цим посиланням, а контактуйте з автором модулю.</string>
     <string name="about_libraries_label">Використані бібліотеки:</string>
 
     <!-- DownloadView -->

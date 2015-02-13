@@ -119,6 +119,8 @@
     <string name="settings_performance_experiment">Experiment de rendiment</string>
     <string name="settings_performance_experiment_summary">Si ho activeu, el rendiment del sistema podria augmentar, disminuir o quedar-se igual. No dubteu en provar i informar dels efectes que es noten (o si no n\'hi ha cap en absolut). Cal tornar a instal·lar el framework i reiniciar després de canviar això.</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">No s\'ha pogut llegir el registre:</string>
     <string name="logs_save_failed">No s\'ha pogut escriure el registre a la targeta SD:</string>
@@ -138,7 +140,6 @@
     <string name="about_version_label">Versió d\'aquesta aplicació:</string>
     <string name="about_source_label">Codi font:</string>
     <string name="about_support_label">Per rebre suport visiti:</string>
-    <string name="about_support_warning">Aquest enllaç és <b>només</b> per l\'instal·lador i el framework! Si necessiteu ajuda amb un mòdul, <b>no</b> l\'utilitzieu, contacteu amb l\'autor del mòdul.</string>
     <string name="about_libraries_label">Llibreries utilitzades:</string>
 
     <!-- DownloadView -->

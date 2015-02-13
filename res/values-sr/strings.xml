@@ -117,6 +117,8 @@
     <string name="settings_disable_resources">Onemogući resource hooks</string>
     <string name="settings_disable_resources_summary">Radi na konfliktima sa theming endžinom\n<b>UPOZORENJE:</b> Moduli koji pokušavaju da izmene resurse neće raditi ako je ova opcija omogućena.</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Nemoguće pročitati log:</string>
     <string name="logs_save_failed">Nemoguće zapisati log na SD cartu:</string>
@@ -136,7 +138,6 @@
     <string name="about_version_label">Verzija ove aplikacije:</string>
     <string name="about_source_label">Izvor koda:</string>
     <string name="about_support_label">Podrška:</string>
-    <string name="about_support_warning">Ovo je link za instalaciju framework-a <b>samo</b>! Ako želite pomoć u vezi modula, <b>ne</b> koristite ga, kontaktirajte autore modala.</string>
     <string name="about_libraries_label">Korišćene biblioteke:</string>
 
     <!-- DownloadView -->

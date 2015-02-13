@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Karanlık</string>
     <string name="settings_theme_black">Siyah (AMOLED ekranlar için yararlı)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Log kayıtları okunamadı:</string>
     <string name="logs_save_failed">Log kayıtlarını SD karta yazamadı:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Uygulama sürümü:</string>
     <string name="about_source_label">Kaynak kodu:</string>
     <string name="about_support_label">Destek almak için:</string>
-    <string name="about_support_warning">Bu linkte <b>sadece</b>!framework dosyası ile ilgili destek bulunmakta. Modüller ile ilgili sorularınızı <b>lütfen</b> modül yapımcılarına ulaşarak sorun..</string>
     <string name="about_libraries_label">Kullanılan kütüphaneler:</string>
 
     <!-- DownloadView -->

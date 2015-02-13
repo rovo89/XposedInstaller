@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Scuro</string>
     <string name="settings_theme_black">Nero (utile per schermi AMOLED)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Impossibile leggere il log:</string>
     <string name="logs_save_failed">Impossibile scrivere il log sulla scheda SD:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Versione applicazione:</string>
     <string name="about_source_label">Codice sorgente:</string>
     <string name="about_support_label">Ottieni supporto:</string>
-    <string name="about_support_warning">Questo link è <b>solo</b> per l\'installer ed il framework! Se hai bisogno di supporto per un modulo, <b>non</b> usare questo, contatta l\'autore del modulo.</string>
     <string name="about_libraries_label">Librerie utilizzate:</string>
 
     <!-- DownloadView -->

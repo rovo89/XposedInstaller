@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Tối</string>
     <string name="settings_theme_black">Đen (phù hợp với màn hình AMOLED)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Không thể đọc nhật ký:</string>
     <string name="logs_save_failed">Không thể ghi nhật ký vào thẻ SD:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Phiên bản của ứng dụng:</string>
     <string name="about_source_label">Mã nguồn:</string>
     <string name="about_support_label">Tìm kiếm trợ giúp tại:</string>
-    <string name="about_support_warning">Đường link này <b>chỉ</b> dành cho Xposed Installer và framework! Nếu bạn cần giúp đỡ với một module nào đó, vui lòng <b>không</b> sử dụng nó mà hãy liên hệ trực tiếp với tác của module đó.</string>
     <string name="about_libraries_label">Sử dụng các thư viện:</string>
 
     <!-- DownloadView -->

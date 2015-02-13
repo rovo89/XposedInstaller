@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Sötét</string>
     <string name="settings_theme_black">Fekete (AMOLED képernyőkön hasznos)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Nem lehetett olvasni a naplót:</string>
     <string name="logs_save_failed">Nem lehetett a naplót az SD kártyára írni:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Alkalmazás verziója:</string>
     <string name="about_source_label">Forráskód:</string>
     <string name="about_support_label">Támogatás:</string>
-    <string name="about_support_warning">Ez a link <b>csak</b> a telepítőé és a keretrendszeré! Ha segítség kell egy modullal, <b>ne</b> használd, lépj kapcsolatba a modul készítőjével.</string>
     <string name="about_libraries_label">Használt könyvtárak:</string>
 
     <!-- DownloadView -->

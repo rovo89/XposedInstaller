@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Тъмна</string>
     <string name="settings_theme_black">Черна (за AMOLED екрани)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Не може да се прочете дневника:</string>
     <string name="logs_save_failed">Дневника не може да се запише на SD картата:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Версия:</string>
     <string name="about_source_label">Изходен код:</string>
     <string name="about_support_label">Поддръжка на:</string>
-    <string name="about_support_warning">Тази връзка е за инсталатора <b>само</b> на framework! Ако имате нужда от помощ с някой от модулите, <b>не</b> я използвайте, свържете се с автора на модула.</string>
     <string name="about_libraries_label">Използвани библиотеки:</string>
 
     <!-- DownloadView -->

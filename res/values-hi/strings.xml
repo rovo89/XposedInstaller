@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">अँधेर</string>
     <string name="settings_theme_black">कला (अमोलेड स्क्रीन्स के लिए उपयोगी)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">लोग पढ़ न पाए</string>
     <string name="logs_save_failed">लोग सद कार्ड पे लिख न पाए</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">वर्जन इस अप्प का:</string>
     <string name="about_source_label">सोर्से कोड:</string>
     <string name="about_support_label">सपोर्ट पाए इस लिंक पर:</string>
-    <string name="about_support_warning">यह लिंक <b>सिर्फ</b> इंस्टालर और फ्राम्वार्क के लिए है! अगर आपको मोदुले के लिए मदद चाहिए तो <b>उसे लेखक से संपर्क करे</b></string>
     <string name="about_libraries_label">इस्तमाल किये हुआ कोड संघ्रह:</string>
 
     <!-- DownloadView -->

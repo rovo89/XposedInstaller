@@ -72,6 +72,8 @@
     <string name="settings_performance_experiment">Performance experiment</string>
     <string name="settings_performance_experiment_summary">Se permitir tanto, o rendemento do sistema pode aumentar, diminuír ou permanecer o mesmo. Síntase libre para probar e informar o efecto do que é (ou se non hai ningún efecto). Ten que reinstalar o Stock Framework e reiniciar despois de cambiar esto.</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
 
     <!-- About tab -->
@@ -83,7 +85,6 @@
     <string name="about_version_label">Versión deste aplicación:</string>
     <string name="about_source_label">Código fonte:</string>
     <string name="about_support_label">Recibir apoio en:</string>
-    <string name="about_support_warning">Este enlace é <b>sólo</b> para Xposed Framework! Se precisa de axuda con un módulo, non empregue este enlace, contacta co autor do módulo.</string>
     <string name="about_libraries_label">Librerias usadas:</string>
 
     <!-- DownloadView -->

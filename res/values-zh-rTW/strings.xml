@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">暗色</string>
     <string name="settings_theme_black">黑色 (對 AMOLED 屏幕有幫助)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">無法讀取日志：</string>
     <string name="logs_save_failed">無法將日志寫入 SD 卡：</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">應用程式版本：</string>
     <string name="about_source_label">源碼：</string>
     <string name="about_support_label">獲取支持：</string>
-    <string name="about_support_warning">該連結<b>只</b>適用於安裝器和框架！如果您想獲得模組相關的説明支援，<b>不</b>要點擊它，請聯繫模組作者。</string>
     <string name="about_libraries_label">使用的庫：</string>
 
     <!-- DownloadView -->

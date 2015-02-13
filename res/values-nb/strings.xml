@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Mørk</string>
     <string name="settings_theme_black">Svart (nyttig for AMOLED-skjermer)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Kunne ikke lese logg:</string>
     <string name="logs_save_failed">Kunne ikke skrive logg til SD-kort:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Versjon av appen:</string>
     <string name="about_source_label">Kildekode:</string>
     <string name="about_support_label">Få hjelp hos:</string>
-    <string name="about_support_warning">Denne linken er <b>kun</b> for installeren og rammeverket! Hvis du trenger hjelp med en modul, så <b>ikke</b> bruk den. Kontakt modulutvikleren i stedet.</string>
     <string name="about_libraries_label">Brukte bibliotek:</string>
 
     <!-- DownloadView -->

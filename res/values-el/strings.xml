@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Σκοτεινό</string>
     <string name="settings_theme_black">Μαύρο (χρήσιμο για οθόνες AMOLED)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Αδυναμία διαβάσματος των αρχείων καταγραφής:</string>
     <string name="logs_save_failed">Αδυναμία αποθήκευσης του αρχείου καταγραφής στην κάρτα SD:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Έκδοση αυτής την εφαρμογής:</string>
     <string name="about_source_label">Source code:</string>
     <string name="about_support_label">Βρείτε υποστήριξη σε:</string>
-    <string name="about_support_warning">Αυτός ο σύνδεσμος είναι για την εγκατάσταση και το framework <b>μόνο</b>! Αν χρειάζεστε βοήθεια για κάποιο module, <b>μην</b> το χρησιμοποιήσετε, αντ\' αυτού επικοινωνήστε με τον δημιουργό του module.</string>
     <string name="about_libraries_label">Χρησιμοποιηθέντες βιβλιοθήκες:</string>
 
     <!-- DownloadView -->

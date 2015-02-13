@@ -82,6 +82,8 @@
     <string name="settings_performance_experiment">성능에 대한 실험적인 기능 들</string>
     <string name="settings_performance_experiment_summary">이를 활성화하면 Xposed 모듈의 속도가 빨라질 수도, 나빠질 수도, 별 변화가 없을 수 있습니다.\n시도해 보고 생긴 달라진 점이나 문제점을 개발자에게 전달해 완성도를 높여줄 수 있습니다.\n이를 활성화하거나 비활성화 한 뒤엔 Xposed 프레임워크를 재설치 해야 적용이 됩니다.</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">내역을 읽을 수 없습니다 : </string>
     <string name="logs_save_failed">내장 메모리에 내역을 저장할 수 없습니다 : </string>
@@ -96,7 +98,6 @@
     <string name="about_version_label">이 설치 도구의 버전 :</string>
     <string name="about_source_label">소스 코드 :</string>
     <string name="about_support_label">도움을 요청하실 곳 :</string>
-    <string name="about_support_warning">이 링크로 가실 웹페이지는 <b>오로지</b> 설치 도구와 프레임워크에 대한 대응만을 합니다!\n쓰고자 하는 모듈의 오작동에 대한 문의사항이 있다면 <b>해당 모듈의 개발자</b>에게 연락하세요.</string>
     <string name="about_libraries_label">사용된 라이브러리들 :</string>
 
     <!-- DownloadView -->

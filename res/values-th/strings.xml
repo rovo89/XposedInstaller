@@ -147,6 +147,8 @@
     <string name="settings_theme_dark">ดำมืด</string>
     <string name="settings_theme_black">ดำมืด (สำหรับหน้าจอ AMOLED)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">อ่าน log ไม่ได้:</string>
     <string name="logs_save_failed">เขียน log ไปยัง SD การ์ดไม่ได้:</string>
@@ -166,7 +168,6 @@
     <string name="about_version_label">เวอร์ชั่นของแอพ:</string>
     <string name="about_source_label">ซอร์สโค้ด:</string>
     <string name="about_support_label">รับความช่วยเหลือที่:</string>
-    <string name="about_support_warning">ลิงก์นี้สำหรับตัวติดตั้งและเฟรมเวิร์ค<b>เท่านั้น</b>! ถ้าคุณต้องการความช่ยเหลือเกี่ยวกับโมดูล <b>อย่า</b>ใช้มัน ให้ติดต่อเจ้าของโมดูลแทน</string>
     <string name="about_libraries_label">ไลบรารี่ที่ใช้:</string>
 
     <!-- DownloadView -->

@@ -18,10 +18,12 @@
     <string name="welcome_update_available">Es sind Aktualisierungen für Module verfügbar.</string>
     <string name="tabSettings">Einstellungen</string>
     <string name="tabSettingsDescription">In diesem Bereich kannst du den Xposed Installer und das Xposed-Framework anpassen.</string>
+    <string name="tabSupport">Support</string>
+    <string name="tabSupportDescription">Erhalte Unterstützung bei Problemen. Außerdem kannst du dich mit einer Spende für Xposed bedanken.</string>
     <string name="tabLogs">Logs</string>
     <string name="tabLogsDescription">Logs des Xposed-Frameworks ansehen, speichern und senden.</string>
     <string name="tabAbout">Über</string>
-    <string name="tabAboutDescription">Erfahre mehr darüber, wer hinter Xposed steckt, wo du Support für diese App erhalten kannst etc.</string>
+    <string name="tabAboutDescription">Erfahre mehr darüber, wer hinter Xposed steckt.</string>
 
     <!-- Installer tab -->
     <string name="install">Installieren/Aktualisieren</string>
@@ -149,6 +151,14 @@
     <string name="settings_theme_dark">Dunkel</string>
     <string name="settings_theme_black">Schwarz (nützlich für AMOLED-Bildschirme)</string>
 
+    <!-- Support tab -->
+    <string name="support_modules_label">Support für Module</string>
+    <string name="support_modules_description">Drücke in der Modulliste lange auf ein Modul und wähle im Kontextmenü \"%1$s\" aus.</string>
+    <string name="support_framework_label">Framework/Installer-Support</string>
+    <string name="support_faq_label">FAQ/bekannte Fehler</string>
+    <string name="support_donate_label">Spenden</string>
+    <string name="support_donate_description">Wenn du dich für Xposed bedanken möchtest, kannst du hier an rovo89 spenden:</string>
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Log konnte nicht gelesen werden:</string>
     <string name="logs_save_failed">Log konnte nicht auf der SD-Karte gespeichert werden:</string>
@@ -168,7 +178,6 @@
     <string name="about_version_label">Version dieser App:</string>
     <string name="about_source_label">Quellcode:</string>
     <string name="about_support_label">Support:</string>
-    <string name="about_support_warning">Dieser Link ist <b>ausschließlich</b> für den Installer und das Framework! Falls du Hilfe mit einem Modul benötigst, verwende <b>nicht</b> diesen Link, sondern kontaktiere den entsprechenden Modul-Entwickler.</string>
     <string name="about_libraries_label">Verwendete Bibliotheken:</string>
 
     <!-- DownloadView -->

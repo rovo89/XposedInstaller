@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">ダーク</string>
     <string name="settings_theme_black">黒(AMOLED端末におすすめ)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">ログを読み込めません:</string>
     <string name="logs_save_failed">SDカードにログを書き込めません:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">アプリのバージョン:</string>
     <string name="about_source_label">ソースコード:</string>
     <string name="about_support_label">サポート:</string>
-    <string name="about_support_warning">Xposed Installerとフレームワーク<b>専用</b>のサポートページです! モジュールの問題は<b>ここを使わずに</b>モジュールの制作者に連絡してください。</string>
     <string name="about_libraries_label">使用ライブラリ:</string>
 
     <!-- DownloadView -->

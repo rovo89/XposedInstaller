@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Tmavá</string>
     <string name="settings_theme_black">Čierna (vhodná pre AMOLED displeje)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Nemožno čítať záznam:</string>
     <string name="logs_save_failed">Nemožno zapísať záznam na kartu SD:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Verzia aplikácie:</string>
     <string name="about_source_label">Zdrojový kód:</string>
     <string name="about_support_label">Získajte podporu na:</string>
-    <string name="about_support_warning">Tento odkaz je <b>len</b> pre Installer a framework! Ak potrebujete pomoc s modulom, <b>nepoužívajte</b> ho, namiesto toho sa obráťte na autora modulu.</string>
     <string name="about_libraries_label">Použité knižnice:</string>
 
     <!-- DownloadView -->

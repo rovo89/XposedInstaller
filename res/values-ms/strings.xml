@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Gelap</string>
     <string name="settings_theme_black">Hitam (sesuai untuk AMOLED screens)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Log tidak boleh baca:</string>
     <string name="logs_save_failed">Log tidak boleh tulis ke SD kad:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Versi aplikasi ini:</string>
     <string name="about_source_label">Source Kod:</string>
     <string name="about_support_label">Dapatkan bantuan di:</string>
-    <string name="about_support_warning">Link ini untuk pemasangan dan framework <b>sahaja</b>! Jika anda perlu bantuan berkenaan modul, jangan <b>tidak</b> gunakan, hubungi pemilik module berkenaan.</string>
     <string name="about_libraries_label">Pustaka digunakan:</string>
 
     <!-- DownloadView -->

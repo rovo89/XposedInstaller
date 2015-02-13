@@ -77,6 +77,8 @@
     <string name="settings_performance_experiment">Uji coba performa</string>
     <string name="settings_performance_experiment_summary">Jika diaktifkan, performa sistem akan naik, turun, atau tetap. Cobalah dan laporkan mana yang cocok (atau tiada). Anda perlu menginstall ulang Xposed dan reboot setelah ini.</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
 
     <!-- About tab -->
@@ -88,7 +90,6 @@
     <string name="about_version_label">Versi aplikasi:</string>
     <string name="about_source_label">Source code:</string>
     <string name="about_support_label">Dapatkan bantuan di:</string>
-    <string name="about_support_warning">Link hanya untuk installer dan framework <b>saja</b>! Jika ada masalah dengan modul, <b>berhenti</b> menggunakannya, dan hubungi pengembang modul.</string>
     <string name="about_libraries_label">Library yang digunakan:</string>
 
     <!-- DownloadView -->

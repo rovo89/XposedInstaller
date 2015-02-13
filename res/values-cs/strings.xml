@@ -119,6 +119,8 @@
     <string name="settings_performance_experiment">Experimentální výkon</string>
     <string name="settings_performance_experiment_summary">Zapnutím této volby se systém může zrychlit, ale také zpomalit, nebo zůstat stejný. Tuto vlastnost je vhodné řádně otestovat. Po změně této hodnoty je nutné přeinstalovat framework a restartovat.</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Nepodařilo se načíst log:</string>
     <string name="logs_save_failed">Nepodařilo se uložit log na SD kartu:</string>
@@ -138,7 +140,6 @@
     <string name="about_version_label">Verze této aplikace:</string>
     <string name="about_source_label">Zdrojový kód:</string>
     <string name="about_support_label">Podpora:</string>
-    <string name="about_support_warning">Tento odkaz je určen <b>pouze</b> pro framework a instalátor! Pro podporu ke konkrétnímu modulu je <b>nutné</b> kontaktovat jeho vývojáře.</string>
     <string name="about_libraries_label">Použité knihovny:</string>
 
     <!-- DownloadView -->

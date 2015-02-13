@@ -149,6 +149,8 @@
     <string name="settings_theme_dark">Oscura</string>
     <string name="settings_theme_black">Negra (recomendada para pantallas AMOLED)</string>
 
+    <!-- Support tab -->
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">No se pudo leer el log:</string>
     <string name="logs_save_failed">No se pudo escribir el log en la memoria SD:</string>
@@ -168,7 +170,6 @@
     <string name="about_version_label">Versión de la aplicación:</string>
     <string name="about_source_label">Código fuente:</string>
     <string name="about_support_label">Recibe soporte en:</string>
-    <string name="about_support_warning">Este enlace es <b>sólo</b> para Xposed Framework! Si necesita ayuda con un módulo, <b>no</b> use este enlace, contacte con el autor del módulo.</string>
     <string name="about_libraries_label">Librerias usadas:</string>
 
     <!-- DownloadView -->
