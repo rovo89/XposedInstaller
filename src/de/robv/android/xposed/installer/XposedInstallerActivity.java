@@ -16,6 +16,7 @@ public class XposedInstallerActivity extends XposedDropdownNavActivity {
 		TABS.put("modules", TAB_MODULES);
 		TABS.put("download", TAB_DOWNLOAD);
 		TABS.put("logs", TAB_LOGS);
+		TABS.put("support", TAB_SUPPORT);
 		TABS.put("settings", TAB_SETTINGS);
 		TABS.put("about", TAB_ABOUT);
 	}

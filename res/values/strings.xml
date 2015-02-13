@@ -18,6 +18,8 @@
     <string name="welcome_update_available">One or more update(s) for modules available.</string>
     <string name="tabSettings">Settings</string>
     <string name="tabSettingsDescription">Go to this section to configure the Xposed Installer and framework.</string>
+    <string name="tabSupport">Support</string>
+    <string name="tabSupportDescription">Find help for Xposed-related issues. You can also donate to say thanks for Xposed.</string>
     <string name="tabLogs">Logs</string>
     <string name="tabLogsDescription">Display and save/send logs of the Xposed framework.</string>
     <string name="tabAbout">About</string>
@@ -150,6 +152,14 @@
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_theme_black">Black (useful for AMOLED screens)</string>
 
+    <!-- Support tab -->
+    <string name="support_modules_label">Support for modules</string>
+    <string name="support_modules_description">Long-click any module in the modules list and select \"%1$s\".</string>
+    <string name="support_framework_label">Framework/Installer support</string>
+    <string name="support_faq_label">FAQ/known issues</string>
+    <string name="support_donate_label">Donate</string>
+    <string name="support_donate_description">If you would like to say thanks for Xposed, you can donate to rovo89 here:</string>
+
     <!-- Logs tab  -->
     <string name="logs_load_failed">Could not read log:</string>
     <string name="logs_save_failed">Could not write log to SD card:</string>
@@ -169,7 +179,6 @@
     <string name="about_version_label">Version of this app:</string>
     <string name="about_source_label">Source code:</string>
     <string name="about_support_label">Get support at:</string>
-    <string name="about_support_warning">This link is for the installer and the framework <b>only</b>! If you need help with a module, do <b>not</b> use it, contact the module author instead.</string>
     <string name="about_libraries_label">Used libraries:</string>
 
     <!-- DownloadView -->

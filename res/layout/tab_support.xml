@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutFragment" >
+    tools:context=".SupportFragment" >
 
     <LinearLayout
         android:id="@android:id/content"
@@ -15,71 +15,64 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/about_developers_label"
+            android:text="@string/support_modules_label"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/about_developers"
+            android:id="@+id/tab_support_module_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/about_developers"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <TextView
-            android:id="@+id/about_translator_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/about_translator_label"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/about_translator"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/translator"
+            android:text="@string/support_modules_description"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="@string/about_version_label"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <TextView
-            android:id="@+id/version"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/about_source_label"
+            android:text="@string/support_framework_label"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autoLink="web"
-            android:text="@string/about_source"
+            android:text="@string/about_support"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="@string/about_libraries_label"
+            android:text="@string/support_faq_label"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/about_libraries"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/about_libraries"
+            android:autoLink="web"
+            android:text="@string/support_faq_url"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/support_donate_label"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/support_donate_description"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="web"
+            android:text="@string/support_donate_url"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
     </LinearLayout>
 
 </ScrollView>

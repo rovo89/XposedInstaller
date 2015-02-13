@@ -21,8 +21,9 @@ public abstract class XposedDropdownNavActivity extends XposedBaseActivity {
 	public static final int TAB_MODULES = 1;
 	public static final int TAB_DOWNLOAD = 2;
 	public static final int TAB_SETTINGS = 3;
-	public static final int TAB_LOGS = 4;
-	public static final int TAB_ABOUT = 5;
+	public static final int TAB_SUPPORT = 4;
+	public static final int TAB_LOGS = 5;
+	public static final int TAB_ABOUT = 6;
 	public static final int TAB_COUNT = TAB_ABOUT + 1;
 
 	protected int currentNavItem = -1;
@@ -45,6 +46,7 @@ public abstract class XposedDropdownNavActivity extends XposedBaseActivity {
 			navigationItemList.add(makeNavigationItem(getString(R.string.tabModules), ModulesFragment.class));
 			navigationItemList.add(makeNavigationItem(getString(R.string.tabDownload), DownloadFragment.class));
 			navigationItemList.add(makeNavigationItem(getString(R.string.tabSettings), SettingsFragment.class));
+			navigationItemList.add(makeNavigationItem(getString(R.string.tabSupport), SupportFragment.class));
 			navigationItemList.add(makeNavigationItem(getString(R.string.tabLogs), LogsFragment.class));
 			navigationItemList.add(makeNavigationItem(getString(R.string.tabAbout), AboutFragment.class));
 		}
