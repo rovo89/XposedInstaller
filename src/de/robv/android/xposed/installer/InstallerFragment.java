@@ -608,8 +608,10 @@ public class InstallerFragment extends Fragment {
 	private boolean install() {
 		final int installMode = getInstallMode();
 
-		if (!startShell())
-			return false;
+		if (installMode != INSTALL_MODE_RECOVERY_MANUAL) {
+			if (!startShell())
+				return false;
+		}
 
 		List<String> messages = new LinkedList<String>();
 		boolean showAlert = true;
@@ -696,7 +698,8 @@ public class InstallerFragment extends Fragment {
 				return false;
 			}
 
-			mRootUtil.executeWithBusybox("sync", messages);
+			if (installMode != INSTALL_MODE_RECOVERY_MANUAL) 
+				mRootUtil.executeWithBusybox("sync", messages);
 
 			showAlert = false;
 			messages.add("");
