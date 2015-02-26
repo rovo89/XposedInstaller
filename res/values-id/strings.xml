@@ -2,6 +2,9 @@
 <resources>
 
     <!-- General/various strings -->
+    <string name="menuSend">Kirim</string>
+    <string name="menuSaveToSd">Simpan ke SD card</string>
+    <string name="xposed_not_active">Versi terbaru Xposed belum aktif saat ini. Apakah Anda telah menginstall framework dan reboot?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Selamat datang di <b>Installer Xposed</b>!\nPilih pilihan Anda:</string>
@@ -15,6 +18,8 @@
     <string name="welcome_update_available">Update tersedia untuk modul.</string>
     <string name="tabSettings">Pengaturan</string>
     <string name="tabSettingsDescription">Tempat ini mengatur Xposed dan framework.</string>
+    <string name="tabLogs">Logs</string>
+    <string name="tabLogsDescription">Menampilkan dan simpan/kirim log dari Xposed framework.</string>
     <string name="tabAbout">Tentang</string>
     <string name="tabAboutDescription">Ketahui siapa yang membuat Xposed, dan di mana Anda bisa mendapat bantuan, dll.</string>
 
@@ -24,11 +29,25 @@
     <string name="installedVersion">aktif</string>
     <string name="latestVersion">tergabung</string>
     <string name="versions">Versi:</string>
+    <string name="install_header_reboot">Reboot</string>
     <string name="soft_reboot">Reboot cepat</string>
     <string name="reboot">Reboot</string>
     <string name="areyousure">Anda yakin?</string>
     <string name="phone_not_compatible">Xposed masih belum tersedia untuk versi Android SDK %1$d atau arsitektur CPU Anda (%2$s).</string>
     <string name="not_tested_but_compatible">Xposed belum dicoba di versi Android SDK %d, tetapi mungkin bekerja. Anda dapat mencobanya jika Anda berani.</string>
+    <string name="reboot_failed">Reboot gagal. Silakan reboot dengan menu bawaan.</string>
+    <string name="auto_flash_note">%s akan di-flash secara otomatis saat Anda tekan "OK".</string>
+    <string name="manual_flash_note">Silakan flash %s dari SD card untuk menyelesaikan operasi.</string>
+    <string name="reboot_confirmation">Apakah Anda mau reboot sekarang?</string>
+    <string name="reboot_recovery_confirmation">Apakah Anda mau reboot ke recovery sekarang?</string>
+    <string name="install_warning_title">Hati-hati!</string>
+    <string name="install_warning">Dalam beberapa kasus, Anda mungkin tak dapat boot lagi setelah memasang Xposed.\n\nJika Anda tak pernah mendengar tentang \"soft brick\" dan \"bootloop\" sebelumnya atau bila Anda tak tahu cara membalikkan keadaan dari situasi tersebut, <b>JANGAN</b> install Xposed!\n\nDalam situasi apapun, melakukan backup terbaru sangat disarankan.</string>
+    <string name="dont_show_again">Don\'t show this again</string>
+    <string name="install_known_issue">Ada isu yang diketahui (\"%s\") dengan ROM Anda. Memasang Xposed dapat gagal atau menyebabkan masalah. Klik di sini untuk detil isu.</string>
+    <string name="install_reverted">app_process version \"%1$s\" telah dipasang sebelumnya, namun versi \"%2$s\" ditemukan sekarang. Jika Anda tak ingin berkas lawas untuk direstorasi, mungkin Anda ingin mencoba instalasi via recovery (otomatis atau manual).</string>
+    <string name="uninstall_reverted">app_process telah dicopot sebelumnya, namun versi \"%s\" ditemukan sekarang. Jika Anda tak ingin berkas lawas untuk direstorasi, mungkin Anda ingin mencoba instalasi via recovery (otomatis atau manual).</string>
+    <string name="tap_to_dismiss">Sentuh untuk sembunyikan</string>
+    <string name="sdcard_location">SD card: %s</string>
 
     <!-- File operations -->
 
@@ -78,13 +97,21 @@
     <string name="settings_performance_experiment_summary">Jika diaktifkan, performa sistem akan naik, turun, atau tetap. Cobalah dan laporkan mana yang cocok (atau tiada). Anda perlu menginstall ulang Xposed dan reboot setelah ini.</string>
 
     <!-- Logs tab  -->
+    <string name="logs_load_failed">Log tak dapat dibaca:</string>
+    <string name="logs_save_failed">Log tak dapat ditulis ke SD card:</string>
+    <string name="sdcard_not_writable">SD card tak ditemukan atau tak dapat ditulis</string>
+    <string name="log_too_large">Ukuran log lebih besar dari %1$,d kB, melompati %2$,d kB awal</string>
+    <string name="menuClearLog">Hapus log sekarang</string>
+    <string name="logs_cleared">Log berhasil dihapus</string>
+    <string name="logs_clear_failed">Tak dapat menghapus log:</string>
+    <string name="log_is_empty">Log kosong</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Pengembang utama:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Tolong <b>jangan</b> menghubungi kami secara langsung, gunakan link dibawah.</string>
     <string name="about_translator_label">Penerjemah:</string>
-    <string name="translator">AngSanley</string>
+    <string name="translator">AngSanley, Rilut</string>
     <string name="about_version_label">Versi aplikasi:</string>
     <string name="about_source_label">Source code:</string>
     <string name="about_support_label">Dapatkan bantuan di:</string>
