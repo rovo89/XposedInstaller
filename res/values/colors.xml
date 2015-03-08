@@ -15,13 +15,17 @@
     <color name="card_background_light">#fff</color>
     <color name="card_background_pressed_light">#dfdfdf</color>
     <color name="card_shadow_light">#dbdbdb</color>
-    <color name="pager_tab_strip_bg_light">#222</color>
+    <color name="pager_tab_strip_bg_light">#ff03a9f4</color>
+    <color name="pager_tab_strip_bottom_bg_light">#ffcccccc</color>
+    <color name="download_details_light">#ff444444</color>
 
     <!-- dark theme -->
     <color name="card_background_dark">#363636</color>
     <color name="card_background_pressed_dark">#505050</color>
     <color name="card_shadow_dark">#161616</color>
-    <color name="pager_tab_strip_bg_dark">#222</color>
+    <color name="pager_tab_strip_bg_dark">#ff03a9f4</color>
+    <color name="pager_tab_strip_bottom_bg_dark">#ff212121</color>
+    <color name="download_details_light">#ffdddddd</color>
 
     <!-- black theme -->
     <color name="app_background_black">#000000</color>
