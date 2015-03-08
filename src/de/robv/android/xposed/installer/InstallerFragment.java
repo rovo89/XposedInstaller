@@ -20,6 +20,7 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -513,7 +514,8 @@ public class InstallerFragment extends Fragment {
 
 	private int getInstalledAppProcessVersion() {
 		try {
-			return getAppProcessVersion(new FileInputStream("/system/bin/app_process"));
+			String filename = "/system/bin/" + ((Build.VERSION.SDK_INT >= 21) ? "app_process32_xposed" : "app_process");
+			return getAppProcessVersion(new FileInputStream(filename));
 		} catch (IOException e) {
 			return 0;
 		}
