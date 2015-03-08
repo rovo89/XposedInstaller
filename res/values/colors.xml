@@ -25,7 +25,7 @@
     <color name="card_shadow_dark">#161616</color>
     <color name="pager_tab_strip_bg_dark">#ff03a9f4</color>
     <color name="pager_tab_strip_bottom_bg_dark">#ff212121</color>
-    <color name="download_details_light">#ffdddddd</color>
+    <color name="download_details_dark">#ffdddddd</color>
 
     <!-- black theme -->
     <color name="app_background_black">#000000</color>
