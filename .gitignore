@@ -1,8 +1,11 @@
 .idea/
+.gradle/
 bin/
 gen/
 out/
+build/
 *.apk
 *.iml
 proguard/
 proguard_logs/
+local.properties
