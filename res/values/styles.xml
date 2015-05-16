@@ -6,7 +6,7 @@
     <style name="Theme.Base.Dark" parent="android:Theme.Holo" />
 
 	
-	<style
+    <style
         name="Theme.Light"
         parent="@style/Theme.Base.Light" >
         <item name="android:windowBackground">@color/app_background_light</item>
@@ -28,7 +28,8 @@
     </style>
 
     <style
-        name="Theme.Dark.Black" parent="@style/Theme.Dark" >
+        name="Theme.Dark.Black"
+        parent="@style/Theme.Dark" >
         <item name="android:windowBackground">@color/app_background_black</item>
         <item name="background_card">@drawable/background_card_black</item>
         <item name="background_card_pressed">@drawable/background_card_pressed_black</item>
