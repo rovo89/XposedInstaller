@@ -207,13 +207,9 @@ public class RepoLoader {
 				mPref.edit().putLong("last_update_check", System.currentTimeMillis()).commit();
 
 				if (!messages.isEmpty()) {
-					XposedApp.runOnUiThread(new Runnable() {
-						public void run() {
-							for (String message : messages) {
-								Toast.makeText(mApp, message, Toast.LENGTH_LONG).show();
-							}
-						}
-					});
+					for (String message : messages) {
+						Log.e(XposedApp.TAG, message);
+					}
 				}
 
 				if (hasChanged)
