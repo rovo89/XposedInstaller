@@ -2,17 +2,11 @@ package de.robv.android.xposed.installer;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-import java.util.jar.JarEntry;
-import java.util.jar.JarInputStream;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -20,7 +14,6 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -31,29 +24,23 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import de.robv.android.xposed.installer.util.AssetUtil;
-import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class InstallerFragment extends Fragment {
-	private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
 	private String APP_PROCESS_NAME = null;
 	private final String BINARIES_FOLDER = AssetUtil.getBinariesFolder();
 	private static final String JAR_PATH = "/system/framework/XposedBridge.jar";
 	private static final String JAR_PATH_NEWVERSION = JAR_PATH + ".newversion";
-	private static int JAR_LATEST_VERSION = -1;
 	private final LinkedList<String> mCompatibilityErrors = new LinkedList<String>();
 	private RootUtil mRootUtil = new RootUtil();
 	private boolean mHadSegmentationFault = false;
 
 	private static final String PREF_LAST_SEEN_BINARY = "last_seen_binary";
-	private int appProcessInstalledVersion;
 
 	private ProgressDialog dlgProgress;
-	private TextView txtAppProcessInstalledVersion, txtAppProcessLatestVersion;
-	private TextView txtJarInstalledVersion, txtJarLatestVersion;
 	private TextView txtInstallError, txtKnownIssue;
 	private Button btnInstallMode, btnInstall, btnUninstall, btnSoftReboot, btnReboot;
 
@@ -76,11 +63,6 @@ public class InstallerFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_installer, container, false);
-
-		txtAppProcessInstalledVersion = (TextView) v.findViewById(R.id.app_process_installed_version);
-		txtAppProcessLatestVersion = (TextView) v.findViewById(R.id.app_process_latest_version);
-		txtJarInstalledVersion = (TextView) v.findViewById(R.id.jar_installed_version);
-		txtJarLatestVersion = (TextView) v.findViewById(R.id.jar_latest_version);
 
 		btnInstallMode = (Button) v.findViewById(R.id.framework_install_mode);
 		txtInstallError = (TextView) v.findViewById(R.id.framework_install_errors);
@@ -122,8 +104,6 @@ public class InstallerFragment extends Fragment {
 			}
 		}
 		*/
-
-		refreshVersions();
 
 		// FIXME
 		/*
@@ -184,8 +164,22 @@ public class InstallerFragment extends Fragment {
 		});
 		*/
 
-		txtInstallError.setText(R.string.installation_lollipop);
+		String installedXposedVersion = XposedApp.getXposedProp().get("version");
+		if (installedXposedVersion == null) {
+			txtInstallError.setText(R.string.installation_lollipop);
+			txtInstallError.setTextColor(getResources().getColor(R.color.warning));
+		} else {
+			int installedXposedVersionInt = extractIntPart(installedXposedVersion);
+			if (installedXposedVersionInt == XposedApp.getActiveXposedVersion()) {
+				txtInstallError.setText(getString(R.string.installed_lollipop, installedXposedVersion));
+				txtInstallError.setTextColor(getResources().getColor(R.color.darker_green));
+			} else {
+				txtInstallError.setText(getString(R.string.installed_lollipop_inactive, installedXposedVersion));
+				txtInstallError.setTextColor(getResources().getColor(R.color.warning));
+			}
+		}
 		txtInstallError.setVisibility(View.VISIBLE);
+
 		btnInstall.setEnabled(false);
 		btnInstallMode.setEnabled(false);
 		btnUninstall.setEnabled(false);
@@ -238,6 +232,7 @@ public class InstallerFragment extends Fragment {
 		 *   >= 0    - Make sure a downgrade or non-xposed binary doesn't occur
 		 *             Also auto-update the value to the latest version found
 		 */
+		/*
 		int lastSeenBinary = XposedApp.getPreferences().getInt(PREF_LAST_SEEN_BINARY, Integer.MIN_VALUE);
 		if (lastSeenBinary != Integer.MIN_VALUE) {
 			final View vInstallRevertedWarning = v.findViewById(R.id.install_reverted_warning);
@@ -269,8 +264,21 @@ public class InstallerFragment extends Fragment {
 				// All is ok
 			}
 		}
+		*/
 
 		return v;
+	}
+
+	private static int extractIntPart(String str) {
+		int result = 0, length = str.length();
+		for (int offset = 0; offset < length; offset++) {
+			char c = str.charAt(offset);
+			if ('0' <= c && c <= '9')
+				result = result * 10 + (c - '0');
+			else
+				break;
+		}
+		return result;
 	}
 
 	@Override
@@ -336,28 +344,6 @@ public class InstallerFragment extends Fragment {
 		protected abstract void onAsyncClick(DialogInterface dialog, int which);
 	}
 
-	private void refreshVersions() {
-		appProcessInstalledVersion = getInstalledAppProcessVersion();
-		int appProcessLatestVersion = getLatestAppProcessVersion();
-		int jarInstalledVersion = getJarInstalledVersion();
-		int jarLatestVersion = getJarLatestVersion();
-
-		txtAppProcessInstalledVersion.setText(versionToText(appProcessInstalledVersion));
-		txtAppProcessLatestVersion.setText(versionToText(appProcessLatestVersion));
-		txtJarInstalledVersion.setText(versionToText(jarInstalledVersion));
-		txtJarLatestVersion.setText(versionToText(jarLatestVersion));
-
-		if (appProcessInstalledVersion < appProcessLatestVersion)
-			txtAppProcessInstalledVersion.setTextColor(getResources().getColor(R.color.warning));
-		else
-			txtAppProcessInstalledVersion.setTextColor(getResources().getColor(R.color.darker_green));
-
-		if (jarInstalledVersion < jarLatestVersion)
-			txtJarInstalledVersion.setTextColor(getResources().getColor(R.color.warning));
-		else
-			txtJarInstalledVersion.setTextColor(getResources().getColor(R.color.darker_green));
-	}
-
 	private String versionToText(int version) {
 		return (version == 0) ? getString(R.string.none) : Integer.toString(version);
 	}
@@ -401,7 +387,7 @@ public class InstallerFragment extends Fragment {
 			txtKnownIssue.setVisibility(View.GONE);
 			// FIXME
 			//btnInstall.setTextColor(ThemeUtil.getThemeColor(getActivity(), android.R.attr.textColorPrimary));
-			txtInstallError.setTextColor(getResources().getColor(R.color.warning));
+			//txtInstallError.setTextColor(getResources().getColor(R.color.warning));
 		}
 	}
 
@@ -510,86 +496,6 @@ public class InstallerFragment extends Fragment {
 			mCompatibilityErrors.add(e.getMessage());
 			return false;
 		}
-	}
-
-	private int getInstalledAppProcessVersion() {
-		try {
-			String filename = "/system/bin/" + ((Build.VERSION.SDK_INT >= 21) ? "app_process32_xposed" : "app_process");
-			return getAppProcessVersion(new FileInputStream(filename));
-		} catch (IOException e) {
-			return 0;
-		}
-	}
-
-	private int getLatestAppProcessVersion() {
-		if (APP_PROCESS_NAME == null)
-			return 0;
-
-		try {
-			return getAppProcessVersion(getActivity().getAssets().open(APP_PROCESS_NAME));
-		} catch (Exception e) {
-			return 0;
-		}
-	}
-
-	private int getAppProcessVersion(InputStream is) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-		String line;
-		while ((line = br.readLine()) != null) {
-			if (!line.contains("Xposed"))
-				continue;
-			Matcher m = PATTERN_APP_PROCESS_VERSION.matcher(line);
-			if (m.find()) {
-				is.close();
-				return ModuleUtil.extractIntPart(m.group(1));
-			}
-		}
-		is.close();
-		return 0;
-	}
-
-	public static int getJarInstalledVersion() {
-		try {
-			if (new File(JAR_PATH_NEWVERSION).exists())
-				return getJarVersion(new FileInputStream(JAR_PATH_NEWVERSION));
-			else
-				return getJarVersion(new FileInputStream(JAR_PATH));
-		} catch (IOException e) {
-			return 0;
-		}
-	}
-
-	public static int getJarLatestVersion() {
-		if (JAR_LATEST_VERSION == -1) {
-			try {
-				JAR_LATEST_VERSION = getJarVersion(XposedApp.getInstance().getAssets().open("XposedBridge.jar"));
-			} catch (IOException e) {
-				JAR_LATEST_VERSION = 0;
-			}
-		}
-		return JAR_LATEST_VERSION;
-	}
-
-	private static int getJarVersion(InputStream is) throws IOException {
-		JarInputStream jis = new JarInputStream(is);
-		JarEntry entry;
-		try {
-			while ((entry = jis.getNextJarEntry()) != null) {
-				if (!entry.getName().equals("assets/VERSION"))
-					continue;
-
-				BufferedReader br = new BufferedReader(new InputStreamReader(jis));
-				String version = br.readLine();
-				is.close();
-				br.close();
-				return ModuleUtil.extractIntPart(version);
-			}
-		} finally {
-			try {
-				jis.close();
-			} catch (Exception e) { }
-		}
-		return 0;
 	}
 
 	private boolean startShell() {

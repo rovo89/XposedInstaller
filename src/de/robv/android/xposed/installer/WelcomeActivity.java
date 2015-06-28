@@ -108,7 +108,7 @@ public class WelcomeActivity extends XposedBaseActivity implements ModuleListene
 			String frameworkUpdateVersion = null;
 			boolean moduleUpdateAvailable = false;
 			if (position == XposedInstallerActivity.TAB_INSTALL) {
-				xposedActive = XposedApp.getActiveXposedVersion() >= InstallerFragment.getJarLatestVersion();
+				xposedActive = XposedApp.getActiveXposedVersion() > 0;
 			} else if (position == XposedInstallerActivity.TAB_DOWNLOAD) {
 				frameworkUpdateVersion = mRepoLoader.getFrameworkUpdateVersion();
 				moduleUpdateAvailable = mRepoLoader.hasModuleUpdates();

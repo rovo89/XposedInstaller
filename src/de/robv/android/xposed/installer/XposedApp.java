@@ -1,6 +1,14 @@
 package de.robv.android.xposed.installer;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -14,6 +22,7 @@ import android.os.Environment;
 import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.NotificationUtil;
@@ -24,6 +33,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
 	@SuppressLint("SdCardPath")
 	public static final String BASE_DIR = "/data/data/de.robv.android.xposed.installer/";
+	private static final File XPOSED_PROP_FILE = new File("/system/xposed.prop");
 
 	private static XposedApp mInstance = null;
 	private static Thread mUiThread;
@@ -32,6 +42,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 	private boolean mIsUiLoaded = false;
 	private Activity mCurrentActivity = null;
 	private SharedPreferences mPref;
+	private Map<String, String> mXposedProp;
 
 	public void onCreate() {
 		super.onCreate();
@@ -40,6 +51,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 		mMainHandler = new Handler();
 
 		mPref = PreferenceManager.getDefaultSharedPreferences(this);
+		reloadXposedProp();
 		createDirectories();
 		cleanup();
 		NotificationUtil.init();
@@ -94,6 +106,53 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 	// This method is hooked by XposedBridge to return the current version
 	public static int getActiveXposedVersion() {
 		return -1;
+	}
+
+	private void reloadXposedProp() {
+		Map<String, String> map = Collections.emptyMap();
+		if (XPOSED_PROP_FILE.canRead()) {
+			FileInputStream is = null;
+			try {
+				is = new FileInputStream(XPOSED_PROP_FILE);
+				map = parseXposedProp(is);
+			} catch (IOException e) {
+				Log.e(XposedApp.TAG, "Could not read " + XPOSED_PROP_FILE.getPath(), e);
+			} finally {
+				if (is != null) {
+					try {
+						is.close();
+					} catch (IOException ignored) {}
+				}
+			}
+		}
+
+		synchronized (this) {
+			mXposedProp = map;
+		}
+	}
+
+	private Map<String, String> parseXposedProp(InputStream stream) throws IOException {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+		Map<String, String> map = new LinkedHashMap<String, String>();
+		String line;
+		while ((line = reader.readLine()) != null) {
+			String[] parts = line.split("=", 2);
+			if (parts.length != 2)
+				continue;
+
+			String key = parts[0].trim();
+			if (key.charAt(0) == '#')
+				continue;
+
+			map.put(key, parts[1].trim());
+		}
+		return Collections.unmodifiableMap(map);
+	}
+
+	public static Map<String, String> getXposedProp() {
+		synchronized (mInstance) {
+			return mInstance.mXposedProp;
+		}
 	}
 
 	public boolean areDownloadsEnabled() {

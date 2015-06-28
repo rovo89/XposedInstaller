@@ -18,7 +18,6 @@ import android.graphics.drawable.Drawable;
 import android.os.FileUtils;
 import android.util.Log;
 import android.widget.Toast;
-import de.robv.android.xposed.installer.InstallerFragment;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
@@ -191,9 +190,9 @@ public final class ModuleUtil {
 	public synchronized void updateModulesList(boolean showToast) {
 		try {
 			Log.i(XposedApp.TAG, "updating modules.list");
-			int installedXposedVersion = InstallerFragment.getJarInstalledVersion();
+			int installedXposedVersion = XposedApp.getActiveXposedVersion();
 			if (installedXposedVersion == 0) {
-				Toast.makeText(mApp, "The xposed framework is not installed", Toast.LENGTH_SHORT).show();
+				Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
 				return;
 			}
 
