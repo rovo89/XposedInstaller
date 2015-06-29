@@ -7,7 +7,7 @@
     <string name="xposed_not_active">最新版本的 Xposed 当前未激活。您是否已安装框架并重启？</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">欢迎使用 <b>Xposed安装器</b>\n请选择您想进行的操作：</string>
+    <string name="welcome">欢迎使用 <b>Xposed 安装器</b>\n请选择您想进行的操作：</string>
     <string name="tabInstall">框架</string>
     <string name="tabInstallDescription">此处您能管理 Xposed 框架，任何模块的正常运行都需要它。</string>
     <string name="tabModules">模块</string>
@@ -137,8 +137,8 @@
     <string name="settings_group_installation">安装</string>
     <string name="settings_install_mode">安装方式</string>
     <string name="install_mode_normal">经典 (直接写入 /system)</string>
-    <string name="install_mode_recovery_auto">Recovery (自动刷入 zip 包)</string>
-    <string name="install_mode_recovery_manual">Recovery (将 zip 写入 SD 卡以手动刷入)</string>
+    <string name="install_mode_recovery_auto">Recovery (自动刷入 zip 文件)</string>
+    <string name="install_mode_recovery_manual">Recovery (将 zip 文件写入 SD 卡以手动刷入)</string>
     <string name="settings_group_download">下载</string>
     <string name="settings_enable_downloads">启用下载</string>
     <string name="settings_enable_downloads_summary">允许 Xposed 安装器检查更新和新模块</string>
