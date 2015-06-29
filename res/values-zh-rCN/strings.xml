@@ -50,7 +50,9 @@
     <string name="uninstall_reverted">app_process 之前已被卸载，现在却找到了版本为 \"%s\" 的。如果您不希望一个旧文件被还原，也许您应该试试通过 Recovery 卸载（自动或手动）。</string>
     <string name="tap_to_dismiss">轻按以消除</string>
     <string name="sdcard_location">SD 卡: %s</string>
-    <string name="installation_lollipop">目前只能通过 Recovery 手动安装。</string>
+    <string name="installation_lollipop">Xposed 框架未安装。请从 XDA 论坛下载最新的 ZIP 文件并在 Recovery 中手动刷入。</string>
+    <string name="installed_lollipop">Xposed 框架版本 %s 已激活。</string>
+    <string name="installed_lollipop_inactive">Xposed 框架版本 %s 已安装，但未激活。请查看日志以获得详细信息。</string>
 
     <!-- File operations -->
     <string name="root_failed">无法获取 root 权限。\n\n请确认您的设备已经正确的 root 以及您没有屏蔽 shell 命令。</string>
