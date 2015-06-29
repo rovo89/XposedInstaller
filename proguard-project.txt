@@ -1,7 +1,7 @@
 -dontobfuscate
 
 # These are mostly picked from proguard-android-optimize.txt
--optimizations !code/allocation/variable,!code/simplification/cast,!field/*,!class/merging/*
+-optimizations !code/allocation/variable,!code/simplification/cast,!field/*,!class/merging/*,!method/propagation/returnvalue,!method/inlining/*
 -optimizationpasses 5
 -allowaccessmodification
 -dontpreverify
