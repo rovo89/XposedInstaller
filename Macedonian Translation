@@ -11,10 +11,10 @@
     <string name="tabInstall">Framework</string>
     <string name="tabInstallDescription">Овде можете да управувате со Xposed framework, што е неопходно за модулите да работат.</string>
     <string name="tabModules">Модули</string>
-    <string name="tabModulesDescription">Само framework-от не додава никаква функционалност. За тоа ви требаат модули. Во оваа секција можете да ги активирате модулите по нивната инсталација.</string>
+    <string name="tabModulesDescription">Само framework-от не додава никаква функционалност. За тоа Ви требаат модули. Во оваа секција можете да ги активирате модулите по нивната инсталација.</string>
     <string name="tabDownload">Преземи</string>
-    <string name="tabDownloadDescription">Овој дел ви дава пристап до складиштето со модули, каде што можете да ги барате и преземете истите, а исто така да ги одржувате обновени.</string>
-    <string name="welcome_framework_update_available">Достапна е обнова за Xposed Framework (%s).</string>
+    <string name="tabDownloadDescription">Овој дел Ви дава пристап до складиштето со модули, каде што можете да ги барате и преземете истите, а исто така да ги одржувате обновени.</string>
+    <string name="welcome_framework_update_available">Достапна е надградба за Xposed Framework (%s).</string>
     <string name="welcome_update_available">Достапна е една или повеќе надградби за модулите.</string>
     <string name="tabSettings">Подесувања</string>
     <string name="tabSettingsDescription">Одете во овој дел за да го конфигурирате Xposed Installer-от и framework-от</string>
@@ -44,20 +44,20 @@
     <string name="install_warning">Во некои случаи е можно, по инсталирањето на Xposed Вашиот уред да не стартува.\n\nАко никогаш не сте слушнале за \"soft brick\" и \"bootloop\" претходно или ако не знаете да најдете решение во таква ситуација, <b>НЕ</b> го инсталирајте Xposed!\n\nВо секој случај се препорачува да имате неодамнешна резервна копија од системот.</string>
     <string name="dont_show_again">Не го прикажувај ова повторно</string>
     <string name="install_known_issue">Се чини дека постои познат проблем(\"%s\") со вашиот ROM. Инсталирањето на Xposed може да не работи или да доведе до некои проблеми. Кликнете тука за повеќе информации во врска со овој проблем.</string>
-    <string name="install_reverted">app_process верзија \"%1$s\" е веќе инсталирана, но е откриена верзија \"%2$s\". Ако не очекувате да се врати старата датотека, може да се обидете со инсталација во recovery (автоматски или рачно).</string>
+    <string name="install_reverted">app_process верзија \"%1$s\" е веќе инсталирана, но откриена е верзија \"%2$s\". Ако не очекувате да се врати старата датотека, може да се обидете со инсталација во recovery (автоматски или рачно).</string>
     <string name="uninstall_reverted">app_process беше отстранета претходно, но откриена е верзија \"%s\". Ако не очекувате да се врати старата датотека, може да се обидете да ја остраните во recovery (автоматски или рачно).</string>
     <string name="tap_to_dismiss">Допрете да го разрешите</string>
     <string name="sdcard_location">SD карта: %s</string>
 
     <!-- File operations -->
-    <string name="root_failed">Нема root пристап.\n\nОсигурајте се дека вашиот уред е успешно рутиран и не сте ги блокирале shell командите.</string>
+    <string name="root_failed">Нема root пристап.\n\nОсигурајте се дека Вашиот уред е успешно рутиран и не сте ги блокирале shell командите.</string>
     <string name="file_extract_failed">Отпакувањето не е возможно %s</string>
     <string name="file_mounting_writable">Монтирање на %s за запис&#8230;</string>
     <string name="file_mount_writable_failed">Не може да се монтира %s за запис</string>
     <string name="file_trying_to_continue">Обид да се продолжи без оглед&#8230;</string>
     <string name="file_backup_already_exists">Резервната копија постои во %s</string>
     <string name="file_backup_not_found">Не е најдена резервна копија во %s</string>
-    <string name="file_backup_failed">Не може да се создаде резервна копија во %s</string>
+    <string name="file_backup_failed">Не може да се креира резервна копија во %s</string>
     <string name="file_backup_successful">Креирана е резервна копија во %s</string>
     <string name="file_backup_restoring">Враќање на резервна копија од %s</string>
     <string name="file_copying">Копирање %s&#8230;</string>
@@ -120,9 +120,9 @@
     <string name="download_section_update_available">Достапно е обновување</string>
     <string name="download_section_installed">Инсталирано</string>
     <string name="download_section_not_installed">Не е инсталирано</string>
-    <string name="download_section_24h">Последните 24 часа</string>
-    <string name="download_section_7d">Последните 7 дена</string>
-    <string name="download_section_30d">Последните 30 дена</string>
+    <string name="download_section_24h">Пред 24 часа</string>
+    <string name="download_section_7d">Пред 7 дена</string>
+    <string name="download_section_30d">Пред 30 дена</string>
     <string name="download_section_older">Пред повеќе од 30 дена</string>
     <string name="download_details_not_found">Во складиштето не постои модул со име на пакетот \"%s\".</string>
     <string name="download_no_versions">Авторот сеуште нема прикачено ништо.</string>
