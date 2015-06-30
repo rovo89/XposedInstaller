@@ -74,8 +74,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_MODULES);
 
 		installedXposedVersion = XposedApp.getActiveXposedVersion();
-
-		if (XposedApp.getActiveXposedVersion() <= 0) {
+		if (installedXposedVersion <= 0) {
 			View notActiveNote = getActivity().getLayoutInflater().inflate(
 					R.layout.xposed_not_active_note, getListView(), false);
 			notActiveNote.setTag(NOT_ACTIVE_NOTE_TAG);

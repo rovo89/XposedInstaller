@@ -191,7 +191,7 @@ public final class ModuleUtil {
 		try {
 			Log.i(XposedApp.TAG, "updating modules.list");
 			int installedXposedVersion = XposedApp.getActiveXposedVersion();
-			if (installedXposedVersion == 0) {
+			if (installedXposedVersion <= 0) {
 				Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
 				return;
 			}
