@@ -18,6 +18,8 @@
     <string name="welcome_update_available">Доступны обновления для модулей.</string>
     <string name="tabSettings">Настройки</string>
     <string name="tabSettingsDescription">Выберите этот раздел для настройки Xposed Installer и фреймворка.</string>
+    <string name="tabSupport">Поддержка</string>
+    <string name="tabSupportDescription">Помощь в вопросах, связанных с Xposed. Также здесь Вы можете пожертвовать в знак благодарности Xposed.</string>
     <string name="tabLogs">Журнал</string>
     <string name="tabLogsDescription">Отображение, сохранение и отправка журнала Xposed framework.</string>
     <string name="tabAbout">О программе</string>
@@ -48,6 +50,9 @@
     <string name="uninstall_reverted">Ранее app_process был удалён, но сейчас обнаружена версия \"%s\". Если Вы не хотели, чтобы был восстановлен старый файл, можете попробовать удаление через режим восстановления (автоматически или вручную).</string>
     <string name="tap_to_dismiss">Нажмите для пропуска</string>
     <string name="sdcard_location">SD-карта: %s</string>
+    <string name="installation_lollipop">Xposed framework не установлен. Пожалуйста, загрузите последний файл ZIP с XDA и прошейте в рекавери.</string>
+    <string name="installed_lollipop">Версия %s Xposed framework активна.</string>
+    <string name="installed_lollipop_inactive">Версия %s Xposed framework установлена, но не активна. Пожалуйста, просмотрите журналы для подробностей.</string>
 
     <!-- File operations -->
     <string name="root_failed">Сбой получения прав рут-доступа.\n\nУбедитесь, что на устройстве есть рут и команды оболочки не блокируются.</string>
@@ -150,6 +155,13 @@
     <string name="settings_theme_black">Чёрная (подходит для экранов AMOLED)</string>
 
     <!-- Support tab -->
+
+<string name="support_modules_label">Поддержка для модулей</string>
+    <string name="support_modules_description">Удерживайте нажатие на любом модуле в списке и выберите \"%1$s\".</string>
+    <string name="support_framework_label">Поддержка фреймворк/установщика</string>
+    <string name="support_faq_label">Вопросы и ответы/известные проблемы</string>
+    <string name="support_donate_label">Пожертвовать</string>
+    <string name="support_donate_description">Если Вы хотите выразить благодарность Xposed, здесь можно пожертвовать rovo89:</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">Невозможно прочитать журнал:</string>
