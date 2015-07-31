@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -91,7 +90,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		mModuleUtil.addListener(this);
 
 		ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-
 
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);

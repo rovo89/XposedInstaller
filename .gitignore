@@ -12,10 +12,13 @@
 bin/
 gen/
 
+# User-specific stuff:
+.idea
+**/.idea/workspace.xml
+
 # Gradle files
 .gradle/
 build/
-.idea/
 
 # Local configuration file (sdk path, etc)
 local.properties

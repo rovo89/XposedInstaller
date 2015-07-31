@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="AndroidHiddenAPI">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/AndroidHiddenAPI.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
