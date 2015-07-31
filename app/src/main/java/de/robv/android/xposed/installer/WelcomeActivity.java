@@ -3,6 +3,15 @@ package de.robv.android.xposed.installer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -18,19 +27,66 @@ import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
-public class WelcomeActivity extends XposedBaseActivity implements ModuleListener, RepoListener {
+public class WelcomeActivity extends XposedBaseActivity implements
+		NavigationView.OnNavigationItemSelectedListener, ModuleListener, RepoListener {
+
 	private RepoLoader mRepoLoader;
 	private WelcomeAdapter mAdapter;
+
+	private static final String SELECTED_ITEM_ID = "SELECTED_ITEM_ID";
+
+	private Toolbar mToolbar;
+	private final Handler mDrawerActionHandler = new Handler();
+	private DrawerLayout mDrawerLayout;
+	private ActionBarDrawerToggle mDrawerToggle;
+	private int mSelectedId;
+
+	private Fragment mMainFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_welcome);
+
+		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		mToolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(mToolbar);
+
+		if (savedInstanceState != null) {
+			/*mMainFragment = new InstallerFragment();
+			final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+			transaction.replace(R.id.content_frame, mMainFragment).commit();
+		} else {
+		*/
+			mMainFragment = getSupportFragmentManager()
+					.findFragmentById(R.id.content_frame);
+		}
+
+		// listen for navigation events
+		NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+		navigationView.setNavigationItemSelectedListener(this);
+
+		// set up the hamburger icon to open and close the drawer
+		mDrawerToggle = new ActionBarDrawerToggle(this,
+				mDrawerLayout,
+				mToolbar,
+				R.string.navigation_drawer_open,
+				R.string.navigation_drawer_close);
+		mDrawerLayout.setDrawerListener(mDrawerToggle);
+		mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+		mDrawerToggle.syncState();
+
+		//ToDo add a setting to load a default view
+		// select the first item
+		mSelectedId = savedInstanceState == null ? R.id.drawer_item_1 : savedInstanceState.getInt(SELECTED_ITEM_ID);
+		navigate(mSelectedId);
+
+		// select the correct nav menu item
+		navigationView.getMenu().findItem(mSelectedId).setChecked(true);
 
 		//requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		mRepoLoader = RepoLoader.getInstance();
-
-		setContentView(R.layout.activity_welcome);
-
+/*
 		mAdapter = new WelcomeAdapter(this);
 		// TODO add proper description texts and load them from resources, add icons, make it more fancy, ...
 		mAdapter.add(new WelcomeItem(R.string.tabInstall, R.string.tabInstallDescription));
@@ -40,7 +96,7 @@ public class WelcomeActivity extends XposedBaseActivity implements ModuleListene
 		mAdapter.add(new WelcomeItem(R.string.tabSupport, R.string.tabSupportDescription));
 		mAdapter.add(new WelcomeItem(R.string.tabLogs, R.string.tabLogsDescription));
 		mAdapter.add(new WelcomeItem(R.string.tabAbout, R.string.tabAboutDescription));
-
+/*
 		ListView lv = (ListView) findViewById(R.id.welcome_list);
 		lv.setAdapter(mAdapter);
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -53,9 +109,72 @@ public class WelcomeActivity extends XposedBaseActivity implements ModuleListene
 				NavUtil.setTransitionSlideEnter(WelcomeActivity.this);
 			}
 		});
-
+*/
 		ModuleUtil.getInstance().addListener(this);
 		mRepoLoader.addListener(this, false);
+	}
+
+	private void navigate(final int itemId) {
+		//Log.d("here", "fired");
+		// perform the actual navigation logic, updating the main content fragment etc
+		Fragment navFragment = null;
+		switch (itemId) {
+			case R.id.drawer_item_1:
+				//PrefUtils.setForumType(this, "All");
+				navFragment = new InstallerFragment();
+				break;
+			case R.id.drawer_item_2:
+				//PrefUtils.setForumType(this, "Deals");
+				navFragment = new ModulesFragment();
+				break;
+			case R.id.drawer_item_3:
+				//PrefUtils.setForumType(this, "Vouchers");
+				navFragment = new DownloadFragment();
+				break;
+			case R.id.drawer_item_4:
+				//PrefUtils.setForumType(this, "Freebies");
+				navFragment = new LogsFragment();
+				break;
+			case R.id.drawer_item_5:
+				break;
+			case R.id.drawer_item_6:
+				//startActivity(new Intent(this, SettingsActivity.class));
+				return;
+			case R.id.drawer_item_7:
+				return;
+		}
+
+		if (navFragment != null) {
+			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+			transaction.replace(R.id.content_frame, navFragment).commit();
+		}
+	}
+
+	@Override
+	public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+		menuItem.setChecked(true);
+		mSelectedId = menuItem.getItemId();
+
+		navigate(mSelectedId);
+
+		mDrawerLayout.closeDrawer(GravityCompat.START);
+		return true;
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt(SELECTED_ITEM_ID, mSelectedId);
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+			mDrawerLayout.closeDrawer(GravityCompat.START);
+		} else {
+			super.onBackPressed();
+		}
 	}
 
 	private void notifyDataSetChanged() {
@@ -107,7 +226,8 @@ public class WelcomeActivity extends XposedBaseActivity implements ModuleListene
 			boolean xposedActive = true;
 			String frameworkUpdateVersion = null;
 			boolean moduleUpdateAvailable = false;
-			if (position == XposedInstallerActivity.TAB_INSTALL) {
+			//ToDo fix this
+			/*if (position == XposedInstallerActivity.TAB_INSTALL) {
 				xposedActive = XposedApp.getActiveXposedVersion() > 0;
 			} else if (position == XposedInstallerActivity.TAB_DOWNLOAD) {
 				frameworkUpdateVersion = mRepoLoader.getFrameworkUpdateVersion();
@@ -117,7 +237,7 @@ public class WelcomeActivity extends XposedBaseActivity implements ModuleListene
 					((TextView) view.findViewById(R.id.txtFrameworkUpdateAvailable)).setText(
 						getResources().getString(R.string.welcome_framework_update_available, (String)frameworkUpdateVersion));
 				}
-			}
+			}*/
 
 			view.findViewById(R.id.txtXposedNotActive).setVisibility(!xposedActive ? View.VISIBLE : View.GONE);
 			view.findViewById(R.id.txtFrameworkUpdateAvailable).setVisibility(frameworkUpdateVersion != null ? View.VISIBLE : View.GONE);

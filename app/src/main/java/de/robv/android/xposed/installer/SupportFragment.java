@@ -19,8 +19,8 @@ public class SupportFragment extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		Activity activity = getActivity();
-		if (activity instanceof XposedDropdownNavActivity)
-			((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_SUPPORT);
+		//if (activity instanceof XposedDropdownNavActivity)
+		//	((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_SUPPORT);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class SupportFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), XposedInstallerActivity.class);
-				intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedDropdownNavActivity.TAB_MODULES);
+				//intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedDropdownNavActivity.TAB_MODULES);
 				startActivity(intent);
 			}
 		});

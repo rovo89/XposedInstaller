@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/menu_search"
-        android:actionViewClass="android.widget.SearchView"
         android:icon="@android:drawable/ic_menu_search"
-        android:showAsAction="always"
+        app:showAsAction="always"
+        app:actionViewClass="android.support.v7.widget.SearchView"
         android:title="@string/menuSearch"/>
     <item
         android:id="@+id/menu_sort"
         android:icon="@android:drawable/ic_menu_sort_by_size"
-        android:showAsAction="ifRoom|withText"
+        app:showAsAction="ifRoom|withText"
         android:title="@string/download_sorting_title"/>
     <item
         android:id="@+id/menu_refresh"
         android:icon="@drawable/ic_menu_refresh"
-        android:showAsAction="always|withText"
+        app:showAsAction="always|withText"
         android:title="@string/menuReload"/>
 
 </menu>

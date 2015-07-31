@@ -5,7 +5,7 @@
     </style>
 
     <!-- Base application theme. -->
-    <style name="Theme.XposedManager.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.XposedManager.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>

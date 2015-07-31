@@ -3,7 +3,6 @@ package de.robv.android.xposed.installer;
 import java.text.DateFormat;
 import java.util.Date;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.support.v4.app.Fragment;
 import android.content.Context;
@@ -15,6 +14,8 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,7 +28,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CursorAdapter;
 import android.widget.FilterQueryProvider;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.emilsjolander.components.stickylistheaders.StickyListHeadersAdapter;
@@ -75,9 +75,9 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		Activity activity = getActivity();
-		if (activity instanceof XposedDropdownNavActivity)
-			((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_DOWNLOAD);
+		//Activity activity = getActivity();
+		//if (activity instanceof XposedDropdownNavActivity)
+		//	((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_DOWNLOAD);
 	}
 
 	@Override
@@ -116,6 +116,8 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 			}
 		});
 
+		setHasOptionsMenu(true);
+
 		return v;
 	}
 
@@ -148,7 +150,21 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 				return true;
 			}
 		});
-		searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+		MenuItemCompat.setOnActionExpandListener(searchItem,
+				new MenuItemCompat.OnActionExpandListener() {
+					@Override
+					public boolean onMenuItemActionCollapse(MenuItem item) {
+						setFilter(null);
+						return true; // Return true to collapse action view
+					}
+
+					@Override
+					public boolean onMenuItemActionExpand(MenuItem item) {
+						return true; // Return true to expand action view
+					}
+				});
+		/*
+		searchItem.setOnActionExpandListener(new MenuItemCompat.setOnActionExpandListener() {
 			@Override
 			public boolean onMenuItemActionExpand(MenuItem item) {
 				return true;
@@ -159,7 +175,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 				setFilter(null);
 				return true;
 			}
-		});
+		});*/
 	}
 
 	private void setFilter(String filterText) {

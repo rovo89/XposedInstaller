@@ -23,7 +23,7 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
 
-public class DownloadDetailsActivity extends XposedDropdownNavActivity implements RepoListener, ModuleListener {
+public class DownloadDetailsActivity extends XposedBaseActivity implements RepoListener, ModuleListener { //extends XposedDropdownNavActivity implements RepoListener, ModuleListener {
 
 	private ViewPager mPager;
 	private String[] mPageTitles;
@@ -47,7 +47,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 		super.onCreate(savedInstanceState);
 		sRepoLoader.addListener(this, false);
 		sModuleUtil.addListener(this);
-		setNavItem(XposedDropdownNavActivity.TAB_DOWNLOAD);
+		//setNavItem(XposedDropdownNavActivity.TAB_DOWNLOAD);
 
 		if (mModule != null) {
 			setContentView(R.layout.activity_download_details);
@@ -159,7 +159,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+/*
 	@Override
 	protected boolean navigateViaIntent() {
 		return true;
@@ -170,7 +170,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 		Intent intent = new Intent(this, XposedInstallerActivity.class);
 		intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, TAB_DOWNLOAD);
 		return intent;
-	}
+	}*/
 
 	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 		public ScreenSlidePagerAdapter(FragmentManager fm) {
@@ -185,6 +185,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 				case DOWNLOAD_VERSIONS:
 					return new DownloadDetailsVersionsFragment();
 				case DOWNLOAD_SETTINGS:
+					//ToDo fix this
 					//return new DownloadDetailsSettingsFragment();
 				default:
 					return null;

@@ -5,10 +5,10 @@ import java.util.HashMap;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class XposedInstallerActivity extends XposedDropdownNavActivity {
+public class XposedInstallerActivity extends XposedBaseActivity {
 	public static final String EXTRA_SECTION = "section";
 	public static final String EXTRA_SECTION_LEGACY = "opentab";
-
+/*
 	private static final HashMap<String, Integer> TABS;
 	static {
 		TABS = new HashMap<String, Integer>(TAB_COUNT, 1);
@@ -20,19 +20,19 @@ public class XposedInstallerActivity extends XposedDropdownNavActivity {
 		TABS.put("settings", TAB_SETTINGS);
 		TABS.put("about", TAB_ABOUT);
 	}
-
+*/
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		selectInitialTab(getIntent(), savedInstanceState);
+		//selectInitialTab(getIntent(), savedInstanceState);
 	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putInt("section", getActionBar().getSelectedNavigationIndex());
+		outState.putInt("section", getSupportActionBar().getSelectedNavigationIndex());
 	}
-
+/*
 	private void selectInitialTab(Intent intent, Bundle savedInstanceState) {
 		int selectTabIndex = -1;
 
@@ -53,6 +53,7 @@ public class XposedInstallerActivity extends XposedDropdownNavActivity {
 			selectTabIndex = savedInstanceState.getInt("section", -1);
 
 		if (selectTabIndex >= 0 && selectTabIndex < TAB_COUNT)
-			getActionBar().setSelectedNavigationItem(selectTabIndex);
+			getSupportActionBar().setSelectedNavigationItem(selectTabIndex);
 	}
+	*/
 }

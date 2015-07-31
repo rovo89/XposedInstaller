@@ -16,6 +16,8 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.ContextMenu;
@@ -69,9 +71,9 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		Activity activity = getActivity();
-		if (activity instanceof XposedDropdownNavActivity)
-			((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_MODULES);
+		//Activity activity = getActivity();
+		//if (activity instanceof XposedDropdownNavActivity)
+		//	((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_MODULES);
 
 		installedXposedVersion = XposedApp.getActiveXposedVersion();
 		if (installedXposedVersion <= 0) {
@@ -88,12 +90,16 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		registerForContextMenu(getListView());
 		mModuleUtil.addListener(this);
 
+		ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+
+
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
 		int eightDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
+		int toolBarDp = actionBar.getHeight() + eightDp;
 		getListView().setDivider(null);
 		getListView().setDividerHeight(sixDp);
-		getListView().setPadding(eightDp, eightDp, eightDp, eightDp);
+		getListView().setPadding(eightDp, toolBarDp, eightDp, eightDp);
 		getListView().setClipToPadding(false);
 	}
 
@@ -145,7 +151,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 		if (packageName.equals(NOT_ACTIVE_NOTE_TAG)) {
 			Intent intent = new Intent(getActivity(), XposedInstallerActivity.class);
-			intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedDropdownNavActivity.TAB_INSTALL);
+			//intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedDropdownNavActivity.TAB_INSTALL);
 			startActivity(intent);
 			return;
 		}
