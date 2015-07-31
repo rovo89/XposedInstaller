@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 15
+    buildToolsVersion "23.0.0 rc3"
+
+    defaultConfig {
+        applicationId "de.robv.android.xposed.installer"
+        minSdkVersion 15
+        targetSdkVersion 15
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles 'proguard-project.txt'
+        }
+    }
+}
+
+dependencies {
+    compile files('libs/android-support-v13.jar')
+    compile files('libs/libsuperuser-185868.jar')
+    compile files('libs/StickyListHeaders-d7f6fc.jar')
+    compile files('libs/AndroidHiddenAPI.jar')
+}
