@@ -1,13 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 15
+    compileSdkVersion 22
     buildToolsVersion "23.0.0 rc3"
 
     defaultConfig {
         applicationId "de.robv.android.xposed.installer"
         minSdkVersion 15
-        targetSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
     }
 
     buildTypes {
@@ -19,8 +21,8 @@ android {
 }
 
 dependencies {
-    compile files('libs/android-support-v13.jar')
-    compile files('libs/libsuperuser-185868.jar')
-    compile files('libs/StickyListHeaders-d7f6fc.jar')
-    compile files('libs/AndroidHiddenAPI.jar')
+    compile 'com.android.support:cardview-v7:22.2.1'
+    compile 'com.android.support:recyclerview-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 }

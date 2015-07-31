@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
+
+    <style name="Theme.XposedManager" parent="Theme.XposedManager.Base">
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="Theme.XposedManager.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 
     <style
         name="Theme.Light"
-        parent="android:Theme.Holo.Light.DarkActionBar" >
+        parent="Theme.XposedManager" >
         <item name="android:windowBackground">@color/app_background_light</item>
         <item name="background_card">@drawable/background_card_light</item>
         <item name="background_card_pressed">@drawable/background_card_pressed_light</item>
@@ -15,7 +24,7 @@
 
     <style
         name="Theme.Dark"
-        parent="android:Theme.Holo" >
+        parent="Theme.XposedManager" >
         <item name="background_card">@drawable/background_card_dark</item>
         <item name="background_card_pressed">@drawable/background_card_pressed_dark</item>
         <item name="pager_tab_strip_bg">@color/pager_tab_strip_bg_dark</item>

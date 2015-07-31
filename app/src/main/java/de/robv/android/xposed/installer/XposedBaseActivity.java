@@ -2,10 +2,12 @@ package de.robv.android.xposed.installer;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
-public abstract class XposedBaseActivity extends Activity {
+public abstract class XposedBaseActivity extends AppCompatActivity {
 	public boolean leftActivityWithSlideAnim = false;
 	public int mTheme = -1;
 

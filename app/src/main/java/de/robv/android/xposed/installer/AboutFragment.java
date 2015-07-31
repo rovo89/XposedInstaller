@@ -1,9 +1,9 @@
 package de.robv.android.xposed.installer;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;

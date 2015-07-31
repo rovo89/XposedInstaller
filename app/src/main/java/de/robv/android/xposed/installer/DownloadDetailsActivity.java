@@ -2,12 +2,12 @@ package de.robv.android.xposed.installer;
 
 import java.util.List;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v13.app.FragmentStatePagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -60,7 +60,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 				getString(R.string.download_details_page_settings),
 			};
 			mPager = (ViewPager) findViewById(R.id.download_pager);
-			mPager.setAdapter(new ScreenSlidePagerAdapter(getFragmentManager()));
+			mPager.setAdapter(new ScreenSlidePagerAdapter(getSupportFragmentManager()));
 
 			// Updates available => start on the versions page
 			if (mInstalledModule != null && mInstalledModule.isUpdate(sRepoLoader.getLatestVersion(mModule)))
@@ -185,7 +185,7 @@ public class DownloadDetailsActivity extends XposedDropdownNavActivity implement
 				case DOWNLOAD_VERSIONS:
 					return new DownloadDetailsVersionsFragment();
 				case DOWNLOAD_SETTINGS:
-					return new DownloadDetailsSettingsFragment();
+					//return new DownloadDetailsSettingsFragment();
 				default:
 					return null;
 			}

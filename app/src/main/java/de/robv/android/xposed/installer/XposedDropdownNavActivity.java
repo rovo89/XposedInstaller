@@ -7,10 +7,10 @@ import java.util.Map;
 
 import android.app.ActionBar;
 import android.app.ActionBar.OnNavigationListener;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.SimpleAdapter;
@@ -45,7 +45,8 @@ public abstract class XposedDropdownNavActivity extends XposedBaseActivity {
 			navigationItemList.add(makeNavigationItem(getString(R.string.tabInstall), InstallerFragment.class));
 			navigationItemList.add(makeNavigationItem(getString(R.string.tabModules), ModulesFragment.class));
 			navigationItemList.add(makeNavigationItem(getString(R.string.tabDownload), DownloadFragment.class));
-			navigationItemList.add(makeNavigationItem(getString(R.string.tabSettings), SettingsFragment.class));
+			//ToDo fix this
+			//navigationItemList.add(makeNavigationItem(getString(R.string.tabSettings), SettingsFragment.class));
 			navigationItemList.add(makeNavigationItem(getString(R.string.tabSupport), SupportFragment.class));
 			navigationItemList.add(makeNavigationItem(getString(R.string.tabLogs), LogsFragment.class));
 			navigationItemList.add(makeNavigationItem(getString(R.string.tabAbout), AboutFragment.class));
@@ -76,12 +77,12 @@ public abstract class XposedDropdownNavActivity extends XposedBaseActivity {
 				String fragmentClass = (String) map.get("fragment_class");
 				Fragment fragment = Fragment.instantiate(XposedDropdownNavActivity.this, fragmentClass);
 
-				FragmentTransaction tx = getFragmentManager().beginTransaction();
+				FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
 				tx.replace(android.R.id.content, fragment);
 				currentNavItem = itemPosition;
 				tx.commit();
 
-				getFragmentManager().executePendingTransactions();
+				getSupportFragmentManager().executePendingTransactions();
 
 				return true;
 			}
