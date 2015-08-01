@@ -2,13 +2,17 @@ package de.robv.android.xposed.installer;
 
 import java.util.List;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,12 +30,14 @@ import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 public class DownloadDetailsActivity extends XposedBaseActivity implements RepoListener, ModuleListener { //extends XposedDropdownNavActivity implements RepoListener, ModuleListener {
 
 	private ViewPager mPager;
-	private String[] mPageTitles;
+	//private String[] mPageTitles;
 	private String mPackageName;
 	private static RepoLoader sRepoLoader = RepoLoader.getInstance();
 	private static ModuleUtil sModuleUtil = ModuleUtil.getInstance();
 	private Module mModule;
 	private InstalledModule mInstalledModule;
+	private Toolbar mToolbar;
+	private TabLayout mTabLayout;
 
 	public static final int DOWNLOAD_DESCRIPTION = 0;
 	public static final int DOWNLOAD_VERSIONS = 1;
@@ -52,15 +58,12 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
 		if (mModule != null) {
 			setContentView(R.layout.activity_download_details);
 
+			mToolbar = (Toolbar) findViewById(R.id.toolbar);
+			setSupportActionBar(mToolbar);
+
 			((TextView) findViewById(android.R.id.title)).setText(mModule.name);
 
-			mPageTitles = new String[] {
-				getString(R.string.download_details_page_description),
-				getString(R.string.download_details_page_versions),
-				getString(R.string.download_details_page_settings),
-			};
-			mPager = (ViewPager) findViewById(R.id.download_pager);
-			mPager.setAdapter(new ScreenSlidePagerAdapter(getSupportFragmentManager()));
+			setupTabs();
 
 			// Updates available => start on the versions page
 			if (mInstalledModule != null && mInstalledModule.isUpdate(sRepoLoader.getLatestVersion(mModule)))
@@ -81,6 +84,14 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
 			});
 		}
 	}
+
+	private void setupTabs() {
+		mPager = (ViewPager) findViewById(R.id.download_pager);
+		mPager.setAdapter(new SwipeFragmentPagerAdapter(getSupportFragmentManager()));
+		mTabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+		mTabLayout.setupWithViewPager(mPager);
+	}
+
 
 	private String getModulePackageName() {
 		Uri uri = getIntent().getData();
@@ -159,22 +170,21 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
 		}
 		return super.onOptionsItemSelected(item);
 	}
-/*
-	@Override
-	protected boolean navigateViaIntent() {
-		return true;
-	}
 
-	@Override
-	protected Intent getParentIntent() {
-		Intent intent = new Intent(this, XposedInstallerActivity.class);
-		intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, TAB_DOWNLOAD);
-		return intent;
-	}*/
+	class SwipeFragmentPagerAdapter extends FragmentPagerAdapter {
+		final int PAGE_COUNT = 3;
+		private String tabTitles[] = new String[]{getString(R.string.download_details_page_description),
+				getString(R.string.download_details_page_versions),
+				getString(R.string.download_details_page_settings),
+		};
 
-	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-		public ScreenSlidePagerAdapter(FragmentManager fm) {
+		public SwipeFragmentPagerAdapter(FragmentManager fm) {
 			super(fm);
+		}
+
+		@Override
+		public int getCount() {
+			return PAGE_COUNT;
 		}
 
 		@Override
@@ -185,22 +195,16 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
 				case DOWNLOAD_VERSIONS:
 					return new DownloadDetailsVersionsFragment();
 				case DOWNLOAD_SETTINGS:
-					//ToDo fix this
-					//return new DownloadDetailsSettingsFragment();
+					return new DownloadDetailsSettingsFragment();
 				default:
 					return null;
 			}
 		}
 
 		@Override
-		public int getCount() {
-			return mPageTitles.length;
-		}
-
-		@Override
 		public CharSequence getPageTitle(int position) {
-			return mPageTitles[position];
+			// Generate title based on item position
+			return tabTitles[position];
 		}
 	}
-
 }
