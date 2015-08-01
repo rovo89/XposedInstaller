@@ -27,10 +27,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CursorAdapter;
 import android.widget.FilterQueryProvider;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.emilsjolander.components.stickylistheaders.StickyListHeadersAdapter;
+import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
+import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoDbDefinitions.OverviewColumnsIndexes;
@@ -83,7 +83,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_downloader, container, false);
-		ListView lv = (ListView) v.findViewById(R.id.listModules);
+		StickyListHeadersListView lv = (StickyListHeadersListView) v.findViewById(R.id.listModules);
 
 		mRepoLoader.addListener(this, true);
 		mModuleUtil.addListener(this);
