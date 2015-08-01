@@ -23,6 +23,7 @@ import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
+import de.robv.android.xposed.installer.util.UIUtil;
 
 
 public class DownloadDetailsActivity extends XposedBaseActivity implements RepoListener, ModuleListener {
@@ -53,6 +54,10 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
 
 		if (mModule != null) {
 			setContentView(R.layout.activity_download_details);
+
+			if (UIUtil.isLollipop()) {
+				this.getWindow().setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
+			}
 
 			mToolbar = (Toolbar) findViewById(R.id.toolbar);
 			setSupportActionBar(mToolbar);
