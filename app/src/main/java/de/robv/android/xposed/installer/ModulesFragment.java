@@ -18,6 +18,7 @@ import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -89,15 +90,16 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		registerForContextMenu(getListView());
 		mModuleUtil.addListener(this);
 
-		ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+		ActionBar actionBar = ((WelcomeActivity) getActivity()).getSupportActionBar();
 
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
 		int eightDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
-		int toolBarDp = actionBar.getHeight() + eightDp;
+		int toolBarDp = actionBar.getHeight() == 0 ? 196 : actionBar.getHeight();
+
 		getListView().setDivider(null);
 		getListView().setDividerHeight(sixDp);
-		getListView().setPadding(eightDp, toolBarDp, eightDp, eightDp);
+		getListView().setPadding(eightDp, toolBarDp + eightDp, eightDp, eightDp);
 		getListView().setClipToPadding(false);
 	}
 
