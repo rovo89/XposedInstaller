@@ -135,9 +135,9 @@ public class WelcomeActivity extends XposedBaseActivity implements
 				navFragment = new LogsFragment();
 				break;
 			case R.id.drawer_item_5:
-				break;
+				startActivity(new Intent(this, SettingsActivity.class));
+				return;
 			case R.id.drawer_item_6:
-				//startActivity(new Intent(this, SettingsActivity.class));
 				return;
 			case R.id.drawer_item_7:
 				return;
