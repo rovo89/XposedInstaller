@@ -10,7 +10,7 @@
         android:title="@string/menuSearch"/>
     <item
         android:id="@+id/menu_sort"
-        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:icon="@drawable/ic_menu_sort"
         app:showAsAction="ifRoom|withText"
         android:title="@string/download_sorting_title"/>
     <item

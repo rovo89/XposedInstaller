@@ -4,33 +4,33 @@
         android:id="@+id/main_items">
         <item
             android:id="@+id/drawer_item_1"
-            android:icon="@drawable/ic_notification"
+            android:icon="@drawable/ic_nav_install"
             android:title="@string/nav_item_install"/>
         <item
             android:id="@+id/drawer_item_2"
-            android:icon="@drawable/ic_notification"
+            android:icon="@drawable/ic_nav_moduals"
             android:title="@string/nav_item_modules"/>
         <item
             android:id="@+id/drawer_item_3"
-            android:icon="@drawable/ic_notification"
+            android:icon="@drawable/ic_nav_downloads"
             android:title="@string/nav_item_download"/>
         <item
             android:id="@+id/drawer_item_4"
-            android:icon="@drawable/ic_notification"
+            android:icon="@drawable/ic_nav_logs"
             android:title="@string/nav_item_logs"/>
     </group>
     <group android:id="@+id/option_items">
         <item
             android:id="@+id/drawer_item_5"
-            android:icon="@drawable/ic_notification"
+            android:icon="@drawable/ic_nav_settings"
             android:title="@string/nav_item_settings"/>
         <item
             android:id="@+id/drawer_item_6"
-            android:icon="@drawable/ic_notification"
+            android:icon="@drawable/ic_nav_support"
             android:title="@string/nav_item_support"/>
         <item
             android:id="@+id/drawer_item_7"
-            android:icon="@drawable/ic_notification"
+            android:icon="@drawable/ic_nav_about"
             android:title="@string/nav_item_about"/>
     </group>
 </menu>

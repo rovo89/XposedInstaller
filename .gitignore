@@ -1,6 +1,7 @@
 # Built application files
 *.apk
 *.ap_
+*.iml
 
 # Files for the Dalvik VM
 *.dex
@@ -14,7 +15,6 @@ gen/
 
 # User-specific stuff:
 .idea/
-**/.idea/workspace.xml
 
 # Gradle files
 .gradle/
