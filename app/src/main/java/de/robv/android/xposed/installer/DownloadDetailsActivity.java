@@ -2,16 +2,14 @@ package de.robv.android.xposed.installer;
 
 import java.util.List;
 
-import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -27,10 +25,9 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 
 
-public class DownloadDetailsActivity extends XposedBaseActivity implements RepoListener, ModuleListener { //extends XposedDropdownNavActivity implements RepoListener, ModuleListener {
+public class DownloadDetailsActivity extends XposedBaseActivity implements RepoListener, ModuleListener {
 
 	private ViewPager mPager;
-	//private String[] mPageTitles;
 	private String mPackageName;
 	private static RepoLoader sRepoLoader = RepoLoader.getInstance();
 	private static ModuleUtil sModuleUtil = ModuleUtil.getInstance();
@@ -53,13 +50,25 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
 		super.onCreate(savedInstanceState);
 		sRepoLoader.addListener(this, false);
 		sModuleUtil.addListener(this);
-		//setNavItem(XposedDropdownNavActivity.TAB_DOWNLOAD);
 
 		if (mModule != null) {
 			setContentView(R.layout.activity_download_details);
 
 			mToolbar = (Toolbar) findViewById(R.id.toolbar);
 			setSupportActionBar(mToolbar);
+
+			mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					finish();
+				}
+			});
+
+			ActionBar ab = getSupportActionBar();
+			if (ab != null) {
+				ab.setTitle(R.string.nav_item_download);
+				ab.setDisplayHomeAsUpEnabled(true);
+			}
 
 			((TextView) findViewById(android.R.id.title)).setText(mModule.name);
 
