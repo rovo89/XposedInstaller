@@ -11,9 +11,9 @@
         android:id="@+id/listModules"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dip"
         android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="6dip" />
+        android:drawSelectorOnTop="true"
+        android:scrollbarStyle="outsideOverlay"
+        android:fastScrollEnabled="true" />
 
 </LinearLayout>

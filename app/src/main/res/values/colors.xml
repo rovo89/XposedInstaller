@@ -4,23 +4,7 @@
     <color name="colorPrimary">#ff1976d2</color>
     <color name="colorPrimaryDark">#ff1565c0</color>
     <color name="colorAccent">#ffdd2c00</color>
-
-
-
-
-
-    <color name="cabinet_accent_color">#ffe91e63</color>
-    <color name="cabinet_color">#ff1976d2</color>
-    <color name="md_edittext_error">#ffdd2c00</color>
-    <color name="md_material_blue_600">#ff1e88e5</color>
-    <color name="md_material_blue_800">#ff1565c0</color>
-
-
-
-
-
-
-    <color name="list_header">@android:color/holo_blue_light</color>
+    <color name="list_header">#777</color>
     <color name="warning">@android:color/holo_red_light</color>
     <color name="warning_box">@android:color/holo_red_dark</color>
     <color name="pager_tab_strip">#fff</color>

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content"
+    android:background="@color/app_background_light"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:elevation="2dp" >
 
     <TextView
         android:id="@android:id/title"
@@ -10,7 +16,5 @@
         android:layout_margin="4dip"
         android:textAllCaps="true"
         android:textColor="@color/list_header"
-        android:textAppearance="?android:attr/textAppearanceSmallInverse"
-        android:textStyle="bold" />
-
+        android:textAppearance="?android:attr/textAppearanceSmallInverse" />
 </LinearLayout>
