@@ -115,24 +115,23 @@ public class WelcomeActivity extends XposedBaseActivity implements
 	}
 
 	private void navigate(final int itemId) {
-		//Log.d("here", "fired");
 		// perform the actual navigation logic, updating the main content fragment etc
 		Fragment navFragment = null;
 		switch (itemId) {
 			case R.id.drawer_item_1:
-				//PrefUtils.setForumType(this, "All");
+				mToolbar.setTitle(R.string.app_name);
 				navFragment = new InstallerFragment();
 				break;
 			case R.id.drawer_item_2:
-				//PrefUtils.setForumType(this, "Deals");
+				mToolbar.setTitle(R.string.nav_item_modules);
 				navFragment = new ModulesFragment();
 				break;
 			case R.id.drawer_item_3:
-				//PrefUtils.setForumType(this, "Vouchers");
+				mToolbar.setTitle(R.string.nav_item_download);
 				navFragment = new DownloadFragment();
 				break;
 			case R.id.drawer_item_4:
-				//PrefUtils.setForumType(this, "Freebies");
+				mToolbar.setTitle(R.string.nav_item_logs);
 				navFragment = new LogsFragment();
 				break;
 			case R.id.drawer_item_5:
