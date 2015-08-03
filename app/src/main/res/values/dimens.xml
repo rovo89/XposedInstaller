@@ -4,6 +4,9 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="toolbar_elevation">3dp</dimen>
 
+    <!-- List item modules. -->
+    <dimen name="item_module_height">75dp</dimen>
+
     <!-- Default Navigation Drawer. -->
     <dimen name="nav_drawer_top_padding">0dp</dimen>
     <dimen name="nav_drawer_width">264dp</dimen>
