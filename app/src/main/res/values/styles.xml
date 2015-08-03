@@ -43,7 +43,7 @@
         <item name="background_card">@drawable/background_card_black</item>
         <item name="background_card_pressed">@drawable/background_card_pressed_black</item>
     </style>
-    
+
     <style name="Theme.XposedInstaller.Toolbar" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@android:color/white</item>
