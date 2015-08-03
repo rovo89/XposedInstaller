@@ -26,6 +26,7 @@ import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
+import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class WelcomeActivity extends XposedBaseActivity implements
 		NavigationView.OnNavigationItemSelectedListener, ModuleListener, RepoListener {
@@ -46,6 +47,7 @@ public class WelcomeActivity extends XposedBaseActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		ThemeUtil.setTheme(this);
 		setContentView(R.layout.activity_welcome);
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

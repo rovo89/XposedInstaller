@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="Theme.XposedManager" parent="Theme.XposedManager.Base">
+    <style name="Theme.XposedManager" parent="Theme.XposedInstaller.Base">
 
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
