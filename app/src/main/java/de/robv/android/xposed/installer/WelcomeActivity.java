@@ -178,12 +178,16 @@ public class WelcomeActivity extends XposedBaseActivity implements
 		}
 	}
 
+	//ToDo fix this, we don't use mAdapter any more
+	//remove during cleanup after testing
 	private void notifyDataSetChanged() {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				synchronized (mAdapter) {
-					mAdapter.notifyDataSetChanged();
+				if (mAdapter != null) {
+					synchronized (mAdapter) {
+						mAdapter.notifyDataSetChanged();
+					}
 				}
 			}
 		});
