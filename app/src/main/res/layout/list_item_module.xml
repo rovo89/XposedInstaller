@@ -12,7 +12,8 @@
     android:layout_marginBottom="3dip"
     android:foreground="?selectableItemBackground"
     android:elevation="2dip"
-    card_view:cardCornerRadius="2dip" >
+    card_view:cardCornerRadius="2dip"
+    card_view:cardBackgroundColor="?attr/list_download_item_color">
 
     <RelativeLayout
         android:layout_width="match_parent"
