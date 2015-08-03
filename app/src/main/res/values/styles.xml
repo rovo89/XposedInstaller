@@ -43,12 +43,12 @@
         <item name="background_card">@drawable/background_card_black</item>
         <item name="background_card_pressed">@drawable/background_card_pressed_black</item>
     </style>
-
-
-    <style name="Theme.XposedInstaller.Toolbar" parent="Theme.AppCompat.NoActionBar">
+    
+    <style name="Theme.XposedInstaller.Toolbar" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="actionMenuTextColor">@color/abc_primary_text_material_light</item>
-        <item name="android:textColorSecondary">@color/abc_secondary_text_material_light</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
     </style>
 
 </resources>
