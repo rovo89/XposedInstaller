@@ -11,6 +11,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?android:windowBackground"
         android:orientation="vertical" >
 
         <FrameLayout
@@ -23,7 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:elevation="@dimen/toolbar_elevation" >
+            android:elevation="@dimen/toolbar_elevation"
+            app:theme="@style/Theme.XposedInstaller.Toolbar" >
 
         </android.support.v7.widget.Toolbar>
     </FrameLayout>
@@ -33,9 +35,10 @@
         android:layout_width="@dimen/nav_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@android:color/white"
         android:clickable="true"
         android:clipToPadding="false"
+        app:itemIconTint="?attr/colorPrimary"
+        app:itemTextColor="?attr/colorPrimary"
         android:elevation="4dp"
         android:fitsSystemWindows="true"
         app:menu="@menu/drawer"

@@ -37,7 +37,7 @@ public class WelcomeActivity extends XposedBaseActivity implements
 	private static final String SELECTED_ITEM_ID = "SELECTED_ITEM_ID";
 
 	private Toolbar mToolbar;
-	private final Handler mDrawerActionHandler = new Handler();
+	//private final Handler mDrawerActionHandler = new Handler();
 	private DrawerLayout mDrawerLayout;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private int mSelectedId;
@@ -112,6 +112,7 @@ public class WelcomeActivity extends XposedBaseActivity implements
 			}
 		});
 */
+
 		ModuleUtil.getInstance().addListener(this);
 		mRepoLoader.addListener(this, false);
 	}
@@ -152,14 +153,21 @@ public class WelcomeActivity extends XposedBaseActivity implements
 	}
 
 	@Override
-	public boolean onNavigationItemSelected(MenuItem menuItem) {
+	public void onResume() {
+		super.onResume();
 
+		mDrawerLayout.closeDrawer(GravityCompat.START);
+	}
+
+	@Override
+	public boolean onNavigationItemSelected(MenuItem menuItem) {
 		menuItem.setChecked(true);
 		mSelectedId = menuItem.getItemId();
 
+		mDrawerLayout.closeDrawer(GravityCompat.START);
+
 		navigate(mSelectedId);
 
-		mDrawerLayout.closeDrawer(GravityCompat.START);
 		return true;
 	}
 

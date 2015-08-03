@@ -6,5 +6,7 @@
     <attr name="pager_tab_strip_bg" format="reference" />
     <attr name="text_important" format="reference|color" />
     <attr name="download_status_installed" format="reference|color" />
+    <attr name="sticky_header_background" format="reference|color" />
+    <attr name="list_download_item_color" format="reference|color" />
 
 </resources>

@@ -14,12 +14,14 @@ import java.io.File;
 import java.io.IOException;
 
 import de.robv.android.xposed.installer.util.RepoLoader;
+import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UIUtil;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends XposedBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_settings);
 
         if (UIUtil.isLollipop()) {
@@ -107,6 +109,7 @@ public class SettingsActivity extends AppCompatActivity {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     getActivity().recreate();
+                    getActivity().finish(); // prevents 2 instances of settings from opening
                     return true;
                 }
             });

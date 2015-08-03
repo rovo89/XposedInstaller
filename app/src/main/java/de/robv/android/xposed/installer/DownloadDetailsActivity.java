@@ -23,6 +23,7 @@ import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
+import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UIUtil;
 
 
@@ -43,6 +44,8 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		ThemeUtil.setTheme(this);
+
 		mPackageName = getModulePackageName();
 		mModule = sRepoLoader.getModule(mPackageName);
 

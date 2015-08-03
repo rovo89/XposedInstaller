@@ -3,7 +3,7 @@
     android:id="@+id/list_item_download"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
+    android:background="?attr/list_download_item_color"
     android:foreground="?android:attr/selectableItemBackground" >
 
     <RelativeLayout
