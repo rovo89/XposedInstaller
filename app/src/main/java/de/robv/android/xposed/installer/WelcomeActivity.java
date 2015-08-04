@@ -141,14 +141,23 @@ public class WelcomeActivity extends XposedBaseActivity implements
 				startActivity(new Intent(this, SettingsActivity.class));
 				return;
 			case R.id.drawer_item_6:
-				return;
+				mToolbar.setTitle(R.string.nav_item_support);
+				navFragment = new SupportFragment();
+				break;
 			case R.id.drawer_item_7:
-				return;
+				mToolbar.setTitle(R.string.nav_item_about);
+				navFragment = new AboutFragment();
+				break;
 		}
 
 		if (navFragment != null) {
-			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-			transaction.replace(R.id.content_frame, navFragment).commit();
+			if (navFragment instanceof SupportFragment || navFragment instanceof AboutFragment) {
+				FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+				transaction.replace(R.id.content_frame, navFragment).addToBackStack(null).commit();
+			} else {
+				FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+				transaction.replace(R.id.content_frame, navFragment).commit();
+			}
 		}
 	}
 
