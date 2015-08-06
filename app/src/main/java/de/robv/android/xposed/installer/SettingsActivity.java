@@ -22,7 +22,7 @@ public class SettingsActivity extends XposedBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ThemeUtil.setTheme(this);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_container);
 
         if (UIUtil.isLollipop()) {
             this.getWindow().setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));

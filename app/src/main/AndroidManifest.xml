@@ -58,6 +58,10 @@
 
         <activity android:name=".SettingsActivity" />
 
+        <activity android:name=".SupportActivity" />
+
+        <activity android:name=".AboutActivity" />
+
         <receiver android:name=".PackageChangeReceiver"
             android:exported="false" >
             <intent-filter>

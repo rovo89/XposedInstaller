@@ -119,7 +119,6 @@ public class WelcomeActivity extends XposedBaseActivity implements
 	}
 
 	private void navigate(final int itemId) {
-		// perform the actual navigation logic, updating the main content fragment etc
 		Fragment navFragment = null;
 		switch (itemId) {
 			case R.id.drawer_item_1:
@@ -142,24 +141,16 @@ public class WelcomeActivity extends XposedBaseActivity implements
 				startActivity(new Intent(this, SettingsActivity.class));
 				return;
 			case R.id.drawer_item_6:
-				mToolbar.setTitle(R.string.nav_item_support);
-				navFragment = new SupportFragment();
+				startActivity(new Intent(this, SupportActivity.class));
 				break;
 			case R.id.drawer_item_7:
-				mToolbar.setTitle(R.string.nav_item_about);
-				navFragment = new AboutFragment();
+				startActivity(new Intent(this, AboutActivity.class));
 				break;
 		}
 
 		if (navFragment != null) {
-			if (navFragment instanceof SupportFragment || navFragment instanceof AboutFragment) {
-				FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-				transaction.replace(R.id.content_frame, navFragment).addToBackStack(null).commit();
-			} else {
-				getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-				FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-				transaction.replace(R.id.content_frame, navFragment).commit();
-			}
+			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+			transaction.replace(R.id.content_frame, navFragment).commit();
 		}
 	}
 
