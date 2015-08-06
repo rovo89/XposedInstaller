@@ -25,7 +25,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:elevation="@dimen/toolbar_elevation"
-            app:theme="@style/Theme.XposedInstaller.Toolbar" >
+            app:theme="@style/Theme.XposedInstaller.Toolbar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
 
         </android.support.v7.widget.Toolbar>
     </FrameLayout>
