@@ -24,10 +24,24 @@
         <item>@string/settings_theme_black</item>
     </string-array>
 
+    <string-array name="default_view_texts" translatable="false">
+        <item>@string/settings_default_view_framework</item>
+        <item>@string/settings_default_view_modules</item>
+        <item>@string/settings_default_view_downloads</item>
+        <item>@string/settings_default_view_logs</item>
+    </string-array>
+
     <string-array name="theme_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
+    </string-array>
+
+    <string-array name="default_view_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
     </string-array>
 
     <string-array name="release_type_texts" translatable="false">

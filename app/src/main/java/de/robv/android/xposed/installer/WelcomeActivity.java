@@ -2,8 +2,10 @@ package de.robv.android.xposed.installer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -40,6 +42,7 @@ public class WelcomeActivity extends XposedBaseActivity implements
 	private Toolbar mToolbar;
 	//private final Handler mDrawerActionHandler = new Handler();
 	private DrawerLayout mDrawerLayout;
+	private NavigationView mNavigationView;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private int mSelectedId;
 
@@ -56,18 +59,13 @@ public class WelcomeActivity extends XposedBaseActivity implements
 		setSupportActionBar(mToolbar);
 
 		if (savedInstanceState != null) {
-			/*mMainFragment = new InstallerFragment();
-			final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-			transaction.replace(R.id.content_frame, mMainFragment).commit();
-		} else {
-		*/
 			mMainFragment = getSupportFragmentManager()
 					.findFragmentById(R.id.content_frame);
 		}
 
 		// listen for navigation events
-		NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-		navigationView.setNavigationItemSelectedListener(this);
+		NavigationView mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+		mNavigationView.setNavigationItemSelectedListener(this);
 
 		// set up the hamburger icon to open and close the drawer
 		mDrawerToggle = new ActionBarDrawerToggle(this,
@@ -79,13 +77,11 @@ public class WelcomeActivity extends XposedBaseActivity implements
 		mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
 		mDrawerToggle.syncState();
 
-		//ToDo add a setting to load a default view
-		// select the first item
-		mSelectedId = savedInstanceState == null ? R.id.drawer_item_1 : savedInstanceState.getInt(SELECTED_ITEM_ID);
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		mSelectedId = mNavigationView.getMenu().getItem(prefs.getInt("default_view", 0)).getItemId();
+		mSelectedId = savedInstanceState == null ? mSelectedId : savedInstanceState.getInt(SELECTED_ITEM_ID);
+		mNavigationView.getMenu().findItem(mSelectedId).setChecked(true);
 		navigate(mSelectedId);
-
-		// select the correct nav menu item
-		navigationView.getMenu().findItem(mSelectedId).setChecked(true);
 
 		//requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		mRepoLoader = RepoLoader.getInstance();
@@ -122,19 +118,19 @@ public class WelcomeActivity extends XposedBaseActivity implements
 		Fragment navFragment = null;
 		switch (itemId) {
 			case R.id.drawer_item_1:
-				mToolbar.setTitle(R.string.app_name);
+				setTitle(R.string.app_name);
 				navFragment = new InstallerFragment();
 				break;
 			case R.id.drawer_item_2:
-				mToolbar.setTitle(R.string.nav_item_modules);
+				setTitle(R.string.nav_item_modules);
 				navFragment = new ModulesFragment();
 				break;
 			case R.id.drawer_item_3:
-				mToolbar.setTitle(R.string.nav_item_download);
+				setTitle(R.string.nav_item_download);
 				navFragment = new DownloadFragment();
 				break;
 			case R.id.drawer_item_4:
-				mToolbar.setTitle(R.string.nav_item_logs);
+				setTitle(R.string.nav_item_logs);
 				navFragment = new LogsFragment();
 				break;
 			case R.id.drawer_item_5:
@@ -142,10 +138,10 @@ public class WelcomeActivity extends XposedBaseActivity implements
 				return;
 			case R.id.drawer_item_6:
 				startActivity(new Intent(this, SupportActivity.class));
-				break;
+				return;
 			case R.id.drawer_item_7:
 				startActivity(new Intent(this, AboutActivity.class));
-				break;
+				return;
 		}
 
 		if (navFragment != null) {

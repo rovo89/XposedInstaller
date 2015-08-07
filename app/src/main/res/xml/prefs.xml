@@ -40,6 +40,13 @@
             android:entries="@array/theme_texts"
             android:entryValues="@array/theme_values"
             android:defaultValue="0" />
+        <de.robv.android.xposed.installer.widget.IntegerListPreference
+            android:key="default_view"
+            android:title="@string/settings_default_view"
+            android:summary="%s"
+            android:entries="@array/default_view_texts"
+            android:entryValues="@array/default_view_values"
+            android:defaultValue="0" />
     </PreferenceCategory>
 
     <PreferenceCategory
