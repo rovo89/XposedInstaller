@@ -46,8 +46,6 @@ public class WelcomeActivity extends XposedBaseActivity implements
 	private ActionBarDrawerToggle mDrawerToggle;
 	private int mSelectedId;
 
-	private Fragment mMainFragment;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,12 +55,7 @@ public class WelcomeActivity extends XposedBaseActivity implements
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mToolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(mToolbar);
-
-		if (savedInstanceState != null) {
-			mMainFragment = getSupportFragmentManager()
-					.findFragmentById(R.id.content_frame);
-		}
-
+		
 		// listen for navigation events
 		NavigationView mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
 		mNavigationView.setNavigationItemSelectedListener(this);
@@ -81,7 +74,10 @@ public class WelcomeActivity extends XposedBaseActivity implements
 		mSelectedId = mNavigationView.getMenu().getItem(prefs.getInt("default_view", 0)).getItemId();
 		mSelectedId = savedInstanceState == null ? mSelectedId : savedInstanceState.getInt(SELECTED_ITEM_ID);
 		mNavigationView.getMenu().findItem(mSelectedId).setChecked(true);
-		navigate(mSelectedId);
+
+		if (savedInstanceState == null) {
+			navigate(mSelectedId);
+		}
 
 		//requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		mRepoLoader = RepoLoader.getInstance();
@@ -148,13 +144,6 @@ public class WelcomeActivity extends XposedBaseActivity implements
 			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 			transaction.replace(R.id.content_frame, navFragment).commit();
 		}
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-
-		mDrawerLayout.closeDrawer(GravityCompat.START);
 	}
 
 	@Override
