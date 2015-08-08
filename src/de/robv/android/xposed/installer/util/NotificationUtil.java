@@ -149,7 +149,7 @@ public final class NotificationUtil {
 			List<String> messages = new LinkedList<String>();
 			boolean isSoftReboot = intent.getBooleanExtra(EXTRA_SOFT_REBOOT, false);
 			int returnCode = isSoftReboot ?
-				  rootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages)
+				  rootUtil.execute("setprop ctl.restart surfaceflinger", messages)
 				: rootUtil.executeWithBusybox("reboot", messages);
 
 			if (returnCode != 0) {
