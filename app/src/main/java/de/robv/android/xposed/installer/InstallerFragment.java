@@ -52,8 +52,6 @@ public class InstallerFragment extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		Activity activity = getActivity();
-		//if (activity instanceof XposedDropdownNavActivity)
-		//	((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_INSTALL);
 
 		dlgProgress = new ProgressDialog(activity);
 		dlgProgress.setIndeterminate(true);
@@ -77,7 +75,6 @@ public class InstallerFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), XposedInstallerActivity.class);
-				//intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedDropdownNavActivity.TAB_SETTINGS);
 				startActivity(intent);
 			}
 		});
