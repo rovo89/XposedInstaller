@@ -64,6 +64,7 @@
     <string name="installation_lollipop">The Xposed framework is not installed. Please download the latest ZIP file from XDA and flash it manually via recovery.</string>
     <string name="installed_lollipop">Xposed framework version %s is active.</string>
     <string name="installed_lollipop_inactive">Xposed framework version %s is installed, but not active. Please check the logs for details.</string>
+    <string name="modules_updates_available">Module update(s) are available</string>
 
     <!-- File operations -->
     <string name="root_failed">Failed to get root access.\n\nMake sure your device is rooted properly and you have not blocked shell commands.</string>
