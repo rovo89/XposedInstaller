@@ -75,9 +75,6 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		//Activity activity = getActivity();
-		//if (activity instanceof XposedDropdownNavActivity)
-		//	((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_DOWNLOAD);
 	}
 
 	@Override
@@ -163,19 +160,6 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 						return true; // Return true to expand action view
 					}
 				});
-		/*
-		searchItem.setOnActionExpandListener(new MenuItemCompat.setOnActionExpandListener() {
-			@Override
-			public boolean onMenuItemActionExpand(MenuItem item) {
-				return true;
-			}
-
-			@Override
-			public boolean onMenuItemActionCollapse(MenuItem item) {
-				setFilter(null);
-				return true;
-			}
-		});*/
 	}
 
 	private void setFilter(String filterText) {
