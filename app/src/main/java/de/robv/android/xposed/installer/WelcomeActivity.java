@@ -73,6 +73,12 @@ public class WelcomeActivity extends XposedBaseActivity implements
 		notifyDataSetChanged();
 	}
 
+	public void switchFragment(int itemId) {
+		mSelectedId = mNavigationView.getMenu().getItem(itemId).getItemId();
+		mNavigationView.getMenu().findItem(mSelectedId).setChecked(true);
+		navigate(mSelectedId);
+	}
+
 	private void navigate(final int itemId) {
 		Fragment navFragment = null;
 		switch (itemId) {
@@ -153,9 +159,7 @@ public class WelcomeActivity extends XposedBaseActivity implements
 					.setAction("VIEW", new View.OnClickListener() {
 						@Override
 						public void onClick(View view) {
-							mSelectedId = mNavigationView.getMenu().getItem(2).getItemId();
-							mNavigationView.getMenu().findItem(mSelectedId).setChecked(true);
-							navigate(mSelectedId);
+							switchFragment(2);
 						}
 					}).show();
 		}
