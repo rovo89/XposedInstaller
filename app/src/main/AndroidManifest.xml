@@ -30,16 +30,6 @@
         </activity>
 
         <activity
-            android:name=".XposedInstallerActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="de.robv.android.xposed.installer.OPEN_SECTION" />
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-
-        <activity
             android:name=".DownloadDetailsActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true" >

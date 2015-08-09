@@ -14,7 +14,7 @@ import android.util.Log;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
-import de.robv.android.xposed.installer.XposedInstallerActivity;
+import de.robv.android.xposed.installer.XposedBaseActivity;
 
 public final class NotificationUtil {
 	private static Context sContext = null;
@@ -46,7 +46,7 @@ public final class NotificationUtil {
 	}
 
 	public static void showNotActivatedNotification(String packageName, String appName) {
-		Intent iModulesTab = new Intent(sContext, XposedInstallerActivity.class);
+		Intent iModulesTab = new Intent(sContext, XposedBaseActivity.class);
 		//iModulesTab.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedInstallerActivity.TAB_MODULES);
 		iModulesTab.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
@@ -83,7 +83,7 @@ public final class NotificationUtil {
 	}
 
 	public static void showModulesUpdatedNotification() {
-		Intent iInstallTab = new Intent(sContext, XposedInstallerActivity.class);
+		Intent iInstallTab = new Intent(sContext, XposedBaseActivity.class);
 		//iInstallTab.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedInstallerActivity.TAB_INSTALL);
 		iInstallTab.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		PendingIntent pInstallTab = PendingIntent.getActivity(sContext, PENDING_INTENT_OPEN_INSTALL,

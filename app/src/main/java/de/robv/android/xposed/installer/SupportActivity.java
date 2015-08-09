@@ -62,7 +62,7 @@ public class SupportActivity extends XposedBaseActivity {
 			txtModuleSupport.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					Intent intent = new Intent(getActivity(), XposedInstallerActivity.class);
+					Intent intent = new Intent(getActivity(), XposedBaseActivity.class);
 					startActivity(intent);
 				}
 			});

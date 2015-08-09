@@ -74,7 +74,7 @@ public class InstallerFragment extends Fragment {
 		btnInstallMode.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getActivity(), XposedInstallerActivity.class);
+				Intent intent = new Intent(getActivity(), XposedBaseActivity.class);
 				startActivity(intent);
 			}
 		});

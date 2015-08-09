@@ -143,7 +143,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			return;
 
 		if (packageName.equals(NOT_ACTIVE_NOTE_TAG)) {
-			Intent intent = new Intent(getActivity(), XposedInstallerActivity.class);
+			Intent intent = new Intent(getActivity(), XposedBaseActivity.class);
 			startActivity(intent);
 			return;
 		}
