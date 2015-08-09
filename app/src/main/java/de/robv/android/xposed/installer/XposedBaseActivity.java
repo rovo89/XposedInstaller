@@ -1,6 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
