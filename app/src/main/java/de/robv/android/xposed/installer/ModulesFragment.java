@@ -16,9 +16,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -70,11 +68,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-
-		//Activity activity = getActivity();
-		//if (activity instanceof XposedDropdownNavActivity)
-		//	((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_MODULES);
-
 		installedXposedVersion = XposedApp.getActiveXposedVersion();
 		if (installedXposedVersion <= 0) {
 			View notActiveNote = getActivity().getLayoutInflater().inflate(
@@ -151,7 +144,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 		if (packageName.equals(NOT_ACTIVE_NOTE_TAG)) {
 			Intent intent = new Intent(getActivity(), XposedInstallerActivity.class);
-			//intent.putExtra(XposedInstallerActivity.EXTRA_SECTION, XposedDropdownNavActivity.TAB_INSTALL);
 			startActivity(intent);
 			return;
 		}
