@@ -10,7 +10,6 @@ import java.io.Reader;
 import java.util.Calendar;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,9 +37,6 @@ public class LogsFragment extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		Activity activity = getActivity();
-		//if (activity instanceof XposedDropdownNavActivity)
-		//	((XposedDropdownNavActivity) activity).setNavItem(XposedDropdownNavActivity.TAB_LOGS);
 		setHasOptionsMenu(true);
 	}
 
