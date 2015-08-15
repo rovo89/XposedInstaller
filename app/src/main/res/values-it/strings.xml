@@ -232,5 +232,6 @@
     <string name="nav_item_modules">Moduli</string>
     <string name="nav_item_settings">Impostazioni</string>
     <string name="nav_item_support">Supporto</string>
+    <string name="settings_default_view">Vista di default</string>
 
 </resources>

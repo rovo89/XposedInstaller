@@ -166,10 +166,6 @@
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_theme_black">Black (useful for AMOLED screens)</string>
     <string name="settings_default_view">Default view</string>
-    <string name="settings_default_view_framework">Framework</string>
-    <string name="settings_default_view_modules">Modules</string>
-    <string name="settings_default_view_downloads">Download</string>
-    <string name="settings_default_view_logs">Logs</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Support for modules</string>
