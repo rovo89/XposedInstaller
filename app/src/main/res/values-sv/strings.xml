@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Skicka</string>
+    <string name="menuSaveToSd">Spara till SD-kort</string>
+    <string name="xposed_not_active">Senaste versionen av Xposed är inte aktiverad. Har du installerat ramverket och startat om?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome">Välkommen till <b>Xposed Installer</b>!\nVälj vad du vill göra:</string>
+    <string name="tabInstall">Ramverk</string>
+    <string name="tabInstallDescription">Här kan du hantera Xposed ramverket, vilket krävs för att moduler ska fungera.</string>
+    <string name="tabModules">Moduler</string>
+    <string name="tabModulesDescription">Ramverket i sig kan inte lägga till ytterligare funktionalitet. Du behöver moduler för detta. I denna sektionen kan du aktivera moduler efter att du har installerat dem.</string>
+    <string name="tabDownload">Ladda ner</string>
+    <string name="tabDownloadDescription">Denna sektionen ger dig tillgång till en datakatalog av moduler, så att du kan söka och ladda ner de som du vill ha och kunna hålla de uppdaterade.</string>
+    <string name="welcome_framework_update_available">En uppdatering för Xposed ramverket är tillgänglig (%s).</string>
+    <string name="welcome_update_available">En eller flera uppdatering(ar) för moduler är tillgängliga.</string>
+    <string name="tabSettings">Inställningar</string>
+    <string name="tabSettingsDescription">Gå till denna sektion för att konfigurera Xposed Installer och ramverket.</string>
+    <string name="tabLogs">Loggar</string>
+    <string name="tabLogsDescription">Visa och spara/skicka loggar från Xposed ramverket.</string>
+    <string name="tabAbout">Om</string>
+    <string name="tabAboutDescription">Lär dig mer om folket som skapade Xposed, och vart man kan få hjälp med appen och annat.</string>
+
+    <!-- Installer tab -->
+    <string name="install">Installera/Uppdatera</string>
+    <string name="uninstall">Avinstallera</string>
+    <string name="installedVersion">aktiv</string>
+    <string name="latestVersion">buntade</string>
+    <string name="versions">Versioner:</string>
+    <string name="soft_reboot">Mjuk omstart</string>
+    <string name="reboot">Omstart</string>
+    <string name="areyousure">Är du säker?</string>
+    <string name="phone_not_compatible">Xposed är inte (ännu) kompatibel med Android SDK version %1$d eller med din processor arkitektur (%2$s).</string>
+    <string name="not_tested_but_compatible">Xposed har inte blivit testad med Android SDK version %d, men den verkar vara kompatibel. Du kan testa att installera ändå om du känner dig modig.</string>
+
+    <!-- File operations -->
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed modulen är inte aktiverad än</string>
+    <string name="module_empty_description">(ingen beskrivning given)</string>
+    <string name="module_no_ui">Denna modul tillhandahåller inte ett användargränssnitt</string>
+    <string name="no_xposed_modules_found">Inga Xposed moduler hittades!</string>
+    <string name="xposed_module_list_updated">Xposed modullistan uppdaterades\nFörändringar kommer att bli aktiv vid omstart</string>
+    <string name="warning_xposed_min_version">Denna modul kräver en nyare XposedBridge version (%d) och sålunda inte kan aktiveras.</string>
+    <string name="no_min_version_specified">Denna modul specificerar inte den XposedBridge version som behövs.</string>
+    <string name="warning_min_version_too_low">Denna modul skapades för XposedBridge version %1$d, men på grund av oförenliga förändringar i version %2$d, har den avaktiverats.</string>
+    <string name="module_launch">Start UI</string>
+    <string name="module_download_updates">Ladda ner/Uppdateringar</string>
+    <string name="module_support">Support</string>
+    <string name="module_app_info">App info</string>
+    <string name="module_uninstall">Avinstallera</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Sök</string>
+    <string name="menuReload">Ladda om</string>
+    <string name="changes">Ändringar:</string>
+    <string name="download_author">av %s</string>
+    <string name="download_unknown_author">okänd skapare</string>
+    <string name="download_status_installed">Installerad (version %s)</string>
+    <string name="download_status_update_available">Uppdatering tillgänglig (version %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Tillagd den %1$s \u00b7 Uppdaterades den %2$s</string>
+    <string name="download_sorting_title">Sortering</string>
+    <string name="download_sorting_status">Sortera efter status</string>
+    <string name="download_sorting_updated">Sortera efter senaste uppdatering</string>
+    <string name="download_sorting_created">Sortera efter datum för skapandet</string>
+    <string name="download_section_framework">Ramverk</string>
+    <string name="download_section_update_available">Uppdatering tillgänglig</string>
+    <string name="download_section_installed">Installerad</string>
+    <string name="download_section_not_installed">Inte installerad</string>
+    <string name="download_section_24h">Senaste 24 timmarna</string>
+    <string name="download_section_7d">Senaste 7 dagarna</string>
+    <string name="download_section_30d">Senaste 30 dagarna</string>
+    <string name="download_section_older">Mer än 30 dagar sen</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Ladda ner</string>
+    <string name="settings_enable_downloads">Aktivera nedladdningar</string>
+    <string name="settings_enable_downloads_summary">Låt Xposed Installer att söka efter uppdateringar och nya moduler</string>
+    <string name="settings_group_experimental">Experimentellt</string>
+    <string name="settings_performance_experiment">Prestanda experiment</string>
+    <string name="settings_performance_experiment_summary">Om du aktiverar det här, kan systemets prestanda antingen öka, minska eller förbli densamma. Känn dig fri att prova och rapportera tillbaka vilken effekt du ser (eller om det finns ingen alls). Du måste installera om ramverket och starta om efter att ha ändrat detta.</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+    <string name="logs_load_failed">Kunde inte läsa loggen:</string>
+    <string name="logs_save_failed">Kunde inte skriva till loggen på SD-kortet:</string>
+    <string name="sdcard_not_writable">SD-kortet hittades inte eller är inte skrivbar</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Huvudsakliga utvecklare:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> och <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers_warning">Vänligen kontakta oss <b>inte</b> direkt för support, använd länken nedan.</string>
+    <string name="about_translator_label">Översättare:</string>
+    <string name="translator"><a href="http://forum.xda-developers.com/member.php?u=2364290">Fredro (Fredrik Lundberg)</a></string>
+    <string name="about_version_label">Versionen av denna app:</string>
+    <string name="about_source_label">Källkod:</string>
+    <string name="about_support_label">Få support här:</string>
+    <string name="about_libraries_label">Bibliotek som använts:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Ladda ner</string>
+    <string name="download_view_install">Installera</string>
+    <string name="download_view_cancel">Avbryt</string>
+    <string name="download_view_no_url">Ingen nerladdnings URL tillgänglig</string>
+    <string name="download_view_running">Nerladdning pågår (%1$,d av %2$,d kB)</string>
+    <string name="download_view_waiting">Nerladdning avvaktar</string>
+    <string name="download_view_successful">Nerladdning lyckades</string>
+    <string name="download_view_failed">Nerladdning misslyckades (error %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 summan är felaktig (nerladdade: %1$s, förväntade: %2$s)</string>
+    <string name="download_could_not_read_file">Kunde inte läsa nerladdade filen: %s</string>
+    <string name="download_no_valid_apk">Nerladdade filen är inte en giltlig APK fil (eller inkompatibel)</string>
+    <string name="download_incorrect_package_name">Paketnamnet är felaktig (nerladdade: %1$s, förväntade: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Nerladdning av %1$s misslyckades: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Nerladdning av %1$s misslyckades: %2$s</string>
+    <string name="repo_load_failed">Kan inte ladda datakatalog från %1$s:\n%2$s</string>
+
+</resources>
