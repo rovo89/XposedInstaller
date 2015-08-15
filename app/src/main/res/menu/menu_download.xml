@@ -13,10 +13,5 @@
         android:icon="@drawable/ic_menu_sort"
         android:title="@string/download_sorting_title"
         app:showAsAction="ifRoom|withText"/>
-    <item
-        android:id="@+id/menu_refresh"
-        android:icon="@drawable/ic_menu_refresh"
-        android:title="@string/menuReload"
-        app:showAsAction="always|withText"/>
 
 </menu>

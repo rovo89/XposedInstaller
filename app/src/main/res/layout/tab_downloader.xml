@@ -7,13 +7,20 @@
               android:orientation="vertical"
               tools:context=".DownloadFragment">
 
-    <se.emilsjolander.stickylistheaders.StickyListHeadersListView
-        android:id="@+id/listModules"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swiperefreshlayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:drawSelectorOnTop="true"
-        android:fastScrollEnabled="true"
-        android:scrollbarStyle="outsideOverlay"/>
+        android:layout_height="match_parent">
+
+        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+            android:id="@+id/listModules"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:drawSelectorOnTop="true"
+            android:fastScrollEnabled="true"
+            android:scrollbarStyle="outsideOverlay"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

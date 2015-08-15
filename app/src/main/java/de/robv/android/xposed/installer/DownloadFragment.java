@@ -10,8 +10,10 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.SearchView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -87,7 +89,21 @@ public class DownloadFragment extends Fragment
 		View v = inflater.inflate(R.layout.tab_downloader, container, false);
 		StickyListHeadersListView lv = (StickyListHeadersListView) v
 				.findViewById(R.id.listModules);
-
+		final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v
+				.findViewById(R.id.swiperefreshlayout);
+		refreshLayout.setOnRefreshListener(
+				new SwipeRefreshLayout.OnRefreshListener() {
+					@Override
+					public void onRefresh() {
+						mRepoLoader.triggerReload(true);
+						// SIMULATE WAIT TIME
+						new Handler().postDelayed(new Runnable() {
+							public void run() {
+								refreshLayout.setRefreshing(false);
+							}
+						}, 1500);
+					}
+				});
 		mRepoLoader.addListener(this, true);
 		mModuleUtil.addListener(this);
 		lv.setAdapter(mAdapter);
@@ -186,9 +202,6 @@ public class DownloadFragment extends Fragment
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.menu_refresh:
-				mRepoLoader.triggerReload(true);
-				return true;
 			case R.id.menu_sort:
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						getActivity());
@@ -200,7 +213,7 @@ public class DownloadFragment extends Fragment
 									int which) {
 								mSortingOrder = which;
 								mPref.edit().putInt("download_sorting_order",
-										mSortingOrder).commit();
+										mSortingOrder).apply();
 								reloadItems();
 								dialog.dismiss();
 							}
