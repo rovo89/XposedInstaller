@@ -1,9 +1,10 @@
 package de.robv.android.xposed.installer.util;
 
-import java.util.List;
-
 import android.os.Handler;
 import android.os.HandlerThread;
+
+import java.util.List;
+
 import eu.chainfire.libsuperuser.Shell;
 import eu.chainfire.libsuperuser.Shell.OnCommandResultListener;
 
@@ -17,7 +18,8 @@ public class RootUtil {
 
 	private OnCommandResultListener commandResultListener = new OnCommandResultListener() {
 		@Override
-		public void onCommandResult(int commandCode, int exitCode, List<String> output) {
+		public void onCommandResult(int commandCode, int exitCode,
+				List<String> output) {
 			mLastExitCode = exitCode;
 			mLastOutput = output;
 			synchronized (mCallbackThread) {
@@ -32,18 +34,19 @@ public class RootUtil {
 			while (mCommandRunning) {
 				try {
 					mCallbackThread.wait();
-				} catch (InterruptedException ignored) {}
+				} catch (InterruptedException ignored) {
+				}
 			}
 		}
 
 		if (mLastExitCode == OnCommandResultListener.WATCHDOG_EXIT
-		   || mLastExitCode == OnCommandResultListener.SHELL_DIED)
+				|| mLastExitCode == OnCommandResultListener.SHELL_DIED)
 			dispose();
 	}
 
 	/**
-	 * Starts an interactive shell with root permissions.
-	 * Does nothing if already running.
+	 * Starts an interactive shell with root permissions. Does nothing if
+	 * already running.
 	 *
 	 * @return true if root access is available, false otherwise
 	 */
@@ -59,12 +62,10 @@ public class RootUtil {
 		mCallbackThread.start();
 
 		mCommandRunning = true;
-		mShell = new Shell.Builder()
-			.useSU()
-			.setHandler(new Handler(mCallbackThread.getLooper()))
-			.setWantSTDERR(true)
-			.setWatchdogTimeout(10)
-			.open(commandResultListener);
+		mShell = new Shell.Builder().useSU()
+				.setHandler(new Handler(mCallbackThread.getLooper()))
+				.setWantSTDERR(true).setWatchdogTimeout(10)
+				.open(commandResultListener);
 
 		waitForCommandFinished();
 
@@ -85,7 +86,8 @@ public class RootUtil {
 
 		try {
 			mShell.close();
-		} catch (Exception ignored) {}
+		} catch (Exception ignored) {
+		}
 		mShell = null;
 
 		mCallbackThread.quit();
@@ -93,7 +95,8 @@ public class RootUtil {
 	}
 
 	/**
-	 * Executes a single command, waits for its termination and returns the result
+	 * Executes a single command, waits for its termination and returns the
+	 * result
 	 */
 	public synchronized int execute(String command, List<String> output) {
 		if (mShell == null)
@@ -114,7 +117,8 @@ public class RootUtil {
 	 */
 	public int executeWithBusybox(String command, List<String> output) {
 		AssetUtil.extractBusybox();
-		return execute(AssetUtil.BUSYBOX_FILE.getAbsolutePath() + " " + command, output);
+		return execute(AssetUtil.BUSYBOX_FILE.getAbsolutePath() + " " + command,
+				output);
 	}
 
 	@Override

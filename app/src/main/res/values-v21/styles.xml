@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Theme.XposedInstaller.Light" parent="Theme.XposedInstaller.Light.Base" >
+    <style name="Theme.XposedInstaller.Light" parent="Theme.XposedInstaller.Light.Base">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@color/background_material_light</item>
         <item name="sticky_header_background">@color/sticky_header_background_light</item>
@@ -12,7 +12,7 @@
         <item name="download_status_installed">@android:color/holo_orange_dark</item>
     </style>
 
-    <style name="Theme.XposedInstaller.Dark" parent="Theme.XposedInstaller.Dark.Base" >
+    <style name="Theme.XposedInstaller.Dark" parent="Theme.XposedInstaller.Dark.Base">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@color/background_material_dark</item>
         <item name="sticky_header_background">@color/sticky_header_background_dark</item>
@@ -24,7 +24,7 @@
         <item name="download_status_installed">@android:color/holo_orange_light</item>
     </style>
 
-    <style name="Theme.XposedInstaller.Dark.Black" parent="Theme.XposedInstaller.Dark" >
+    <style name="Theme.XposedInstaller.Dark.Black" parent="Theme.XposedInstaller.Dark">
         <item name="android:windowBackground">@color/app_background_black</item>
         <item name="list_download_item_color">@color/list_download_item_color_black</item>
         <item name="background_card">@drawable/background_card_black</item>

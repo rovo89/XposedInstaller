@@ -14,6 +14,15 @@ public class IntegerListPreference extends ListPreference {
 		super(context, attrs);
 	}
 
+	public static int getIntValue(String value) {
+		if (value == null)
+			return 0;
+
+		return (int) ((value.startsWith("0x"))
+				? Long.parseLong(value.substring(2), 16)
+				: Long.parseLong(value));
+	}
+
 	@Override
 	public void setValue(String value) {
 		super.setValue(value);
@@ -50,14 +59,5 @@ public class IntegerListPreference extends ListPreference {
 			}
 		}
 		return -1;
-	}
-
-	public static int getIntValue(String value) {
-		if (value == null)
-			return 0;
-
-		return (int)((value.startsWith("0x"))
-				? Long.parseLong(value.substring(2), 16)
-				: Long.parseLong(value));
 	}
 }

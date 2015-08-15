@@ -1,6 +1,5 @@
 package de.robv.android.xposed.installer.repo;
 
-
 public class ModuleVersion {
 	public final Module module;
 	public String name;
@@ -12,7 +11,7 @@ public class ModuleVersion {
 	public ReleaseType relType = ReleaseType.STABLE;
 	public long uploaded = -1;
 
-	/*package*/ ModuleVersion(Module module) {
+	/* package */ ModuleVersion(Module module) {
 		this.module = module;
 	}
 }

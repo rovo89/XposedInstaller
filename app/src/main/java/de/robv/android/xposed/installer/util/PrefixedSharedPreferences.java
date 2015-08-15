@@ -1,14 +1,14 @@
 package de.robv.android.xposed.installer.util;
 
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 public class PrefixedSharedPreferences implements SharedPreferences {
 	private final SharedPreferences mBase;
@@ -19,11 +19,14 @@ public class PrefixedSharedPreferences implements SharedPreferences {
 		mPrefix = prefix + "_";
 	}
 
-	public static void injectToPreferenceManager(PreferenceManager manager, String prefix) {
-		SharedPreferences prefixedPrefs = new PrefixedSharedPreferences(manager.getSharedPreferences(), prefix);
+	public static void injectToPreferenceManager(PreferenceManager manager,
+			String prefix) {
+		SharedPreferences prefixedPrefs = new PrefixedSharedPreferences(
+				manager.getSharedPreferences(), prefix);
 
 		try {
-			Field fieldSharedPref = PreferenceManager.class.getDeclaredField("mSharedPreferences");
+			Field fieldSharedPref = PreferenceManager.class
+					.getDeclaredField("mSharedPreferences");
 			fieldSharedPref.setAccessible(true);
 			fieldSharedPref.set(manager, prefixedPrefs);
 		} catch (Throwable t) {
@@ -34,7 +37,8 @@ public class PrefixedSharedPreferences implements SharedPreferences {
 	@Override
 	public Map<String, ?> getAll() {
 		Map<String, ?> baseResult = mBase.getAll();
-		Map<String, Object> prefixedResult = new HashMap<String, Object>(baseResult);
+		Map<String, Object> prefixedResult = new HashMap<String, Object>(
+				baseResult);
 		for (Entry<String, ?> entry : baseResult.entrySet()) {
 			prefixedResult.put(mPrefix + entry.getKey(), entry.getValue());
 		}
@@ -83,15 +87,18 @@ public class PrefixedSharedPreferences implements SharedPreferences {
 	}
 
 	@Override
-	public void registerOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener listener) {
-		throw new UnsupportedOperationException("listeners are not supported in this implementation");
+	public void registerOnSharedPreferenceChangeListener(
+			OnSharedPreferenceChangeListener listener) {
+		throw new UnsupportedOperationException(
+				"listeners are not supported in this implementation");
 	}
 
 	@Override
-	public void unregisterOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener listener) {
-		throw new UnsupportedOperationException("listeners are not supported in this implementation");
+	public void unregisterOnSharedPreferenceChangeListener(
+			OnSharedPreferenceChangeListener listener) {
+		throw new UnsupportedOperationException(
+				"listeners are not supported in this implementation");
 	}
-
 
 	private class EditorImpl implements Editor {
 		private final Editor mEditorBase;

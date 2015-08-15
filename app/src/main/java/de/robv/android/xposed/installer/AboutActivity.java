@@ -22,7 +22,8 @@ public class AboutActivity extends XposedBaseActivity {
 		setContentView(R.layout.activity_container);
 
 		if (UIUtil.isLollipop()) {
-			this.getWindow().setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
+			this.getWindow().setStatusBarColor(
+					this.getResources().getColor(R.color.colorPrimaryDark));
 		}
 
 		Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -43,8 +44,7 @@ public class AboutActivity extends XposedBaseActivity {
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new AboutFragment())
-					.commit();
+					.add(R.id.container, new AboutFragment()).commit();
 		}
 	}
 
@@ -55,26 +55,32 @@ public class AboutActivity extends XposedBaseActivity {
 		}
 
 		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		public View onCreateView(LayoutInflater inflater, ViewGroup container,
+				Bundle savedInstanceState) {
 			View v = inflater.inflate(R.layout.tab_about, container, false);
 
 			try {
 				String packageName = getActivity().getPackageName();
-				String version = getActivity().getPackageManager().getPackageInfo(packageName, 0).versionName;
+				String version = getActivity().getPackageManager()
+						.getPackageInfo(packageName, 0).versionName;
 				((TextView) v.findViewById(R.id.version)).setText(version);
 			} catch (NameNotFoundException e) {
 				// should not happen
 			}
 
-			((TextView) v.findViewById(R.id.about_developers)).setMovementMethod(LinkMovementMethod.getInstance());
-			((TextView) v.findViewById(R.id.about_libraries)).setMovementMethod(LinkMovementMethod.getInstance());
+			((TextView) v.findViewById(R.id.about_developers))
+					.setMovementMethod(LinkMovementMethod.getInstance());
+			((TextView) v.findViewById(R.id.about_libraries))
+					.setMovementMethod(LinkMovementMethod.getInstance());
 
 			String translator = getResources().getString(R.string.translator);
 			if (translator.isEmpty()) {
-				v.findViewById(R.id.about_translator_label).setVisibility(View.GONE);
+				v.findViewById(R.id.about_translator_label)
+						.setVisibility(View.GONE);
 				v.findViewById(R.id.about_translator).setVisibility(View.GONE);
 			} else {
-				((TextView) v.findViewById(R.id.about_translator)).setMovementMethod(LinkMovementMethod.getInstance());
+				((TextView) v.findViewById(R.id.about_translator))
+						.setMovementMethod(LinkMovementMethod.getInstance());
 			}
 
 			return v;

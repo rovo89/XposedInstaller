@@ -22,13 +22,12 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
-public class WelcomeActivity extends XposedBaseActivity implements
-		NavigationView.OnNavigationItemSelectedListener, ModuleListener, RepoListener {
-
-	private RepoLoader mRepoLoader;
+public class WelcomeActivity extends XposedBaseActivity
+		implements NavigationView.OnNavigationItemSelectedListener,
+		ModuleListener, RepoListener {
 
 	private static final String SELECTED_ITEM_ID = "SELECTED_ITEM_ID";
-
+	private RepoLoader mRepoLoader;
 	private Toolbar mToolbar;
 	private DrawerLayout mDrawerLayout;
 	private NavigationView mNavigationView;
@@ -48,18 +47,20 @@ public class WelcomeActivity extends XposedBaseActivity implements
 		mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
 		mNavigationView.setNavigationItemSelectedListener(this);
 
-		mDrawerToggle = new ActionBarDrawerToggle(this,
-				mDrawerLayout,
-				mToolbar,
+		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
 				R.string.navigation_drawer_open,
 				R.string.navigation_drawer_close);
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-		mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+		mDrawerLayout.setStatusBarBackgroundColor(
+				getResources().getColor(R.color.colorPrimaryDark));
 		mDrawerToggle.syncState();
 
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		mSelectedId = mNavigationView.getMenu().getItem(prefs.getInt("default_view", 0)).getItemId();
-		mSelectedId = savedInstanceState == null ? mSelectedId : savedInstanceState.getInt(SELECTED_ITEM_ID);
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		mSelectedId = mNavigationView.getMenu()
+				.getItem(prefs.getInt("default_view", 0)).getItemId();
+		mSelectedId = savedInstanceState == null ? mSelectedId
+				: savedInstanceState.getInt(SELECTED_ITEM_ID);
 		mNavigationView.getMenu().findItem(mSelectedId).setChecked(true);
 
 		if (savedInstanceState == null) {
@@ -110,7 +111,8 @@ public class WelcomeActivity extends XposedBaseActivity implements
 		}
 
 		if (navFragment != null) {
-			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+			FragmentTransaction transaction = getSupportFragmentManager()
+					.beginTransaction();
 			transaction.replace(R.id.content_frame, navFragment).commit();
 		}
 	}
@@ -144,18 +146,20 @@ public class WelcomeActivity extends XposedBaseActivity implements
 		String frameworkUpdateVersion = mRepoLoader.getFrameworkUpdateVersion();
 		boolean moduleUpdateAvailable = mRepoLoader.hasModuleUpdates();
 
-		Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
+		Fragment currentFragment = getSupportFragmentManager()
+				.findFragmentById(R.id.content_frame);
 		if (currentFragment instanceof DownloadDetailsFragment) {
 			if (frameworkUpdateVersion != null) {
 				Snackbar.make(parentLayout,
-						R.string.welcome_framework_update_available + " " +
-								String.valueOf(frameworkUpdateVersion),
+						R.string.welcome_framework_update_available + " "
+								+ String.valueOf(frameworkUpdateVersion),
 						Snackbar.LENGTH_LONG).show();
 			}
 		}
 
 		if (moduleUpdateAvailable) {
-			Snackbar.make(parentLayout, R.string.modules_updates_available, Snackbar.LENGTH_LONG)
+			Snackbar.make(parentLayout, R.string.modules_updates_available,
+					Snackbar.LENGTH_LONG)
 					.setAction("VIEW", new View.OnClickListener() {
 						@Override
 						public void onClick(View view) {
@@ -171,7 +175,8 @@ public class WelcomeActivity extends XposedBaseActivity implements
 	}
 
 	@Override
-	public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module) {
+	public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil,
+			String packageName, InstalledModule module) {
 		notifyDataSetChanged();
 	}
 

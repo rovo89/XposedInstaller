@@ -1,16 +1,17 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/txtInfo"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
 
         <Button
             android:id="@+id/btnDownload"
@@ -18,7 +19,7 @@
             android:layout_height="wrap_content"
             android:minHeight="30dip"
             android:text="@string/download_view_download"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
 
         <Button
             android:id="@+id/btnDownloadCancel"
@@ -28,7 +29,7 @@
             android:text="@string/download_view_cancel"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone"
-            tools:ignore="ButtonOrder" />
+            tools:ignore="ButtonOrder"/>
 
         <Button
             android:id="@+id/btnInstall"
@@ -37,7 +38,7 @@
             android:minHeight="30dip"
             android:text="@string/download_view_install"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
     </LinearLayout>
 
@@ -45,6 +46,6 @@
         android:id="@+id/progress"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
 </merge>

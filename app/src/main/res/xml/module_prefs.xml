@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <de.robv.android.xposed.installer.widget.ListPreferenceSummaryFix
         android:defaultValue=""
@@ -7,6 +7,6 @@
         android:entryValues="@array/module_release_type_values"
         android:key="release_type"
         android:summary="%s"
-        android:title="@string/settings_release_type" />
+        android:title="@string/settings_release_type"/>
 
 </PreferenceScreen>

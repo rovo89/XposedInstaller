@@ -3,8 +3,9 @@
 <!-- modified from from https://gist.github.com/iheanyi/5774841 -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <shape android:shape="rectangle"
-            android:dither="true">
+        <shape
+            android:dither="true"
+            android:shape="rectangle">
 
             <corners android:radius="2dp"/>
 
@@ -14,14 +15,16 @@
     </item>
 
     <item android:bottom="2dp">
-        <shape android:shape="rectangle"
-            android:dither="true">
+        <shape
+            android:dither="true"
+            android:shape="rectangle">
 
             <corners android:radius="2dp"/>
 
             <solid android:color="@color/card_background_light"/>
 
-            <padding android:bottom="8dp"
+            <padding
+                android:bottom="8dp"
                 android:left="8dp"
                 android:right="8dp"
                 android:top="8dp"/>

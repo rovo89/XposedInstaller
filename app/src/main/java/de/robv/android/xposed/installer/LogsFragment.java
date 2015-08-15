@@ -1,14 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.Calendar;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
@@ -26,10 +17,20 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.Calendar;
+
 public class LogsFragment extends Fragment {
+	private static final int MAX_LOG_SIZE = 2 * 1024 * 1024; // 2 MB
 	private File mFileErrorLog = new File(XposedApp.BASE_DIR + "log/error.log");
-	private File mFileErrorLogOld = new File(XposedApp.BASE_DIR + "log/error.log.old");
-	private static final int MAX_LOG_SIZE = 2*1024*1024; // 2 MB
+	private File mFileErrorLogOld = new File(
+			XposedApp.BASE_DIR + "log/error.log.old");
 	private TextView mTxtLog;
 	private ScrollView mSVLog;
 	private HorizontalScrollView mHSVLog;
@@ -41,7 +42,8 @@ public class LogsFragment extends Fragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_logs, container, false);
 		mTxtLog = (TextView) v.findViewById(R.id.txtLog);
 		mSVLog = (ScrollView) v.findViewById(R.id.svLog);
@@ -58,18 +60,18 @@ public class LogsFragment extends Fragment {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.menu_refresh:
-			reloadErrorLog();
-			return true;
-		case R.id.menu_send:
-			send();
-			return true;
-		case R.id.menu_save:
-			save();
-			return true;
-		case R.id.menu_clear:
-			clear();
-			return true;
+			case R.id.menu_refresh:
+				reloadErrorLog();
+				return true;
+			case R.id.menu_send:
+				send();
+				return true;
+			case R.id.menu_save:
+				save();
+				return true;
+			case R.id.menu_clear:
+				clear();
+				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -81,7 +83,9 @@ public class LogsFragment extends Fragment {
 			long skipped = skipLargeFile(fis, mFileErrorLog.length());
 			if (skipped > 0) {
 				logContent.append("-----------------\n");
-				logContent.append(getResources().getString(R.string.log_too_large, MAX_LOG_SIZE / 1024, skipped / 1024));
+				logContent
+						.append(getResources().getString(R.string.log_too_large,
+								MAX_LOG_SIZE / 1024, skipped / 1024));
 				logContent.append("\n-----------------\n\n");
 			}
 			Reader reader = new InputStreamReader(fis);
@@ -92,7 +96,8 @@ public class LogsFragment extends Fragment {
 			}
 			reader.close();
 		} catch (IOException e) {
-			logContent.append(getResources().getString(R.string.logs_load_failed));
+			logContent.append(
+					getResources().getString(R.string.logs_load_failed));
 			logContent.append('\n');
 			logContent.append(e.getMessage());
 		}
@@ -118,13 +123,15 @@ public class LogsFragment extends Fragment {
 
 	private void clear() {
 		try {
-			new FileOutputStream(mFileErrorLog).close();;
+			new FileOutputStream(mFileErrorLog).close();
 			mFileErrorLogOld.delete();
-			Toast.makeText(getActivity(), R.string.logs_cleared, Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), R.string.logs_cleared,
+					Toast.LENGTH_SHORT).show();
 			reloadErrorLog();
 		} catch (IOException e) {
 			Toast.makeText(getActivity(),
-					getResources().getString(R.string.logs_clear_failed) + "\n" + e.getMessage(),
+					getResources().getString(R.string.logs_clear_failed) + "\n"
+							+ e.getMessage(),
 					Toast.LENGTH_LONG).show();
 			return;
 		}
@@ -134,22 +141,29 @@ public class LogsFragment extends Fragment {
 		Intent sendIntent = new Intent();
 		sendIntent.setAction(Intent.ACTION_SEND);
 		sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mFileErrorLog));
-		sendIntent.setType("application/text"); // text/plain is handled wrongly by too many apps
-		startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.menuSend)));
+		sendIntent.setType("application/text"); // text/plain is handled wrongly
+												// by too many apps
+		startActivity(Intent.createChooser(sendIntent,
+				getResources().getString(R.string.menuSend)));
 	}
 
 	@SuppressLint("DefaultLocale")
 	private void save() {
-		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-			Toast.makeText(getActivity(), R.string.sdcard_not_writable, Toast.LENGTH_LONG).show();
+		if (!Environment.getExternalStorageState()
+				.equals(Environment.MEDIA_MOUNTED)) {
+			Toast.makeText(getActivity(), R.string.sdcard_not_writable,
+					Toast.LENGTH_LONG).show();
 			return;
 		}
 
 		Calendar now = Calendar.getInstance();
-		String filename = String.format("xposed_%s_%04d%02d%02d_%02d%02d%02d.log", "error",
-				now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1, now.get(Calendar.DAY_OF_MONTH),
-				now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
-		File targetFile = new File(getActivity().getExternalFilesDir(null), filename);
+		String filename = String.format(
+				"xposed_%s_%04d%02d%02d_%02d%02d%02d.log", "error",
+				now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1,
+				now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY),
+				now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
+		File targetFile = new File(getActivity().getExternalFilesDir(null),
+				filename);
 
 		try {
 			FileInputStream in = new FileInputStream(mFileErrorLog);
@@ -159,26 +173,30 @@ public class LogsFragment extends Fragment {
 			if (skipped > 0) {
 				StringBuilder logContent = new StringBuilder(512);
 				logContent.append("-----------------\n");
-				logContent.append(getResources().getString(R.string.log_too_large, MAX_LOG_SIZE / 1024, skipped / 1024));
+				logContent
+						.append(getResources().getString(R.string.log_too_large,
+								MAX_LOG_SIZE / 1024, skipped / 1024));
 				logContent.append("\n-----------------\n\n");
 				out.write(logContent.toString().getBytes());
 			}
 
 			byte[] buffer = new byte[1024];
 			int len;
-			while ((len = in.read(buffer)) > 0){
+			while ((len = in.read(buffer)) > 0) {
 				out.write(buffer, 0, len);
 			}
 			in.close();
 			out.close();
 		} catch (IOException e) {
 			Toast.makeText(getActivity(),
-					getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(),
+					getResources().getString(R.string.logs_save_failed) + "\n"
+							+ e.getMessage(),
 					Toast.LENGTH_LONG).show();
 			return;
 		}
 
-		Toast.makeText(getActivity(), targetFile.toString(), Toast.LENGTH_LONG).show();
+		Toast.makeText(getActivity(), targetFile.toString(), Toast.LENGTH_LONG)
+				.show();
 	}
 
 	private long skipLargeFile(InputStream is, long length) throws IOException {

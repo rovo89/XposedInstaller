@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
         android:key="group_installation"
-        android:title="@string/settings_group_installation" >
+        android:title="@string/settings_group_installation">
         <de.robv.android.xposed.installer.widget.IntegerListPreference
-            android:key="install_mode"
-            android:title="@string/settings_install_mode"
-            android:summary="%s"
+            android:defaultValue="0"
             android:entries="@array/install_mode_texts"
             android:entryValues="@array/install_mode_values"
-            android:defaultValue="0" />
+            android:key="install_mode"
+            android:summary="%s"
+            android:title="@string/settings_install_mode"/>
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="group_download"
-        android:title="@string/settings_group_download" >
+        android:title="@string/settings_group_download">
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable_downloads"
             android:summary="@string/settings_enable_downloads_summary"
-            android:title="@string/settings_enable_downloads" />
+            android:title="@string/settings_enable_downloads"/>
         <de.robv.android.xposed.installer.widget.ListPreferenceSummaryFix
-            android:key="release_type_global"
-            android:title="@string/settings_release_type"
-            android:summary="%s"
+            android:defaultValue="stable"
             android:entries="@array/release_type_texts"
             android:entryValues="@array/release_type_values"
-            android:defaultValue="stable" />
+            android:key="release_type_global"
+            android:summary="%s"
+            android:title="@string/settings_release_type"/>
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="group_app"
-        android:title="@string/settings_group_app" >
+        android:title="@string/settings_group_app">
         <de.robv.android.xposed.installer.widget.IntegerListPreference
-            android:key="theme"
-            android:title="@string/settings_theme"
-            android:summary="%s"
+            android:defaultValue="0"
             android:entries="@array/theme_texts"
             android:entryValues="@array/theme_values"
-            android:defaultValue="0" />
-        <de.robv.android.xposed.installer.widget.IntegerListPreference
-            android:key="default_view"
-            android:title="@string/settings_default_view"
+            android:key="theme"
             android:summary="%s"
+            android:title="@string/settings_theme"/>
+        <de.robv.android.xposed.installer.widget.IntegerListPreference
+            android:defaultValue="0"
             android:entries="@array/default_view_texts"
             android:entryValues="@array/default_view_values"
-            android:defaultValue="0" />
+            android:key="default_view"
+            android:summary="%s"
+            android:title="@string/settings_default_view"/>
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="group_experimental"
-        android:title="@string/settings_group_experimental" >
+        android:title="@string/settings_group_experimental">
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="disable_resources"
             android:persistent="false"
             android:summary="@string/settings_disable_resources_summary"
-            android:title="@string/settings_disable_resources" />
-<!--
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="performance_experiment"
-            android:summary="@string/settings_performance_experiment_summary"
-            android:title="@string/settings_performance_experiment" />
--->
+            android:title="@string/settings_disable_resources"/>
+        <!--
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:key="performance_experiment"
+                    android:summary="@string/settings_performance_experiment_summary"
+                    android:title="@string/settings_performance_experiment" />
+        -->
     </PreferenceCategory>
 </PreferenceScreen>

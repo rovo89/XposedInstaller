@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+      xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/menu_search"
         android:icon="@drawable/ic_menu_search"
-        app:showAsAction="always"
+        android:title="@string/menuSearch"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        android:title="@string/menuSearch"/>
+        app:showAsAction="always"/>
     <item
         android:id="@+id/menu_sort"
         android:icon="@drawable/ic_menu_sort"
-        app:showAsAction="ifRoom|withText"
-        android:title="@string/download_sorting_title"/>
+        android:title="@string/download_sorting_title"
+        app:showAsAction="ifRoom|withText"/>
     <item
         android:id="@+id/menu_refresh"
         android:icon="@drawable/ic_menu_refresh"
-        app:showAsAction="always|withText"
-        android:title="@string/menuReload"/>
+        android:title="@string/menuReload"
+        app:showAsAction="always|withText"/>
 
 </menu>

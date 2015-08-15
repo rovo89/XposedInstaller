@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/menu_launch"
@@ -12,7 +12,7 @@
         android:title="@string/module_support"/>
     <item
         android:id="@+id/menu_play_store"
-        android:title="" />
+        android:title=""/>
     <item
         android:id="@+id/menu_app_info"
         android:title="@string/module_app_info"/>

@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="?attr/actionBarSize" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp" >
+        android:padding="8dp">
 
         <LinearLayout
             android:id="@+id/install_reverted_warning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="4dp"
             android:background="?attr/background_card"
-            android:visibility="gone" >
-            <TextView
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        <TextView
                 android:id="@+id/install_reverted_warning_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/warning"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/warning"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:textStyle="italic"
-                android:text="@string/tap_to_dismiss" />
+                android:text="@string/tap_to_dismiss"
+                android:textStyle="italic"/>
         </LinearLayout>
 
         <TextView
@@ -39,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:textColor="@color/warning"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/framework_install_errors"
@@ -47,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:textColor="@color/warning"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -55,20 +57,20 @@
             android:paddingLeft="16dp"
             android:text="@string/tabInstall"
             android:textAllCaps="true"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/btnInstall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/install" />
+            android:text="@string/install"/>
 
         <Button
             android:id="@+id/btnUninstall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="@string/uninstall" />
+            android:text="@string/uninstall"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -76,13 +78,13 @@
             android:paddingLeft="16dp"
             android:text="@string/settings_install_mode"
             android:textAllCaps="true"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/framework_install_mode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -90,19 +92,19 @@
             android:paddingLeft="16dp"
             android:text="@string/install_header_reboot"
             android:textAllCaps="true"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/btnSoftReboot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/soft_reboot" />
+            android:text="@string/soft_reboot"/>
 
         <Button
             android:id="@+id/btnReboot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/reboot" />
+            android:text="@string/reboot"/>
     </LinearLayout>
 
 </ScrollView>

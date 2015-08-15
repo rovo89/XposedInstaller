@@ -1,62 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
     android:id="@+id/card_view"
-    android:layout_gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:layout_gravity="center"
+    android:layout_marginBottom="3dip"
     android:layout_marginLeft="8dip"
     android:layout_marginRight="8dip"
     android:layout_marginTop="3dip"
-    android:layout_marginBottom="3dip"
-    android:foreground="?selectableItemBackground"
     android:elevation="2dip"
-    card_view:cardCornerRadius="2dip"
-    card_view:cardBackgroundColor="?attr/list_download_item_color">
+    android:foreground="?selectableItemBackground"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    card_view:cardBackgroundColor="?attr/list_download_item_color"
+    card_view:cardCornerRadius="2dip">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/listPreferredItemHeight"
-        android:padding="8dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="8dp">
 
         <ImageView
             android:id="@+id/icon"
             android:layout_width="48dip"
-            android:layout_height="48dip" />
+            android:layout_height="48dip"/>
 
         <LinearLayout
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:layout_marginRight="4dip"
             android:layout_marginLeft="4dip"
-            android:orientation="vertical" >
+            android:layout_marginRight="4dip"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-                <TextView
+                android:layout_height="wrap_content">
+
+            <TextView
                     android:id="@+id/title"
                     android:layout_width="0dip"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="4dip"
                     android:layout_weight="1"
                     android:singleLine="false"
-                    android:textIsSelectable="false"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textIsSelectable="false"/>
+
                 <TextView
                     android:id="@+id/version_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dip"
                     android:gravity="right"
-                    android:textIsSelectable="false"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@android:color/tertiary_text_dark" />
+                    android:textColor="@android:color/tertiary_text_dark"
+                    android:textIsSelectable="false"/>
             </LinearLayout>
 
             <TextView
@@ -64,8 +67,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textIsSelectable="false"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textIsSelectable="false"/>
+
             <TextView
                 android:id="@+id/warning"
                 android:layout_width="wrap_content"
@@ -73,15 +77,15 @@
                 android:layout_gravity="center_vertical"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/warning"
-                android:visibility="gone" />
+                android:visibility="gone"/>
         </LinearLayout>
 
         <CheckBox
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="top"
-            android:focusable="false" />
+            android:focusable="false"
+            android:gravity="top"/>
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

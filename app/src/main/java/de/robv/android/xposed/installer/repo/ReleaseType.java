@@ -3,11 +3,19 @@ package de.robv.android.xposed.installer.repo;
 import de.robv.android.xposed.installer.R;
 
 public enum ReleaseType {
-	STABLE (R.string.reltype_stable, R.string.reltype_stable_summary),
-	BETA (R.string.reltype_beta, R.string.reltype_beta_summary),
-	EXPERIMENTAL (R.string.reltype_experimental, R.string.reltype_experimental_summary);
+	STABLE(R.string.reltype_stable, R.string.reltype_stable_summary), BETA(
+			R.string.reltype_beta, R.string.reltype_beta_summary), EXPERIMENTAL(
+					R.string.reltype_experimental,
+					R.string.reltype_experimental_summary);
 
 	private static final ReleaseType[] sValuesCache = values();
+	private final int mTitleId;
+	private final int mSummaryId;
+
+	ReleaseType(int titleId, int summaryId) {
+		mTitleId = titleId;
+		mSummaryId = summaryId;
+	}
 
 	public static ReleaseType fromString(String value) {
 		if (value == null || value.equals("stable"))
@@ -22,14 +30,6 @@ public enum ReleaseType {
 
 	public static ReleaseType fromOrdinal(int ordinal) {
 		return sValuesCache[ordinal];
-	}
-
-	private final int mTitleId;
-	private final int mSummaryId;
-
-	private ReleaseType(int titleId, int summaryId) {
-		mTitleId = titleId;
-		mSummaryId = summaryId;
 	}
 
 	public int getTitleId() {

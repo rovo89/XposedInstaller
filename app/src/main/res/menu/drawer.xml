@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single"
-        android:id="@+id/main_items">
+    <group
+        android:id="@+id/main_items"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/drawer_item_1"
             android:icon="@drawable/ic_nav_install"

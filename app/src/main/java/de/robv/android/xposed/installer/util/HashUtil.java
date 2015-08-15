@@ -26,8 +26,8 @@ public class HashUtil {
 		return hash(input, "SHA-1");
 	}
 
-
-	public static final String hash(File file, String algorithm) throws IOException {
+	public static final String hash(File file, String algorithm)
+			throws IOException {
 		try {
 			MessageDigest md = MessageDigest.getInstance(algorithm);
 			InputStream is = new FileInputStream(file);
@@ -51,7 +51,6 @@ public class HashUtil {
 	public static final String sha1(File input) throws IOException {
 		return hash(input, "SHA-1");
 	}
-
 
 	private static String toHexString(byte[] bytes) {
 		StringBuilder sb = new StringBuilder();

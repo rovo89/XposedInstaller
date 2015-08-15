@@ -1,6 +1,5 @@
 package de.robv.android.xposed.installer.repo;
 
-
 public class Repository {
 	public String name;
 	public String url;
@@ -8,5 +7,6 @@ public class Repository {
 	public String partialUrl;
 	public String version;
 
-	/*package*/ Repository() {};
+	/* package */ Repository() {
+	}
 }

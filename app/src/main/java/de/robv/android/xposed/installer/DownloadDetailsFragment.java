@@ -1,15 +1,16 @@
 package de.robv.android.xposed.installer;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.method.LinkMovementMethod;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.util.NavUtil;
@@ -24,12 +25,14 @@ public class DownloadDetailsFragment extends Fragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 		final Module module = mActivity.getModule();
 		if (module == null)
 			return null;
 
-		final View view = inflater.inflate(R.layout.download_details, container, false);
+		final View view = inflater.inflate(R.layout.download_details, container,
+				false);
 
 		TextView title = (TextView) view.findViewById(R.id.download_title);
 		title.setText(module.name);
@@ -40,10 +43,12 @@ public class DownloadDetailsFragment extends Fragment {
 		else
 			author.setText(R.string.download_unknown_author);
 
-		TextView description = (TextView) view.findViewById(R.id.download_description);
+		TextView description = (TextView) view
+				.findViewById(R.id.download_description);
 		if (module.description != null) {
 			if (module.descriptionIsHtml) {
-				description.setText(RepoParser.parseSimpleHtml(module.description));
+				description.setText(
+						RepoParser.parseSimpleHtml(module.description));
 				description.setMovementMethod(LinkMovementMethod.getInstance());
 			} else {
 				description.setText(module.description);
@@ -52,11 +57,15 @@ public class DownloadDetailsFragment extends Fragment {
 			description.setVisibility(View.GONE);
 		}
 
-		ViewGroup moreInfoContainer = (ViewGroup) view.findViewById(R.id.download_moreinfo_container);
-		for (Pair<String,String> moreInfoEntry : module.moreInfo) {
-			View moreInfoView = inflater.inflate(R.layout.download_moreinfo, moreInfoContainer, false);
-			TextView txtTitle = (TextView) moreInfoView.findViewById(android.R.id.title);
-			TextView txtValue = (TextView) moreInfoView.findViewById(android.R.id.message);
+		ViewGroup moreInfoContainer = (ViewGroup) view
+				.findViewById(R.id.download_moreinfo_container);
+		for (Pair<String, String> moreInfoEntry : module.moreInfo) {
+			View moreInfoView = inflater.inflate(R.layout.download_moreinfo,
+					moreInfoContainer, false);
+			TextView txtTitle = (TextView) moreInfoView
+					.findViewById(android.R.id.title);
+			TextView txtValue = (TextView) moreInfoView
+					.findViewById(android.R.id.message);
 
 			txtTitle.setText(moreInfoEntry.first + ":");
 			txtValue.setText(moreInfoEntry.second);

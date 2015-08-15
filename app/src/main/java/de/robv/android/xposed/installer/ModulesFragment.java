@@ -1,10 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import java.text.Collator;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
-
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -32,6 +27,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.Collator;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Locale;
+
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoDb.RowNotFoundException;
 import de.robv.android.xposed.installer.util.ModuleUtil;
@@ -51,6 +52,21 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	private ModuleUtil mModuleUtil;
 	private ModuleAdapter mAdapter = null;
 	private PackageManager mPm = null;
+	private Runnable reloadModules = new Runnable() {
+		public void run() {
+			mAdapter.setNotifyOnChange(false);
+			mAdapter.clear();
+			mAdapter.addAll(mModuleUtil.getModules().values());
+			final Collator col = Collator.getInstance(Locale.getDefault());
+			mAdapter.sort(new Comparator<InstalledModule>() {
+				@Override
+				public int compare(InstalledModule lhs, InstalledModule rhs) {
+					return col.compare(lhs.getAppName(), rhs.getAppName());
+				}
+			});
+			mAdapter.notifyDataSetChanged();
+		}
+	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -59,9 +75,11 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		mPm = getActivity().getPackageManager();
 		if (PLAY_STORE_LABEL == null) {
 			try {
-				ApplicationInfo ai = mPm.getApplicationInfo(PLAY_STORE_PACKAGE, 0);
+				ApplicationInfo ai = mPm.getApplicationInfo(PLAY_STORE_PACKAGE,
+						0);
 				PLAY_STORE_LABEL = mPm.getApplicationLabel(ai).toString();
-			} catch (NameNotFoundException ignored) {}
+			} catch (NameNotFoundException ignored) {
+			}
 		}
 	}
 
@@ -83,16 +101,21 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		registerForContextMenu(getListView());
 		mModuleUtil.addListener(this);
 
-		ActionBar actionBar = ((WelcomeActivity) getActivity()).getSupportActionBar();
+		ActionBar actionBar = ((WelcomeActivity) getActivity())
+				.getSupportActionBar();
 
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
-		int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
-		int eightDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
-		int toolBarDp = actionBar.getHeight() == 0 ? 196 : actionBar.getHeight();
+		int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+				6, metrics);
+		int eightDp = (int) TypedValue
+				.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
+		int toolBarDp = actionBar.getHeight() == 0 ? 196
+				: actionBar.getHeight();
 
 		getListView().setDivider(null);
 		getListView().setDividerHeight(sixDp);
-		getListView().setPadding(eightDp, toolBarDp + eightDp, eightDp, eightDp);
+		getListView().setPadding(eightDp, toolBarDp + eightDp, eightDp,
+				eightDp);
 		getListView().setClipToPadding(false);
 	}
 
@@ -110,24 +133,9 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		mAdapter = null;
 	}
 
-	private Runnable reloadModules = new Runnable() {
-		public void run() {
-			mAdapter.setNotifyOnChange(false);
-			mAdapter.clear();
-			mAdapter.addAll(mModuleUtil.getModules().values());
-			final Collator col = Collator.getInstance(Locale.getDefault());
-			mAdapter.sort(new Comparator<InstalledModule>() {
-				@Override
-				public int compare(InstalledModule lhs, InstalledModule rhs) {
-					return col.compare(lhs.getAppName(), rhs.getAppName());
-				}
-			});
-			mAdapter.notifyDataSetChanged();
-		}
-	};
-
 	@Override
-	public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module) {
+	public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil,
+			String packageName, InstalledModule module) {
 		getActivity().runOnUiThread(reloadModules);
 	}
 
@@ -151,23 +159,28 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		if (launchIntent != null)
 			startActivity(launchIntent);
 		else
-			Toast.makeText(getActivity(), getActivity().getString(R.string.module_no_ui), Toast.LENGTH_LONG).show();
+			Toast.makeText(getActivity(),
+					getActivity().getString(R.string.module_no_ui),
+					Toast.LENGTH_LONG).show();
 	}
 
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
 		InstalledModule installedModule = getItemFromContextMenuInfo(menuInfo);
 		if (installedModule == null)
 			return;
 
 		menu.setHeaderTitle(installedModule.getAppName());
-		getActivity().getMenuInflater().inflate(R.menu.context_menu_modules, menu);
+		getActivity().getMenuInflater().inflate(R.menu.context_menu_modules,
+				menu);
 
 		if (getSettingsIntent(installedModule.packageName) == null)
 			menu.removeItem(R.id.menu_launch);
 
 		try {
-			String support = RepoDb.getModuleSupport(installedModule.packageName);
+			String support = RepoDb
+					.getModuleSupport(installedModule.packageName);
 			if (NavUtil.parseURL(support) == null)
 				menu.removeItem(R.id.menu_support);
 		} catch (RowNotFoundException e) {
@@ -175,7 +188,8 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			menu.removeItem(R.id.menu_support);
 		}
 
-		String installer = mPm.getInstallerPackageName(installedModule.packageName);
+		String installer = mPm
+				.getInstallerPackageName(installedModule.packageName);
 		if (PLAY_STORE_LABEL != null && PLAY_STORE_PACKAGE.equals(installer))
 			menu.findItem(R.id.menu_play_store).setTitle(PLAY_STORE_LABEL);
 		else
@@ -194,18 +208,22 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				return true;
 
 			case R.id.menu_download_updates:
-				Intent detailsIntent = new Intent(getActivity(), DownloadDetailsActivity.class);
-				detailsIntent.setData(Uri.fromParts("package", module.packageName, null));
+				Intent detailsIntent = new Intent(getActivity(),
+						DownloadDetailsActivity.class);
+				detailsIntent.setData(
+						Uri.fromParts("package", module.packageName, null));
 				startActivity(detailsIntent);
 				return true;
 
 			case R.id.menu_support:
-				NavUtil.startURL(getActivity(), RepoDb.getModuleSupport(module.packageName));
+				NavUtil.startURL(getActivity(),
+						RepoDb.getModuleSupport(module.packageName));
 				return true;
 
 			case R.id.menu_play_store:
 				Intent i = new Intent(android.content.Intent.ACTION_VIEW);
-				i.setData(Uri.parse(String.format(PLAY_STORE_LINK, module.packageName)));
+				i.setData(Uri.parse(
+						String.format(PLAY_STORE_LINK, module.packageName)));
 				i.setPackage(PLAY_STORE_PACKAGE);
 				try {
 					startActivity(i);
@@ -216,28 +234,33 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				return true;
 
 			case R.id.menu_app_info:
-				startActivity(new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-					Uri.fromParts("package", module.packageName, null)));
+				startActivity(new Intent(
+						android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+						Uri.fromParts("package", module.packageName, null)));
 				return true;
 
 			case R.id.menu_uninstall:
 				startActivity(new Intent(Intent.ACTION_UNINSTALL_PACKAGE,
-					Uri.fromParts("package", module.packageName, null)));
+						Uri.fromParts("package", module.packageName, null)));
 				return true;
 		}
 
 		return false;
 	}
 
-	private InstalledModule getItemFromContextMenuInfo(ContextMenuInfo menuInfo) {
+	private InstalledModule getItemFromContextMenuInfo(
+			ContextMenuInfo menuInfo) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
 		int position = info.position - getListView().getHeaderViewsCount();
-		return (position >= 0) ? (InstalledModule) getListAdapter().getItem(position) : null;
+		return (position >= 0)
+				? (InstalledModule) getListAdapter().getItem(position) : null;
 	}
 
 	private Intent getSettingsIntent(String packageName) {
-		// taken from ApplicationPackageManager.getLaunchIntentForPackage(String)
-		// first looks for an Xposed-specific category, falls back to getLaunchIntentForPackage
+		// taken from
+		// ApplicationPackageManager.getLaunchIntentForPackage(String)
+		// first looks for an Xposed-specific category, falls back to
+		// getLaunchIntentForPackage
 		PackageManager pm = getActivity().getPackageManager();
 
 		Intent intentToResolve = new Intent(Intent.ACTION_MAIN);
@@ -251,7 +274,8 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 		Intent intent = new Intent(intentToResolve);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.setClassName(ris.get(0).activityInfo.packageName, ris.get(0).activityInfo.name);
+		intent.setClassName(ris.get(0).activityInfo.packageName,
+				ris.get(0).activityInfo.name);
 		return intent;
 	}
 
@@ -265,18 +289,27 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			View view = super.getView(position, convertView, parent);
 
 			if (convertView == null) {
-				// The reusable view was created for the first time, set up the listener on the checkbox
-				((CheckBox) view.findViewById(R.id.checkbox)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-						String packageName = (String) buttonView.getTag();
-						boolean changed = mModuleUtil.isModuleEnabled(packageName) ^ isChecked;
-						if (changed) {
-							mModuleUtil.setModuleEnabled(packageName, isChecked);
-							mModuleUtil.updateModulesList(true);
-						}
-					}
-				});
+				// The reusable view was created for the first time, set up the
+				// listener on the checkbox
+				((CheckBox) view.findViewById(R.id.checkbox))
+						.setOnCheckedChangeListener(
+								new OnCheckedChangeListener() {
+									@Override
+									public void onCheckedChanged(
+											CompoundButton buttonView,
+											boolean isChecked) {
+										String packageName = (String) buttonView
+												.getTag();
+										boolean changed = mModuleUtil
+												.isModuleEnabled(packageName)
+												^ isChecked;
+										if (changed) {
+											mModuleUtil.setModuleEnabled(
+													packageName, isChecked);
+											mModuleUtil.updateModulesList(true);
+										}
+									}
+								});
 			}
 
 			InstalledModule item = getItem(position);
@@ -285,18 +318,23 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			version.setText(item.versionName);
 
 			// Store the package name in some views' tag for later access
-			((CheckBox) view.findViewById(R.id.checkbox)).setTag(item.packageName);
+			view.findViewById(R.id.checkbox).setTag(item.packageName);
 			view.setTag(item.packageName);
 
-			((ImageView) view.findViewById(R.id.icon)).setImageDrawable(item.getIcon());
+			((ImageView) view.findViewById(R.id.icon))
+					.setImageDrawable(item.getIcon());
 
-			TextView descriptionText = (TextView) view.findViewById(R.id.description);
+			TextView descriptionText = (TextView) view
+					.findViewById(R.id.description);
 			if (!item.getDescription().isEmpty()) {
 				descriptionText.setText(item.getDescription());
-				descriptionText.setTextColor(ThemeUtil.getThemeColor(getContext(), android.R.attr.textColorSecondary));
+				descriptionText.setTextColor(ThemeUtil.getThemeColor(
+						getContext(), android.R.attr.textColorSecondary));
 			} else {
-				descriptionText.setText(getString(R.string.module_empty_description));
-				descriptionText.setTextColor(getResources().getColor(R.color.warning));
+				descriptionText
+						.setText(getString(R.string.module_empty_description));
+				descriptionText
+						.setTextColor(getResources().getColor(R.color.warning));
 			}
 
 			CheckBox checkbox = (CheckBox) view.findViewById(R.id.checkbox);
@@ -305,16 +343,20 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 			if (item.minVersion == 0) {
 				checkbox.setEnabled(false);
-				warningText.setText(getString(R.string.no_min_version_specified));
+				warningText
+						.setText(getString(R.string.no_min_version_specified));
 				warningText.setVisibility(View.VISIBLE);
-			} else if (installedXposedVersion != 0 && item.minVersion > installedXposedVersion) {
+			} else if (installedXposedVersion != 0
+					&& item.minVersion > installedXposedVersion) {
 				checkbox.setEnabled(false);
-				warningText.setText(String.format(getString(R.string.warning_xposed_min_version),
+				warningText.setText(String.format(
+						getString(R.string.warning_xposed_min_version),
 						item.minVersion));
 				warningText.setVisibility(View.VISIBLE);
 			} else if (item.minVersion < ModuleUtil.MIN_MODULE_VERSION) {
 				checkbox.setEnabled(false);
-				warningText.setText(String.format(getString(R.string.warning_min_version_too_low),
+				warningText.setText(String.format(
+						getString(R.string.warning_min_version_too_low),
 						item.minVersion, ModuleUtil.MIN_MODULE_VERSION));
 				warningText.setVisibility(View.VISIBLE);
 			} else {
