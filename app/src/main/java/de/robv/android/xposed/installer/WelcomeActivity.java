@@ -28,10 +28,8 @@ public class WelcomeActivity extends XposedBaseActivity
 
 	private static final String SELECTED_ITEM_ID = "SELECTED_ITEM_ID";
 	private RepoLoader mRepoLoader;
-	private Toolbar mToolbar;
 	private DrawerLayout mDrawerLayout;
 	private NavigationView mNavigationView;
-	private ActionBarDrawerToggle mDrawerToggle;
 	private int mSelectedId;
 
 	@Override
@@ -41,14 +39,14 @@ public class WelcomeActivity extends XposedBaseActivity
 		setContentView(R.layout.activity_welcome);
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mToolbar = (Toolbar) findViewById(R.id.toolbar);
+		Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(mToolbar);
 
 		mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
 		mNavigationView.setNavigationItemSelectedListener(this);
 
-		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar,
-				R.string.navigation_drawer_open,
+		ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,
+				mDrawerLayout, mToolbar, R.string.navigation_drawer_open,
 				R.string.navigation_drawer_close);
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		mDrawerLayout.setStatusBarBackgroundColor(
@@ -160,12 +158,14 @@ public class WelcomeActivity extends XposedBaseActivity
 		if (moduleUpdateAvailable) {
 			Snackbar.make(parentLayout, R.string.modules_updates_available,
 					Snackbar.LENGTH_LONG)
-					.setAction("VIEW", new View.OnClickListener() {
-						@Override
-						public void onClick(View view) {
-							switchFragment(2);
-						}
-					}).show();
+					.setAction(getString(R.string.view),
+							new View.OnClickListener() {
+								@Override
+								public void onClick(View view) {
+									switchFragment(2);
+								}
+							})
+					.show();
 		}
 	}
 

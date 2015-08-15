@@ -35,6 +35,8 @@ public class XposedApp extends Application
 
 	@SuppressLint("SdCardPath")
 	public static final String BASE_DIR = "/data/data/de.robv.android.xposed.installer/";
+	public static final String ENABLED_MODULES_LIST_FILE = XposedApp.BASE_DIR
+			+ "conf/enabled_modules.list";
 	private static final File XPOSED_PROP_FILE = new File(
 			"/system/xposed.prop");
 
@@ -60,7 +62,7 @@ public class XposedApp extends Application
 	}
 
 	// This method is hooked by XposedBridge to return the current version
-	public static int getActiveXposedVersion() {
+	public static Integer getActiveXposedVersion() {
 		return -1;
 	}
 

@@ -223,5 +223,15 @@
 
     <string name="warning_installed_on_external_storage">This module cannot be loaded because it\'s installed on the SD card, please move it to internal storage.</string>
     <string name="warning_forward_locked">This module cannot be loaded because it\'s is forward-locked, please contact the module\'s developer.</string>
+    <string name="export_modules">Export enabled modules list</string>
+    <string name="import_modules">Import enabled modules list</string>
+    <string name="view">VIEW</string>
+    <string name="export">Export…</string>
+    <string name="import_">Import…</string>
+    <string name="export_enabled_modules">Export enabled modules list</string>
+    <string name="import_enabled_modules">Import enabled modules list</string>
+    <string name="export_installed_modules">Export installed modules list</string>
+    <string name="import_installed_modules">Import installed modules list</string>
+    <string name="no_installed_modules">There isn\'t any installed module!</string>
 
 </resources>

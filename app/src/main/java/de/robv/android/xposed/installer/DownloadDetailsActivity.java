@@ -83,9 +83,13 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 
 			setupTabs();
 
+			Boolean directDownload = getIntent()
+					.getBooleanExtra("direct_download", false);
 			// Updates available => start on the versions page
-			if (mInstalledModule != null && mInstalledModule
-					.isUpdate(sRepoLoader.getLatestVersion(mModule)))
+			if (mInstalledModule != null
+					&& mInstalledModule
+							.isUpdate(sRepoLoader.getLatestVersion(mModule))
+					|| directDownload)
 				mPager.setCurrentItem(DOWNLOAD_VERSIONS);
 
 		} else {

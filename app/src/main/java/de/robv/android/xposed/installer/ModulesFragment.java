@@ -1,6 +1,7 @@
 package de.robv.android.xposed.installer;
 
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -9,12 +10,15 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBar;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +32,23 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.text.Collator;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoDb.RowNotFoundException;
@@ -47,6 +64,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	private static final String NOT_ACTIVE_NOTE_TAG = "NOT_ACTIVE_NOTE";
 	private static final String PLAY_STORE_PACKAGE = "com.android.vending";
 	private static final String PLAY_STORE_LINK = "https://play.google.com/store/apps/details?id=%s";
+	private static final String XPOSED_REPO_LINK = "http://repo.xposed.info/module/%s";
 	private static String PLAY_STORE_LABEL = null;
 	private int installedXposedVersion;
 	private ModuleUtil mModuleUtil;
@@ -117,6 +135,166 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		getListView().setPadding(eightDp, toolBarDp + eightDp, eightDp,
 				eightDp);
 		getListView().setClipToPadding(false);
+
+		setHasOptionsMenu(true);
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.menu_modules, menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		String backupPath = Environment.getExternalStorageDirectory()
+				+ "/XposedInstaller";
+
+		File enabledModulesPath = new File(backupPath, "enabled_modules.list");
+		File installedModulesPath = new File(backupPath,
+				"installed_modules.list");
+
+		switch (item.getItemId()) {
+			case R.id.export_enabled_modules:
+				if (!Environment.getExternalStorageState()
+						.equals(Environment.MEDIA_MOUNTED)) {
+					Toast.makeText(getActivity(), R.string.sdcard_not_writable,
+							Toast.LENGTH_LONG).show();
+					return false;
+				}
+
+				if (ModuleUtil.getInstance().getEnabledModules().isEmpty()) {
+					Toast.makeText(getActivity(),
+							getString(R.string.no_enabled_modules),
+							Toast.LENGTH_SHORT).show();
+					return false;
+				}
+
+				File targetDir = new File(backupPath);
+				File listModules = new File(
+						XposedApp.ENABLED_MODULES_LIST_FILE);
+
+				try {
+					if (!targetDir.exists())
+						targetDir.mkdir();
+
+					FileInputStream in = new FileInputStream(listModules);
+					FileOutputStream out = new FileOutputStream(
+							enabledModulesPath);
+
+					byte[] buffer = new byte[1024];
+					int len;
+					while ((len = in.read(buffer)) > 0) {
+						out.write(buffer, 0, len);
+					}
+					in.close();
+					out.close();
+				} catch (IOException e) {
+					Toast.makeText(getActivity(),
+							getResources().getString(R.string.logs_save_failed)
+									+ "\n" + e.getMessage(),
+							Toast.LENGTH_LONG).show();
+					return false;
+				}
+
+				Toast.makeText(getActivity(), enabledModulesPath.toString(),
+						Toast.LENGTH_LONG).show();
+				return true;
+			case R.id.export_installed_modules:
+				if (!Environment.getExternalStorageState()
+						.equals(Environment.MEDIA_MOUNTED)) {
+					Toast.makeText(getActivity(), R.string.sdcard_not_writable,
+							Toast.LENGTH_LONG).show();
+					return false;
+				}
+				Map<String, InstalledModule> installedModules = ModuleUtil
+						.getInstance().getModules();
+
+				if (installedModules.isEmpty()) {
+					Toast.makeText(getActivity(),
+							getString(R.string.no_installed_modules),
+							Toast.LENGTH_SHORT).show();
+					return false;
+				}
+
+				try {
+					FileWriter fw = new FileWriter(installedModulesPath);
+					BufferedWriter bw = new BufferedWriter(fw);
+					PrintWriter fileOut = new PrintWriter(bw);
+
+					Set keys = installedModules.keySet();
+					for (Object key1 : keys) {
+						String packageName = (String) key1;
+						fileOut.println(packageName);
+					}
+
+					fileOut.close();
+				} catch (IOException e) {
+					Toast.makeText(getActivity(),
+							getResources().getString(R.string.logs_save_failed)
+									+ "\n" + e.getMessage(),
+							Toast.LENGTH_LONG).show();
+					return false;
+				}
+				return true;
+			case R.id.import_installed_modules:
+			case R.id.import_enabled_modules:
+				if (!Environment.getExternalStorageState()
+						.equals(Environment.MEDIA_MOUNTED)) {
+					Toast.makeText(getActivity(), R.string.sdcard_not_writable,
+							Toast.LENGTH_LONG).show();
+					return false;
+				}
+				InputStream ips = null;
+				if (item.getItemId() == R.id.import_installed_modules) {
+					if (!installedModulesPath.exists()) {
+						Toast.makeText(getActivity(),
+								getString(R.string.no_backup_found),
+								Toast.LENGTH_LONG).show();
+						return false;
+					}
+					try {
+						ips = new FileInputStream(installedModulesPath);
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
+				} else {
+					if (!enabledModulesPath.exists()) {
+						Toast.makeText(getActivity(),
+								getString(R.string.no_backup_found),
+								Toast.LENGTH_LONG).show();
+						return false;
+					}
+					try {
+						ips = new FileInputStream(enabledModulesPath);
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
+				}
+
+				try {
+					assert ips != null;
+					InputStreamReader ipsr = new InputStreamReader(ips);
+					BufferedReader br = new BufferedReader(ipsr);
+					String line;
+					while ((line = br.readLine()) != null) {
+						Intent i = new Intent(Intent.ACTION_MAIN);
+						i.addCategory(Intent.CATEGORY_LAUNCHER);
+						i.setComponent(new ComponentName(getActivity(),
+								DownloadDetailsActivity.class));
+						i.putExtra("direct_download", true);
+						i.setData(Uri
+								.parse(String.format(XPOSED_REPO_LINK, line)));
+						startActivity(i);
+					}
+					br.close();
+				} catch (ActivityNotFoundException | IOException e) {
+					Toast.makeText(getActivity(), e.toString(),
+							Toast.LENGTH_SHORT).show();
+				}
+
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

@@ -234,4 +234,8 @@
     <string name="nav_item_support">Supporto</string>
     <string name="settings_default_view">Vista di default</string>
 
+    <string name="export_modules">Esporta lista moduli abilitati</string>
+    <string name="import_modules">Importa lista moduli abilitati</string>
+    <string name="view">VEDI</string>
+
 </resources>
