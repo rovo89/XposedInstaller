@@ -220,5 +220,12 @@
     <string name="repo_download_failed_http">Downloading %1$s failed: %2$d (%3$s)</string>
     <string name="repo_download_failed">Downloading %1$s failed: %2$s</string>
     <string name="repo_load_failed">Cannot load repository from %1$s:\n%2$s</string>
+    <string name="download_disabled">Download disabled</string>
+    <string name="download_disabled_description">The download of the modules is disabled. Please enable downloads in the settings.</string>
+    <string name="download_open_settings">Open settings</string>
+    <string name="choose_color">Choose a color…</string>
+
+    <string name="warning_installed_on_external_storage">This module cannot be loaded because it\'s installed on the SD card, please move it to internal storage.</string>
+    <string name="warning_forward_locked">This module cannot be loaded because it\'s is forward-locked, please contact the module\'s developer.</string>
 
 </resources>

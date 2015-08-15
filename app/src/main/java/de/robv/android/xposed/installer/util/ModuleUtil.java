@@ -265,6 +265,7 @@ public final class ModuleUtil {
 	}
 
 	public class InstalledModule {
+		private static final int FLAG_FORWARD_LOCK = 1 << 29;
 		public final String packageName;
 		public final boolean isFramework;
 		public final String versionName;
@@ -296,6 +297,14 @@ public final class ModuleUtil {
 					this.minVersion = 0;
 				}
 			}
+		}
+
+		public boolean isInstalledOnExternalStorage() {
+			return (app.flags & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0;
+		}
+
+		public boolean isForwardLocked() {
+			return (app.flags & FLAG_FORWARD_LOCK) != 0;
 		}
 
 		public String getAppName() {

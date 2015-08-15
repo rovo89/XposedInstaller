@@ -274,7 +274,8 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 
 				if (item.changelogIsHtml) {
 					holder.txtChanges.setText(
-							RepoParser.parseSimpleHtml(item.changelog));
+RepoParser.parseSimpleHtml(
+							getActivity(), item.changelog, holder.txtChanges));
 					holder.txtChanges.setMovementMethod(
 							LinkMovementMethod.getInstance());
 				} else {

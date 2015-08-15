@@ -196,7 +196,11 @@ public class DownloadView extends LinearLayout {
 					return;
 				}
 
-				mInfo = DownloadsUtil.getById(getContext(), mInfo.id);
+				try {
+					mInfo = DownloadsUtil.getById(getContext(), mInfo.id);
+				} catch (NullPointerException ignored) {
+				}
+
 				refreshView();
 				if (mInfo == null)
 					return;
