@@ -273,8 +273,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 				holder.txtChanges.setVisibility(View.VISIBLE);
 
 				if (item.changelogIsHtml) {
-					holder.txtChanges.setText(
-RepoParser.parseSimpleHtml(
+					holder.txtChanges.setText(RepoParser.parseSimpleHtml(
 							getActivity(), item.changelog, holder.txtChanges));
 					holder.txtChanges.setMovementMethod(
 							LinkMovementMethod.getInstance());
