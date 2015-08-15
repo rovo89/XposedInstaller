@@ -4,23 +4,27 @@
     <PreferenceCategory
         android:key="group_installation"
         android:title="@string/settings_group_installation">
-        <de.robv.android.xposed.installer.widget.IntegerListPreference
+
+    <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/install_mode_texts"
             android:entryValues="@array/install_mode_values"
             android:key="install_mode"
             android:summary="%s"
             android:title="@string/settings_install_mode"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="group_download"
         android:title="@string/settings_group_download">
-        <CheckBoxPreference
+
+    <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable_downloads"
             android:summary="@string/settings_enable_downloads_summary"
             android:title="@string/settings_enable_downloads"/>
+
         <de.robv.android.xposed.installer.widget.ListPreferenceSummaryFix
             android:defaultValue="stable"
             android:entries="@array/release_type_texts"
@@ -28,18 +32,25 @@
             android:key="release_type_global"
             android:summary="%s"
             android:title="@string/settings_release_type"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="group_app"
         android:title="@string/settings_group_app">
-        <de.robv.android.xposed.installer.widget.IntegerListPreference
+
+    <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/theme_texts"
             android:entryValues="@array/theme_values"
             android:key="theme"
             android:summary="%s"
             android:title="@string/settings_theme"/>
+        <CheckBoxPreference
+            android:key="heads_up"
+            android:summary="@string/enable_heads_up_summary"
+            android:title="@string/enable_heads_up"/>
+
         <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/default_view_texts"
@@ -47,17 +58,20 @@
             android:key="default_view"
             android:summary="%s"
             android:title="@string/settings_default_view"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="group_experimental"
         android:title="@string/settings_group_experimental">
-        <CheckBoxPreference
+
+    <CheckBoxPreference
             android:defaultValue="false"
             android:key="disable_resources"
             android:persistent="false"
             android:summary="@string/settings_disable_resources_summary"
             android:title="@string/settings_disable_resources"/>
+
         <!--
                 <CheckBoxPreference
                     android:defaultValue="false"

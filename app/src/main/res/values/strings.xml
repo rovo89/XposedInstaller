@@ -226,12 +226,14 @@
     <string name="export_modules">Export enabled modules list</string>
     <string name="import_modules">Import enabled modules list</string>
     <string name="view">VIEW</string>
-    <string name="export">Export…</string>
+    <string name="export_">Export…</string>
     <string name="import_">Import…</string>
     <string name="export_enabled_modules">Export enabled modules list</string>
     <string name="import_enabled_modules">Import enabled modules list</string>
     <string name="export_installed_modules">Export installed modules list</string>
     <string name="import_installed_modules">Import installed modules list</string>
     <string name="no_installed_modules">There isn\'t any installed module!</string>
+    <string name="enable_heads_up">Enable Heads-Up notification</string>
+    <string name="enable_heads_up_summary">This option enables heads up notification on new/updated module</string>
 
 </resources>

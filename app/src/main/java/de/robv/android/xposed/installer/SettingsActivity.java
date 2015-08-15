@@ -1,5 +1,6 @@
 package de.robv.android.xposed.installer;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -61,6 +62,12 @@ public class SettingsActivity extends XposedBaseActivity {
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.prefs);
+
+			if (Build.VERSION.SDK_INT < 21) {
+				Preference heads_up = findPreference("heads_up");
+				heads_up.setEnabled(false);
+				heads_up.setSummary(heads_up.getSummary() + " LOLLIPOP+");
+			}
 
 			findPreference("enable_downloads").setOnPreferenceChangeListener(
 					new Preference.OnPreferenceChangeListener() {

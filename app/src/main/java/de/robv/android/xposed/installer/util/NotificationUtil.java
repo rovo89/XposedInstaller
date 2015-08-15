@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -13,9 +14,10 @@ import android.widget.Toast;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.robv.android.xposed.installer.InstallerFragment;
+import de.robv.android.xposed.installer.ModulesFragment;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
-import de.robv.android.xposed.installer.XposedBaseActivity;
 
 public final class NotificationUtil {
 	public static final int NOTIFICATION_MODULE_NOT_ACTIVATED_YET = 0;
@@ -27,6 +29,7 @@ public final class NotificationUtil {
 	private static final int PENDING_INTENT_ACTIVATE_MODULE_AND_REBOOT = 4;
 	private static Context sContext = null;
 	private static NotificationManager sNotificationManager;
+	private static SharedPreferences prefs;
 
 	public static void init() {
 		if (sContext != null)
@@ -34,6 +37,7 @@ public final class NotificationUtil {
 					"NotificationUtil has already been initialized");
 
 		sContext = XposedApp.getInstance();
+		prefs = XposedApp.getPreferences();
 		sNotificationManager = (NotificationManager) sContext
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 	}
@@ -48,9 +52,7 @@ public final class NotificationUtil {
 
 	public static void showNotActivatedNotification(String packageName,
 			String appName) {
-		Intent iModulesTab = new Intent(sContext, XposedBaseActivity.class);
-		// iModulesTab.putExtra(XposedInstallerActivity.EXTRA_SECTION,
-		// XposedInstallerActivity.TAB_MODULES);
+		Intent iModulesTab = new Intent(sContext, ModulesFragment.class);
 		iModulesTab.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
 		PendingIntent pModulesTab = PendingIntent.getActivity(sContext,
@@ -61,8 +63,11 @@ public final class NotificationUtil {
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(
 				sContext).setContentTitle(title).setContentText(appName)
 						.setTicker(title).setContentIntent(pModulesTab)
-						.setAutoCancel(true)
+						.setVibrate(new long[] { 0 }).setAutoCancel(true)
 						.setSmallIcon(R.drawable.ic_notification);
+
+		if (prefs.getBoolean("heads_up", false))
+			builder.setPriority(2);
 
 		if (Build.VERSION.SDK_INT >= 16) {
 			Intent iActivateAndReboot = new Intent(sContext,
@@ -93,9 +98,7 @@ public final class NotificationUtil {
 	}
 
 	public static void showModulesUpdatedNotification() {
-		Intent iInstallTab = new Intent(sContext, XposedBaseActivity.class);
-		// iInstallTab.putExtra(XposedInstallerActivity.EXTRA_SECTION,
-		// XposedInstallerActivity.TAB_INSTALL);
+		Intent iInstallTab = new Intent(sContext, InstallerFragment.class);
 		iInstallTab.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		PendingIntent pInstallTab = PendingIntent.getActivity(sContext,
 				PENDING_INTENT_OPEN_INSTALL, iInstallTab,
@@ -108,8 +111,11 @@ public final class NotificationUtil {
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(
 				sContext).setContentTitle(title).setContentText(message)
 						.setTicker(title).setContentIntent(pInstallTab)
-						.setAutoCancel(true)
+						.setVibrate(new long[] { 0 }).setAutoCancel(true)
 						.setSmallIcon(R.drawable.ic_notification);
+
+		if (prefs.getBoolean("heads_up", false))
+			builder.setPriority(2);
 
 		if (Build.VERSION.SDK_INT >= 16) {
 			Intent iSoftReboot = new Intent(sContext, RebootReceiver.class);
@@ -165,7 +171,7 @@ public final class NotificationUtil {
 				return;
 			}
 
-			List<String> messages = new LinkedList<String>();
+			List<String> messages = new LinkedList<>();
 			boolean isSoftReboot = intent.getBooleanExtra(EXTRA_SOFT_REBOOT,
 					false);
 			int returnCode = isSoftReboot
