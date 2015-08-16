@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         android:key="group_installation"
         android:title="@string/settings_group_installation">
 
-    <de.robv.android.xposed.installer.widget.IntegerListPreference
+        <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/install_mode_texts"
             android:entryValues="@array/install_mode_values"
@@ -19,7 +20,7 @@
         android:key="group_download"
         android:title="@string/settings_group_download">
 
-    <CheckBoxPreference
+        <CheckBoxPreference
             android:defaultValue="true"
             android:key="enable_downloads"
             android:summary="@string/settings_enable_downloads_summary"
@@ -39,17 +40,31 @@
         android:key="group_app"
         android:title="@string/settings_group_app">
 
-    <de.robv.android.xposed.installer.widget.IntegerListPreference
+        <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/theme_texts"
             android:entryValues="@array/theme_values"
             android:key="theme"
             android:summary="%s"
             android:title="@string/settings_theme"/>
+
         <CheckBoxPreference
             android:key="heads_up"
             android:summary="@string/enable_heads_up_summary"
             android:title="@string/enable_heads_up"/>
+
+        <it.gmariotti.android.example.colorpicker.calendarstock.ColorPickerPreference
+            android:defaultValue="@color/colorPrimary"
+            android:key="colors"
+            android:title="@string/choose_color"
+            app:cal_choices="@array/colors"
+            app:cal_itemLayout="@layout/calendar_grid_item_color"
+            app:cal_numColumns="4"/>
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="nav_bar"
+            android:title="@string/nav_bar_coloration"/>
 
         <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
@@ -65,7 +80,7 @@
         android:key="group_experimental"
         android:title="@string/settings_group_experimental">
 
-    <CheckBoxPreference
+        <CheckBoxPreference
             android:defaultValue="false"
             android:key="disable_resources"
             android:persistent="false"

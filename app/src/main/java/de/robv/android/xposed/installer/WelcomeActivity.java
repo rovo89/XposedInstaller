@@ -49,8 +49,8 @@ public class WelcomeActivity extends XposedBaseActivity
 				mDrawerLayout, mToolbar, R.string.navigation_drawer_open,
 				R.string.navigation_drawer_close);
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-		mDrawerLayout.setStatusBarBackgroundColor(
-				getResources().getColor(R.color.colorPrimaryDark));
+		// FIXME
+		mDrawerLayout.setStatusBarBackgroundColor(XposedApp.getColor(this));
 		mDrawerToggle.syncState();
 
 		SharedPreferences prefs = PreferenceManager

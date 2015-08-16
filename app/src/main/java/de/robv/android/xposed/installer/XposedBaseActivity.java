@@ -19,6 +19,8 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		XposedApp.setColors(getSupportActionBar(), XposedApp.getColor(this),
+				this);
 		ThemeUtil.reloadTheme(this);
 
 		if (leftActivityWithSlideAnim)

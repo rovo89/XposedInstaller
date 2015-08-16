@@ -1,6 +1,7 @@
 <resources>
 
     <style name="Theme.XposedInstaller.Light" parent="Theme.XposedInstaller.Light.Base">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@color/background_material_light</item>
         <item name="sticky_header_background">@color/sticky_header_background_light</item>

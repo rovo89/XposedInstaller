@@ -235,5 +235,6 @@
     <string name="no_installed_modules">There isn\'t any installed module!</string>
     <string name="enable_heads_up">Enable Heads-Up notification</string>
     <string name="enable_heads_up_summary">This option enables heads up notification on new/updated module</string>
+    <string name="nav_bar_coloration">Colorate navigation bar</string>
 
 </resources>

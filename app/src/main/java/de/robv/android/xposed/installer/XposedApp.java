@@ -3,15 +3,25 @@ package de.robv.android.xposed.installer;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -74,6 +84,74 @@ public class XposedApp extends Application
 
 	public static SharedPreferences getPreferences() {
 		return mInstance.mPref;
+	}
+
+	public static int getColor(Context context) {
+		SharedPreferences prefs = context.getSharedPreferences(
+				context.getPackageName() + "_preferences", MODE_PRIVATE);
+		int defaultColor = context.getResources()
+				.getColor(R.color.colorPrimary);
+
+		return prefs.getInt("colors", defaultColor);
+	}
+
+	public static void setColors(ActionBar actionBar, Object value,
+			Activity activity) {
+		int color = (int) value;
+		actionBar.setBackgroundDrawable(new ColorDrawable(color));
+		if (Build.VERSION.SDK_INT >= 21) {
+			activity.getWindow().setStatusBarColor(darkenColor(color, 0.85f));
+
+			ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(
+					activity.getString(R.string.app_name), drawableToBitmap(
+							activity.getDrawable(R.mipmap.ic_launcher)),
+					color);
+			activity.setTaskDescription(tDesc);
+
+			if (getPreferences().getBoolean("nav_bar", true)) {
+				activity.getWindow()
+						.setNavigationBarColor(darkenColor(color, 0.85f));
+			} else {
+				int black = activity.getResources()
+						.getColor(android.R.color.black);
+				activity.getWindow().setNavigationBarColor(black);
+			}
+		}
+	}
+
+	public static Bitmap drawableToBitmap(Drawable drawable) {
+		Bitmap bitmap;
+
+		if (drawable instanceof BitmapDrawable) {
+			BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+			if (bitmapDrawable.getBitmap() != null) {
+				return bitmapDrawable.getBitmap();
+			}
+		}
+
+		if (drawable.getIntrinsicWidth() <= 0
+				|| drawable.getIntrinsicHeight() <= 0) {
+			bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+		} else {
+			bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
+					drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+		}
+
+		Canvas canvas = new Canvas(bitmap);
+		drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+		drawable.draw(canvas);
+		return bitmap;
+	}
+
+	/**
+	 * @author PeterCxy https://github.com/PeterCxy/Lolistat/blob/aide/app/src/
+	 *         main/java/info/papdt/lolistat/support/Utility.java
+	 */
+	private static int darkenColor(int color, float factor) {
+		float[] hsv = new float[3];
+		Color.colorToHSV(color, hsv);
+		hsv[2] *= factor;
+		return Color.HSVToColor(hsv);
 	}
 
 	public void onCreate() {
@@ -170,12 +248,9 @@ public class XposedApp extends Application
 	}
 
 	public boolean areDownloadsEnabled() {
-		if (!mPref.getBoolean("enable_downloads", true))
-			return false;
-
-		return checkCallingOrSelfPermission(
-				Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED;
-
+		return mPref.getBoolean("enable_downloads", true)
+				&& checkCallingOrSelfPermission(
+						Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED;
 	}
 
 	public void updateProgressIndicator() {

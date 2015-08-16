@@ -15,7 +15,6 @@ import java.io.IOException;
 
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
-import de.robv.android.xposed.installer.util.UIUtil;
 
 public class SettingsActivity extends XposedBaseActivity {
 	@Override
@@ -23,11 +22,6 @@ public class SettingsActivity extends XposedBaseActivity {
 		super.onCreate(savedInstanceState);
 		ThemeUtil.setTheme(this);
 		setContentView(R.layout.activity_container);
-
-		if (UIUtil.isLollipop()) {
-			this.getWindow().setStatusBarColor(
-					this.getResources().getColor(R.color.colorPrimaryDark));
-		}
 
 		Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(mToolbar);
@@ -49,9 +43,11 @@ public class SettingsActivity extends XposedBaseActivity {
 			getFragmentManager().beginTransaction()
 					.add(R.id.container, new SettingsFragment()).commit();
 		}
+
 	}
 
-	public static class SettingsFragment extends PreferenceFragment {
+	public static class SettingsFragment extends PreferenceFragment
+			implements Preference.OnPreferenceChangeListener {
 		private static final File mDisableResourcesFlag = new File(
 				XposedApp.BASE_DIR + "conf/disable_resources");
 
@@ -63,10 +59,14 @@ public class SettingsActivity extends XposedBaseActivity {
 			super.onCreate(savedInstanceState);
 			addPreferencesFromResource(R.xml.prefs);
 
+			Preference nav_bar = findPreference("nav_bar");
 			if (Build.VERSION.SDK_INT < 21) {
 				Preference heads_up = findPreference("heads_up");
+
 				heads_up.setEnabled(false);
+				nav_bar.setEnabled(false);
 				heads_up.setSummary(heads_up.getSummary() + " LOLLIPOP+");
+				nav_bar.setSummary("LOLLIPOP+");
 			}
 
 			findPreference("enable_downloads").setOnPreferenceChangeListener(
@@ -77,7 +77,7 @@ public class SettingsActivity extends XposedBaseActivity {
 							boolean enabled = (Boolean) newValue;
 							if (enabled) {
 								preference.getEditor()
-										.putBoolean("enable_downloads", enabled)
+										.putBoolean("enable_downloads", true)
 										.apply();
 								RepoLoader.getInstance().refreshRepositories();
 								RepoLoader.getInstance().triggerReload(true);
@@ -124,17 +124,18 @@ public class SettingsActivity extends XposedBaseActivity {
 					});
 
 			Preference prefTheme = findPreference("theme");
-			prefTheme.setOnPreferenceChangeListener(
-					new Preference.OnPreferenceChangeListener() {
-						@Override
-						public boolean onPreferenceChange(Preference preference,
-								Object newValue) {
-							getActivity().recreate();
-							getActivity().finish(); // prevents 2 instances of
-													// settings from opening
-							return true;
-						}
-					});
+			Preference colorPref = findPreference("colors");
+
+			prefTheme.setOnPreferenceChangeListener(this);
+			colorPref.setOnPreferenceChangeListener(this);
+			nav_bar.setOnPreferenceChangeListener(this);
+		}
+
+		@Override
+		public boolean onPreferenceChange(Preference preference,
+				Object newValue) {
+			getActivity().recreate();
+			return true;
 		}
 	}
 }

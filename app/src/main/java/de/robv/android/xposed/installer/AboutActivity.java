@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import de.robv.android.xposed.installer.util.ThemeUtil;
-import de.robv.android.xposed.installer.util.UIUtil;
 
 public class AboutActivity extends XposedBaseActivity {
 	@Override
@@ -20,11 +19,6 @@ public class AboutActivity extends XposedBaseActivity {
 		super.onCreate(savedInstanceState);
 		ThemeUtil.setTheme(this);
 		setContentView(R.layout.activity_container);
-
-		if (UIUtil.isLollipop()) {
-			this.getWindow().setStatusBarColor(
-					this.getResources().getColor(R.color.colorPrimaryDark));
-		}
 
 		Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(mToolbar);

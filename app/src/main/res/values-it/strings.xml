@@ -237,5 +237,6 @@
     <string name="export_modules">Esporta lista moduli abilitati</string>
     <string name="import_modules">Importa lista moduli abilitati</string>
     <string name="view">VEDI</string>
+    <string name="nav_bar_coloration">Colora la barra di navigazione</string>
 
 </resources>

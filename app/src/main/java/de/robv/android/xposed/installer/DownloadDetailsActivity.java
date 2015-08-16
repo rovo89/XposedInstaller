@@ -25,7 +25,6 @@ import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
-import de.robv.android.xposed.installer.util.UIUtil;
 
 public class DownloadDetailsActivity extends XposedBaseActivity
 		implements RepoListener, ModuleListener {
@@ -39,8 +38,6 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 	private String mPackageName;
 	private Module mModule;
 	private InstalledModule mInstalledModule;
-	private Toolbar mToolbar;
-	private TabLayout mTabLayout;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -58,12 +55,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 		if (mModule != null) {
 			setContentView(R.layout.activity_download_details);
 
-			if (UIUtil.isLollipop()) {
-				this.getWindow().setStatusBarColor(
-						this.getResources().getColor(R.color.colorPrimaryDark));
-			}
-
-			mToolbar = (Toolbar) findViewById(R.id.toolbar);
+			Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 			setSupportActionBar(mToolbar);
 
 			mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -79,7 +71,9 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 				ab.setDisplayHomeAsUpEnabled(true);
 			}
 
-			((TextView) findViewById(android.R.id.title)).setText(mModule.name);
+			TextView title = (TextView) findViewById(android.R.id.title);
+			title.setText(mModule.name);
+			title.setBackgroundColor(XposedApp.getColor(this));
 
 			setupTabs();
 
@@ -114,8 +108,9 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 		mPager = (ViewPager) findViewById(R.id.download_pager);
 		mPager.setAdapter(
 				new SwipeFragmentPagerAdapter(getSupportFragmentManager()));
-		mTabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+		TabLayout mTabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 		mTabLayout.setupWithViewPager(mPager);
+		mTabLayout.setBackgroundColor(XposedApp.getColor(this));
 	}
 
 	private String getModulePackageName() {
