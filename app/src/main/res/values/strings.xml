@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <!-- General/various strings -->
     <string name="menuSend">Send</string>
@@ -236,5 +236,7 @@
     <string name="enable_heads_up">Enable Heads-Up notification</string>
     <string name="enable_heads_up_summary">This option enables heads up notification on new/updated module</string>
     <string name="nav_bar_coloration">Colorate navigation bar</string>
+    <string name="no_backup_found">No backup found</string>
+    <string name="no_enabled_modules">There is any modules enabled</string>
 
 </resources>
