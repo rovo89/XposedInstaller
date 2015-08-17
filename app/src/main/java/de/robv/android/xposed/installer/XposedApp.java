@@ -100,7 +100,6 @@ public class XposedApp extends Application
 		int color = (int) value;
 		actionBar.setBackgroundDrawable(new ColorDrawable(color));
 		if (Build.VERSION.SDK_INT >= 21) {
-			activity.getWindow().setStatusBarColor(darkenColor(color, 0.85f));
 
 			ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(
 					activity.getString(R.string.app_name), drawableToBitmap(
@@ -147,7 +146,7 @@ public class XposedApp extends Application
 	 * @author PeterCxy https://github.com/PeterCxy/Lolistat/blob/aide/app/src/
 	 *         main/java/info/papdt/lolistat/support/Utility.java
 	 */
-	private static int darkenColor(int color, float factor) {
+	public static int darkenColor(int color, float factor) {
 		float[] hsv = new float[3];
 		Color.colorToHSV(color, hsv);
 		hsv[2] *= factor;

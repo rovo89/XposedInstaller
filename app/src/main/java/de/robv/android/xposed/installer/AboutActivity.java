@@ -1,5 +1,8 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
+import static de.robv.android.xposed.installer.XposedApp.getColor;
+
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import de.robv.android.xposed.installer.util.ThemeUtil;
+import de.robv.android.xposed.installer.util.UIUtil;
 
 public class AboutActivity extends XposedBaseActivity {
 	@Override
@@ -46,6 +50,14 @@ public class AboutActivity extends XposedBaseActivity {
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
+		}
+
+		@Override
+		public void onResume() {
+			super.onResume();
+			if (UIUtil.isLollipop())
+				getActivity().getWindow().setStatusBarColor(
+						darkenColor(getColor(getActivity()), 0.85f));
 		}
 
 		@Override

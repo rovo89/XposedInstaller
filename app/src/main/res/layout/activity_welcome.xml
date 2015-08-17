@@ -43,5 +43,6 @@
         android:fitsSystemWindows="true"
         app:insetForeground="#4000"
         app:menu="@menu/drawer"/>
+    <!-- FIXME -->
 
 </android.support.v4.widget.DrawerLayout>

@@ -1,5 +1,7 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.getColor;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -19,8 +21,7 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		XposedApp.setColors(getSupportActionBar(), XposedApp.getColor(this),
-				this);
+		XposedApp.setColors(getSupportActionBar(), getColor(this), this);
 		ThemeUtil.reloadTheme(this);
 
 		if (leftActivityWithSlideAnim)

@@ -1,5 +1,8 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
+import static de.robv.android.xposed.installer.XposedApp.getColor;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -15,6 +18,7 @@ import java.io.IOException;
 
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
+import de.robv.android.xposed.installer.util.UIUtil;
 
 public class SettingsActivity extends XposedBaseActivity {
 	@Override
@@ -129,6 +133,15 @@ public class SettingsActivity extends XposedBaseActivity {
 			prefTheme.setOnPreferenceChangeListener(this);
 			colorPref.setOnPreferenceChangeListener(this);
 			nav_bar.setOnPreferenceChangeListener(this);
+		}
+
+		@Override
+		public void onResume() {
+			super.onResume();
+
+			if (UIUtil.isLollipop())
+				getActivity().getWindow().setStatusBarColor(
+						darkenColor(getColor(getActivity()), 0.85f));
 		}
 
 		@Override

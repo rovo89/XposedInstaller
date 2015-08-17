@@ -1,5 +1,7 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -49,8 +51,6 @@ public class WelcomeActivity extends XposedBaseActivity
 				mDrawerLayout, mToolbar, R.string.navigation_drawer_open,
 				R.string.navigation_drawer_close);
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
-		// FIXME
-		mDrawerLayout.setStatusBarBackgroundColor(XposedApp.getColor(this));
 		mDrawerToggle.syncState();
 
 		SharedPreferences prefs = PreferenceManager
@@ -70,6 +70,15 @@ public class WelcomeActivity extends XposedBaseActivity
 		mRepoLoader.addListener(this, false);
 
 		notifyDataSetChanged();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		mDrawerLayout.setStatusBarBackgroundColor(
+				darkenColor(XposedApp.getColor(this), 0.85f));
+
 	}
 
 	public void switchFragment(int itemId) {
