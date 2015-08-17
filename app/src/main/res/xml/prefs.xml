@@ -62,7 +62,7 @@
             app:cal_numColumns="4"/>
 
         <SwitchPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="nav_bar"
             android:title="@string/nav_bar_coloration"/>
 

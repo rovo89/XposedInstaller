@@ -1,5 +1,8 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
+import static de.robv.android.xposed.installer.XposedApp.getColor;
+
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -25,6 +28,7 @@ import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
+import de.robv.android.xposed.installer.util.UIUtil;
 
 public class DownloadDetailsActivity extends XposedBaseActivity
 		implements RepoListener, ModuleListener {
@@ -102,6 +106,15 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 						}
 					});
 		}
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		if (UIUtil.isLollipop())
+			getWindow().setStatusBarColor(darkenColor(getColor(this), 0.85f));
+
 	}
 
 	private void setupTabs() {

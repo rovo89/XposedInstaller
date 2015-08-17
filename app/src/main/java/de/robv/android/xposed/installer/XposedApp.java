@@ -107,7 +107,7 @@ public class XposedApp extends Application
 					color);
 			activity.setTaskDescription(tDesc);
 
-			if (getPreferences().getBoolean("nav_bar", true)) {
+			if (getPreferences().getBoolean("nav_bar", false)) {
 				activity.getWindow()
 						.setNavigationBarColor(darkenColor(color, 0.85f));
 			} else {
