@@ -213,6 +213,14 @@ public class RepoParser {
 				version.downloadLink = parser.nextText();
 			} else if (tagName.equals("md5sum")) {
 				version.md5sum = parser.nextText();
+			} else if (tagName.contains("size")) {
+				try {
+					version.size = Long.parseLong(parser.nextText());
+				} catch (NumberFormatException nfe) {
+					logError(nfe.getMessage());
+					leave(startDepth);
+					return null;
+				}
 			} else if (tagName.equals("changelog")) {
 				String isHtml = parser.getAttributeValue(NS, "html");
 				if (isHtml != null && isHtml.equals("true"))

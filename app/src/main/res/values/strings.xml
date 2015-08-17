@@ -239,4 +239,6 @@
     <string name="no_backup_found">No backup found</string>
     <string name="no_enabled_modules">There is any modules enabled</string>
 
+    <string name="download_view_size">Size: %s KB</string>
+
 </resources>

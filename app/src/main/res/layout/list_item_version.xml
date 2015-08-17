@@ -83,6 +83,13 @@
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:id="@+id/txtSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone"/>
+
+        <TextView
             android:id="@+id/txtChangesTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
