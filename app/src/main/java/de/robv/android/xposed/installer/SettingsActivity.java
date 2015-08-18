@@ -1,7 +1,6 @@
 package de.robv.android.xposed.installer;
 
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
-import static de.robv.android.xposed.installer.XposedApp.getColor;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -141,7 +140,7 @@ public class SettingsActivity extends XposedBaseActivity {
 
 			if (UIUtil.isLollipop())
 				getActivity().getWindow().setStatusBarColor(
-						darkenColor(getColor(getActivity()), 0.85f));
+						darkenColor(XposedApp.getColor(getActivity()), 0.85f));
 		}
 
 		@Override
