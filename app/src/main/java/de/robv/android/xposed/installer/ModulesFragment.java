@@ -152,6 +152,8 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		File enabledModulesPath = new File(backupPath, "enabled_modules.list");
 		File installedModulesPath = new File(backupPath,
 				"installed_modules.list");
+		File targetDir = new File(backupPath);
+		File listModules = new File(XposedApp.ENABLED_MODULES_LIST_FILE);
 
 		switch (item.getItemId()) {
 			case R.id.export_enabled_modules:
@@ -168,10 +170,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 							Toast.LENGTH_SHORT).show();
 					return false;
 				}
-
-				File targetDir = new File(backupPath);
-				File listModules = new File(
-						XposedApp.ENABLED_MODULES_LIST_FILE);
 
 				try {
 					if (!targetDir.exists())
@@ -217,6 +215,9 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				}
 
 				try {
+					if (!targetDir.exists())
+						targetDir.mkdir();
+
 					FileWriter fw = new FileWriter(installedModulesPath);
 					BufferedWriter bw = new BufferedWriter(fw);
 					PrintWriter fileOut = new PrintWriter(bw);
@@ -235,66 +236,58 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 							Toast.LENGTH_LONG).show();
 					return false;
 				}
+
+				Toast.makeText(getActivity(), enabledModulesPath.toString(),
+						Toast.LENGTH_LONG).show();
 				return true;
 			case R.id.import_installed_modules:
+				return importModules(installedModulesPath);
 			case R.id.import_enabled_modules:
-				if (!Environment.getExternalStorageState()
-						.equals(Environment.MEDIA_MOUNTED)) {
-					Toast.makeText(getActivity(), R.string.sdcard_not_writable,
-							Toast.LENGTH_LONG).show();
-					return false;
-				}
-				InputStream ips = null;
-				if (item.getItemId() == R.id.import_installed_modules) {
-					if (!installedModulesPath.exists()) {
-						Toast.makeText(getActivity(),
-								getString(R.string.no_backup_found),
-								Toast.LENGTH_LONG).show();
-						return false;
-					}
-					try {
-						ips = new FileInputStream(installedModulesPath);
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					}
-				} else {
-					if (!enabledModulesPath.exists()) {
-						Toast.makeText(getActivity(),
-								getString(R.string.no_backup_found),
-								Toast.LENGTH_LONG).show();
-						return false;
-					}
-					try {
-						ips = new FileInputStream(enabledModulesPath);
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					}
-				}
-
-				try {
-					assert ips != null;
-					InputStreamReader ipsr = new InputStreamReader(ips);
-					BufferedReader br = new BufferedReader(ipsr);
-					String line;
-					while ((line = br.readLine()) != null) {
-						Intent i = new Intent(Intent.ACTION_MAIN);
-						i.addCategory(Intent.CATEGORY_LAUNCHER);
-						i.setComponent(new ComponentName(getActivity(),
-								DownloadDetailsActivity.class));
-						i.putExtra("direct_download", true);
-						i.setData(Uri
-								.parse(String.format(XPOSED_REPO_LINK, line)));
-						startActivity(i);
-					}
-					br.close();
-				} catch (ActivityNotFoundException | IOException e) {
-					Toast.makeText(getActivity(), e.toString(),
-							Toast.LENGTH_SHORT).show();
-				}
-
-				return true;
+				return importModules(enabledModulesPath);
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private boolean importModules(File path) {
+		if (!Environment.getExternalStorageState()
+				.equals(Environment.MEDIA_MOUNTED)) {
+			Toast.makeText(getActivity(), R.string.sdcard_not_writable,
+					Toast.LENGTH_LONG).show();
+			return false;
+		}
+		InputStream ips = null;
+		if (!path.exists()) {
+			Toast.makeText(getActivity(), getString(R.string.no_backup_found),
+					Toast.LENGTH_LONG).show();
+			return false;
+		}
+		try {
+			ips = new FileInputStream(path);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			assert ips != null;
+			InputStreamReader ipsr = new InputStreamReader(ips);
+			BufferedReader br = new BufferedReader(ipsr);
+			String line;
+			while ((line = br.readLine()) != null) {
+				Intent i = new Intent(Intent.ACTION_MAIN);
+				i.addCategory(Intent.CATEGORY_LAUNCHER);
+				i.setComponent(new ComponentName(getActivity(),
+						DownloadDetailsActivity.class));
+				i.putExtra("direct_download", true);
+				i.setData(Uri.parse(String.format(XPOSED_REPO_LINK, line)));
+				startActivity(i);
+			}
+			br.close();
+		} catch (ActivityNotFoundException | IOException e) {
+			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT)
+					.show();
+		}
+
+		return true;
 	}
 
 	@Override

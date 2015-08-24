@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.0"
+    buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "de.robv.android.xposed.installer"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 37
         versionName "3.0 alpha4"
         project.ext.set("archivesBaseName", "XposedInstaller_by_dvdandroid");
