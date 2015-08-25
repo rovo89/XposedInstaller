@@ -2,6 +2,7 @@ package de.robv.android.xposed.installer;
 
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -200,6 +201,26 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 		switch (item.getItemId()) {
 			case R.id.menu_refresh:
 				RepoLoader.getInstance().triggerReload(true);
+				return true;
+			case R.id.menu_share:
+
+				String text = mModule.name + " - ";
+				String s = getPackageManager()
+						.getInstallerPackageName(mPackageName);
+
+				if (s.equals(ModulesFragment.PLAY_STORE_PACKAGE)) {
+					text += String.format(ModulesFragment.PLAY_STORE_LINK,
+							mPackageName);
+				} else {
+					text += String.format(ModulesFragment.XPOSED_REPO_LINK,
+							mPackageName);
+				}
+
+				Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+				sharingIntent.setType("text/html");
+				sharingIntent.putExtra(Intent.EXTRA_TEXT, text);
+				startActivity(Intent.createChooser(sharingIntent,
+						getString(R.string.share)));
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
