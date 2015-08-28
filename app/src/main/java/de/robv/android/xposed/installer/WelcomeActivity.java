@@ -5,6 +5,7 @@ import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -29,6 +30,7 @@ public class WelcomeActivity extends XposedBaseActivity
 		ModuleListener, RepoListener {
 
 	private static final String SELECTED_ITEM_ID = "SELECTED_ITEM_ID";
+	private final Handler mDrawerHandler = new Handler();
 	private RepoLoader mRepoLoader;
 	private DrawerLayout mDrawerLayout;
 	private NavigationView mNavigationView;
@@ -62,7 +64,14 @@ public class WelcomeActivity extends XposedBaseActivity
 		mNavigationView.getMenu().findItem(mSelectedId).setChecked(true);
 
 		if (savedInstanceState == null) {
-			navigate(mSelectedId);
+			mDrawerHandler.removeCallbacksAndMessages(null);
+			mDrawerHandler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					navigate(mSelectedId);
+				}
+			}, 250);
+			mDrawerLayout.closeDrawers();
 		}
 
 		mRepoLoader = RepoLoader.getInstance();
@@ -84,7 +93,14 @@ public class WelcomeActivity extends XposedBaseActivity
 	public void switchFragment(int itemId) {
 		mSelectedId = mNavigationView.getMenu().getItem(itemId).getItemId();
 		mNavigationView.getMenu().findItem(mSelectedId).setChecked(true);
-		navigate(mSelectedId);
+		mDrawerHandler.removeCallbacksAndMessages(null);
+		mDrawerHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				navigate(mSelectedId);
+			}
+		}, 250);
+		mDrawerLayout.closeDrawers();
 	}
 
 	private void navigate(final int itemId) {
@@ -128,8 +144,14 @@ public class WelcomeActivity extends XposedBaseActivity
 	public boolean onNavigationItemSelected(MenuItem menuItem) {
 		menuItem.setChecked(true);
 		mSelectedId = menuItem.getItemId();
-		mDrawerLayout.closeDrawer(GravityCompat.START);
-		navigate(mSelectedId);
+		mDrawerHandler.removeCallbacksAndMessages(null);
+		mDrawerHandler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				navigate(mSelectedId);
+			}
+		}, 250);
+		mDrawerLayout.closeDrawers();
 		return true;
 	}
 
