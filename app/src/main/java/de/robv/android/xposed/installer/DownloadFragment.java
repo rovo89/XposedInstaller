@@ -7,7 +7,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -111,13 +110,8 @@ public class DownloadFragment extends Fragment
 				new SwipeRefreshLayout.OnRefreshListener() {
 					@Override
 					public void onRefresh() {
+						mRepoLoader.setSwipeRefreshLayout(refreshLayout);
 						mRepoLoader.triggerReload(true);
-						// SIMULATE WAIT TIME
-						new Handler().postDelayed(new Runnable() {
-							public void run() {
-								refreshLayout.setRefreshing(false);
-							}
-						}, 1500);
 					}
 				});
 		mRepoLoader.addListener(this, true);
@@ -232,7 +226,7 @@ public class DownloadFragment extends Fragment
 										mSortingOrder = i;
 										mPref.edit()
 												.putInt("download_sorting_order",
-														mSortingOrder)
+                                                        mSortingOrder)
 												.apply();
 										reloadItems();
 										materialDialog.dismiss();

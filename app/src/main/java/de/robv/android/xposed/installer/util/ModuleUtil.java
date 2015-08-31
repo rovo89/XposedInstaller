@@ -74,9 +74,9 @@ public final class ModuleUtil {
 				return;
 			mIsReloading = true;
 		}
-		mApp.updateProgressIndicator();
+		mApp.updateProgressIndicator(null);
 
-		Map<String, InstalledModule> modules = new HashMap<String, ModuleUtil.InstalledModule>();
+		Map<String, InstalledModule> modules = new HashMap<String, InstalledModule>();
 		RepoDb.beginTransation();
 		try {
 			RepoDb.deleteAllInstalledModules();
@@ -109,7 +109,7 @@ public final class ModuleUtil {
 		synchronized (this) {
 			mIsReloading = false;
 		}
-		mApp.updateProgressIndicator();
+		mApp.updateProgressIndicator(null);
 		for (ModuleListener listener : mListeners) {
 			listener.onInstalledModulesReloaded(mInstance);
 		}

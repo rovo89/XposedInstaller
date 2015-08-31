@@ -21,6 +21,7 @@ import android.os.Environment;
 import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
 
@@ -252,16 +253,20 @@ public class XposedApp extends Application
 						Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED;
 	}
 
-	public void updateProgressIndicator() {
+	public void updateProgressIndicator(
+			final SwipeRefreshLayout refreshLayout) {
 		final boolean isLoading = RepoLoader.getInstance().isLoading()
 				|| ModuleUtil.getInstance().isLoading();
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
 				synchronized (XposedApp.this) {
-					if (mCurrentActivity != null)
+					if (mCurrentActivity != null) {
 						mCurrentActivity.setProgressBarIndeterminateVisibility(
 								isLoading);
+						if (refreshLayout != null)
+							refreshLayout.setRefreshing(isLoading);
+					}
 				}
 			}
 		});
@@ -280,7 +285,7 @@ public class XposedApp extends Application
 	@Override
 	public synchronized void onActivityResumed(Activity activity) {
 		mCurrentActivity = activity;
-		updateProgressIndicator();
+		updateProgressIndicator(null);
 	}
 
 	@Override
