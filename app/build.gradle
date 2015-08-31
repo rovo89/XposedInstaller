@@ -27,5 +27,6 @@ dependencies {
     compile 'com.github.machinarius:preferencefragment:0.1.1'
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.afollestad:material-dialogs:0.7.9.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

@@ -1,9 +1,6 @@
 package de.robv.android.xposed.installer;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -27,6 +24,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CursorAdapter;
 import android.widget.FilterQueryProvider;
 import android.widget.TextView;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -79,24 +78,20 @@ public class DownloadFragment extends Fragment
 	}
 
 	private void showDisabledDownloadsDialog() {
-		AlertDialog.Builder disabledDownloads = new AlertDialog.Builder(
-				getActivity());
-		disabledDownloads.setTitle(getString(R.string.download_disabled));
-		disabledDownloads
-				.setMessage(getString(R.string.download_disabled_description));
-		disabledDownloads.setPositiveButton(R.string.download_open_settings,
-				new DialogInterface.OnClickListener() {
+		new MaterialDialog.Builder(getActivity())
+				.title(R.string.download_disabled)
+				.content(R.string.download_disabled_description)
+				.positiveText(R.string.download_open_settings)
+				.callback(new MaterialDialog.ButtonCallback() {
 					@Override
-					public void onClick(DialogInterface disabledDownloads,
-							int id) {
+					public void onPositive(MaterialDialog dialog) {
+						super.onPositive(dialog);
 						Intent intent = new Intent(getActivity(),
 								SettingsActivity.class);
 						startActivity(intent);
-						disabledDownloads.dismiss();
+						dialog.dismiss();
 					}
-				});
-		disabledDownloads.create();
-		disabledDownloads.show();
+				}).show();
 	}
 
 	@Override
@@ -224,22 +219,27 @@ public class DownloadFragment extends Fragment
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.menu_sort:
-				AlertDialog.Builder builder = new AlertDialog.Builder(
-						getActivity());
-				builder.setTitle(R.string.download_sorting_title);
-				builder.setSingleChoiceItems(R.array.download_sort_order,
-						mSortingOrder, new OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog,
-									int which) {
-								mSortingOrder = which;
-								mPref.edit().putInt("download_sorting_order",
-										mSortingOrder).apply();
-								reloadItems();
-								dialog.dismiss();
-							}
-						});
-				builder.show();
+				new MaterialDialog.Builder(getActivity())
+						.title(R.string.download_sorting_title)
+						.items(R.array.download_sort_order)
+						.itemsCallbackSingleChoice(mSortingOrder,
+								new MaterialDialog.ListCallbackSingleChoice() {
+									@Override
+									public boolean onSelection(
+											MaterialDialog materialDialog,
+											View view, int i,
+											CharSequence charSequence) {
+										mSortingOrder = i;
+										mPref.edit()
+												.putInt("download_sorting_order",
+														mSortingOrder)
+												.apply();
+										reloadItems();
+										materialDialog.dismiss();
+										return true;
+									}
+								})
+						.show();
 				return true;
 		}
 		return super.onOptionsItemSelected(item);

@@ -241,5 +241,6 @@
 
     <string name="download_view_size">Size: %s KB</string>
     <string name="share">Share with…</string>
+    <string name="back">Back</string>
 
 </resources>

@@ -1,7 +1,6 @@
 package de.robv.android.xposed.installer;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -202,10 +203,10 @@ public class InstallerFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				areYouSure(R.string.reboot,
-						new AsyncDialogClickListener(btnReboot.getText()) {
+						new MaterialDialog.ButtonCallback() {
 					@Override
-					public void onAsyncClick(DialogInterface dialog,
-							int which) {
+					public void onPositive(MaterialDialog dialog) {
+						super.onPositive(dialog);
 						reboot(null);
 					}
 				});
@@ -216,10 +217,10 @@ public class InstallerFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				areYouSure(R.string.soft_reboot,
-						new AsyncDialogClickListener(btnSoftReboot.getText()) {
+						new MaterialDialog.ButtonCallback() {
 					@Override
-					public void onAsyncClick(DialogInterface dialog,
-							int which) {
+					public void onPositive(MaterialDialog dialog) {
+						super.onPositive(dialog);
 						softReboot();
 					}
 				});
@@ -230,26 +231,22 @@ public class InstallerFragment extends Fragment {
 				false)) {
 			final View dontShowAgainView = inflater
 					.inflate(R.layout.dialog_install_warning, null);
-			new AlertDialog.Builder(getActivity())
-					.setTitle(R.string.install_warning_title)
-					.setView(dontShowAgainView)
-					.setPositiveButton(android.R.string.ok,
-							new DialogInterface.OnClickListener() {
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which) {
-									CheckBox checkBox = (CheckBox) dontShowAgainView
-											.findViewById(
-													android.R.id.checkbox);
-									if (checkBox.isChecked())
-										XposedApp.getPreferences().edit()
-												.putBoolean(
-														"hide_install_warning",
-														true)
-												.commit();
-								}
-							})
-					.setCancelable(false).show();
+
+			new MaterialDialog.Builder(getActivity())
+					.title(R.string.install_warning_title)
+					.customView(dontShowAgainView, false)
+					.positiveText(android.R.string.ok)
+					.callback(new MaterialDialog.ButtonCallback() {
+						@Override
+						public void onPositive(MaterialDialog dialog) {
+							super.onPositive(dialog);
+							CheckBox checkBox = (CheckBox) dontShowAgainView
+									.findViewById(android.R.id.checkbox);
+							if (checkBox.isChecked())
+								XposedApp.getPreferences().edit().putBoolean(
+										"hide_install_warning", true).apply();
+						}
+					}).cancelable(false).show();
 		}
 
 		/*
@@ -376,10 +373,10 @@ public class InstallerFragment extends Fragment {
 			return;
 		}
 
-		AlertDialog dialog = new AlertDialog.Builder(getActivity())
-				.setMessage(result).setPositiveButton(android.R.string.ok, null)
-				.create();
+		MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
+				.content(result).positiveText(android.R.string.ok).build();
 		dialog.show();
+
 		TextView txtMessage = (TextView) dialog
 				.findViewById(android.R.id.message);
 		txtMessage.setTextSize(14);
@@ -390,32 +387,30 @@ public class InstallerFragment extends Fragment {
 	}
 
 	private void areYouSure(int messageTextId,
-			DialogInterface.OnClickListener yesHandler) {
-		new AlertDialog.Builder(getActivity()).setTitle(messageTextId)
-				.setMessage(R.string.areyousure)
-				.setIconAttribute(android.R.attr.alertDialogIcon)
-				.setPositiveButton(android.R.string.yes, yesHandler)
-				.setNegativeButton(android.R.string.no, null).create().show();
+			MaterialDialog.ButtonCallback yesHandler) {
+		new MaterialDialog.Builder(getActivity()).title(messageTextId)
+				.content(R.string.areyousure)
+				.iconAttr(android.R.attr.alertDialogIcon)
+				.positiveText(android.R.string.yes)
+				.negativeText(android.R.string.no).callback(yesHandler).show();
 	}
 
 	private void showConfirmDialog(final String message,
-			final DialogInterface.OnClickListener yesHandler,
-			final DialogInterface.OnClickListener noHandler) {
+			final MaterialDialog.ButtonCallback callback) {
 		if (Looper.myLooper() != Looper.getMainLooper()) {
 			getActivity().runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					showConfirmDialog(message, yesHandler, noHandler);
+					showConfirmDialog(message, callback);
 				}
 			});
 			return;
 		}
 
-		AlertDialog dialog = new AlertDialog.Builder(getActivity())
-				.setMessage(message)
-				.setPositiveButton(android.R.string.yes, yesHandler)
-				.setNegativeButton(android.R.string.no, noHandler).create();
-		dialog.show();
+		MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
+				.content(message).positiveText(android.R.string.yes)
+				.negativeText(android.R.string.no).callback(callback).build();
+
 		TextView txtMessage = (TextView) dialog
 				.findViewById(android.R.id.message);
 		txtMessage.setTextSize(14);
@@ -794,13 +789,13 @@ public class InstallerFragment extends Fragment {
 		messages.add("");
 		messages.add(getString(R.string.reboot_confirmation));
 		showConfirmDialog(TextUtils.join("\n", messages).trim(),
-				new AsyncDialogClickListener(getString(R.string.reboot)) {
+				new MaterialDialog.ButtonCallback() {
 					@Override
-					protected void onAsyncClick(DialogInterface dialog,
-							int which) {
+					public void onPositive(MaterialDialog dialog) {
+						super.onPositive(dialog);
 						reboot(null);
 					}
-				}, null);
+				});
 	}
 
 	private void offerRebootToRecovery(List<String> messages, final String file,
@@ -813,16 +808,16 @@ public class InstallerFragment extends Fragment {
 		messages.add("");
 		messages.add(getString(R.string.reboot_recovery_confirmation));
 		showConfirmDialog(TextUtils.join("\n", messages).trim(),
-				new AsyncDialogClickListener(getString(R.string.reboot)) {
+				new MaterialDialog.ButtonCallback() {
 					@Override
-					protected void onAsyncClick(DialogInterface dialog,
-							int which) {
+					public void onPositive(MaterialDialog dialog) {
+						super.onPositive(dialog);
 						reboot("recovery");
 					}
-				}, new AsyncDialogClickListener(null) {
+
 					@Override
-					protected void onAsyncClick(DialogInterface dialog,
-							int which) {
+					public void onNegative(MaterialDialog dialog) {
+						super.onNegative(dialog);
 						if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
 							// clean up to avoid unwanted flashing
 							mRootUtil.executeWithBusybox(
@@ -832,7 +827,9 @@ public class InstallerFragment extends Fragment {
 							AssetUtil.removeBusybox();
 						}
 					}
-				});
+				}
+
+		);
 	}
 
 	private void softReboot() {

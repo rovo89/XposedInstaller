@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
         android:key="group_installation"
@@ -53,13 +52,9 @@
             android:summary="@string/enable_heads_up_summary"
             android:title="@string/enable_heads_up"/>
 
-        <it.gmariotti.android.example.colorpicker.calendarstock.ColorPickerPreference
-            android:defaultValue="@color/colorPrimary"
+        <Preference
             android:key="colors"
-            android:title="@string/choose_color"
-            app:cal_choices="@array/colors"
-            app:cal_itemLayout="@layout/calendar_grid_item_color"
-            app:cal_numColumns="4"/>
+            android:title="@string/choose_color"/>
 
         <SwitchPreference
             android:defaultValue="false"
