@@ -99,7 +99,10 @@ public class XposedApp extends Application
 	public static void setColors(ActionBar actionBar, Object value,
 			Activity activity) {
 		int color = (int) value;
-		actionBar.setBackgroundDrawable(new ColorDrawable(color));
+
+		if (actionBar != null)
+			actionBar.setBackgroundDrawable(new ColorDrawable(color));
+
 		if (Build.VERSION.SDK_INT >= 21) {
 
 			ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(
