@@ -617,12 +617,12 @@ public class InstallerFragment extends Fragment {
 			messages.add(getString(R.string.sdcard_location, XposedApp.getInstance().getExternalFilesDir(null)));
 			messages.add("");
 
-			messages.add(getString(R.string.file_copying, "Xposed-Disabler-Recovery.zip"));
+			/*messages.add(getString(R.string.file_copying, "Xposed-Disabler-Recovery.zip"));
 			if (AssetUtil.writeAssetToSdcardFile("Xposed-Disabler-Recovery.zip", 00644) == null) {
 				messages.add("");
 				messages.add(getString(R.string.file_extract_failed, "Xposed-Disabler-Recovery.zip"));
 				return false;
-			}
+			}*/
 
 			File appProcessFile = AssetUtil.writeAssetToFile(APP_PROCESS_NAME, new File(XposedApp.BASE_DIR + "bin/app_process"), 00700);
 			if (appProcessFile == null) {
