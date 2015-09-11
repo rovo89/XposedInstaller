@@ -69,15 +69,6 @@ public class SupportActivity extends XposedBaseActivity {
 			txtModuleSupport
 					.setText(getString(R.string.support_modules_description,
 							getString(R.string.module_support)));
-			txtModuleSupport.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					Intent intent = new Intent(getActivity(),
-							XposedBaseActivity.class);
-					startActivity(intent);
-				}
-			});
-
 			return vg;
 		}
 	}
