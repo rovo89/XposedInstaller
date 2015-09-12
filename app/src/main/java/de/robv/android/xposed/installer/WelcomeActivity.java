@@ -136,7 +136,10 @@ public class WelcomeActivity extends XposedBaseActivity
 		if (navFragment != null) {
 			FragmentTransaction transaction = getSupportFragmentManager()
 					.beginTransaction();
-			transaction.replace(R.id.content_frame, navFragment).commit();
+			try {
+				transaction.replace(R.id.content_frame, navFragment).commit();
+			} catch (IllegalStateException ignored) {
+			}
 		}
 	}
 
