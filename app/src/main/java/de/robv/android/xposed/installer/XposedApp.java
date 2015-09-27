@@ -50,11 +50,10 @@ public class XposedApp extends Application
 			+ "conf/enabled_modules.list";
 	private static final File XPOSED_PROP_FILE = new File(
 			"/system/xposed.prop");
-
+	public static int WRITE_EXTERNAL_PERMISSION = 69;
 	private static XposedApp mInstance = null;
 	private static Thread mUiThread;
 	private static Handler mMainHandler;
-
 	private boolean mIsUiLoaded = false;
 	private Activity mCurrentActivity = null;
 	private SharedPreferences mPref;

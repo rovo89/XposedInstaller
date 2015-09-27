@@ -1,5 +1,8 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+
+import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
@@ -11,6 +14,8 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBar;
 import android.util.DisplayMetrics;
@@ -145,6 +150,23 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	}
 
 	@Override
+	public void onRequestPermissionsResult(int requestCode,
+			@NonNull String[] permissions, @NonNull int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions,
+				grantResults);
+		if (requestCode == WRITE_EXTERNAL_PERMISSION) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				Toast.makeText(getActivity(), "Permission granted",
+						Toast.LENGTH_LONG).show();
+			} else {
+				Toast.makeText(getActivity(),
+						"This feature will not work without permission to write external storage.",
+						Toast.LENGTH_LONG).show();
+			}
+		}
+	}
+
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		String backupPath = Environment.getExternalStorageDirectory()
 				+ "/XposedInstaller";
@@ -154,6 +176,14 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				"installed_modules.list");
 		File targetDir = new File(backupPath);
 		File listModules = new File(XposedApp.ENABLED_MODULES_LIST_FILE);
+
+		if (ActivityCompat.checkSelfPermission(getActivity(),
+				Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+			ActivityCompat.requestPermissions(getActivity(),
+					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
+					WRITE_EXTERNAL_PERMISSION);
+			return false;
+		}
 
 		switch (item.getItemId()) {
 			case R.id.export_enabled_modules:

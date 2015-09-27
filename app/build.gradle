@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "22.0.1"
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
         applicationId "de.robv.android.xposed.installer"
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 37
         versionName "3.0 alpha4"
         project.ext.set("archivesBaseName", "XposedInstaller_by_dvdandroid");
@@ -20,13 +20,19 @@ android {
     }
 }
 
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
 dependencies {
-    compile 'com.android.support:cardview-v7:23.0.0'
-    compile 'com.android.support:recyclerview-v7:23.0.0'
-    compile 'com.android.support:design:23.0.0'
+    compile 'com.android.support:cardview-v7:23.0.1'
+    compile 'com.android.support:recyclerview-v7:23.0.1'
+    compile 'com.android.support:design:23.0.1'
     compile 'com.github.machinarius:preferencefragment:0.1.1'
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.afollestad:material-dialogs:0.7.9.1'
+    compile('com.afollestad.material-dialogs:commons:0.8.0.1@aar') {
+        transitive = true
+    }
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

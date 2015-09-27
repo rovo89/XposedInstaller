@@ -1,10 +1,16 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -148,8 +154,33 @@ public class LogsFragment extends Fragment {
 				getResources().getString(R.string.menuSend)));
 	}
 
+	@Override
+	public void onRequestPermissionsResult(int requestCode,
+			@NonNull String[] permissions, @NonNull int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions,
+				grantResults);
+		if (requestCode == WRITE_EXTERNAL_PERMISSION) {
+			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				Toast.makeText(getActivity(), "Permission granted",
+						Toast.LENGTH_LONG).show();
+			} else {
+				Toast.makeText(getActivity(),
+						"This feature will not work without permission to write external storage.",
+						Toast.LENGTH_LONG).show();
+			}
+		}
+	}
+
 	@SuppressLint("DefaultLocale")
 	private void save() {
+		if (ActivityCompat.checkSelfPermission(getActivity(),
+				Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+			ActivityCompat.requestPermissions(getActivity(),
+					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
+					WRITE_EXTERNAL_PERMISSION);
+			return;
+		}
+
 		if (!Environment.getExternalStorageState()
 				.equals(Environment.MEDIA_MOUNTED)) {
 			Toast.makeText(getActivity(), R.string.sdcard_not_writable,

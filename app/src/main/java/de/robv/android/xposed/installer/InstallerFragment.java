@@ -1,7 +1,6 @@
 package de.robv.android.xposed.installer;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,7 +42,7 @@ public class InstallerFragment extends Fragment {
 	private String APP_PROCESS_NAME = null;
 	private RootUtil mRootUtil = new RootUtil();
 	private boolean mHadSegmentationFault = false;
-	private ProgressDialog dlgProgress;
+	private MaterialDialog.Builder dlgProgress;
 	private TextView txtInstallError, txtKnownIssue;
 	private Button btnInstallMode, btnInstall, btnUninstall, btnSoftReboot,
 			btnReboot;
@@ -74,8 +73,7 @@ public class InstallerFragment extends Fragment {
 		super.onActivityCreated(savedInstanceState);
 		Activity activity = getActivity();
 
-		dlgProgress = new ProgressDialog(activity);
-		dlgProgress.setIndeterminate(true);
+		dlgProgress = new MaterialDialog.Builder(activity).progress(true, 0);
 	}
 
 	@Override
@@ -97,7 +95,7 @@ public class InstallerFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(),
-						XposedBaseActivity.class);
+						SettingsActivity.class);
 				startActivity(intent);
 			}
 		});
@@ -122,6 +120,8 @@ public class InstallerFragment extends Fragment {
 		 */
 
 		// FIXME
+		// TODO: update android 6.0 permission manager when final version of
+		// xposed installer is available
 		/*
 		 * if (isCompatible) { btnInstall.setOnClickListener(new
 		 * AsyncClickListener(btnInstall.getText()) {
@@ -879,13 +879,13 @@ public class InstallerFragment extends Fragment {
 		@Override
 		public final void onClick(final View v) {
 			if (mProgressDlgText != null) {
-				dlgProgress.setMessage(mProgressDlgText);
+				dlgProgress.content(mProgressDlgText);
 				dlgProgress.show();
 			}
 			new Thread() {
 				public void run() {
 					onAsyncClick(v);
-					dlgProgress.dismiss();
+					dlgProgress.build().dismiss();
 				}
 			}.start();
 		}
@@ -904,13 +904,13 @@ public class InstallerFragment extends Fragment {
 		@Override
 		public void onClick(final DialogInterface dialog, final int which) {
 			if (mProgressDlgText != null) {
-				dlgProgress.setMessage(mProgressDlgText);
+				dlgProgress.content(mProgressDlgText);
 				dlgProgress.show();
 			}
 			new Thread() {
 				public void run() {
 					onAsyncClick(dialog, which);
-					dlgProgress.dismiss();
+					dlgProgress.build().dismiss();
 				}
 			}.start();
 		}

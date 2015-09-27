@@ -15,7 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.ColorChooserDialog;
+import com.afollestad.materialdialogs.color.ColorChooserDialog;
 
 import java.io.File;
 import java.io.IOException;
