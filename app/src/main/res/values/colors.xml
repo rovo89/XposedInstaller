@@ -1,10 +1,10 @@
 <resources>
 
     <!-- base colors-->
-    <color name="colorPrimary">#67baa0</color>
+    <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorPrimaryLight">#3f51b5</color>
-    <color name="colorAccent">#63c26e</color>
+    <color name="colorPrimaryLight">#727272</color>
+    <color name="colorAccent">#03A9F4</color>
     <color name="list_header">#777</color>
     <color name="warning">@android:color/holo_red_light</color>
     <color name="warning_box">@android:color/holo_red_dark</color>

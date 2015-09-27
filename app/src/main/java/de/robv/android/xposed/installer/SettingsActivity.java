@@ -2,7 +2,6 @@ package de.robv.android.xposed.installer;
 
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,8 +25,6 @@ import de.robv.android.xposed.installer.util.UIUtil;
 
 public class SettingsActivity extends XposedBaseActivity
 		implements ColorChooserDialog.ColorCallback {
-
-	private Context mContext;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +53,6 @@ public class SettingsActivity extends XposedBaseActivity
 					.add(R.id.container, new SettingsFragment()).commit();
 		}
 
-		mContext = getApplicationContext();
 	}
 
 	@Override
