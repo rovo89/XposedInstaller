@@ -21,6 +21,7 @@ public class DownloadView extends LinearLayout {
 	private final Button btnInstall;
 	private final ProgressBar progressBar;
 	private final TextView txtInfo;
+	private final TextView txtSize;
 	private DownloadInfo mInfo = null;
 	private String mUrl = null;
 	private final Runnable refreshViewRunnable = new Runnable() {
@@ -33,7 +34,6 @@ public class DownloadView extends LinearLayout {
 				progressBar.setVisibility(View.GONE);
 				txtInfo.setVisibility(View.VISIBLE);
 				txtInfo.setText(R.string.download_view_no_url);
-				return;
 			} else if (mInfo == null) {
 				btnDownload.setVisibility(View.VISIBLE);
 				btnDownloadCancel.setVisibility(View.GONE);
@@ -50,6 +50,7 @@ public class DownloadView extends LinearLayout {
 						btnInstall.setVisibility(View.GONE);
 						progressBar.setVisibility(View.VISIBLE);
 						txtInfo.setVisibility(View.VISIBLE);
+						txtSize.setVisibility(View.GONE);
 						if (mInfo.totalSize <= 0
 								|| mInfo.status != DownloadManager.STATUS_RUNNING) {
 							progressBar.setIndeterminate(true);
@@ -71,6 +72,7 @@ public class DownloadView extends LinearLayout {
 						btnInstall.setVisibility(View.GONE);
 						progressBar.setVisibility(View.GONE);
 						txtInfo.setVisibility(View.VISIBLE);
+						txtSize.setVisibility(View.VISIBLE);
 						txtInfo.setText(getContext().getString(
 								R.string.download_view_failed, mInfo.reason));
 						break;
@@ -80,6 +82,7 @@ public class DownloadView extends LinearLayout {
 						btnDownloadCancel.setVisibility(View.GONE);
 						btnInstall.setVisibility(View.VISIBLE);
 						progressBar.setVisibility(View.GONE);
+						txtSize.setVisibility(View.VISIBLE);
 						txtInfo.setVisibility(View.VISIBLE);
 						txtInfo.setText(R.string.download_view_successful);
 						break;
@@ -102,6 +105,7 @@ public class DownloadView extends LinearLayout {
 		btnDownload = (Button) findViewById(R.id.btnDownload);
 		btnDownloadCancel = (Button) findViewById(R.id.btnDownloadCancel);
 		btnInstall = (Button) findViewById(R.id.btnInstall);
+		txtSize = (TextView) findViewById(R.id.txtSize);
 
 		btnDownload.setOnClickListener(new View.OnClickListener() {
 			@Override
