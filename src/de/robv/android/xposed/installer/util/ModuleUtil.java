@@ -1,15 +1,17 @@
 package de.robv.android.xposed.installer.util;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -28,8 +30,8 @@ import de.robv.android.xposed.installer.repo.RepoDb;
 public final class ModuleUtil {
 	private static ModuleUtil mInstance = null;
 	private final XposedApp mApp;
-	private SharedPreferences mPref;
 	private final PackageManager mPm;
+	private final Set<String> mModules = new HashSet<String>();
 	private final String mFrameworkPackageName;
 	private InstalledModule mFramework = null;
 	private Map<String, InstalledModule> mInstalledModules;
@@ -41,9 +43,25 @@ public final class ModuleUtil {
 
 	private ModuleUtil() {
 		mApp = XposedApp.getInstance();
-		mPref = mApp.getSharedPreferences("enabled_modules", Context.MODE_PRIVATE);
 		mPm = mApp.getPackageManager();
 		mFrameworkPackageName = mApp.getPackageName();
+		loadModules();
+	}
+
+	private void loadModules() {
+		try {
+			String line;
+			BufferedReader reader = new BufferedReader(new FileReader(MODULES_LIST_FILE));
+			while ((line = reader.readLine()) !=  null) {
+				PackageInfo info = mPm.getPackageArchiveInfo(line, 0);
+				if (info != null) {
+					mModules.add(info.packageName);
+				}
+			}
+			reader.close();
+		} catch (IOException e) { // NOSONAR
+			// do nothing
+		}
 	}
 
 	public static synchronized ModuleUtil getInstance() {
@@ -164,20 +182,21 @@ public final class ModuleUtil {
 	}
 
 	public void setModuleEnabled(String packageName, boolean enabled) {
+		// it seems whenever setModuleEnabled is called, updateModulesList is called too
 		if (enabled)
-			mPref.edit().putInt(packageName, 1).commit();
+			mModules.add(packageName);
 		else
-			mPref.edit().remove(packageName).commit();
+			mModules.remove(packageName);
 	}
 
 	public boolean isModuleEnabled(String packageName) {
-		return mPref.contains(packageName);
+		return mModules.contains(packageName);
 	}
 
 	public List<InstalledModule> getEnabledModules() {
 		LinkedList<InstalledModule> result = new LinkedList<InstalledModule>();
 
-		for (String packageName : mPref.getAll().keySet()) {
+		for (String packageName : mModules) {
 			InstalledModule module = getModule(packageName);
 			if (module != null)
 				result.add(module);
