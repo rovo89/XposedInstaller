@@ -43,7 +43,7 @@
     <string name="install_warning_title">小心！</string>
     <string name="install_warning">某些情況下，您的裝置將在安裝 Xposed 之後無法啟動。\n\n如果您之前沒有聽說過「軟變磚」或「無限重啟」，或者您不知道如何從這種情況回復，請"<b>不要</b>"安裝 Xposed！\n\n無論如何，強烈建議准備好最近的備份。</string>
     <string name="dont_show_again">不要再顯示這個</string>
-    <string name="install_known_issue">Xposed 與您的 ROM 似乎存在已知的問題 (\"%s\")。安裝 Xposed 可能無法正常工作，或是引發一系列問題。點擊這裡獲知詳細資料。</string>
+    <string name="install_known_issue">Xposed 與您的 ROM 似乎存在已知的問題 (\"%s\")。安裝 Xposed 可能無法正常工作，或是引發一系列問題。點選這裡獲知詳細資料。</string>
     <string name="install_reverted">之前已經安裝版本為 \"%1$s\" 的 app_process，但是現在找到的版本卻是 \"%2$s\"。如果您不希望一個舊檔被還原，也許您應該試試透過 Recovery 安裝（自動或手動）。</string>
     <string name="uninstall_reverted">app_process 之前已被解除安裝，現在卻找到了版本為 \"%s\" 的。如果您不希望一個舊檔被還原，也許您應該試試透過 Recovery 解除安裝（自動或手動）。</string>
     <string name="tap_to_dismiss">輕觸以消除</string>
@@ -71,7 +71,7 @@
     <string name="file_create_directory_failed">無法建立目錄 %s</string>
     <string name="file_writing_recovery_command">正在寫入 Recovery 命令&#8230;</string>
     <string name="file_writing_recovery_command_failed">寫入 Recovery 命令失敗。請換一種安裝方式。</string>
-    <string name="file_done">完成！修改將于重啟之後生效。</string>
+    <string name="file_done">完成！變更將於重啟之後生效。</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed 模組未啟動</string>
@@ -139,10 +139,10 @@
     <string name="settings_enable_downloads_summary">允許 Xposed 安裝器檢查更新與新模組</string>
     <string name="settings_release_type">将显示的版本</string>
     <string name="settings_group_experimental">實驗性</string>
-    <string name="settings_disable_resources">停用資源鈎子</string>
-    <string name="settings_disable_resources_summary">解決與主題引擎的衝突。\n<b>警告:</b> 啟用這個選項將會導致修改資源的模組停止工作。</string>
+    <string name="settings_disable_resources">停用資源勾</string>
+    <string name="settings_disable_resources_summary">解決與主題引擎的衝突。\n<b>警告:</b> 啟用這個選項將會導致變更資源的模組停止工作。</string>
     <string name="settings_performance_experiment">效能試驗</string>
-    <string name="settings_performance_experiment_summary">如果您啟用該選項，您的系統效能可能更好、更差或沒有變化。請隨意試用並回報您觀察到的效果(或者根本沒變化)。修改選項後您需要重新安裝架構並重啟。</string>
+    <string name="settings_performance_experiment_summary">如果您啟用該選項，您的系統效能可能更好、更差或沒有變化。請隨意試用並回報您觀察到的效果(或者根本沒變化)。變更選項後您需要重新安裝架構並重啟。</string>
     <string name="settings_group_app">應用程式</string>
     <string name="settings_theme">主題</string>
     <string name="settings_theme_light">淺色</string>
