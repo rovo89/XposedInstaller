@@ -3,7 +3,7 @@
 
     <!-- General/various strings -->
     <string name="menuSend">傳送</string>
-    <string name="menuSaveToSd">傳送至 SD 卡</string>
+    <string name="menuSaveToSd">傳送至 SD 記憶卡</string>
     <string name="xposed_not_active">最新版本的 Xposed 當前尚未使用中。您是否已安裝架構並重啟？</string>
 
     <!-- Welcome screen / main sections -->
@@ -37,7 +37,7 @@
     <string name="not_tested_but_compatible">Xposed未在 Android SDK 版本 %d 上測試，但它似乎是可相容的。如果您熱愛冒險，您可以試試安裝它。</string>
     <string name="reboot_failed">重啟失敗。請使用裝置的標准重啟功能。</string>
     <string name="auto_flash_note">當你按下 OK 後，%s 將會被自動刷入裝置。</string>
-    <string name="manual_flash_note">請將 %s 從 SD 卡刷入裝置以完成操作。</string>
+    <string name="manual_flash_note">請將 %s 從 SD 記憶卡刷入裝置以完成操作。</string>
     <string name="reboot_confirmation">您現在要重啟嗎？</string>
     <string name="reboot_recovery_confirmation">您現在要重啟進入 Recovery 模式嗎？</string>
     <string name="install_warning_title">小心！</string>
@@ -47,7 +47,7 @@
     <string name="install_reverted">之前已經安裝版本為 \"%1$s\" 的 app_process，但是現在找到的版本卻是 \"%2$s\"。如果您不希望一個舊檔被還原，也許您應該試試透過 Recovery 安裝（自動或手動）。</string>
     <string name="uninstall_reverted">app_process 之前已被解除安裝，現在卻找到了版本為 \"%s\" 的。如果您不希望一個舊檔被還原，也許您應該試試透過 Recovery 解除安裝（自動或手動）。</string>
     <string name="tap_to_dismiss">輕觸以消除</string>
-    <string name="sdcard_location">SD 卡: %s</string>
+    <string name="sdcard_location">SD 記憶卡: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">無法取得 root 權限。\n\n請確認您的裝置已經正確的 root 以及您沒有封鎖 shell 命令。</string>
@@ -133,7 +133,7 @@
     <string name="settings_install_mode">安裝方式</string>
     <string name="install_mode_normal">經典 (直接寫入 /system)</string>
     <string name="install_mode_recovery_auto">Recovery (自動刷 zip 檔)</string>
-    <string name="install_mode_recovery_manual">Recovery (只將 zip 寫入 SD 卡以手動刷入)</string>
+    <string name="install_mode_recovery_manual">Recovery (只將 zip 寫入 SD 記憶卡以手動刷入)</string>
     <string name="settings_group_download">下載</string>
     <string name="settings_enable_downloads">啟用下載</string>
     <string name="settings_enable_downloads_summary">允許 Xposed 安裝器檢查更新與新模組</string>
@@ -151,8 +151,8 @@
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">無法讀取日志：</string>
-    <string name="logs_save_failed">無法將日志寫入 SD 卡：</string>
-    <string name="sdcard_not_writable">未找到 SD 卡或不可寫入</string>
+    <string name="logs_save_failed">無法將日志寫入 SD 記憶卡：</string>
+    <string name="sdcard_not_writable">找不到 SD 記憶卡或不可寫入</string>
     <string name="log_too_large">記錄檔大於 %1$,d kB，已跳過開頭的 %2$,d kB</string>
     <string name="menuClearLog">清除記錄</string>
     <string name="logs_cleared">記錄已被清除</string>
