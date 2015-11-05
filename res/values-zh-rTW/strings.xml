@@ -4,7 +4,7 @@
     <!-- General/various strings -->
     <string name="menuSend">傳送</string>
     <string name="menuSaveToSd">傳送至 SD 卡</string>
-    <string name="xposed_not_active">最新版本的 Xposed 當前尚未使用中。您是否已安裝框架並重啟？</string>
+    <string name="xposed_not_active">最新版本的 Xposed 當前尚未使用中。您是否已安裝架構並重啟？</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">歡迎使用<b>Xposed安裝器</b>!\n請選擇您想進行的操作：</string>
