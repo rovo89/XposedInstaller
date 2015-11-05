@@ -44,7 +44,7 @@
     <string name="install_warning">某些情況下，您的裝置將在安裝 Xposed 之後無法啟動。\n\n如果您之前沒有聽說過「軟變磚」或「無限重啟」，或者您不知道如何從這種情況回復，請"<b>不要</b>"安裝 Xposed！\n\n無論如何，強烈建議准備好最近的備份。</string>
     <string name="dont_show_again">不要再顯示這個</string>
     <string name="install_known_issue">Xposed 與您的 ROM 似乎存在已知的問題 (\"%s\")。安裝 Xposed 可能無法正常工作，或是引發一系列問題。點擊這裡獲知詳細資料。</string>
-    <string name="install_reverted">之前已經安裝版本為 \"%1$s\" 的 app_process，但是現在找到的版本卻是 \"%2$s\"。如果您不希望一個舊檔被還原，也許您應該試試通過 Recovery 安裝（自動或手動）。</string>
+    <string name="install_reverted">之前已經安裝版本為 \"%1$s\" 的 app_process，但是現在找到的版本卻是 \"%2$s\"。如果您不希望一個舊檔被還原，也許您應該試試透過 Recovery 安裝（自動或手動）。</string>
     <string name="uninstall_reverted">app_process 之前已被解除安裝，現在卻找到了版本為 \"%s\" 的。如果您不希望一個舊檔被還原，也許您應該試試透過 Recovery 解除安裝（自動或手動）。</string>
     <string name="tap_to_dismiss">輕觸以消除</string>
     <string name="sdcard_location">SD 卡: %s</string>
