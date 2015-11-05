@@ -2,30 +2,30 @@
 <resources>
 
     <!-- General/various strings -->
-    <string name="menuSend">發送</string>
-    <string name="menuSaveToSd">發送到 SD 卡</string>
-    <string name="xposed_not_active">最新版本的 Xposed 當前未激活。您是否已安裝框架並重啓？</string>
+    <string name="menuSend">傳送</string>
+    <string name="menuSaveToSd">傳送至 SD 卡</string>
+    <string name="xposed_not_active">最新版本的 Xposed 當前未激活。您是否已安裝框架並重啟/string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">歡迎使用<b>Xposed安裝器</b>!\n請選擇您想進行的操作：</string>
-    <string name="tabInstall">框架</string>
-    <string name="tabInstallDescription">此處您能管理Xposed框架，任何模組想正常運行都需要它。</string>
+    <string name="tabInstall">架構</string>
+    <string name="tabInstallDescription">此處您能管理 Xposed 架構，任何模組想正常工作都需要它。</string>
     <string name="tabModules">模組</string>
-    <string name="tabModulesDescription">框架本身不增加任何功能。您需要使用模組。安裝模組後在此處啟動它們。</string>
+    <string name="tabModulesDescription">架構本身不增加任何功能。您需要使用模組。安裝模組後在此處啟動它們。</string>
     <string name="tabDownload">下載</string>
-    <string name="tabDownloadDescription">此處您能訪問模組倉庫，您可以搜索並下載您喜歡的模組，並及時更新它們。</string>
-    <string name="welcome_framework_update_available">Xposed框架有更新可用。</string>
+    <string name="tabDownloadDescription">此處您能存取模組倉庫，您可以搜尋並下載您喜歡的模組，並及時更新它們。</string>
+    <string name="welcome_framework_update_available">Xposed 架構有更新可用。</string>
     <string name="welcome_update_available">一個或多個模組有更新可用。</string>
-    <string name="tabSettings">設置</string>
-    <string name="tabSettingsDescription">此處可配置Xposed安裝器和框架。</string>
-    <string name="tabLogs">日志</string>
-    <string name="tabLogsDescription">顯示並保存/發送 Xposed 框架産生的日志。</string>
+    <string name="tabSettings">設定</string>
+    <string name="tabSettingsDescription">此處可設定 Xposed 安裝器與架構。</string>
+    <string name="tabLogs">記錄</string>
+    <string name="tabLogsDescription">顯示並儲存/傳送 Xposed 架構産生的記錄。</string>
     <string name="tabAbout">關於</string>
-    <string name="tabAboutDescription">瞭解Xposed作者，如何獲取幫助支持等。</string>
+    <string name="tabAboutDescription">瞭解Xposed作者，如何取得幫助支援等。</string>
 
     <!-- Installer tab -->
     <string name="install">安裝/更新</string>
-    <string name="uninstall">卸載</string>
+    <string name="uninstall">解除安裝</string>
     <string name="installedVersion">啟動</string>
     <string name="latestVersion">程式自帶</string>
     <string name="versions">版本：</string>
