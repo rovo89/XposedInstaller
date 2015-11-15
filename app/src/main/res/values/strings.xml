@@ -187,7 +187,7 @@
 
     <!-- About tab -->
     <string name="about_developers_label">Main developers:</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> and <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> for bug fixes and Material Design</string>
     <string name="about_developers_warning">Please do <b>not</b> contact us directly for support, use the link below.</string>
     <string name="about_translator_label">Translator:</string>
     <string name="translator"></string>

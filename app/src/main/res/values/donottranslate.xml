@@ -9,6 +9,6 @@
     <string name="support_donate_url">http://repo.xposed.info/donate</string>
     <string name="about_source">https://github.com/rovo89</string>
     <string name="about_support">http://forum.xda-developers.com/xposed</string>
-    <string name="about_libraries"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a>\n<a href="https://github.com/Chainfire/libsuperuser">libsuperuser</a></string>
+    <string name="about_libraries"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a>\n<a href="https://github.com/Chainfire/libsuperuser">libsuperuser</a>\n<a href="https://github.com/afollestad/material-dialogs">MaterialDialogs</a></string>
 
 </resources>

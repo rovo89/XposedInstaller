@@ -90,7 +90,7 @@
     <string name="warning_xposed_min_version">Questo modulo richiede una nuova versione (%d) di XposedBridge, di conseguenza non può essere attivato.</string>
     <string name="no_min_version_specified">Questo modulo non specifica la versione di XposedBridge di cui ha bisogno.</string>
     <string name="warning_min_version_too_low">Questo modulo è stato creato per la versione %1$d di XposedBridge, ma a causa di incompatibilità con la versione %2$d è stato disattivato.</string>
-    <string name="module_launch">Launch UI</string>
+    <string name="module_launch">Apri interfaccia</string>
     <string name="module_download_updates">Scarica/Aggiorna</string>
     <string name="module_support">Supporto</string>
     <string name="module_app_info">Info App</string>
@@ -166,7 +166,7 @@
 
     <!-- About tab -->
     <string name="about_developers_label">Sviluppatori principali:</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> e <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> e <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n <a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> e <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> per bug fix e Material Design</string>
     <string name="about_developers_warning"><b>Non</b> contattare direttamente gli sviluppatori per supporto, usa i link in basso.</string>
     <string name="about_translator_label">Tradotto da:</string>
     <string name="translator">Vincenzo Cerminara</string>
