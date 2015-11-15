@@ -1,7 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-
 import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -63,6 +61,8 @@ import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
+
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class ModulesFragment extends ListFragment implements ModuleListener {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
@@ -418,7 +418,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 			case R.id.menu_support:
 				NavUtil.startURL(getActivity(),
-						RepoDb.getModuleSupport(module.packageName));
+						Uri.parse(RepoDb.getModuleSupport(module.packageName)));
 				return true;
 
 			case R.id.menu_play_store:
@@ -564,11 +564,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				checkbox.setEnabled(false);
 				warningText.setText(getString(
 						R.string.warning_installed_on_external_storage));
-				warningText.setVisibility(View.VISIBLE);
-			} else if (item.isForwardLocked()) {
-				checkbox.setEnabled(false);
-				warningText.setText(getString(R.string.warning_forward_locked));
-				warningText.setVisibility(View.VISIBLE);
 				warningText.setVisibility(View.VISIBLE);
 			} else {
 				checkbox.setEnabled(true);
