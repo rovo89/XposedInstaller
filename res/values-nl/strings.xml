@@ -164,7 +164,7 @@
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> en <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Contacteer ons alstublieft <b>niet</b> direct voor ondersteuning: gebruik de onderstaande link. (Onder de titel "Krijg ondersteuning")</string>
     <string name="about_translator_label">Het framework is naar het Nederlands vertaald door:</string>
-    <string name="translator"><a href="https://github.com/Martinusbe">Martin Coulon (Martinusbe)</a>, <a href="http://code.gertlily.com/">Gert-Jan Anema (GertlilyNL)</a> &amp; <a href="https://github.com/lionzeye">Leonard Simonse (lionzeye)</a></string>
+    <string name="translator"><a href="https://github.com/Martinusbe">Martin Coulon (Martinusbe)</a>, <a href="http://github.com/GertlilyNL">Gert-Jan Anema (GertlilyNL)</a> &amp; <a href="https://github.com/lionzeye">Leonard Simonse (lionzeye)</a></string>
     <string name="about_version_label">Versie van deze app:</string>
     <string name="about_source_label">Broncode:</string>
     <string name="about_support_label">Krijg ondersteuning:</string>
