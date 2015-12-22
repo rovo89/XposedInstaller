@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -26,13 +27,15 @@ import de.robv.android.xposed.installer.XposedApp;
 
 public class DownloadsUtil {
 	public static final String MIME_TYPE_APK = "application/vnd.android.package-archive";
-	private static final Map<String, DownloadFinishedCallback> mCallbacks = new HashMap<String, DownloadFinishedCallback>();
+	public static final String MIME_TYPE_ZIP = "application/zip";
+	private static final Map<String, DownloadFinishedCallback> mCallbacks = new HashMap<>();
 	private static final XposedApp mApp = XposedApp.getInstance();
 	private static final SharedPreferences mPref = mApp
 			.getSharedPreferences("download_cache", Context.MODE_PRIVATE);
 
 	public static DownloadInfo add(Context context, String title, String url,
-			DownloadFinishedCallback callback) {
+			DownloadFinishedCallback callback, MIME_TYPES mimeType,
+			boolean save) {
 		removeAllForUrl(context, url);
 
 		synchronized (mCallbacks) {
@@ -43,7 +46,16 @@ public class DownloadsUtil {
 				.getSystemService(Context.DOWNLOAD_SERVICE);
 		Request request = new Request(Uri.parse(url));
 		request.setTitle(title);
-		request.setMimeType(MIME_TYPE_APK);
+		request.setMimeType(mimeType.toString());
+		if (save) {
+			String savePath = "XposedInstaller";
+			try {
+				request.setDestinationInExternalPublicDir(savePath,
+						title + mimeType.getExtension());
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			}
+		}
 		request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
 		long id = dm.enqueue(request);
 
@@ -112,7 +124,7 @@ public class DownloadsUtil {
 		int columnReason = c
 				.getColumnIndexOrThrow(DownloadManager.COLUMN_REASON);
 
-		List<DownloadInfo> downloads = new ArrayList<DownloadInfo>();
+		List<DownloadInfo> downloads = new ArrayList<>();
 		while (c.moveToNext()) {
 			if (!url.equals(c.getString(columnUri)))
 				continue;
@@ -148,7 +160,7 @@ public class DownloadsUtil {
 		int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
 		int columnUri = c.getColumnIndexOrThrow(DownloadManager.COLUMN_URI);
 
-		List<Long> idsList = new ArrayList<Long>();
+		List<Long> idsList = new ArrayList<>();
 		while (c.moveToNext()) {
 			if (url.equals(c.getString(columnUri)))
 				idsList.add(c.getLong(columnId));
@@ -172,7 +184,7 @@ public class DownloadsUtil {
 		int columnLastMod = c.getColumnIndexOrThrow(
 				DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
 
-		List<Long> idsList = new ArrayList<Long>();
+		List<Long> idsList = new ArrayList<>();
 		while (c.moveToNext()) {
 			if (c.getLong(columnLastMod) < cutoff)
 				idsList.add(c.getLong(columnId));
@@ -194,7 +206,7 @@ public class DownloadsUtil {
 		if (info == null || info.status != DownloadManager.STATUS_SUCCESSFUL)
 			return;
 
-		DownloadFinishedCallback callback = null;
+		DownloadFinishedCallback callback;
 		synchronized (mCallbacks) {
 			callback = mCallbacks.get(info.url);
 		}
@@ -225,18 +237,16 @@ public class DownloadsUtil {
 					connection.addRequestProperty("Accept-Encoding",
 							"identity");
 
-				if (useNotModifiedTags) {
-					String modified = mPref
-							.getString("download_" + url + "_modified", null);
-					String etag = mPref.getString("download_" + url + "_etag",
-							null);
+				String modified = mPref
+						.getString("download_" + url + "_modified", null);
+				String etag = mPref.getString("download_" + url + "_etag",
+						null);
 
-					if (modified != null)
-						connection.addRequestProperty("If-Modified-Since",
-								modified);
-					if (etag != null)
-						connection.addRequestProperty("If-None-Match", etag);
-				}
+				if (modified != null)
+					connection.addRequestProperty("If-Modified-Since",
+							modified);
+				if (etag != null)
+					connection.addRequestProperty("If-None-Match", etag);
 			}
 
 			connection.connect();
@@ -263,7 +273,7 @@ public class DownloadsUtil {
 				out.write(buf, 0, read);
 			}
 
-			if (useNotModifiedTags && connection instanceof HttpURLConnection) {
+			if (connection instanceof HttpURLConnection) {
 				HttpURLConnection httpConnection = (HttpURLConnection) connection;
 				String modified = httpConnection
 						.getHeaderField("Last-Modified");
@@ -271,7 +281,7 @@ public class DownloadsUtil {
 
 				mPref.edit()
 						.putString("download_" + url + "_modified", modified)
-						.putString("download_" + url + "_etag", etag).commit();
+						.putString("download_" + url + "_etag", etag).apply();
 			}
 
 			return new SyncDownloadInfo(SyncDownloadInfo.STATUS_SUCCESS, null);
@@ -306,6 +316,31 @@ public class DownloadsUtil {
 		}
 	}
 
+	public enum MIME_TYPES {
+		APK {
+			public String toString() {
+				return MIME_TYPE_APK;
+			}
+
+			public String getExtension() {
+				return ".apk";
+			}
+		},
+		ZIP {
+			public String toString() {
+				return MIME_TYPE_ZIP;
+			}
+
+			public String getExtension() {
+				return ".zip";
+			}
+		};
+
+		public String getExtension() {
+			return null;
+		}
+	}
+
 	public interface DownloadFinishedCallback {
 		void onDownloadFinished(Context context, DownloadInfo info);
 	}
@@ -336,7 +371,7 @@ public class DownloadsUtil {
 		}
 
 		@Override
-		public int compareTo(DownloadInfo another) {
+		public int compareTo(@NonNull DownloadInfo another) {
 			int compare = (int) (another.lastModification
 					- this.lastModification);
 			if (compare != 0)

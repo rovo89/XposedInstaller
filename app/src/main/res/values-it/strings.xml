@@ -242,5 +242,26 @@
     <string name="download_view_size">Dimensione: %s KB</string>
     <string name="share">Condividi con…</string>
     <string name="back">Indietro</string>
+    <string name="downloadUninstaller">Scarica disinstallatore</string>
+    <string name="downloadZipOk">%1$s scaricato correttamente</string>
+    <string name="help">Aiuto</string>
+    <string name="info">Info</string>
+    <string name="infoInstaller">Nome: %1$s         \nSDK: %2$d         \nArchittettura: %3$s         \nVersione: %4$s</string>
+    <string name="infoUninstaller">Nome: %1$s         \nArchittettura: %2$s         \nData: %3$s</string>
+    <string name="loadingError">Errore nel caricamento dei file Xposed Framework Zip</string>
+    <string name="permissionGranted">Permesso concesso</string>
+    <string name="permissionNotGranted">Questa funzionalità non funzionerà senza il permesso di scrittura della memoria esterna.</string>
+    <string name="selectFile">Seleziona il file scaricato</string>
+    <string name="warningArchitecture">HAI SCELTO L\' ARCHITTETTURA GIUSTA DELLO ZIP?\nUn installer sbagliato può danneggiare il tuo telefono!</string>
+    <string name="xposedZipNotFound">File zip non trovato, probabilmemente una nuova versione è stata rilasciata.</string>
+    <string name="helpChoose">
+        Come scegliere il file zip corretto?\n
+
+        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
+
+        Dove:\n
+        %%SDK%% è la tua versione Android SDK \n\n
+        %%ARCH%% è l\'architettura della CPU del tuo telefono
+    </string>
 
 </resources>

@@ -59,11 +59,75 @@
             android:textAllCaps="true"
             android:textStyle="bold"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/loadingInstallers"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"/>
+
+            <Spinner
+                android:id="@+id/chooserInstallers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:spinnerMode="dropdown"/>
+
+            <ImageView
+                android:id="@+id/infoInstaller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:src="@drawable/ic_info"/>
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/btnInstall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/install"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+
+            <ProgressBar
+                android:id="@+id/loadingUninstallers"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"/>
+
+            <Spinner
+                android:id="@+id/chooserUninstallers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:spinnerMode="dropdown"/>
+
+            <ImageView
+                android:id="@+id/infoUninstaller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+                android:padding="5dp"
+                android:src="@drawable/ic_info"/>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btnUninstall"

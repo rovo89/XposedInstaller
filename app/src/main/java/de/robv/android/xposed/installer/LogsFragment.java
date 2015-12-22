@@ -1,12 +1,11 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -23,17 +22,20 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.Calendar;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+
 public class LogsFragment extends Fragment {
-	private static final int MAX_LOG_SIZE = 2 * 1024 * 1024; // 2 MB
+
 	private File mFileErrorLog = new File(XposedApp.BASE_DIR + "log/error.log");
 	private File mFileErrorLogOld = new File(
 			XposedApp.BASE_DIR + "log/error.log.old");
@@ -84,36 +86,7 @@ public class LogsFragment extends Fragment {
 	}
 
 	private void reloadErrorLog() {
-		StringBuilder logContent = new StringBuilder(15 * 1024);
-		try {
-			FileInputStream fis = new FileInputStream(mFileErrorLog);
-			long skipped = skipLargeFile(fis, mFileErrorLog.length());
-			if (skipped > 0) {
-				logContent.append("-----------------\n");
-				logContent
-						.append(getResources().getString(R.string.log_too_large,
-								MAX_LOG_SIZE / 1024, skipped / 1024));
-				logContent.append("\n-----------------\n\n");
-			}
-			Reader reader = new InputStreamReader(fis);
-			char[] temp = new char[1024];
-			int read;
-			while ((read = reader.read(temp)) > 0) {
-				logContent.append(temp, 0, read);
-			}
-			reader.close();
-		} catch (IOException e) {
-			logContent.append(
-					getResources().getString(R.string.logs_load_failed));
-			logContent.append('\n');
-			logContent.append(e.getMessage());
-		}
-
-		if (logContent.length() > 0)
-			mTxtLog.setText(logContent.toString());
-		else
-			mTxtLog.setText(R.string.log_is_empty);
-
+		new LogsReader().execute(mFileErrorLog);
 		mSVLog.post(new Runnable() {
 			@Override
 			public void run() {
@@ -140,7 +113,6 @@ public class LogsFragment extends Fragment {
 					getResources().getString(R.string.logs_clear_failed) + "\n"
 							+ e.getMessage(),
 					Toast.LENGTH_LONG).show();
-			return;
 		}
 	}
 
@@ -148,8 +120,8 @@ public class LogsFragment extends Fragment {
 		Intent sendIntent = new Intent();
 		sendIntent.setAction(Intent.ACTION_SEND);
 		sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mFileErrorLog));
-		sendIntent.setType("application/text"); // text/plain is handled wrongly
-												// by too many apps
+		sendIntent.setType("application/html"); // text/plain is handled wrongly
+		// by too many apps
 		startActivity(Intent.createChooser(sendIntent,
 				getResources().getString(R.string.menuSend)));
 	}
@@ -161,11 +133,11 @@ public class LogsFragment extends Fragment {
 				grantResults);
 		if (requestCode == WRITE_EXTERNAL_PERMISSION) {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				Toast.makeText(getActivity(), "Permission granted",
+				Toast.makeText(getActivity(), R.string.permissionGranted,
 						Toast.LENGTH_LONG).show();
 			} else {
 				Toast.makeText(getActivity(),
-						"This feature will not work without permission to write external storage.",
+ R.string.permissionNotGranted,
 						Toast.LENGTH_LONG).show();
 			}
 		}
@@ -200,18 +172,6 @@ public class LogsFragment extends Fragment {
 		try {
 			FileInputStream in = new FileInputStream(mFileErrorLog);
 			FileOutputStream out = new FileOutputStream(targetFile);
-
-			long skipped = skipLargeFile(in, mFileErrorLog.length());
-			if (skipped > 0) {
-				StringBuilder logContent = new StringBuilder(512);
-				logContent.append("-----------------\n");
-				logContent
-						.append(getResources().getString(R.string.log_too_large,
-								MAX_LOG_SIZE / 1024, skipped / 1024));
-				logContent.append("\n-----------------\n\n");
-				out.write(logContent.toString().getBytes());
-			}
-
 			byte[] buffer = new byte[1024];
 			int len;
 			while ((len = in.read(buffer)) > 0) {
@@ -231,24 +191,78 @@ public class LogsFragment extends Fragment {
 				.show();
 	}
 
-	private long skipLargeFile(InputStream is, long length) throws IOException {
-		if (length < MAX_LOG_SIZE)
-			return 0;
+	private class LogsReader extends AsyncTask<File, Integer, String> {
 
-		long skipped = length - MAX_LOG_SIZE;
-		long yetToSkip = skipped;
-		do {
-			yetToSkip -= is.skip(yetToSkip);
-		} while (yetToSkip > 0);
+		private static final int MAX_LOG_SIZE = 1000 * 1024; // 1000 KB
+		private MaterialDialog mProgressDialog;
 
-		int c;
-		do {
-			c = is.read();
-			if (c == -1)
-				break;
-			skipped++;
-		} while (c != '\n');
+		private long skipLargeFile(BufferedReader is, long length)
+				throws IOException {
+			if (length < MAX_LOG_SIZE)
+				return 0;
 
-		return skipped;
+			long skipped = length - MAX_LOG_SIZE;
+			long yetToSkip = skipped;
+			do {
+				yetToSkip -= is.skip(yetToSkip);
+			} while (yetToSkip > 0);
+
+			int c;
+			do {
+				c = is.read();
+				if (c == -1)
+					break;
+				skipped++;
+			} while (c != '\n');
+
+			return skipped;
+
+		}
+
+		@Override
+		protected void onPreExecute() {
+			mProgressDialog = new MaterialDialog.Builder(getContext())
+					.content("loading").progress(true, 0).show();
+		}
+
+		@Override
+		protected String doInBackground(File... log) {
+			Thread.currentThread().setPriority(Thread.NORM_PRIORITY + 2);
+
+			StringBuilder llog = new StringBuilder(15 * 10 * 1024);
+			try {
+				File logfile = log[0];
+				BufferedReader br;
+				br = new BufferedReader(new FileReader(logfile));
+				long skipped = skipLargeFile(br, logfile.length());
+				if (skipped > 0) {
+					llog.append("-----------------\n");
+					/* FIXME! */
+					llog.append("Log too long");
+					llog.append("\n-----------------\n\n");
+				}
+
+				char[] temp = new char[1024];
+				int read;
+				while ((read = br.read(temp)) > 0) {
+					llog.append(temp, 0, read);
+				}
+				br.close();
+			} catch (IOException e) {
+				llog.append("Cannot read log");
+				llog.append(e.getMessage());
+
+			}
+
+			return llog.toString();
+		}
+
+		@Override
+		protected void onPostExecute(String llog) {
+			Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+			mProgressDialog.dismiss();
+			mTxtLog.append(llog);
+		}
+
 	}
 }

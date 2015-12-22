@@ -80,7 +80,8 @@ public final class NavUtil {
 		};
 
 		CustomTabsClient.bindCustomTabsService(activity,
-				getPackageNameToUse(activity), mCustomTabsServiceConnection);
+ "",
+				mCustomTabsServiceConnection);
 
 		CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder(
 				mCustomTabsSession)

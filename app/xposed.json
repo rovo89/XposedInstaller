@@ -1,0 +1,87 @@
+{
+  "installer": [
+    {
+      "name": "xposed-v79-sdk21-arm",
+      "version": "79",
+      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580241&d=1450386545",
+      "sdk": 21,
+      "architecture": "arm"
+    },
+    {
+      "name": "xposed-v79-sdk21-arm64",
+      "version": "79",
+      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580242&d=1450386545",
+      "sdk": 21,
+      "architecture": "arm64"
+    },
+    {
+      "name": "xposed-v79-sdk21-x86",
+      "version": "79",
+      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580242&d=1450386545",
+      "sdk": 21,
+      "architecture": "x86"
+    },
+    {
+      "name": "xposed-v79-sdk22-arm",
+      "version": "79",
+      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580244&d=1450386592",
+      "sdk": 22,
+      "architecture": "arm"
+    },
+    {
+      "name": "xposed-v79-sdk22-arm64",
+      "version": "79",
+      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580245&d=1450386592",
+      "sdk": 22,
+      "architecture": "arm64"
+    },
+    {
+      "name": "xposed-v79-sdk22-x86",
+      "version": "79",
+      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580246&d=1450386592",
+      "sdk": 22,
+      "architecture": "x86"
+    },
+    {
+      "name": "xposed-v79-sdk23-arm",
+      "version": "79",
+      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580247&d=1450386638",
+      "sdk": 23,
+      "architecture": "arm"
+    },
+    {
+      "name": "xposed-v79-sdk23-arm64",
+      "version": "79",
+      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580248&d=1450386638",
+      "sdk": 23,
+      "architecture": "arm64"
+    },
+    {
+      "name": "xposed-v79-sdk23-x86",
+      "version": "79",
+      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580249&d=1450386638",
+      "sdk": 23,
+      "architecture": "x86"
+    }
+  ],
+  "uninstaller": [
+    {
+      "name": "xposed-uninstaller-20150831-arm",
+      "date": "20150831",
+      "architecture": "arm",
+      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3458222&d=1441050128"
+    },
+    {
+      "name": "xposed-uninstaller-20150831-arm64",
+      "date": "20150831",
+      "architecture": "arm64",
+      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3458223&d=1441050128"
+    },
+    {
+      "name": "xposed-uninstaller-20150831-x86",
+      "date": "20150831",
+      "architecture": "x86",
+      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3458224&d=1441050128"
+    }
+  ]
+}

@@ -106,7 +106,8 @@ public class DownloadView extends LinearLayout {
 			@Override
 			public void onClick(View v) {
 				mInfo = DownloadsUtil.add(getContext(), mTitle, mUrl,
-						mCallback);
+ mCallback,
+						DownloadsUtil.MIME_TYPES.APK, false);
 				refreshViewFromUiThread();
 
 				if (mInfo != null)

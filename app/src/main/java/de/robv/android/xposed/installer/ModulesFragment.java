@@ -1,5 +1,7 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+
 import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -61,8 +63,6 @@ import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
-
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class ModulesFragment extends ListFragment implements ModuleListener {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
@@ -156,11 +156,10 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				grantResults);
 		if (requestCode == WRITE_EXTERNAL_PERMISSION) {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				Toast.makeText(getActivity(), "Permission granted",
+				Toast.makeText(getActivity(), R.string.permissionGranted,
 						Toast.LENGTH_LONG).show();
 			} else {
-				Toast.makeText(getActivity(),
-						"This feature will not work without permission to write external storage.",
+				Toast.makeText(getActivity(), R.string.permissionNotGranted,
 						Toast.LENGTH_LONG).show();
 			}
 		}
