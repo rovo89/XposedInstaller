@@ -263,5 +263,7 @@
         %%SDK%% è la tua versione Android SDK \n\n
         %%ARCH%% è l\'architettura della CPU del tuo telefono
     </string>
+    <string name="newVersion">Una nuova versione di Xposed Installer è disponibile! Aggiorna!</string>
+    <string name="update">Aggiorna</string>
 
 </resources>

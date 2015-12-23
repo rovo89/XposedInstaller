@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Looper;
 import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
@@ -30,6 +31,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -41,17 +43,16 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import de.robv.android.xposed.installer.util.AssetUtil;
@@ -87,6 +88,10 @@ public class InstallerFragment extends Fragment
 	private ProgressBar mUninstallersLoading;
 	private Spinner mUninstallersChooser;
 	private ImageView mInfoInstaller, mInfoUninstaller;
+	private String newApkVersion;
+	private String newApkLink;
+	private LinearLayout mUpdateView;
+	private Button mUpdateButton;
 
 	private static int extractIntPart(String str) {
 		int result = 0, length = str.length();
@@ -132,44 +137,6 @@ public class InstallerFragment extends Fragment
 	 * (u.architecture.equals(architecture)) list.add(u); } return list; }
 	 */
 
-	public static String getFdPath(ParcelFileDescriptor fd) {
-		final String resolved;
-
-		try {
-			final File procfsFdFile = new File("/proc/self/fd/" + fd.getFd());
-
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-				// Returned name may be empty or "pipe:", "socket:", "(deleted)"
-				// etc.
-				resolved = Os.readlink(procfsFdFile.getAbsolutePath());
-			} else {
-				// Returned name is usually valid or empty, but may start from
-				// funny prefix if the file does not have a name
-				resolved = procfsFdFile.getCanonicalPath();
-			}
-
-			if (TextUtils.isEmpty(resolved) || resolved.charAt(0) != '/'
-					|| resolved.startsWith("/proc/")
-					|| resolved.startsWith("/fd/"))
-				return null;
-		} catch (IOException ioe) {
-			// This exception means, that given file DID have some name, but it
-			// is
-			// too long, some of symlinks in the path were broken or, most
-			// likely, one of it's directories is inaccessible for reading.
-			// Either way, it is almost certainly not a pipe.
-			return "";
-		} catch (Exception errnoe) {
-			// Actually ErrnoException, but base type avoids VerifyError on old
-			// versions
-			// This exception should be VERY rare and means, that the descriptor
-			// was made unavailable by some Unix magic.
-			return null;
-		}
-
-		return resolved;
-	}
-
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -201,6 +168,8 @@ public class InstallerFragment extends Fragment
 		mInstallersChooser = (Spinner) v.findViewById(R.id.chooserInstallers);
 		mUninstallersChooser = (Spinner) v
 				.findViewById(R.id.chooserUninstallers);
+		mUpdateView = (LinearLayout) v.findViewById(R.id.updateView);
+		mUpdateButton = (Button) v.findViewById(R.id.updateButton);
 
 		mInfoInstaller = (ImageView) v.findViewById(R.id.infoInstaller);
 		mInfoUninstaller = (ImageView) v.findViewById(R.id.infoUninstaller);
@@ -951,16 +920,11 @@ public class InstallerFragment extends Fragment
 					uninstallers.add(new XposedZip.Uninstaller(link, name,
 							architecture, date));
 				}
+
+				newApkVersion = json.getJSONObject("apk").getString("version");
+				newApkLink = json.getJSONObject("apk").getString("link");
 				return true;
-			} catch (UnknownHostException e) {
-				return false;
-			} catch (IOException e) {
-				return false;
-			} catch (JSONException e) {
-				return false;
-			} catch (NullPointerException e) {
-				return false;
-			} catch (RuntimeException e) {
+			} catch (Exception e) {
 				return false;
 			}
 		}
@@ -994,6 +958,38 @@ public class InstallerFragment extends Fragment
 
 			mUninstallersChooser.setAdapter(
 					new XposedZip.MyAdapter<>(getContext(), uninstallers));
+
+			if (newApkVersion == null)
+				return;
+
+			BigInteger a = new BigInteger(XposedApp.THIS_APK_VERSION);
+			BigInteger b = new BigInteger(newApkVersion);
+
+			if (a.compareTo(b) == -1) {
+				mUpdateView.setVisibility(View.VISIBLE);
+				mUpdateButton.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						DownloadsUtil.add(getContext(),
+								"XposedInstaller_by_dvdandroid", newApkLink,
+								new DownloadsUtil.DownloadFinishedCallback() {
+							@Override
+							public void onDownloadFinished(Context context,
+									DownloadsUtil.DownloadInfo info) {
+								Intent intent = new Intent(Intent.ACTION_VIEW);
+								intent.setDataAndType(
+										Uri.fromFile(new File(Environment
+												.getExternalStorageDirectory()
+												.getAbsolutePath()
+												+ "/XposedInstaller/XposedInstaller_by_dvdandroid.apk")),
+										DownloadsUtil.MIME_TYPE_APK);
+								intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+								context.startActivity(intent);
+							}
+						}, DownloadsUtil.MIME_TYPES.APK, true);
+					}
+				});
+			}
 		}
 	}
 }

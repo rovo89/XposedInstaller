@@ -51,6 +51,7 @@ public class XposedApp extends Application
 	private static final File XPOSED_PROP_FILE = new File(
 			"/system/xposed.prop");
 	public static int WRITE_EXTERNAL_PERMISSION = 69;
+	public static String THIS_APK_VERSION = "1450862400000";
 	private static XposedApp mInstance = null;
 	private static Thread mUiThread;
 	private static Handler mMainHandler;

@@ -20,7 +20,7 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-        <TextView
+            <TextView
                 android:id="@+id/install_reverted_warning_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -102,7 +102,6 @@
             android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
 
-
             <ProgressBar
                 android:id="@+id/loadingUninstallers"
                 style="?android:attr/progressBarStyleLarge"
@@ -169,6 +168,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/reboot"/>
+
+        <LinearLayout
+            android:id="@+id/updateView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/newVersion"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@android:color/holo_green_dark"/>
+
+            <Button
+                android:id="@+id/updateButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/update"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

@@ -83,5 +83,9 @@
       "architecture": "x86",
       "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3458224&d=1441050128"
     }
-  ]
+  ],
+  "apk": {
+    "version": "1450862400000",
+    "link": "https://github.com/DVDAndroid/dvdandroid.github.io/blob/master/apks/XposedInstaller_by_dvdandroid.apk?raw=true"
+  }
 }
