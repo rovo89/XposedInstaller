@@ -1,8 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.util.XposedZip.Installer;
-import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -39,6 +36,9 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -52,9 +52,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
@@ -62,6 +59,9 @@ import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.XposedZip;
+
+import static de.robv.android.xposed.installer.util.XposedZip.Installer;
+import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
 
 public class InstallerFragment extends Fragment
 		implements ActivityCompat.OnRequestPermissionsResultCallback,
@@ -864,6 +864,8 @@ public class InstallerFragment extends Fragment
 
 			mInstallersLoading.setVisibility(View.VISIBLE);
 			mUninstallersLoading.setVisibility(View.VISIBLE);
+            mInfoInstaller.setVisibility(View.GONE);
+            mInfoUninstaller.setVisibility(View.GONE);
 		}
 
 		@Override
@@ -953,11 +955,16 @@ public class InstallerFragment extends Fragment
 				return;
 			}
 
-			mInstallersChooser.setAdapter(new XposedZip.MyAdapter<>(
-					getContext(), getInstallersBySdk(Build.VERSION.SDK_INT)));
+			try {
+				mInstallersChooser
+						.setAdapter(new XposedZip.MyAdapter<>(getContext(),
+                                getInstallersBySdk(Build.VERSION.SDK_INT)));
 
-			mUninstallersChooser.setAdapter(
-					new XposedZip.MyAdapter<>(getContext(), uninstallers));
+				mUninstallersChooser.setAdapter(
+						new XposedZip.MyAdapter<>(getContext(), uninstallers));
+
+			} catch (NullPointerException ignored) {
+			}
 
 			if (newApkVersion == null)
 				return;
