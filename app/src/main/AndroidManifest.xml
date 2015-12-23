@@ -2,7 +2,7 @@
 <manifest
     package="de.robv.android.xposed.installer"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    >
 
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -79,6 +79,7 @@
         <receiver
             android:name=".util.NotificationUtil$RebootReceiver"
             android:exported="false"/>
+
     </application>
 
 </manifest>
