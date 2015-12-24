@@ -31,6 +31,7 @@ import de.robv.android.xposed.installer.util.HashUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
+import de.robv.android.xposed.installer.util.chrome.LinkTransformationMethod;
 import de.robv.android.xposed.installer.widget.DownloadView;
 
 public class DownloadDetailsVersionsFragment extends ListFragment {
@@ -275,6 +276,8 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 				if (item.changelogIsHtml) {
 					holder.txtChanges.setText(RepoParser.parseSimpleHtml(
 							getActivity(), item.changelog, holder.txtChanges));
+					holder.txtChanges.setTransformationMethod(
+							new LinkTransformationMethod(getActivity()));
 					holder.txtChanges.setMovementMethod(
 							LinkMovementMethod.getInstance());
 				} else {

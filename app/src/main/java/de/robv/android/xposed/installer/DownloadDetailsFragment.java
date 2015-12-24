@@ -14,6 +14,7 @@ import android.widget.TextView;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.util.NavUtil;
+import de.robv.android.xposed.installer.util.chrome.LinkTransformationMethod;
 
 public class DownloadDetailsFragment extends Fragment {
 	private DownloadDetailsActivity mActivity;
@@ -49,6 +50,8 @@ public class DownloadDetailsFragment extends Fragment {
 			if (module.descriptionIsHtml) {
 				description.setText(RepoParser.parseSimpleHtml(getActivity(),
 						module.description, description));
+				description.setTransformationMethod(
+						new LinkTransformationMethod(getActivity()));
 				description.setMovementMethod(LinkMovementMethod.getInstance());
 			} else {
 				description.setText(module.description);
