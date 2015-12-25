@@ -1,5 +1,8 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.util.XposedZip.Installer;
+import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -16,6 +19,7 @@ import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.system.Os;
 import android.text.TextUtils;
 import android.util.Log;
@@ -28,16 +32,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -52,6 +52,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
@@ -59,9 +62,6 @@ import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.XposedZip;
-
-import static de.robv.android.xposed.installer.util.XposedZip.Installer;
-import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
 
 public class InstallerFragment extends Fragment
 		implements ActivityCompat.OnRequestPermissionsResultCallback,
@@ -81,8 +81,7 @@ public class InstallerFragment extends Fragment
 	private boolean mHadSegmentationFault = false;
 	private MaterialDialog.Builder dlgProgress;
 	private TextView txtInstallError, txtKnownIssue;
-	private Button btnInstallMode, btnInstall, btnUninstall, btnSoftReboot,
-			btnReboot;
+	private Button btnInstall, btnUninstall;
 	private ProgressBar mInstallersLoading;
 	private Spinner mInstallersChooser;
 	private ProgressBar mUninstallersLoading;
@@ -90,7 +89,7 @@ public class InstallerFragment extends Fragment
 	private ImageView mInfoInstaller, mInfoUninstaller;
 	private String newApkVersion;
 	private String newApkLink;
-	private LinearLayout mUpdateView;
+	private CardView mUpdateView;
 	private Button mUpdateButton;
 
 	private static int extractIntPart(String str) {
@@ -151,15 +150,12 @@ public class InstallerFragment extends Fragment
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_installer, container, false);
 
-		btnInstallMode = (Button) v.findViewById(R.id.framework_install_mode);
 		txtInstallError = (TextView) v
 				.findViewById(R.id.framework_install_errors);
 		txtKnownIssue = (TextView) v.findViewById(R.id.framework_known_issue);
 
 		btnInstall = (Button) v.findViewById(R.id.btnInstall);
 		btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
-		btnSoftReboot = (Button) v.findViewById(R.id.btnSoftReboot);
-		btnReboot = (Button) v.findViewById(R.id.btnReboot);
 
 		mInstallersLoading = (ProgressBar) v
 				.findViewById(R.id.loadingInstallers);
@@ -168,20 +164,11 @@ public class InstallerFragment extends Fragment
 		mInstallersChooser = (Spinner) v.findViewById(R.id.chooserInstallers);
 		mUninstallersChooser = (Spinner) v
 				.findViewById(R.id.chooserUninstallers);
-		mUpdateView = (LinearLayout) v.findViewById(R.id.updateView);
+		mUpdateView = (CardView) v.findViewById(R.id.updateView);
 		mUpdateButton = (Button) v.findViewById(R.id.updateButton);
 
 		mInfoInstaller = (ImageView) v.findViewById(R.id.infoInstaller);
 		mInfoUninstaller = (ImageView) v.findViewById(R.id.infoUninstaller);
-
-		btnInstallMode.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(getActivity(),
-						SettingsActivity.class);
-				startActivity(intent);
-			}
-		});
 
 		String installedXposedVersion = XposedApp.getXposedProp()
 				.get("version");
@@ -207,34 +194,6 @@ public class InstallerFragment extends Fragment
 			}
 		}
 		txtInstallError.setVisibility(View.VISIBLE);
-
-		btnReboot.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				areYouSure(R.string.reboot,
-						new MaterialDialog.ButtonCallback() {
-					@Override
-					public void onPositive(MaterialDialog dialog) {
-						super.onPositive(dialog);
-						reboot(null);
-					}
-				});
-			}
-		});
-
-		btnSoftReboot.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				areYouSure(R.string.soft_reboot,
-						new MaterialDialog.ButtonCallback() {
-					@Override
-					public void onPositive(MaterialDialog dialog) {
-						super.onPositive(dialog);
-						softReboot();
-					}
-				});
-			}
-		});
 
 		if (!XposedApp.getPreferences().getBoolean("hide_install_warning",
 				false)) {
@@ -336,7 +295,6 @@ public class InstallerFragment extends Fragment
 			}
 		});
 
-		btnUninstall.setText(R.string.downloadUninstaller);
 		return v;
 	}
 
@@ -353,6 +311,31 @@ public class InstallerFragment extends Fragment
 				new MaterialDialog.Builder(getContext()).title(R.string.help)
 						.content(R.string.helpChoose)
 						.positiveText(android.R.string.ok).show();
+				break;
+			case R.id.installation_mode:
+				Intent intent = new Intent(getActivity(),
+						SettingsActivity.class);
+				startActivity(intent);
+				break;
+			case R.id.reboot:
+				areYouSure(R.string.reboot,
+						new MaterialDialog.ButtonCallback() {
+							@Override
+							public void onPositive(MaterialDialog dialog) {
+								super.onPositive(dialog);
+								reboot(null);
+							}
+						});
+				break;
+			case R.id.soft_reboot:
+				areYouSure(R.string.reboot,
+						new MaterialDialog.ButtonCallback() {
+							@Override
+							public void onPositive(MaterialDialog dialog) {
+								super.onPositive(dialog);
+								softReboot();
+							}
+						});
 				break;
 		}
 
@@ -437,7 +420,6 @@ public class InstallerFragment extends Fragment
 	@Override
 	public void onResume() {
 		super.onResume();
-		btnInstallMode.setText(getInstallModeText());
 		NotificationUtil.cancel(NotificationUtil.NOTIFICATION_MODULES_UPDATED);
 		mHadSegmentationFault = false;
 		refreshKnownIssue();
@@ -489,17 +471,11 @@ public class InstallerFragment extends Fragment
 					NavUtil.startURL(getActivity(), issueLinkFinal);
 				}
 			});
-			if (btnInstall.isEnabled())
-				btnInstall
-						.setTextColor(getResources().getColor(R.color.warning));
+
 			txtInstallError.setTextColor(ThemeUtil.getThemeColor(getActivity(),
 					android.R.attr.textColorTertiary));
 		} else {
 			txtKnownIssue.setVisibility(View.GONE);
-			// FIXME
-			// btnInstall.setTextColor(ThemeUtil.getThemeColor(getActivity(),
-			// android.R.attr.textColorPrimary));
-			// txtInstallError.setTextColor(getResources().getColor(R.color.warning));
 		}
 	}
 
@@ -864,8 +840,8 @@ public class InstallerFragment extends Fragment
 
 			mInstallersLoading.setVisibility(View.VISIBLE);
 			mUninstallersLoading.setVisibility(View.VISIBLE);
-            mInfoInstaller.setVisibility(View.GONE);
-            mInfoUninstaller.setVisibility(View.GONE);
+			mInfoInstaller.setVisibility(View.GONE);
+			mInfoUninstaller.setVisibility(View.GONE);
 		}
 
 		@Override
@@ -958,7 +934,7 @@ public class InstallerFragment extends Fragment
 			try {
 				mInstallersChooser
 						.setAdapter(new XposedZip.MyAdapter<>(getContext(),
-                                getInstallersBySdk(Build.VERSION.SDK_INT)));
+								getInstallersBySdk(Build.VERSION.SDK_INT)));
 
 				mUninstallersChooser.setAdapter(
 						new XposedZip.MyAdapter<>(getContext(), uninstallers));

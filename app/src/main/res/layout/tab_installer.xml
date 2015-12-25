@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="3dip"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
             android:layout_marginTop="?attr/actionBarSize">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:layout_marginTop="2dp"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:id="@+id/install_reverted_warning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,177 +24,216 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <TextView
-                android:id="@+id/install_reverted_warning_text"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/install_reverted_warning_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/warning"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/install_reverted_warning_text"
+                    android:gravity="end"
+                    android:text="@string/tap_to_dismiss"
+                    android:textStyle="italic"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@color/warning"/>
+                android:padding="4dp">
 
-            <TextView
+                <TextView
+                    android:id="@+id/framework_known_issue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/warning"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/framework_install_errors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/framework_known_issue"
+                    android:gravity="center"
+                    android:textColor="@color/warning"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
+            app:cardBackgroundColor="?attr/list_download_item_color"
+            app:cardElevation="2dp">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="@string/tap_to_dismiss"
-                android:textStyle="italic"/>
-        </LinearLayout>
+                android:padding="6dp">
 
-        <TextView
-            android:id="@+id/framework_known_issue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/warning"
-            android:visibility="gone"/>
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabInstall"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/framework_install_errors"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/warning"
-            android:visibility="gone"/>
+                <ProgressBar
+                    android:id="@+id/loadingInstallers"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/btnInstall"
+                    android:layout_below="@+id/textView"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:text="@string/tabInstall"
-            android:textAllCaps="true"
-            android:textStyle="bold"/>
+                <Spinner
+                    android:id="@+id/chooserInstallers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toStartOf="@+id/infoInstaller"
+                    android:spinnerMode="dropdown"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/infoInstaller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/chooserInstallers"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/chooserInstallers"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_info"/>
 
-            <ProgressBar
-                android:id="@+id/loadingInstallers"
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:indeterminate="true"/>
+                <Button
+                    android:id="@+id/btnInstall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/chooserInstallers"
+                    android:text="@string/install"/>
 
-            <Spinner
-                android:id="@+id/chooserInstallers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:spinnerMode="dropdown"/>
+                <Spinner
+                    android:id="@+id/chooserUninstallers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/btnInstall"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp"
+                    android:layout_toStartOf="@+id/infoUninstaller"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown"/>
 
-            <ImageView
-                android:id="@+id/infoInstaller"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="5dp"
-                android:src="@drawable/ic_info"/>
+                <ProgressBar
+                    android:id="@+id/loadingUninstallers"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/chooserUninstallers"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/btnInstall"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"/>
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/infoUninstaller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/chooserUninstallers"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/btnInstall"
+                    android:layout_gravity="center|right"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_info"/>
 
-        <Button
-            android:id="@+id/btnInstall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/install"/>
+                <Button
+                    android:id="@+id/btnUninstall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/infoUninstaller"
+                    android:layout_below="@+id/chooserUninstallers"
+                    android:text="@string/uninstall"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
+            </RelativeLayout>
 
-            <ProgressBar
-                android:id="@+id/loadingUninstallers"
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:indeterminate="true"/>
+        </android.support.v7.widget.CardView>
 
-            <Spinner
-                android:id="@+id/chooserUninstallers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:spinnerMode="dropdown"/>
-
-            <ImageView
-                android:id="@+id/infoUninstaller"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|right"
-                android:padding="5dp"
-                android:src="@drawable/ic_info"/>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btnUninstall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/uninstall"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:text="@string/settings_install_mode"
-            android:textAllCaps="true"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/framework_install_mode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:text="@string/install_header_reboot"
-            android:textAllCaps="true"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/btnSoftReboot"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/soft_reboot"/>
-
-        <Button
-            android:id="@+id/btnReboot"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/reboot"/>
-
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:id="@+id/updateView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
             android:orientation="vertical"
             android:paddingTop="20dp"
-            android:visibility="gone">
+            android:visibility="gone"
+            app:cardBackgroundColor="?attr/list_download_item_color"
+            app:cardElevation="2dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/newVersion"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@android:color/holo_green_dark"/>
-
-            <Button
-                android:id="@+id/updateButton"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/update"/>
+                android:padding="6dp">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/update"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView3"
+                    android:gravity="center"
+                    android:padding="6dp"
+                    android:text="@string/newVersion"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@android:color/holo_green_dark"/>
+
+                <Button
+                    android:id="@+id/updateButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/textView2"
+                    android:text="@string/update"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
     </LinearLayout>
 
 </ScrollView>
