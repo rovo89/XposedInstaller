@@ -1,8 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.util.XposedZip.Installer;
-import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -39,6 +36,9 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -52,9 +52,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
@@ -62,6 +59,9 @@ import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.XposedZip;
+
+import static de.robv.android.xposed.installer.util.XposedZip.Installer;
+import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
 
 public class InstallerFragment extends Fragment
 		implements ActivityCompat.OnRequestPermissionsResultCallback,
@@ -129,7 +129,7 @@ public class InstallerFragment extends Fragment
 	 * (Installer i : installers) { if (i.sdk == sdk) list.add(i); } for
 	 * (Installer i : list) { if (i.architecture.equals(architecture))
 	 * list2.add(i); } return list2; }
-	 * 
+	 *
 	 * public static ArrayList<Uninstaller> getUninstallersByArchitecture(
 	 * String architecture) { ArrayList<Uninstaller> list = new ArrayList<>();
 	 * for (Uninstaller u : uninstallers) { if
@@ -496,7 +496,10 @@ public class InstallerFragment extends Fragment
 
 		TextView txtMessage = (TextView) dialog
 				.findViewById(android.R.id.message);
-		txtMessage.setTextSize(14);
+		try {
+			txtMessage.setTextSize(14);
+		} catch (NullPointerException ignored) {
+		}
 
 		mHadSegmentationFault = result.toLowerCase(Locale.US)
 				.contains("segmentation fault");
