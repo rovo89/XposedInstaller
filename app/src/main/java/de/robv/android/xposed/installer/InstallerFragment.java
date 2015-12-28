@@ -1,5 +1,9 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+import static de.robv.android.xposed.installer.util.XposedZip.Installer;
+import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -36,9 +40,6 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -52,6 +53,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
@@ -59,10 +63,6 @@ import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.XposedZip;
-
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-import static de.robv.android.xposed.installer.util.XposedZip.Installer;
-import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
 
 public class InstallerFragment extends Fragment
 		implements ActivityCompat.OnRequestPermissionsResultCallback,
@@ -87,7 +87,7 @@ public class InstallerFragment extends Fragment
 	private ProgressBar mUninstallersLoading;
 	private Spinner mUninstallersChooser;
 	private ImageView mInfoInstaller, mInfoUninstaller;
-	private String newApkVersion;
+	private String newApkVersion = XposedApp.THIS_APK_VERSION;
 	private String newApkLink;
 	private CardView mUpdateView;
 	private Button mUpdateButton;
@@ -409,7 +409,7 @@ public class InstallerFragment extends Fragment
 
 			ActivityCompat.requestPermissions(getActivity(),
 					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
-                    WRITE_EXTERNAL_PERMISSION);
+					WRITE_EXTERNAL_PERMISSION);
 
 			return true;
 		} else {
@@ -956,8 +956,8 @@ public class InstallerFragment extends Fragment
 				mUpdateButton.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
-                        if (write())
-                            return;
+						if (write())
+							return;
 
 						DownloadsUtil.add(getContext(),
 								"XposedInstaller_by_dvdandroid", newApkLink,

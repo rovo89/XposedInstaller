@@ -266,7 +266,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 					return false;
 				}
 
-				Toast.makeText(getActivity(), enabledModulesPath.toString(),
+				Toast.makeText(getActivity(), installedModulesPath.toString(),
 						Toast.LENGTH_LONG).show();
 				return true;
 			case R.id.import_installed_modules:
