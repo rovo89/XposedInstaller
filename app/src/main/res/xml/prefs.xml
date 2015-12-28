@@ -19,12 +19,6 @@
         android:key="group_download"
         android:title="@string/settings_group_download">
 
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="enable_downloads"
-            android:summary="@string/settings_enable_downloads_summary"
-            android:title="@string/settings_enable_downloads"/>
-
         <de.robv.android.xposed.installer.widget.ListPreferenceSummaryFix
             android:defaultValue="stable"
             android:entries="@array/release_type_texts"
