@@ -18,10 +18,23 @@
     <string name="welcome_update_available">Je dostupná jedna alebo viac aktualizácií pre moduly.</string>
     <string name="tabSettings">Nastavenia</string>
     <string name="tabSettingsDescription">Prejdite do tejto sekcie pre nastavenie Xposed Installera a frameworku.</string>
+    <string name="tabSupport">Podpora</string>
+    <string name="tabSupportDescription">Nájdite pomoc pre problémy s Xposed. Môžete tiež zaslať dar, ako vďaku za Xposed.</string>
     <string name="tabLogs">Záznamy</string>
     <string name="tabLogsDescription">Zobraziť, uložiť, odoslať a vymazať záznamy Xposed frameworku.</string>
     <string name="tabAbout">O aplikácii</string>
     <string name="tabAboutDescription">Zistite viac o ľuďoch, ktorí vytvorili Xposed, kde môžete získať podporu pre túto aplikáciu, atď.</string>
+
+    <!-- navigation view items -->
+    <string name="nav_item_install">Framework</string>
+    <string name="nav_item_modules">Moduly</string>
+    <string name="nav_item_download">Sťahovanie</string>
+    <string name="nav_item_settings">Nastavenia</string>
+    <string name="nav_item_support">Podpora</string>
+    <string name="nav_item_logs">Záznamy</string>
+    <string name="nav_item_about">O aplikácii</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- Installer tab -->
     <string name="install">Inštalovať/Aktualizovať</string>
@@ -48,6 +61,10 @@
     <string name="uninstall_reverted">Súbor app_process bol nedávno nainštalovaný, ale teraz bola nájdená verzia \"%s\". Ak ste neočakávali obnovenie starého súboru, môžete skúsiť odinštaláciu cez Recovery (automatickú alebo ručnú).</string>
     <string name="tap_to_dismiss">Kliknite pre zatvorenie</string>
     <string name="sdcard_location">Karta SD: %s</string>
+    <string name="installation_lollipop">Xposed framework nie je nainštalovaný. Prosím, stiahnite najnovší súbor ZIP z XDA a ručne ho flashnite cez recovery.</string>
+    <string name="installed_lollipop">Xposed framework verzia %s je aktívny.</string>
+    <string name="installed_lollipop_inactive">Xposed framework verzia %s je nainštalovaný, ale nie je aktívny. Prosím, skontrolujte záznamy pre viac informácií.</string>
+    <string name="modules_updates_available">Aktualizácia modulu(ov) je dostupná</string>
 
     <!-- File operations -->
     <string name="root_failed">Nepodarilo sa získať root prístup.\n\nUistite sa, že je zariadenie správne rootnuté a príkazy konzoly nie sú blokované.</string>
@@ -148,8 +165,15 @@
     <string name="settings_theme_light">Svetlá</string>
     <string name="settings_theme_dark">Tmavá</string>
     <string name="settings_theme_black">Čierna (vhodná pre AMOLED displeje)</string>
+    <string name="settings_default_view">Predvolené zobrazenie</string>
 
     <!-- Support tab -->
+    <string name="support_modules_label">Podpora pre moduly</string>
+    <string name="support_modules_description">Podržte dlho na module v zozname modulov a zvoľte \"%1$s\".</string>
+    <string name="support_framework_label">Podpora pre framework/Installer</string>
+    <string name="support_faq_label">FAQ/známe chyby</string>
+    <string name="support_donate_label">Podporiť</string>
+    <string name="support_donate_description">Ak chcete poďakovať za Xposed, môžete poslať dar pre rovo89 tu:</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">Nemožno čítať záznam:</string>
@@ -165,8 +189,8 @@
     <string name="about_developers_label">Hlavní vývojári:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> a <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Prosím, <b>nekontaktujte</b> nás priamo za účelom podpory, na to je určený odkaz nižšie.</string>
-    <string name="about_translator_label">Prekladateľ:</string>
-    <string name="translator">pyler</string>
+    <string name="about_translator_label">Prekladatelia:</string>
+    <string name="translator">pyler, ja_som</string>
     <string name="about_version_label">Verzia aplikácie:</string>
     <string name="about_source_label">Zdrojový kód:</string>
     <string name="about_support_label">Získajte podporu na:</string>
@@ -192,5 +216,63 @@
     <string name="repo_download_failed_http">Sťahovanie %1$s zlyhalo: %2$d (%3$s)</string>
     <string name="repo_download_failed">Sťahovanie %1$s zlyhalo: %2$s</string>
     <string name="repo_load_failed">Nemožno načítať z repozitára %1$s:\n%2$s</string>
+    <string name="download_disabled">Sťahovanie je zakázané</string>
+    <string name="download_disabled_description">Sťahovanie modulov je zakázané. Prosím, povoľte sťahovanie v nastaveniach.</string>
+    <string name="download_open_settings">Otvoriť nastavenia</string>
+    <string name="choose_color">Zvoľte farbu…</string>
+
+    <string name="warning_installed_on_external_storage">Tento modul nemôže byť načítaný, pretože je nainštalovaný na karte SD, prosím, presuňte ho do interného úložiska.</string>
+    <string name="warning_forward_locked">Tento modul nemôže byť načítaný, pretože je uzamknutý, prosím, kontaktujte vývojára modulu.</string>
+    <string name="export_modules">Exportovať zoznam povolených modulov</string>
+    <string name="import_modules">Importovať zoznam povolených modulov</string>
+    <string name="view">VIEW</string>
+    <string name="export_">Export…</string>
+    <string name="import_">Import…</string>
+    <string name="export_enabled_modules">Exportovať zoznam povolených modulov</string>
+    <string name="import_enabled_modules">Importovať zoznam povolených modulov</string>
+    <string name="export_installed_modules">Exportovať zoznam inštalovaných modulov</string>
+    <string name="import_installed_modules">Importovať zoznam inštalovaných modulov</string>
+    <string name="no_installed_modules">Nie je nainštalovaný žiadny modul!</string>
+    <string name="enable_heads_up">Povoliť nahliadnutie upozornenia</string>
+    <string name="enable_heads_up_summary">Táto možnosť povolí nahliadnutie upozornenia pri novom/aktualizovanom module</string>
+    <string name="nav_bar_coloration">Zafarbiť navigačnú lištu</string>
+    <string name="no_backup_found">Záloha nenájdená</string>
+    <string name="no_enabled_modules">Nie sú povolené žiadne moduly</string>
+
+    <string name="download_view_size">Veľkosť: %s KB</string>
+    <string name="share">Zdieľať…</string>
+    <string name="back">Späť</string>
+    <string name="loadingError">Chyba pri načítaní Xposed Zip súboru</string>
+    <string name="info">Informácie</string>
+    <string name="infoInstaller">
+        Názov: %1$s
+        \nSDK: %2$d
+        \nArchitektúra: %3$s
+        \nVerzia: %4$s
+    </string>
+    <string name="infoUninstaller">
+        Názov: %1$s
+        \nArchitektúra: %2$s
+        \nDátum: %3$s
+    </string>
+    <string name="downloadZipOk">%1$s stiahnuté správne</string>
+    <string name="permissionGranted">Povolenie udelené</string>
+    <string name="permissionNotGranted">Táto funkcia nebude fungovať bez povolenia zapisovať na externé úložisko.</string>
+    <string name="downloadUninstaller">Stiahnuť odinštalátor</string>
+    <string name="selectFile">Zvoľte stiahnutý súbor</string>
+    <string name="xposedZipNotFound">Zip nebol nájdený, pravdepodobne je dostupná nová verzia.</string>
+    <string name="warningArchitecture">ZVOLILI STE SPRÁVNU ARCHITEKTÚRU XPOSED ZIP?\nNesprávny inštalátor zip môže poškodiť vaše zariadenie!</string>
+    <string name="help">Pomoc</string>
+    <string name="helpChoose">
+        Ako zvoliť správny zip súbor?\n
+
+        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
+
+        Kde:\n
+        %%SDK%% je vaša verzia Android SDK\n\n
+        %%ARCH%% je architektúra CPU vášho zariadenia
+    </string>
+    <string name="newVersion">Je dostupná nová verzia Xposed Installera! Aktualizujte ju!</string>
+    <string name="update">Aktualizovať</string>
 
 </resources>
