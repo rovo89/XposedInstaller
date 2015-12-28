@@ -60,6 +60,7 @@ import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.XposedZip;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.util.XposedZip.Installer;
 import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
 
@@ -70,7 +71,6 @@ public class InstallerFragment extends Fragment
 	private static final int INSTALL_MODE_NORMAL = 0;
 	private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
 	private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
-	private static final int REQUEST_WRITE = 69;
 	private static String JSON_LINK = "https://raw.githubusercontent.com/DVDAndroid/XposedInstaller/material/app/xposed.json";
 	private static List<String> messages = new LinkedList<>();
 	private static ArrayList<Installer> installers;
@@ -388,7 +388,7 @@ public class InstallerFragment extends Fragment
 	@Override
 	public void onRequestPermissionsResult(int requestCode,
 			@NonNull String[] permissions, @NonNull int[] grantResults) {
-		if (requestCode == REQUEST_WRITE) {
+		if (requestCode == WRITE_EXTERNAL_PERMISSION) {
 			if (grantResults.length == 1
 					&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 				Toast.makeText(getActivity(), R.string.permissionGranted,
@@ -409,7 +409,7 @@ public class InstallerFragment extends Fragment
 
 			ActivityCompat.requestPermissions(getActivity(),
 					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
-					REQUEST_WRITE);
+                    WRITE_EXTERNAL_PERMISSION);
 
 			return true;
 		} else {
@@ -956,6 +956,9 @@ public class InstallerFragment extends Fragment
 				mUpdateButton.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
+                        if (write())
+                            return;
+
 						DownloadsUtil.add(getContext(),
 								"XposedInstaller_by_dvdandroid", newApkLink,
 								new DownloadsUtil.DownloadFinishedCallback() {
