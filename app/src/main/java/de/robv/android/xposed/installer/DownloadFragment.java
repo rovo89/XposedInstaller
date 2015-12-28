@@ -66,7 +66,6 @@ public class DownloadFragment extends Fragment
 					return RepoDb.queryModuleOverview(mSortingOrder,
 							constraint);
 				} else {
-					showDisabledDownloadsDialog();
 					return null;
 				}
 			}
@@ -74,23 +73,6 @@ public class DownloadFragment extends Fragment
 		mSortingOrder = mPref.getInt("download_sorting_order",
 				RepoDb.SORT_STATUS);
 		setHasOptionsMenu(true);
-	}
-
-	private void showDisabledDownloadsDialog() {
-		new MaterialDialog.Builder(getActivity())
-				.title(R.string.download_disabled)
-				.content(R.string.download_disabled_description)
-				.positiveText(R.string.download_open_settings)
-				.callback(new MaterialDialog.ButtonCallback() {
-					@Override
-					public void onPositive(MaterialDialog dialog) {
-						super.onPositive(dialog);
-						Intent intent = new Intent(getActivity(),
-								SettingsActivity.class);
-						startActivity(intent);
-						dialog.dismiss();
-					}
-				}).show();
 	}
 
 	@Override

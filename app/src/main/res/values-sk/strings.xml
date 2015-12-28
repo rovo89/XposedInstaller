@@ -216,9 +216,6 @@
     <string name="repo_download_failed_http">Sťahovanie %1$s zlyhalo: %2$d (%3$s)</string>
     <string name="repo_download_failed">Sťahovanie %1$s zlyhalo: %2$s</string>
     <string name="repo_load_failed">Nemožno načítať z repozitára %1$s:\n%2$s</string>
-    <string name="download_disabled">Sťahovanie je zakázané</string>
-    <string name="download_disabled_description">Sťahovanie modulov je zakázané. Prosím, povoľte sťahovanie v nastaveniach.</string>
-    <string name="download_open_settings">Otvoriť nastavenia</string>
     <string name="choose_color">Zvoľte farbu…</string>
 
     <string name="warning_installed_on_external_storage">Tento modul nemôže byť načítaný, pretože je nainštalovaný na karte SD, prosím, presuňte ho do interného úložiska.</string>
