@@ -20,7 +20,9 @@
             android:icon="@drawable/ic_nav_logs"
             android:title="@string/nav_item_logs"/>
     </group>
-    <group android:id="@+id/option_items">
+    <group
+        android:id="@+id/option_items"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/drawer_item_5"
             android:icon="@drawable/ic_nav_settings"

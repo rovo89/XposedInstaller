@@ -1,7 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.darkenColor;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -25,6 +23,8 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
+
 public class WelcomeActivity extends XposedBaseActivity
 		implements NavigationView.OnNavigationItemSelectedListener,
 		ModuleListener, RepoListener {
@@ -33,7 +33,8 @@ public class WelcomeActivity extends XposedBaseActivity
 	private final Handler mDrawerHandler = new Handler();
 	private RepoLoader mRepoLoader;
 	private DrawerLayout mDrawerLayout;
-	private NavigationView mNavigationView;
+    private int mPrevSelectedId;
+    private NavigationView mNavigationView;
 	private int mSelectedId;
 
 	@Override
@@ -61,7 +62,8 @@ public class WelcomeActivity extends XposedBaseActivity
 				.getItem(prefs.getInt("default_view", 0)).getItemId();
 		mSelectedId = savedInstanceState == null ? mSelectedId
 				: savedInstanceState.getInt(SELECTED_ITEM_ID);
-		mNavigationView.getMenu().findItem(mSelectedId).setChecked(true);
+        mPrevSelectedId = mSelectedId;
+        mNavigationView.getMenu().findItem(mSelectedId).setChecked(true);
 
 		if (savedInstanceState == null) {
 			mDrawerHandler.removeCallbacksAndMessages(null);
@@ -107,30 +109,37 @@ public class WelcomeActivity extends XposedBaseActivity
 		Fragment navFragment = null;
 		switch (itemId) {
 			case R.id.drawer_item_1:
-				setTitle(R.string.app_name);
+                mPrevSelectedId = itemId;
+                setTitle(R.string.app_name);
 				navFragment = new InstallerFragment();
 				break;
 			case R.id.drawer_item_2:
+                mPrevSelectedId = itemId;
 				setTitle(R.string.nav_item_modules);
 				navFragment = new ModulesFragment();
 				break;
 			case R.id.drawer_item_3:
+                mPrevSelectedId = itemId;
 				setTitle(R.string.nav_item_download);
 				navFragment = new DownloadFragment();
 				break;
 			case R.id.drawer_item_4:
+                mPrevSelectedId = itemId;
 				setTitle(R.string.nav_item_logs);
 				navFragment = new LogsFragment();
 				break;
 			case R.id.drawer_item_5:
 				startActivity(new Intent(this, SettingsActivity.class));
-				return;
+                mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
+                return;
 			case R.id.drawer_item_6:
 				startActivity(new Intent(this, SupportActivity.class));
-				return;
+                mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
+                return;
 			case R.id.drawer_item_7:
 				startActivity(new Intent(this, AboutActivity.class));
-				return;
+                mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
+                return;
 		}
 
 		if (navFragment != null) {
