@@ -22,7 +22,8 @@
             android:layout_marginTop="4dp"
             android:background="?attr/background_card"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            app:cardBackgroundColor="?attr/list_download_item_color">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -51,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            app:cardBackgroundColor="?attr/list_download_item_color"
             android:layout_marginTop="4dp">
 
             <RelativeLayout
