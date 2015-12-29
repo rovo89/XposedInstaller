@@ -1,6 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -8,7 +7,6 @@ import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -51,7 +49,7 @@ public class XposedApp extends Application
 	private static final File XPOSED_PROP_FILE = new File(
 			"/system/xposed.prop");
 	public static int WRITE_EXTERNAL_PERMISSION = 69;
-	public static String THIS_APK_VERSION = "1451336100000";
+	public static String THIS_APK_VERSION = "1451376900000";
 	private static XposedApp mInstance = null;
 	private static Thread mUiThread;
 	private static Handler mMainHandler;
@@ -248,12 +246,6 @@ public class XposedApp extends Application
 			map.put(key, parts[1].trim());
 		}
 		return Collections.unmodifiableMap(map);
-	}
-
-	public boolean areDownloadsEnabled() {
-		return mPref.getBoolean("enable_downloads", true)
-				&& checkCallingOrSelfPermission(
-						Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED;
 	}
 
 	public void updateProgressIndicator(

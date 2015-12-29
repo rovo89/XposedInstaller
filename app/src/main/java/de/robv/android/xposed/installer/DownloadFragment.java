@@ -62,12 +62,8 @@ public class DownloadFragment extends Fragment
 		mAdapter.setFilterQueryProvider(new FilterQueryProvider() {
 			@Override
 			public Cursor runQuery(CharSequence constraint) {
-				if (XposedApp.getInstance().areDownloadsEnabled()) {
 					return RepoDb.queryModuleOverview(mSortingOrder,
 							constraint);
-				} else {
-					return null;
-				}
 			}
 		});
 		mSortingOrder = mPref.getInt("download_sorting_order",
