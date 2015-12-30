@@ -271,5 +271,7 @@
     </string>
     <string name="newVersion">Je dostupná nová verzia Xposed Installera! Aktualizujte ju!</string>
     <string name="update">Aktualizovať</string>
+    <string name="choose_icon">Zvoľte ikonu</string>
+    <string name="custom_icon">Ikona</string>
 
 </resources>
