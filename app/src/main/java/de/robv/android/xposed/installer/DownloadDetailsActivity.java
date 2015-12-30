@@ -2,7 +2,9 @@ package de.robv.android.xposed.installer;
 
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -203,14 +205,19 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 				RepoLoader.getInstance().triggerReload(true);
 				return true;
 			case R.id.menu_share:
-
 				String text = mModule.name + " - ";
-				String s = getPackageManager()
-						.getInstallerPackageName(mPackageName);
 
-				if (s.equals(ModulesFragment.PLAY_STORE_PACKAGE)) {
-					text += String.format(ModulesFragment.PLAY_STORE_LINK,
-							mPackageName);
+				if (isPackageInstalled(mPackageName, this)) {
+					String s = getPackageManager()
+							.getInstallerPackageName(mPackageName);
+
+					if (s.equals(ModulesFragment.PLAY_STORE_PACKAGE)) {
+						text += String.format(ModulesFragment.PLAY_STORE_LINK,
+								mPackageName);
+					} else {
+						text += String.format(ModulesFragment.XPOSED_REPO_LINK,
+								mPackageName);
+					}
 				} else {
 					text += String.format(ModulesFragment.XPOSED_REPO_LINK,
 							mPackageName);
@@ -224,6 +231,16 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private boolean isPackageInstalled(String packagename, Context context) {
+		PackageManager pm = context.getPackageManager();
+		try {
+			pm.getPackageInfo(packagename, PackageManager.GET_ACTIVITIES);
+			return true;
+		} catch (PackageManager.NameNotFoundException e) {
+			return false;
+		}
 	}
 
 	class SwipeFragmentPagerAdapter extends FragmentPagerAdapter {

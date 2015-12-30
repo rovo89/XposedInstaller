@@ -5,7 +5,7 @@
     <item
         android:id="@+id/menu_share"
         android:icon="@drawable/ic_action_share"
-        android:title="@string/menuReload"
+        android:title="@string/share"
         app:showAsAction="ifRoom|withText"/>
 
     <item
