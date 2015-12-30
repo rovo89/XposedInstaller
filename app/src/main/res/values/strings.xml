@@ -271,5 +271,7 @@
     </string>
     <string name="newVersion">New version of Xposed Installer is available! Update it!</string>
     <string name="update">Update</string>
+    <string name="choose_icon">Choose an icon</string>
+    <string name="custom_icon">Custom icon</string>
 
 </resources>

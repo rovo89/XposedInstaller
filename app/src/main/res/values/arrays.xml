@@ -1,4 +1,5 @@
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <string-array name="download_sort_order" translatable="false">
         <item>@string/download_sorting_status</item>
@@ -68,6 +69,20 @@
         <item>stable</item>
         <item>beta</item>
         <item>experimental</item>
+    </string-array>
+
+    <string-array name="icons">
+        <item>dvdandroid</item>
+        <item>hjmodi</item>
+        <item>rovo89</item>
+        <item>rovo89 (old)</item>
+    </string-array>
+
+    <string-array name="iconsValues" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
     </string-array>
 
 </resources>

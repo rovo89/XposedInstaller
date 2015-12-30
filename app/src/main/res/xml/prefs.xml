@@ -33,6 +33,14 @@
         android:key="group_app"
         android:title="@string/settings_group_app">
 
+        <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/icons"
+            android:entryValues="@array/iconsValues"
+            android:key="custom_icon"
+            android:summary="@string/choose_icon"
+            android:title="@string/custom_icon"/>
+
         <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/theme_texts"

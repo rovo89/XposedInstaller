@@ -1,5 +1,7 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -31,8 +33,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
-
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class LogsFragment extends Fragment {
 
@@ -105,6 +105,7 @@ public class LogsFragment extends Fragment {
 		try {
 			new FileOutputStream(mFileErrorLog).close();
 			mFileErrorLogOld.delete();
+			mTxtLog.setText(R.string.log_is_empty);
 			Toast.makeText(getActivity(), R.string.logs_cleared,
 					Toast.LENGTH_SHORT).show();
 			reloadErrorLog();
@@ -136,8 +137,7 @@ public class LogsFragment extends Fragment {
 				Toast.makeText(getActivity(), R.string.permissionGranted,
 						Toast.LENGTH_LONG).show();
 			} else {
-				Toast.makeText(getActivity(),
- R.string.permissionNotGranted,
+				Toast.makeText(getActivity(), R.string.permissionNotGranted,
 						Toast.LENGTH_LONG).show();
 			}
 		}
@@ -251,7 +251,6 @@ public class LogsFragment extends Fragment {
 			} catch (IOException e) {
 				llog.append("Cannot read log");
 				llog.append(e.getMessage());
-
 			}
 
 			return llog.toString();
@@ -262,6 +261,9 @@ public class LogsFragment extends Fragment {
 			Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
 			mProgressDialog.dismiss();
 			mTxtLog.append(llog);
+
+			if (llog.length() == 0)
+				mTxtLog.setText(R.string.log_is_empty);
 		}
 
 	}

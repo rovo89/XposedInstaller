@@ -2,10 +2,15 @@ package de.robv.android.xposed.installer;
 
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
+import android.app.ActivityManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.annotation.ColorInt;
@@ -26,11 +31,15 @@ import de.robv.android.xposed.installer.util.UIUtil;
 public class SettingsActivity extends XposedBaseActivity
 		implements ColorChooserDialog.ColorCallback {
 
+	private static Context mContext;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ThemeUtil.setTheme(this);
 		setContentView(R.layout.activity_container);
+
+		mContext = getApplicationContext();
 
 		Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 		setSupportActionBar(mToolbar);
@@ -70,6 +79,51 @@ public class SettingsActivity extends XposedBaseActivity
 				XposedApp.BASE_DIR + "conf/disable_resources");
 		private Preference nav_bar;
 		private Preference colors;
+		private PackageManager pm;
+		private String packName;
+
+		private Preference.OnPreferenceChangeListener iconChange = new Preference.OnPreferenceChangeListener() {
+			@Override
+			public boolean onPreferenceChange(Preference preference,
+					Object newValue) {
+
+				String act = ".WelcomeActivity-";
+				String[] iconsValues = new String[] { "dvdandroid", "hjmodi",
+						"rovo", "rovo-old" };
+
+				for (String s : iconsValues) {
+					pm.setComponentEnabledSetting(
+							new ComponentName(mContext, packName + act + s),
+							PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+							PackageManager.DONT_KILL_APP);
+				}
+
+				act += iconsValues[Integer.parseInt((String) newValue)];
+
+				int[] icons = new int[] { R.mipmap.ic_launcher,
+						R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo,
+						R.mipmap.ic_launcher_rovo_old };
+
+				int drawable = icons[Integer.parseInt((String) newValue)];
+
+				if (Build.VERSION.SDK_INT >= 21) {
+
+					ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(
+							getString(R.string.app_name),
+							XposedApp.drawableToBitmap(
+									mContext.getDrawable(drawable)),
+							XposedApp.getColor(mContext));
+					getActivity().setTaskDescription(tDesc);
+				}
+
+				pm.setComponentEnabledSetting(
+						new ComponentName(mContext, packName + act),
+						PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+						PackageManager.DONT_KILL_APP);
+
+				return true;
+			}
+		};
 
 		public SettingsFragment() {
 		}
@@ -126,6 +180,15 @@ public class SettingsActivity extends XposedBaseActivity
 					});
 
 			colors.setOnPreferenceClickListener(this);
+
+			ListPreference customIcon = (ListPreference) findPreference(
+					"custom_icon");
+
+			pm = mContext.getPackageManager();
+			packName = mContext.getPackageName();
+
+			customIcon.setOnPreferenceChangeListener(iconChange);
+
 		}
 
 		@Override

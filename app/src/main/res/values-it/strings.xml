@@ -262,5 +262,7 @@
     </string>
     <string name="newVersion">Una nuova versione di Xposed Installer è disponibile! Aggiorna!</string>
     <string name="update">Aggiorna</string>
+    <string name="choose_icon">Scegli un\' icona</string>
+    <string name="custom_icon">Icona personalizzata</string>
 
 </resources>

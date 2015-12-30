@@ -49,7 +49,7 @@ public class XposedApp extends Application
 	private static final File XPOSED_PROP_FILE = new File(
 			"/system/xposed.prop");
 	public static int WRITE_EXTERNAL_PERMISSION = 69;
-	public static String THIS_APK_VERSION = "1451376900000";
+	public static String THIS_APK_VERSION = "1451486100000";
 	private static XposedApp mInstance = null;
 	private static Thread mUiThread;
 	private static Handler mMainHandler;
@@ -97,6 +97,15 @@ public class XposedApp extends Application
 	public static void setColors(ActionBar actionBar, Object value,
 			Activity activity) {
 		int color = (int) value;
+		SharedPreferences prefs = activity.getSharedPreferences(
+				activity.getPackageName() + "_preferences", MODE_PRIVATE);
+
+		int[] iconsValues = new int[] { R.mipmap.ic_launcher,
+				R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo,
+				R.mipmap.ic_launcher_rovo_old };
+
+		int drawable = iconsValues[Integer
+				.parseInt(prefs.getString("custom_icon", "0"))];
 
 		if (actionBar != null)
 			actionBar.setBackgroundDrawable(new ColorDrawable(color));
@@ -104,9 +113,8 @@ public class XposedApp extends Application
 		if (Build.VERSION.SDK_INT >= 21) {
 
 			ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(
-					activity.getString(R.string.app_name), drawableToBitmap(
-							activity.getDrawable(R.mipmap.ic_launcher)),
-					color);
+					activity.getString(R.string.app_name),
+					drawableToBitmap(activity.getDrawable(drawable)), color);
 			activity.setTaskDescription(tDesc);
 
 			if (getPreferences().getBoolean("nav_bar", false)) {
