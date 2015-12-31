@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         android:key="group_installation"
@@ -33,13 +34,14 @@
         android:key="group_app"
         android:title="@string/settings_group_app">
 
-        <ListPreference
+        <de.robv.android.xposed.installer.widget.IconListPreference
             android:defaultValue="0"
             android:entries="@array/icons"
             android:entryValues="@array/iconsValues"
             android:key="custom_icon"
             android:summary="@string/choose_icon"
-            android:title="@string/custom_icon"/>
+            android:title="@string/custom_icon"
+            app:icons="@array/iconsDrawables"/>
 
         <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"

@@ -9,4 +9,8 @@
     <attr name="sticky_header_background" format="reference|color"/>
     <attr name="list_download_item_color" format="reference|color"/>
 
+    <declare-styleable name="IconListPreference">
+        <attr name="icons" format="reference"/>
+    </declare-styleable>
+
 </resources>

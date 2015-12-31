@@ -11,7 +11,7 @@
     <item
         android:id="@+id/installation_mode"
         android:icon="@drawable/ic_settings_white_24dp"
-        android:title="@string/nav_item_settings"
+        android:title="@string/settings_install_mode"
         app:showAsAction="ifRoom|withText"/>
 
     <group>
