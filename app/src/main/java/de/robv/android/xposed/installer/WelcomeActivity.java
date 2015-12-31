@@ -50,9 +50,6 @@ public class WelcomeActivity extends XposedBaseActivity
 		mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
 		mNavigationView.setNavigationItemSelectedListener(this);
 
-		mDrawerLayout.setStatusBarBackgroundColor(
-				darkenColor(XposedApp.getColor(this), 0.85f));
-
 		ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,
 				mDrawerLayout, mToolbar, R.string.navigation_drawer_open,
 				R.string.navigation_drawer_close);
@@ -84,6 +81,15 @@ public class WelcomeActivity extends XposedBaseActivity
 		mRepoLoader.addListener(this, false);
 
 		notifyDataSetChanged();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		mDrawerLayout.setStatusBarBackgroundColor(
+				darkenColor(XposedApp.getColor(this), 0.85f));
+
 	}
 
 	public void switchFragment(int itemId) {
