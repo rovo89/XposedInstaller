@@ -140,6 +140,7 @@ public final class NotificationUtil {
 
 	public static class RebootReceiver extends BroadcastReceiver {
 		public static String EXTRA_SOFT_REBOOT = "soft";
+		public static String EXTRA_RECOVERY_REBOOT = "recovery";
 		public static String EXTRA_ACTIVATE_MODULE = "activate_module";
 
 		@Override
@@ -174,11 +175,23 @@ public final class NotificationUtil {
 			List<String> messages = new LinkedList<>();
 			boolean isSoftReboot = intent.getBooleanExtra(EXTRA_SOFT_REBOOT,
 					false);
-			int returnCode = isSoftReboot
-					? rootUtil.execute(
-							"setprop ctl.restart surfaceflinger; setprop ctl.restart zygote",
-							messages)
-					: rootUtil.executeWithBusybox("reboot", messages);
+			boolean isRecoveryReboot = intent
+					.getBooleanExtra(EXTRA_RECOVERY_REBOOT, false);
+
+			int returnCode;
+			if (isSoftReboot) {
+				returnCode = rootUtil.execute(
+						"setprop ctl.restart surfaceflinger; setprop ctl.restart zygote",
+						messages);
+			} else {
+				if (isRecoveryReboot) {
+					returnCode = rootUtil.executeWithBusybox("reboot recovery",
+							messages);
+				} else {
+					returnCode = rootUtil.executeWithBusybox("reboot",
+							messages);
+				}
+			}
 
 			if (returnCode != 0) {
 				Log.e(XposedApp.TAG, "Could not reboot:");
