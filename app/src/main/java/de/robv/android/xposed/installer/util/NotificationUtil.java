@@ -114,7 +114,7 @@ public final class NotificationUtil {
 						.setVibrate(new long[] { 0 }).setAutoCancel(true)
 						.setSmallIcon(R.drawable.ic_notification);
 
-		if (prefs.getBoolean("heads_up", false))
+		if (prefs.getBoolean("heads_up", true) && Build.VERSION.SDK_INT >= 21)
 			builder.setPriority(2);
 
 		if (Build.VERSION.SDK_INT >= 16) {

@@ -52,6 +52,7 @@
             android:title="@string/settings_theme"/>
 
         <CheckBoxPreference
+            android:defaultValue="true"
             android:key="heads_up"
             android:summary="@string/enable_heads_up_summary"
             android:title="@string/enable_heads_up"/>
