@@ -744,7 +744,7 @@ public class InstallerFragment extends Fragment
 
 		Intent i = new Intent(getContext(),
 				NotificationUtil.RebootReceiver.class);
-		if (mode.equals("reboot")) {
+		if (mode != null && mode.equals("recovery")) {
 			i.putExtra(EXTRA_RECOVERY_REBOOT, true);
 		}
 
