@@ -23,7 +23,7 @@ public class AssetUtil {
 	private static PackageInfo mStaticBusyboxInfo = null;
 
 	public static String getBinariesFolder() {
-		if (Build.CPU_ABI.startsWith("armeabi")) {
+		if (Build.CPU_ABI.startsWith("arm")) {
 			return "arm/";
 		} else if (Build.CPU_ABI.startsWith("x86")) {
 			return "x86/";
