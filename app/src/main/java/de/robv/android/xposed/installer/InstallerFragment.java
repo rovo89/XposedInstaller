@@ -1,8 +1,6 @@
 package de.robv.android.xposed.installer;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-import static de.robv.android.xposed.installer.util.NotificationUtil.RebootReceiver.EXTRA_RECOVERY_REBOOT;
-import static de.robv.android.xposed.installer.util.NotificationUtil.RebootReceiver.EXTRA_SOFT_REBOOT;
 import static de.robv.android.xposed.installer.util.XposedZip.Installer;
 import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
 
@@ -723,45 +721,37 @@ public class InstallerFragment extends Fragment
 		if (!startShell())
 			return;
 
-		Intent i = new Intent(getContext(),
-				NotificationUtil.RebootReceiver.class);
-		i.putExtra(EXTRA_SOFT_REBOOT, true);
-
-		getContext().sendBroadcast(i);
-		/*
-		 * List<String> messages = new LinkedList<String>(); if
-		 * (mRootUtil.execute(
-		 * "setprop ctl.restart surfaceflinger; setprop ctl.restart zygote",
-		 * messages) != 0) { messages.add("");
-		 * messages.add(getString(R.string.reboot_failed));
-		 * showAlert(TextUtils.join("\n", messages).trim()); }
-		 */
+		List<String> messages = new LinkedList<String>();
+		if (mRootUtil.execute(
+				"setprop ctl.restart surfaceflinger; setprop ctl.restart zygote",
+				messages) != 0) {
+			messages.add("");
+			messages.add(getString(R.string.reboot_failed));
+			showAlert(TextUtils.join("\n", messages).trim());
+		}
 	}
 
 	private void reboot(String mode) {
 		if (!startShell())
 			return;
 
-		Intent i = new Intent(getContext(),
-				NotificationUtil.RebootReceiver.class);
-		if (mode != null && mode.equals("recovery")) {
-			i.putExtra(EXTRA_RECOVERY_REBOOT, true);
+		List<String> messages = new LinkedList<String>();
+
+		String command = "reboot";
+		if (mode != null) {
+			command += " " + mode;
+			if (mode.equals("recovery"))
+				// create a flag used by some kernels to boot into recovery
+				mRootUtil.executeWithBusybox("touch /cache/recovery/boot",
+						messages);
 		}
 
-		getContext().sendBroadcast(i);
-		/*
-		 * List<String> messages = new LinkedList<String>();
-		 * 
-		 * String command = "reboot"; if (mode != null) { command += " " + mode;
-		 * if (mode.equals("recovery")) // create a flag used by some kernels to
-		 * boot into recovery mRootUtil.executeWithBusybox(
-		 * "touch /cache/recovery/boot", messages); }
-		 * 
-		 * if (mRootUtil.executeWithBusybox(command, messages) != 0) {
-		 * messages.add(""); messages.add(getString(R.string.reboot_failed));
-		 * showAlert(TextUtils.join("\n", messages).trim()); }
-		 * AssetUtil.removeBusybox();
-		 */
+		if (mRootUtil.executeWithBusybox(command, messages) != 0) {
+			messages.add("");
+			messages.add(getString(R.string.reboot_failed));
+			showAlert(TextUtils.join("\n", messages).trim());
+		}
+		AssetUtil.removeBusybox();
 	}
 
 	@Override
