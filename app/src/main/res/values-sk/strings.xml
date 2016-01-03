@@ -277,5 +277,14 @@
     <string name="installed_no_lollipop">Xposed framework je nainštalovaný.</string>
     <string name="not_installed_no_lollipop">Xposed framework nie je nainštalovaný.</string>
     <string name="notify_module_update">Povoliť upozornenie na aktualizáciu modulu</string>
+  
+    <string name="md_back_label">Späť</string>
+    <string name="md_done_label">Hotovo</string>
+    <string name="md_cancel_label">Zrušiť</string>
+    <string name="md_choose_label">Zvoliť</string>
+    <string name="md_error_label">Chyba</string>
+    <string name="md_storage_perm_error">Vaša aplikácia nemá povolenie pre READ_EXTERNAL_STORAGE.</string>
+    <string name="md_custom_label">Vlastné</string>
+    <string name="md_presets_label">Predvoľby</string>
 
 </resources>
