@@ -55,12 +55,11 @@ public class IconListPreference extends ListPreference {
 			a.recycle();
 		}
 
-		for (int i = 0; i < drawables.length; i++) {
+		for (CharSequence drawable : drawables) {
 			int resId = context.getResources().getIdentifier(
-					drawables[i].toString(), "mipmap",
-					context.getPackageName());
+					drawable.toString(), "mipmap", context.getPackageName());
 
-			Drawable d = context.getDrawable(resId);
+			Drawable d = context.getResources().getDrawable(resId);
 
 			mEntryDrawables.add(d);
 		}

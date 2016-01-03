@@ -181,27 +181,45 @@ public class InstallerFragment extends Fragment
 
 		String installedXposedVersion = XposedApp.getXposedProp()
 				.get("version");
-		if (installedXposedVersion == null) {
-			txtInstallError.setText(R.string.installation_lollipop);
-			txtInstallError
-					.setTextColor(getResources().getColor(R.color.warning));
+
+		if (Build.VERSION.SDK_INT >= 21) {
+			if (installedXposedVersion == null) {
+				txtInstallError.setText(R.string.installation_lollipop);
+				txtInstallError
+						.setTextColor(getResources().getColor(R.color.warning));
+			} else {
+				int installedXposedVersionInt = extractIntPart(
+						installedXposedVersion);
+				if (installedXposedVersionInt == XposedApp
+						.getActiveXposedVersion()) {
+					txtInstallError
+							.setText(getString(R.string.installed_lollipop,
+									installedXposedVersion));
+					txtInstallError.setTextColor(
+							getResources().getColor(R.color.darker_green));
+				} else {
+					txtInstallError.setText(
+							getString(R.string.installed_lollipop_inactive,
+									installedXposedVersion));
+					txtInstallError.setTextColor(
+							getResources().getColor(R.color.warning));
+				}
+			}
 		} else {
-			int installedXposedVersionInt = extractIntPart(
-					installedXposedVersion);
-			if (installedXposedVersionInt == XposedApp
-					.getActiveXposedVersion()) {
-				txtInstallError.setText(getString(R.string.installed_lollipop,
-						installedXposedVersion));
+			boolean backupXposed = new File("/system/bin/app_process.orig")
+					.exists();
+			if (backupXposed) {
+				txtInstallError.setText(R.string.installed_no_lollipop);
 				txtInstallError.setTextColor(
 						getResources().getColor(R.color.darker_green));
 			} else {
 				txtInstallError
-						.setText(getString(R.string.installed_lollipop_inactive,
-								installedXposedVersion));
+						.setText(getString(R.string.not_installed_no_lollipop));
 				txtInstallError
 						.setTextColor(getResources().getColor(R.color.warning));
 			}
 		}
+
 		txtInstallError.setVisibility(View.VISIBLE);
 
 		if (!XposedApp.getPreferences().getBoolean("hide_install_warning",

@@ -143,6 +143,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/chooserInstallers"
+                    android:enabled="false"
                     android:text="@string/install"/>
 
                 <Spinner
@@ -191,6 +192,7 @@
                     android:layout_alignEnd="@+id/infoUninstaller"
                     android:layout_alignRight="@+id/infoUninstaller"
                     android:layout_below="@+id/chooserUninstallers"
+                    android:enabled="false"
                     android:text="@string/uninstall"/>
 
                 <TextView

@@ -274,5 +274,7 @@
     <string name="choose_icon">Choose an icon</string>
     <string name="custom_icon">Custom icon</string>
     <string name="installationForbidden">Installation is not possible on this device. To install Xposed through this app, the device must run Android Lollipop or higher.</string>
+    <string name="installed_no_lollipop">Xposed framework is installed.</string>
+    <string name="not_installed_no_lollipop">Xposed framework is not installed.</string>
 
 </resources>
