@@ -273,5 +273,6 @@
     <string name="update">Aktualizovať</string>
     <string name="choose_icon">Zvoľte ikonu</string>
     <string name="custom_icon">Ikona</string>
+    <string name="installationForbidden">Inštalácia na tomto zariadení nie je možná. Pre nainštalovanie Xposed cez túto aplikáciu, na zariadení musí bežať Android Lollipop alebo vyšší.</string>
 
 </resources>
