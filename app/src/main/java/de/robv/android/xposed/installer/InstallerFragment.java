@@ -895,7 +895,7 @@ public class InstallerFragment extends Fragment
 							architecture, sdk, version));
 				}
 
-				if (Build.VERSION.SDK_INT > 21) {
+				if (Build.VERSION.SDK_INT >= 21) {
 					for (int i = 0; i < uninstallerArray.length(); i++) {
 						JSONObject jsonObject = uninstallerArray
 								.getJSONObject(i);
