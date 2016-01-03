@@ -5,6 +5,7 @@ import static de.robv.android.xposed.installer.util.XposedZip.Installer;
 import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -91,6 +92,7 @@ public class InstallerFragment extends Fragment
 	private String newApkLink;
 	private CardView mUpdateView;
 	private Button mUpdateButton;
+	private TextView mInstallForbidden;
 
 	private static int extractIntPart(String str) {
 		int result = 0, length = str.length();
@@ -118,6 +120,10 @@ public class InstallerFragment extends Fragment
 		for (Installer i : installers) {
 			if (i.sdk == sdk)
 				list.add(i);
+		}
+
+		if (list.size() == 0) {
+			list.add(new Installer());
 		}
 		return list;
 	}
@@ -169,6 +175,9 @@ public class InstallerFragment extends Fragment
 
 		mInfoInstaller = (ImageView) v.findViewById(R.id.infoInstaller);
 		mInfoUninstaller = (ImageView) v.findViewById(R.id.infoUninstaller);
+
+		mInstallForbidden = (TextView) v
+				.findViewById(R.id.installationForbidden);
 
 		String installedXposedVersion = XposedApp.getXposedProp()
 				.get("version");
@@ -342,6 +351,7 @@ public class InstallerFragment extends Fragment
 		return super.onOptionsItemSelected(item);
 	}
 
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public void performFileSearch() {
 		Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -350,6 +360,7 @@ public class InstallerFragment extends Fragment
 	}
 
 	@Override
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public void onActivityResult(int requestCode, int resultCode,
 			Intent resultData) {
 		if (requestCode == 123 && resultCode == Activity.RESULT_OK) {
@@ -855,12 +866,6 @@ public class InstallerFragment extends Fragment
 				c.setDoOutput(true);
 				c.connect();
 
-				if (c.getResponseCode() == 404) {
-					Toast.makeText(getContext(), R.string.xposedZipNotFound,
-							Toast.LENGTH_LONG).show();
-					return false;
-				}
-
 				BufferedReader br = new BufferedReader(
 						new InputStreamReader(c.getInputStream()));
 				StringBuilder sb = new StringBuilder();
@@ -890,16 +895,22 @@ public class InstallerFragment extends Fragment
 							architecture, sdk, version));
 				}
 
-				for (int i = 0; i < uninstallerArray.length(); i++) {
-					JSONObject jsonObject = uninstallerArray.getJSONObject(i);
+				if (Build.VERSION.SDK_INT > 21) {
+					for (int i = 0; i < uninstallerArray.length(); i++) {
+						JSONObject jsonObject = uninstallerArray
+								.getJSONObject(i);
 
-					String link = jsonObject.getString("link");
-					String name = jsonObject.getString("name");
-					String architecture = jsonObject.getString("architecture");
-					String date = jsonObject.getString("date");
+						String link = jsonObject.getString("link");
+						String name = jsonObject.getString("name");
+						String architecture = jsonObject
+								.getString("architecture");
+						String date = jsonObject.getString("date");
 
-					uninstallers.add(new XposedZip.Uninstaller(link, name,
-							architecture, date));
+						uninstallers.add(new Uninstaller(link, name,
+								architecture, date));
+					}
+				} else {
+					uninstallers.add(new Uninstaller());
 				}
 
 				newApkVersion = json.getJSONObject("apk").getString("version");
@@ -927,6 +938,17 @@ public class InstallerFragment extends Fragment
 
 			mInfoInstaller.setVisibility(i);
 			mInfoUninstaller.setVisibility(i);
+
+			if (Build.VERSION.SDK_INT < 21) {
+				btnInstall.setEnabled(false);
+				btnUninstall.setEnabled(false);
+				mInfoInstaller.setEnabled(false);
+				mInfoUninstaller.setEnabled(false);
+				mInstallersChooser.setEnabled(false);
+				mUninstallersChooser.setEnabled(false);
+
+				mInstallForbidden.setVisibility(View.VISIBLE);
+			}
 
 			if (!result) {
 				Toast.makeText(getContext(), R.string.loadingError,

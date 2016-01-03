@@ -11,13 +11,16 @@ import android.widget.TextView;
 import java.util.List;
 
 public class XposedZip {
-	public String link;
-	public String name;
-	public String architecture;
+	public String link = "";
+	public String name = "";
+	public String architecture = "";
 
 	public static class Installer extends XposedZip {
-		public String version;
-		public int sdk;
+		public String version = "";
+		public int sdk = -1;
+
+		public Installer() {
+		}
 
 		public Installer(String link, String name, String architecture, int sdk,
 				String version) {
@@ -30,7 +33,10 @@ public class XposedZip {
 	}
 
 	public static class Uninstaller extends XposedZip {
-		public String date;
+		public String date = "";
+
+		public Uninstaller() {
+		}
 
 		public Uninstaller(String link, String name, String architecture,
 				String date) {

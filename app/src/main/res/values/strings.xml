@@ -273,5 +273,6 @@
     <string name="update">Update</string>
     <string name="choose_icon">Choose an icon</string>
     <string name="custom_icon">Custom icon</string>
+    <string name="installationForbidden">Installation is not possible on this device. To install Xposed through this app, the device must run Android Lollipop or higher.</string>
 
 </resources>

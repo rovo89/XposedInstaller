@@ -52,8 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            app:cardBackgroundColor="?attr/list_download_item_color"
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="4dp"
+            app:cardBackgroundColor="?attr/list_download_item_color">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -116,9 +116,11 @@
                     android:id="@+id/chooserInstallers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/textView"
                     android:layout_gravity="center_vertical"
+                    android:layout_toLeftOf="@+id/infoInstaller"
                     android:layout_toStartOf="@+id/infoInstaller"
                     android:spinnerMode="dropdown"/>
 
@@ -128,6 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/chooserInstallers"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:layout_alignTop="@+id/chooserInstallers"
                     android:layout_gravity="center"
                     android:padding="5dp"
@@ -137,6 +140,7 @@
                     android:id="@+id/btnInstall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/chooserInstallers"
                     android:text="@string/install"/>
@@ -145,10 +149,12 @@
                     android:id="@+id/chooserUninstallers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/btnInstall"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp"
+                    android:layout_toLeftOf="@+id/infoUninstaller"
                     android:layout_toStartOf="@+id/infoUninstaller"
                     android:layout_weight="1"
                     android:spinnerMode="dropdown"/>
@@ -159,6 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/chooserUninstallers"
+                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/btnInstall"
                     android:layout_gravity="center"
@@ -170,6 +177,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/chooserUninstallers"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:layout_below="@+id/btnInstall"
                     android:layout_gravity="center|right"
                     android:layout_marginTop="5dp"
@@ -181,8 +189,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignEnd="@+id/infoUninstaller"
+                    android:layout_alignRight="@+id/infoUninstaller"
                     android:layout_below="@+id/chooserUninstallers"
                     android:text="@string/uninstall"/>
+
+                <TextView
+                    android:id="@+id/installationForbidden"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/btnUninstall"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:text="@string/installationForbidden"
+                    android:textColor="@color/warning"
+                    android:textStyle="bold"
+                    android:visibility="gone"/>
 
             </RelativeLayout>
 
@@ -228,6 +249,7 @@
                     android:id="@+id/updateButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/textView2"
                     android:text="@string/update"/>

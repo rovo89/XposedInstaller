@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <de.robv.android.xposed.installer.widget.ListPreferenceSummaryFix
-        android:defaultValue=""
+        android:defaultValue="global"
         android:entries="@array/module_release_type_texts"
         android:entryValues="@array/module_release_type_values"
         android:key="release_type"
