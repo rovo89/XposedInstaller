@@ -268,5 +268,12 @@
     <string name="installed_no_lollipop">Xposed framework è installato.</string>
     <string name="not_installed_no_lollipop">Xposed framework non è installato.</string>
     <string name="notify_module_update">Abilita notifica aggiornamenti dei moduli</string>
+    <string name="md_back_label">Indietro</string>
+    <string name="md_done_label">Fatto</string>
+    <string name="md_cancel_label">Annulla</string>
+    <string name="md_choose_label">Scegli</string>
+    <string name="md_error_label">Errore</string>
+    <string name="md_custom_label">Custom</string>
+    <string name="md_presets_label">Predefiniti</string>
 
 </resources>

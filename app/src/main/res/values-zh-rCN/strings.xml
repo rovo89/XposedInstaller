@@ -248,4 +248,11 @@ CPU架构: %2$s
     <string name="xposedZipNotFound">Zip没有找到, 可能有新版本已经发布.</string>
     <string name="navigation_drawer_close">关闭导航抽屉</string>
     <string name="navigation_drawer_open">打开导航抽屉</string>
+    <string name="md_back_label">返回</string>
+    <string name="md_cancel_label">取消</string>
+    <string name="md_choose_label">选择</string>
+    <string name="md_custom_label">自定义</string>
+    <string name="md_done_label">完成</string>
+    <string name="md_error_label">错误</string>
+    <string name="md_presets_label">预设</string>
 </resources>

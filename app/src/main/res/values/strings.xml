@@ -278,4 +278,13 @@
     <string name="not_installed_no_lollipop">Xposed framework is not installed.</string>
     <string name="notify_module_update">Enable module update notification</string>
 
+    <string name="md_back_label">Back</string>
+    <string name="md_done_label">Done</string>
+    <string name="md_cancel_label">Cancel</string>
+    <string name="md_choose_label">Choose</string>
+    <string name="md_error_label">Error</string>
+    <string name="md_storage_perm_error">Your app has not been granted the READ_EXTERNAL_STORAGE permission.</string>
+    <string name="md_custom_label">Custom</string>
+    <string name="md_presets_label">Presets</string>
+
 </resources>

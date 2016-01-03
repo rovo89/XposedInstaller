@@ -218,9 +218,11 @@ SDK: %2$d
     <string name="infoUninstaller">"Имя: %1$s 
 Архитектура: %2$s 
 Дата: %3$s"</string>
+    <string name="installationForbidden">Установка не возможна! Чтобы установить Xposed Framework через это приложение, необходим Android 5 и выше.</string>
     <string name="installation_lollipop">Xposed Framework не установлен. Пожалуйста скачайте последнюю версию на XDA и прошейте вручную через Рекавери.</string>
     <string name="installed_lollipop">Xposed Framework версии %s активирован!</string>
     <string name="installed_lollipop_inactive">Xposed Framework версия %s установлена, но не активирована. Пожалуйста проверьте логи.</string>
+    <string name="installed_no_lollipop">Xposed Framework установлен.</string>
     <string name="loadingError">Ошибка загрузки Zip Xposed Frameworks</string>
     <string name="modules_updates_available">Доступны обновления модуля</string>
     <string name="nav_bar_coloration">Раскрасить панель навигации</string>
@@ -235,6 +237,8 @@ SDK: %2$d
     <string name="no_backup_found">Резервные копии не найдены</string>
     <string name="no_enabled_modules">Нет включенных модулей</string>
     <string name="no_installed_modules">Установленных модулей нет!</string>
+    <string name="not_installed_no_lollipop">Xposed Framework не установлен.</string>
+    <string name="notify_module_update">Включить уведомление об обновлении модуля</string>
     <string name="permissionGranted">Доступ к памяти</string>
     <string name="permissionNotGranted">Эта функция не будет работать без разрешения на запись для накопителя.</string>
     <string name="selectFile">Выберите загруженный файл</string>
@@ -249,6 +253,12 @@ SDK: %2$d
     <string name="xposedZipNotFound">Не найден Zip, вероятно есть новая версия.</string>
     <string name="navigation_drawer_close">Закрыть меню приложений</string>
     <string name="navigation_drawer_open">Открыть меню приложений</string>
-    <string name="installationForbidden">Не удалось установить! Чтобы установить Xposed через это приложение, необходим Android 5 и выше.</string>
 
+    <string name="md_back_label">Назад</string>
+    <string name="md_cancel_label">Отмена</string>
+    <string name="md_choose_label">Выбрать</string>
+    <string name="md_custom_label">Пользовательские</string>
+    <string name="md_done_label">Готово</string>
+    <string name="md_error_label">Ошибка</string>
+    <string name="md_presets_label">Пресеты</string>
 </resources>
