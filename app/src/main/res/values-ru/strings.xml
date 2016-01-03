@@ -80,7 +80,7 @@
     <string name="tabModulesDescription">Framework сам по себе не добавляет никакого фунционала. Для этого необходимо установить модули. В этом разделе Вы можете активировать модули после их установки.</string>
     <string name="tabSettings">Настройки</string>
     <string name="tabSettingsDescription">Выберите этот раздел для настройки Xposed Installer и Framework.</string>
-    <string name="translator" />
+    <string name="translator"/>
     <string name="uninstall">Удалить</string>
     <string name="versions">Версии:</string>
     <string name="warning_min_version_too_low">Этот модуль был создан для XposedBridge версии %1$d, но из-за несовместимых изменений в версии %2$d, он был отключен.</string>
@@ -250,4 +250,6 @@ SDK: %2$d
     <string name="xposedZipNotFound">Не найден Zip, вероятно есть новая версия.</string>
     <string name="navigation_drawer_close">Закрыть меню приложений</string>
     <string name="navigation_drawer_open">Открыть меню приложений</string>
+    <string name="installationForbidden">Не удалось установить! Чтобы установить Xposed через это приложение, необходим Android 5 и выше.</string>
+
 </resources>
