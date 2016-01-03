@@ -274,5 +274,8 @@
     <string name="choose_icon">Zvoľte ikonu</string>
     <string name="custom_icon">Ikona</string>
     <string name="installationForbidden">Inštalácia na tomto zariadení nie je možná. Pre nainštalovanie Xposed cez túto aplikáciu, na zariadení musí bežať Android Lollipop alebo vyšší.</string>
+    <string name="installed_no_lollipop">Xposed framework je nainštalovaný.</string>
+    <string name="not_installed_no_lollipop">Xposed framework nie je nainštalovaný.</string>
+    <string name="notify_module_update">Povoliť upozornenie na aktualizáciu modulu</string>
 
 </resources>
