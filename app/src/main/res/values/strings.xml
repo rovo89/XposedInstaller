@@ -276,5 +276,6 @@
     <string name="installationForbidden">Installation is not possible on this device. To install Xposed through this app, the device must run Android Lollipop or higher.</string>
     <string name="installed_no_lollipop">Xposed framework is installed.</string>
     <string name="not_installed_no_lollipop">Xposed framework is not installed.</string>
+    <string name="notify_module_update">Enable module update notification</string>
 
 </resources>

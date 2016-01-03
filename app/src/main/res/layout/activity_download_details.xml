@@ -37,16 +37,4 @@
         android:layout_marginBottom="?attr/actionBarSize"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    <TextView
-        android:id="@android:id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/pager_tab_strip_bg"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:padding="4dp"
-        android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/download_details_title"
-        android:textStyle="italic"/>
 </android.support.design.widget.CoordinatorLayout>

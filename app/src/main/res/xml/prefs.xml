@@ -57,6 +57,11 @@
             android:summary="@string/enable_heads_up_summary"
             android:title="@string/enable_heads_up"/>
 
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="snack_bar"
+            android:title="@string/notify_module_update"/>
+
         <Preference
             android:key="colors"
             android:title="@string/choose_color"/>

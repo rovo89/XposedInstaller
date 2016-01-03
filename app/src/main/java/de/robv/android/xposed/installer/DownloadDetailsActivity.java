@@ -77,10 +77,6 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 				ab.setDisplayHomeAsUpEnabled(true);
 			}
 
-			TextView title = (TextView) findViewById(android.R.id.title);
-			title.setText(mModule.name);
-			title.setBackgroundColor(XposedApp.getColor(this));
-
 			setupTabs();
 
 			Boolean directDownload = getIntent()

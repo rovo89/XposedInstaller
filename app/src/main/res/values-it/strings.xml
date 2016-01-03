@@ -265,7 +265,8 @@
     <string name="choose_icon">Scegli un\' icona</string>
     <string name="custom_icon">Icona personalizzata</string>
     <string name="installationForbidden">L\' installazione non è possibile su questo dispositivo. Per installare Xposed attraverso questa app, il dispositivo deve avere Android Lollipop o superiore.</string>
-    <string name="installed_no_lollipop">Xposed framework  è installed.</string>
-    <string name="not_installed_no_lollipop">Xposed framework is not installed.</string>
+    <string name="installed_no_lollipop">Xposed framework è installato.</string>
+    <string name="not_installed_no_lollipop">Xposed framework non è installato.</string>
+    <string name="notify_module_update">Abilita notifica aggiornamenti dei moduli</string>
 
 </resources>

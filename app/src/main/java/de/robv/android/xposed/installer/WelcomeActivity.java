@@ -201,7 +201,11 @@ public class WelcomeActivity extends XposedBaseActivity
 			}
 		}
 
-		if (moduleUpdateAvailable) {
+		boolean snackBar = getSharedPreferences(
+				getPackageName() + "_preferences", MODE_PRIVATE)
+						.getBoolean("snack_bar", true);
+
+		if (moduleUpdateAvailable && snackBar) {
 			Snackbar.make(parentLayout, R.string.modules_updates_available,
 					Snackbar.LENGTH_LONG)
 					.setAction(getString(R.string.view),
