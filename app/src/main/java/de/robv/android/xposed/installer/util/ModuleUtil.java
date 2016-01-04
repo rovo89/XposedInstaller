@@ -246,7 +246,7 @@ public final class ModuleUtil {
 						Toast.LENGTH_SHORT).show();
 		} catch (IOException e) {
 			Log.e(XposedApp.TAG, "cannot write " + MODULES_LIST_FILE, e);
-			Toast.makeText(mApp, "cannot write " + MODULES_LIST_FILE,
+			Toast.makeText(mApp, "cannot write " + MODULES_LIST_FILE + e,
 					Toast.LENGTH_SHORT).show();
 		}
 	}

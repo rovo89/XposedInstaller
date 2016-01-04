@@ -23,6 +23,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.system.Os;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -90,9 +91,11 @@ public class InstallerFragment extends Fragment
 	private ImageView mInfoInstaller, mInfoUninstaller;
 	private String newApkVersion = XposedApp.THIS_APK_VERSION;
 	private String newApkLink;
+	private String newApkChangelog;
 	private CardView mUpdateView;
 	private Button mUpdateButton;
 	private TextView mInstallForbidden;
+	private ImageView mInfoUpdate;
 
 	private static int extractIntPart(String str) {
 		int result = 0, length = str.length();
@@ -178,6 +181,7 @@ public class InstallerFragment extends Fragment
 
 		mInstallForbidden = (TextView) v
 				.findViewById(R.id.installationForbidden);
+		mInfoUpdate = (ImageView) v.findViewById(R.id.infoUpdate);
 
 		String installedXposedVersion = XposedApp.getXposedProp()
 				.get("version");
@@ -933,8 +937,11 @@ public class InstallerFragment extends Fragment
 
 				newApkVersion = json.getJSONObject("apk").getString("version");
 				newApkLink = json.getJSONObject("apk").getString("link");
+				newApkChangelog = json.getJSONObject("apk")
+						.getString("changelog");
 				return true;
 			} catch (Exception e) {
+                e.printStackTrace();
 				return false;
 			}
 		}
@@ -983,6 +990,20 @@ public class InstallerFragment extends Fragment
 						new XposedZip.MyAdapter<>(getContext(), uninstallers));
 
 			} catch (NullPointerException ignored) {
+			}
+
+			if (newApkChangelog != null) {
+				mInfoUpdate.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						new MaterialDialog.Builder(getContext())
+								.title(R.string.changes)
+								.content(Html.fromHtml(newApkChangelog))
+								.positiveText(android.R.string.ok).show();
+					}
+				});
+			} else {
+				mInfoUpdate.setVisibility(View.GONE);
 			}
 
 			if (newApkVersion == null)

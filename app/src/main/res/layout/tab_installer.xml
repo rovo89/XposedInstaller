@@ -241,6 +241,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textView3"
+                    android:layout_toLeftOf="@+id/infoUpdate"
+                    android:layout_toStartOf="@+id/infoUpdate"
                     android:gravity="center"
                     android:padding="6dp"
                     android:text="@string/newVersion"
@@ -255,6 +257,18 @@
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/textView2"
                     android:text="@string/update"/>
+
+                <ImageView
+                    android:id="@+id/infoUpdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/textView2"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/textView2"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_info"/>
 
             </RelativeLayout>
 
