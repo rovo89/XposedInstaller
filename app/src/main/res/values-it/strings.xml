@@ -275,5 +275,7 @@
     <string name="md_error_label">Errore</string>
     <string name="md_custom_label">Custom</string>
     <string name="md_presets_label">Predefiniti</string>
+    <string name="changelog">Modifiche</string>
+    <string name="md_storage_perm_error">La tua app non ha i permessi di scrittura nella memoria interna</string>
 
 </resources>
