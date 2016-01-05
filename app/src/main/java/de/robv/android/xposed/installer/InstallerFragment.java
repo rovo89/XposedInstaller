@@ -1,5 +1,6 @@
 package de.robv.android.xposed.installer;
 
+import static android.content.Context.MODE_PRIVATE;
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.util.XposedZip.Installer;
 import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
@@ -10,6 +11,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -941,7 +943,7 @@ public class InstallerFragment extends Fragment
 						.getString("changelog");
 				return true;
 			} catch (Exception e) {
-                e.printStackTrace();
+				e.printStackTrace();
 				return false;
 			}
 		}
@@ -1009,6 +1011,10 @@ public class InstallerFragment extends Fragment
 			if (newApkVersion == null)
 				return;
 
+			SharedPreferences prefs = getContext().getSharedPreferences(
+					getContext().getPackageName() + "_preferences",
+					MODE_PRIVATE);
+
 			BigInteger a = new BigInteger(XposedApp.THIS_APK_VERSION);
 			BigInteger b = new BigInteger(newApkVersion);
 
@@ -1039,6 +1045,11 @@ public class InstallerFragment extends Fragment
 						}, DownloadsUtil.MIME_TYPES.APK, true);
 					}
 				});
+			} else {
+				prefs.edit()
+						.putString("changelog_" + XposedApp.THIS_APK_VERSION,
+								newApkChangelog)
+						.apply();
 			}
 		}
 	}

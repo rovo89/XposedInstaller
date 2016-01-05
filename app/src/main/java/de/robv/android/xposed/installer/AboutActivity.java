@@ -2,16 +2,21 @@ package de.robv.android.xposed.installer;
 
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UIUtil;
@@ -63,6 +68,28 @@ public class AboutActivity extends XposedBaseActivity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View v = inflater.inflate(R.layout.tab_about, container, false);
+
+			Button changelog = (Button) v.findViewById(R.id.changes);
+
+			SharedPreferences prefs = getContext().getSharedPreferences(
+					getContext().getPackageName() + "_preferences",
+					MODE_PRIVATE);
+			final String changes = prefs
+					.getString("changelog_" + XposedApp.THIS_APK_VERSION, null);
+
+			if (changes == null) {
+				changelog.setEnabled(false);
+			} else {
+				changelog.setOnClickListener(new View.OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						new MaterialDialog.Builder(getContext())
+								.title(R.string.changes)
+								.content(Html.fromHtml(changes))
+								.positiveText(android.R.string.ok).show();
+					}
+				});
+			}
 
 			try {
 				String packageName = getActivity().getPackageName();

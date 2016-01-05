@@ -53,6 +53,13 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"/>
 
+        <Button
+            android:id="@+id/changes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/changes"
+            />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
