@@ -1011,9 +1011,13 @@ public class InstallerFragment extends Fragment
 			if (newApkVersion == null)
 				return;
 
-			SharedPreferences prefs = getContext().getSharedPreferences(
-					getContext().getPackageName() + "_preferences",
-					MODE_PRIVATE);
+			SharedPreferences prefs = null;
+			try {
+				prefs = getContext().getSharedPreferences(
+						getContext().getPackageName() + "_preferences",
+						MODE_PRIVATE);
+			} catch (NullPointerException ignored) {
+			}
 
 			BigInteger a = new BigInteger(XposedApp.THIS_APK_VERSION);
 			BigInteger b = new BigInteger(newApkVersion);
@@ -1046,10 +1050,13 @@ public class InstallerFragment extends Fragment
 					}
 				});
 			} else {
-				prefs.edit()
-						.putString("changelog_" + XposedApp.THIS_APK_VERSION,
-								newApkChangelog)
-						.apply();
+				if (prefs != null) {
+					prefs.edit()
+							.putString(
+									"changelog_" + XposedApp.THIS_APK_VERSION,
+									newApkChangelog)
+							.apply();
+				}
 			}
 		}
 	}

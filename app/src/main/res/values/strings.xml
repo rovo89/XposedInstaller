@@ -186,15 +186,15 @@
     <string name="log_is_empty">Log is empty</string>
 
     <!-- About tab -->
-    <string name="about_developers_label">Main developers:</string>
+    <string name="about_developers_label">Main developers</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> and <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> for bug fixes and Material Design</string>
     <string name="about_developers_warning">Please do <b>not</b> contact us directly for support, use the link below.</string>
-    <string name="about_translator_label">Translator:</string>
+    <string name="about_translator_label">Translator</string>
     <string name="translator"></string>
-    <string name="about_version_label">Version of this app:</string>
-    <string name="about_source_label">Source code:</string>
+    <string name="about_version_label">Version</string>
+    <string name="about_source_label">Source code</string>
     <string name="about_support_label">Get support at:</string>
-    <string name="about_libraries_label">Used libraries:</string>
+    <string name="about_libraries_label">Used libraries</string>
 
     <!-- DownloadView -->
     <string name="download_view_download">Download</string>
@@ -286,5 +286,6 @@
     <string name="md_storage_perm_error">Your app has not been granted the READ_EXTERNAL_STORAGE permission.</string>
     <string name="md_custom_label">Custom</string>
     <string name="md_presets_label">Presets</string>
+    <string name="changelog">Changelog</string>
 
 </resources>

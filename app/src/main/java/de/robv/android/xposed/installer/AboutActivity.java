@@ -13,11 +13,11 @@ import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UIUtil;
 
@@ -69,18 +69,25 @@ public class AboutActivity extends XposedBaseActivity {
 				Bundle savedInstanceState) {
 			View v = inflater.inflate(R.layout.tab_about, container, false);
 
-			Button changelog = (Button) v.findViewById(R.id.changes);
+			View changelogView = v.findViewById(R.id.changelogView);
+			View developersView = v.findViewById(R.id.developersView);
+			View licensesView = v.findViewById(R.id.licensesView);
+			View translatorsView = v.findViewById(R.id.translatorsView);
+			View sourceCodeView = v.findViewById(R.id.sourceCodeView);
+
+			String packageName = getActivity().getPackageName();
+			String translator = getResources().getString(R.string.translator);
 
 			SharedPreferences prefs = getContext().getSharedPreferences(
-					getContext().getPackageName() + "_preferences",
-					MODE_PRIVATE);
+					packageName + "_preferences", MODE_PRIVATE);
+
 			final String changes = prefs
 					.getString("changelog_" + XposedApp.THIS_APK_VERSION, null);
 
 			if (changes == null) {
-				changelog.setEnabled(false);
+				changelogView.setEnabled(false);
 			} else {
-				changelog.setOnClickListener(new View.OnClickListener() {
+				changelogView.setOnClickListener(new View.OnClickListener() {
 					@Override
 					public void onClick(View v) {
 						new MaterialDialog.Builder(getContext())
@@ -92,30 +99,45 @@ public class AboutActivity extends XposedBaseActivity {
 			}
 
 			try {
-				String packageName = getActivity().getPackageName();
 				String version = getActivity().getPackageManager()
 						.getPackageInfo(packageName, 0).versionName;
-				((TextView) v.findViewById(R.id.version)).setText(version);
-			} catch (NameNotFoundException e) {
-				// should not happen
+				((TextView) v.findViewById(R.id.app_version)).setText(version);
+			} catch (NameNotFoundException ignored) {
 			}
 
-			((TextView) v.findViewById(R.id.about_developers))
-					.setMovementMethod(LinkMovementMethod.getInstance());
-			((TextView) v.findViewById(R.id.about_libraries))
-					.setMovementMethod(LinkMovementMethod.getInstance());
+			createListener(licensesView, R.string.about_libraries_label,
+					R.string.about_libraries);
+			createListener(developersView, R.string.about_developers_label,
+					R.string.about_developers);
 
-			String translator = getResources().getString(R.string.translator);
+			sourceCodeView.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					NavUtil.startURL(getActivity(),
+							getString(R.string.about_source));
+				}
+			});
+
 			if (translator.isEmpty()) {
-				v.findViewById(R.id.about_translator_label)
-						.setVisibility(View.GONE);
-				v.findViewById(R.id.about_translator).setVisibility(View.GONE);
-			} else {
-				((TextView) v.findViewById(R.id.about_translator))
-						.setMovementMethod(LinkMovementMethod.getInstance());
+				translatorsView.setVisibility(View.GONE);
 			}
 
 			return v;
+		}
+
+		public void createListener(View v, final int title, final int content) {
+			v.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					MaterialDialog dialog = new MaterialDialog.Builder(
+							getContext()).title(title).content(content)
+									.positiveText(android.R.string.ok).show();
+
+					((TextView) dialog.findViewById(R.id.content))
+							.setMovementMethod(
+									LinkMovementMethod.getInstance());
+				}
+			});
 		}
 	}
 }

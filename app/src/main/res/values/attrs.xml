@@ -8,6 +8,7 @@
     <attr name="download_status_installed" format="reference|color"/>
     <attr name="sticky_header_background" format="reference|color"/>
     <attr name="list_download_item_color" format="reference|color"/>
+    <attr name="ripple" format="reference"/>
 
     <declare-styleable name="IconListPreference">
         <attr name="icons" format="reference"/>
