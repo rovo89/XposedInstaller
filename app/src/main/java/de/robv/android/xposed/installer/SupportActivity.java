@@ -2,7 +2,6 @@ package de.robv.android.xposed.installer;
 
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -12,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UIUtil;
 
@@ -61,15 +61,33 @@ public class SupportActivity extends XposedBaseActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			ViewGroup vg = (ViewGroup) inflater.inflate(R.layout.tab_support,
-					container, false);
+			View v = inflater.inflate(R.layout.tab_support, container, false);
 
-			TextView txtModuleSupport = ((TextView) vg
-					.findViewById(R.id.tab_support_module_description));
+			View installerSupportView = v
+					.findViewById(R.id.installerSupportView);
+			View faqView = v.findViewById(R.id.faqView);
+			View donateView = v.findViewById(R.id.donateView);
+			TextView txtModuleSupport = (TextView) v
+					.findViewById(R.id.tab_support_module_description);
+
 			txtModuleSupport
 					.setText(getString(R.string.support_modules_description,
 							getString(R.string.module_support)));
-			return vg;
+
+			setupView(installerSupportView, R.string.about_support);
+			setupView(faqView, R.string.support_faq_url);
+			setupView(donateView, R.string.support_donate_url);
+
+			return v;
+		}
+
+		public void setupView(View v, final int url) {
+			v.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					NavUtil.startURL(getActivity(), getString(url));
+				}
+			});
 		}
 	}
 }

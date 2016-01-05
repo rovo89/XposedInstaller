@@ -218,7 +218,7 @@
     <string name="support_framework_label">Framework/Installer supporto</string>
     <string name="support_faq_label">FAQ/Bug conosciuti</string>
     <string name="support_donate_label">Dona</string>
-    <string name="support_donate_description">Se ti piacerebbe dire grazie per Xposed, puoi donare a rovo89 qui:</string>
+    <string name="support_donate_description">Se ti piacerebbe dire grazie per Xposed, puoi donare a rovo89 qui</string>
     <string name="tabSupport">Supporto</string>
     <string name="tabSupportDescription">Trova aiuto ai problemi legati a Xposed. Puoi anche donare per dire grazie per Xposed.</string>
     <string name="modules_updates_available">Aggiornamenti dei moduli disponibili</string>

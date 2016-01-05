@@ -173,7 +173,7 @@
     <string name="support_framework_label">Framework/Installer support</string>
     <string name="support_faq_label">FAQ/known issues</string>
     <string name="support_donate_label">Donate</string>
-    <string name="support_donate_description">If you would like to say thanks for Xposed, you can donate to rovo89 here:</string>
+    <string name="support_donate_description">If you would like to say thanks for Xposed, you can donate to rovo89 here</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">Could not read log:</string>
