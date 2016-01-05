@@ -173,7 +173,7 @@
     <string name="support_framework_label">Podpora pre framework/Installer</string>
     <string name="support_faq_label">FAQ/známe chyby</string>
     <string name="support_donate_label">Podporiť</string>
-    <string name="support_donate_description">Ak chcete poďakovať za Xposed, môžete poslať dar pre rovo89 tu:</string>
+    <string name="support_donate_description">Ak chcete poďakovať za Xposed, môžete poslať dar pre rovo89 tu</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">Nemožno čítať záznam:</string>
@@ -186,15 +186,15 @@
     <string name="log_is_empty">Záznam je prázdny</string>
 
     <!-- About tab -->
-    <string name="about_developers_label">Hlavní vývojári:</string>
+    <string name="about_developers_label">Hlavní vývojári</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> a <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Prosím, <b>nekontaktujte</b> nás priamo za účelom podpory, na to je určený odkaz nižšie.</string>
-    <string name="about_translator_label">Prekladatelia:</string>
+    <string name="about_translator_label">Prekladatelia</string>
     <string name="translator">pyler, ja_som</string>
-    <string name="about_version_label">Verzia aplikácie:</string>
-    <string name="about_source_label">Zdrojový kód:</string>
+    <string name="about_version_label">Verzia aplikácie</string>
+    <string name="about_source_label">Zdrojový kód</string>
     <string name="about_support_label">Získajte podporu na:</string>
-    <string name="about_libraries_label">Použité knižnice:</string>
+    <string name="about_libraries_label">Použité knižnice</string>
 
     <!-- DownloadView -->
     <string name="download_view_download">Stiahnuť</string>
