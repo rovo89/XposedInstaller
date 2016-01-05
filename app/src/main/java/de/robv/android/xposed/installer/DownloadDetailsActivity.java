@@ -206,8 +206,16 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 				if (isPackageInstalled(mPackageName, this)) {
 					String s = getPackageManager()
 							.getInstallerPackageName(mPackageName);
+					boolean playStore;
 
-					if (s.equals(ModulesFragment.PLAY_STORE_PACKAGE)) {
+					try {
+						playStore = s
+								.equals(ModulesFragment.PLAY_STORE_PACKAGE);
+					} catch (NullPointerException e) {
+						playStore = false;
+					}
+
+					if (playStore) {
 						text += String.format(ModulesFragment.PLAY_STORE_LINK,
 								mPackageName);
 					} else {
