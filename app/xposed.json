@@ -85,8 +85,8 @@
     }
   ],
   "apk": {
-    "version": "1451899500000",
+    "version": "1452009600000",
     "link": "https://github.com/DVDAndroid/dvdandroid.github.io/blob/master/apks/XposedInstaller_by_dvdandroid.apk?raw=true",
-    "changelog": "<b>What's new:</b><br>&#149; Changelog dialog!<br>&#149; Bug fixes!"
+    "changelog": "<b>What's new:</b><br>&#149; Changelog dialog now in about section<br>&#149; Materialised about and support section!"
   }
 }
