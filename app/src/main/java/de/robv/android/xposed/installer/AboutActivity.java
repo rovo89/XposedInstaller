@@ -1,7 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.darkenColor;
-
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
@@ -20,6 +18,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UIUtil;
+
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
 public class AboutActivity extends XposedBaseActivity {
 	@Override
@@ -101,7 +101,8 @@ public class AboutActivity extends XposedBaseActivity {
 			try {
 				String version = getActivity().getPackageManager()
 						.getPackageInfo(packageName, 0).versionName;
-				((TextView) v.findViewById(R.id.app_version)).setText(version);
+				((TextView) v.findViewById(R.id.app_version)).setText(
+						version + " (" + XposedApp.THIS_APK_VERSION + ")");
 			} catch (NameNotFoundException ignored) {
 			}
 
