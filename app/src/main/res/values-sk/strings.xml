@@ -287,5 +287,6 @@
     <string name="md_custom_label">Vlastné</string>
     <string name="md_presets_label">Predvoľby</string>
     <string name="changelog">Zoznam zmien</string>
+    <string name="scroll_top">Prejsť hore</string>
 
 </resources>
