@@ -40,7 +40,6 @@ public class RepoDbDefinitions {
 			+ ModuleVersionsColumns.CODE + " INTEGER NOT NULL, "
 			+ ModuleVersionsColumns.DOWNLOAD_LINK + " TEXT, "
 			+ ModuleVersionsColumns.MD5SUM + " TEXT, "
-			+ ModuleVersionsColumns.SIZE + " INTEGER NOT NULL, "
 			+ ModuleVersionsColumns.CHANGELOG + " TEXT, "
 			+ ModuleVersionsColumns.CHANGELOG_IS_HTML + " INTEGER DEFAULT 0, "
 			+ ModuleVersionsColumns.RELTYPE + " INTEGER DEFAULT 0, "
@@ -111,7 +110,6 @@ public class RepoDbDefinitions {
 		String SUPPORT = "support";
 		String CREATED = "created";
 		String UPDATED = "updated";
-		String SIZE = "size";
 
 		String PREFERRED = "preferred";
 		String LATEST_VERSION = "latest_version_id";
@@ -127,7 +125,6 @@ public class RepoDbDefinitions {
 		String CODE = "code";
 		String DOWNLOAD_LINK = "download_link";
 		String MD5SUM = "md5sum";
-		String SIZE = "size";
 		String CHANGELOG = "changelog";
 		String CHANGELOG_IS_HTML = "changelog_is_html";
 		String RELTYPE = "reltype";

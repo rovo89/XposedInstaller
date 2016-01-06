@@ -204,7 +204,6 @@ public final class RepoDb extends SQLiteOpenHelper {
 				version.changelogIsHtml);
 		values.put(ModuleVersionsColumns.RELTYPE, version.relType.ordinal());
 		values.put(ModuleVersionsColumns.UPLOADED, version.uploaded);
-		values.put(ModuleVersionsColumns.SIZE, version.size);
 		return mDb.insertOrThrow(ModuleVersionsColumns.TABLE_NAME, null,
 				values);
 	}
@@ -278,8 +277,7 @@ public final class RepoDb extends SQLiteOpenHelper {
 		// Versions
 		projection = new String[] { ModuleVersionsColumns.NAME,
 				ModuleVersionsColumns.CODE, ModuleVersionsColumns.DOWNLOAD_LINK,
-				ModuleVersionsColumns.MD5SUM, ModuleVersionsColumns.SIZE,
-				ModuleVersionsColumns.CHANGELOG,
+				ModuleVersionsColumns.MD5SUM, ModuleVersionsColumns.CHANGELOG,
 				ModuleVersionsColumns.CHANGELOG_IS_HTML,
 				ModuleVersionsColumns.RELTYPE,
 				ModuleVersionsColumns.UPLOADED, };
@@ -299,8 +297,6 @@ public final class RepoDb extends SQLiteOpenHelper {
 					ModuleVersionsColumns.DOWNLOAD_LINK));
 			version.md5sum = c.getString(
 					c.getColumnIndexOrThrow(ModuleVersionsColumns.MD5SUM));
-			version.size = c.getLong(
-					c.getColumnIndexOrThrow(ModuleVersionsColumns.SIZE));
 			version.changelog = c.getString(
 					c.getColumnIndexOrThrow(ModuleVersionsColumns.CHANGELOG));
 			version.changelogIsHtml = c.getInt(c.getColumnIndexOrThrow(
