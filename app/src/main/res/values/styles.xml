@@ -5,7 +5,6 @@
     <style name="Theme.XposedInstaller.Light.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimaryLight</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="ripple">@drawable/ripple_background</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
@@ -13,7 +12,6 @@
     <!-- Base application dark theme. -->
     <style name="Theme.XposedInstaller.Dark.Base" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="ripple">@drawable/ripple_background_dark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
