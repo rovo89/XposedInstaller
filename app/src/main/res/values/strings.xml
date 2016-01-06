@@ -287,5 +287,6 @@
     <string name="md_custom_label">Custom</string>
     <string name="md_presets_label">Presets</string>
     <string name="changelog">Changelog</string>
+    <string name="scroll_top">Scroll to top</string>
 
 </resources>

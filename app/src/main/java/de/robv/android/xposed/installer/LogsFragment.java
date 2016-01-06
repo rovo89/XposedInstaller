@@ -1,7 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -33,6 +31,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
+
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class LogsFragment extends Fragment {
 
@@ -69,6 +69,9 @@ public class LogsFragment extends Fragment {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+			case R.id.menu_scroll_top:
+				scrollTop();
+				break;
 			case R.id.menu_refresh:
 				reloadErrorLog();
 				return true;
@@ -83,6 +86,21 @@ public class LogsFragment extends Fragment {
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void scrollTop() {
+		mSVLog.post(new Runnable() {
+			@Override
+			public void run() {
+				mSVLog.scrollTo(0, 0);
+			}
+		});
+		mHSVLog.post(new Runnable() {
+			@Override
+			public void run() {
+				mHSVLog.scrollTo(0, 0);
+			}
+		});
 	}
 
 	private void reloadErrorLog() {

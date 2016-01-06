@@ -7,6 +7,13 @@
         android:icon="@drawable/ic_menu_refresh"
         android:title="@string/menuReload"
         app:showAsAction="ifRoom|withText"/>
+
+    <item
+        android:id="@+id/menu_scroll_top"
+        android:icon="@drawable/ic_scroll_top"
+        android:title="@string/scroll_top"
+        app:showAsAction="ifRoom|withText"/>
+
     <item
         android:id="@+id/menu_save"
         android:title="@string/menuSaveToSd"
