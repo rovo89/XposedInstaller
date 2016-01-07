@@ -66,32 +66,29 @@ public final class NotificationUtil {
 						.setVibrate(new long[] { 0 }).setAutoCancel(true)
 						.setSmallIcon(R.drawable.ic_notification);
 
-		if (prefs.getBoolean("heads_up", false))
+		if (prefs.getBoolean("heads_up", true) && Build.VERSION.SDK_INT >= 21)
 			builder.setPriority(2);
 
-		if (Build.VERSION.SDK_INT >= 16) {
-			Intent iActivateAndReboot = new Intent(sContext,
-					RebootReceiver.class);
-			iActivateAndReboot.putExtra(RebootReceiver.EXTRA_ACTIVATE_MODULE,
-					packageName);
-			PendingIntent pActivateAndReboot = PendingIntent.getBroadcast(
-					sContext, PENDING_INTENT_ACTIVATE_MODULE_AND_REBOOT,
-					iActivateAndReboot, PendingIntent.FLAG_UPDATE_CURRENT);
+		Intent iActivateAndReboot = new Intent(sContext, RebootReceiver.class);
+		iActivateAndReboot.putExtra(RebootReceiver.EXTRA_ACTIVATE_MODULE,
+				packageName);
+		PendingIntent pActivateAndReboot = PendingIntent.getBroadcast(sContext,
+				PENDING_INTENT_ACTIVATE_MODULE_AND_REBOOT, iActivateAndReboot,
+				PendingIntent.FLAG_UPDATE_CURRENT);
 
-			NotificationCompat.BigTextStyle notiStyle = new NotificationCompat.BigTextStyle();
-			notiStyle.setBigContentTitle(title);
-			notiStyle.bigText(sContext.getString(
-					R.string.module_is_not_activated_yet_detailed, appName));
-			builder.setStyle(notiStyle);
+		NotificationCompat.BigTextStyle notiStyle = new NotificationCompat.BigTextStyle();
+		notiStyle.setBigContentTitle(title);
+		notiStyle.bigText(sContext.getString(
+				R.string.module_is_not_activated_yet_detailed, appName));
+		builder.setStyle(notiStyle);
 
-			// Only show the quick activation button if any module has been
-			// enabled before,
-			// to ensure that the user know the way to disable the module later.
-			if (!ModuleUtil.getInstance().getEnabledModules().isEmpty())
-				builder.addAction(R.drawable.ic_menu_refresh,
-						sContext.getString(R.string.activate_and_reboot),
-						pActivateAndReboot);
-		}
+		// Only show the quick activation button if any module has been
+		// enabled before,
+		// to ensure that the user know the way to disable the module later.
+		if (!ModuleUtil.getInstance().getEnabledModules().isEmpty())
+			builder.addAction(R.drawable.ic_menu_refresh,
+					sContext.getString(R.string.activate_and_reboot),
+					pActivateAndReboot);
 
 		sNotificationManager.notify(packageName,
 				NOTIFICATION_MODULE_NOT_ACTIVATED_YET, builder.build());
@@ -117,22 +114,20 @@ public final class NotificationUtil {
 		if (prefs.getBoolean("heads_up", true) && Build.VERSION.SDK_INT >= 21)
 			builder.setPriority(2);
 
-		if (Build.VERSION.SDK_INT >= 16) {
-			Intent iSoftReboot = new Intent(sContext, RebootReceiver.class);
-			iSoftReboot.putExtra(RebootReceiver.EXTRA_SOFT_REBOOT, true);
-			PendingIntent pSoftReboot = PendingIntent.getBroadcast(sContext,
-					PENDING_INTENT_SOFT_REBOOT, iSoftReboot,
-					PendingIntent.FLAG_UPDATE_CURRENT);
+		Intent iSoftReboot = new Intent(sContext, RebootReceiver.class);
+		iSoftReboot.putExtra(RebootReceiver.EXTRA_SOFT_REBOOT, true);
+		PendingIntent pSoftReboot = PendingIntent.getBroadcast(sContext,
+				PENDING_INTENT_SOFT_REBOOT, iSoftReboot,
+				PendingIntent.FLAG_UPDATE_CURRENT);
 
-			Intent iReboot = new Intent(sContext, RebootReceiver.class);
-			PendingIntent pReboot = PendingIntent.getBroadcast(sContext,
-					PENDING_INTENT_REBOOT, iReboot,
-					PendingIntent.FLAG_UPDATE_CURRENT);
+		Intent iReboot = new Intent(sContext, RebootReceiver.class);
+		PendingIntent pReboot = PendingIntent.getBroadcast(sContext,
+				PENDING_INTENT_REBOOT, iReboot,
+				PendingIntent.FLAG_UPDATE_CURRENT);
 
-			builder.addAction(0, sContext.getString(R.string.reboot), pReboot);
-			builder.addAction(0, sContext.getString(R.string.soft_reboot),
-					pSoftReboot);
-		}
+		builder.addAction(0, sContext.getString(R.string.reboot), pReboot);
+		builder.addAction(0, sContext.getString(R.string.soft_reboot),
+				pSoftReboot);
 
 		sNotificationManager.notify(null, NOTIFICATION_MODULES_UPDATED,
 				builder.build());
