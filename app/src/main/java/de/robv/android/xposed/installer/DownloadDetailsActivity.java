@@ -2,6 +2,7 @@ package de.robv.android.xposed.installer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 	private String mPackageName;
 	private Module mModule;
 	private InstalledModule mInstalledModule;
+	private MenuItem mItemBookmark;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -191,12 +193,40 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_download_details, menu);
+		mItemBookmark = menu.findItem(R.id.menu_bookmark);
+		setupBookmark(false);
 		return true;
+	}
+
+	private void setupBookmark(boolean clicked) {
+		SharedPreferences myPref = getSharedPreferences("bookmarks",
+				MODE_PRIVATE);
+
+		boolean saved = myPref.getBoolean(mModule.packageName, false);
+		boolean newValue;
+
+		if (clicked) {
+			newValue = !saved;
+			myPref.edit().putBoolean(mModule.packageName, newValue).apply();
+		}
+
+		saved = myPref.getBoolean(mModule.packageName, false);
+
+		if (saved) {
+			mItemBookmark.setTitle(R.string.remove_bookmark);
+			mItemBookmark.setIcon(R.drawable.ic_bookmark);
+		} else {
+			mItemBookmark.setTitle(R.string.add_bookmark);
+			mItemBookmark.setIcon(R.drawable.ic_bookmark_outline);
+		}
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+			case R.id.menu_bookmark:
+				setupBookmark(true);
+				break;
 			case R.id.menu_refresh:
 				RepoLoader.getInstance().triggerReload(true);
 				return true;
