@@ -1,7 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.darkenColor;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -31,6 +29,8 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UIUtil;
+
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
 public class DownloadDetailsActivity extends XposedBaseActivity
 		implements RepoListener, ModuleListener {
@@ -228,7 +228,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 				}
 
 				Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-				sharingIntent.setType("text/html");
+				sharingIntent.setType("text/plain");
 				sharingIntent.putExtra(Intent.EXTRA_TEXT, text);
 				startActivity(Intent.createChooser(sharingIntent,
 						getString(R.string.share)));
