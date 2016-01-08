@@ -22,6 +22,7 @@ import de.robv.android.xposed.installer.util.UIUtil;
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
 public class AboutActivity extends XposedBaseActivity {
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
