@@ -288,8 +288,5 @@
     <string name="md_presets_label">Predvoľby</string>
     <string name="changelog">Zoznam zmien</string>
     <string name="scroll_top">Prejsť hore</string>
-    <string name="add_bookmark">Pridať záložku</string>
-    <string name="remove_bookmark">Odstrániť záložku</string>
-    <string name="bookmarks">Záložky</string>
 
 </resources>
