@@ -167,6 +167,11 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == R.id.bookmarks) {
+			startActivity(new Intent(getContext(), ModulesBookmark.class));
+			return true;
+		}
+
 		String backupPath = Environment.getExternalStorageDirectory()
 				+ "/XposedInstaller";
 

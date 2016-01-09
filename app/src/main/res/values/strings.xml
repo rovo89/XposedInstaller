@@ -290,5 +290,6 @@
     <string name="scroll_top">Scroll to top</string>
     <string name="add_bookmark">Add bookmark</string>
     <string name="remove_bookmark">Remove bookmark</string>
+    <string name="bookmarks">Bookmarks</string>
 
 </resources>
