@@ -1,5 +1,7 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,15 +19,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
+import de.robv.android.xposed.installer.util.UIUtil;
 
 public class ModulesBookmark extends XposedBaseActivity {
 
@@ -64,25 +66,40 @@ public class ModulesBookmark extends XposedBaseActivity {
 	}
 
 	public static class ModulesBookmarkFragment extends ListFragment
-			implements AdapterView.OnItemClickListener {
+			implements AdapterView.OnItemClickListener,
+			SharedPreferences.OnSharedPreferenceChangeListener {
 
 		private List<Module> mBookmarkedModules = new ArrayList<>();
+		private BookmarkModuleAdapter mAdapter;
+		private SharedPreferences mBookmarksPref;
+		private boolean changed;
 
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 
-			SharedPreferences bookmarksPref = getContext()
-					.getSharedPreferences("bookmarks", MODE_PRIVATE);
+			mBookmarksPref = getContext().getSharedPreferences("bookmarks",
+					MODE_PRIVATE);
+			mBookmarksPref.registerOnSharedPreferenceChangeListener(this);
+		}
 
-			for (String s : bookmarksPref.getAll().keySet()) {
-				boolean isBookmarked = bookmarksPref.getBoolean(s, false);
+		@Override
+		public void onResume() {
+			super.onResume();
 
-				if (isBookmarked) {
-					mBookmarkedModules.add(mRepoLoader.getModule(s));
-				}
+			if (changed)
+				getModules();
+
+			if (UIUtil.isLollipop()) {
+				getActivity().getWindow().setStatusBarColor(
+						darkenColor(XposedApp.getColor(getActivity()), 0.85f));
 			}
+		}
 
+		@Override
+		public void onDestroy() {
+			super.onDestroy();
+			mBookmarksPref.unregisterOnSharedPreferenceChangeListener(this);
 		}
 
 		@Override
@@ -93,21 +110,33 @@ public class ModulesBookmark extends XposedBaseActivity {
 			getListView().setDividerHeight(getDp(6));
 			getListView().setPadding(getDp(8), getDp(8), getDp(8), getDp(8));
 			getListView().setOnItemClickListener(this);
+			setEmptyText(getString(R.string.no_bookmark_added));
 
-			BookmarkModuleAdapter adapter = new BookmarkModuleAdapter(
-					getContext());
-			adapter.addAll(mBookmarkedModules);
-			final Collator col = Collator.getInstance(Locale.getDefault());
-			adapter.sort(new Comparator<Module>() {
-				@Override
-				public int compare(Module lhs, Module rhs) {
-					return col.compare(lhs.name, rhs.name);
-				}
-			});
-			setListAdapter(adapter);
-			adapter.notifyDataSetChanged();
+			mAdapter = new BookmarkModuleAdapter(getContext());
+			getModules();
+			setListAdapter(mAdapter);
 
 			setHasOptionsMenu(true);
+		}
+
+		private void getModules() {
+			mAdapter.clear();
+			mBookmarkedModules.clear();
+			for (String s : mBookmarksPref.getAll().keySet()) {
+				boolean isBookmarked = mBookmarksPref.getBoolean(s, false);
+
+				if (isBookmarked) {
+					mBookmarkedModules.add(mRepoLoader.getModule(s));
+				}
+			}
+			Collections.sort(mBookmarkedModules, new Comparator<Module>() {
+				@Override
+				public int compare(Module mod1, Module mod2) {
+					return mod1.name.compareTo(mod2.name);
+				}
+			});
+			mAdapter.addAll(mBookmarkedModules);
+			mAdapter.notifyDataSetChanged();
 		}
 
 		private int getDp(float value) {
@@ -125,6 +154,12 @@ public class ModulesBookmark extends XposedBaseActivity {
 			detailsIntent.setData(Uri.fromParts("package",
 					mBookmarkedModules.get(position).packageName, null));
 			startActivity(detailsIntent);
+		}
+
+		@Override
+		public void onSharedPreferenceChanged(
+				SharedPreferences sharedPreferences, String key) {
+			changed = true;
 		}
 	}
 

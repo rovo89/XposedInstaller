@@ -291,5 +291,6 @@
     <string name="add_bookmark">Add bookmark</string>
     <string name="remove_bookmark">Remove bookmark</string>
     <string name="bookmarks">Bookmarks</string>
+    <string name="no_bookmark_added">No bookmark added</string>
 
 </resources>
