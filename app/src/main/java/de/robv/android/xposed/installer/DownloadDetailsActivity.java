@@ -1,11 +1,14 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -30,8 +33,6 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UIUtil;
-
-import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
 public class DownloadDetailsActivity extends XposedBaseActivity
 		implements RepoListener, ModuleListener {
@@ -208,6 +209,12 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 		if (clicked) {
 			newValue = !saved;
 			myPref.edit().putBoolean(mModule.packageName, newValue).apply();
+
+			int msg = newValue ? R.string.bookmark_added
+					: R.string.bookmark_removed;
+
+			Snackbar.make(findViewById(android.R.id.content), msg,
+					Snackbar.LENGTH_SHORT).show();
 		}
 
 		saved = myPref.getBoolean(mModule.packageName, false);

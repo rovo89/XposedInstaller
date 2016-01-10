@@ -110,6 +110,7 @@ public class ModulesBookmark extends XposedBaseActivity {
 			getListView().setDividerHeight(getDp(6));
 			getListView().setPadding(getDp(8), getDp(8), getDp(8), getDp(8));
 			getListView().setOnItemClickListener(this);
+			getListView().setClipToPadding(false);
 			setEmptyText(getString(R.string.no_bookmark_added));
 
 			mAdapter = new BookmarkModuleAdapter(getContext());
