@@ -1,5 +1,10 @@
 package de.robv.android.xposed.installer;
 
+import static android.content.Context.MODE_PRIVATE;
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+import static de.robv.android.xposed.installer.util.XposedZip.Installer;
+import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
+
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -39,9 +44,6 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -55,6 +57,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
@@ -63,15 +68,10 @@ import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.XposedZip;
 
-import static android.content.Context.MODE_PRIVATE;
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-import static de.robv.android.xposed.installer.util.XposedZip.Installer;
-import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
-
 public class InstallerFragment extends Fragment
 		implements ActivityCompat.OnRequestPermissionsResultCallback,
 		DownloadsUtil.DownloadFinishedCallback {
-	private static final String JAR_PATH = "/system/framework/XposedBridge.jar";
+	public static final String JAR_PATH = "/system/framework/XposedBridge.jar";
 	private static final int INSTALL_MODE_NORMAL = 0;
 	private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
 	private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
@@ -196,8 +196,7 @@ public class InstallerFragment extends Fragment
 			} else {
 				int installedXposedVersionInt = extractIntPart(
 						installedXposedVersion);
-				if (installedXposedVersionInt == XposedApp
-						.getActiveXposedVersion()) {
+				if (installedXposedVersionInt == XposedApp.getXposedVersion()) {
 					txtInstallError
 							.setText(getString(R.string.installed_lollipop,
 									installedXposedVersion));
@@ -212,10 +211,9 @@ public class InstallerFragment extends Fragment
 				}
 			}
 		} else {
-			boolean backupXposed = new File("/system/bin/app_process.orig")
-					.exists();
-			if (backupXposed) {
-				txtInstallError.setText(R.string.installed_no_lollipop);
+			if (XposedApp.getXposedVersion() != 0) {
+				txtInstallError.setText(getString(R.string.installed_lollipop,
+						XposedApp.getXposedVersion()));
 				txtInstallError.setTextColor(
 						getResources().getColor(R.color.darker_green));
 			} else {
@@ -1018,7 +1016,7 @@ public class InstallerFragment extends Fragment
 						MODE_PRIVATE);
 
 				prefs.edit().putString("changelog_" + newApkVersion,
-                        newApkChangelog).apply();
+						newApkChangelog).apply();
 			} catch (NullPointerException ignored) {
 			}
 

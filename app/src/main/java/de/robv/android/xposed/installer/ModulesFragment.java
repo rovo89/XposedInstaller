@@ -109,7 +109,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		installedXposedVersion = XposedApp.getActiveXposedVersion();
+		installedXposedVersion = XposedApp.getXposedVersion();
 		if (installedXposedVersion <= 0) {
 			View notActiveNote = getActivity().getLayoutInflater().inflate(
 					R.layout.xposed_not_active_note, getListView(), false);
@@ -563,6 +563,11 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				checkbox.setEnabled(false);
 				warningText.setText(getString(
 						R.string.warning_installed_on_external_storage));
+				warningText.setVisibility(View.VISIBLE);
+			} else if (installedXposedVersion == 0) {
+				checkbox.setEnabled(false);
+				warningText
+						.setText(getString(R.string.not_installed_no_lollipop));
 				warningText.setVisibility(View.VISIBLE);
 			} else {
 				checkbox.setEnabled(true);
