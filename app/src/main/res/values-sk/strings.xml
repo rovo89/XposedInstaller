@@ -291,5 +291,9 @@
     <string name="add_bookmark">Pridať záložku</string>
     <string name="remove_bookmark">Odstrániť záložku</string>
     <string name="bookmarks">Záložky</string>
+    <string name="no_bookmark_added">Žiadne záložky</string>
+    <string name="bookmark_added">Záložka pridaná</string>
+    <string name="bookmark_removed">Záložka odstránená</string>
+    <string name="undo">Späť</string>
 
 </resources>
