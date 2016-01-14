@@ -71,7 +71,7 @@ import de.robv.android.xposed.installer.util.XposedZip;
 public class InstallerFragment extends Fragment
 		implements ActivityCompat.OnRequestPermissionsResultCallback,
 		DownloadsUtil.DownloadFinishedCallback {
-	public static final String JAR_PATH = "/system/framework/XposedBridge.jar";
+	private static final String JAR_PATH = "/system/framework/XposedBridge.jar";
 	private static final int INSTALL_MODE_NORMAL = 0;
 	private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
 	private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
@@ -196,7 +196,8 @@ public class InstallerFragment extends Fragment
 			} else {
 				int installedXposedVersionInt = extractIntPart(
 						installedXposedVersion);
-				if (installedXposedVersionInt == XposedApp.getXposedVersion()) {
+				if (installedXposedVersionInt == XposedApp
+						.getActiveXposedVersion()) {
 					txtInstallError
 							.setText(getString(R.string.installed_lollipop,
 									installedXposedVersion));
@@ -211,9 +212,10 @@ public class InstallerFragment extends Fragment
 				}
 			}
 		} else {
-			if (XposedApp.getXposedVersion() != 0) {
-				txtInstallError.setText(getString(R.string.installed_lollipop,
-						XposedApp.getXposedVersion()));
+			boolean backupXposed = new File("/system/bin/app_process.orig")
+					.exists();
+			if (backupXposed) {
+				txtInstallError.setText(R.string.installed_no_lollipop);
 				txtInstallError.setTextColor(
 						getResources().getColor(R.color.darker_green));
 			} else {
@@ -975,13 +977,14 @@ public class InstallerFragment extends Fragment
 				mInstallForbidden.setVisibility(View.VISIBLE);
 			}
 
-			if (!result) {
-				Toast.makeText(getContext(), R.string.loadingError,
-						Toast.LENGTH_LONG).show();
-				return;
-			}
-
 			try {
+
+				if (!result) {
+					Toast.makeText(getContext(), R.string.loadingError,
+							Toast.LENGTH_LONG).show();
+					return;
+				}
+
 				mInstallersChooser
 						.setAdapter(new XposedZip.MyAdapter<>(getContext(),
 								getInstallersBySdk(Build.VERSION.SDK_INT)));
@@ -989,67 +992,78 @@ public class InstallerFragment extends Fragment
 				mUninstallersChooser.setAdapter(
 						new XposedZip.MyAdapter<>(getContext(), uninstallers));
 
-			} catch (NullPointerException ignored) {
-			}
+				if (newApkChangelog != null) {
+					mInfoUpdate.setOnClickListener(new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							new MaterialDialog.Builder(getContext())
+									.title(R.string.changes)
+									.content(Html.fromHtml(newApkChangelog))
+									.positiveText(android.R.string.ok).show();
+						}
+					});
+				} else {
+					mInfoUpdate.setVisibility(View.GONE);
+				}
 
-			if (newApkChangelog != null) {
-				mInfoUpdate.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						new MaterialDialog.Builder(getContext())
-								.title(R.string.changes)
-								.content(Html.fromHtml(newApkChangelog))
-								.positiveText(android.R.string.ok).show();
+				if (newApkVersion == null)
+					return;
+
+				SharedPreferences prefs = null;
+				try {
+					prefs = getContext().getSharedPreferences(
+							getContext().getPackageName() + "_preferences",
+							MODE_PRIVATE);
+				} catch (NullPointerException ignored) {
+				}
+
+				BigInteger a = new BigInteger(XposedApp.THIS_APK_VERSION);
+				BigInteger b = new BigInteger(newApkVersion);
+
+				if (a.compareTo(b) == -1) {
+					mUpdateView.setVisibility(View.VISIBLE);
+					mUpdateButton
+							.setOnClickListener(new View.OnClickListener() {
+								@Override
+								public void onClick(View v) {
+									if (write())
+										return;
+
+									DownloadsUtil.add(getContext(),
+											"XposedInstaller_by_dvdandroid",
+											newApkLink,
+											new DownloadsUtil.DownloadFinishedCallback() {
+										@Override
+										public void onDownloadFinished(
+												Context context,
+												DownloadsUtil.DownloadInfo info) {
+											Intent intent = new Intent(
+													Intent.ACTION_VIEW);
+											intent.setDataAndType(
+													Uri.fromFile(
+															new File(Environment
+																	.getExternalStorageDirectory()
+																	.getAbsolutePath()
+																	+ "/XposedInstaller/XposedInstaller_by_dvdandroid.apk")),
+													DownloadsUtil.MIME_TYPE_APK);
+											intent.setFlags(
+													Intent.FLAG_ACTIVITY_NEW_TASK);
+											context.startActivity(intent);
+										}
+									}, DownloadsUtil.MIME_TYPES.APK, true);
+								}
+							});
+				} else {
+					if (prefs != null) {
+						prefs.edit()
+								.putString(
+										"changelog_"
+												+ XposedApp.THIS_APK_VERSION,
+										newApkChangelog)
+								.apply();
 					}
-				});
-			} else {
-				mInfoUpdate.setVisibility(View.GONE);
-			}
-
-			if (newApkVersion == null)
-				return;
-
-			SharedPreferences prefs = null;
-			try {
-				prefs = getContext().getSharedPreferences(
-						getContext().getPackageName() + "_preferences",
-						MODE_PRIVATE);
-
-				prefs.edit().putString("changelog_" + newApkVersion,
-						newApkChangelog).apply();
+				}
 			} catch (NullPointerException ignored) {
-			}
-
-			BigInteger a = new BigInteger(XposedApp.THIS_APK_VERSION);
-			BigInteger b = new BigInteger(newApkVersion);
-
-			if (a.compareTo(b) == -1) {
-				mUpdateView.setVisibility(View.VISIBLE);
-				mUpdateButton.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						if (write())
-							return;
-
-						DownloadsUtil.add(getContext(),
-								"XposedInstaller_by_dvdandroid", newApkLink,
-								new DownloadsUtil.DownloadFinishedCallback() {
-							@Override
-							public void onDownloadFinished(Context context,
-									DownloadsUtil.DownloadInfo info) {
-								Intent intent = new Intent(Intent.ACTION_VIEW);
-								intent.setDataAndType(
-										Uri.fromFile(new File(Environment
-												.getExternalStorageDirectory()
-												.getAbsolutePath()
-												+ "/XposedInstaller/XposedInstaller_by_dvdandroid.apk")),
-										DownloadsUtil.MIME_TYPE_APK);
-								intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-								context.startActivity(intent);
-							}
-						}, DownloadsUtil.MIME_TYPES.APK, true);
-					}
-				});
 			}
 		}
 	}

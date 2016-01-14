@@ -288,5 +288,11 @@
     <string name="md_presets_label">Presets</string>
     <string name="changelog">Changelog</string>
     <string name="scroll_top">Scroll to top</string>
+    <string name="add_bookmark">Add bookmark</string>
+    <string name="remove_bookmark">Remove bookmark</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="no_bookmark_added">No bookmark added</string>
+    <string name="bookmark_added">Bookmark added</string>
+    <string name="bookmark_removed">Bookmark removed</string>
 
 </resources>

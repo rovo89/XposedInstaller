@@ -3,6 +3,12 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/bookmarks"
+        android:icon="@drawable/ic_bookmark"
+        android:title="@string/bookmarks"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/export"
         android:title="@string/export_"
         app:showAsAction="never">
