@@ -278,5 +278,12 @@
     <string name="changelog">Modifiche</string>
     <string name="md_storage_perm_error">La tua app non ha i permessi di scrittura nella memoria interna</string>
     <string name="scroll_top">Scorri su</string>
+    <string name="no_bookmark_added">Nessun segnalibro aggiunto</string>
+    <string name="remove_bookmark">Rimuovi segnalibro</string>
+    <string name="undo">Annulla</string>
+    <string name="add_bookmark">Aggiungi segnalibro</string>
+    <string name="bookmark_added">Segnalibro aggiunto</string>
+    <string name="bookmark_removed">Segnalibro rimosso</string>
+    <string name="bookmarks">Segnalibri</string>
 
 </resources>
