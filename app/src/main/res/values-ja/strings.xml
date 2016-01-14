@@ -194,7 +194,6 @@
     <string name="about_version_label">アプリバージョン</string>
     <string name="about_source_label">ソースコード</string>
     <string name="about_support_label">サポート:</string>
-    <string name="about_support_warning">このリンクはInstallerとフレームワーク<b>専用</b>です。モジュールの問題は<b>こちらを使わずに</b>モジュールの開発者に連絡してください。</string>
     <string name="about_libraries_label">使用ライブラリ</string>
 
     <!-- DownloadView -->
