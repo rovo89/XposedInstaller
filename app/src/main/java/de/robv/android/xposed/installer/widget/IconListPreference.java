@@ -22,7 +22,6 @@ import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.preference.ListPreference;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,12 +31,14 @@ import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 
+import com.afollestad.materialdialogs.prefs.MaterialListPreference;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import de.robv.android.xposed.installer.R;
 
-public class IconListPreference extends ListPreference {
+public class IconListPreference extends MaterialListPreference {
 
 	private List<Drawable> mEntryDrawables = new ArrayList<>();
 

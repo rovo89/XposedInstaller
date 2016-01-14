@@ -2,10 +2,11 @@ package de.robv.android.xposed.installer.widget;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.ListPreference;
 import android.util.AttributeSet;
 
-public class IntegerListPreference extends ListPreference {
+import com.afollestad.materialdialogs.prefs.MaterialListPreference;
+
+public class IntegerListPreference extends MaterialListPreference {
 	public IntegerListPreference(Context context) {
 		super(context);
 	}

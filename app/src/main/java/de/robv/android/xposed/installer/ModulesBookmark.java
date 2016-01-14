@@ -8,11 +8,14 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -31,8 +34,8 @@ import de.robv.android.xposed.installer.util.UIUtil;
 
 public class ModulesBookmark extends XposedBaseActivity {
 
-	private static Toolbar mToolbar;
 	private static RepoLoader mRepoLoader;
+	private static View container;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +45,10 @@ public class ModulesBookmark extends XposedBaseActivity {
 
 		mRepoLoader = RepoLoader.getInstance();
 
-		mToolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(mToolbar);
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
 
-		mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				finish();
@@ -57,6 +60,8 @@ public class ModulesBookmark extends XposedBaseActivity {
 			ab.setTitle(R.string.bookmarks);
 			ab.setDisplayHomeAsUpEnabled(true);
 		}
+
+		container = findViewById(R.id.container);
 
 		if (savedInstanceState == null) {
 			getSupportFragmentManager().beginTransaction()
@@ -111,6 +116,7 @@ public class ModulesBookmark extends XposedBaseActivity {
 			getListView().setPadding(getDp(8), getDp(8), getDp(8), getDp(8));
 			getListView().setOnItemClickListener(this);
 			getListView().setClipToPadding(false);
+			registerForContextMenu(getListView());
 			setEmptyText(getString(R.string.no_bookmark_added));
 
 			mAdapter = new BookmarkModuleAdapter(getContext());
@@ -161,6 +167,60 @@ public class ModulesBookmark extends XposedBaseActivity {
 		public void onSharedPreferenceChanged(
 				SharedPreferences sharedPreferences, String key) {
 			changed = true;
+		}
+
+		@Override
+		public void onCreateContextMenu(ContextMenu menu, View v,
+				ContextMenu.ContextMenuInfo menuInfo) {
+			Module module = getItemFromContextMenuInfo(menuInfo);
+			if (module == null)
+				return;
+
+			menu.setHeaderTitle(module.name);
+			getActivity().getMenuInflater()
+					.inflate(R.menu.context_menu_modules_bookmark, menu);
+		}
+
+		@Override
+		public boolean onContextItemSelected(MenuItem item) {
+			final Module module = getItemFromContextMenuInfo(
+					item.getMenuInfo());
+			if (module == null)
+				return false;
+
+			final String pkg = module.packageName;
+
+			switch (item.getItemId()) {
+				case R.id.remove:
+					mBookmarksPref.edit().putBoolean(pkg, false).apply();
+
+					Snackbar.make(container, R.string.bookmark_removed,
+							Snackbar.LENGTH_SHORT)
+							.setAction(R.string.undo,
+									new View.OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											mBookmarksPref.edit()
+													.putBoolean(pkg, true)
+													.apply();
+
+											getModules();
+										}
+									})
+							.show();
+
+					getModules();
+			}
+
+			return false;
+		}
+
+		private Module getItemFromContextMenuInfo(
+				ContextMenu.ContextMenuInfo menuInfo) {
+			AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+			int position = info.position - getListView().getHeaderViewsCount();
+			return (position >= 0) ? (Module) getListAdapter().getItem(position)
+					: null;
 		}
 	}
 
