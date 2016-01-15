@@ -107,20 +107,20 @@
     <string name="module_launch">執行界面</string>
     <string name="module_download_updates">下載/更新</string>
     <string name="module_support">支援</string>
-    <string name="module_app_info">應用程式訊息</string>
+    <string name="module_app_info">應用程式資訊</string>
     <string name="module_uninstall">解除安裝</string>
 
     <!-- Download tab -->
     <string name="menuSearch">搜尋</string>
     <string name="menuReload">重新載入</string>
-    <string name="changes">變更：</string>
+    <string name="changes">更新日誌：</string>
     <string name="download_details_page_description">描述</string>
     <string name="download_details_page_versions">版本</string>
     <string name="download_details_page_settings">設定</string>
     <string name="reltype_stable">穩定版</string>
     <string name="reltype_stable_summary">穩定版（低故障率）</string>
     <string name="reltype_beta">測試版</string>
-    <string name="reltype_beta_summary">測試版（預計存在一些問題）</string>
+    <string name="reltype_beta_summary">測試版（預計存在問題）</string>
     <string name="reltype_experimental">實驗版</string>
     <string name="reltype_experimental_summary">實驗版（高故障率）</string>
     <string name="reltype_use_global_summary">使用全域設定</string>
@@ -168,12 +168,12 @@
     <string name="settings_default_view">預設瀏覽</string>
 
     <!-- Support tab -->
-    <string name="support_modules_label">支援模組</string>
+    <string name="support_modules_label">模組支援</string>
     <string name="support_modules_description">於模組清單長按並選取 \"%1$s\"。</string>
     <string name="support_framework_label">框架/Installer 支援</string>
     <string name="support_faq_label">常見/已知問題</string>
     <string name="support_donate_label">贊助</string>
-    <string name="support_donate_description">如果你想對 Xposed 表達感謝，您能在此贊助 rovo89 ：</string>
+    <string name="support_donate_description">若您想對 Xposed 表達感謝，在此贊助 rovo89。</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">無法讀取日誌：</string>
@@ -186,15 +186,15 @@
     <string name="log_is_empty">日誌爲空</string>
 
     <!-- About tab -->
-    <string name="about_developers_label">主要開發者：</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 和 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> 和 <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> 修復錯誤及 Material Design 化</string>
+    <string name="about_developers_label">主要開發者</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 和 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> 和\n <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> 修復錯誤及 Material Design 化</string>
     <string name="about_developers_warning">>請<b>不</b>要直接聯繫我們取得説明，使用下面的連結。</string>
     <string name="about_translator_label">翻譯：</string>
     <string name="translator">Cye3s、 taammanhoi、 TaiXiong</string>
-    <string name="about_version_label">應用程式版本：</string>
-    <string name="about_source_label">原始碼：</string>
+    <string name="about_version_label">應用程式版本</string>
+    <string name="about_source_label">原始碼</string>
     <string name="about_support_label">取得支援：</string>
-    <string name="about_libraries_label">使用的函式庫：</string>
+    <string name="about_libraries_label">使用的函式庫</string>
 
     <!-- DownloadView -->
     <string name="download_view_download">下載</string>
@@ -262,9 +262,9 @@
     <string name="help">幫助</string>
     <string name="helpChoose">
         如何選擇正確的 ZIP 檔案?\n
- 
+
         xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
- 
+
         從何區分：\n
         %%SDK%% 為您 Android SDK 版本\n\n
         %%ARCH%% 為您裝置的CPU架構
@@ -286,5 +286,14 @@
     <string name="md_storage_perm_error">您的應用程式未被授予 READ_EXTERNAL_STORAGE 權限。</string>
     <string name="md_custom_label">自訂</string>
     <string name="md_presets_label">預設</string>
+    <string name="changelog">更新日誌</string>
+    <string name="scroll_top">捲動回到頂端</string>
+    <string name="add_bookmark">新增書籤</string>
+    <string name="remove_bookmark">移除書籤</string>
+    <string name="bookmarks">書籤</string>
+    <string name="no_bookmark_added">無加入書籤</string>
+    <string name="bookmark_added">已加入書籤</string>
+    <string name="bookmark_removed">已移除書籤</string>
+    <string name="undo">還原</string>
 
 </resources>
