@@ -285,5 +285,6 @@
     <string name="bookmark_added">Segnalibro aggiunto</string>
     <string name="bookmark_removed">Segnalibro rimosso</string>
     <string name="bookmarks">Segnalibri</string>
+    <string name="notification_coloration">Colora icona notifica</string>
 
 </resources>
