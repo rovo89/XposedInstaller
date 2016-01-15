@@ -69,6 +69,9 @@ public final class NotificationUtil {
 		if (prefs.getBoolean("heads_up", true) && Build.VERSION.SDK_INT >= 21)
 			builder.setPriority(2);
 
+		if (prefs.getBoolean("colored_notification", false))
+			builder.setColor(XposedApp.getColor(sContext));
+
 		Intent iActivateAndReboot = new Intent(sContext, RebootReceiver.class);
 		iActivateAndReboot.putExtra(RebootReceiver.EXTRA_ACTIVATE_MODULE,
 				packageName);
@@ -113,6 +116,9 @@ public final class NotificationUtil {
 
 		if (prefs.getBoolean("heads_up", true) && Build.VERSION.SDK_INT >= 21)
 			builder.setPriority(2);
+
+		if (prefs.getBoolean("colored_notification", false))
+			builder.setColor(XposedApp.getColor(sContext));
 
 		Intent iSoftReboot = new Intent(sContext, RebootReceiver.class);
 		iSoftReboot.putExtra(RebootReceiver.EXTRA_SOFT_REBOOT, true);
