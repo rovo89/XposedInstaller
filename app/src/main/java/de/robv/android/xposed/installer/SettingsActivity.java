@@ -89,7 +89,7 @@ public class SettingsActivity extends XposedBaseActivity
 
 				String act = ".WelcomeActivity-";
 				String[] iconsValues = new String[] { "dvdandroid", "hjmodi",
-						"rovo", "rovo-old" };
+						"rovo", "rovo-old", "staol" };
 
 				for (String s : iconsValues) {
 					pm.setComponentEnabledSetting(
@@ -100,11 +100,8 @@ public class SettingsActivity extends XposedBaseActivity
 
 				act += iconsValues[Integer.parseInt((String) newValue)];
 
-				int[] icons = new int[] { R.mipmap.ic_launcher,
-						R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo,
-						R.mipmap.ic_launcher_rovo_old };
-
-				int drawable = icons[Integer.parseInt((String) newValue)];
+				int drawable = XposedApp.iconsValues[Integer
+						.parseInt((String) newValue)];
 
 				if (Build.VERSION.SDK_INT >= 21) {
 

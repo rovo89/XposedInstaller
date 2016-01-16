@@ -52,6 +52,9 @@ public class XposedApp extends Application
 			"/system/xposed.prop");
 	public static int WRITE_EXTERNAL_PERMISSION = 69;
 	public static String THIS_APK_VERSION = "1452888000000";
+	public static int[] iconsValues = new int[] { R.mipmap.ic_launcher,
+			R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo,
+			R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol };
 	private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern
 			.compile(".*with Xposed support \\(version (.+)\\).*");
 	private static XposedApp mInstance = null;
@@ -137,10 +140,6 @@ public class XposedApp extends Application
 		int color = (int) value;
 		SharedPreferences prefs = activity.getSharedPreferences(
 				activity.getPackageName() + "_preferences", MODE_PRIVATE);
-
-		int[] iconsValues = new int[] { R.mipmap.ic_launcher,
-				R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo,
-				R.mipmap.ic_launcher_rovo_old };
 
 		int drawable = iconsValues[Integer
 				.parseInt(prefs.getString("custom_icon", "0"))];

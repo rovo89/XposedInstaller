@@ -76,6 +76,7 @@
         <item>hjmodi</item>
         <item>rovo89</item>
         <item>rovo89 (old)</item>
+        <item>staol</item>
     </string-array>
 
     <string-array name="iconsValues" translatable="false">
@@ -83,6 +84,7 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
+        <item>4</item>
     </string-array>
 
     <string-array name="iconsDrawables" translatable="false">
@@ -90,6 +92,7 @@
         <item>ic_launcher_hjmodi</item>
         <item>ic_launcher_rovo</item>
         <item>ic_launcher_rovo_old</item>
+        <item>ic_launcher_staol</item>
     </string-array>
 
 </resources>
