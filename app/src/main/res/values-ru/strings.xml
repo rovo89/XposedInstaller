@@ -2,10 +2,10 @@
 <resources>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> и <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>"
 "<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> и <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> Для исправления багов и Материал дизайна</string>
-    <string name="about_developers_label">Главные разработчики:</string>
+    <string name="about_developers_label">Главные разработчики</string>
     <string name="about_developers_warning">Пожалуйста, <b>НЕ</b> пишите нам для решения вопросов напрямую, используйте ссылку ниже.</string>
-    <string name="about_libraries_label">Используемые библиотеки:</string>
-    <string name="about_source_label">Исходный код:</string>
+    <string name="about_libraries_label">Используемые библиотеки</string>
+    <string name="about_source_label">Исходный код</string>
     <string name="about_support_label">Получить поддержку на:</string>
     <string name="about_translator_label">Переводчики:</string>
     <string name="about_version_label">Версия приложения:</string>
@@ -177,16 +177,8 @@
     <string name="uninstall_reverted">Ранее app_process был удалён, но сейчас обнаружена версия \"%s\". Если Вы не хотели, чтобы был восстановлен старый файл, можете попробовать удаление через режим восстановления (автоматически или вручную).</string>
     <string name="xposed_module_updated_notification">Перезагрузите устройство</string>
     <string name="xposed_module_updated_notification_title">Модуль Xposed обновлен</string>
-    <string name="support_donate_description">Если вы хотите отблагодарить за Xposed, вы можете сделать пожертвование для rovo89 здесь:</string>
-    <string name="support_donate_label">Пожертвовать</string>
-    <string name="support_faq_label">Справка/известные проблемы</string>
-    <string name="support_framework_label">Поддержка Xposed Framework/Installer</string>
-    <string name="support_modules_description">Долгое нажатие на модуле, в меню \"Установленные модули\" и выберите \"%1$s\".</string>
-    <string name="support_modules_label">Поддержка модулей</string>
-    <string name="tabSupport">Поддержка</string>
-    <string name="tabSupportDescription">Найти помощь связанные с Xposed. Вы также отблагодарить и пожертвовать на Xposed.</string>
     <string name="back">Назад</string>
-    <string name="choose_color">Выберите цвет…</string>
+    <string name="choose_color">Изменить цвет \"Панели действий\"</string>
     <string name="choose_icon">Изменить иконку приложения</string>
     <string name="custom_icon">Выбрать иконку</string>
     <string name="downloadUninstaller">Скачать деинсталятор</string>
@@ -194,29 +186,29 @@
     <string name="download_view_size">Размер: %s КБ</string>
     <string name="enable_heads_up">Включить Heads-Up уведомления</string>
     <string name="enable_heads_up_summary">Эта опция включает Heads-Up уведомления для новых/обновленных модулей</string>
-    <string name="export_">Экспорт…</string>
+    <string name="export_">Экспорт модулей</string>
     <string name="export_enabled_modules">Экспорт списка включенных модулей</string>
     <string name="export_installed_modules">Экспорт списка установленных модулей</string>
     <string name="export_modules">Экспорт списка включенных модулей</string>
     <string name="help">Справка</string>
-    <string name="helpChoose">"Как правильно выбрать zip файл?
- xposed-v*-sdk%%SDK%%-%%ARCH%%
+    <string name="helpChoose">"Как правильно выбрать zip файл?\n\n
+ xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
 
- Where:
- %%SDK%% Это версия Android SDK
+ Where:\n
+ %%SDK%% Это версия Android SDK\n\n
 
  %%ARCH%% Это версия архитектуры CPU устройства"</string>
-    <string name="import_">Импорт…</string>
+    <string name="import_">Импорт модулей</string>
     <string name="import_enabled_modules">Импорт списка включенных модулей</string>
     <string name="import_installed_modules">Импорт списка установленных модулей</string>
     <string name="import_modules">Импорт списка включенных модулей</string>
     <string name="info">Информация</string>
-    <string name="infoInstaller">"Имя: %1$s 
-SDK: %2$d 
-Архитектура: %3$s 
+    <string name="infoInstaller">"Имя: %1$s \n
+SDK: %2$d \n
+Архитектура: %3$s \n
 Версия: %4$s"</string>
-    <string name="infoUninstaller">"Имя: %1$s 
-Архитектура: %2$s 
+    <string name="infoUninstaller">"Имя: %1$s \n
+Архитектура: %2$s \n
 Дата: %3$s"</string>
     <string name="installationForbidden">Установка не возможна! Чтобы установить Xposed Framework через это приложение, необходим Android 5 и выше.</string>
     <string name="installation_lollipop">Xposed Framework не установлен. Пожалуйста скачайте последнюю версию на XDA и прошейте вручную через Рекавери.</string>
@@ -225,7 +217,7 @@ SDK: %2$d
     <string name="installed_no_lollipop">Xposed Framework установлен.</string>
     <string name="loadingError">Ошибка загрузки Zip Xposed Frameworks</string>
     <string name="modules_updates_available">Доступны обновления модуля</string>
-    <string name="nav_bar_coloration">Раскрасить панель навигации</string>
+    <string name="nav_bar_coloration">Раскрасить \"Панель навигации\"</string>
     <string name="nav_item_about">О программе!</string>
     <string name="nav_item_download">Поиск модулей</string>
     <string name="nav_item_install">Xposed Framework</string>
@@ -238,22 +230,32 @@ SDK: %2$d
     <string name="no_enabled_modules">Нет включенных модулей</string>
     <string name="no_installed_modules">Установленных модулей нет!</string>
     <string name="not_installed_no_lollipop">Xposed Framework не установлен.</string>
-    <string name="notify_module_update">Включить уведомление об обновлении модуля</string>
+    <string name="notify_module_update">Включить уведомления об обновлении модулей</string>
     <string name="permissionGranted">Доступ к памяти</string>
     <string name="permissionNotGranted">Эта функция не будет работать без разрешения на запись для накопителя.</string>
     <string name="selectFile">Выберите загруженный файл</string>
     <string name="settings_default_view">Вид по умолчанию при запуске</string>
-    <string name="share">Поделиться…</string>
-    <string name="update">Доступно обновление</string>
+    <string name="share">Поделиться</string>
+    <string name="support_donate_description">Если вы хотите отблагодарить за Xposed, вы можете сделать пожертвование для rovo89 здесь:</string>
+    <string name="support_donate_label">Пожертвовать</string>
+    <string name="support_faq_label">Справка/известные проблемы</string>
+    <string name="support_framework_label">Поддержка Xposed Framework/Installer</string>
+    <string name="support_modules_description">Долгое нажатие на модуле, в меню \"Установленные модули\" и выберите \"%1$s\".</string>
+    <string name="support_modules_label">Поддержка модулей</string>
+    <string name="tabSupport">Поддержка</string>
+    <string name="tabSupportDescription">Найти помощь связанные с Xposed. Вы также отблагодарить и пожертвовать на Xposed.</string>
+    <string name="update">Установить обновление</string>
     <string name="view">Смотреть</string>
     <string name="warningArchitecture">"ВЫ ВЫБРАЛИ ПАРВИЛЬНЫЙ ZIP XPOSED АРХИТЕКТУРЫ?
 Не правильный zip установщик может навредить вашему устройству!"</string>
     <string name="warning_forward_locked">Этот модуль не может быть загружен, потому что он заблокирован, пожалуйста свяжитесь с разработчиком.</string>
     <string name="warning_installed_on_external_storage">Этот модуль не может быть загружен, потому что он установлен на SD-карту, переместите его во внутреннюю память.</string>
     <string name="xposedZipNotFound">Не найден Zip, вероятно есть новая версия.</string>
-    <string name="navigation_drawer_close">Закрыть меню приложений</string>
-    <string name="navigation_drawer_open">Открыть меню приложений</string>
-
+    <string name="add_bookmark">Добавить закладку</string>
+    <string name="bookmark_added">Закладка добавлена</string>
+    <string name="bookmark_removed">Закладка удалена</string>
+    <string name="bookmarks">Закладки</string>
+    <string name="changelog">Список изменений</string>
     <string name="md_back_label">Назад</string>
     <string name="md_cancel_label">Отмена</string>
     <string name="md_choose_label">Выбрать</string>
@@ -261,4 +263,10 @@ SDK: %2$d
     <string name="md_done_label">Готово</string>
     <string name="md_error_label">Ошибка</string>
     <string name="md_presets_label">Пресеты</string>
+    <string name="md_storage_perm_error">Для вашего приложения не предоставлены права на чтение READ_EXTERNAL_STORAGE.</string>
+    <string name="no_bookmark_added">Нет добавленных закладок</string>
+    <string name="notification_coloration">Цветная иконка уведомлений</string>
+    <string name="remove_bookmark">Удалить закладку</string>
+    <string name="scroll_top">Прокрутка к началу</string>
+    <string name="undo">Отменить</string>
 </resources>
