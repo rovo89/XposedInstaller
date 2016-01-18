@@ -4,7 +4,6 @@ import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSI
 
 import android.Manifest;
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -12,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -37,6 +37,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -49,19 +51,26 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.text.Collator;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import de.robv.android.xposed.installer.repo.Module;
+import de.robv.android.xposed.installer.repo.ModuleVersion;
+import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoDb.RowNotFoundException;
+import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.NotificationUtil;
+import de.robv.android.xposed.installer.util.RepoLoader;
+import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class ModulesFragment extends ListFragment implements ModuleListener {
@@ -90,6 +99,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			mAdapter.notifyDataSetChanged();
 		}
 	};
+	private RootUtil mRootUtil;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -117,6 +127,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			getListView().addHeaderView(notActiveNote);
 		}
 
+		mRootUtil = new RootUtil();
 		mAdapter = new ModuleAdapter(getActivity());
 		reloadModules.run();
 		setListAdapter(mAdapter);
@@ -290,6 +301,8 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			return false;
 		}
 		InputStream ips = null;
+		RepoLoader repoLoader = RepoLoader.getInstance();
+		List<Module> list = new ArrayList<>();
 		if (!path.exists()) {
 			Toast.makeText(getActivity(), getString(R.string.no_backup_found),
 					Toast.LENGTH_LONG).show();
@@ -301,19 +314,28 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			e.printStackTrace();
 		}
 
+		if (path.length() == 0) {
+			Toast.makeText(getActivity(), R.string.file_is_empty,
+					Toast.LENGTH_LONG).show();
+			return false;
+		}
+
 		try {
 			assert ips != null;
 			InputStreamReader ipsr = new InputStreamReader(ips);
 			BufferedReader br = new BufferedReader(ipsr);
 			String line;
 			while ((line = br.readLine()) != null) {
-				Intent i = new Intent(Intent.ACTION_MAIN);
-				i.addCategory(Intent.CATEGORY_LAUNCHER);
-				i.setComponent(new ComponentName(getActivity(),
-						DownloadDetailsActivity.class));
-				i.putExtra("direct_download", true);
-				i.setData(Uri.parse(String.format(XPOSED_REPO_LINK, line)));
-				startActivity(i);
+				Module m = repoLoader.getModule(line);
+
+				if (m == null) {
+					Toast.makeText(getActivity(),
+							getString(R.string.download_details_not_found,
+									line),
+							Toast.LENGTH_SHORT).show();
+				} else {
+					list.add(m);
+				}
 			}
 			br.close();
 		} catch (ActivityNotFoundException | IOException e) {
@@ -321,7 +343,51 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 					.show();
 		}
 
+		for (Module m : list) {
+			ModuleVersion mv = null;
+			for (int i = 0; i < m.versions.size(); i++) {
+				ModuleVersion mvTemp = m.versions.get(i);
+
+				if (mvTemp.relType == ReleaseType.STABLE) {
+					mv = mvTemp;
+					break;
+				}
+			}
+
+			if (mv != null) {
+				DownloadsUtil.add(getActivity(), m.name, mv.downloadLink,
+						new DownloadsUtil.DownloadFinishedCallback() {
+							@Override
+							public void onDownloadFinished(Context context,
+									DownloadsUtil.DownloadInfo info) {
+								new InstallAPK(info).execute();
+							}
+						}, DownloadsUtil.MIME_TYPES.APK, true, true);
+			}
+		}
+
 		return true;
+	}
+
+	private boolean startShell() {
+		if (mRootUtil.startShell())
+			return true;
+
+		showAlert(getString(R.string.root_failed));
+		return false;
+	}
+
+	private void showAlert(final String result) {
+		MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
+				.content(result).positiveText(android.R.string.ok).build();
+		dialog.show();
+
+		TextView txtMessage = (TextView) dialog
+				.findViewById(android.R.id.message);
+		try {
+			txtMessage.setTextSize(14);
+		} catch (NullPointerException ignored) {
+		}
 	}
 
 	@Override
@@ -579,6 +645,29 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				warningText.setVisibility(View.GONE);
 			}
 			return view;
+		}
+	}
+
+	private class InstallAPK extends AsyncTask<Void, Void, Integer> {
+
+		private final DownloadsUtil.DownloadInfo info;
+
+		public InstallAPK(DownloadsUtil.DownloadInfo info) {
+			this.info = info;
+			startShell();
+		}
+
+		@Override
+		protected Integer doInBackground(Void... params) {
+			return mRootUtil.execute(
+					"pm install -r \"" + info.localFilename + "\"", null);
+		}
+
+		@Override
+		protected void onPostExecute(Integer integer) {
+			super.onPostExecute(integer);
+
+			new File(info.localFilename).delete();
 		}
 	}
 }

@@ -296,5 +296,6 @@
     <string name="bookmark_removed">Bookmark removed</string>
     <string name="undo">Undo</string>
     <string name="notification_coloration">Colorate notification icon</string>
+    <string name="file_is_empty">File is empty</string>
 
 </resources>

@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,6 +37,13 @@ public class DownloadsUtil {
 	public static DownloadInfo add(Context context, String title, String url,
 			DownloadFinishedCallback callback, MIME_TYPES mimeType,
 			boolean save) {
+
+		return add(context, title, url, callback, mimeType, save, false);
+	}
+
+	public static DownloadInfo add(Context context, String title, String url,
+			DownloadFinishedCallback callback, MIME_TYPES mimeType,
+			boolean save, boolean module) {
 		removeAllForUrl(context, url);
 
 		synchronized (mCallbacks) {
@@ -49,11 +57,16 @@ public class DownloadsUtil {
 		request.setMimeType(mimeType.toString());
 		if (save) {
 			String savePath = "XposedInstaller";
+
+			if (module)
+				savePath += "/modules";
+
 			try {
 				request.setDestinationInExternalPublicDir(savePath,
 						title + mimeType.getExtension());
 			} catch (IllegalStateException e) {
-				e.printStackTrace();
+				Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT)
+						.show();
 			}
 		}
 		request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
