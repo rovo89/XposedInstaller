@@ -65,7 +65,7 @@
     </string-array>
 
     <string-array name="module_release_type_values" translatable="false">
-        <item>global</item>
+        <item></item>
         <item>stable</item>
         <item>beta</item>
         <item>experimental</item>
