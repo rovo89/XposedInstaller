@@ -11,7 +11,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -64,6 +63,7 @@ import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoDb.RowNotFoundException;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.InstallApkUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
@@ -360,9 +360,10 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 							@Override
 							public void onDownloadFinished(Context context,
 									DownloadsUtil.DownloadInfo info) {
-								new InstallAPK(info).execute();
+								new InstallApkUtil(getContext(), info)
+										.execute();
 							}
-						}, DownloadsUtil.MIME_TYPES.APK, true, true);
+						}, DownloadsUtil.MIME_TYPES.APK, false);
 			}
 		}
 
@@ -648,26 +649,4 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		}
 	}
 
-	private class InstallAPK extends AsyncTask<Void, Void, Integer> {
-
-		private final DownloadsUtil.DownloadInfo info;
-
-		public InstallAPK(DownloadsUtil.DownloadInfo info) {
-			this.info = info;
-			startShell();
-		}
-
-		@Override
-		protected Integer doInBackground(Void... params) {
-			return mRootUtil.execute(
-					"pm install -r \"" + info.localFilename + "\"", null);
-		}
-
-		@Override
-		protected void onPostExecute(Integer integer) {
-			super.onPostExecute(integer);
-
-			new File(info.localFilename).delete();
-		}
-	}
 }

@@ -97,6 +97,12 @@
             android:summary="@string/settings_disable_resources_summary"
             android:title="@string/settings_disable_resources"/>
 
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="install_with_su"
+            android:summary="@string/install_with_su_summ"
+            android:title="@string/install_with_su"/>
+
         <!--
                 <CheckBoxPreference
                     android:defaultValue="false"

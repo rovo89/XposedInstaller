@@ -297,5 +297,7 @@
     <string name="undo">Undo</string>
     <string name="notification_coloration">Colorate notification icon</string>
     <string name="file_is_empty">File is empty</string>
+    <string name="install_with_su">Install module with root</string>
+    <string name="install_with_su_summ">If checked Xposed Installer will install modules without a prompt</string>
 
 </resources>
