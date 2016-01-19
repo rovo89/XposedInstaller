@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
@@ -89,7 +90,7 @@ public class DownloadView extends LinearLayout {
 	private String mTitle = null;
 	private DownloadFinishedCallback mCallback = null;
 
-	public DownloadView(Context context, AttributeSet attrs) {
+	public DownloadView(Context context, final AttributeSet attrs) {
 		super(context, attrs);
 		setFocusable(false);
 		setOrientation(LinearLayout.VERTICAL);
@@ -105,13 +106,30 @@ public class DownloadView extends LinearLayout {
 		btnDownload.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mInfo = DownloadsUtil.add(getContext(), mTitle, mUrl,
- mCallback,
+				mInfo = DownloadsUtil.add(getContext(), mTitle, mUrl, mCallback,
 						DownloadsUtil.MIME_TYPES.APK, false);
 				refreshViewFromUiThread();
 
 				if (mInfo != null)
 					new DownloadMonitor().start();
+			}
+		});
+
+		btnDownload.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				DownloadsUtil.add(getContext(), mTitle, mUrl,
+						new DownloadFinishedCallback() {
+					@Override
+					public void onDownloadFinished(Context context,
+							DownloadInfo info) {
+						Toast.makeText(context,
+								context.getString(R.string.downloadZipOk,
+										info.localFilename),
+								Toast.LENGTH_SHORT).show();
+					}
+				}, DownloadsUtil.MIME_TYPES.APK, true, true);
+				return true;
 			}
 		});
 
