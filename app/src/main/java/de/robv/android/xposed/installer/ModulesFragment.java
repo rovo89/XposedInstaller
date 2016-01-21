@@ -363,7 +363,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 								new InstallApkUtil(getContext(), info)
 										.execute();
 							}
-						}, DownloadsUtil.MIME_TYPES.APK, false);
+						}, DownloadsUtil.MIME_TYPES.APK);
 			}
 		}
 
