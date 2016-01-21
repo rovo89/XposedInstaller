@@ -107,7 +107,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 		TextView txtChanges;
 	}
 
-	private static class DownloadModuleCallback
+	public static class DownloadModuleCallback
 			implements DownloadsUtil.DownloadFinishedCallback {
 		private final ModuleVersion moduleVersion;
 

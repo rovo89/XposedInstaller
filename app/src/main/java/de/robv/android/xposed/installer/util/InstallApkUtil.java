@@ -40,15 +40,6 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Boolean> {
 		if (enabled) {
 			mRootUtil.execute("pm install -r \"" + info.localFilename + "\"",
 					null);
-		} else {
-			Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-			installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			installIntent.setDataAndType(
-					Uri.fromFile(new File(info.localFilename)),
-					DownloadsUtil.MIME_TYPE_APK);
-			installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME,
-					context.getApplicationInfo().packageName);
-			context.startActivity(installIntent);
 		}
 
 		return false;
@@ -58,7 +49,15 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Boolean> {
 	protected void onPostExecute(Boolean result) {
 		super.onPostExecute(result);
 
-		if (enabled)
-			new File(info.localFilename).delete();
+		if (!enabled) {
+			Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+			installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			installIntent.setDataAndType(
+					Uri.fromFile(new File(info.localFilename)),
+					DownloadsUtil.MIME_TYPE_APK);
+			installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME,
+					context.getApplicationInfo().packageName);
+			context.startActivity(installIntent);
+		}
 	}
 }

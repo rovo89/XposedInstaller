@@ -25,6 +25,9 @@ import java.util.Map;
 
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
+import de.robv.android.xposed.installer.repo.Module;
+import de.robv.android.xposed.installer.repo.ModuleVersion;
+import de.robv.android.xposed.installer.repo.ReleaseType;
 
 public class DownloadsUtil {
 	public static final String MIME_TYPE_APK = "application/vnd.android.package-archive";
@@ -73,6 +76,17 @@ public class DownloadsUtil {
 		long id = dm.enqueue(request);
 
 		return getById(context, id);
+	}
+
+	public static ModuleVersion getStableVersion(Module m) {
+		for (int i = 0; i < m.versions.size(); i++) {
+			ModuleVersion mvTemp = m.versions.get(i);
+
+			if (mvTemp.relType == ReleaseType.STABLE) {
+				return mvTemp;
+			}
+		}
+		return null;
 	}
 
 	public static DownloadInfo getById(Context context, long id) {

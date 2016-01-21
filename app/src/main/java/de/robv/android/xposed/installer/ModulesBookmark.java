@@ -28,6 +28,9 @@ import java.util.Comparator;
 import java.util.List;
 
 import de.robv.android.xposed.installer.repo.Module;
+import de.robv.android.xposed.installer.repo.ModuleVersion;
+import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.InstallApkUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UIUtil;
@@ -191,28 +194,76 @@ public class ModulesBookmark extends XposedBaseActivity {
 			final String pkg = module.packageName;
 
 			switch (item.getItemId()) {
+				case R.id.install_bookmark:
+					getDownloadInfo(module,
+							new DownloadsUtil.DownloadFinishedCallback() {
+								@Override
+								public void onDownloadFinished(Context context,
+										DownloadsUtil.DownloadInfo info) {
+									new InstallApkUtil(getContext(), info)
+											.execute();
+								}
+							});
+					break;
+				case R.id.install_remove_bookmark:
+					getDownloadInfo(module,
+							new DownloadsUtil.DownloadFinishedCallback() {
+								@Override
+								public void onDownloadFinished(Context context,
+										DownloadsUtil.DownloadInfo info) {
+									new InstallApkUtil(getContext(), info)
+											.execute();
+									remove(pkg);
+								}
+							});
+					break;
+				case R.id.download_bookmark:
+					getDownloadInfo(module, null);
+					break;
+				case R.id.download_remove_bookmark:
+					getDownloadInfo(module,
+							new DownloadsUtil.DownloadFinishedCallback() {
+								@Override
+								public void onDownloadFinished(Context context,
+										DownloadsUtil.DownloadInfo info) {
+									remove(pkg);
+								}
+							});
+					break;
 				case R.id.remove:
-					mBookmarksPref.edit().putBoolean(pkg, false).apply();
-
-					Snackbar.make(container, R.string.bookmark_removed,
-							Snackbar.LENGTH_SHORT)
-							.setAction(R.string.undo,
-									new View.OnClickListener() {
-										@Override
-										public void onClick(View v) {
-											mBookmarksPref.edit()
-													.putBoolean(pkg, true)
-													.apply();
-
-											getModules();
-										}
-									})
-							.show();
-
-					getModules();
+					remove(pkg);
+					break;
 			}
 
 			return false;
+		}
+
+		private DownloadsUtil.DownloadInfo getDownloadInfo(Module module,
+				DownloadsUtil.DownloadFinishedCallback callback) {
+			ModuleVersion mv = DownloadsUtil.getStableVersion(module);
+
+			if (mv == null)
+				return null;
+
+			return DownloadsUtil.add(getContext(), module.name, mv.downloadLink,
+					callback, DownloadsUtil.MIME_TYPES.APK, false);
+		}
+
+		private void remove(final String pkg) {
+			mBookmarksPref.edit().putBoolean(pkg, false).apply();
+
+			Snackbar.make(container, R.string.bookmark_removed,
+					Snackbar.LENGTH_SHORT)
+					.setAction(R.string.undo, new View.OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							mBookmarksPref.edit().putBoolean(pkg, true).apply();
+
+							getModules();
+						}
+					}).show();
+
+			getModules();
 		}
 
 		private Module getItemFromContextMenuInfo(
