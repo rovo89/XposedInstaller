@@ -1,19 +1,13 @@
 package de.robv.android.xposed.installer.util;
 
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-
-import android.Manifest;
-import android.app.Activity;
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
 import android.app.DownloadManager.Request;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 
 import java.io.File;
@@ -71,15 +65,6 @@ public class DownloadsUtil {
 		request.setTitle(title);
 		request.setMimeType(mimeType.toString());
 		if (save) {
-			if (ActivityCompat.checkSelfPermission(context,
-					Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-				ActivityCompat.requestPermissions((Activity) context,
-						new String[] {
-								Manifest.permission.WRITE_EXTERNAL_STORAGE },
-						WRITE_EXTERNAL_PERMISSION);
-				return null;
-			}
-
 			String savePath = "XposedInstaller";
 
 			if (module)

@@ -1,5 +1,7 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -31,8 +33,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
-
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class LogsFragment extends Fragment {
 
@@ -152,8 +152,7 @@ public class LogsFragment extends Fragment {
 				grantResults);
 		if (requestCode == WRITE_EXTERNAL_PERMISSION) {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				Toast.makeText(getActivity(), R.string.permissionGranted,
-						Toast.LENGTH_LONG).show();
+				save();
 			} else {
 				Toast.makeText(getActivity(), R.string.permissionNotGranted,
 						Toast.LENGTH_LONG).show();
@@ -165,7 +164,7 @@ public class LogsFragment extends Fragment {
 	private void save() {
 		if (ActivityCompat.checkSelfPermission(getActivity(),
 				Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-			ActivityCompat.requestPermissions(getActivity(),
+			requestPermissions(
 					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
 					WRITE_EXTERNAL_PERMISSION);
 			return;

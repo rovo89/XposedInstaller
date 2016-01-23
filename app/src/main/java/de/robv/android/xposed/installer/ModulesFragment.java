@@ -13,6 +13,7 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ListFragment;
@@ -100,6 +101,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		}
 	};
 	private RootUtil mRootUtil;
+	private MenuItem mClickedMenuItem = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -167,8 +169,14 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				grantResults);
 		if (requestCode == WRITE_EXTERNAL_PERMISSION) {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				Toast.makeText(getActivity(), R.string.permissionGranted,
-						Toast.LENGTH_LONG).show();
+				if (mClickedMenuItem != null) {
+					new Handler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							onOptionsItemSelected(mClickedMenuItem);
+						}
+					}, 500);
+				}
 			} else {
 				Toast.makeText(getActivity(), R.string.permissionNotGranted,
 						Toast.LENGTH_LONG).show();
@@ -192,20 +200,15 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		File targetDir = new File(backupPath);
 		File listModules = new File(XposedApp.ENABLED_MODULES_LIST_FILE);
 
-		if (ActivityCompat.checkSelfPermission(getActivity(),
-				Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-			ActivityCompat.requestPermissions(getActivity(),
-					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
-					WRITE_EXTERNAL_PERMISSION);
+		mClickedMenuItem = item;
+
+		if (checkPermissions())
 			return false;
-		}
 
 		switch (item.getItemId()) {
 			case R.id.export_enabled_modules:
 				if (!Environment.getExternalStorageState()
 						.equals(Environment.MEDIA_MOUNTED)) {
-					Toast.makeText(getActivity(), R.string.sdcard_not_writable,
-							Toast.LENGTH_LONG).show();
 					return false;
 				}
 
@@ -291,6 +294,17 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				return importModules(enabledModulesPath);
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private boolean checkPermissions() {
+		if (ActivityCompat.checkSelfPermission(getActivity(),
+				Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+			requestPermissions(
+					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
+					WRITE_EXTERNAL_PERMISSION);
+			return true;
+		}
+		return false;
 	}
 
 	private boolean importModules(File path) {

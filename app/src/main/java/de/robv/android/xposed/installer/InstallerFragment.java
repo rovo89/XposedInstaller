@@ -18,6 +18,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Looper;
 import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
@@ -69,8 +70,7 @@ import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.XposedZip;
 
 public class InstallerFragment extends Fragment
-		implements ActivityCompat.OnRequestPermissionsResultCallback,
-		DownloadsUtil.DownloadFinishedCallback {
+		implements DownloadsUtil.DownloadFinishedCallback {
 	public static final String JAR_PATH = "/system/framework/XposedBridge.jar";
 	private static final int INSTALL_MODE_NORMAL = 0;
 	private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
@@ -98,6 +98,7 @@ public class InstallerFragment extends Fragment
 	private Button mUpdateButton;
 	private TextView mInstallForbidden;
 	private ImageView mInfoUpdate;
+	private Button mClickedButton;
 
 	private static int extractIntPart(String str) {
 		int result = 0, length = str.length();
@@ -282,7 +283,8 @@ public class InstallerFragment extends Fragment
 		btnInstall.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (write())
+				mClickedButton = btnInstall;
+				if (checkPermissions())
 					return;
 
 				areYouSure(R.string.warningArchitecture,
@@ -305,8 +307,10 @@ public class InstallerFragment extends Fragment
 		btnUninstall.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (write())
+				mClickedButton = btnUninstall;
+				if (checkPermissions())
 					return;
+
 				areYouSure(R.string.warningArchitecture,
 						new MaterialDialog.ButtonCallback() {
 					@Override
@@ -421,33 +425,35 @@ public class InstallerFragment extends Fragment
 	@Override
 	public void onRequestPermissionsResult(int requestCode,
 			@NonNull String[] permissions, @NonNull int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions,
+				grantResults);
 		if (requestCode == WRITE_EXTERNAL_PERMISSION) {
 			if (grantResults.length == 1
 					&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				Toast.makeText(getActivity(), R.string.permissionGranted,
-						Toast.LENGTH_LONG).show();
+				if (mClickedButton != null) {
+					new Handler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							mClickedButton.performClick();
+						}
+					}, 500);
+				}
 			} else {
 				Toast.makeText(getActivity(), R.string.permissionNotGranted,
 						Toast.LENGTH_LONG).show();
 			}
-		} else {
-			super.onRequestPermissionsResult(requestCode, permissions,
-					grantResults);
 		}
 	}
 
-	private boolean write() {
-		if (ActivityCompat.checkSelfPermission(getContext(),
+	private boolean checkPermissions() {
+		if (ActivityCompat.checkSelfPermission(getActivity(),
 				Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-			ActivityCompat.requestPermissions(getActivity(),
+			requestPermissions(
 					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
 					WRITE_EXTERNAL_PERMISSION);
-
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	@Override
@@ -1027,7 +1033,8 @@ public class InstallerFragment extends Fragment
 							.setOnClickListener(new View.OnClickListener() {
 								@Override
 								public void onClick(View v) {
-									if (write())
+									mClickedButton = mUpdateButton;
+									if (checkPermissions())
 										return;
 
 									DownloadsUtil.add(getContext(),

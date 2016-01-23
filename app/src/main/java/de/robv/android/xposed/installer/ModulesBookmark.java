@@ -1,14 +1,20 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -82,6 +88,7 @@ public class ModulesBookmark extends XposedBaseActivity {
 		private BookmarkModuleAdapter mAdapter;
 		private SharedPreferences mBookmarksPref;
 		private boolean changed;
+		private MenuItem mClickedMenuItem = null;
 
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
@@ -198,6 +205,8 @@ public class ModulesBookmark extends XposedBaseActivity {
 			if (mv == null)
 				return false;
 
+			mClickedMenuItem = item;
+
 			switch (item.getItemId()) {
 				case R.id.install_bookmark:
 					DownloadsUtil.add(getContext(), module.name,
@@ -225,6 +234,9 @@ public class ModulesBookmark extends XposedBaseActivity {
 							}, DownloadsUtil.MIME_TYPES.APK);
 					break;
 				case R.id.download_bookmark:
+					if (checkPermissions())
+						return false;
+
 					DownloadsUtil.add(getContext(), module.name,
 							mv.downloadLink,
 							new DownloadsUtil.DownloadFinishedCallback() {
@@ -239,6 +251,9 @@ public class ModulesBookmark extends XposedBaseActivity {
 							}, DownloadsUtil.MIME_TYPES.APK, true, true);
 					break;
 				case R.id.download_remove_bookmark:
+					if (checkPermissions())
+						return false;
+
 					DownloadsUtil.add(getContext(), module.name,
 							mv.downloadLink,
 							new DownloadsUtil.DownloadFinishedCallback() {
@@ -259,6 +274,41 @@ public class ModulesBookmark extends XposedBaseActivity {
 			}
 
 			return false;
+		}
+
+		private boolean checkPermissions() {
+			if (ActivityCompat.checkSelfPermission(getActivity(),
+					Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+				requestPermissions(
+						new String[] {
+								Manifest.permission.WRITE_EXTERNAL_STORAGE },
+						WRITE_EXTERNAL_PERMISSION);
+				return true;
+			}
+			return false;
+		}
+
+		@Override
+		public void onRequestPermissionsResult(int requestCode,
+				@NonNull String[] permissions, @NonNull int[] grantResults) {
+			super.onRequestPermissionsResult(requestCode, permissions,
+					grantResults);
+			if (requestCode == WRITE_EXTERNAL_PERMISSION) {
+				if (grantResults.length == 1
+						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+					if (mClickedMenuItem != null) {
+						new Handler().postDelayed(new Runnable() {
+							@Override
+							public void run() {
+								onContextItemSelected(mClickedMenuItem);
+							}
+						}, 500);
+					}
+				} else {
+					Toast.makeText(getActivity(), R.string.permissionNotGranted,
+							Toast.LENGTH_LONG).show();
+				}
+			}
 		}
 
 		private void remove(final String pkg) {

@@ -1,5 +1,7 @@
 package de.robv.android.xposed.installer;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -36,6 +38,7 @@ import de.robv.android.xposed.installer.widget.DownloadView;
 public class DownloadDetailsVersionsFragment extends ListFragment {
 	private static VersionsAdapter sAdapter;
 	private DownloadDetailsActivity mActivity;
+	private Module module;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -47,7 +50,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 
-		final Module module = mActivity.getModule();
+		module = mActivity.getModule();
 		if (module == null)
 			return;
 
@@ -95,6 +98,35 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 	public void onDestroyView() {
 		super.onDestroyView();
 		setListAdapter(null);
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode,
+			String[] permissions, int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions,
+				grantResults);
+		if (requestCode == WRITE_EXTERNAL_PERMISSION) {
+			if (grantResults.length == 1
+					&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+				DownloadsUtil.add(getContext(), module.name,
+						DownloadView.mClickedUrl,
+						new DownloadsUtil.DownloadFinishedCallback() {
+							@Override
+							public void onDownloadFinished(Context context,
+									DownloadsUtil.DownloadInfo info) {
+								Toast.makeText(context,
+										context.getString(R.string.module_saved,
+												info.localFilename),
+										Toast.LENGTH_SHORT).show();
+							}
+						}, DownloadsUtil.MIME_TYPES.APK, true, true);
+
+			} else {
+				Toast.makeText(this.getContext(), R.string.permissionNotGranted,
+						Toast.LENGTH_LONG).show();
+			}
+		}
 	}
 
 	static class ViewHolder {
@@ -223,6 +255,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 						.findViewById(R.id.txtChangesTitle);
 				viewHolder.txtChanges = (TextView) view
 						.findViewById(R.id.txtChanges);
+				viewHolder.downloadView.fragment = DownloadDetailsVersionsFragment.this;
 				view.setTag(viewHolder);
 			}
 

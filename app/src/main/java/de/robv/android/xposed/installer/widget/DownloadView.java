@@ -1,7 +1,13 @@
 package de.robv.android.xposed.installer.widget;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+
+import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +23,13 @@ import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadFinishedCallb
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;
 
 public class DownloadView extends LinearLayout {
+	public static String mClickedUrl;
 	private final Button btnDownload;
 	private final Button btnDownloadCancel;
 	private final Button btnInstall;
 	private final ProgressBar progressBar;
 	private final TextView txtInfo;
+	public Fragment fragment;
 	private DownloadInfo mInfo = null;
 	private String mUrl = null;
 	private final Runnable refreshViewRunnable = new Runnable() {
@@ -118,13 +126,18 @@ public class DownloadView extends LinearLayout {
 		btnDownload.setOnLongClickListener(new OnLongClickListener() {
 			@Override
 			public boolean onLongClick(View v) {
+				mClickedUrl = mUrl;
+
+				if (checkPermissions())
+					return false;
+
 				DownloadsUtil.add(getContext(), mTitle, mUrl,
 						new DownloadFinishedCallback() {
 					@Override
 					public void onDownloadFinished(Context context,
 							DownloadInfo info) {
 						Toast.makeText(context,
-								context.getString(R.string.downloadZipOk,
+								context.getString(R.string.module_saved,
 										info.localFilename),
 								Toast.LENGTH_SHORT).show();
 					}
@@ -158,6 +171,17 @@ public class DownloadView extends LinearLayout {
 		txtInfo = (TextView) findViewById(R.id.txtInfo);
 
 		refreshViewFromUiThread();
+	}
+
+	private boolean checkPermissions() {
+		if (ActivityCompat.checkSelfPermission(this.getContext(),
+				Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+			fragment.requestPermissions(
+					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
+					WRITE_EXTERNAL_PERMISSION);
+			return true;
+		}
+		return false;
 	}
 
 	private void refreshViewFromUiThread() {
