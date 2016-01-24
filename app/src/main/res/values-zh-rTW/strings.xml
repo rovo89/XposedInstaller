@@ -18,13 +18,13 @@
     <string name="welcome_update_available">一個或多個模組有更新可用。</string>
     <string name="tabSettings">設定</string>
     <string name="tabSettingsDescription">此處可設定 Xposed Installer 和框架。</string>
-    <string name="tabSupport">支援</string>
+	<string name="tabSupport">支援</string>
     <string name="tabSupportDescription">幫忙找到 Xposed 的相關問題，您也可以贊助 Xposed 作者來表達您的謝意。</string>
     <string name="tabLogs">日誌</string>
     <string name="tabLogsDescription">顯示並儲存/傳送 Xposed 框架産生的日誌。</string>
     <string name="tabAbout">關於</string>
     <string name="tabAboutDescription">了解 Xposed 作者，如何取得幫助、支援…等。</string>
-
+	
     <!-- navigation view items -->
     <string name="nav_item_install">框架</string>
     <string name="nav_item_modules">模組</string>
@@ -35,7 +35,7 @@
     <string name="nav_item_about">關於</string>
     <string name="navigation_drawer_open">開啟抽屜式導航欄</string>
     <string name="navigation_drawer_close">關閉抽屜式導航欄</string>
-
+	
     <!-- Installer tab -->
     <string name="install">安裝/更新</string>
     <string name="uninstall">移除</string>
@@ -65,7 +65,7 @@
     <string name="installed_lollipop">Xposed 框架 %s 版已啟用。</string>
     <string name="installed_lollipop_inactive">Xposed 框架 %s 版已安裝，但尚未啟用。 請查看日誌以了解細節。</string>
     <string name="modules_updates_available">模組可供更新</string>
-
+	
     <!-- File operations -->
     <string name="root_failed">無法取得 root 權限。\n\n請確認您的裝置已正確的 root 以及您沒有阻擋 shell 指令。</string>
     <string name="file_extract_failed">無法解壓縮 %s</string>
@@ -288,12 +288,19 @@
     <string name="md_presets_label">預設</string>
     <string name="changelog">更新日誌</string>
     <string name="scroll_top">捲動回到頂端</string>
-    <string name="add_bookmark">新增書籤</string>
+	<string name="add_bookmark">新增書籤</string>
     <string name="remove_bookmark">移除書籤</string>
     <string name="bookmarks">書籤</string>
     <string name="no_bookmark_added">無加入書籤</string>
     <string name="bookmark_added">已加入書籤</string>
     <string name="bookmark_removed">已移除書籤</string>
     <string name="undo">還原</string>
-
+	<string name="notification_coloration">通知圖示著色</string>
+	<string name="file_is_empty">檔案為空</string>
+    <string name="install_with_su">Root 下安裝模組</string>
+    <string name="install_with_su_summ">若勾選則 Xposed Installer 在安裝模組時將不會提示</string>
+    <string name="install_remove">安裝和移除</string>
+    <string name="download_remove">下載和移除</string>
+    <string name="module_saved">儲存模組於 %1$s</string>
+	
 </resources>
