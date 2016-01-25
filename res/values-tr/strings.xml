@@ -32,16 +32,16 @@
     <string name="install_header_reboot">Yeniden Başlat</string>
     <string name="soft_reboot">Hızlı yeniden başlat</string>
     <string name="reboot">Yeniden Başlat</string>
-    <string name="areyousure">Eminmisiniz?</string>
-    <string name="phone_not_compatible">Xposed şu an (yet)bu Android SDK versiyonu %1$d ve işlemci mimarisi (%2$s) ile uyumlu değil.</string>
+    <string name="areyousure">Emin misiniz?</string>
+    <string name="phone_not_compatible">Xposed henüz bu Android SDK versiyonu veya telefon rom'u %1$d ve işlemci mimarisi (%2$s) ile uyumlu değil.</string>
     <string name="not_tested_but_compatible">Xposed Framework bu Android sürümü ile %d, test edilmemiştir ama uyumlu görünüyor. Macerayı seviyorsanız bunu yüklemeyi deneyebilirsiniz..</string>
-    <string name="reboot_failed">Y.Başlatma hatası. Lütfen telefonu normal olarak yeniden başlatın.</string>
-    <string name="auto_flash_note">%s işlemi otomatik olarak yapmak istiyorsanız "TAMAM" tuşuna basın.</string>
+    <string name="reboot_failed">Yeniden başlatma hatası. Lütfen telefonu normal olarak yeniden başlatın.</string>
+    <string name="auto_flash_note">%s İşlemi otomatik olarak yapmak istiyorsanız "TAMAM" tuşuna basın.</string>
     <string name="manual_flash_note">İşlemi tamamlamak için lütfen %s SD karttan yükleyin.</string>
     <string name="reboot_confirmation">Telefonu yeniden başlatmak istiyormusunuz?</string>
     <string name="reboot_recovery_confirmation">Telefonu recovery modda yeniden başlatmak istiyormusunuz?</string>
     <string name="install_warning_title">Dikkatli olun!</string>
-    <string name="install_warning">Bazı durumlarda Xposed yüklendikten sonra telefonunuz soft brick olabilir\n\nEğer \"soft brick\" veya \"bootloop\" gibi terimleri duymadıysanız\veya bunlar hakkında bilginiz yoksa Xposedi <b>YÜKLEMEYİN</b> Ya da yüklemeden önce\n\nMutlaka telefonunuzu yedekleyin.</string>
+    <string name="install_warning">Bazı durumlarda Xposed yüklendikten sonra telefonunuz soft brick olabilir\n\nEğer \"soft brick\" veya \"bootloop\" gibi terimleri duymadıysanız\veya bunlar hakkında bilginiz yoksa Xposed'i <b>YÜKLEMEYİN</b> Ya da yüklemeden önce\n\nMutlaka telefonunuzu yedekleyin.</string>
     <string name="dont_show_again">Bunu bir daha gösterme</string>
     <string name="install_known_issue">Kullandığınız rom sürümü ile (\"%s\") Bilinen bir uyumsuzluk sorunu var gibi görünüyor. Muhtemelen Xposed yüklemeniz gerekir. Daha fazla bilgi için buraya tıklayın.</string>
     <string name="install_reverted">app_process versiyonu \"%1$s\" sisteme yüklenmiş.Ancak \"%2$s\" bulundu. Eğer eski dosyayı kurtarmak veya geri yüklemek istiyorsanız, recovery menüden(otomatik yada or manuel)denemyebilirsiniz.</string>
@@ -156,7 +156,7 @@
     <string name="log_too_large">Log dosyası büyük %1$,d kB, atlanır %2$,d kB büyük dosyalar.</string>
     <string name="menuClearLog">Kayıtları şimdi sil</string>
     <string name="logs_cleared">Log kayıtları başarı ile silindi</string>
-    <string name="logs_clear_failed">Log kayıtları silinemesi:</string>
+    <string name="logs_clear_failed">Log kayıtları silinemedi</string>
     <string name="log_is_empty">Log kaydı boş</string>
 
     <!-- About tab -->
@@ -164,7 +164,7 @@
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Lütfen bizimle <b>direkt</b> olarak iletişim yerine aşağıdaki linki kullanın.</string>
     <string name="about_translator_label">Çevirmen:</string>
-    <string name="translator">TheNorth</string>
+    <string name="translator">TheNorth, JustNaggy</string>
     <string name="about_version_label">Uygulama sürümü:</string>
     <string name="about_source_label">Kaynak kodu:</string>
     <string name="about_support_label">Destek almak için:</string>
