@@ -372,6 +372,16 @@ public class InstallerFragment extends Fragment
 							}
 						});
 				break;
+			case R.id.reboot_recovery:
+				areYouSure(R.string.reboot_recovery,
+						new MaterialDialog.ButtonCallback() {
+							@Override
+							public void onPositive(MaterialDialog dialog) {
+								super.onPositive(dialog);
+								reboot("recovery");
+							}
+						});
+				break;
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -545,10 +555,10 @@ public class InstallerFragment extends Fragment
 		refreshKnownIssue();
 	}
 
-	private void areYouSure(int messageTextId,
+	private void areYouSure(int contentTextId,
 			MaterialDialog.ButtonCallback yesHandler) {
-		new MaterialDialog.Builder(getActivity()).title(messageTextId)
-				.content(R.string.areyousure)
+		new MaterialDialog.Builder(getActivity()).title(R.string.areyousure)
+				.content(contentTextId)
 				.iconAttr(android.R.attr.alertDialogIcon)
 				.positiveText(android.R.string.yes)
 				.negativeText(android.R.string.no).callback(yesHandler).show();

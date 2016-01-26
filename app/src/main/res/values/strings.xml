@@ -304,5 +304,6 @@
     <string name="module_saved">Module saved at %1$s</string>
     <string name="ignore_updates">Ignore update</string>
     <string name="ignore_updates_summ">Ignore updates for a specific module.</string>
+    <string name="reboot_recovery">Reboot to recovery</string>
 
 </resources>
