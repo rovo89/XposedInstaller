@@ -51,6 +51,7 @@ public class DownloadFragment extends Fragment
 	private ModuleUtil mModuleUtil;
 	private int mSortingOrder;
 	private SearchView mSearchView;
+	private StickyListHeadersListView mListView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -62,8 +63,7 @@ public class DownloadFragment extends Fragment
 		mAdapter.setFilterQueryProvider(new FilterQueryProvider() {
 			@Override
 			public Cursor runQuery(CharSequence constraint) {
-					return RepoDb.queryModuleOverview(mSortingOrder,
-							constraint);
+				return RepoDb.queryModuleOverview(mSortingOrder, constraint);
 			}
 		});
 		mSortingOrder = mPref.getInt("download_sorting_order",
@@ -77,10 +77,19 @@ public class DownloadFragment extends Fragment
 	}
 
 	@Override
+	public void onResume() {
+		super.onResume();
+
+		if (mAdapter != null && mListView != null) {
+			mListView.setAdapter(mAdapter);
+		}
+	}
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.tab_downloader, container, false);
-		StickyListHeadersListView lv = (StickyListHeadersListView) v
+		mListView = (StickyListHeadersListView) v
 				.findViewById(R.id.listModules);
 		final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v
 				.findViewById(R.id.swiperefreshlayout);
@@ -95,9 +104,9 @@ public class DownloadFragment extends Fragment
 				});
 		mRepoLoader.addListener(this, true);
 		mModuleUtil.addListener(this);
-		lv.setAdapter(mAdapter);
+		mListView.setAdapter(mAdapter);
 
-		lv.setOnItemClickListener(new OnItemClickListener() {
+		mListView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
@@ -114,7 +123,7 @@ public class DownloadFragment extends Fragment
 				NavUtil.setTransitionSlideEnter(getActivity());
 			}
 		});
-		lv.setOnKeyListener(new View.OnKeyListener() {
+		mListView.setOnKeyListener(new View.OnKeyListener() {
 			@Override
 			public boolean onKey(View v, int keyCode, KeyEvent event) {
 				// Expand the search view when the SEARCH key is triggered
@@ -240,6 +249,7 @@ public class DownloadFragment extends Fragment
 		private final DateFormat mDateFormatter = DateFormat
 				.getDateInstance(DateFormat.SHORT);
 		private final LayoutInflater mInflater;
+		private final SharedPreferences mPrefs;
 		private String[] sectionHeadersStatus;
 		private String[] sectionHeadersDate;
 
@@ -248,6 +258,8 @@ public class DownloadFragment extends Fragment
 			mContext = context;
 			mInflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			mPrefs = context.getSharedPreferences("update_ignored",
+					Context.MODE_PRIVATE);
 
 			Resources res = context.getResources();
 			sectionHeadersStatus = new String[] {
@@ -289,8 +301,16 @@ public class DownloadFragment extends Fragment
 					.getInt(OverviewColumnsIndexes.IS_FRAMEWORK) > 0;
 			boolean isInstalled = cursor
 					.getInt(OverviewColumnsIndexes.IS_INSTALLED) > 0;
+			boolean updateIgnored = mPrefs.getBoolean(
+					cursor.getString(OverviewColumnsIndexes.PKGNAME), false);
+			boolean updateIgnorePreference = XposedApp.getPreferences()
+					.getBoolean("ignore_updates", false);
 			boolean hasUpdate = cursor
 					.getInt(OverviewColumnsIndexes.HAS_UPDATE) > 0;
+
+			if (hasUpdate && updateIgnored && updateIgnorePreference) {
+				hasUpdate = false;
+			}
 
 			if (mSortingOrder != RepoDb.SORT_STATUS) {
 				long timestamp = (mSortingOrder == RepoDb.SORT_UPDATED)
@@ -335,8 +355,16 @@ public class DownloadFragment extends Fragment
 			long updated = cursor.getLong(OverviewColumnsIndexes.UPDATED);
 			boolean isInstalled = cursor
 					.getInt(OverviewColumnsIndexes.IS_INSTALLED) > 0;
+			boolean updateIgnored = mPrefs.getBoolean(
+					cursor.getString(OverviewColumnsIndexes.PKGNAME), false);
+			boolean updateIgnorePreference = XposedApp.getPreferences()
+					.getBoolean("ignore_updates", false);
 			boolean hasUpdate = cursor
 					.getInt(OverviewColumnsIndexes.HAS_UPDATE) > 0;
+
+			if (hasUpdate && updateIgnored && updateIgnorePreference) {
+				hasUpdate = false;
+			}
 
 			TextView txtTitle = (TextView) view
 					.findViewById(android.R.id.text1);
