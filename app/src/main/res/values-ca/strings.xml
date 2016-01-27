@@ -17,13 +17,13 @@
     <string name="welcome_framework_update_available">Hi ha una actualització per al marc Xposed (%s).</string>
     <string name="welcome_update_available">Hi ha una o més actualitzacions per als mòduls.</string>
     <string name="tabSettings">Configuració</string>
-    <string name="tabSettingsDescription">Aneu a aquesta secció per configurar l\'Xposed Installer i el marc.</string>
+    <string name="tabSettingsDescription">Aneu a aquesta secció per configurar l\'Instal·lador Xposed i el marc.</string>
     <string name="tabSupport">Ajuda</string>
     <string name="tabSupportDescription">Cerqueu ajuda d\'aspectes relacionats amb l\'Xposed. També podeu fer donacions i donar les gràcies per l\'Xposed.</string>
     <string name="tabLogs">Registres</string>
     <string name="tabLogsDescription">Mostra i desa/envia els registres del marc Xposed.</string>
     <string name="tabAbout">Quant a</string>
-    <string name="tabAboutDescription">Informeu-vos de la gent que ha creat l'Xposed, d'on aconseguir ajuda per a aquesta app...</string>
+    <string name="tabAboutDescription">Informeu-vos de la gent que ha creat l\'Xposed, d'on aconseguir ajuda per a aquesta app...</string>
 
     <!-- navigation view items -->
     <string name="nav_item_install">Marc</string>
@@ -46,11 +46,11 @@
     <string name="soft_reboot">Reinici ràpid</string>
     <string name="reboot">Reinicia</string>
     <string name="areyousure">N\'esteu segur?</string>
-    <string name="phone_not_compatible">L'Xposed (encara) no és compatible amb Android SDK versió %1$d o l'arquitectura del processador (%2$s).</string>
-    <string name="not_tested_but_compatible">L'Xposed no s'ha provat amb Android SDK versió %d, peró sembla compatible. Podeu provar d'instal·lar-lo si voleu córrer el risc.</string>
+    <string name="phone_not_compatible">L\'Xposed (encara) no és compatible amb Android SDK versió %1$d o l\'arquitectura del processador (%2$s).</string>
+    <string name="not_tested_but_compatible">L\'Xposed no s\'ha provat amb Android SDK versió %d, peró sembla compatible. Podeu provar d\'instal·lar-lo si voleu córrer el risc.</string>
     <string name="reboot_failed">Ha fallat el reinici. Utilitzeu la funció normal de reinici del dispositiu.</string>
-    <string name="auto_flash_note">S\'hauria d'instal·lar automàticament %s quan premeu "D'acord".</string>
-    <string name="manual_flash_note">Instal·leu %s des de la targeta SD card per acabar l'operació.</string>
+    <string name="auto_flash_note">S\'hauria d'instal·lar automàticament %s quan premeu \"D\'acord\".</string>
+    <string name="manual_flash_note">Instal·leu %s des de la targeta SD card per acabar l\'operació.</string>
     <string name="reboot_confirmation">Voleu reiniciar ara?</string>
     <string name="reboot_recovery_confirmation">Voleu reiniciar en mode recuperació ara?</string>
     <string name="install_warning_title">Compte!</string>
