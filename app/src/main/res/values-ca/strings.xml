@@ -28,7 +28,7 @@
     <!-- navigation view items -->
     <string name="nav_item_install">Marc</string>
     <string name="nav_item_modules">Mòduls</string>
-    <string name="nav_item_download"Baixades</string>
+    <string name="nav_item_download">Baixades</string>
     <string name="nav_item_settings">Configuració</string>
     <string name="nav_item_support">Ajuda</string>
     <string name="nav_item_logs">Registres</string>
