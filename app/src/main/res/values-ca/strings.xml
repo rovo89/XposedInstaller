@@ -1,166 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <!-- General/various strings -->
     <string name="menuSend">Envia</string>
-    <string name="menuSaveToSd">Envia a la targeta SD</string>
-    <string name="xposed_not_active">La última versió de Xposed no està activa. Heu instal·lat el framework i reiniciat?</string>
+    <string name="menuSaveToSd">Desa a la targeta</string>
+    <string name="xposed_not_active">La darrera versió de l\'Xposed no està activa. Heu instal·lat el marc i reiniciat?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Benvingut a <b>Instal·lador Xposed</b>!\nEscull el que vols fer:</string>
-    <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Aqui pot gestionar el Framework Xposed, que és necessari per a que tots els mòduls funcionin.</string>
+    <string name="welcome">Benvingut a l\'<b>Xposed Installer</b>!\nTrieu què voleu fer:</string>
+    <string name="tabInstall">Marc</string>
+    <string name="tabInstallDescription">Aquí podeu gestionar el marc Xposed, que éss necessari perquè funcioni qualsevol dels mòduls.</string>
     <string name="tabModules">Mòduls</string>
-    <string name="tabModulesDescription">El Framework Xposed en si no afegeix cap funcionalitat. Necessitareu mòduls per això. En aquesta secció es poden activar mòduls després d\'haver-los instal·lat.</string>
-    <string name="tabDownload">Descàrregues</string>
-    <string name="tabDownloadDescription">Aquesta secció permet accedir a un repositori de mòduls, per tal que pugueu buscar i descarregar els que us agradin i mantenir-los actualitzats.</string>
-    <string name="welcome_framework_update_available">Hi ha una actualització pel Framework Xposed disponible (%s).</string>
-    <string name="welcome_update_available">Una o més actualitzacions per els mòduls estan disponibles.</string>
+    <string name="tabModulesDescription">El marc per ell mateix no afegeix cap funcionalitat. Necessiteu mòduls per fer-ho. En aquesta secció podeu activar els mòduls després d\'instal·lar-los.</string>
+    <string name="tabDownload">Baixades</string>
+    <string name="tabDownloadDescription">Aquesta secció dóna accés a un dipòsit de mòduls, per tal que pugueu cercar i baixar els que us agradin i mantenir-los actualitzats..</string>
+    <string name="welcome_framework_update_available">Hi ha una actualització per al marc Xposed (%s).</string>
+    <string name="welcome_update_available">Hi ha una o més actualitzacions per als mòduls.</string>
     <string name="tabSettings">Configuració</string>
-    <string name="tabSettingsDescription">En aquesta secció es pot configurar l\'instal·lador Xposed i el framework.</string>
+    <string name="tabSettingsDescription">Aneu a aquesta secció per configurar l\'Xposed Installer i el marc.</string>
+    <string name="tabSupport">Ajuda</string>
+    <string name="tabSupportDescription">Cerqueu ajuda d\'aspectes relacionats amb l\'Xposed. També podeu fer donacions i donar les gràcies per l\'Xposed.</string>
     <string name="tabLogs">Registres</string>
-    <string name="tabLogsDescription">Mostra i desa/envia registres del Xposed framework.</string>
+    <string name="tabLogsDescription">Mostra i desa/envia els registres del marc Xposed.</string>
     <string name="tabAbout">Quant a</string>
-    <string name="tabAboutDescription">Informació sobre les persones que van crear Xposed, on obtenir ajuda per a aquesta aplicació, etc</string>
+    <string name="tabAboutDescription">Informeu-vos de la gent que ha creat l'Xposed, d'on aconseguir ajuda per a aquesta app...</string>
+
+    <!-- navigation view items -->
+    <string name="nav_item_install">Marc</string>
+    <string name="nav_item_modules">Mòduls</string>
+    <string name="nav_item_download"Baixades</string>
+    <string name="nav_item_settings">Configuració</string>
+    <string name="nav_item_support">Ajuda</string>
+    <string name="nav_item_logs">Registres</string>
+    <string name="nav_item_about">Quant a</string>
+    <string name="navigation_drawer_open">Obre el calaix de navegació</string>
+    <string name="navigation_drawer_close">Tanca el calaix de navegació</string>
 
     <!-- Installer tab -->
-    <string name="install">Instal·la / Actualitza</string>
+    <string name="install">Instal·la/Actualitza</string>
     <string name="uninstall">Desinstal·la</string>
     <string name="installedVersion">actiu</string>
-    <string name="latestVersion">inclòs</string>
-    <string name="versions">Versións:</string>
-    <string name="soft_reboot">Reinicia Software</string>
+    <string name="latestVersion">inclosa</string>
+    <string name="versions">Versions:</string>
+    <string name="install_header_reboot">Reinicia</string>
+    <string name="soft_reboot">Reinici ràpid</string>
     <string name="reboot">Reinicia</string>
-    <string name="areyousure">N\'esteu segur?</string>
-    <string name="phone_not_compatible">Xposed no és (encara) compatible amb la versió d\'Android SDK %1$d o l\'arquitectura del seu procesador (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed no ha estat provat amb la versió d\'Android SDK %d, però sembla ser compatible. Podeu provar d\'instal·lar-l\'ho si sou aventurers.</string>
-    <string name="reboot_failed">No s\'ha pogut reiniciar. Utilitzeu la funció de reinici del propi dispositiu.</string>
-    <string name="auto_flash_note">%s s\'hauria de flash automàticament un cop apreti "D'acord".</string>
-    <string name="manual_flash_note">Flash %s des de la targeta SD per completar la operació.</string>
+    <string name="areyousure">N'esteu segur?</string>
+    <string name="phone_not_compatible">L'Xposed (encara) no és compatible amb Android SDK versió %1$d o l'arquitectura del processador (%2$s).</string>
+    <string name="not_tested_but_compatible">L'Xposed no s'ha provat amb Android SDK versió %d, peró sembla compatible. Podeu provar d'instal·lar-lo si voleu córrer el risc.</string>
+    <string name="reboot_failed">Ha fallat el reinici. Utilitzeu la funció normal de reinici del dispositiu.</string>
+    <string name="auto_flash_note">S'hauria d'instal·lar automàticament %s quan premeu "D'acord".</string>
+    <string name="manual_flash_note">Instal·leu %s des de la targeta SD card per acabar l'operació.</string>
     <string name="reboot_confirmation">Voleu reiniciar ara?</string>
-    <string name="reboot_recovery_confirmation">Voleu reiniciar en mode recovery ara?</string>
-    <string name="install_warning_title">Aneu amb compte!</string>
-    <string name="install_warning">En alguns casos, el vostre dispositiu potser no torna a iniciar-se després d\'instal·lar Xposed.\n\nIf you never heard about \"soft brick\" and \"bootloop\" before or if you don\'t know how to recover from such a situation, do <b>NOT</b> install Xposed!\n\nIn any case, having a recent backup is highly recommended.</string>
+    <string name="reboot_recovery_confirmation">Voleu reiniciar en mode recuperació ara?</string>
+    <string name="install_warning_title">Compte!</string>
+    <string name="install_warning">Alguna vegada pot ser que el dispositiu no s'iniciï després d\'instal·lar l\'Xposed.\n\nSi no heu sentit mai els termes \"soft brick\" i \"bootloop\" o no sabeu com recuperar-vos d\'aquestes situacions, <b>NO</b> instal·leu l\'Xposed!\n\nEn tot cas, és altament recomanable tenir una còpia de seguretat recent.</string>
     <string name="dont_show_again">No ho tornis a mostrar</string>
+    <string name="install_known_issue">Sembla que hi ha un problema conegut (\"%s\") amb la vostra ROM. Potser que la intal·lació de l\'Xposed no funcioni o causar problemes greus. Feu clic aquí per a més detalls del problema.</string>
+    <string name="install_reverted">S\'ha instal·lat prèviament l\'app_process versió \"%1$s\" però ara s\'ha trobat la versió \"%2$s\". Si no esperàveu que es restaurés un fitxer antic potser voldreu intentar la instal·lació en mode recuperació (automàtica o manual).</string>
+    <string name="uninstall_reverted">S\'ha desinstal·lat prèviament l\'app_process però ara s\'ha trobat la versió \"%s\". Si no esperàveu que es restaurés un fitxer antic potser voldreu intentar la desinstal·lació en mode recuperació (automàtica o manual).</string>
+    <string name="tap_to_dismiss">Feu un toc per descartar</string>
+    <string name="sdcard_location">Targeta SD: %s</string>
+    <string name="installation_lollipop">El marc Xposed no està instal·lat. Baixeu el darrer ZIP des d\'XDA i instal·leu-lo manualment en mode recuperació.</string>
+    <string name="installed_lollipop">El marc Xposed versió %s està actiu.</string>
+    <string name="installed_lollipop_inactive">El marc Xposed versió %s està instal·lat però inactiu. Reviseu els registres per als detalls.</string>
+    <string name="modules_updates_available">Hi ha actualitzacions disponibles d\'algun mòdul(s)</string>
 
     <!-- File operations -->
-    <string name="root_failed">No s\'ha pogut obtenir accés de superusuari.\n\nComproveu que el dispositiu està ben rootejat i que no heu bloquejat comandes shell.</string>
+    <string name="root_failed">No s\'ha aconseguit accés d\'usuari primari.\n\nAssegureu-vos que el dispositiu té activat l\'usuari primari (root) i que no s\'han bloquejat les ordres de línia de comandaments.</string>
     <string name="file_extract_failed">No s\'ha pogut extreure %s</string>
-    <string name="file_mounting_writable">Muntant %s amb permisos d\'escriptura&#8230;</string>
-    <string name="file_mount_writable_failed">No s\'ha pogut muntar %s amb permisos d\'escriptura</string>
-    <string name="file_trying_to_continue">Continuant de totes maneres&#8230;</string>
-    <string name="file_backup_already_exists">Ja existeix una còpia a %s</string>
-    <string name="file_backup_not_found">No s\'ha trobat cap còpia a %s</string>
-    <string name="file_backup_failed">No s\'ha pogut crear una còpia de %s</string>
-    <string name="file_backup_successful">S\'ha creat una còpia a %s</string>
-    <string name="file_backup_restoring">Restaurant la còpia de %s</string>
-    <string name="file_copying">Copiant %s&#8230;</string>
+    <string name="file_mounting_writable">S\'està muntant %s com a escrivible&#8230;</string>
+    <string name="file_mount_writable_failed">No s\'ha pogut muntar %s com a escrivible</string>
+    <string name="file_trying_to_continue">S\'intenta continuar igualment&#8230;</string>
+    <string name="file_backup_already_exists">Ja hi ha una còpia de seguretat a %s</string>
+    <string name="file_backup_not_found">No s\'ha trobat cap còpia de seguretat a %s</string>
+    <string name="file_backup_failed">Ha fallat la creació d\'una còpia de seguretat de %s</string>
+    <string name="file_backup_successful">S\'ha creat una còpia de seguretat a %s</string>
+    <string name="file_backup_restoring">S\'està restaurant una còpia de seguretat des de %s</string>
+    <string name="file_copying">S\'està copiant %s&#8230;</string>
     <string name="file_copy_failed">No s\'ha pogut copiar %1$s a %2$s</string>
     <string name="file_move_failed">No s\'ha pogut moure %1$s a %2$s</string>
-    <string name="file_set_perms_failed">No s\'ha pogut definir els permisos per %s</string>
-    <string name="file_set_owner_failed">No s\'ha pogut definir el propietari per %s</string>
-    <string name="file_removing">Eliminant %s&#8230;</string>
-    <string name="file_remove_failed">No s\'ha pogut eliminar %s</string>
-    <string name="file_creating_directory">Creant el directori %s&#8230;</string>
-    <string name="file_create_directory_failed">No s\'ha pogut crear el directori %s</string>
-    <string name="file_writing_recovery_command">Escrivint comanda recovery &#8230;</string>
-    <string name="file_writing_recovery_command_failed">Writing recovery command failed. Please use a different installation method.</string>
-    <string name="file_done">Fet! Els canvis estaran actius després de reiniciar.</string>
+    <string name="file_set_perms_failed">No s\'ha pogut establir els permisos per a %s</string>
+    <string name="file_set_owner_failed">No s\'ha pogut establir el propietari per a %s</string>
+    <string name="file_removing">S\'està suprimint %s&#8230;</string>
+    <string name="file_remove_failed">No s\'ha pogut suprimir %s</string>
+    <string name="file_creating_directory">S\'està creant la carpeta %s&#8230;</string>
+    <string name="file_create_directory_failed">No s\'ha pogut crear la carpeta %s</string>
+    <string name="file_writing_recovery_command">S\'està escrivint un comandament de mode recuperació&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Ha fallat l\'escriptura del comandament de mode recuperació. Utilitzeu un mètode d\'instal·lació diferent.</string>
+    <string name="file_done">Fet! Els canvis s\'activaran en reiniciar.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">El mòdul Xposed encara no està actiu</string>
-    <string name="module_empty_description">(no es va proporcionar descripció)</string>
-    <string name="module_no_ui">Aquest mòdul no té una interfície d\'usuari</string>
-    <string name="no_xposed_modules_found">No s\'han trobat mòduls!</string>
-    <string name="xposed_module_list_updated">Llista de mòduls Xposed actualitzada\nEls canvis s\'activaran després de reiniciar</string>
-    <string name="warning_xposed_min_version">Aquest mòdul requereix una versió més recent de XposedBridge (%d) i per tant no es pot activar.</string>
-    <string name="no_min_version_specified">Aquest mòdul no especifica la versió de XposedBridge que necessita.</string>
-    <string name="warning_min_version_too_low">Aquest mòdul va ser creat per a la versió %1$d de XposedBridge, però a causa de canvis incompatibles en la versió %2$d, ha estat desactivat.</string>
-    <string name="module_launch">Executa UI</string>
-    <string name="module_download_updates">Descarrega/Actualitza</string>
-    <string name="module_support">Suport</string>
-    <string name="module_app_info">Informació de l\'aplicació</string>
-    <string name="module_uninstall">Desinstal·la</string>
+    <string name="module_is_not_activated_yet_detailed">S\'ha intal·lat %s, però encara no està actiu.</string>
+    <string name="activate_and_reboot">Activa i reinicia</string>
+    <string name="module_activated">El mòdul Xposed està actiu</string>
+    <string name="module_empty_description">(sense descripció)</string>
+    <string name="module_no_ui">Aquest mòdul no proporciona una interfície d\'usuari</string>
+    <string name="no_xposed_modules_found">No s\'ha trobat cap mòdul Xposed!</string>
+    <string name="xposed_module_list_updated">S\'ha actualitzat la llista de mòduls Xposed\nS\'activaran els canvis en reiniciar</string>
+    <string name="xposed_module_updated_notification_title">S\'ha actualitzat el mòdul Xposed</string>
+    <string name="xposed_module_updated_notification">Reinicieu per activar els canvis</string>
+    <string name="warning_xposed_min_version">Aquest mòdul requereix una versió de l\'XposedBridge més nova (%d) i no es pot activar.</string>
+    <string name="no_min_version_specified">Aquest mòdul no especifica la versió de l\'XposedBridge que necessita.</string>
+    <string name="warning_min_version_too_low">Aquest mòdul es va crear per a l\'XposedBridge versió %1$d, però degut als canvis incompatibles a la versió %2$d, s\'ha inhabilitat.</string>
+    <string name="module_launch">Executa la IU</string>
+    <string name="module_download_updates">Baixa/Actualitzacions</string>
+    <string name="module_support">Ajuda</string>
+    <string name="module_app_info">Informació de l\'app</string>
+    <string name="module_uninstall">desinstal·la</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Cerca</string>
-    <string name="menuReload">Actualitza</string>
+    <string name="menuReload">Torna a carregar</string>
     <string name="changes">Canvis:</string>
+    <string name="download_details_page_description">Descripció</string>
+    <string name="download_details_page_versions">Versions</string>
+    <string name="download_details_page_settings">Configuració</string>
+    <string name="reltype_stable">Estable</string>
+    <string name="reltype_stable_summary">Estable (risc baix d\'errors)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (es pot esperar algun error)</string>
+    <string name="reltype_experimental">Experimental</string>
+    <string name="reltype_experimental_summary">Experimental (alt risc d\'errors)</string>
+    <string name="reltype_use_global_summary">Utilitza la configuració global</string>
     <string name="download_author">per %s</string>
     <string name="download_unknown_author">autor desconegut</string>
     <string name="download_status_installed">Instal·lat (versió %s)</string>
     <string name="download_status_update_available">Actualització disponible (versió %1$s \u2192 %2$s)</string>
     <string name="download_timestamps">Afegit el %1$s \u00b7 Actualitzat el %2$s</string>
-    <string name="download_sorting_title">Ordena per</string>
+    <string name="download_sorting_title">Ordre de classificació</string>
     <string name="download_sorting_status">Ordena per estat</string>
-    <string name="download_sorting_updated">Ordena per última actualització</string>
+    <string name="download_sorting_updated">Ordena per darrera actualització</string>
     <string name="download_sorting_created">Ordena per data de creació</string>
-    <string name="download_section_framework">Framework</string>
+    <string name="download_section_framework">Marc</string>
     <string name="download_section_update_available">Actualització disponible</string>
     <string name="download_section_installed">Instal·lat</string>
     <string name="download_section_not_installed">No instal·lat</string>
-    <string name="download_section_24h">Últimes 24 hores</string>
-    <string name="download_section_7d">Últims 7 dies</string>
-    <string name="download_section_30d">Últims 30 dies</string>
+    <string name="download_section_24h">Darreres 24 hores</string>
+    <string name="download_section_7d">Darrers 7 dies</string>
+    <string name="download_section_30d">Darrers 30 dies</string>
     <string name="download_section_older">Fa més de 30 dies</string>
+    <string name="download_details_not_found">No hi ha cap mòdul anomenat \"%s\" al dipòsit.</string>
+    <string name="download_no_versions">L\'autor encara no ha pujat res.</string>
+    <string name="download_test_version_not_shown">Hi ha una versió de prova disponible, però no es mostra degut a la vostra configuració global o específica del mòdul.</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">Instal·lació</string>
     <string name="settings_install_mode">Mode d\'instal·lació</string>
-    <string name="install_mode_normal">Clàssica (escriu a /system directament)</string>
-    <string name="install_mode_recovery_auto">Recovery (flash zip automatically)</string>
-    <string name="install_mode_recovery_manual">Recovery (copia el zip a la targeta SD, flash manualment)</string>
-    <string name="settings_group_download">Descarrega</string>
-    <string name="settings_enable_downloads">Activa descàrregues</string>
-    <string name="settings_enable_downloads_summary">Permet a l\'instal·lador Xposed comprovar actualitzacions i nous mòduls</string>
+    <string name="install_mode_normal">Clàssica (escriu directament a /system)</string>
+    <string name="install_mode_recovery_auto">Recuperació (instal·la el zip automàticament)</string>
+    <string name="install_mode_recovery_manual">Recuperació (desa el zip a la targeta SD, instal·leu-lo manualment)</string>
+    <string name="settings_group_download">Baixades</string>
+    <string name="settings_enable_downloads">Habilita les baixades</string>
+    <string name="settings_enable_downloads_summary">Permet que l\'instal·lador Xposed comprovi si hi ha actualitzacions i mòduls nous</string>
+    <string name="settings_release_type">Versions que es mostraran</string>
     <string name="settings_group_experimental">Experimental</string>
-    <string name="settings_disable_resources">Disabled resource hooks</string>
-    <string name="settings_disable_resources_summary">Workaround for conflicts with theming engines\n<b>WARNING:</b> Modules which try to change resources will not work when this is enabled.</string>
-    <string name="settings_performance_experiment">Experiment de rendiment</string>
-    <string name="settings_performance_experiment_summary">Si ho activeu, el rendiment del sistema podria augmentar, disminuir o quedar-se igual. No dubteu en provar i informar dels efectes que es noten (o si no n\'hi ha cap en absolut). Cal tornar a instal·lar el framework i reiniciar després de canviar això.</string>
+    <string name="settings_disable_resources">Ganxos d\'orígens inhabilitats</string>
+    <string name="settings_disable_resources_summary">Solució per a conflictes amb motors tematització\n<b>AVÍS:</b> Els mòduls que intent canviar orígens no funcionaran si ho habiliteu.</string>
+    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Experiment de rendiment</string>
+    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Si ho habiliteu, el rendiment del sistema pot augmentar, disminuir o restar igual. No dubteu a provar-ho i comunicar l\'efecte que veieu (o si no n\'hi ha cap). Si ho canvieu, haureu de tornar a instal·lar el marc i reiniciar.</string>
+    <string name="settings_group_app">Aplicació</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Clar</string>
+    <string name="settings_theme_dark">Fosc</string>
+    <string name="settings_theme_black">Negre (útil per a pantalles AMOLED)</string>
+    <string name="settings_default_view">Vista per defecte</string>
 
     <!-- Support tab -->
+    <string name="support_modules_label">Ajuda per als mòduls</string>
+    <string name="support_modules_description">Feu clic llarg sobre un mòdul de la llista de mòduls i seleccioneu \"%1$s\".</string>
+    <string name="support_framework_label">Ajuda per al marc/instal·lador</string>
+    <string name="support_faq_label">PMF/problemes coneguts</string>
+    <string name="support_donate_label">Donació</string>
+    <string name="support_donate_description">Si voleu donar les gràcies per l\'Xposed, podeu fer una donació per a rovo89 aquí</string>
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">No s\'ha pogut llegir el registre:</string>
-    <string name="logs_save_failed">No s\'ha pogut escriure el registre a la targeta SD:</string>
-    <string name="sdcard_not_writable">No s\'ha trobat la targeta SD o no s\'hi pot escriure</string>
+    <string name="logs_load_failed">>No s\'ha pogut llegir el registre:</string>
+    <string name="logs_save_failed">No s\'ha pogut desar el registre a la targeta SD:</string>
+    <string name="sdcard_not_writable">No s\'ha trobar la targeta SD o no s\'hi pot escriure</string>
     <string name="log_too_large">El fitxer de registre és més gran de %1$,d kB, s\'han saltat els primers %2$,d kB</string>
     <string name="menuClearLog">Neteja el registre ara</string>
-    <string name="logs_cleared">Registre net</string>
+    <string name="logs_cleared">S\'ha netejat el registre amb èxit</string>
     <string name="logs_clear_failed">No s\'ha pogut netejar el registre:</string>
     <string name="log_is_empty">El registre està buit</string>
 
     <!-- About tab -->
-    <string name="about_developers_label">Desenvolupadors principals:</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> i <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning"><b>No</b> us poseu en contacte amb nosaltres directament per obtenir suport, utilitzi aquest enllaç.</string>
-    <string name="about_translator_label">Traductor:</string>
-    <string name="translator">David_Vaz i Albert Samaniego</string>
-    <string name="about_version_label">Versió d\'aquesta aplicació:</string>
-    <string name="about_source_label">Codi font:</string>
-    <string name="about_support_label">Per rebre suport visiti:</string>
-    <string name="about_libraries_label">Llibreries utilitzades:</string>
+    <string name="about_developers_label">Desenvolupadors principals</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> i <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> i <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> per solucionar errors i disseny Material</string>
+    <string name="about_developers_warning"><b>No</b> ens contacteu directament per a ajuda, utilitzeu l\'enllaç de sota.</string>
+    <string name="about_translator_label">Traductor</string>
+    <string name="translator">Ferri64</string>
+    <string name="about_version_label">Versió</string>
+    <string name="about_source_label">Codi font</string>
+    <string name="about_support_label">Aconseguiu ajuda a:</string>
+    <string name="about_libraries_label">Biblioteques utilitzades</string>
 
     <!-- DownloadView -->
-    <string name="download_view_download">Descarrega</string>
+    <string name="download_view_download">Baixa</string>
     <string name="download_view_install">Instal·la</string>
     <string name="download_view_cancel">Cancel·la</string>
-    <string name="download_view_no_url">No hi ha adreça de descarrega disponible</string>
-    <string name="download_view_running">S\'està descarregant (%1$,d of %2$,d kB)</string>
-    <string name="download_view_waiting">Esperant per descarregar</string>
-    <string name="download_view_successful">Descarrega finalitzada</string>
-    <string name="download_view_failed">La descàrrega ha fallat (error %d)</string>
+    <string name="download_view_no_url">No hi ha URL de baixada disponible</string>
+    <string name="download_view_running">S\'està baixant (%1$,d de %2$,d kB)</string>
+    <string name="download_view_waiting">La baixada està en espera</string>
+    <string name="download_view_successful">S\'ha baixat amb èxit</string>
+    <string name="download_view_failed">La baixada ha fallat (error %d)</string>
 
     <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">Suma MD5 incorrecta (descarregada: %1$s, original: %2$s)</string>
-    <string name="download_could_not_read_file">No s\'ha pogut llegir el fitxer descarregat: %s</string>
-    <string name="download_no_valid_apk">El fitxer descarregat no és un APK vàlid (o compatible)</string>
-    <string name="download_incorrect_package_name">Nom del fitxer incorrecte (descarregat: %1$s, original: %2$s)</string>
+    <string name="download_md5sum_incorrect">La suma MD5 és incorrecta (s\'ha baixat: %1$s, s\'esperava: %2$s)</string>
+    <string name="download_could_not_read_file">No s\'ha pogut llegir el fitxer baixat: %s</string>
+    <string name="download_no_valid_apk">El fitxer baixat no és un APK vàlid (o no és compatible)</string>
+    <string name="download_incorrect_package_name">El nom del paquet és incorrecte (s\'ha baixat: %1$s, s\'esperava: %2$s)</string>
 
     <!-- RepoLoader -->
-    <string name="repo_download_failed_http">La descàrrega %1$s ha fallat: %2$d (%3$s)</string>
-    <string name="repo_download_failed">La descàrrega %1$s ha fallat: %2$s</string>
-    <string name="repo_load_failed">No es pot carregar el repositori de %1$s:\n%2$s</string>
+    <string name="repo_download_failed_http">S\'està baixant %1$s ha fallat: %2$d (%3$s)</string>
+    <string name="repo_download_failed">S\'està baixant %1$s ha fallat: %2$s</string>
+    <string name="repo_load_failed">No s\'ha pogut carregar el dipòsit des de %1$s:\n%2$s</string>
+    <string name="choose_color">Trieu un color…</string>
+
+    <string name="warning_installed_on_external_storage">No es pot carregar aquest mòdul perquè s\'ha instal·lat a la targeta SD, moveu-lo a l\'emmagatzematge intern.</string>
+    <string name="warning_forward_locked">No es pot carregar aquest mòdul perquè està \"forward-locked\", contacteu el desenvolupador del mòdul.</string>
+    <string name="export_modules">Exporta la llista de mòduls habilitats</string>
+    <string name="import_modules">Importa la llista de mòduls inhabilitats</string>
+    <string name="view">VISUALITZA</string>
+    <string name="export_">Exporta…</string>
+    <string name="import_">Importa…</string>
+    <string name="export_enabled_modules">Exporta la llista de mòduls habilitats</string>
+    <string name="import_enabled_modules">Importa la llista de mòduls habilitats</string>
+    <string name="export_installed_modules">Exporta la llista de mòduls instal·lats</string>
+    <string name="import_installed_modules">Importa la llista de mòduls instal·lats</string>
+    <string name="no_installed_modules">No hi ha cap mòdul instal·lat!</string>
+    <string name="enable_heads_up">Habilita la notificació d\'avisos</string>
+    <string name="enable_heads_up_summary">Aquesta opció habilita la notificació d\'avisos de mòduls nous/actualitzats</string>
+    <string name="nav_bar_coloration">Acoloreix la barra de navegació</string>
+    <string name="no_backup_found">No s\'ha trobat cap còpia de seguretat</string>
+    <string name="no_enabled_modules">No hi ha cap mòdul habilitat</string>
+
+    <string name="download_view_size">Mida: %s KB</string>
+    <string name="share">Comparteix amb…</string>
+    <string name="back">Enrere</string>
+    <string name="loadingError">Error en carregar els marcs del Zip Xposed</string>
+    <string name="info">Informació</string>
+    <string name="infoInstaller">
+        Nom: %1$s
+        \nSDK: %2$d
+        \nArquitectura: %3$s
+        \nVersió: %4$s
+    </string>
+    <string name="infoUninstaller">
+        Name: %1$s
+        \nArquitectura: %2$s
+        \nData: %3$s
+    </string>
+    <string name="downloadZipOk">S\'ha baixat %1$s correctament</string>
+    <string name="permissionGranted">Permís concedit</string>
+    <string name="permissionNotGranted">Aquesta característica no funcionarà sense permís per escriure a l\'emmagatzematge extern.</string>
+    <string name="downloadUninstaller">Baixada del desinstal·lador</string>
+    <string name="selectFile">Selecció el fitxer baixat</string>
+    <string name="xposedZipNotFound">No s\'ha trobat el Zip, probablement s\'ha llançat una versió nova.</string>
+    <string name="warningArchitecture">HEU TRIAT EL ZIP D\'XPOSED DE L\'ARQUITECTURA CORRECTA?\nUn intal·lador zip equivocat pot fer malbé el telèfon!</string>
+    <string name="help">Ajuda</string>
+    <string name="helpChoose">
+        Com es tria el fitxer zip correcte?\n
+
+        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
+
+        on:\n
+        %%SDK%% és la versió d\'Android SDK\n\n
+        %%ARCH%% és l\'arquitectura de la CPU
+    </string>
+    <string name="newVersion">Hi ha una versió nova de l\'Instal·lador Xposed disponible! Actualitzeu-lo!</string>
+    <string name="update">Actualització</string>
+    <string name="choose_icon">Trieu una icona</string>
+    <string name="custom_icon">Icona personalitzada</string>
+    <string name="installationForbidden">La instal·lació no és possible en aquest dispositiu. Per instal·lar l\'Xposed des d\'aquesta app, el dispositiu ha de tenir instal·lat Android Lollipop o posterior.</string>
+    <string name="installed_no_lollipop">El marc Xposed està instal·lat.</string>
+    <string name="not_installed_no_lollipop">El marc Xposed no està instal·lat.</string>
+    <string name="notify_module_update">Habilita la notificació d\'actualització de mòduls</string>
+
+    <string name="md_back_label">Enrere</string>
+    <string name="md_done_label">Fet</string>
+    <string name="md_cancel_label">Cancel·la</string>
+    <string name="md_choose_label">Trieu</string>
+    <string name="md_error_label">Error</string>
+    <string name="md_storage_perm_error">No s\'ha concedit el permís READ_EXTERNAL_STORAGE a l\'app.</string>
+    <string name="md_custom_label">Personalització</string>
+    <string name="md_presets_label">Preestablerts</string>
+    <string name="changelog">Registre de canvis</string>
+    <string name="scroll_top">Torna a dalt</string>
+    <string name="add_bookmark">Afegeix un marcador</string>
+    <string name="remove_bookmark">Suprimeix el marcador</string>
+    <string name="bookmarks">Marcadors</string>
+    <string name="no_bookmark_added">No s\'ha afegit cap marcador</string>
+    <string name="bookmark_added">S\'ha afegit un marcador</string>
+    <string name="bookmark_removed">S\'ha suprimit un marcador</string>
+    <string name="undo">Desfés</string>
+    <string name="notification_coloration">Acoloreix la icona de notificació</string>
+    <string name="file_is_empty">El fitxer està buit</string>
+    <string name="install_with_su">Instal·lació de mòduls amb usuari primari</string>
+    <string name="install_with_su_summ">Si s\'activa, l\'instal·lador Xposed instal·larà els mòduls sense cap pregunta</string>
+    <string name="install_remove">Instal·la i suprimeix</string>
+    <string name="download_remove">Baixa i suprimeix</string>
+    <string name="module_saved">S\'ha desat el mòdul a %1$s</string>
 
 </resources>
