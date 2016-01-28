@@ -222,7 +222,7 @@
     <string name="warning_forward_locked">Tento modul nemôže byť načítaný, pretože je uzamknutý, prosím, kontaktujte vývojára modulu.</string>
     <string name="export_modules">Exportovať zoznam povolených modulov</string>
     <string name="import_modules">Importovať zoznam povolených modulov</string>
-    <string name="view">VIEW</string>
+    <string name="view">ZOBRAZIŤ</string>
     <string name="export_">Export…</string>
     <string name="import_">Import…</string>
     <string name="export_enabled_modules">Exportovať zoznam povolených modulov</string>
