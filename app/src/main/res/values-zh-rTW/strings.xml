@@ -18,7 +18,7 @@
     <string name="welcome_update_available">一個或多個模組有更新可用。</string>
     <string name="tabSettings">設定</string>
     <string name="tabSettingsDescription">此處可設定 Xposed Installer 和框架。</string>
-	<string name="tabSupport">支援</string>
+    <string name="tabSupport">支援</string>
     <string name="tabSupportDescription">幫忙找到 Xposed 的相關問題，您也可以贊助 Xposed 作者來表達您的謝意。</string>
     <string name="tabLogs">日誌</string>
     <string name="tabLogsDescription">顯示並儲存/傳送 Xposed 框架産生的日誌。</string>
@@ -288,19 +288,22 @@
     <string name="md_presets_label">預設</string>
     <string name="changelog">更新日誌</string>
     <string name="scroll_top">捲動回到頂端</string>
-	<string name="add_bookmark">新增書籤</string>
+    <string name="add_bookmark">新增書籤</string>
     <string name="remove_bookmark">移除書籤</string>
     <string name="bookmarks">書籤</string>
     <string name="no_bookmark_added">無加入書籤</string>
     <string name="bookmark_added">已加入書籤</string>
     <string name="bookmark_removed">已移除書籤</string>
     <string name="undo">還原</string>
-	<string name="notification_coloration">通知圖示著色</string>
-	<string name="file_is_empty">檔案為空</string>
+    <string name="notification_coloration">通知圖示著色</string>
+    <string name="file_is_empty">檔案為空</string>
     <string name="install_with_su">Root 下安裝模組</string>
     <string name="install_with_su_summ">若勾選則 Xposed Installer 在安裝模組時將不會提示</string>
     <string name="install_remove">安裝和移除</string>
     <string name="download_remove">下載和移除</string>
     <string name="module_saved">儲存模組於 %1$s</string>
+    <string name="ignore_updates">忽略更新</string>
+    <string name="ignore_updates_summ">忽略特定模組更新。</string>
+    <string name="reboot_recovery">重新啟動至 Recovery 模式</string>
 	
 </resources>

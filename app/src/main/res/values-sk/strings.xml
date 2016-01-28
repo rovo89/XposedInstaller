@@ -222,7 +222,7 @@
     <string name="warning_forward_locked">Tento modul nemôže byť načítaný, pretože je uzamknutý, prosím, kontaktujte vývojára modulu.</string>
     <string name="export_modules">Exportovať zoznam povolených modulov</string>
     <string name="import_modules">Importovať zoznam povolených modulov</string>
-    <string name="view">VIEW</string>
+    <string name="view">ZOBRAZIŤ</string>
     <string name="export_">Export…</string>
     <string name="import_">Import…</string>
     <string name="export_enabled_modules">Exportovať zoznam povolených modulov</string>
@@ -302,5 +302,8 @@
     <string name="install_remove">Nainštalovať a odstrániť</string>
     <string name="download_remove">Stiahnuť a odstrániť</string>
     <string name="module_saved">Modul uložený %1$s</string>
+    <string name="ignore_updates">Ignorovať auktualizácie</string>
+    <string name="ignore_updates_summ">Ignorovať auktualizácie pre konkrétny modul.</string>
+    <string name="reboot_recovery">Reštartovať do recovery</string>
 
 </resources>

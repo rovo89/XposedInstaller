@@ -26,6 +26,11 @@
             android:icon="@drawable/ic_menu_refresh"
             android:title="@string/soft_reboot"/>
 
+        <item
+            android:id="@+id/reboot_recovery"
+            android:icon="@drawable/ic_menu_refresh"
+            android:title="@string/reboot_recovery"/>
+
     </group>
 
 </menu>

@@ -330,6 +330,33 @@ public class InstallerFragment extends Fragment
 			}
 		});
 
+		mUpdateButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mClickedButton = mUpdateButton;
+				if (checkPermissions())
+					return;
+
+				DownloadsUtil.add(getContext(), "XposedInstaller_by_dvdandroid",
+						newApkLink,
+						new DownloadsUtil.DownloadFinishedCallback() {
+					@Override
+					public void onDownloadFinished(Context context,
+							DownloadsUtil.DownloadInfo info) {
+						Intent intent = new Intent(Intent.ACTION_VIEW);
+						intent.setDataAndType(
+								Uri.fromFile(new File(Environment
+										.getExternalStorageDirectory()
+										.getAbsolutePath()
+										+ "/XposedInstaller/XposedInstaller_by_dvdandroid.apk")),
+								DownloadsUtil.MIME_TYPE_APK);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						context.startActivity(intent);
+					}
+				}, DownloadsUtil.MIME_TYPES.APK, true);
+			}
+		});
+
 		return v;
 	}
 
@@ -369,6 +396,16 @@ public class InstallerFragment extends Fragment
 							public void onPositive(MaterialDialog dialog) {
 								super.onPositive(dialog);
 								softReboot();
+							}
+						});
+				break;
+			case R.id.reboot_recovery:
+				areYouSure(R.string.reboot_recovery,
+						new MaterialDialog.ButtonCallback() {
+							@Override
+							public void onPositive(MaterialDialog dialog) {
+								super.onPositive(dialog);
+								reboot("recovery");
 							}
 						});
 				break;
@@ -545,10 +582,10 @@ public class InstallerFragment extends Fragment
 		refreshKnownIssue();
 	}
 
-	private void areYouSure(int messageTextId,
+	private void areYouSure(int contentTextId,
 			MaterialDialog.ButtonCallback yesHandler) {
-		new MaterialDialog.Builder(getActivity()).title(messageTextId)
-				.content(R.string.areyousure)
+		new MaterialDialog.Builder(getActivity()).title(R.string.areyousure)
+				.content(contentTextId)
 				.iconAttr(android.R.attr.alertDialogIcon)
 				.positiveText(android.R.string.yes)
 				.negativeText(android.R.string.no).callback(yesHandler).show();
@@ -1029,38 +1066,6 @@ public class InstallerFragment extends Fragment
 
 				if (a.compareTo(b) == -1) {
 					mUpdateView.setVisibility(View.VISIBLE);
-					mUpdateButton
-							.setOnClickListener(new View.OnClickListener() {
-								@Override
-								public void onClick(View v) {
-									mClickedButton = mUpdateButton;
-									if (checkPermissions())
-										return;
-
-									DownloadsUtil.add(getContext(),
-											"XposedInstaller_by_dvdandroid",
-											newApkLink,
-											new DownloadsUtil.DownloadFinishedCallback() {
-										@Override
-										public void onDownloadFinished(
-												Context context,
-												DownloadsUtil.DownloadInfo info) {
-											Intent intent = new Intent(
-													Intent.ACTION_VIEW);
-											intent.setDataAndType(
-													Uri.fromFile(
-															new File(Environment
-																	.getExternalStorageDirectory()
-																	.getAbsolutePath()
-																	+ "/XposedInstaller/XposedInstaller_by_dvdandroid.apk")),
-													DownloadsUtil.MIME_TYPE_APK);
-											intent.setFlags(
-													Intent.FLAG_ACTIVITY_NEW_TASK);
-											context.startActivity(intent);
-										}
-									}, DownloadsUtil.MIME_TYPES.APK, true);
-								}
-							});
 				}
 			} catch (NullPointerException ignored) {
 			}
