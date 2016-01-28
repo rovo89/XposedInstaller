@@ -278,6 +278,9 @@
     <string name="warning_installed_on_external_storage">Este módulo não pode ser carregado pois está instalado no cartão SD. Mova-o para a memória interna, por favor.</string>
     <string name="xposedZipNotFound">O Zip não foi encontrado, talvez por existir uma nova versão que ainda não se encontra listada.</string>
     <string name="install_warning">Em certos casos, após a instalação da \"Xposed\", o dispositivo deixa de arrancar.\n\nAssim, se nunca ouviu falar em \"soft brick\" ou \"bootloop\", ou caso não saiba como recuperar de uma situação dessas, <b>NÃO</b> instale a \"Xposed\"!\n\nIndependentemente disso, ter um \"backup\" recente é sempre, altamente, recomendado.</string>
+    <string name="ignore_updates">Ignorar atualização</string>
+    <string name="ignore_updates_summ">Ignorar atualizações para um módulo específico</string>
+    <string name="reboot_recovery">Reiniciar para a \"Recovery\"</string>
 
 </resources>
 
