@@ -330,6 +330,33 @@ public class InstallerFragment extends Fragment
 			}
 		});
 
+		mUpdateButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mClickedButton = mUpdateButton;
+				if (checkPermissions())
+					return;
+
+				DownloadsUtil.add(getContext(), "XposedInstaller_by_dvdandroid",
+						newApkLink,
+						new DownloadsUtil.DownloadFinishedCallback() {
+					@Override
+					public void onDownloadFinished(Context context,
+							DownloadsUtil.DownloadInfo info) {
+						Intent intent = new Intent(Intent.ACTION_VIEW);
+						intent.setDataAndType(
+								Uri.fromFile(new File(Environment
+										.getExternalStorageDirectory()
+										.getAbsolutePath()
+										+ "/XposedInstaller/XposedInstaller_by_dvdandroid.apk")),
+								DownloadsUtil.MIME_TYPE_APK);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						context.startActivity(intent);
+					}
+				}, DownloadsUtil.MIME_TYPES.APK, true);
+			}
+		});
+
 		return v;
 	}
 
@@ -1039,38 +1066,6 @@ public class InstallerFragment extends Fragment
 
 				if (a.compareTo(b) == -1) {
 					mUpdateView.setVisibility(View.VISIBLE);
-					mUpdateButton
-							.setOnClickListener(new View.OnClickListener() {
-								@Override
-								public void onClick(View v) {
-									mClickedButton = mUpdateButton;
-									if (checkPermissions())
-										return;
-
-									DownloadsUtil.add(getContext(),
-											"XposedInstaller_by_dvdandroid",
-											newApkLink,
-											new DownloadsUtil.DownloadFinishedCallback() {
-										@Override
-										public void onDownloadFinished(
-												Context context,
-												DownloadsUtil.DownloadInfo info) {
-											Intent intent = new Intent(
-													Intent.ACTION_VIEW);
-											intent.setDataAndType(
-													Uri.fromFile(
-															new File(Environment
-																	.getExternalStorageDirectory()
-																	.getAbsolutePath()
-																	+ "/XposedInstaller/XposedInstaller_by_dvdandroid.apk")),
-													DownloadsUtil.MIME_TYPE_APK);
-											intent.setFlags(
-													Intent.FLAG_ACTIVITY_NEW_TASK);
-											context.startActivity(intent);
-										}
-									}, DownloadsUtil.MIME_TYPES.APK, true);
-								}
-							});
 				}
 			} catch (NullPointerException ignored) {
 			}
