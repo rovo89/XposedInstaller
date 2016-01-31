@@ -76,6 +76,12 @@ public class WelcomeActivity extends XposedBaseActivity
 			mDrawerLayout.closeDrawers();
 		}
 
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+			int value = extras.getInt("fragment");
+			switchFragment(value);
+		}
+
 		mRepoLoader = RepoLoader.getInstance();
 		ModuleUtil.getInstance().addListener(this);
 		mRepoLoader.addListener(this, false);

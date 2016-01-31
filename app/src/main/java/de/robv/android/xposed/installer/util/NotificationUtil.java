@@ -14,9 +14,8 @@ import android.widget.Toast;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.robv.android.xposed.installer.InstallerFragment;
-import de.robv.android.xposed.installer.ModulesFragment;
 import de.robv.android.xposed.installer.R;
+import de.robv.android.xposed.installer.WelcomeActivity;
 import de.robv.android.xposed.installer.XposedApp;
 
 public final class NotificationUtil {
@@ -52,11 +51,12 @@ public final class NotificationUtil {
 
 	public static void showNotActivatedNotification(String packageName,
 			String appName) {
-		Intent iModulesTab = new Intent(sContext, ModulesFragment.class);
-		iModulesTab.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		Intent intent = new Intent(sContext, WelcomeActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		intent.putExtra("fragment", 1);
 
 		PendingIntent pModulesTab = PendingIntent.getActivity(sContext,
-				PENDING_INTENT_OPEN_MODULES, iModulesTab,
+				PENDING_INTENT_OPEN_MODULES, intent,
 				PendingIntent.FLAG_UPDATE_CURRENT);
 
 		String title = sContext.getString(R.string.module_is_not_activated_yet);
@@ -98,10 +98,12 @@ public final class NotificationUtil {
 	}
 
 	public static void showModulesUpdatedNotification() {
-		Intent iInstallTab = new Intent(sContext, InstallerFragment.class);
-		iInstallTab.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		Intent intent = new Intent(sContext, WelcomeActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		intent.putExtra("fragment", 0);
+
 		PendingIntent pInstallTab = PendingIntent.getActivity(sContext,
-				PENDING_INTENT_OPEN_INSTALL, iInstallTab,
+				PENDING_INTENT_OPEN_INSTALL, intent,
 				PendingIntent.FLAG_UPDATE_CURRENT);
 
 		String title = sContext
