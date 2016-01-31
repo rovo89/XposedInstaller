@@ -239,7 +239,7 @@ public class LogsFragment extends Fragment {
 		@Override
 		protected void onPreExecute() {
 			mProgressDialog = new MaterialDialog.Builder(getContext())
-					.content("loading").progress(true, 0).show();
+					.content(R.string.loading).progress(true, 0).show();
 		}
 
 		@Override

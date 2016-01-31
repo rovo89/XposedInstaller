@@ -297,5 +297,6 @@
     <string name="navigation_drawer_close">Chiudi navigation drawer</string>
     <string name="navigation_drawer_open">Apri navigation drawer</string>
     <string name="reboot_recovery">Riavvia in recovery</string>
+    <string name="loading">Caricamento…</string>
 
 </resources>

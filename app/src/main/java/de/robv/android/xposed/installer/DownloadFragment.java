@@ -1,5 +1,7 @@
 package de.robv.android.xposed.installer;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -42,8 +44,8 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
-public class DownloadFragment extends Fragment
-		implements RepoListener, ModuleListener {
+public class DownloadFragment extends Fragment implements RepoListener,
+		ModuleListener, SharedPreferences.OnSharedPreferenceChangeListener {
 	private SharedPreferences mPref;
 	private DownloadsAdapter mAdapter;
 	private String mFilterText;
@@ -52,6 +54,8 @@ public class DownloadFragment extends Fragment
 	private int mSortingOrder;
 	private SearchView mSearchView;
 	private StickyListHeadersListView mListView;
+	private SharedPreferences mIgnoredUpdatesPref;
+	private boolean changed = false;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -68,21 +72,37 @@ public class DownloadFragment extends Fragment
 		});
 		mSortingOrder = mPref.getInt("download_sorting_order",
 				RepoDb.SORT_STATUS);
+
+		mIgnoredUpdatesPref = getContext()
+				.getSharedPreferences("update_ignored", MODE_PRIVATE);
 		setHasOptionsMenu(true);
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+
+		if (mAdapter != null && mListView != null) {
+			mListView.setAdapter(mAdapter);
+		}
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 
-		if (mAdapter != null && mListView != null) {
-			mListView.setAdapter(mAdapter);
+		mIgnoredUpdatesPref.registerOnSharedPreferenceChangeListener(this);
+		if (changed) {
+			reloadItems();
+			changed = !changed;
 		}
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+
+		mIgnoredUpdatesPref.unregisterOnSharedPreferenceChangeListener(this);
 	}
 
 	@Override
@@ -243,6 +263,12 @@ public class DownloadFragment extends Fragment
 		reloadItems();
 	}
 
+	@Override
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
+		changed = true;
+	}
+
 	private class DownloadsAdapter extends CursorAdapter
 			implements StickyListHeadersAdapter {
 		private final Context mContext;
@@ -259,7 +285,7 @@ public class DownloadFragment extends Fragment
 			mInflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			mPrefs = context.getSharedPreferences("update_ignored",
-					Context.MODE_PRIVATE);
+					MODE_PRIVATE);
 
 			Resources res = context.getResources();
 			sectionHeadersStatus = new String[] {

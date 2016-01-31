@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -85,21 +86,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	private ModuleUtil mModuleUtil;
 	private ModuleAdapter mAdapter = null;
 	private PackageManager mPm = null;
-	private Runnable reloadModules = new Runnable() {
-		public void run() {
-			mAdapter.setNotifyOnChange(false);
-			mAdapter.clear();
-			mAdapter.addAll(mModuleUtil.getModules().values());
-			final Collator col = Collator.getInstance(Locale.getDefault());
-			mAdapter.sort(new Comparator<InstalledModule>() {
-				@Override
-				public int compare(InstalledModule lhs, InstalledModule rhs) {
-					return col.compare(lhs.getAppName(), rhs.getAppName());
-				}
-			});
-			mAdapter.notifyDataSetChanged();
-		}
-	};
 	private RootUtil mRootUtil;
 	private MenuItem mClickedMenuItem = null;
 
@@ -131,7 +117,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 		mRootUtil = new RootUtil();
 		mAdapter = new ModuleAdapter(getActivity());
-		reloadModules.run();
+		new ReloadModules().execute();
 		setListAdapter(mAdapter);
 		setEmptyText(getActivity().getString(R.string.no_xposed_modules_found));
 		registerForContextMenu(getListView());
@@ -422,12 +408,12 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	@Override
 	public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil,
 			String packageName, InstalledModule module) {
-		getActivity().runOnUiThread(reloadModules);
+		new ReloadModules().execute();
 	}
 
 	@Override
 	public void onInstalledModulesReloaded(ModuleUtil moduleUtil) {
-		getActivity().runOnUiThread(reloadModules);
+		new ReloadModules().execute();
 	}
 
 	@Override
@@ -660,6 +646,42 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				warningText.setVisibility(View.GONE);
 			}
 			return view;
+		}
+	}
+
+	private class ReloadModules extends AsyncTask<Void, Void, Boolean> {
+
+		private MaterialDialog mProgressDialog;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+
+			mProgressDialog = new MaterialDialog.Builder(getContext())
+					.content(R.string.loading).progress(true, 0).show();
+			mAdapter.setNotifyOnChange(false);
+			mAdapter.clear();
+		}
+
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			mAdapter.addAll(mModuleUtil.getModules().values());
+			final Collator col = Collator.getInstance(Locale.getDefault());
+			mAdapter.sort(new Comparator<InstalledModule>() {
+				@Override
+				public int compare(InstalledModule lhs, InstalledModule rhs) {
+					return col.compare(lhs.getAppName(), rhs.getAppName());
+				}
+			});
+			return true;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			super.onPostExecute(result);
+
+			mAdapter.notifyDataSetChanged();
+			mProgressDialog.dismiss();
 		}
 	}
 
