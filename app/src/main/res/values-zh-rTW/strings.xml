@@ -305,5 +305,6 @@
     <string name="ignore_updates">忽略更新</string>
     <string name="ignore_updates_summ">忽略特定模組更新。</string>
     <string name="reboot_recovery">重新啟動至 Recovery 模式</string>
-	
+    <string name="loading">載入中…</string>
+
 </resources>
