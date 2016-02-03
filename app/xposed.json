@@ -1,65 +1,65 @@
 {
   "installer": [
     {
-      "name": "xposed-v79-sdk21-arm",
-      "version": "79",
-      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580241&d=1450386545",
+      "name": "xposed-v80-sdk21-arm",
+      "version": "80",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631559&d=1454436705",
       "sdk": 21,
       "architecture": "arm"
     },
     {
-      "name": "xposed-v79-sdk21-arm64",
-      "version": "79",
-      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580242&d=1450386545",
+      "name": "xposed-v80-sdk21-arm64",
+      "version": "80",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631560&d=1454436705",
       "sdk": 21,
       "architecture": "arm64"
     },
     {
-      "name": "xposed-v79-sdk21-x86",
-      "version": "79",
-      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580242&d=1450386545",
+      "name": "xposed-v80-sdk21-x86",
+      "version": "80",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631561&d=1454436705",
       "sdk": 21,
       "architecture": "x86"
     },
     {
-      "name": "xposed-v79-sdk22-arm",
-      "version": "79",
-      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580244&d=1450386592",
+      "name": "xposed-v80-sdk22-arm",
+      "version": "80",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631562&d=1454436745",
       "sdk": 22,
       "architecture": "arm"
     },
     {
-      "name": "xposed-v79-sdk22-arm64",
-      "version": "79",
-      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580245&d=1450386592",
+      "name": "xposed-v80-sdk22-arm64",
+      "version": "80",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631563&d=1454436745",
       "sdk": 22,
       "architecture": "arm64"
     },
     {
-      "name": "xposed-v79-sdk22-x86",
-      "version": "79",
-      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580246&d=1450386592",
+      "name": "xposed-v80-sdk22-x86",
+      "version": "80",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631564&d=1454436745",
       "sdk": 22,
       "architecture": "x86"
     },
     {
-      "name": "xposed-v79-sdk23-arm",
-      "version": "79",
-      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580247&d=1450386638",
+      "name": "xposed-v80-sdk23-arm",
+      "version": "80",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631565&d=1454436795",
       "sdk": 23,
       "architecture": "arm"
     },
     {
-      "name": "xposed-v79-sdk23-arm64",
-      "version": "79",
-      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580248&d=1450386638",
+      "name": "xposed-v80-sdk23-arm64",
+      "version": "80",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631566&d=1454436795",
       "sdk": 23,
       "architecture": "arm64"
     },
     {
-      "name": "xposed-v79-sdk23-x86",
-      "version": "79",
-      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3580249&d=1450386638",
+      "name": "xposed-v80-sdk23-x86",
+      "version": "80",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631567&d=1454436795",
       "sdk": 23,
       "architecture": "x86"
     },
