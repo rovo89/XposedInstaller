@@ -298,5 +298,7 @@
     <string name="navigation_drawer_open">Apri navigation drawer</string>
     <string name="reboot_recovery">Riavvia in recovery</string>
     <string name="loading">Caricamento…</string>
+    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs_summ">Apri link nel browser interno</string>
 
 </resources>
