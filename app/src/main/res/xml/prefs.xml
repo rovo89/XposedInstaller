@@ -76,6 +76,12 @@
             android:key="colored_notification"
             android:title="@string/notification_coloration"/>
 
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="chrome_tabs"
+            android:summary="@string/chrome_custom_tabs_summ"
+            android:title="@string/chrome_custom_tabs"/>
+
         <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/default_view_texts"

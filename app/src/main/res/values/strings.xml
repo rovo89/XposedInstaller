@@ -306,5 +306,7 @@
     <string name="ignore_updates_summ">Ignore updates for a specific module.</string>
     <string name="reboot_recovery">Reboot to recovery</string>
     <string name="loading">Loading…</string>
+    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs_summ">Open links in internal browser</string>
 
 </resources>

@@ -1,7 +1,9 @@
 package de.robv.android.xposed.installer.util;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
+import android.provider.Browser;
 import android.support.customtabs.CustomTabsIntent;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -40,6 +42,14 @@ public final class NavUtil {
 	}
 
 	public static void startURL(Activity activity, Uri uri) {
+		if (!XposedApp.getPreferences().getBoolean("chrome_tabs", true)) {
+			Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+			intent.putExtra(Browser.EXTRA_APPLICATION_ID,
+					activity.getPackageName());
+			activity.startActivity(intent);
+			return;
+		}
+
 		CustomTabsIntent.Builder customTabsIntent = new CustomTabsIntent.Builder();
 		customTabsIntent.setShowTitle(true);
 		customTabsIntent.setToolbarColor(XposedApp.getColor(activity));

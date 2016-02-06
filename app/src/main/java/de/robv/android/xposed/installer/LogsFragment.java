@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -42,6 +43,7 @@ public class LogsFragment extends Fragment {
 	private TextView mTxtLog;
 	private ScrollView mSVLog;
 	private HorizontalScrollView mHSVLog;
+	private MenuItem mClickedMenuItem = null;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class LogsFragment extends Fragment {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		mClickedMenuItem = item;
 		switch (item.getItemId()) {
 			case R.id.menu_scroll_top:
 				scrollTop();
@@ -76,7 +79,10 @@ public class LogsFragment extends Fragment {
 				reloadErrorLog();
 				return true;
 			case R.id.menu_send:
-				send();
+				try {
+					send();
+				} catch (NullPointerException ignored) {
+				}
 				return true;
 			case R.id.menu_save:
 				save();
@@ -138,9 +144,8 @@ public class LogsFragment extends Fragment {
 	private void send() {
 		Intent sendIntent = new Intent();
 		sendIntent.setAction(Intent.ACTION_SEND);
-		sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(mFileErrorLog));
-		sendIntent.setType("application/html"); // text/plain is handled wrongly
-		// by too many apps
+		sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(save()));
+		sendIntent.setType("application/html");
 		startActivity(Intent.createChooser(sendIntent,
 				getResources().getString(R.string.menuSend)));
 	}
@@ -152,7 +157,14 @@ public class LogsFragment extends Fragment {
 				grantResults);
 		if (requestCode == WRITE_EXTERNAL_PERMISSION) {
 			if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-				save();
+				if (mClickedMenuItem != null) {
+					new Handler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							onOptionsItemSelected(mClickedMenuItem);
+						}
+					}, 500);
+				}
 			} else {
 				Toast.makeText(getActivity(), R.string.permissionNotGranted,
 						Toast.LENGTH_LONG).show();
@@ -161,20 +173,20 @@ public class LogsFragment extends Fragment {
 	}
 
 	@SuppressLint("DefaultLocale")
-	private void save() {
+	private File save() {
 		if (ActivityCompat.checkSelfPermission(getActivity(),
 				Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 			requestPermissions(
 					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
 					WRITE_EXTERNAL_PERMISSION);
-			return;
+			return null;
 		}
 
 		if (!Environment.getExternalStorageState()
 				.equals(Environment.MEDIA_MOUNTED)) {
 			Toast.makeText(getActivity(), R.string.sdcard_not_writable,
 					Toast.LENGTH_LONG).show();
-			return;
+			return null;
 		}
 
 		Calendar now = Calendar.getInstance();
@@ -196,16 +208,17 @@ public class LogsFragment extends Fragment {
 			}
 			in.close();
 			out.close();
+
+			Toast.makeText(getActivity(), targetFile.toString(),
+					Toast.LENGTH_LONG).show();
+			return targetFile;
 		} catch (IOException e) {
 			Toast.makeText(getActivity(),
 					getResources().getString(R.string.logs_save_failed) + "\n"
 							+ e.getMessage(),
 					Toast.LENGTH_LONG).show();
-			return;
+			return null;
 		}
-
-		Toast.makeText(getActivity(), targetFile.toString(), Toast.LENGTH_LONG)
-				.show();
 	}
 
 	private class LogsReader extends AsyncTask<File, Integer, String> {
@@ -254,7 +267,6 @@ public class LogsFragment extends Fragment {
 				long skipped = skipLargeFile(br, logfile.length());
 				if (skipped > 0) {
 					llog.append("-----------------\n");
-					/* FIXME! */
 					llog.append("Log too long");
 					llog.append("\n-----------------\n\n");
 				}
