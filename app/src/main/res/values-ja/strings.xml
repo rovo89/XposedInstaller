@@ -62,7 +62,7 @@
     <string name="tap_to_dismiss">タップして閉じる</string>
     <string name="sdcard_location">SDカード: %s</string>
     <string name="installation_lollipop">Xposedフレームワークがインストールされていません。XDAから最新のzipファイルをダウンロードして、リカバリーから手動で書き込んでください。</string>
-    <string name="installed_lollipop">バージョン%sのXposedフレームワークが有効になっています。</string>
+    <string name="installed_lollipop">Xposedフレームワークバージョン%sが有効になっています。</string>
     <string name="installed_lollipop_inactive">バージョン%sのXposedフレームワークがインストールされていますが、有効になっていません。ログで詳細を確認してください。</string>
     <string name="modules_updates_available">モジュールの更新があります</string>
 
@@ -127,7 +127,7 @@
     <string name="download_author">開発者: %s</string>
     <string name="download_unknown_author">開発者不明</string>
     <string name="download_status_installed">インストール済み（バージョン%s）</string>
-    <string name="download_status_update_available">更新あり（バージョン%1$s \u2192 %2$s）</string>
+    <string name="download_status_update_available">更新があります（バージョン%1$s \u2192 %2$s）</string>
     <string name="download_timestamps">%1$sに追加 %2$sに更新</string>
     <string name="download_sorting_title">並べ替え</string>
     <string name="download_sorting_status">状態</string>
@@ -267,7 +267,7 @@
 
         説明:\n
         %%SDK%%はAndroid SDKバージョンです\n\n
-        %%ARCHは端末のCPUアーキテクチャです
+        %%ARCH%%は端末のCPUアーキテクチャです
     </string>
     <string name="newVersion">新しいバージョンのXposed Installerがあります。更新してください。</string>
     <string name="update">更新</string>
@@ -296,5 +296,17 @@
     <string name="bookmark_removed">ブックマークを削除しました</string>
     <string name="undo">元に戻す</string>
     <string name="notification_coloration">通知アイコンを色付け</string>
+    <string name="file_is_empty">ファイルは空です</string>
+    <string name="install_with_su">ルートでモジュールをインストール</string>
+    <string name="install_with_su_summ">チェックするとXposed Installerはダイアログを表示しないでモジュールをインストールするようになります</string>
+    <string name="install_remove">インストールして削除</string>
+    <string name="download_remove">ダウンロードして削除</string>
+    <string name="module_saved">モジュールを%1$sに保存しました</string>
+    <string name="ignore_updates">更新を無視</string>
+    <string name="ignore_updates_summ">指定したモジュールの更新を無視します。</string>
+    <string name="reboot_recovery">リカバリーで再起動</string>
+    <string name="loading">読み込み中…</string>
+    <string name="chrome_custom_tabs">Chromeカスタムタブ</string>
+    <string name="chrome_custom_tabs_summ">リンクを内蔵ブラウザで開きます</string>
 
 </resources>
