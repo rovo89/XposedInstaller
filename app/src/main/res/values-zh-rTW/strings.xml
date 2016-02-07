@@ -306,5 +306,7 @@
     <string name="ignore_updates_summ">忽略特定模組更新。</string>
     <string name="reboot_recovery">重新啟動至 Recovery 模式</string>
     <string name="loading">載入中…</string>
+    <string name="chrome_custom_tabs">Chrome 式自訂分頁</string>
+    <string name="chrome_custom_tabs_summ">於內部瀏覽器開啟連結</string>
 
 </resources>
