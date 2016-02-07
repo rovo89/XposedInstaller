@@ -1,12 +1,16 @@
 package de.robv.android.xposed.installer;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
 
 import com.github.machinarius.preferencefragment.PreferenceFragment;
+
+import java.util.Map;
 
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.util.PrefixedSharedPreferences;
@@ -36,6 +40,20 @@ public class DownloadDetailsSettingsFragment extends PreferenceFragment {
 		PrefixedSharedPreferences.injectToPreferenceManager(prefManager,
 				module.packageName);
 		addPreferencesFromResource(R.xml.module_prefs);
+
+		SharedPreferences prefs = getContext()
+				.getSharedPreferences("module_settings", Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = prefs.edit();
+
+		if (prefs.getBoolean("no_global", true)) {
+			for (Map.Entry<String, ?> k : prefs.getAll().entrySet()) {
+				if (prefs.getString(k.getKey(), "").equals("global")) {
+					editor.putString(k.getKey(), "").apply();
+				}
+			}
+
+			editor.putBoolean("no_global", false).apply();
+		}
 
 		findPreference("release_type").setOnPreferenceChangeListener(
 				new OnPreferenceChangeListener() {

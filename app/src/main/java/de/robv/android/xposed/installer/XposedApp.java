@@ -51,7 +51,7 @@ public class XposedApp extends Application
 	private static final File XPOSED_PROP_FILE = new File(
 			"/system/xposed.prop");
 	public static int WRITE_EXTERNAL_PERMISSION = 69;
-	public static String THIS_APK_VERSION = "1452888000000";
+	public static String THIS_APK_VERSION = "1454853600000";
 	public static int[] iconsValues = new int[] { R.mipmap.ic_launcher,
 			R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo,
 			R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol };
