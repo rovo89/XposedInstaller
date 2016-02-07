@@ -161,8 +161,8 @@
     }
   ],
   "apk": {
-    "version": "1454853600000",
+    "version": "1454875200000",
     "link": "https://github.com/DVDAndroid/dvdandroid.github.io/blob/master/apks/XposedInstaller_by_dvdandroid.apk?raw=true",
-    "changelog": "<b>What's new:</b><br>&#149; Added: Chrome custom tabs are now optional!<br>&#149; Added: you can ignore an update for a specific module!<br>&#149; Added: Shortcut to reboot in recovery!<br>&#149; Added: auto-selection of right installer zip file!<br>&#149; Added: import app list and install it automatically<br>&#149; Added: install apks with root<br>&#149; Added: long click on download button to save module in internal storage<br>&#149; Fixed: cannot export log with GMail<br>&#149; Fixed: force experimental versions globally<br>&#149; Fixed: click on notification opens app<br>&#149; Fixed: Android 6.0 permission manager fixes<br>&#149; Updated: Synced translations!<br><br><b>Planned for future</b><br>&#149; Framework installation on KitKat and lower"
+    "changelog": "<b>What's new:</b><br>&#149; Added: Chrome custom tabs are now optional!<br>&#149; Added: you can ignore an update for a specific module!<br>&#149; Added: Shortcut to reboot in recovery!<br>&#149; Added: auto-selection of right installer zip file!<br>&#149; Added: import app list and install it automatically<br>&#149; Added: install apks with root<br>&#149; Added: long click on download button to save module in internal storage<br>&#149; Fixed: cannot export log with GMail<br>&#149; Fixed: force experimental versions globally<br>&#149; Fixed: click on notification opens app<br>&#149; Fixed: Android 6.0 permission manager fixes<br>&#149; Fixed: default view not shown<br>&#149; Updated: Synced translations!<br><br><b>Planned for future</b><br>&#149; Framework installation on KitKat and lower"
   }
 }

@@ -78,7 +78,8 @@ public class WelcomeActivity extends XposedBaseActivity
 
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-			int value = extras.getInt("fragment");
+			int value = extras.getInt("fragment",
+					prefs.getInt("default_view", 0));
 			switchFragment(value);
 		}
 
