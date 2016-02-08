@@ -42,9 +42,9 @@
     <string name="installedVersion">actiu</string>
     <string name="latestVersion">inclosa</string>
     <string name="versions">Versions:</string>
-    <string name="install_header_reboot">Reinicia</string>
+    <string name="install_header_reboot">Reinici</string>
     <string name="soft_reboot">Reinici ràpid</string>
-    <string name="reboot">Reinicia</string>
+    <string name="reboot">Reinici</string>
     <string name="areyousure">N\'esteu segur?</string>
     <string name="phone_not_compatible">L\'Xposed (encara) no és compatible amb Android SDK versió %1$d o l\'arquitectura del processador (%2$s).</string>
     <string name="not_tested_but_compatible">L\'Xposed no s\'ha provat amb Android SDK versió %d, peró sembla compatible. Podeu provar d\'instal·lar-lo si voleu córrer el risc.</string>
@@ -122,7 +122,7 @@
     <string name="reltype_beta">Beta</string>
     <string name="reltype_beta_summary">Beta (es pot esperar algun error)</string>
     <string name="reltype_experimental">Experimental</string>
-    <string name="reltype_experimental_summary">Experimental (alt risc d\'errors)</string>
+    <string name="reltype_experimental_summary">Experimental (risc alt d\'errors)</string>
     <string name="reltype_use_global_summary">Utilitza la configuració global</string>
     <string name="download_author">per %s</string>
     <string name="download_unknown_author">autor desconegut</string>
@@ -157,7 +157,7 @@
     <string name="settings_release_type">Versions que es mostraran</string>
     <string name="settings_group_experimental">Experimental</string>
     <string name="settings_disable_resources">Ganxos d\'orígens inhabilitats</string>
-    <string name="settings_disable_resources_summary">Solució per a conflictes amb motors tematització\n<b>AVÍS:</b> Els mòduls que intent canviar orígens no funcionaran si ho habiliteu.</string>
+    <string name="settings_disable_resources_summary">Solució per a conflictes amb motors de tematització\n<b>AVÍS:</b> Els mòduls que intenten canviar recursos no funcionaran si s\'habilita.</string>
     <string name="settings_performance_experiment" tools:ignore="UnusedResources">Experiment de rendiment</string>
     <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Si ho habiliteu, el rendiment del sistema pot augmentar, disminuir o restar igual. No dubteu a provar-ho i comunicar l\'efecte que veieu (o si no n\'hi ha cap). Si ho canvieu, haureu de tornar a instal·lar el marc i reiniciar.</string>
     <string name="settings_group_app">Aplicació</string>
@@ -221,7 +221,7 @@
     <string name="warning_installed_on_external_storage">No es pot carregar aquest mòdul perquè s\'ha instal·lat a la targeta SD, moveu-lo a l\'emmagatzematge intern.</string>
     <string name="warning_forward_locked">No es pot carregar aquest mòdul perquè està \"forward-locked\", contacteu el desenvolupador del mòdul.</string>
     <string name="export_modules">Exporta la llista de mòduls habilitats</string>
-    <string name="import_modules">Importa la llista de mòduls inhabilitats</string>
+    <string name="import_modules">Importa la llista de mòduls habilitats</string>
     <string name="view">VISUALITZA</string>
     <string name="export_">Exporta…</string>
     <string name="import_">Importa…</string>
@@ -297,10 +297,16 @@
     <string name="undo">Desfés</string>
     <string name="notification_coloration">Acoloreix la icona de notificació</string>
     <string name="file_is_empty">El fitxer està buit</string>
-    <string name="install_with_su">Instal·lació de mòduls amb usuari primari</string>
+    <string name="install_with_su">Instal·lació del mòdul amb usuari primari</string>
     <string name="install_with_su_summ">Si s\'activa, l\'instal·lador Xposed instal·larà els mòduls sense cap pregunta</string>
     <string name="install_remove">Instal·la i suprimeix</string>
     <string name="download_remove">Baixa i suprimeix</string>
     <string name="module_saved">S\'ha desat el mòdul a %1$s</string>
+    <string name="ignore_updates">Ignora les actualitzacions</string>
+    <string name="ignore_updates_summ">Ignora les actualitzacions per a un mòdul concret.</string>
+    <string name="reboot_recovery">Reinici a recuperació</string>
+    <string name="loading">S\'està carregant…</string>
+    <string name="chrome_custom_tabs">Pestanyes personalitzades del Chrome</string>
+    <string name="chrome_custom_tabs_summ">Obre els enllaços al navegador intern</string>
 
 </resources>
