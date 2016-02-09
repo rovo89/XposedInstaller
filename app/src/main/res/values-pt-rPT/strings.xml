@@ -273,7 +273,7 @@
     <string name="undo">Reverter</string>
     <string name="update">Atualizar</string>
     <string name="view">VER</string>
-    <string name="warningArchitecture">ESCOLHEU O ZIP DA \"XPOSED\" PARA A ARQUITETURA CORRETA?\nUma escolha incorreta poderá danificar o seu telefone!</string>
+    <string name="warningArchitecture">ESCOLHEU O ZIP DA \"XPOSED\" PARA A ARQUITETURA CORRETA?\nUma escolha incorreta poderá danificar o seu dispositivo!</string>
     <string name="warning_forward_locked">O módulo não pode ser carregado pois está \"forward-locked\", por favor contacte o programador do módulo.</string>
     <string name="warning_installed_on_external_storage">Este módulo não pode ser carregado pois está instalado no cartão SD. Mova-o para a memória interna, por favor.</string>
     <string name="xposedZipNotFound">O Zip não foi encontrado, talvez por existir uma nova versão que ainda não se encontra listada.</string>
@@ -281,6 +281,9 @@
     <string name="ignore_updates">Ignorar atualização</string>
     <string name="ignore_updates_summ">Ignorar atualizações para um módulo específico</string>
     <string name="reboot_recovery">Reiniciar para a \"Recovery\"</string>
-
+	<string name="loading">A carregar…</string>
+    <string name="chrome_custom_tabs">Separadores do Chrome Personalizados</string>
+    <string name="chrome_custom_tabs_summ">Abrir links pelo navegador interno</string>
+	
 </resources>
 
