@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 与 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_label">主要开发者：</string>
+    <string name="about_developers_label">主要开发者</string>
     <string name="about_developers_warning">请<b>不</b>要直接联系我们获取帮助，使用下面的链接。</string>
-    <string name="about_libraries_label">使用的库：</string>
-    <string name="about_source_label">源码：</string>
+    <string name="about_libraries_label">使用的库</string>
+    <string name="about_source_label">源码</string>
     <string name="about_support_label">获取支持：</string>
     <string name="about_translator_label">翻译：</string>
     <string name="about_version_label">应用程序版本：</string>
@@ -78,7 +78,7 @@
     <string name="tabModulesDescription">框架本身不增加任何功能。您需要使用模块。安装模块后在此处激活它们。</string>
     <string name="tabSettings">设置</string>
     <string name="tabSettingsDescription">此处可配置 Xposed 安装器和框架。</string>
-    <string name="translator"><a href="http://htcui.com">魂客</a></string>
+    <string name="translator"><a href="http://htcui.com">魂客</a>&amp;<a href="http://ilii.me">Ali</a></string>
     <string name="uninstall">卸载</string>
     <string name="versions">版本：</string>
     <string name="warning_min_version_too_low">该模块在 XposedBridge 版本 %1$d 下创建，但因为不兼容版本 %2$d 中的变化内容，它已被禁用。</string>
@@ -176,12 +176,12 @@
     <string name="uninstall_reverted">app_process 之前已被卸载，现在却找到了版本为 \"%s\" 的。如果您不希望一个旧文件被还原，也许您应该试试通过 Recovery 卸载（自动或手动）。</string>
     <string name="xposed_module_updated_notification">重启以激活更新。</string>
     <string name="xposed_module_updated_notification_title">Xposed 模块已更新</string>
-    <string name="support_donate_description">如果你想感谢Xposed作者，你可以在这里为rovo89捐赠:</string>
+    <string name="support_donate_description">如果你想感谢Xposed作者，你可以在这里为rovo89捐赠</string>
     <string name="support_donate_label">捐赠</string>
     <string name="support_faq_label">常见问题</string>
     <string name="support_framework_label">框架与安装程序支持</string>
     <string name="support_modules_description">在模块列表中单击模块，然后选择\"%1$s\".</string>
-    <string name="support_modules_label">支持的模块</string>
+    <string name="support_modules_label">模块支持</string>
     <string name="tabSupport">支持</string>
     <string name="tabSupportDescription">找到Xposed相关问题的帮助，你也可以捐赠Xposed作者来表达你的谢意.</string>
     <string name="back">返回</string>
@@ -245,7 +245,7 @@ CPU架构: %2$s
 错误的XPOSED框架zip安装程序可能会让你的设备无法启动!"</string>
     <string name="warning_forward_locked">"该模块不能加载，因为它的支持已经锁定，请与模块的开发人员联系."</string>
     <string name="warning_installed_on_external_storage">"该模块不能加载，因为它安装在SD卡上，请将它移到内部存储."</string>
-    <string name="xposedZipNotFound">Zip没有找到, 可能有新版本已经发布.</string>
+    <string name="xposedZipNotFound">Zip未找到, 可能有新版本已经发布.</string>
     <string name="navigation_drawer_close">关闭导航抽屉</string>
     <string name="navigation_drawer_open">打开导航抽屉</string>
     <string name="md_back_label">返回</string>
@@ -255,4 +255,28 @@ CPU架构: %2$s
     <string name="md_done_label">完成</string>
     <string name="md_error_label">错误</string>
     <string name="md_presets_label">预设</string>
+    <string name="md_storage_perm_error">您的应用未获得 READ_EXTERNAL_STORAGE 权限.</string>
+    <string name="changelog">更新日志</string>
+    <string name="scroll_top">滑动至顶部</string>
+    <string name="add_bookmark">添加书签</string>
+    <string name="remove_bookmark">删除书签</string>
+    <string name="bookmarks">书签</string>
+    <string name="no_bookmark_added">未添加书签</string>
+    <string name="bookmark_added">书签已添加</string>
+    <string name="bookmark_removed">书签已删除</string>
+    <string name="undo">撤销</string>
+    <string name="notification_coloration">彩色的通知图标</string>
+    <string name="file_is_empty">文件为空</string>
+    <string name="install_with_su">用root安装模块</string>
+    <string name="install_with_su_summ">如果选中，Xposed将静默安装模块</string>
+    <string name="install_remove">安装并删除</string>
+    <string name="download_remove">下载并删除</string>
+    <string name="module_saved">模块保存在 %1$s</string>
+    <string name="ignore_updates">忽略更新</string>
+    <string name="ignore_updates_summ">忽略的特定模块的更新</string>
+    <string name="reboot_recovery">重启到Reovery</string>
+    <string name="loading">加载中…</string>
+    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs_summ">用内置浏览器打开链接</string>
+
 </resources>
