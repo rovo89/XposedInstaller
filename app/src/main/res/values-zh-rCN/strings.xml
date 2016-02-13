@@ -78,7 +78,7 @@
     <string name="tabModulesDescription">框架本身不增加任何功能。您需要使用模块。安装模块后在此处激活它们。</string>
     <string name="tabSettings">设置</string>
     <string name="tabSettingsDescription">此处可配置 Xposed 安装器和框架。</string>
-    <string name="translator"><a href="http://htcui.com">魂客</a>&<a href="http://ilii.me">Ali</a></string>
+    <string name="translator"><a href="http://htcui.com">魂客</a>&amp;<a href="http://ilii.me">Ali</a></string>
     <string name="uninstall">卸载</string>
     <string name="versions">版本：</string>
     <string name="warning_min_version_too_low">该模块在 XposedBridge 版本 %1$d 下创建，但因为不兼容版本 %2$d 中的变化内容，它已被禁用。</string>
