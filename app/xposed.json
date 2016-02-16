@@ -64,6 +64,34 @@
       "architecture": "x86"
     },
     {
+      "name": "wanam-xposed-v80-sdk23-arm64",
+      "version": "80.0",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3642673&d=1455224812",
+      "sdk": 23,
+      "architecture": "arm64"
+    },
+    {
+      "name": "wanam-xposed-v80-sdk23-arm",
+      "version": "80.0",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3642675&d=1455224933",
+      "sdk": 23,
+      "architecture": "arm"
+    },
+    {
+      "name": "wanam-xposed-v80-sdk22-arm64",
+      "version": "80.0",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3642676&d=1455225074",
+      "sdk": 22,
+      "architecture": "arm64"
+    },
+    {
+      "name": "wanam-xposed-v80-sdk22-arm",
+      "version": "80.0",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3642685&d=1455225174",
+      "sdk": 22,
+      "architecture": "arm"
+    },
+    {
       "name": "app_process_xposed",
       "version": "58",
       "link": "https://github.com/rovo89/XposedInstaller/blob/master/assets/arm/app_process_xposed_sdk15?raw=true",
@@ -158,6 +186,12 @@
       "date": "20140204",
       "architecture": null,
       "link": "https://github.com/rovo89/XposedInstaller/blob/master/assets/Xposed-Disabler-Recovery.zip?raw=true"
+    },
+    {
+      "name": "wanam-xposed-uninstaller-20160211",
+      "date": "20160211",
+      "architecture": null,
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3642692&d=1455225308"
     }
   ],
   "apk": {
