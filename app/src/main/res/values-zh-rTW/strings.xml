@@ -308,5 +308,6 @@
     <string name="loading">載入中…</string>
     <string name="chrome_custom_tabs">Chrome 式自訂分頁</string>
     <string name="chrome_custom_tabs_summ">於內部瀏覽器開啟連結</string>
+    <string name="scroll_bottom">捲動至到底端</string>
 
 </resources>
