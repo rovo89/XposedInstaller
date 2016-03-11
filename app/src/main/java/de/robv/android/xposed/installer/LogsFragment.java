@@ -75,6 +75,9 @@ public class LogsFragment extends Fragment {
 			case R.id.menu_scroll_top:
 				scrollTop();
 				break;
+			case R.id.menu_scroll_down:
+				scrollDown();
+				break;
 			case R.id.menu_refresh:
 				reloadErrorLog();
 				return true;
@@ -99,6 +102,21 @@ public class LogsFragment extends Fragment {
 			@Override
 			public void run() {
 				mSVLog.scrollTo(0, 0);
+			}
+		});
+		mHSVLog.post(new Runnable() {
+			@Override
+			public void run() {
+				mHSVLog.scrollTo(0, 0);
+			}
+		});
+	}
+
+	private void scrollDown() {
+		mSVLog.post(new Runnable() {
+			@Override
+			public void run() {
+				mSVLog.scrollTo(0, mTxtLog.getHeight());
 			}
 		});
 		mHSVLog.post(new Runnable() {
