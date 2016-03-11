@@ -13,7 +13,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 37
-        versionName "3.0 alpha4 by dvdandroid"
+        versionName "3.0 alpha4 by dvdandroid - 07/02/16"
         project.ext.set("archivesBaseName", "XposedInstaller_by_dvdandroid");
     }
 
