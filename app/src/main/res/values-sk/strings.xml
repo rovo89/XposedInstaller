@@ -308,5 +308,6 @@
     <string name="loading">Načítavanie…</string>
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Otvoriť odkazy v internom prehliadači</string>
+    <string name="scroll_bottom">Prejsť dole</string>
 
 </resources>
