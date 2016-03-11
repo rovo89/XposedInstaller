@@ -300,5 +300,6 @@
     <string name="loading">Caricamento…</string>
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Apri link nel browser interno</string>
+    <string name="scroll_bottom">Scorri giù</string>
 
 </resources>
