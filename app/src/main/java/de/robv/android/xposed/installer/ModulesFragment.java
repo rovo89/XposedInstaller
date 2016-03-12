@@ -69,7 +69,6 @@ import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
-import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
@@ -102,6 +101,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	};
 	private RootUtil mRootUtil;
 	private MenuItem mClickedMenuItem = null;
+	private ActionBar actionBar;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -137,7 +137,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		registerForContextMenu(getListView());
 		mModuleUtil.addListener(this);
 
-		ActionBar actionBar = ((WelcomeActivity) getActivity())
+		actionBar = ((WelcomeActivity) getActivity())
 				.getSupportActionBar();
 
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -408,7 +408,10 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	@Override
 	public void onResume() {
 		super.onResume();
-		NotificationUtil.cancelAll();
+		String title = getString(R.string.nav_item_modules) + " (%s)";
+
+		actionBar.setTitle(
+				String.format(title, mModuleUtil.getModules().size()));
 	}
 
 	@Override

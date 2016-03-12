@@ -1,5 +1,10 @@
 package de.robv.android.xposed.installer;
 
+import static android.content.Context.MODE_PRIVATE;
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+import static de.robv.android.xposed.installer.util.XposedZip.Installer;
+import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
+
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -40,9 +45,6 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -56,18 +58,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
-import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.XposedZip;
-
-import static android.content.Context.MODE_PRIVATE;
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-import static de.robv.android.xposed.installer.util.XposedZip.Installer;
-import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
 
 public class InstallerFragment extends Fragment
 		implements DownloadsUtil.DownloadFinishedCallback {
@@ -496,7 +495,6 @@ public class InstallerFragment extends Fragment
 	@Override
 	public void onResume() {
 		super.onResume();
-		NotificationUtil.cancel(NotificationUtil.NOTIFICATION_MODULES_UPDATED);
 		mHadSegmentationFault = false;
 		refreshKnownIssue();
 	}

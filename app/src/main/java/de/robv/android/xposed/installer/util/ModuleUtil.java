@@ -42,8 +42,9 @@ public final class ModuleUtil {
 	private InstalledModule mFramework = null;
 	private Map<String, InstalledModule> mInstalledModules;
 	private boolean mIsReloading = false;
+    private Toast mToast;
 
-	private ModuleUtil() {
+    private ModuleUtil() {
 		mApp = XposedApp.getInstance();
 		mPref = mApp.getSharedPreferences("enabled_modules",
 				Context.MODE_PRIVATE);
@@ -242,17 +243,25 @@ public final class ModuleUtil {
 
 			FileUtils.setPermissions(MODULES_LIST_FILE, 00664, -1, -1);
 			FileUtils.setPermissions(XposedApp.ENABLED_MODULES_LIST_FILE, 00664,
-					-1, -1);
+                    -1, -1);
 
 			if (showToast)
-				Toast.makeText(mApp, R.string.xposed_module_list_updated,
-						Toast.LENGTH_SHORT).show();
+                showToast(R.string.xposed_module_list_updated);
 		} catch (IOException e) {
 			Log.e(XposedApp.TAG, "cannot write " + MODULES_LIST_FILE, e);
 			Toast.makeText(mApp, "cannot write " + MODULES_LIST_FILE + e,
 					Toast.LENGTH_SHORT).show();
 		}
 	}
+
+    private void showToast(int message) {
+        if (mToast != null) {
+            mToast.cancel();
+            mToast = null;
+        }
+        mToast = Toast.makeText(mApp, mApp.getString(message), Toast.LENGTH_SHORT);
+        mToast.show();
+    }
 
 	public void addListener(ModuleListener listener) {
 		if (!mListeners.contains(listener))
