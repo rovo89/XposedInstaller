@@ -73,7 +73,13 @@ public class WelcomeActivity extends XposedBaseActivity
 					navigate(mSelectedId);
 				}
 			}, 250);
-			mDrawerLayout.closeDrawers();
+
+			boolean openDrawer = prefs.getBoolean("open_drawer", false);
+
+			if (openDrawer)
+				mDrawerLayout.openDrawer(GravityCompat.START);
+			else
+				mDrawerLayout.closeDrawers();
 		}
 
 		Bundle extras = getIntent().getExtras();

@@ -309,5 +309,7 @@
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Open links in internal browser</string>
     <string name="scroll_bottom">Scroll to bottom</string>
+    <string name="open_drawer_summ">Open automatically the navigation drawer at startup</string>
+    <string name="open_drawer">Open automatically navigation drawer</string>
 
 </resources>

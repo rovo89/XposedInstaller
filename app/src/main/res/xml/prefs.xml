@@ -90,6 +90,11 @@
             android:summary="%s"
             android:title="@string/settings_default_view"/>
 
+        <CheckBoxPreference
+            android:key="open_drawer"
+            android:summary="@string/open_drawer_summ"
+            android:title="@string/open_drawer"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory
