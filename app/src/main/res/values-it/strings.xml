@@ -301,5 +301,7 @@
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Apri link nel browser interno</string>
     <string name="scroll_bottom">Scorri giù</string>
+    <string name="open_drawer">Apri automaticamente il menù laterale</string>
+    <string name="open_drawer_summ">Apri automaticamente il menù laterale all\'avvio</string>
 
 </resources>
