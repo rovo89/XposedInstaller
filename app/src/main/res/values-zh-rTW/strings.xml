@@ -154,10 +154,10 @@
     <string name="settings_group_download">下載</string>
     <string name="settings_enable_downloads">啟用下載</string>
     <string name="settings_enable_downloads_summary">允許 Xposed Installer 檢查更新和更新模組</string>
-    <string name="settings_release_type">要顯示的版本</string>
+    <string name="settings_release_type">顯示版本</string>
     <string name="settings_group_experimental">實驗性</string>
     <string name="settings_disable_resources">停用資源鉤子</string>
-    <string name="settings_disable_resources_summary">解決與主題引擎的衝突。\n<b>警告：</b> 啓用此選項將會導致修改資源的模組停止工作。</string>
+    <string name="settings_disable_resources_summary">解決與主題引擎的衝突。\n<b>警告：</b> 啓用此選項將導致修改資源的模組停止運作。</string>
     <string name="settings_performance_experiment" tools:ignore="UnusedResources">性能試驗</string>
     <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">若您啟用此選項，您的系統性能可能更好、更差或沒有變化。請隨意試用並回報您觀察到的效果(或者根本沒變化)。修改選項後您需要重新安裝框架並重新啟動。</string>
     <string name="settings_group_app">應用程式</string>
@@ -298,7 +298,7 @@
     <string name="notification_coloration">通知圖示著色</string>
     <string name="file_is_empty">檔案為空</string>
     <string name="install_with_su">Root 下安裝模組</string>
-    <string name="install_with_su_summ">若勾選則 Xposed Installer 在安裝模組時將不會提示</string>
+    <string name="install_with_su_summ">若勾選則 Xposed Installer 在安裝模組時將不會提示。</string>
     <string name="install_remove">安裝和移除</string>
     <string name="download_remove">下載和移除</string>
     <string name="module_saved">儲存模組於 %1$s</string>
@@ -307,7 +307,9 @@
     <string name="reboot_recovery">重新啟動至 Recovery 模式</string>
     <string name="loading">載入中…</string>
     <string name="chrome_custom_tabs">Chrome 式自訂分頁</string>
-    <string name="chrome_custom_tabs_summ">於內部瀏覽器開啟連結</string>
+    <string name="chrome_custom_tabs_summ">於內置瀏覽器開啟連結</string>
     <string name="scroll_bottom">捲動至到底端</string>
+    <string name="open_drawer_summ">啟動時自動開啟抽屜式導航欄</string>
+    <string name="open_要">自動開啟抽屜式導航欄</string>
 
 </resources>
