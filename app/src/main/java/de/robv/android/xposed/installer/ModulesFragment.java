@@ -101,7 +101,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	};
 	private RootUtil mRootUtil;
 	private MenuItem mClickedMenuItem = null;
-	private ActionBar actionBar;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -137,7 +136,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 		registerForContextMenu(getListView());
 		mModuleUtil.addListener(this);
 
-		actionBar = ((WelcomeActivity) getActivity())
+		ActionBar actionBar = ((WelcomeActivity) getActivity())
 				.getSupportActionBar();
 
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -145,6 +144,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				6, metrics);
 		int eightDp = (int) TypedValue
 				.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
+		assert actionBar != null;
 		int toolBarDp = actionBar.getHeight() == 0 ? 196
 				: actionBar.getHeight();
 
@@ -403,15 +403,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			txtMessage.setTextSize(14);
 		} catch (NullPointerException ignored) {
 		}
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		String title = getString(R.string.nav_item_modules) + " (%s)";
-
-		actionBar.setTitle(
-				String.format(title, mModuleUtil.getModules().size()));
 	}
 
 	@Override

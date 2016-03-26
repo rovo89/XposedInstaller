@@ -1029,7 +1029,7 @@ public class InstallerFragment extends Fragment
 				if (arch.contains("64")) {
 					archPos = 1;
 				} else if (arch.contains("86")) {
-					archPos = 2;
+					archPos = Build.VERSION.SDK_INT > 19 ? 2 : 0;
 				}
 
 				mInstallersChooser

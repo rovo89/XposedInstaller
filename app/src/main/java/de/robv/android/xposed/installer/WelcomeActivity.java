@@ -48,6 +48,7 @@ public class WelcomeActivity extends XposedBaseActivity
 		setSupportActionBar(mToolbar);
 
 		mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+		assert mNavigationView != null;
 		mNavigationView.setNavigationItemSelectedListener(this);
 
 		ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,
@@ -128,6 +129,7 @@ public class WelcomeActivity extends XposedBaseActivity
 				break;
 			case R.id.drawer_item_2:
 				mPrevSelectedId = itemId;
+				setTitle(R.string.nav_item_modules);
 				navFragment = new ModulesFragment();
 				break;
 			case R.id.drawer_item_3:
