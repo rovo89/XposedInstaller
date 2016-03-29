@@ -308,5 +308,8 @@
     <string name="loading">กำลังโหลด…</string>
     <string name="chrome_custom_tabs">แท็บปรับแต่ง Chrome</string>
     <string name="chrome_custom_tabs_summ">เปิดลิงค์โดยเบราเซอร์ภายใน</string>
+    <string name="scroll_bottom">เลื่อนไปข้างล่าง</string>
+    <string name="open_drawer_summ">เปิด Navigation Drawer อัตโนมัติเมื่อเปิดใช้งานแอปพลิเคชั่น</string>
+    <string name="open_drawer">เปิด Navigation Drawer อัตโนมัติ</string>
 
 </resources>
