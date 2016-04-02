@@ -182,10 +182,10 @@
     <string name="download_view_failed">下載失敗(錯誤 %d)</string>
 
     <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">MD5驗證不符(下載的: %1$s, 預料中的: %2$s)</string>
+    <string name="download_md5sum_incorrect">MD5驗證不符(下載的: %1$s, 預期中的: %2$s)</string>
     <string name="download_could_not_read_file">無法讀取下載的檔案：%s</string>
     <string name="download_no_valid_apk">下載的檔案不是有效APK(或不相容)</string>
-    <string name="download_incorrect_package_name">檔名不正確(下載的: %1$s, 預料中的: %2$s)</string>
+    <string name="download_incorrect_package_name">檔名不正確(下載的: %1$s, 預期中的: %2$s)</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">下載 %1$s 時出錯：%2$d (%3$s)</string>
