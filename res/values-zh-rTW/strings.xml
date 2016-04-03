@@ -18,8 +18,6 @@
     <string name="welcome_update_available">一個或多個模組有更新可用。</string>
     <string name="tabSettings">設定</string>
     <string name="tabSettingsDescription">這裡可設定Xposed安裝器和框架。</string>
-    <string name="tabSupport">支援</string>
-    <string name="tabSupportDescription">取得和Xposed有關議題的協助，你也可以贊助Xposed表達你的感謝。</string>
     <string name="tabLogs">日誌</string>
     <string name="tabLogsDescription">顯示並保存/發送 Xposed 框架産生的日誌。</string>
     <string name="tabAbout">關於</string>
@@ -150,15 +148,7 @@
     <string name="settings_theme_light">淺色</string>
     <string name="settings_theme_dark">暗色</string>
     <string name="settings_theme_black">黑色 (對 AMOLED 螢幕有幫助)</string>
-
-    <!-- Support tab -->
-    <string name="support_modules_label">模組的支援</string>
-    <string name="support_modules_description">在模組頁內長按任何一個模組並選擇 \"%1$s\"。</string>
-    <string name="support_framework_label">框架/安裝器的支援/string>
-    <string name="support_faq_label">FAQ/已知問題</string>
-    <string name="support_donate_label">贊助</string>
-    <string name="support_donate_description">如果你想對Xposed道謝,你可以在這裡贊助給rovo89:</string>
-
+    
     <!-- Logs tab  -->
     <string name="logs_load_failed">無法讀取日誌：</string>
     <string name="logs_save_failed">無法將日誌寫入 SD 卡：</string>
