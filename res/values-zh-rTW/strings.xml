@@ -101,11 +101,11 @@
     <string name="download_details_page_versions">版本</string>
     <string name="download_details_page_settings">設定</string>
     <string name="reltype_stable">穩定版</string>
-    <string name="reltype_stable_summary">穩定版（遇到的bug風險低）</string>
+    <string name="reltype_stable_summary">穩定版(遇到的bug風險低)</string>
     <string name="reltype_beta">beta測試版</string>
-    <string name="reltype_beta_summary">beta測試版（一些預料中的bug）</string>
+    <string name="reltype_beta_summary">beta測試版(一些預料中的bug)</string>
     <string name="reltype_experimental">實驗版</string>
-    <string name="reltype_experimental_summary">實驗版（遇到的bug風險高）</string>
+    <string name="reltype_experimental_summary">實驗版(遇到的bug風險高)</string>
     <string name="reltype_use_global_summary">套用使用者設定</string>
     <string name="download_author">作者：%s</string>
     <string name="download_unknown_author">未知作者</string>
@@ -137,7 +137,7 @@
     <string name="settings_group_download">下載</string>
     <string name="settings_enable_downloads">啟用下載</string>
     <string name="settings_enable_downloads_summary">允許Xposed安裝器檢查更新和新模組</string>
-    <string name="settings_release_type">將顯示的版本</string>
+    <string name="settings_release_type">將顯示版本</string>
     <string name="settings_group_experimental">實驗性功能</string>
     <string name="settings_disable_resources">停用resource hooks</string>
     <string name="settings_disable_resources_summary">主題引擎衝突的解決方法。\n<b>警告:</b> 啟用這個選項將會導致變更資源的模組停止運作。</string>
