@@ -137,7 +137,7 @@
     <string name="settings_group_download">下載</string>
     <string name="settings_enable_downloads">啟用下載</string>
     <string name="settings_enable_downloads_summary">允許Xposed安裝器檢查更新和新模組</string>
-    <string name="settings_release_type">將顯示版本</string>
+    <string name="settings_release_type">將顯示哪些版本</string>
     <string name="settings_group_experimental">實驗性功能</string>
     <string name="settings_disable_resources">停用resource hooks</string>
     <string name="settings_disable_resources_summary">主題引擎衝突的解決方法。\n<b>警告:</b> 啟用這個選項將會導致變更資源的模組停止運作。</string>
