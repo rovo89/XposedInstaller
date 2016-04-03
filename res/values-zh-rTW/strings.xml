@@ -21,7 +21,7 @@
     <string name="tabLogs">日誌</string>
     <string name="tabLogsDescription">顯示並保存/發送 Xposed 框架産生的日誌。</string>
     <string name="tabAbout">關於</string>
-    <string name="tabAboutDescription">可以在這了解Xposed作者們，以及哪裡可以取得協助...等。</string>
+    <string name="tabAboutDescription">可以在這裡了解開發Xposed的作者們，以及哪裡可以取得協助等。</string>
 
     <!-- Installer tab -->
     <string name="install">安裝/更新</string>
@@ -41,7 +41,7 @@
     <string name="reboot_confirmation">你現在要重新啟動嗎？</string>
     <string name="reboot_recovery_confirmation">你現在要重新啟動進入 Recovery 模式嗎？</string>
     <string name="install_warning_title">小心！</string>
-    <string name="install_warning">某些情況下，你的裝置將在安裝 Xposed 之後無法啟動。\n\n如果你之前沒有聽說過“軟變磚(soft brick)”或“無限重新啟動(bootloop)”，或者你不知道怎麼修復，請"<b>不要</b>"安裝 Xposed！\n\n無論如何，強烈建議準備一個近期的備份。</string>
+    <string name="install_warning">某些情況下，你的裝置將在安裝 Xposed 之後無法啟動。\n\n如果沒聽過“軟變磚(soft brick)”或“無限重新啟動(bootloop)”，或者不知道怎麼修復，請"<b>不要</b>"安裝 Xposed！\n\n任何情況下，我們強烈建議準備一個近期的備份。</string>
     <string name="dont_show_again">不要再顯示</string>
     <string name="install_known_issue">Xposed 與你的 ROM 似乎存在已知的問題 (\"%s\")。安裝 Xposed 可能無法正常運作，或是引發一系列問題。點擊這裡了解詳情。</string>
     <string name="install_reverted">之前已經安裝版本爲 \"%1$s\" 的 app_process，不過現在找到了版本 \"%2$s\"。如果你不希望舊檔案被還原，也許你應該試試經由 Recovery 安裝（自動或手動）。</string>
@@ -90,7 +90,7 @@
     <string name="module_launch">開啟模組介面</string>
     <string name="module_download_updates">下載/更新</string>
     <string name="module_support">支援</string>
-    <string name="module_app_info">程式資訊</string>
+    <string name="module_app_info">應用程式資訊</string>
     <string name="module_uninstall">解除安裝</string>
 
     <!-- Download tab -->
