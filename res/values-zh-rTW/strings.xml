@@ -9,9 +9,9 @@
     <!-- Welcome screen / main sections -->
     <string name="welcome">歡迎使用<b>Xposed安裝器</b>!\n請選擇你想要使用的選項：</string>
     <string name="tabInstall">框架</string>
-    <string name="tabInstallDescription">你可以在這裡管理Xposed框架，任何模組想正常運作都需要他。</string>
+    <string name="tabInstallDescription">你可以在這裡管理Xposed框架，任何模組想正常運作都得靠他。</string>
     <string name="tabModules">模組</string>
-    <string name="tabModulesDescription">框架本身沒有加入任何功能。你需要使用模組。安裝模組後在這裡啟動他們。</string>
+    <string name="tabModulesDescription">框架本身沒有提供任何功能。你需要利用模組。安裝模組後在這裡啟動模組。</string>
     <string name="tabDownload">下載</string>
     <string name="tabDownloadDescription">這裡可以進入模組庫，你可以搜尋並下載你喜歡的模組，並讓他們隨時保持在最新的狀態。</string>
     <string name="welcome_framework_update_available">Xposed框架有更新可用。</string>
@@ -19,7 +19,7 @@
     <string name="tabSettings">設定</string>
     <string name="tabSettingsDescription">這裡可設定Xposed安裝器和框架。</string>
     <string name="tabSupport">支援</string>
- +  <string name="tabSupportDescription">取得和Xposed有關議題的協助，你也可以贊助Xposed表達你的感謝。</string>
+ +  <string name="tabSupportDescription">取得和Xposed有關問題的協助，你也可以贊助Xposed表達你的感謝。</string>
     <string name="tabLogs">日誌</string>
     <string name="tabLogsDescription">顯示並保存/發送 Xposed 框架産生的日誌。</string>
     <string name="tabAbout">關於</string>
