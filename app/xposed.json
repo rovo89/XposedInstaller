@@ -1,65 +1,65 @@
 {
   "installer": [
     {
-      "name": "xposed-v80-sdk21-arm",
-      "version": "80",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631559&d=1454436705",
+      "name": "xposed-v81-sdk21-arm",
+      "version": "81",
+      "link": "http://dl-xda.xposed.info/framework/sdk21/arm/xposed-v81-sdk21-arm.zip",
       "sdk": 21,
       "architecture": "arm"
     },
     {
-      "name": "xposed-v80-sdk21-arm64",
-      "version": "80",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631560&d=1454436705",
+      "name": "xposed-v81-sdk21-arm64",
+      "version": "81",
+      "link": "http://dl-xda.xposed.info/framework/sdk21/arm64/xposed-v81-sdk21-arm64.zip",
       "sdk": 21,
       "architecture": "arm64"
     },
     {
-      "name": "xposed-v80-sdk21-x86",
-      "version": "80",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631561&d=1454436705",
+      "name": "xposed-v81-sdk21-x86",
+      "version": "81",
+      "link": "http://dl-xda.xposed.info/framework/sdk21/x86/xposed-v81-sdk21-x86.zip",
       "sdk": 21,
       "architecture": "x86"
     },
     {
-      "name": "xposed-v80-sdk22-arm",
-      "version": "80",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631562&d=1454436745",
+      "name": "xposed-v81-sdk22-arm",
+      "version": "81",
+      "link": "http://dl-xda.xposed.info/framework/sdk22/arm/xposed-v81-sdk22-arm.zip",
       "sdk": 22,
       "architecture": "arm"
     },
     {
-      "name": "xposed-v80-sdk22-arm64",
-      "version": "80",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631563&d=1454436745",
+      "name": "xposed-v81-sdk22-arm64",
+      "version": "81",
+      "link": "http://dl-xda.xposed.info/framework/sdk22/arm64/xposed-v81-sdk22-arm64.zip",
       "sdk": 22,
       "architecture": "arm64"
     },
     {
-      "name": "xposed-v80-sdk22-x86",
-      "version": "80",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631564&d=1454436745",
+      "name": "xposed-v81-sdk22-x86",
+      "version": "81",
+      "link": "http://dl-xda.xposed.info/framework/sdk22/x86/xposed-v81-sdk22-x86.zip",
       "sdk": 22,
       "architecture": "x86"
     },
     {
-      "name": "xposed-v80-sdk23-arm",
-      "version": "80",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631565&d=1454436795",
+      "name": "xposed-v81-sdk23-arm",
+      "version": "81",
+      "link": "http://dl-xda.xposed.info/framework/sdk23/arm/xposed-v81-sdk23-arm.zip",
       "sdk": 23,
       "architecture": "arm"
     },
     {
-      "name": "xposed-v80-sdk23-arm64",
-      "version": "80",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631566&d=1454436795",
+      "name": "xposed-v81-sdk23-arm64",
+      "version": "81",
+      "link": "http://dl-xda.xposed.info/framework/sdk23/arm64/xposed-v81-sdk23-arm64.zip",
       "sdk": 23,
       "architecture": "arm64"
     },
     {
-      "name": "xposed-v80-sdk23-x86",
-      "version": "80",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3631567&d=1454436795",
+      "name": "xposed-v81-sdk23-x86",
+      "version": "81",
+      "link": "http://dl-xda.xposed.info/framework/sdk23/x86/xposed-v81-sdk23-x86.zip",
       "sdk": 23,
       "architecture": "x86"
     },
@@ -167,19 +167,25 @@
       "name": "xposed-uninstaller-20150831-arm",
       "date": "20150831",
       "architecture": "arm",
-      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3458222&d=1441050128"
+      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm.zip"
     },
     {
       "name": "xposed-uninstaller-20150831-arm64",
       "date": "20150831",
       "architecture": "arm64",
-      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3458223&d=1441050128"
+      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm64.zip"
+    },
+	{
+      "name": "xposed-uninstaller-20150831-armv5",
+      "date": "20150831",
+      "architecture": "arm5",
+      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-armv5.zip"
     },
     {
       "name": "xposed-uninstaller-20150831-x86",
       "date": "20150831",
       "architecture": "x86",
-      "link": "http://forum.xda-developers.com/attachment.php?s=684c28e695dffa4f34abd04a9f638916&attachmentid=3458224&d=1441050128"
+      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-x86.zip"
     },
     {
       "name": "Xposed-Disabler-Recovery",
@@ -197,6 +203,6 @@
   "apk": {
     "version": "1454875200000",
     "link": "https://github.com/DVDAndroid/dvdandroid.github.io/blob/master/apks/XposedInstaller_by_dvdandroid.apk?raw=true",
-    "changelog": "<b>What's new:</b><br>&#149; Added: Chrome custom tabs are now optional!<br>&#149; Added: you can ignore an update for a specific module!<br>&#149; Added: Shortcut to reboot in recovery!<br>&#149; Added: auto-selection of right installer zip file!<br>&#149; Added: import app list and install it automatically<br>&#149; Added: install apks with root<br>&#149; Added: long click on download button to save module in internal storage<br>&#149; Fixed: cannot export log with GMail<br>&#149; Fixed: force experimental versions globally<br>&#149; Fixed: click on notification opens app<br>&#149; Fixed: Android 6.0 permission manager fixes<br>&#149; Fixed: default view not shown<br>&#149; Updated: Synced translations!<br><br><b>Planned for future</b><br>&#149; Framework installation on KitKat and lower"
+    "changelog": "<b>What's new:</b><br>&#149; Added: Chrome custom tabs are now optional!<br>&#149; Added: you can ignore an update for a specific module!<br>&#149; Added: Shortcut to reboot in recovery!<br>&#149; Added: auto-selection of right installer zip file!<br>&#149; Added: import app list and install it automatically<br>&#149; Added: install apks with root<br>&#149; Added: long click on download button to save module in internal storage<br>&#149; Fixed: cannot export log with GMail<br>&#149; Fixed: force experimental versions globally<br>&#149; Fixed: click on notification opens app<br>&#149; Fixed: Android 6.0 permission manager fixes<br>&#149; Fixed: default view not shown<br>&#149; Updated: Synced translations!"
   }
 }
