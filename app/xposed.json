@@ -64,30 +64,30 @@
       "architecture": "x86"
     },
     {
-      "name": "wanam-xposed-v80-sdk23-arm64",
-      "version": "80.0",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3642673&d=1455224812",
+      "name": "wanam-xposed-v81-sdk23-arm64",
+      "version": "81.0",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3715842&d=1460447609",
       "sdk": 23,
       "architecture": "arm64"
     },
     {
-      "name": "wanam-xposed-v80-sdk23-arm",
+      "name": "wanam-xposed-v81-sdk23-arm",
       "version": "80.0",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3642675&d=1455224933",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3715843&d=1460447609",
       "sdk": 23,
       "architecture": "arm"
     },
     {
-      "name": "wanam-xposed-v80-sdk22-arm64",
-      "version": "80.0",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3642676&d=1455225074",
+      "name": "wanam-xposed-v81-sdk22-arm64",
+      "version": "81.0",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3715844&d=1460447633",
       "sdk": 22,
       "architecture": "arm64"
     },
     {
-      "name": "wanam-xposed-v80-sdk22-arm",
-      "version": "80.0",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3642685&d=1455225174",
+      "name": "wanam-xposed-v81-sdk22-arm",
+      "version": "81.0",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3715845&d=1460447633",
       "sdk": 22,
       "architecture": "arm"
     },
