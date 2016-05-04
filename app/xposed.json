@@ -1,65 +1,65 @@
 {
   "installer": [
     {
-      "name": "xposed-v83-sdk21-arm",
-      "version": "83",
-      "link": "http://dl-xda.xposed.info/framework/sdk21/arm/xposed-v83-sdk21-arm.zip",
+      "name": "xposed-v84-sdk21-arm",
+      "version": "84",
+      "link": "http://dl-xda.xposed.info/framework/sdk21/arm/xposed-v84-sdk21-arm.zip",
       "sdk": 21,
       "architecture": "arm"
     },
     {
-      "name": "xposed-v83-sdk21-arm64",
-      "version": "83",
-      "link": "http://dl-xda.xposed.info/framework/sdk21/arm64/xposed-v83-sdk21-arm64.zip",
+      "name": "xposed-v84-sdk21-arm64",
+      "version": "84",
+      "link": "http://dl-xda.xposed.info/framework/sdk21/arm64/xposed-v84-sdk21-arm64.zip",
       "sdk": 21,
       "architecture": "arm64"
     },
     {
-      "name": "xposed-v83-sdk21-x86",
-      "version": "83",
-      "link": "http://dl-xda.xposed.info/framework/sdk21/x86/xposed-v83-sdk21-x86.zip",
+      "name": "xposed-v84-sdk21-x86",
+      "version": "84",
+      "link": "http://dl-xda.xposed.info/framework/sdk21/x86/xposed-v84-sdk21-x86.zip",
       "sdk": 21,
       "architecture": "x86"
     },
     {
-      "name": "xposed-v83-sdk22-arm",
-      "version": "83",
-      "link": "http://dl-xda.xposed.info/framework/sdk22/arm/xposed-v83-sdk22-arm.zip",
+      "name": "xposed-v84-sdk22-arm",
+      "version": "84",
+      "link": "http://dl-xda.xposed.info/framework/sdk22/arm/xposed-v84-sdk22-arm.zip",
       "sdk": 22,
       "architecture": "arm"
     },
     {
-      "name": "xposed-v83-sdk22-arm64",
-      "version": "83",
-      "link": "http://dl-xda.xposed.info/framework/sdk22/arm64/xposed-v83-sdk22-arm64.zip",
+      "name": "xposed-v84-sdk22-arm64",
+      "version": "84",
+      "link": "http://dl-xda.xposed.info/framework/sdk22/arm64/xposed-v84-sdk22-arm64.zip",
       "sdk": 22,
       "architecture": "arm64"
     },
     {
-      "name": "xposed-v83-sdk22-x86",
-      "version": "83",
-      "link": "http://dl-xda.xposed.info/framework/sdk22/x86/xposed-v83-sdk22-x86.zip",
+      "name": "xposed-v84-sdk22-x86",
+      "version": "84",
+      "link": "http://dl-xda.xposed.info/framework/sdk22/x86/xposed-v84-sdk22-x86.zip",
       "sdk": 22,
       "architecture": "x86"
     },
     {
-      "name": "xposed-v83-sdk23-arm",
-      "version": "83",
-      "link": "http://dl-xda.xposed.info/framework/sdk23/arm/xposed-v83-sdk23-arm.zip",
+      "name": "xposed-v84-sdk23-arm",
+      "version": "84",
+      "link": "http://dl-xda.xposed.info/framework/sdk23/arm/xposed-v84-sdk23-arm.zip",
       "sdk": 23,
       "architecture": "arm"
     },
     {
-      "name": "xposed-v83-sdk23-arm64",
-      "version": "83",
-      "link": "http://dl-xda.xposed.info/framework/sdk23/arm64/xposed-v83-sdk23-arm64.zip",
+      "name": "xposed-v84-sdk23-arm64",
+      "version": "84",
+      "link": "http://dl-xda.xposed.info/framework/sdk23/arm64/xposed-v84-sdk23-arm64.zip",
       "sdk": 23,
       "architecture": "arm64"
     },
     {
-      "name": "xposed-v83-sdk23-x86",
-      "version": "83",
-      "link": "http://dl-xda.xposed.info/framework/sdk23/x86/xposed-v83-sdk23-x86.zip",
+      "name": "xposed-v84-sdk23-x86",
+      "version": "84",
+      "link": "http://dl-xda.xposed.info/framework/sdk23/x86/xposed-v84-sdk23-x86.zip",
       "sdk": 23,
       "architecture": "x86"
     },
