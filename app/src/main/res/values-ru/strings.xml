@@ -246,8 +246,8 @@ SDK: %2$d \n
     <string name="tabSupportDescription">Найти помощь связанные с Xposed. Вы также отблагодарить и пожертвовать на Xposed.</string>
     <string name="update">Установить обновление</string>
     <string name="view">Смотреть</string>
-    <string name="warningArchitecture">"ВЫ ВЫБРАЛИ ПАРВИЛЬНЫЙ ZIP XPOSED АРХИТЕКТУРЫ?
-Не правильный zip установщик может навредить вашему устройству!"</string>
+    <string name="warningArchitecture">"ВЫ ВЫБРАЛИ ПРАВИЛЬНЫЙ ZIP ФАЙЛ XPOSED?
+Неправильный zip установщик может навредить вашему устройству!"</string>
     <string name="warning_forward_locked">Этот модуль не может быть загружен, потому что он заблокирован, пожалуйста свяжитесь с разработчиком.</string>
     <string name="warning_installed_on_external_storage">Этот модуль не может быть загружен, потому что он установлен на SD-карту, переместите его во внутреннюю память.</string>
     <string name="xposedZipNotFound">Не найден Zip, вероятно есть новая версия.</string>
