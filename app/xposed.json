@@ -64,31 +64,38 @@
       "architecture": "x86"
     },
     {
-      "name": "wanam-xposed-v81-sdk23-arm64",
-      "version": "81.0",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3715842&d=1460447609",
+      "name": "xposed-v84.0-sdk23-arm64-custom-build-by-wanam-20160504.zip",
+      "version": "84.0",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3739970&d=1462373012",
       "sdk": 23,
       "architecture": "arm64"
     },
     {
-      "name": "wanam-xposed-v81-sdk23-arm",
-      "version": "80.0",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3715843&d=1460447609",
+      "name": "xposed-v84.0-sdk23-arm-custom-build-by-wanam-20160504.zip",
+      "version": "84.0",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3739971&d=1462373012",
       "sdk": 23,
       "architecture": "arm"
     },
     {
-      "name": "wanam-xposed-v81-sdk22-arm64",
-      "version": "81.0",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3715844&d=1460447633",
+      "name": "xposed-v84.0-sdk22-arm64-custom-build-by-wanam-20160504.zip",
+      "version": "84.0",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3739972&d=1462373074",
       "sdk": 22,
       "architecture": "arm64"
     },
     {
-      "name": "wanam-xposed-v81-sdk22-arm",
-      "version": "81.0",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3715845&d=1460447633",
+      "name": "xposed-v84.0-sdk22-arm-custom-build-by-wanam-20160504.zip",
+      "version": "84.0",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3739973&d=1462373074",
       "sdk": 22,
+      "architecture": "arm"
+    },
+    {
+      "name": "xposed-v84.0-alt-sdk23-arm-custom-build-by-wanam-20160504.zip",
+      "version": "84.0",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3739979&d=1462374312",
+      "sdk": 23,
       "architecture": "arm"
     },
     {
