@@ -52,12 +52,9 @@ public class InstallApkUtil extends AsyncTask<Void, Void, Boolean> {
 		if (!enabled) {
 			Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
 			installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			installIntent.setDataAndType(
-					Uri.fromFile(new File(info.localFilename)),
-					DownloadsUtil.MIME_TYPE_APK);
-			installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME,
-					context.getApplicationInfo().packageName);
-			context.startActivity(installIntent);
-		}
-	}
+            installIntent.setDataAndType(Uri.fromFile(new File(info.localFilename)), DownloadsUtil.MIME_TYPE_APK);
+            installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, context.getApplicationInfo().packageName);
+            context.startActivity(installIntent);
+        }
+    }
 }

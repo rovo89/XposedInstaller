@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="3dip"
             android:layout_marginLeft="8dip"
             android:layout_marginRight="8dip"
@@ -94,122 +94,164 @@
                 android:layout_height="wrap_content"
                 android:padding="6dp">
 
-                <TextView
-                    android:id="@+id/textView"
+                <RelativeLayout
+                    android:id="@+id/installers_uninstallers"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tabInstall"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"/>
+                    android:layout_height="wrap_content">
 
-                <ProgressBar
-                    android:id="@+id/loadingInstallers"
-                    style="?android:attr/progressBarStyleLarge"
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tabInstall"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"/>
+
+                    <ProgressBar
+                        android:id="@+id/loadingInstallers"
+                        style="?android:attr/progressBarStyleLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/btnInstall"
+                        android:layout_below="@+id/textView"
+                        android:layout_gravity="center"
+                        android:indeterminate="true"/>
+
+                    <Spinner
+                        android:id="@+id/chooserInstallers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/textView"
+                        android:layout_gravity="center_vertical"
+                        android:layout_toLeftOf="@+id/infoInstaller"
+                        android:layout_toStartOf="@+id/infoInstaller"
+                        android:spinnerMode="dropdown"/>
+
+                    <ImageView
+                        android:id="@+id/infoInstaller"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/chooserInstallers"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/chooserInstallers"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_info"/>
+
+                    <Button
+                        android:id="@+id/btnInstall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/chooserInstallers"
+                        android:enabled="false"
+                        android:text="@string/install"/>
+
+                    <Spinner
+                        android:id="@+id/chooserUninstallers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/btnInstall"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_toLeftOf="@+id/infoUninstaller"
+                        android:layout_toStartOf="@+id/infoUninstaller"
+                        android:layout_weight="1"
+                        android:spinnerMode="dropdown"/>
+
+                    <ProgressBar
+                        android:id="@+id/loadingUninstallers"
+                        style="?android:attr/progressBarStyleLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/chooserUninstallers"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/btnInstall"
+                        android:layout_gravity="center"
+                        android:indeterminate="true"/>
+
+                    <ImageView
+                        android:id="@+id/infoUninstaller"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/chooserUninstallers"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@+id/btnInstall"
+                        android:layout_gravity="center|right"
+                        android:layout_marginTop="5dp"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_info"/>
+
+                    <Button
+                        android:id="@+id/btnUninstall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/infoUninstaller"
+                        android:layout_alignRight="@+id/infoUninstaller"
+                        android:layout_below="@+id/chooserUninstallers"
+                        android:enabled="false"
+                        android:text="@string/uninstall"/>
+
+                    <TextView
+                        android:id="@+id/installationForbidden"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/btnUninstall"
+                        android:layout_marginTop="2dp"
+                        android:gravity="center"
+                        android:text="@string/installationForbidden"
+                        android:textColor="@color/warning"
+                        android:textStyle="bold"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/disableView"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/btnInstall"
-                    android:layout_below="@+id/textView"
-                    android:layout_gravity="center"
-                    android:indeterminate="true"/>
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/installers_uninstallers"
+                    android:paddingTop="10dp">
 
-                <Spinner
-                    android:id="@+id/chooserInstallers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/textView"
-                    android:layout_gravity="center_vertical"
-                    android:layout_toLeftOf="@+id/infoInstaller"
-                    android:layout_toStartOf="@+id/infoInstaller"
-                    android:spinnerMode="dropdown"/>
+                    <TextView
+                        android:id="@+id/disableTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/disable_xposed"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"/>
 
-                <ImageView
-                    android:id="@+id/infoInstaller"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/chooserInstallers"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignTop="@+id/chooserInstallers"
-                    android:layout_gravity="center"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_info"/>
+                    <Switch
+                        android:id="@+id/disableSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@id/disableTv"
+                        android:checked="true"
+                        android:paddingTop="5dp"
+                        android:showText="false"
+                        android:singleLine="false"
+                        android:splitTrack="false"
+                        android:text="@string/status"
+                        android:textSize="16sp"/>
 
-                <Button
-                    android:id="@+id/btnInstall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/chooserInstallers"
-                    android:enabled="false"
-                    android:text="@string/install"/>
 
-                <Spinner
-                    android:id="@+id/chooserUninstallers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/btnInstall"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="5dp"
-                    android:layout_toLeftOf="@+id/infoUninstaller"
-                    android:layout_toStartOf="@+id/infoUninstaller"
-                    android:layout_weight="1"
-                    android:spinnerMode="dropdown"/>
-
-                <ProgressBar
-                    android:id="@+id/loadingUninstallers"
-                    style="?android:attr/progressBarStyleLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/chooserUninstallers"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/btnInstall"
-                    android:layout_gravity="center"
-                    android:indeterminate="true"/>
-
-                <ImageView
-                    android:id="@+id/infoUninstaller"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/chooserUninstallers"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/btnInstall"
-                    android:layout_gravity="center|right"
-                    android:layout_marginTop="5dp"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_info"/>
-
-                <Button
-                    android:id="@+id/btnUninstall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/infoUninstaller"
-                    android:layout_alignRight="@+id/infoUninstaller"
-                    android:layout_below="@+id/chooserUninstallers"
-                    android:enabled="false"
-                    android:text="@string/uninstall"/>
-
-                <TextView
-                    android:id="@+id/installationForbidden"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/btnUninstall"
-                    android:layout_marginTop="2dp"
-                    android:gravity="center"
-                    android:text="@string/installationForbidden"
-                    android:textColor="@color/warning"
-                    android:textStyle="bold"
-                    android:visibility="gone"/>
+                </RelativeLayout>
 
             </RelativeLayout>
 
         </android.support.v7.widget.CardView>
+
 
         <android.support.v7.widget.CardView
             android:id="@+id/updateView"

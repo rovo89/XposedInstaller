@@ -303,5 +303,7 @@
     <string name="scroll_bottom">Scorri giù</string>
     <string name="open_drawer">Apri automaticamente il menù laterale</string>
     <string name="open_drawer_summ">Apri automaticamente il menù laterale all\'avvio</string>
+    <string name="share_app">Condividi app</string>
+    <string name="share_app_text">Vedi Xposed Installer in Material Design! %s</string>
 
 </resources>

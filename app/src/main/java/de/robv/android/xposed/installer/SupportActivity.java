@@ -1,7 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.darkenColor;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -14,6 +12,8 @@ import android.widget.TextView;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UIUtil;
+
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
 public class SupportActivity extends XposedBaseActivity {
 	@Override
@@ -39,10 +39,9 @@ public class SupportActivity extends XposedBaseActivity {
 		}
 
 		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new SupportFragment()).commit();
-		}
-	}
+            getSupportFragmentManager().beginTransaction().add(R.id.container, new SupportFragment()).commit();
+        }
+    }
 
 	public static class SupportFragment extends Fragment {
 		@Override
@@ -54,29 +53,25 @@ public class SupportActivity extends XposedBaseActivity {
 		public void onResume() {
 			super.onResume();
 			if (UIUtil.isLollipop())
-				getActivity().getWindow().setStatusBarColor(
-						darkenColor(XposedApp.getColor(getActivity()), 0.85f));
-		}
+                getActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
+        }
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 			View v = inflater.inflate(R.layout.tab_support, container, false);
 
-			View installerSupportView = v
-					.findViewById(R.id.installerSupportView);
-			View faqView = v.findViewById(R.id.faqView);
-			View donateView = v.findViewById(R.id.donateView);
-			TextView txtModuleSupport = (TextView) v
-					.findViewById(R.id.tab_support_module_description);
+            View installerSupportView = v.findViewById(R.id.installerSupportView);
+            View faqView = v.findViewById(R.id.faqView);
+            View donateView = v.findViewById(R.id.donateView);
+            TextView txtModuleSupport = (TextView) v.findViewById(R.id.tab_support_module_description);
 
-			txtModuleSupport
-					.setText(getString(R.string.support_modules_description,
-							getString(R.string.module_support)));
+            txtModuleSupport.setText(getString(R.string.support_modules_description,
+                    getString(R.string.module_support)));
 
-			setupView(installerSupportView, R.string.about_support);
-			setupView(faqView, R.string.support_faq_url);
-			setupView(donateView, R.string.support_donate_url);
+            setupView(installerSupportView, R.string.support_material_xda);
+            setupView(faqView, R.string.support_faq_url);
+            setupView(donateView, R.string.support_donate_url);
 
 			return v;
 		}

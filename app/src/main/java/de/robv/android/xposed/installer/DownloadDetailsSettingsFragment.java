@@ -37,13 +37,11 @@ public class DownloadDetailsSettingsFragment extends PreferenceFragment {
 
 		PreferenceManager prefManager = getPreferenceManager();
 		prefManager.setSharedPreferencesName("module_settings");
-		PrefixedSharedPreferences.injectToPreferenceManager(prefManager,
-				module.packageName);
-		addPreferencesFromResource(R.xml.module_prefs);
+        PrefixedSharedPreferences.injectToPreferenceManager(prefManager, module.packageName);
+        addPreferencesFromResource(R.xml.module_prefs);
 
-		SharedPreferences prefs = getContext()
-				.getSharedPreferences("module_settings", Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = prefs.edit();
+        SharedPreferences prefs = getContext().getSharedPreferences("module_settings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
 
 		if (prefs.getBoolean("no_global", true)) {
 			for (Map.Entry<String, ?> k : prefs.getAll().entrySet()) {
@@ -60,10 +58,9 @@ public class DownloadDetailsSettingsFragment extends PreferenceFragment {
 					@Override
 					public boolean onPreferenceChange(Preference preference,
 							Object newValue) {
-						RepoLoader.getInstance().setReleaseTypeLocal(
-								packageName, (String) newValue);
-						return true;
-					}
-				});
+                        RepoLoader.getInstance().setReleaseTypeLocal(packageName, (String) newValue);
+                        return true;
+                    }
+                });
 	}
 }

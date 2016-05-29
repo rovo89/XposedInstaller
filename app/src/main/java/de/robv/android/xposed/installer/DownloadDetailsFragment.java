@@ -26,14 +26,12 @@ public class DownloadDetailsFragment extends Fragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		final Module module = mActivity.getModule();
-		if (module == null)
-			return null;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final Module module = mActivity.getModule();
+        if (module == null)
+            return null;
 
-		final View view = inflater.inflate(R.layout.download_details, container,
-				false);
+        final View view = inflater.inflate(R.layout.download_details, container, false);
 
 		TextView title = (TextView) view.findViewById(R.id.download_title);
 		title.setText(module.name);
@@ -48,27 +46,21 @@ public class DownloadDetailsFragment extends Fragment {
 				.findViewById(R.id.download_description);
 		if (module.description != null) {
 			if (module.descriptionIsHtml) {
-				description.setText(RepoParser.parseSimpleHtml(getActivity(),
-						module.description, description));
-				description.setTransformationMethod(
-						new LinkTransformationMethod(getActivity()));
-				description.setMovementMethod(LinkMovementMethod.getInstance());
-			} else {
-				description.setText(module.description);
+                description.setText(RepoParser.parseSimpleHtml(getActivity(), module.description, description));
+                description.setTransformationMethod(new LinkTransformationMethod(getActivity()));
+                description.setMovementMethod(LinkMovementMethod.getInstance());
+            } else {
+                description.setText(module.description);
 			}
 		} else {
 			description.setVisibility(View.GONE);
 		}
 
-		ViewGroup moreInfoContainer = (ViewGroup) view
-				.findViewById(R.id.download_moreinfo_container);
-		for (Pair<String, String> moreInfoEntry : module.moreInfo) {
-			View moreInfoView = inflater.inflate(R.layout.download_moreinfo,
-					moreInfoContainer, false);
-			TextView txtTitle = (TextView) moreInfoView
-					.findViewById(android.R.id.title);
-			TextView txtValue = (TextView) moreInfoView
-					.findViewById(android.R.id.message);
+        ViewGroup moreInfoContainer = (ViewGroup) view.findViewById(R.id.download_moreinfo_container);
+        for (Pair<String, String> moreInfoEntry : module.moreInfo) {
+            View moreInfoView = inflater.inflate(R.layout.download_moreinfo, moreInfoContainer, false);
+            TextView txtTitle = (TextView) moreInfoView.findViewById(android.R.id.title);
+            TextView txtValue = (TextView) moreInfoView.findViewById(android.R.id.message);
 
 			txtTitle.setText(moreInfoEntry.first + ":");
 			txtValue.setText(moreInfoEntry.second);

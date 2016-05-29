@@ -1,7 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-
 import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -73,6 +71,9 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
+import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+
 public class ModulesFragment extends ListFragment implements ModuleListener {
 	public static final String SETTINGS_CATEGORY = "de.robv.android.xposed.category.MODULE_SETTINGS";
 	public static final String PLAY_STORE_PACKAGE = "com.android.vending";
@@ -140,19 +141,15 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				.getSupportActionBar();
 
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
-		int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-				6, metrics);
-		int eightDp = (int) TypedValue
-				.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
-		assert actionBar != null;
-		int toolBarDp = actionBar.getHeight() == 0 ? 196
-				: actionBar.getHeight();
+        int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
+        int eightDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
+        assert actionBar != null;
+        int toolBarDp = actionBar.getHeight() == 0 ? 196 : actionBar.getHeight();
 
 		getListView().setDivider(null);
 		getListView().setDividerHeight(sixDp);
-		getListView().setPadding(eightDp, toolBarDp + eightDp, eightDp,
-				eightDp);
-		getListView().setClipToPadding(false);
+        getListView().setPadding(eightDp, toolBarDp + eightDp, eightDp, eightDp);
+        getListView().setClipToPadding(false);
 
 		setHasOptionsMenu(true);
 	}
@@ -178,11 +175,10 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 					}, 500);
 				}
 			} else {
-				Toast.makeText(getActivity(), R.string.permissionNotGranted,
-						Toast.LENGTH_LONG).show();
-			}
-		}
-	}
+                Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -195,10 +191,9 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				+ "/XposedInstaller";
 
 		File enabledModulesPath = new File(backupPath, "enabled_modules.list");
-		File installedModulesPath = new File(backupPath,
-				"installed_modules.list");
-		File targetDir = new File(backupPath);
-		File listModules = new File(XposedApp.ENABLED_MODULES_LIST_FILE);
+        File installedModulesPath = new File(backupPath, "installed_modules.list");
+        File targetDir = new File(backupPath);
+        File listModules = new File(XposedApp.ENABLED_MODULES_LIST_FILE);
 
 		mClickedMenuItem = item;
 
@@ -207,25 +202,21 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 		switch (item.getItemId()) {
 			case R.id.export_enabled_modules:
-				if (!Environment.getExternalStorageState()
-						.equals(Environment.MEDIA_MOUNTED)) {
-					return false;
-				}
+                if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                    return false;
+                }
 
 				if (ModuleUtil.getInstance().getEnabledModules().isEmpty()) {
-					Toast.makeText(getActivity(),
-							getString(R.string.no_enabled_modules),
-							Toast.LENGTH_SHORT).show();
-					return false;
-				}
+                    Toast.makeText(getActivity(), getString(R.string.no_enabled_modules), Toast.LENGTH_SHORT).show();
+                    return false;
+                }
 
 				try {
 					if (!targetDir.exists())
 						targetDir.mkdir();
 
 					FileInputStream in = new FileInputStream(listModules);
-					FileOutputStream out = new FileOutputStream(
-							enabledModulesPath);
+                    FileOutputStream out = new FileOutputStream(enabledModulesPath);
 
 					byte[] buffer = new byte[1024];
 					int len;
@@ -235,32 +226,23 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 					in.close();
 					out.close();
 				} catch (IOException e) {
-					Toast.makeText(getActivity(),
-							getResources().getString(R.string.logs_save_failed)
-									+ "\n" + e.getMessage(),
-							Toast.LENGTH_LONG).show();
-					return false;
-				}
+                    Toast.makeText(getActivity(), getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
+                    return false;
+                }
 
-				Toast.makeText(getActivity(), enabledModulesPath.toString(),
-						Toast.LENGTH_LONG).show();
-				return true;
-			case R.id.export_installed_modules:
-				if (!Environment.getExternalStorageState()
-						.equals(Environment.MEDIA_MOUNTED)) {
-					Toast.makeText(getActivity(), R.string.sdcard_not_writable,
-							Toast.LENGTH_LONG).show();
-					return false;
-				}
-				Map<String, InstalledModule> installedModules = ModuleUtil
-						.getInstance().getModules();
+                Toast.makeText(getActivity(), enabledModulesPath.toString(), Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.export_installed_modules:
+                if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                    Toast.makeText(getActivity(), R.string.sdcard_not_writable, Toast.LENGTH_LONG).show();
+                    return false;
+                }
+                Map<String, InstalledModule> installedModules = ModuleUtil.getInstance().getModules();
 
 				if (installedModules.isEmpty()) {
-					Toast.makeText(getActivity(),
-							getString(R.string.no_installed_modules),
-							Toast.LENGTH_SHORT).show();
-					return false;
-				}
+                    Toast.makeText(getActivity(), getString(R.string.no_installed_modules), Toast.LENGTH_SHORT).show();
+                    return false;
+                }
 
 				try {
 					if (!targetDir.exists())
@@ -278,45 +260,36 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 					fileOut.close();
 				} catch (IOException e) {
-					Toast.makeText(getActivity(),
-							getResources().getString(R.string.logs_save_failed)
-									+ "\n" + e.getMessage(),
-							Toast.LENGTH_LONG).show();
-					return false;
-				}
+                    Toast.makeText(getActivity(), getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
+                    return false;
+                }
 
-				Toast.makeText(getActivity(), installedModulesPath.toString(),
-						Toast.LENGTH_LONG).show();
-				return true;
-			case R.id.import_installed_modules:
-				return importModules(installedModulesPath);
-			case R.id.import_enabled_modules:
-				return importModules(enabledModulesPath);
+                Toast.makeText(getActivity(), installedModulesPath.toString(), Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.import_installed_modules:
+                return importModules(installedModulesPath);
+            case R.id.import_enabled_modules:
+                return importModules(enabledModulesPath);
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
 	private boolean checkPermissions() {
-		if (ActivityCompat.checkSelfPermission(getActivity(),
-				Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-			requestPermissions(
-					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
-					WRITE_EXTERNAL_PERMISSION);
-			return true;
-		}
-		return false;
-	}
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
+            return true;
+        }
+        return false;
+    }
 
 	private boolean importModules(File path) {
-		if (!Environment.getExternalStorageState()
-				.equals(Environment.MEDIA_MOUNTED)) {
-			Toast.makeText(getActivity(), R.string.sdcard_not_writable,
-					Toast.LENGTH_LONG).show();
-			return false;
-		}
-		InputStream ips = null;
-		RepoLoader repoLoader = RepoLoader.getInstance();
-		List<Module> list = new ArrayList<>();
+        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            Toast.makeText(getActivity(), R.string.sdcard_not_writable, Toast.LENGTH_LONG).show();
+            return false;
+        }
+        InputStream ips = null;
+        RepoLoader repoLoader = RepoLoader.getInstance();
+        List<Module> list = new ArrayList<>();
 		if (!path.exists()) {
 			Toast.makeText(getActivity(), getString(R.string.no_backup_found),
 					Toast.LENGTH_LONG).show();
@@ -343,19 +316,16 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				Module m = repoLoader.getModule(line);
 
 				if (m == null) {
-					Toast.makeText(getActivity(),
-							getString(R.string.download_details_not_found,
-									line),
-							Toast.LENGTH_SHORT).show();
-				} else {
-					list.add(m);
-				}
-			}
-			br.close();
+                    Toast.makeText(getActivity(), getString(R.string.download_details_not_found,
+                            line), Toast.LENGTH_SHORT).show();
+                } else {
+                    list.add(m);
+                }
+            }
+            br.close();
 		} catch (ActivityNotFoundException | IOException e) {
-			Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT)
-					.show();
-		}
+            Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
+        }
 
 		for (Module m : list) {
 			ModuleVersion mv = null;
@@ -369,17 +339,14 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			}
 
 			if (mv != null) {
-				DownloadsUtil.add(getActivity(), m.name, mv.downloadLink,
-						new DownloadsUtil.DownloadFinishedCallback() {
-							@Override
-							public void onDownloadFinished(Context context,
-									DownloadsUtil.DownloadInfo info) {
-								new InstallApkUtil(getContext(), info)
-										.execute();
-							}
-						}, DownloadsUtil.MIME_TYPES.APK);
-			}
-		}
+                DownloadsUtil.add(getActivity(), m.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    @Override
+                    public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
+                        new InstallApkUtil(getContext(), info).execute();
+                    }
+                }, DownloadsUtil.MIME_TYPES.APK);
+            }
+        }
 
 		return true;
 	}
@@ -393,9 +360,8 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	}
 
 	private void showAlert(final String result) {
-		MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
-				.content(result).positiveText(android.R.string.ok).build();
-		dialog.show();
+        MaterialDialog dialog = new MaterialDialog.Builder(getActivity()).content(result).positiveText(android.R.string.ok).build();
+        dialog.show();
 
 		TextView txtMessage = (TextView) dialog
 				.findViewById(android.R.id.message);
@@ -414,10 +380,9 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 	}
 
 	@Override
-	public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil,
-			String packageName, InstalledModule module) {
-		getActivity().runOnUiThread(reloadModules);
-	}
+    public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module) {
+        getActivity().runOnUiThread(reloadModules);
+    }
 
 	@Override
 	public void onInstalledModulesReloaded(ModuleUtil moduleUtil) {
@@ -452,8 +417,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			return;
 
 		menu.setHeaderTitle(installedModule.getAppName());
-		getActivity().getMenuInflater().inflate(R.menu.context_menu_modules,
-				menu);
+        getActivity().getMenuInflater().inflate(R.menu.context_menu_modules, menu);
 
 		if (getSettingsIntent(installedModule.packageName) == null)
 			menu.removeItem(R.id.menu_launch);
@@ -468,13 +432,12 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			menu.removeItem(R.id.menu_support);
 		}
 
-		String installer = mPm
-				.getInstallerPackageName(installedModule.packageName);
-		if (PLAY_STORE_LABEL != null && PLAY_STORE_PACKAGE.equals(installer))
-			menu.findItem(R.id.menu_play_store).setTitle(PLAY_STORE_LABEL);
-		else
-			menu.removeItem(R.id.menu_play_store);
-	}
+        String installer = mPm.getInstallerPackageName(installedModule.packageName);
+        if (PLAY_STORE_LABEL != null && PLAY_STORE_PACKAGE.equals(installer))
+            menu.findItem(R.id.menu_play_store).setTitle(PLAY_STORE_LABEL);
+        else
+            menu.removeItem(R.id.menu_play_store);
+    }
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
@@ -488,53 +451,44 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 				return true;
 
 			case R.id.menu_download_updates:
-				Intent detailsIntent = new Intent(getActivity(),
-						DownloadDetailsActivity.class);
-				detailsIntent.setData(
-						Uri.fromParts("package", module.packageName, null));
-				startActivity(detailsIntent);
-				return true;
+                Intent detailsIntent = new Intent(getActivity(), DownloadDetailsActivity.class);
+                detailsIntent.setData(Uri.fromParts("package", module.packageName, null));
+                startActivity(detailsIntent);
+                return true;
 
 			case R.id.menu_support:
-				NavUtil.startURL(getActivity(),
-						Uri.parse(RepoDb.getModuleSupport(module.packageName)));
-				return true;
+                NavUtil.startURL(getActivity(), Uri.parse(RepoDb.getModuleSupport(module.packageName)));
+                return true;
 
 			case R.id.menu_play_store:
 				Intent i = new Intent(android.content.Intent.ACTION_VIEW);
-				i.setData(Uri.parse(
-						String.format(PLAY_STORE_LINK, module.packageName)));
-				i.setPackage(PLAY_STORE_PACKAGE);
-				try {
-					startActivity(i);
-				} catch (ActivityNotFoundException e) {
-					i.setPackage(null);
+                i.setData(Uri.parse(String.format(PLAY_STORE_LINK, module.packageName)));
+                i.setPackage(PLAY_STORE_PACKAGE);
+                try {
+                    startActivity(i);
+                } catch (ActivityNotFoundException e) {
+                    i.setPackage(null);
 					startActivity(i);
 				}
 				return true;
 
 			case R.id.menu_app_info:
-				startActivity(new Intent(
-						android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-						Uri.fromParts("package", module.packageName, null)));
-				return true;
+                startActivity(new Intent(ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", module.packageName, null)));
+                return true;
 
 			case R.id.menu_uninstall:
-				startActivity(new Intent(Intent.ACTION_UNINSTALL_PACKAGE,
-						Uri.fromParts("package", module.packageName, null)));
-				return true;
-		}
+                startActivity(new Intent(Intent.ACTION_UNINSTALL_PACKAGE, Uri.fromParts("package", module.packageName, null)));
+                return true;
+        }
 
 		return false;
 	}
 
-	private InstalledModule getItemFromContextMenuInfo(
-			ContextMenuInfo menuInfo) {
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
-		int position = info.position - getListView().getHeaderViewsCount();
-		return (position >= 0)
-				? (InstalledModule) getListAdapter().getItem(position) : null;
-	}
+    private InstalledModule getItemFromContextMenuInfo(ContextMenuInfo menuInfo) {
+        AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+        int position = info.position - getListView().getHeaderViewsCount();
+        return (position >= 0) ? (InstalledModule) getListAdapter().getItem(position) : null;
+    }
 
 	private Intent getSettingsIntent(String packageName) {
 		// taken from
@@ -554,10 +508,9 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 		Intent intent = new Intent(intentToResolve);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.setClassName(ris.get(0).activityInfo.packageName,
-				ris.get(0).activityInfo.name);
-		return intent;
-	}
+        intent.setClassName(ris.get(0).activityInfo.packageName, ris.get(0).activityInfo.name);
+        return intent;
+    }
 
 	private class ModuleAdapter extends ArrayAdapter<InstalledModule> {
 		public ModuleAdapter(Context context) {
@@ -571,26 +524,18 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			if (convertView == null) {
 				// The reusable view was created for the first time, set up the
 				// listener on the checkbox
-				((CheckBox) view.findViewById(R.id.checkbox))
-						.setOnCheckedChangeListener(
-								new OnCheckedChangeListener() {
-									@Override
-									public void onCheckedChanged(
-											CompoundButton buttonView,
-											boolean isChecked) {
-										String packageName = (String) buttonView
-												.getTag();
-										boolean changed = mModuleUtil
-												.isModuleEnabled(packageName)
-												^ isChecked;
-										if (changed) {
-											mModuleUtil.setModuleEnabled(
-													packageName, isChecked);
-											mModuleUtil.updateModulesList(true);
-										}
-									}
-								});
-			}
+                ((CheckBox) view.findViewById(R.id.checkbox)).setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        String packageName = (String) buttonView.getTag();
+                        boolean changed = mModuleUtil.isModuleEnabled(packageName) ^ isChecked;
+                        if (changed) {
+                            mModuleUtil.setModuleEnabled(packageName, isChecked);
+                            mModuleUtil.updateModulesList(true);
+                        }
+                    }
+                });
+            }
 
 			InstalledModule item = getItem(position);
 
@@ -601,21 +546,16 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			view.findViewById(R.id.checkbox).setTag(item.packageName);
 			view.setTag(item.packageName);
 
-			((ImageView) view.findViewById(R.id.icon))
-					.setImageDrawable(item.getIcon());
+            ((ImageView) view.findViewById(R.id.icon)).setImageDrawable(item.getIcon());
 
-			TextView descriptionText = (TextView) view
-					.findViewById(R.id.description);
-			if (!item.getDescription().isEmpty()) {
-				descriptionText.setText(item.getDescription());
-				descriptionText.setTextColor(ThemeUtil.getThemeColor(
-						getContext(), android.R.attr.textColorSecondary));
-			} else {
-				descriptionText
-						.setText(getString(R.string.module_empty_description));
-				descriptionText
-						.setTextColor(getResources().getColor(R.color.warning));
-			}
+            TextView descriptionText = (TextView) view.findViewById(R.id.description);
+            if (!item.getDescription().isEmpty()) {
+                descriptionText.setText(item.getDescription());
+                descriptionText.setTextColor(ThemeUtil.getThemeColor(getContext(), android.R.attr.textColorSecondary));
+            } else {
+                descriptionText.setText(getString(R.string.module_empty_description));
+                descriptionText.setTextColor(getResources().getColor(R.color.warning));
+            }
 
 			CheckBox checkbox = (CheckBox) view.findViewById(R.id.checkbox);
 			checkbox.setChecked(mModuleUtil.isModuleEnabled(item.packageName));
@@ -623,36 +563,30 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
 			if (item.minVersion == 0) {
 				checkbox.setEnabled(false);
-				warningText
-						.setText(getString(R.string.no_min_version_specified));
-				warningText.setVisibility(View.VISIBLE);
-			} else if (installedXposedVersion != 0
-					&& item.minVersion > installedXposedVersion) {
-				checkbox.setEnabled(false);
-				warningText.setText(String.format(
-						getString(R.string.warning_xposed_min_version),
-						item.minVersion));
-				warningText.setVisibility(View.VISIBLE);
-			} else if (item.minVersion < ModuleUtil.MIN_MODULE_VERSION) {
-				checkbox.setEnabled(false);
-				warningText.setText(String.format(
-						getString(R.string.warning_min_version_too_low),
-						item.minVersion, ModuleUtil.MIN_MODULE_VERSION));
-				warningText.setVisibility(View.VISIBLE);
-			} else if (item.isInstalledOnExternalStorage()) {
-				checkbox.setEnabled(false);
-				warningText.setText(getString(
-						R.string.warning_installed_on_external_storage));
+                warningText.setText(getString(R.string.no_min_version_specified));
+                warningText.setVisibility(View.VISIBLE);
+            } else if (installedXposedVersion != 0
+                    && item.minVersion > installedXposedVersion) {
+                checkbox.setEnabled(false);
+                warningText.setText(String.format(getString(R.string.warning_xposed_min_version), item.minVersion));
+                warningText.setVisibility(View.VISIBLE);
+            } else if (item.minVersion < ModuleUtil.MIN_MODULE_VERSION) {
+                checkbox.setEnabled(false);
+                warningText.setText(String.format(getString(R.string.warning_min_version_too_low), item.minVersion, ModuleUtil.MIN_MODULE_VERSION));
+                warningText.setVisibility(View.VISIBLE);
+            } else if (item.isInstalledOnExternalStorage()) {
+                checkbox.setEnabled(false);
+                warningText.setText(getString(
+                        R.string.warning_installed_on_external_storage));
 				warningText.setVisibility(View.VISIBLE);
 			} else if (installedXposedVersion == 0) {
 				checkbox.setEnabled(false);
-				warningText
-						.setText(getString(R.string.not_installed_no_lollipop));
-				warningText.setVisibility(View.VISIBLE);
-			} else {
-				checkbox.setEnabled(true);
-				warningText.setVisibility(View.GONE);
-			}
+                warningText.setText(getString(R.string.not_installed_no_lollipop));
+                warningText.setVisibility(View.VISIBLE);
+            } else {
+                checkbox.setEnabled(true);
+                warningText.setVisibility(View.GONE);
+            }
 			return view;
 		}
 	}

@@ -1,7 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -35,6 +33,8 @@ import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.chrome.LinkTransformationMethod;
 import de.robv.android.xposed.installer.widget.DownloadView;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+
 public class DownloadDetailsVersionsFragment extends ListFragment {
 	private static VersionsAdapter sAdapter;
 	private DownloadDetailsActivity mActivity;
@@ -62,36 +62,31 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 			if (!repoLoader.isVersionShown(module.versions.get(0))) {
 				TextView txtHeader = new TextView(getActivity());
 				txtHeader.setText(R.string.download_test_version_not_shown);
-				txtHeader
-						.setTextColor(getResources().getColor(R.color.warning));
-				txtHeader.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						mActivity.gotoPage(
-								DownloadDetailsActivity.DOWNLOAD_SETTINGS);
-					}
-				});
-				getListView().addHeaderView(txtHeader);
-			}
+                txtHeader.setTextColor(getResources().getColor(R.color.warning));
+                txtHeader.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mActivity.gotoPage(DownloadDetailsActivity.DOWNLOAD_SETTINGS);
+                    }
+                });
+                getListView().addHeaderView(txtHeader);
+            }
 
-			sAdapter = new VersionsAdapter(mActivity,
-					mActivity.getInstalledModule());
-			for (ModuleVersion version : module.versions) {
-				if (repoLoader.isVersionShown(version))
-					sAdapter.add(version);
-			}
+            sAdapter = new VersionsAdapter(mActivity, mActivity.getInstalledModule());
+            for (ModuleVersion version : module.versions) {
+                if (repoLoader.isVersionShown(version))
+                    sAdapter.add(version);
+            }
 			setListAdapter(sAdapter);
 		}
 
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
-		int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-				6, metrics);
-		int eightDp = (int) TypedValue
-				.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
-		getListView().setDivider(null);
-		getListView().setDividerHeight(sixDp);
-		getListView().setPadding(eightDp, eightDp, eightDp, eightDp);
-		getListView().setClipToPadding(false);
+        int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
+        int eightDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, metrics);
+        getListView().setDivider(null);
+        getListView().setDividerHeight(sixDp);
+        getListView().setPadding(eightDp, eightDp, eightDp, eightDp);
+        getListView().setClipToPadding(false);
 	}
 
 	@Override
@@ -101,33 +96,25 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode,
-			String[] permissions, int[] grantResults) {
-		super.onRequestPermissionsResult(requestCode, permissions,
-				grantResults);
-		if (requestCode == WRITE_EXTERNAL_PERMISSION) {
-			if (grantResults.length == 1
-					&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == WRITE_EXTERNAL_PERMISSION) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
 				DownloadsUtil.add(getContext(), module.name,
 						DownloadView.mClickedUrl,
 						new DownloadsUtil.DownloadFinishedCallback() {
 							@Override
-							public void onDownloadFinished(Context context,
-									DownloadsUtil.DownloadInfo info) {
-								Toast.makeText(context,
-										context.getString(R.string.module_saved,
-												info.localFilename),
-										Toast.LENGTH_SHORT).show();
-							}
-						}, DownloadsUtil.MIME_TYPES.APK, true, true);
+                            public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
+                                Toast.makeText(context, context.getString(R.string.module_saved, info.localFilename), Toast.LENGTH_SHORT).show();
+                            }
+                        }, DownloadsUtil.MIME_TYPES.APK, true, true);
 
 			} else {
-				Toast.makeText(this.getContext(), R.string.permissionNotGranted,
-						Toast.LENGTH_LONG).show();
-			}
-		}
-	}
+                Toast.makeText(this.getContext(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
 	static class ViewHolder {
 		TextView txtStatus;
@@ -139,9 +126,8 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 		TextView txtChanges;
 	}
 
-	public static class DownloadModuleCallback
-			implements DownloadsUtil.DownloadFinishedCallback {
-		private final ModuleVersion moduleVersion;
+    public static class DownloadModuleCallback implements DownloadsUtil.DownloadFinishedCallback {
+        private final ModuleVersion moduleVersion;
 
 		public DownloadModuleCallback(ModuleVersion moduleVersion) {
 			this.moduleVersion = moduleVersion;
@@ -154,52 +140,36 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 			if (!localFile.isFile())
 				return;
 
-			if (moduleVersion.md5sum != null
-					&& !moduleVersion.md5sum.isEmpty()) {
-				try {
-					String actualMd5Sum = HashUtil.md5(localFile);
-					if (!moduleVersion.md5sum.equals(actualMd5Sum)) {
-						Toast.makeText(context,
-								context.getString(
-										R.string.download_md5sum_incorrect,
-										actualMd5Sum, moduleVersion.md5sum),
-								Toast.LENGTH_LONG).show();
-						DownloadsUtil.removeById(context, info.id);
-						return;
-					}
-				} catch (Exception e) {
-					Toast.makeText(context,
-							context.getString(
-									R.string.download_could_not_read_file,
-									e.getMessage()),
-							Toast.LENGTH_LONG).show();
-					DownloadsUtil.removeById(context, info.id);
-					return;
-				}
-			}
+            if (moduleVersion.md5sum != null && !moduleVersion.md5sum.isEmpty()) {
+                try {
+                    String actualMd5Sum = HashUtil.md5(localFile);
+                    if (!moduleVersion.md5sum.equals(actualMd5Sum)) {
+                        Toast.makeText(context, context.getString(R.string.download_md5sum_incorrect, actualMd5Sum, moduleVersion.md5sum), Toast.LENGTH_LONG).show();
+                        DownloadsUtil.removeById(context, info.id);
+                        return;
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(context, context.getString(R.string.download_could_not_read_file, e.getMessage()), Toast.LENGTH_LONG).show();
+                    DownloadsUtil.removeById(context, info.id);
+                    return;
+                }
+            }
 
 			PackageManager pm = context.getPackageManager();
-			PackageInfo packageInfo = pm
-					.getPackageArchiveInfo(info.localFilename, 0);
+            PackageInfo packageInfo = pm.getPackageArchiveInfo(info.localFilename, 0);
 
 			if (packageInfo == null) {
-				Toast.makeText(context, R.string.download_no_valid_apk,
-						Toast.LENGTH_LONG).show();
-				DownloadsUtil.removeById(context, info.id);
-				return;
-			}
+                Toast.makeText(context, R.string.download_no_valid_apk, Toast.LENGTH_LONG).show();
+                DownloadsUtil.removeById(context, info.id);
+                return;
+            }
 
 			if (!packageInfo.packageName
 					.equals(moduleVersion.module.packageName)) {
-				Toast.makeText(context,
-						context.getString(
-								R.string.download_incorrect_package_name,
-								packageInfo.packageName,
-								moduleVersion.module.packageName),
-						Toast.LENGTH_LONG).show();
-				DownloadsUtil.removeById(context, info.id);
-				return;
-			}
+                Toast.makeText(context, context.getString(R.string.download_incorrect_package_name, packageInfo.packageName, moduleVersion.module.packageName), Toast.LENGTH_LONG).show();
+                DownloadsUtil.removeById(context, info.id);
+                return;
+            }
 
 			new InstallApkUtil(context, info).execute();
 		}
@@ -218,46 +188,32 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 
 		public VersionsAdapter(Context context, InstalledModule installed) {
 			super(context, R.layout.list_item_version);
-			mColorRelTypeStable = ThemeUtil.getThemeColor(context,
-					android.R.attr.textColorTertiary);
-			mColorRelTypeOthers = getResources().getColor(R.color.warning);
-			mColorInstalled = ThemeUtil.getThemeColor(context,
-					R.attr.download_status_installed);
-			mColorUpdateAvailable = getResources()
-					.getColor(R.color.download_status_update_available);
-			mTextInstalled = getString(R.string.download_section_installed)
-					+ ":";
-			mTextUpdateAvailable = getString(
-					R.string.download_section_update_available) + ":";
-			mInstalledVersionCode = (installed != null) ? installed.versionCode
-					: -1;
-		}
+            mColorRelTypeStable = ThemeUtil.getThemeColor(context, android.R.attr.textColorTertiary);
+            mColorRelTypeOthers = getResources().getColor(R.color.warning);
+            mColorInstalled = ThemeUtil.getThemeColor(context, R.attr.download_status_installed);
+            mColorUpdateAvailable = getResources().getColor(R.color.download_status_update_available);
+            mTextInstalled = getString(R.string.download_section_installed) + ":";
+            mTextUpdateAvailable = getString(R.string.download_section_update_available) + ":";
+            mInstalledVersionCode = (installed != null) ? installed.versionCode : -1;
+        }
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View view = convertView;
 			if (view == null) {
-				LayoutInflater inflater = (LayoutInflater) getContext()
-						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				view = inflater.inflate(R.layout.list_item_version, null, true);
-				ViewHolder viewHolder = new ViewHolder();
-				viewHolder.txtStatus = (TextView) view
-						.findViewById(R.id.txtStatus);
-				viewHolder.txtVersion = (TextView) view
-						.findViewById(R.id.txtVersion);
-				viewHolder.txtRelType = (TextView) view
-						.findViewById(R.id.txtRelType);
-				viewHolder.txtUploadDate = (TextView) view
-						.findViewById(R.id.txtUploadDate);
-				viewHolder.downloadView = (DownloadView) view
-						.findViewById(R.id.downloadView);
-				viewHolder.txtChangesTitle = (TextView) view
-						.findViewById(R.id.txtChangesTitle);
-				viewHolder.txtChanges = (TextView) view
-						.findViewById(R.id.txtChanges);
-				viewHolder.downloadView.fragment = DownloadDetailsVersionsFragment.this;
-				view.setTag(viewHolder);
-			}
+                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                view = inflater.inflate(R.layout.list_item_version, null, true);
+                ViewHolder viewHolder = new ViewHolder();
+                viewHolder.txtStatus = (TextView) view.findViewById(R.id.txtStatus);
+                viewHolder.txtVersion = (TextView) view.findViewById(R.id.txtVersion);
+                viewHolder.txtRelType = (TextView) view.findViewById(R.id.txtRelType);
+                viewHolder.txtUploadDate = (TextView) view.findViewById(R.id.txtUploadDate);
+                viewHolder.downloadView = (DownloadView) view.findViewById(R.id.downloadView);
+                viewHolder.txtChangesTitle = (TextView) view.findViewById(R.id.txtChangesTitle);
+                viewHolder.txtChanges = (TextView) view.findViewById(R.id.txtChanges);
+                viewHolder.downloadView.fragment = DownloadDetailsVersionsFragment.this;
+                view.setTag(viewHolder);
+            }
 
 			ViewHolder holder = (ViewHolder) view.getTag();
 			ModuleVersion item = getItem(position);
@@ -290,23 +246,19 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
 
 			holder.downloadView.setUrl(item.downloadLink);
 			holder.downloadView.setTitle(mActivity.getModule().name);
-			holder.downloadView.setDownloadFinishedCallback(
-					new DownloadModuleCallback(item));
+            holder.downloadView.setDownloadFinishedCallback(new DownloadModuleCallback(item));
 
 			if (item.changelog != null && !item.changelog.isEmpty()) {
 				holder.txtChangesTitle.setVisibility(View.VISIBLE);
 				holder.txtChanges.setVisibility(View.VISIBLE);
 
 				if (item.changelogIsHtml) {
-					holder.txtChanges.setText(RepoParser.parseSimpleHtml(
-							getActivity(), item.changelog, holder.txtChanges));
-					holder.txtChanges.setTransformationMethod(
-							new LinkTransformationMethod(getActivity()));
-					holder.txtChanges.setMovementMethod(
-							LinkMovementMethod.getInstance());
-				} else {
-					holder.txtChanges.setText(item.changelog);
-					holder.txtChanges.setMovementMethod(null);
+                    holder.txtChanges.setText(RepoParser.parseSimpleHtml(getActivity(), item.changelog, holder.txtChanges));
+                    holder.txtChanges.setTransformationMethod(new LinkTransformationMethod(getActivity()));
+                    holder.txtChanges.setMovementMethod(LinkMovementMethod.getInstance());
+                } else {
+                    holder.txtChanges.setText(item.changelog);
+                    holder.txtChanges.setMovementMethod(null);
 				}
 
 			} else {

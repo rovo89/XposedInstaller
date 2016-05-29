@@ -311,5 +311,11 @@
     <string name="scroll_bottom">Scroll to bottom</string>
     <string name="open_drawer_summ">Open automatically the navigation drawer at startup</string>
     <string name="open_drawer">Open automatically navigation drawer</string>
+    <string name="share_app">Share app</string>
+    <string name="share_app_text">Check this out: Xposed Installer in Material Design! %s</string>
+    <string name="disable_xposed">Disable Xposed</string>
+    <string name="status">Status</string>
+    <string name="xposed_on_next_reboot">Xposed framework will be enabled on next reboot</string>
+    <string name="xposed_off_next_reboot">Xposed framework will be disabled on next reboot</string>
 
 </resources>

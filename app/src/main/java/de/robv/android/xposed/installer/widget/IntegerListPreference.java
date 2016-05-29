@@ -32,11 +32,9 @@ public class IntegerListPreference extends MaterialListPreference {
 
 	@Override
 	protected boolean persistString(String value) {
-		if (value == null)
-			return false;
+        return value != null && persistInt(getIntValue(value));
 
-		return persistInt(getIntValue(value));
-	}
+    }
 
 	@Override
 	protected String getPersistedString(String defaultReturnValue) {

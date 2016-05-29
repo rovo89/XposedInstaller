@@ -1,7 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.darkenColor;
-
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -28,10 +26,11 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UIUtil;
 
-public class SettingsActivity extends XposedBaseActivity
-		implements ColorChooserDialog.ColorCallback {
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
-	private static Context mContext;
+public class SettingsActivity extends XposedBaseActivity implements ColorChooserDialog.ColorCallback {
+
+    private static Context mContext;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,15 +71,12 @@ public class SettingsActivity extends XposedBaseActivity
 		}
 	}
 
-	public static class SettingsFragment extends PreferenceFragment
-			implements Preference.OnPreferenceClickListener,
-			SharedPreferences.OnSharedPreferenceChangeListener {
-		private static final File mDisableResourcesFlag = new File(
-				XposedApp.BASE_DIR + "conf/disable_resources");
-		private Preference nav_bar;
-		private Preference colors;
-		private PackageManager pm;
-		private String packName;
+    public static class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
+        private static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
+        private Preference nav_bar;
+        private Preference colors;
+        private PackageManager pm;
+        private String packName;
 
 		private Preference.OnPreferenceChangeListener iconChange = new Preference.OnPreferenceChangeListener() {
 			@Override
@@ -88,15 +84,11 @@ public class SettingsActivity extends XposedBaseActivity
 					Object newValue) {
 
 				String act = ".WelcomeActivity-";
-				String[] iconsValues = new String[] { "dvdandroid", "hjmodi",
-						"rovo", "rovo-old", "staol" };
+                String[] iconsValues = new String[]{"dvdandroid", "hjmodi", "rovo", "rovo-old", "staol"};
 
 				for (String s : iconsValues) {
-					pm.setComponentEnabledSetting(
-							new ComponentName(mContext, packName + act + s),
-							PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-							PackageManager.DONT_KILL_APP);
-				}
+                    pm.setComponentEnabledSetting(new ComponentName(mContext, packName + act + s), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+                }
 
 				act += iconsValues[Integer.parseInt((String) newValue)];
 
@@ -105,18 +97,13 @@ public class SettingsActivity extends XposedBaseActivity
 
 				if (Build.VERSION.SDK_INT >= 21) {
 
-					ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(
-							getString(R.string.app_name),
-							XposedApp.drawableToBitmap(
-									mContext.getDrawable(drawable)),
-							XposedApp.getColor(mContext));
-					getActivity().setTaskDescription(tDesc);
-				}
+                    ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(getString(R.string.app_name),
+                            XposedApp.drawableToBitmap(mContext.getDrawable(drawable)),
+                            XposedApp.getColor(mContext));
+                    getActivity().setTaskDescription(tDesc);
+                }
 
-				pm.setComponentEnabledSetting(
-						new ComponentName(mContext, packName + act),
-						PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-						PackageManager.DONT_KILL_APP);
+                pm.setComponentEnabledSetting(new ComponentName(mContext, packName + act), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
 
 				return true;
 			}
@@ -141,36 +128,28 @@ public class SettingsActivity extends XposedBaseActivity
 				nav_bar.setSummary("LOLLIPOP+");
 			}
 
-			findPreference("release_type_global").setOnPreferenceChangeListener(
-					new Preference.OnPreferenceChangeListener() {
-						@Override
-						public boolean onPreferenceChange(Preference preference,
-								Object newValue) {
-							RepoLoader.getInstance()
-									.setReleaseTypeGlobal((String) newValue);
-							return true;
-						}
-					});
+            findPreference("release_type_global").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    RepoLoader.getInstance().setReleaseTypeGlobal((String) newValue);
+                    return true;
+                }
+            });
 
-			CheckBoxPreference prefDisableResources = (CheckBoxPreference) findPreference(
-					"disable_resources");
-			prefDisableResources.setChecked(mDisableResourcesFlag.exists());
-			prefDisableResources.setOnPreferenceChangeListener(
-					new Preference.OnPreferenceChangeListener() {
-						@Override
-						public boolean onPreferenceChange(Preference preference,
-								Object newValue) {
-							boolean enabled = (Boolean) newValue;
-							if (enabled) {
-								try {
+            CheckBoxPreference prefDisableResources = (CheckBoxPreference) findPreference("disable_resources");
+            prefDisableResources.setChecked(mDisableResourcesFlag.exists());
+            prefDisableResources.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    boolean enabled = (Boolean) newValue;
+                    if (enabled) {
+                        try {
 									mDisableResourcesFlag.createNewFile();
 								} catch (IOException e) {
-									Toast.makeText(getActivity(),
-											e.getMessage(), Toast.LENGTH_SHORT)
-											.show();
-								}
-							} else {
-								mDisableResourcesFlag.delete();
+                                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                    } else {
+                        mDisableResourcesFlag.delete();
 							}
 							return (enabled == mDisableResourcesFlag.exists());
 						}
@@ -178,8 +157,7 @@ public class SettingsActivity extends XposedBaseActivity
 
 			colors.setOnPreferenceClickListener(this);
 
-			ListPreference customIcon = (ListPreference) findPreference(
-					"custom_icon");
+            ListPreference customIcon = (ListPreference) findPreference("custom_icon");
 
 			pm = mContext.getPackageManager();
 			packName = mContext.getPackageName();
@@ -192,29 +170,24 @@ public class SettingsActivity extends XposedBaseActivity
 		public void onResume() {
 			super.onResume();
 
-			getPreferenceScreen().getSharedPreferences()
-					.registerOnSharedPreferenceChangeListener(this);
+            getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
 			if (UIUtil.isLollipop())
-				getActivity().getWindow().setStatusBarColor(
-						darkenColor(XposedApp.getColor(getActivity()), 0.85f));
-		}
+                getActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
+        }
 
 		@Override
 		public void onPause() {
 			super.onPause();
 
-			getPreferenceScreen().getSharedPreferences()
-					.unregisterOnSharedPreferenceChangeListener(this);
-		}
+            getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+        }
 
 		@Override
-		public void onSharedPreferenceChanged(
-				SharedPreferences sharedPreferences, String key) {
-			if (key.equals(colors.getKey()) || key.equals("theme")
-					|| key.equals(nav_bar.getKey()))
-				getActivity().recreate();
-		}
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            if (key.equals(colors.getKey()) || key.equals("theme") || key.equals(nav_bar.getKey()))
+                getActivity().recreate();
+        }
 
 		@Override
 		public boolean onPreferenceClick(Preference preference) {

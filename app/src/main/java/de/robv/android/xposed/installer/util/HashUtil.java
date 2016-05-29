@@ -26,11 +26,10 @@ public class HashUtil {
 		return hash(input, "SHA-1");
 	}
 
-	public static final String hash(File file, String algorithm)
-			throws IOException {
-		try {
-			MessageDigest md = MessageDigest.getInstance(algorithm);
-			InputStream is = new FileInputStream(file);
+    public static final String hash(File file, String algorithm) throws IOException {
+        try {
+            MessageDigest md = MessageDigest.getInstance(algorithm);
+            InputStream is = new FileInputStream(file);
 			byte[] buffer = new byte[8192];
 			int read = 0;
 			while ((read = is.read(buffer)) > 0) {

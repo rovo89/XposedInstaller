@@ -17,12 +17,12 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 import de.robv.android.xposed.installer.R;
 
@@ -33,35 +33,30 @@ public class RepoParser {
 	protected RepoParserCallback mCallback;
 	private boolean mRepoEventTriggered = false;
 
-	protected RepoParser(InputStream is, RepoParserCallback callback)
-			throws XmlPullParserException, IOException {
-		XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-		parser = factory.newPullParser();
-		parser.setInput(is, null);
-		parser.nextTag();
+    protected RepoParser(InputStream is, RepoParserCallback callback) throws XmlPullParserException, IOException {
+        XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+        parser = factory.newPullParser();
+        parser.setInput(is, null);
+        parser.nextTag();
 		mCallback = callback;
 	}
 
-	public static void parse(InputStream is, RepoParserCallback callback)
-			throws XmlPullParserException, IOException {
-		new RepoParser(is, callback).readRepo();
-	}
+    public static void parse(InputStream is, RepoParserCallback callback) throws XmlPullParserException, IOException {
+        new RepoParser(is, callback).readRepo();
+    }
 
-	public static Spanned parseSimpleHtml(final Context c, String source,
-			final TextView textView) {
-		source = source.replaceAll("<li>", "\t\u0095 ");
-		source = source.replaceAll("</li>", "<br>");
-		Spanned html = Html.fromHtml(source, new Html.ImageGetter() {
-			@Override
+    public static Spanned parseSimpleHtml(final Context c, String source, final TextView textView) {
+        source = source.replaceAll("<li>", "\t\u0095 ");
+        source = source.replaceAll("</li>", "<br>");
+        Spanned html = Html.fromHtml(source, new Html.ImageGetter() {
+            @Override
 			public Drawable getDrawable(String source) {
 				LevelListDrawable d = new LevelListDrawable();
-				Drawable empty = c.getResources()
-						.getDrawable(R.drawable.ic_no_image);
-				d.addLevel(0, 0, empty);
-				assert empty != null;
-				d.setBounds(0, 0, empty.getIntrinsicWidth(),
-						empty.getIntrinsicHeight());
-				new ImageGetterAsyncTask(c, source, d).execute(textView);
+                Drawable empty = c.getResources().getDrawable(R.drawable.ic_no_image);
+                d.addLevel(0, 0, empty);
+                assert empty != null;
+                d.setBounds(0, 0, empty.getIntrinsicWidth(), empty.getIntrinsicHeight());
+                new ImageGetterAsyncTask(c, source, d).execute(textView);
 
 				return d;
 			}
@@ -85,29 +80,33 @@ public class RepoParser {
 	protected void readRepo() throws XmlPullParserException, IOException {
 		parser.require(XmlPullParser.START_TAG, NS, "repository");
 		Repository repository = new Repository();
-		repository.isPartial = "true"
-				.equals(parser.getAttributeValue(NS, "partial"));
-		repository.partialUrl = parser.getAttributeValue(NS, "partial-url");
-		repository.version = parser.getAttributeValue(NS, "version");
+        repository.isPartial = "true".equals(parser.getAttributeValue(NS, "partial"));
+        repository.partialUrl = parser.getAttributeValue(NS, "partial-url");
+        repository.version = parser.getAttributeValue(NS, "version");
 
 		while (parser.nextTag() == XmlPullParser.START_TAG) {
 			String tagName = parser.getName();
-			if (tagName.equals("name")) {
-				repository.name = parser.nextText();
-			} else if (tagName.equals("module")) {
-				triggerRepoEvent(repository);
-				Module module = readModule(repository);
-				if (module != null)
-					mCallback.onNewModule(module);
-			} else if (tagName.equals("remove-module")) {
-				triggerRepoEvent(repository);
-				String packageName = readRemoveModule();
-				if (packageName != null)
-					mCallback.onRemoveModule(packageName);
-			} else {
-				skip(true);
-			}
-		}
+            switch (tagName) {
+                case "name":
+                    repository.name = parser.nextText();
+                    break;
+                case "module":
+                    triggerRepoEvent(repository);
+                    Module module = readModule(repository);
+                    if (module != null)
+                        mCallback.onNewModule(module);
+                    break;
+                case "remove-module":
+                    triggerRepoEvent(repository);
+                    String packageName = readRemoveModule();
+                    if (packageName != null)
+                        mCallback.onRemoveModule(packageName);
+                    break;
+                default:
+                    skip(true);
+                    break;
+            }
+        }
 
 		mCallback.onCompleted(repository);
 	}
@@ -120,10 +119,9 @@ public class RepoParser {
 		mRepoEventTriggered = true;
 	}
 
-	protected Module readModule(Repository repository)
-			throws XmlPullParserException, IOException {
-		parser.require(XmlPullParser.START_TAG, NS, "module");
-		final int startDepth = parser.getDepth();
+    protected Module readModule(Repository repository) throws XmlPullParserException, IOException {
+        parser.require(XmlPullParser.START_TAG, NS, "module");
+        final int startDepth = parser.getDepth();
 
 		Module module = new Module(repository);
 		module.packageName = parser.getAttributeValue(NS, "package");
@@ -138,35 +136,44 @@ public class RepoParser {
 
 		while (parser.nextTag() == XmlPullParser.START_TAG) {
 			String tagName = parser.getName();
-			if (tagName.equals("name")) {
-				module.name = parser.nextText();
-			} else if (tagName.equals("author")) {
-				module.author = parser.nextText();
-			} else if (tagName.equals("summary")) {
-				module.summary = parser.nextText();
-			} else if (tagName.equals("description")) {
-				String isHtml = parser.getAttributeValue(NS, "html");
-				if (isHtml != null && isHtml.equals("true"))
-					module.descriptionIsHtml = true;
-				module.description = parser.nextText();
-			} else if (tagName.equals("screenshot")) {
-				module.screenshots.add(parser.nextText());
-			} else if (tagName.equals("moreinfo")) {
-				String label = parser.getAttributeValue(NS, "label");
-				String role = parser.getAttributeValue(NS, "role");
-				String value = parser.nextText();
-				module.moreInfo.add(new Pair<String, String>(label, value));
+            switch (tagName) {
+                case "name":
+                    module.name = parser.nextText();
+                    break;
+                case "author":
+                    module.author = parser.nextText();
+                    break;
+                case "summary":
+                    module.summary = parser.nextText();
+                    break;
+                case "description":
+                    String isHtml = parser.getAttributeValue(NS, "html");
+                    if (isHtml != null && isHtml.equals("true"))
+                        module.descriptionIsHtml = true;
+                    module.description = parser.nextText();
+                    break;
+                case "screenshot":
+                    module.screenshots.add(parser.nextText());
+                    break;
+                case "moreinfo":
+                    String label = parser.getAttributeValue(NS, "label");
+                    String role = parser.getAttributeValue(NS, "role");
+                    String value = parser.nextText();
+                    module.moreInfo.add(new Pair<String, String>(label, value));
 
-				if (role != null && role.contains("support"))
-					module.support = value;
-			} else if (tagName.equals("version")) {
-				ModuleVersion version = readModuleVersion(module);
-				if (version != null)
-					module.versions.add(version);
-			} else {
-				skip(true);
-			}
-		}
+                    if (role != null && role.contains("support"))
+                        module.support = value;
+                    break;
+                case "version":
+                    ModuleVersion version = readModuleVersion(module);
+                    if (version != null)
+                        module.versions.add(version);
+                    break;
+                default:
+                    skip(true);
+                    break;
+            }
+        }
 
 		if (module.name == null) {
 			logError("packages need at least a name");
@@ -187,52 +194,59 @@ public class RepoParser {
 		}
 	}
 
-	protected ModuleVersion readModuleVersion(Module module)
-			throws XmlPullParserException, IOException {
-		parser.require(XmlPullParser.START_TAG, NS, "version");
-		final int startDepth = parser.getDepth();
-		ModuleVersion version = new ModuleVersion(module);
+    protected ModuleVersion readModuleVersion(Module module) throws XmlPullParserException, IOException {
+        parser.require(XmlPullParser.START_TAG, NS, "version");
+        final int startDepth = parser.getDepth();
+        ModuleVersion version = new ModuleVersion(module);
 
 		version.uploaded = parseTimestamp("uploaded");
 
 		while (parser.nextTag() == XmlPullParser.START_TAG) {
 			String tagName = parser.getName();
-			if (tagName.equals("name")) {
-				version.name = parser.nextText();
-			} else if (tagName.equals("code")) {
-				try {
-					version.code = Integer.parseInt(parser.nextText());
-				} catch (NumberFormatException nfe) {
-					logError(nfe.getMessage());
-					leave(startDepth);
-					return null;
-				}
-			} else if (tagName.equals("reltype")) {
-				version.relType = ReleaseType.fromString(parser.nextText());
-			} else if (tagName.equals("download")) {
-				version.downloadLink = parser.nextText();
-			} else if (tagName.equals("md5sum")) {
-				version.md5sum = parser.nextText();
-			} else if (tagName.equals("changelog")) {
-				String isHtml = parser.getAttributeValue(NS, "html");
-				if (isHtml != null && isHtml.equals("true"))
-					version.changelogIsHtml = true;
-				version.changelog = parser.nextText();
-			} else if (tagName.equals("branch")) {
-				// obsolete
-				skip(false);
-			} else {
-				skip(true);
-			}
-		}
+            switch (tagName) {
+                case "name":
+                    version.name = parser.nextText();
+                    break;
+                case "code":
+                    try {
+                        version.code = Integer.parseInt(parser.nextText());
+                    } catch (NumberFormatException nfe) {
+                        logError(nfe.getMessage());
+                        leave(startDepth);
+                        return null;
+                    }
+                    break;
+                case "reltype":
+                    version.relType = ReleaseType.fromString(parser.nextText());
+                    break;
+                case "download":
+                    version.downloadLink = parser.nextText();
+                    break;
+                case "md5sum":
+                    version.md5sum = parser.nextText();
+                    break;
+                case "changelog":
+                    String isHtml = parser.getAttributeValue(NS, "html");
+                    if (isHtml != null && isHtml.equals("true"))
+                        version.changelogIsHtml = true;
+                    version.changelog = parser.nextText();
+                    break;
+                case "branch":
+                    // obsolete
+                    skip(false);
+                    break;
+                default:
+                    skip(true);
+                    break;
+            }
+        }
 
 		return version;
 	}
 
-	protected String readRemoveModule()
-			throws XmlPullParserException, IOException {
-		parser.require(XmlPullParser.START_TAG, NS, "remove-module");
-		final int startDepth = parser.getDepth();
+    protected String readRemoveModule() throws XmlPullParserException, IOException {
+        parser.require(XmlPullParser.START_TAG, NS, "remove-module");
+        final int startDepth = parser.getDepth();
 
 		String packageName = parser.getAttributeValue(NS, "package");
 		if (packageName == null) {
@@ -244,16 +258,14 @@ public class RepoParser {
 		return packageName;
 	}
 
-	protected void skip(boolean showWarning)
-			throws XmlPullParserException, IOException {
-		parser.require(XmlPullParser.START_TAG, null, null);
-		if (showWarning)
-			Log.w(TAG, "skipping unknown/erronous tag: "
-					+ parser.getPositionDescription());
-		int level = 1;
-		while (level > 0) {
-			int eventType = parser.next();
-			if (eventType == XmlPullParser.END_TAG) {
+    protected void skip(boolean showWarning) throws XmlPullParserException, IOException {
+        parser.require(XmlPullParser.START_TAG, null, null);
+        if (showWarning)
+            Log.w(TAG, "skipping unknown/erronous tag: " + parser.getPositionDescription());
+        int level = 1;
+        while (level > 0) {
+            int eventType = parser.next();
+            if (eventType == XmlPullParser.END_TAG) {
 				level--;
 			} else if (eventType == XmlPullParser.START_TAG) {
 				level++;
@@ -261,14 +273,12 @@ public class RepoParser {
 		}
 	}
 
-	protected void leave(int targetDepth)
-			throws XmlPullParserException, IOException {
-		Log.w(TAG, "leaving up to level " + targetDepth + ": "
-				+ parser.getPositionDescription());
-		while (parser.getDepth() > targetDepth) {
-			while (parser.next() != XmlPullParser.END_TAG) {
-				// do nothing
-			}
+    protected void leave(int targetDepth) throws XmlPullParserException, IOException {
+        Log.w(TAG, "leaving up to level " + targetDepth + ": " + parser.getPositionDescription());
+        while (parser.getDepth() > targetDepth) {
+            while (parser.next() != XmlPullParser.END_TAG) {
+                // do nothing
+            }
 		}
 	}
 
@@ -286,20 +296,18 @@ public class RepoParser {
 		void onCompleted(Repository repository);
 	}
 
-	static class ImageGetterAsyncTask
-			extends AsyncTask<TextView, Void, Bitmap> {
+    static class ImageGetterAsyncTask extends AsyncTask<TextView, Void, Bitmap> {
 
 		private LevelListDrawable levelListDrawable;
 		private Context context;
 		private String source;
 		private TextView t;
 
-		public ImageGetterAsyncTask(Context context, String source,
-				LevelListDrawable levelListDrawable) {
-			this.context = context;
-			this.source = source;
-			this.levelListDrawable = levelListDrawable;
-		}
+        public ImageGetterAsyncTask(Context context, String source, LevelListDrawable levelListDrawable) {
+            this.context = context;
+            this.source = source;
+            this.levelListDrawable = levelListDrawable;
+        }
 
 		@Override
 		protected Bitmap doInBackground(TextView... params) {
@@ -316,17 +324,14 @@ public class RepoParser {
 			try {
 				Drawable d = new BitmapDrawable(context.getResources(), bitmap);
 				Point size = new Point();
-				((Activity) context).getWindowManager().getDefaultDisplay()
-						.getSize(size);
-				int multiplier = size.x / bitmap.getWidth();
-				levelListDrawable.addLevel(1, 1, d);
-				levelListDrawable.setBounds(0, 0,
-						bitmap.getWidth() * multiplier,
-						bitmap.getHeight() * multiplier);
-				levelListDrawable.setLevel(1);
-				t.setText(t.getText());
-			} catch (Exception e) { /* Like a null bitmap, etc. */
-			}
+                ((Activity) context).getWindowManager().getDefaultDisplay().getSize(size);
+                int multiplier = size.x / bitmap.getWidth();
+                levelListDrawable.addLevel(1, 1, d);
+                levelListDrawable.setBounds(0, 0, bitmap.getWidth() * multiplier, bitmap.getHeight() * multiplier);
+                levelListDrawable.setLevel(1);
+                t.setText(t.getText());
+            } catch (Exception e) { /* Like a null bitmap, etc. */
+            }
 		}
 	}
 

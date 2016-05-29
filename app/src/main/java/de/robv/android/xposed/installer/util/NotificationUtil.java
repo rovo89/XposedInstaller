@@ -37,9 +37,8 @@ public final class NotificationUtil {
 
 		sContext = XposedApp.getInstance();
 		prefs = XposedApp.getPreferences();
-		sNotificationManager = (NotificationManager) sContext
-				.getSystemService(Context.NOTIFICATION_SERVICE);
-	}
+        sNotificationManager = (NotificationManager) sContext.getSystemService(Context.NOTIFICATION_SERVICE);
+    }
 
 	public static void cancel(int id) {
 		sNotificationManager.cancel(id);
@@ -55,16 +54,13 @@ public final class NotificationUtil {
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.putExtra("fragment", 1);
 
-		PendingIntent pModulesTab = PendingIntent.getActivity(sContext,
-				PENDING_INTENT_OPEN_MODULES, intent,
-				PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pModulesTab = PendingIntent.getActivity(sContext, PENDING_INTENT_OPEN_MODULES, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		String title = sContext.getString(R.string.module_is_not_activated_yet);
-		NotificationCompat.Builder builder = new NotificationCompat.Builder(
-				sContext).setContentTitle(title).setContentText(appName)
-						.setTicker(title).setContentIntent(pModulesTab)
-						.setVibrate(new long[] { 0 }).setAutoCancel(true)
-						.setSmallIcon(R.drawable.ic_notification);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext).setContentTitle(title).setContentText(appName)
+                .setTicker(title).setContentIntent(pModulesTab)
+                .setVibrate(new long[]{0}).setAutoCancel(true)
+                .setSmallIcon(R.drawable.ic_notification);
 
 		if (prefs.getBoolean("heads_up", true) && Build.VERSION.SDK_INT >= 21)
 			builder.setPriority(2);
@@ -73,11 +69,10 @@ public final class NotificationUtil {
 			builder.setColor(XposedApp.getColor(sContext));
 
 		Intent iActivateAndReboot = new Intent(sContext, RebootReceiver.class);
-		iActivateAndReboot.putExtra(RebootReceiver.EXTRA_ACTIVATE_MODULE,
-				packageName);
-		PendingIntent pActivateAndReboot = PendingIntent.getBroadcast(sContext,
-				PENDING_INTENT_ACTIVATE_MODULE_AND_REBOOT, iActivateAndReboot,
-				PendingIntent.FLAG_UPDATE_CURRENT);
+        iActivateAndReboot.putExtra(RebootReceiver.EXTRA_ACTIVATE_MODULE, packageName);
+        PendingIntent pActivateAndReboot = PendingIntent.getBroadcast(sContext,
+                PENDING_INTENT_ACTIVATE_MODULE_AND_REBOOT, iActivateAndReboot,
+                PendingIntent.FLAG_UPDATE_CURRENT);
 
 		NotificationCompat.BigTextStyle notiStyle = new NotificationCompat.BigTextStyle();
 		notiStyle.setBigContentTitle(title);
@@ -89,9 +84,7 @@ public final class NotificationUtil {
 		// enabled before,
 		// to ensure that the user know the way to disable the module later.
 		if (!ModuleUtil.getInstance().getEnabledModules().isEmpty())
-			builder.addAction(R.drawable.ic_menu_refresh,
-					sContext.getString(R.string.activate_and_reboot),
-					pActivateAndReboot);
+            builder.addAction(R.drawable.ic_menu_refresh, sContext.getString(R.string.activate_and_reboot), pActivateAndReboot);
 
 		sNotificationManager.notify(packageName,
 				NOTIFICATION_MODULE_NOT_ACTIVATED_YET, builder.build());
@@ -137,9 +130,8 @@ public final class NotificationUtil {
 		builder.addAction(0, sContext.getString(R.string.soft_reboot),
 				pSoftReboot);
 
-		sNotificationManager.notify(null, NOTIFICATION_MODULES_UPDATED,
-				builder.build());
-	}
+        sNotificationManager.notify(null, NOTIFICATION_MODULES_UPDATED, builder.build());
+    }
 
 	public static class RebootReceiver extends BroadcastReceiver {
 		public static String EXTRA_SOFT_REBOOT = "soft";
@@ -154,19 +146,16 @@ public final class NotificationUtil {
 			 * expanded notification panel and is therefore not visible to the
 			 * user.
 			 */
-			sContext.sendBroadcast(
-					new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
-			cancelAll();
+            sContext.sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+            cancelAll();
 
 			if (intent.hasExtra(EXTRA_ACTIVATE_MODULE)) {
-				String packageName = intent
-						.getStringExtra(EXTRA_ACTIVATE_MODULE);
-				ModuleUtil moduleUtil = ModuleUtil.getInstance();
-				moduleUtil.setModuleEnabled(packageName, true);
-				moduleUtil.updateModulesList(false);
-				Toast.makeText(sContext, R.string.module_activated,
-						Toast.LENGTH_SHORT).show();
-			}
+                String packageName = intent.getStringExtra(EXTRA_ACTIVATE_MODULE);
+                ModuleUtil moduleUtil = ModuleUtil.getInstance();
+                moduleUtil.setModuleEnabled(packageName, true);
+                moduleUtil.updateModulesList(false);
+                Toast.makeText(sContext, R.string.module_activated, Toast.LENGTH_SHORT).show();
+            }
 
 			RootUtil rootUtil = new RootUtil();
 			if (!rootUtil.startShell()) {
@@ -178,10 +167,8 @@ public final class NotificationUtil {
 			boolean isSoftReboot = intent.getBooleanExtra(EXTRA_SOFT_REBOOT,
 					false);
 			int returnCode = isSoftReboot
-					? rootUtil.execute(
-							"setprop ctl.restart surfaceflinger; setprop ctl.restart zygote",
-							messages)
-					: rootUtil.executeWithBusybox("reboot", messages);
+                    ? rootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages)
+                    : rootUtil.executeWithBusybox("reboot", messages);
 
 			if (returnCode != 0) {
 				Log.e(XposedApp.TAG, "Could not reboot:");

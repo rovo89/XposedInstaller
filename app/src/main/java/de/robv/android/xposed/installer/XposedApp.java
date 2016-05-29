@@ -46,22 +46,18 @@ public class XposedApp extends Application
 
 	@SuppressLint("SdCardPath")
 	public static final String BASE_DIR = "/data/data/de.robv.android.xposed.installer/";
-	public static final String ENABLED_MODULES_LIST_FILE = XposedApp.BASE_DIR
-			+ "conf/enabled_modules.list";
-	private static final File XPOSED_PROP_FILE = new File(
-			"/system/xposed.prop");
-	public static int WRITE_EXTERNAL_PERMISSION = 69;
-	public static String THIS_APK_VERSION = "1454875200000";
-	public static int[] iconsValues = new int[] { R.mipmap.ic_launcher,
-			R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo,
-			R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol };
-	private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern
-			.compile(".*with Xposed support \\(version (.+)\\).*");
-	private static XposedApp mInstance = null;
-	private static Thread mUiThread;
-	private static Handler mMainHandler;
-	private boolean mIsUiLoaded = false;
-	private Activity mCurrentActivity = null;
+    public static final String ENABLED_MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/enabled_modules.list";
+    public static final File XPOSED_PROP_FILE_SYSTEMLESS = new File("/su/xposed.prop");
+    private static final File XPOSED_PROP_FILE = new File("/system/xposed.prop");
+    public static int WRITE_EXTERNAL_PERMISSION = 69;
+    public static String THIS_APK_VERSION = "1454875200000";
+    public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
+    private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
+    private static XposedApp mInstance = null;
+    private static Thread mUiThread;
+    private static Handler mMainHandler;
+    private boolean mIsUiLoaded = false;
+    private Activity mCurrentActivity = null;
 	private SharedPreferences mPref;
 	private Map<String, String> mXposedProp;
 
@@ -87,12 +83,11 @@ public class XposedApp extends Application
 
 	private static int getInstalledAppProcessVersion() {
 		try {
-			return getAppProcessVersion(
-					new FileInputStream("/system/bin/app_process"));
-		} catch (IOException e) {
-			return 0;
-		}
-	}
+            return getAppProcessVersion(new FileInputStream("/system/bin/app_process"));
+        } catch (IOException e) {
+            return 0;
+        }
+    }
 
 	private static int getAppProcessVersion(InputStream is) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -127,10 +122,8 @@ public class XposedApp extends Application
 	}
 
 	public static int getColor(Context context) {
-		SharedPreferences prefs = context.getSharedPreferences(
-				context.getPackageName() + "_preferences", MODE_PRIVATE);
-		int defaultColor = context.getResources()
-				.getColor(R.color.colorPrimary);
+        SharedPreferences prefs = context.getSharedPreferences(context.getPackageName() + "_preferences", MODE_PRIVATE);
+        int defaultColor = context.getResources().getColor(R.color.colorPrimary);
 
 		return prefs.getInt("colors", defaultColor);
 	}
@@ -138,32 +131,27 @@ public class XposedApp extends Application
 	public static void setColors(ActionBar actionBar, Object value,
 			Activity activity) {
 		int color = (int) value;
-		SharedPreferences prefs = activity.getSharedPreferences(
-				activity.getPackageName() + "_preferences", MODE_PRIVATE);
+        SharedPreferences prefs = activity.getSharedPreferences(activity.getPackageName() + "_preferences", MODE_PRIVATE);
 
-		int drawable = iconsValues[Integer
-				.parseInt(prefs.getString("custom_icon", "0"))];
+        int drawable = iconsValues[Integer.parseInt(prefs.getString("custom_icon", "0"))];
 
 		if (actionBar != null)
 			actionBar.setBackgroundDrawable(new ColorDrawable(color));
 
 		if (Build.VERSION.SDK_INT >= 21) {
 
-			ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(
-					activity.getString(R.string.app_name),
-					drawableToBitmap(activity.getDrawable(drawable)), color);
-			activity.setTaskDescription(tDesc);
+            ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(activity.getString(R.string.app_name),
+                    drawableToBitmap(activity.getDrawable(drawable)), color);
+            activity.setTaskDescription(tDesc);
 
 			if (getPreferences().getBoolean("nav_bar", false)) {
-				activity.getWindow()
-						.setNavigationBarColor(darkenColor(color, 0.85f));
-			} else {
-				int black = activity.getResources()
-						.getColor(android.R.color.black);
-				activity.getWindow().setNavigationBarColor(black);
-			}
-		}
-	}
+                activity.getWindow().setNavigationBarColor(darkenColor(color, 0.85f));
+            } else {
+                int black = activity.getResources().getColor(android.R.color.black);
+                activity.getWindow().setNavigationBarColor(black);
+            }
+        }
+    }
 
 	public static Bitmap drawableToBitmap(Drawable drawable) {
 		Bitmap bitmap;
@@ -175,13 +163,11 @@ public class XposedApp extends Application
 			}
 		}
 
-		if (drawable.getIntrinsicWidth() <= 0
-				|| drawable.getIntrinsicHeight() <= 0) {
-			bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
-		} else {
-			bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
-					drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-		}
+        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
+        } else {
+            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        }
 
 		Canvas canvas = new Canvas(bitmap);
 		drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -225,13 +211,12 @@ public class XposedApp extends Application
 
 	private void cleanup() {
 		if (!mPref.getBoolean("cleaned_up_sdcard", false)) {
-			if (Environment.getExternalStorageState()
-					.equals(Environment.MEDIA_MOUNTED)) {
-				File sdcard = Environment.getExternalStorageDirectory();
-				new File(sdcard, "Xposed-Disabler-CWM.zip").delete();
-				new File(sdcard, "Xposed-Disabler-Recovery.zip").delete();
-				new File(sdcard, "Xposed-Installer-Recovery.zip").delete();
-				mPref.edit().putBoolean("cleaned_up_sdcard", true).apply();
+            if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                File sdcard = Environment.getExternalStorageDirectory();
+                new File(sdcard, "Xposed-Disabler-CWM.zip").delete();
+                new File(sdcard, "Xposed-Disabler-Recovery.zip").delete();
+                new File(sdcard, "Xposed-Installer-Recovery.zip").delete();
+                mPref.edit().putBoolean("cleaned_up_sdcard", true).apply();
 			}
 		}
 
@@ -250,23 +235,31 @@ public class XposedApp extends Application
 
 	private void reloadXposedProp() {
 		Map<String, String> map = Collections.emptyMap();
-		if (XPOSED_PROP_FILE.canRead()) {
-			FileInputStream is = null;
-			try {
-				is = new FileInputStream(XPOSED_PROP_FILE);
-				map = parseXposedProp(is);
-			} catch (IOException e) {
-				Log.e(XposedApp.TAG,
-						"Could not read " + XPOSED_PROP_FILE.getPath(), e);
-			} finally {
-				if (is != null) {
-					try {
-						is.close();
-					} catch (IOException ignored) {
-					}
-				}
-			}
-		}
+        if (XPOSED_PROP_FILE.canRead() || XPOSED_PROP_FILE_SYSTEMLESS.canRead()) {
+            File file = null;
+            if (XPOSED_PROP_FILE.canRead()) {
+                file = XPOSED_PROP_FILE;
+            } else if (XPOSED_PROP_FILE_SYSTEMLESS.canRead()) {
+                file = XPOSED_PROP_FILE_SYSTEMLESS;
+            }
+
+            if (file != null) {
+                FileInputStream is = null;
+                try {
+                    is = new FileInputStream(file);
+                    map = parseXposedProp(is);
+                } catch (IOException e) {
+                    Log.e(XposedApp.TAG, "Could not read " + file.getPath(), e);
+                } finally {
+                    if (is != null) {
+                        try {
+                            is.close();
+                        } catch (IOException ignored) {
+                        }
+                    }
+                }
+            }
+        }
 
 		synchronized (this) {
 			mXposedProp = map;
@@ -275,13 +268,12 @@ public class XposedApp extends Application
 
 	private Map<String, String> parseXposedProp(InputStream stream)
 			throws IOException {
-		BufferedReader reader = new BufferedReader(
-				new InputStreamReader(stream));
-		Map<String, String> map = new LinkedHashMap<String, String>();
-		String line;
-		while ((line = reader.readLine()) != null) {
-			String[] parts = line.split("=", 2);
-			if (parts.length != 2)
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        Map<String, String> map = new LinkedHashMap<String, String>();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split("=", 2);
+            if (parts.length != 2)
 				continue;
 
 			String key = parts[0].trim();
@@ -293,30 +285,26 @@ public class XposedApp extends Application
 		return Collections.unmodifiableMap(map);
 	}
 
-	public void updateProgressIndicator(
-			final SwipeRefreshLayout refreshLayout) {
-		final boolean isLoading = RepoLoader.getInstance().isLoading()
-				|| ModuleUtil.getInstance().isLoading();
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				synchronized (XposedApp.this) {
-					if (mCurrentActivity != null) {
-						mCurrentActivity.setProgressBarIndeterminateVisibility(
-								isLoading);
-						if (refreshLayout != null)
-							refreshLayout.setRefreshing(isLoading);
-					}
-				}
-			}
+    public void updateProgressIndicator(final SwipeRefreshLayout refreshLayout) {
+        final boolean isLoading = RepoLoader.getInstance().isLoading() || ModuleUtil.getInstance().isLoading();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                synchronized (XposedApp.this) {
+                    if (mCurrentActivity != null) {
+                        mCurrentActivity.setProgressBarIndeterminateVisibility(isLoading);
+                        if (refreshLayout != null)
+                            refreshLayout.setRefreshing(isLoading);
+                    }
+                }
+            }
 		});
 	}
 
 	@Override
-	public synchronized void onActivityCreated(Activity activity,
-			Bundle savedInstanceState) {
-		if (mIsUiLoaded)
-			return;
+    public synchronized void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+        if (mIsUiLoaded)
+            return;
 
 		RepoLoader.getInstance().triggerFirstLoadIfNecessary();
 		mIsUiLoaded = true;

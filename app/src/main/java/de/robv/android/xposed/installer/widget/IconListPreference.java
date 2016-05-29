@@ -44,8 +44,7 @@ public class IconListPreference extends ListPreference {
 	public IconListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
-		TypedArray a = context.getTheme().obtainStyledAttributes(attrs,
-				R.styleable.IconListPreference, 0, 0);
+        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.IconListPreference, 0, 0);
 
 		CharSequence[] drawables;
 
@@ -56,8 +55,7 @@ public class IconListPreference extends ListPreference {
 		}
 
 		for (CharSequence drawable : drawables) {
-			int resId = context.getResources().getIdentifier(
-					drawable.toString(), "mipmap", context.getPackageName());
+            int resId = context.getResources().getIdentifier(drawable.toString(), "mipmap", context.getPackageName());
 
 			Drawable d = context.getResources().getDrawable(resId);
 
@@ -68,9 +66,8 @@ public class IconListPreference extends ListPreference {
 	protected ListAdapter createListAdapter() {
 		final String selectedValue = getValue();
 		int selectedIndex = findIndexOfValue(selectedValue);
-		return new AppArrayAdapter(getContext(), R.layout.icon_preference_item,
-				getEntries(), mEntryDrawables, selectedIndex);
-	}
+        return new AppArrayAdapter(getContext(), R.layout.icon_preference_item, getEntries(), mEntryDrawables, selectedIndex);
+    }
 
 	@Override
 	protected void onPrepareDialogBuilder(Builder builder) {
@@ -93,14 +90,11 @@ public class IconListPreference extends ListPreference {
 		@Override
 		@SuppressLint("ViewHolder")
 		public View getView(int position, View convertView, ViewGroup parent) {
-			LayoutInflater inflater = ((Activity) getContext())
-					.getLayoutInflater();
-			View view = inflater.inflate(R.layout.icon_preference_item, parent,
-					false);
-			CheckedTextView textView = (CheckedTextView) view
-					.findViewById(R.id.label);
-			textView.setText(getItem(position));
-			textView.setChecked(position == mSelectedIndex);
+            LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
+            View view = inflater.inflate(R.layout.icon_preference_item, parent, false);
+            CheckedTextView textView = (CheckedTextView) view.findViewById(R.id.label);
+            textView.setText(getItem(position));
+            textView.setChecked(position == mSelectedIndex);
 
 			ImageView imageView = (ImageView) view.findViewById(R.id.icon);
 			imageView.setImageDrawable(mImageDrawables.get(position));

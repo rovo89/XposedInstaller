@@ -1,7 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -34,6 +32,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
+
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class LogsFragment extends Fragment {
 
@@ -152,21 +152,17 @@ public class LogsFragment extends Fragment {
 					Toast.LENGTH_SHORT).show();
 			reloadErrorLog();
 		} catch (IOException e) {
-			Toast.makeText(getActivity(),
-					getResources().getString(R.string.logs_clear_failed) + "\n"
-							+ e.getMessage(),
-					Toast.LENGTH_LONG).show();
-		}
-	}
+            Toast.makeText(getActivity(), getResources().getString(R.string.logs_clear_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
 
 	private void send() {
 		Intent sendIntent = new Intent();
 		sendIntent.setAction(Intent.ACTION_SEND);
 		sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(save()));
 		sendIntent.setType("application/html");
-		startActivity(Intent.createChooser(sendIntent,
-				getResources().getString(R.string.menuSend)));
-	}
+        startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.menuSend)));
+    }
 
 	@Override
 	public void onRequestPermissionsResult(int requestCode,
@@ -184,28 +180,22 @@ public class LogsFragment extends Fragment {
 					}, 500);
 				}
 			} else {
-				Toast.makeText(getActivity(), R.string.permissionNotGranted,
-						Toast.LENGTH_LONG).show();
-			}
-		}
-	}
+                Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
 	@SuppressLint("DefaultLocale")
 	private File save() {
-		if (ActivityCompat.checkSelfPermission(getActivity(),
-				Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-			requestPermissions(
-					new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
-					WRITE_EXTERNAL_PERMISSION);
-			return null;
-		}
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
+            return null;
+        }
 
-		if (!Environment.getExternalStorageState()
-				.equals(Environment.MEDIA_MOUNTED)) {
-			Toast.makeText(getActivity(), R.string.sdcard_not_writable,
-					Toast.LENGTH_LONG).show();
-			return null;
-		}
+        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            Toast.makeText(getActivity(), R.string.sdcard_not_writable, Toast.LENGTH_LONG).show();
+            return null;
+        }
 
 		Calendar now = Calendar.getInstance();
 		String filename = String.format(
@@ -214,8 +204,7 @@ public class LogsFragment extends Fragment {
                 now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY),
                 now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
 
-        String path = Environment.getExternalStorageDirectory()
-                + "/XposedInstaller";
+        String path = Environment.getExternalStorageDirectory() + "/XposedInstaller";
         File dir = new File(path);
 
         if (!dir.exists()) dir.mkdir();
@@ -237,23 +226,19 @@ public class LogsFragment extends Fragment {
 					Toast.LENGTH_LONG).show();
 			return targetFile;
 		} catch (IOException e) {
-			Toast.makeText(getActivity(),
-					getResources().getString(R.string.logs_save_failed) + "\n"
-							+ e.getMessage(),
-					Toast.LENGTH_LONG).show();
-			return null;
-		}
-	}
+            Toast.makeText(getActivity(), getResources().getString(R.string.logs_save_failed) + "\n" + e.getMessage(), Toast.LENGTH_LONG).show();
+            return null;
+        }
+    }
 
 	private class LogsReader extends AsyncTask<File, Integer, String> {
 
 		private static final int MAX_LOG_SIZE = 1000 * 1024; // 1000 KB
 		private MaterialDialog mProgressDialog;
 
-		private long skipLargeFile(BufferedReader is, long length)
-				throws IOException {
-			if (length < MAX_LOG_SIZE)
-				return 0;
+        private long skipLargeFile(BufferedReader is, long length) throws IOException {
+            if (length < MAX_LOG_SIZE)
+                return 0;
 
 			long skipped = length - MAX_LOG_SIZE;
 			long yetToSkip = skipped;
@@ -275,9 +260,8 @@ public class LogsFragment extends Fragment {
 
 		@Override
 		protected void onPreExecute() {
-			mProgressDialog = new MaterialDialog.Builder(getContext())
-					.content(R.string.loading).progress(true, 0).show();
-		}
+            mProgressDialog = new MaterialDialog.Builder(getContext()).content(R.string.loading).progress(true, 0).show();
+        }
 
 		@Override
 		protected String doInBackground(File... log) {

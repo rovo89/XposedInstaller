@@ -22,11 +22,10 @@ public class XposedZip {
 		public Installer() {
 		}
 
-		public Installer(String link, String name, String architecture, int sdk,
-				String version) {
-			this.link = link;
-			this.name = name;
-			this.architecture = architecture;
+        public Installer(String link, String name, String architecture, int sdk, String version) {
+            this.link = link;
+            this.name = name;
+            this.architecture = architecture;
 			this.sdk = sdk;
 			this.version = version;
 		}
@@ -38,11 +37,10 @@ public class XposedZip {
 		public Uninstaller() {
 		}
 
-		public Uninstaller(String link, String name, String architecture,
-				String date) {
-			this.link = link;
-			this.name = name;
-			super.architecture = architecture;
+        public Uninstaller(String link, String name, String architecture, String date) {
+            this.link = link;
+            this.name = name;
+            super.architecture = architecture;
 			this.date = date;
 		}
 	}
@@ -53,11 +51,10 @@ public class XposedZip {
 		List<T> list;
 
 		public MyAdapter(Context context, List<T> objects) {
-			super(context, android.R.layout.simple_dropdown_item_1line,
-					objects);
-			this.context = context;
-			this.list = objects;
-		}
+            super(context, android.R.layout.simple_dropdown_item_1line, objects);
+            this.context = context;
+            this.list = objects;
+        }
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
@@ -75,8 +72,7 @@ public class XposedZip {
 			ItemHolder holder = new ItemHolder();
 
 			LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-			row = inflater.inflate(android.R.layout.simple_dropdown_item_1line,
-					parent, false);
+            row = inflater.inflate(android.R.layout.simple_dropdown_item_1line, parent, false);
 
 			holder.name = (TextView) row.findViewById(android.R.id.text1);
 

@@ -33,10 +33,8 @@ public class CustomTabActivityHelper implements ServiceConnectionCallback {
 	 *            a CustomTabFallback to be used if Custom Tabs is not
 	 *            available.
 	 */
-	public static void openCustomTab(Activity activity,
-			CustomTabsIntent customTabsIntent, Uri uri,
-			CustomTabFallback fallback) {
-		String packageName = CustomTabsHelper.getPackageNameToUse(activity);
+    public static void openCustomTab(Activity activity, CustomTabsIntent customTabsIntent, Uri uri, CustomTabFallback fallback) {
+        String packageName = CustomTabsHelper.getPackageNameToUse(activity);
 
 		// If we cant find a package name, it means theres no browser that
 		// supports
@@ -105,9 +103,8 @@ public class CustomTabActivityHelper implements ServiceConnectionCallback {
 			return;
 
 		mConnection = new ServiceConnection(this);
-		CustomTabsClient.bindCustomTabsService(activity, packageName,
-				mConnection);
-	}
+        CustomTabsClient.bindCustomTabsService(activity, packageName, mConnection);
+    }
 
 	/**
 	 * @return true if call to mayLaunchUrl was accepted.

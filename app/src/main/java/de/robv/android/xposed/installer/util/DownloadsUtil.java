@@ -37,49 +37,42 @@ public class DownloadsUtil {
 	private static final SharedPreferences mPref = mApp
 			.getSharedPreferences("download_cache", Context.MODE_PRIVATE);
 
-	public static DownloadInfo add(Context context, String title, String url,
-			DownloadFinishedCallback callback, MIME_TYPES mimeType) {
+    public static DownloadInfo add(Context context, String title, String url, DownloadFinishedCallback callback, MIME_TYPES mimeType) {
 
 		return add(context, title, url, callback, mimeType, false, false);
 	}
 
-	public static DownloadInfo add(Context context, String title, String url,
-			DownloadFinishedCallback callback, MIME_TYPES mimeType,
-			boolean save) {
+    public static DownloadInfo add(Context context, String title, String url, DownloadFinishedCallback callback, MIME_TYPES mimeType,
+                                   boolean save) {
 
 		return add(context, title, url, callback, mimeType, save, false);
 	}
 
-	public static DownloadInfo add(Context context, String title, String url,
-			DownloadFinishedCallback callback, MIME_TYPES mimeType,
-			boolean save, boolean module) {
-		removeAllForUrl(context, url);
+    public static DownloadInfo add(Context context, String title, String url, DownloadFinishedCallback callback, MIME_TYPES mimeType, boolean save, boolean module) {
+        removeAllForUrl(context, url);
 
 		synchronized (mCallbacks) {
 			mCallbacks.put(url, callback);
 		}
 
-		DownloadManager dm = (DownloadManager) context
-				.getSystemService(Context.DOWNLOAD_SERVICE);
-		Request request = new Request(Uri.parse(url));
-		request.setTitle(title);
-		request.setMimeType(mimeType.toString());
-		if (save) {
+        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        Request request = new Request(Uri.parse(url));
+        request.setTitle(title);
+        request.setMimeType(mimeType.toString());
+        if (save) {
 			String savePath = "XposedInstaller";
 
 			if (module)
 				savePath += "/modules";
 
 			try {
-				request.setDestinationInExternalPublicDir(savePath,
-						title + mimeType.getExtension());
-			} catch (IllegalStateException e) {
-				Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT)
-						.show();
-			}
-		}
-		request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
-		long id = dm.enqueue(request);
+                request.setDestinationInExternalPublicDir(savePath, title + mimeType.getExtension());
+            } catch (IllegalStateException e) {
+                Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+        request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
+        long id = dm.enqueue(request);
 
 		return getById(context, id);
 	}
@@ -97,34 +90,27 @@ public class DownloadsUtil {
 
 
 	public static DownloadInfo getById(Context context, long id) {
-		DownloadManager dm = (DownloadManager) context
-				.getSystemService(Context.DOWNLOAD_SERVICE);
-		Cursor c = dm.query(new Query().setFilterById(id));
-		if (!c.moveToFirst())
-			return null;
+        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        Cursor c = dm.query(new Query().setFilterById(id));
+        if (!c.moveToFirst())
+            return null;
 
 		int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
 		int columnUri = c.getColumnIndexOrThrow(DownloadManager.COLUMN_URI);
 		int columnTitle = c.getColumnIndexOrThrow(DownloadManager.COLUMN_TITLE);
 		int columnLastMod = c.getColumnIndexOrThrow(
 				DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
-		int columnFilename = c
-				.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_FILENAME);
-		int columnStatus = c
-				.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
-		int columnTotalSize = c
-				.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES);
-		int columnBytesDownloaded = c.getColumnIndexOrThrow(
-				DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR);
-		int columnReason = c
-				.getColumnIndexOrThrow(DownloadManager.COLUMN_REASON);
+        int columnFilename = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_FILENAME);
+        int columnStatus = c.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
+        int columnTotalSize = c.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES);
+        int columnBytesDownloaded = c.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR);
+        int columnReason = c.getColumnIndexOrThrow(DownloadManager.COLUMN_REASON);
 
 		String localFilename = c.getString(columnFilename);
-		if (localFilename != null && !localFilename.isEmpty()
-				&& !new File(localFilename).isFile()) {
-			dm.remove(c.getLong(columnId));
-			return null;
-		}
+        if (localFilename != null && !localFilename.isEmpty() && !new File(localFilename).isFile()) {
+            dm.remove(c.getLong(columnId));
+            return null;
+        }
 
 		return new DownloadInfo(c.getLong(columnId), c.getString(columnUri),
 				c.getString(columnTitle), c.getLong(columnLastMod),
@@ -147,16 +133,11 @@ public class DownloadsUtil {
 		int columnTitle = c.getColumnIndexOrThrow(DownloadManager.COLUMN_TITLE);
 		int columnLastMod = c.getColumnIndexOrThrow(
 				DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
-		int columnFilename = c
-				.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_FILENAME);
-		int columnStatus = c
-				.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
-		int columnTotalSize = c
-				.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES);
-		int columnBytesDownloaded = c.getColumnIndexOrThrow(
-				DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR);
-		int columnReason = c
-				.getColumnIndexOrThrow(DownloadManager.COLUMN_REASON);
+        int columnFilename = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_FILENAME);
+        int columnStatus = c.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
+        int columnTotalSize = c.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES);
+        int columnBytesDownloaded = c.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR);
+        int columnReason = c.getColumnIndexOrThrow(DownloadManager.COLUMN_REASON);
 
 		List<DownloadInfo> downloads = new ArrayList<>();
 		while (c.moveToNext()) {
@@ -164,11 +145,10 @@ public class DownloadsUtil {
 				continue;
 
 			String localFilename = c.getString(columnFilename);
-			if (localFilename != null && !localFilename.isEmpty()
-					&& !new File(localFilename).isFile()) {
-				dm.remove(c.getLong(columnId));
-				continue;
-			}
+            if (localFilename != null && !localFilename.isEmpty() && !new File(localFilename).isFile()) {
+                dm.remove(c.getLong(columnId));
+                continue;
+            }
 
 			downloads.add(new DownloadInfo(c.getLong(columnId),
 					c.getString(columnUri), c.getString(columnTitle),
@@ -182,17 +162,15 @@ public class DownloadsUtil {
 	}
 
 	public static void removeById(Context context, long id) {
-		DownloadManager dm = (DownloadManager) context
-				.getSystemService(Context.DOWNLOAD_SERVICE);
-		dm.remove(id);
-	}
+        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        dm.remove(id);
+    }
 
 	public static void removeAllForUrl(Context context, String url) {
-		DownloadManager dm = (DownloadManager) context
-				.getSystemService(Context.DOWNLOAD_SERVICE);
-		Cursor c = dm.query(new Query());
-		int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
-		int columnUri = c.getColumnIndexOrThrow(DownloadManager.COLUMN_URI);
+        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        Cursor c = dm.query(new Query());
+        int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
+        int columnUri = c.getColumnIndexOrThrow(DownloadManager.COLUMN_URI);
 
 		List<Long> idsList = new ArrayList<>();
 		while (c.moveToNext()) {
@@ -211,12 +189,11 @@ public class DownloadsUtil {
 	}
 
 	public static void removeOutdated(Context context, long cutoff) {
-		DownloadManager dm = (DownloadManager) context
-				.getSystemService(Context.DOWNLOAD_SERVICE);
-		Cursor c = dm.query(new Query());
-		int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
-		int columnLastMod = c.getColumnIndexOrThrow(
-				DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
+        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        Cursor c = dm.query(new Query());
+        int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
+        int columnLastMod = c.getColumnIndexOrThrow(
+                DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
 
 		List<Long> idsList = new ArrayList<>();
 		while (c.moveToNext()) {
@@ -234,11 +211,10 @@ public class DownloadsUtil {
 		dm.remove(ids);
 	}
 
-	public static void triggerDownloadFinishedCallback(Context context,
-			long id) {
-		DownloadInfo info = getById(context, id);
-		if (info == null || info.status != DownloadManager.STATUS_SUCCESSFUL)
-			return;
+    public static void triggerDownloadFinishedCallback(Context context, long id) {
+        DownloadInfo info = getById(context, id);
+        if (info == null || info.status != DownloadManager.STATUS_SUCCESSFUL)
+            return;
 
 		DownloadFinishedCallback callback;
 		synchronized (mCallbacks) {
@@ -251,10 +227,9 @@ public class DownloadsUtil {
 		callback.onDownloadFinished(context, info);
 	}
 
-	public static SyncDownloadInfo downloadSynchronously(String url,
-			File target) {
-		// TODO Potential parameter?
-		final boolean useNotModifiedTags = true;
+    public static SyncDownloadInfo downloadSynchronously(String url, File target) {
+        // TODO Potential parameter?
+        final boolean useNotModifiedTags = true;
 
 		URLConnection connection = null;
 		InputStream in = null;
@@ -268,20 +243,16 @@ public class DownloadsUtil {
 			if (connection instanceof HttpURLConnection) {
 				// Disable transparent gzip encoding for gzipped files
 				if (url.endsWith(".gz"))
-					connection.addRequestProperty("Accept-Encoding",
-							"identity");
+                    connection.addRequestProperty("Accept-Encoding", "identity");
 
-				String modified = mPref
-						.getString("download_" + url + "_modified", null);
-				String etag = mPref.getString("download_" + url + "_etag",
-						null);
+                String modified = mPref.getString("download_" + url + "_modified", null);
+                String etag = mPref.getString("download_" + url + "_etag", null);
 
-				if (modified != null)
-					connection.addRequestProperty("If-Modified-Since",
-							modified);
-				if (etag != null)
-					connection.addRequestProperty("If-None-Match", etag);
-			}
+                if (modified != null)
+                    connection.addRequestProperty("If-Modified-Since", modified);
+                if (etag != null)
+                    connection.addRequestProperty("If-None-Match", etag);
+            }
 
 			connection.connect();
 
@@ -289,12 +260,11 @@ public class DownloadsUtil {
 				HttpURLConnection httpConnection = (HttpURLConnection) connection;
 				int responseCode = httpConnection.getResponseCode();
 				if (responseCode == HttpURLConnection.HTTP_NOT_MODIFIED) {
-					return new SyncDownloadInfo(
-							SyncDownloadInfo.STATUS_NOT_MODIFIED, null);
-				} else if (responseCode < 200 || responseCode >= 300) {
-					return new SyncDownloadInfo(SyncDownloadInfo.STATUS_FAILED,
-							mApp.getString(R.string.repo_download_failed_http,
-									url, responseCode,
+                    return new SyncDownloadInfo(SyncDownloadInfo.STATUS_NOT_MODIFIED, null);
+                } else if (responseCode < 200 || responseCode >= 300) {
+                    return new SyncDownloadInfo(SyncDownloadInfo.STATUS_FAILED,
+                            mApp.getString(R.string.repo_download_failed_http,
+                                    url, responseCode,
 									httpConnection.getResponseMessage()));
 				}
 			}
@@ -309,9 +279,8 @@ public class DownloadsUtil {
 
 			if (connection instanceof HttpURLConnection) {
 				HttpURLConnection httpConnection = (HttpURLConnection) connection;
-				String modified = httpConnection
-						.getHeaderField("Last-Modified");
-				String etag = httpConnection.getHeaderField("ETag");
+                String modified = httpConnection.getHeaderField("Last-Modified");
+                String etag = httpConnection.getHeaderField("ETag");
 
 				mPref.edit()
 						.putString("download_" + url + "_modified", modified)
@@ -390,13 +359,11 @@ public class DownloadsUtil {
 		public final int bytesDownloaded;
 		public final int reason;
 
-		private DownloadInfo(long id, String url, String title,
-				long lastModification, String localFilename, int status,
-				int totalSize, int bytesDownloaded, int reason) {
-			this.id = id;
-			this.url = url;
-			this.title = title;
-			this.lastModification = lastModification;
+        private DownloadInfo(long id, String url, String title, long lastModification, String localFilename, int status, int totalSize, int bytesDownloaded, int reason) {
+            this.id = id;
+            this.url = url;
+            this.title = title;
+            this.lastModification = lastModification;
 			this.localFilename = localFilename;
 			this.status = status;
 			this.totalSize = totalSize;

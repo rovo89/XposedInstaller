@@ -203,18 +203,12 @@ public class RepoDbDefinitions {
 			SUMMARY = cursor.getColumnIndexOrThrow(OverviewColumns.SUMMARY);
 			CREATED = cursor.getColumnIndexOrThrow(OverviewColumns.CREATED);
 			UPDATED = cursor.getColumnIndexOrThrow(OverviewColumns.UPDATED);
-			INSTALLED_VERSION = cursor
-					.getColumnIndexOrThrow(OverviewColumns.INSTALLED_VERSION);
-			LATEST_VERSION = cursor
-					.getColumnIndexOrThrow(OverviewColumns.LATEST_VERSION);
-			INSTALLED_VERSION = cursor
-					.getColumnIndexOrThrow(OverviewColumns.INSTALLED_VERSION);
-			IS_FRAMEWORK = cursor
-					.getColumnIndexOrThrow(OverviewColumns.IS_FRAMEWORK);
-			IS_INSTALLED = cursor
-					.getColumnIndexOrThrow(OverviewColumns.IS_INSTALLED);
-			HAS_UPDATE = cursor
-					.getColumnIndexOrThrow(OverviewColumns.HAS_UPDATE);
+            INSTALLED_VERSION = cursor.getColumnIndexOrThrow(OverviewColumns.INSTALLED_VERSION);
+            LATEST_VERSION = cursor.getColumnIndexOrThrow(OverviewColumns.LATEST_VERSION);
+            INSTALLED_VERSION = cursor.getColumnIndexOrThrow(OverviewColumns.INSTALLED_VERSION);
+            IS_FRAMEWORK = cursor.getColumnIndexOrThrow(OverviewColumns.IS_FRAMEWORK);
+            IS_INSTALLED = cursor.getColumnIndexOrThrow(OverviewColumns.IS_INSTALLED);
+            HAS_UPDATE = cursor.getColumnIndexOrThrow(OverviewColumns.HAS_UPDATE);
 
 			isFilled = true;
 		}

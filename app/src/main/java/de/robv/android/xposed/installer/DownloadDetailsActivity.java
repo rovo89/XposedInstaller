@@ -1,7 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.darkenColor;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,6 +31,8 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UIUtil;
+
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
 public class DownloadDetailsActivity extends XposedBaseActivity
 		implements RepoListener, ModuleListener {
@@ -82,29 +82,23 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 
 			setupTabs();
 
-			Boolean directDownload = getIntent()
-					.getBooleanExtra("direct_download", false);
-			// Updates available => start on the versions page
-			if (mInstalledModule != null
-					&& mInstalledModule
-							.isUpdate(sRepoLoader.getLatestVersion(mModule))
-					|| directDownload)
-				mPager.setCurrentItem(DOWNLOAD_VERSIONS);
+            Boolean directDownload = getIntent().getBooleanExtra("direct_download", false);
+            // Updates available => start on the versions page
+            if (mInstalledModule != null && mInstalledModule.isUpdate(sRepoLoader.getLatestVersion(mModule)) || directDownload)
+                mPager.setCurrentItem(DOWNLOAD_VERSIONS);
 
 		} else {
 			setContentView(R.layout.activity_download_details_not_found);
 
 			TextView txtMessage = (TextView) findViewById(android.R.id.message);
-			txtMessage.setText(getResources().getString(
-					R.string.download_details_not_found, mPackageName));
+            txtMessage.setText(getResources().getString(R.string.download_details_not_found, mPackageName));
 
-			findViewById(R.id.reload)
-					.setOnClickListener(new View.OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							v.setEnabled(false);
-							sRepoLoader.triggerReload(true);
-						}
+            findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    v.setEnabled(false);
+                    sRepoLoader.triggerReload(true);
+                }
 					});
 		}
 	}
@@ -114,17 +108,15 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 		super.onResume();
 
 		if (UIUtil.isLollipop())
-			getWindow().setStatusBarColor(
-					darkenColor(XposedApp.getColor(this), 0.85f));
+            getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(this), 0.85f));
 
 	}
 
 	private void setupTabs() {
 		mPager = (ViewPager) findViewById(R.id.download_pager);
-		mPager.setAdapter(
-				new SwipeFragmentPagerAdapter(getSupportFragmentManager()));
-		TabLayout mTabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-		mTabLayout.setupWithViewPager(mPager);
+        mPager.setAdapter(new SwipeFragmentPagerAdapter(getSupportFragmentManager()));
+        TabLayout mTabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        mTabLayout.setupWithViewPager(mPager);
 		mTabLayout.setBackgroundColor(XposedApp.getColor(this));
 	}
 
@@ -185,22 +177,19 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 	}
 
 	@Override
-	public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil,
-			String packageName, InstalledModule module) {
-		if (packageName.equals(mPackageName))
-			reload();
-	}
+    public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module) {
+        if (packageName.equals(mPackageName))
+            reload();
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_download_details, menu);
 
-		boolean updateIgnorePreference = XposedApp.getPreferences()
-				.getBoolean("ignore_updates", false);
-		if (updateIgnorePreference) {
-			SharedPreferences prefs = getSharedPreferences("update_ignored",
-					Context.MODE_PRIVATE);
+        boolean updateIgnorePreference = XposedApp.getPreferences().getBoolean("ignore_updates", false);
+        if (updateIgnorePreference) {
+            SharedPreferences prefs = getSharedPreferences("update_ignored", Context.MODE_PRIVATE);
 
 			boolean ignored = prefs.getBoolean(mModule.packageName, false);
 			menu.findItem(R.id.ignoreUpdate).setChecked(ignored);
@@ -214,8 +203,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 	}
 
 	private void setupBookmark(boolean clicked) {
-		SharedPreferences myPref = getSharedPreferences("bookmarks",
-				MODE_PRIVATE);
+        SharedPreferences myPref = getSharedPreferences("bookmarks", MODE_PRIVATE);
 
 		boolean saved = myPref.getBoolean(mModule.packageName, false);
 		boolean newValue;
@@ -224,12 +212,10 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 			newValue = !saved;
 			myPref.edit().putBoolean(mModule.packageName, newValue).apply();
 
-			int msg = newValue ? R.string.bookmark_added
-					: R.string.bookmark_removed;
+            int msg = newValue ? R.string.bookmark_added : R.string.bookmark_removed;
 
-			Snackbar.make(findViewById(android.R.id.content), msg,
-					Snackbar.LENGTH_SHORT).show();
-		}
+            Snackbar.make(findViewById(android.R.id.content), msg, Snackbar.LENGTH_SHORT).show();
+        }
 
 		saved = myPref.getBoolean(mModule.packageName, false);
 
@@ -255,38 +241,32 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 				String text = mModule.name + " - ";
 
 				if (isPackageInstalled(mPackageName, this)) {
-					String s = getPackageManager()
-							.getInstallerPackageName(mPackageName);
-					boolean playStore;
+                    String s = getPackageManager().getInstallerPackageName(mPackageName);
+                    boolean playStore;
 
 					try {
-						playStore = s
-								.equals(ModulesFragment.PLAY_STORE_PACKAGE);
-					} catch (NullPointerException e) {
-						playStore = false;
-					}
+                        playStore = s.equals(ModulesFragment.PLAY_STORE_PACKAGE);
+                    } catch (NullPointerException e) {
+                        playStore = false;
+                    }
 
 					if (playStore) {
-						text += String.format(ModulesFragment.PLAY_STORE_LINK,
-								mPackageName);
-					} else {
-						text += String.format(ModulesFragment.XPOSED_REPO_LINK,
-								mPackageName);
-					}
-				} else {
-					text += String.format(ModulesFragment.XPOSED_REPO_LINK,
-							mPackageName);
-				}
+                        text += String.format(ModulesFragment.PLAY_STORE_LINK, mPackageName);
+                    } else {
+                        text += String.format(ModulesFragment.XPOSED_REPO_LINK, mPackageName);
+                    }
+                } else {
+                    text += String.format(ModulesFragment.XPOSED_REPO_LINK,
+                            mPackageName);
+                }
 
 				Intent sharingIntent = new Intent(Intent.ACTION_SEND);
 				sharingIntent.setType("text/plain");
 				sharingIntent.putExtra(Intent.EXTRA_TEXT, text);
-				startActivity(Intent.createChooser(sharingIntent,
-						getString(R.string.share)));
-				return true;
-			case R.id.ignoreUpdate:
-				SharedPreferences prefs = getSharedPreferences("update_ignored",
-						Context.MODE_PRIVATE);
+                startActivity(Intent.createChooser(sharingIntent, getString(R.string.share)));
+                return true;
+            case R.id.ignoreUpdate:
+                SharedPreferences prefs = getSharedPreferences("update_ignored", Context.MODE_PRIVATE);
 
 				boolean ignored = prefs.getBoolean(mModule.packageName, false);
 				prefs.edit().putBoolean(mModule.packageName, !ignored).apply();
@@ -308,10 +288,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity
 
 	class SwipeFragmentPagerAdapter extends FragmentPagerAdapter {
 		final int PAGE_COUNT = 3;
-		private String tabTitles[] = new String[] {
-				getString(R.string.download_details_page_description),
-				getString(R.string.download_details_page_versions),
-				getString(R.string.download_details_page_settings), };
+        private String tabTitles[] = new String[]{getString(R.string.download_details_page_description), getString(R.string.download_details_page_versions), getString(R.string.download_details_page_settings),};
 
 		public SwipeFragmentPagerAdapter(FragmentManager fm) {
 			super(fm);

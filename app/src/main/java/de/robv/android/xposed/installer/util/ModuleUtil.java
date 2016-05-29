@@ -29,12 +29,11 @@ import de.robv.android.xposed.installer.repo.RepoDb;
 
 public final class ModuleUtil {
 	// xposedminversion below this
-	private static final String MODULES_LIST_FILE = XposedApp.BASE_DIR
-			+ "conf/modules.list";
-	private static final String PLAY_STORE_PACKAGE = "com.android.vending";
-	public static int MIN_MODULE_VERSION = 2; // reject modules with
-	private static ModuleUtil mInstance = null;
-	private final XposedApp mApp;
+    private static final String MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/modules.list";
+    private static final String PLAY_STORE_PACKAGE = "com.android.vending";
+    public static int MIN_MODULE_VERSION = 2; // reject modules with
+    private static ModuleUtil mInstance = null;
+    private final XposedApp mApp;
 	private final PackageManager mPm;
 	private final String mFrameworkPackageName;
 	private final List<ModuleListener> mListeners = new CopyOnWriteArrayList<ModuleListener>();
@@ -46,11 +45,10 @@ public final class ModuleUtil {
 
     private ModuleUtil() {
 		mApp = XposedApp.getInstance();
-		mPref = mApp.getSharedPreferences("enabled_modules",
-				Context.MODE_PRIVATE);
-		mPm = mApp.getPackageManager();
-		mFrameworkPackageName = mApp.getPackageName();
-	}
+        mPref = mApp.getSharedPreferences("enabled_modules", Context.MODE_PRIVATE);
+        mPm = mApp.getPackageManager();
+        mFrameworkPackageName = mApp.getPackageName();
+    }
 
 	public static synchronized ModuleUtil getInstance() {
 		if (mInstance == null) {
@@ -85,20 +83,18 @@ public final class ModuleUtil {
 		try {
 			RepoDb.deleteAllInstalledModules();
 
-			for (PackageInfo pkg : mPm
-					.getInstalledPackages(PackageManager.GET_META_DATA)) {
-				ApplicationInfo app = pkg.applicationInfo;
-				if (!app.enabled)
-					continue;
+            for (PackageInfo pkg : mPm.getInstalledPackages(PackageManager.GET_META_DATA)) {
+                ApplicationInfo app = pkg.applicationInfo;
+                if (!app.enabled)
+                    continue;
 
 				InstalledModule installed = null;
-				if (app.metaData != null
-						&& app.metaData.containsKey("xposedmodule")) {
-					installed = new InstalledModule(pkg, false);
-					modules.put(pkg.packageName, installed);
-				} else if (isFramework(pkg.packageName)) {
-					mFramework = installed = new InstalledModule(pkg, true);
-				}
+                if (app.metaData != null && app.metaData.containsKey("xposedmodule")) {
+                    installed = new InstalledModule(pkg, false);
+                    modules.put(pkg.packageName, installed);
+                } else if (isFramework(pkg.packageName)) {
+                    mFramework = installed = new InstalledModule(pkg, true);
+                }
 
 				if (installed != null)
 					RepoDb.insertInstalledModule(installed);
@@ -128,19 +124,17 @@ public final class ModuleUtil {
 			InstalledModule old = mInstalledModules.remove(packageName);
 			if (old != null) {
 				for (ModuleListener listener : mListeners) {
-					listener.onSingleInstalledModuleReloaded(mInstance,
-							packageName, null);
-				}
-			}
-			return null;
+                    listener.onSingleInstalledModuleReloaded(mInstance, packageName, null);
+                }
+            }
+            return null;
 		}
 
 		ApplicationInfo app = pkg.applicationInfo;
-		if (app.enabled && app.metaData != null
-				&& app.metaData.containsKey("xposedmodule")) {
-			InstalledModule module = new InstalledModule(pkg, false);
-			RepoDb.insertInstalledModule(module);
-			mInstalledModules.put(packageName, module);
+        if (app.enabled && app.metaData != null && app.metaData.containsKey("xposedmodule")) {
+            InstalledModule module = new InstalledModule(pkg, false);
+            RepoDb.insertInstalledModule(module);
+            mInstalledModules.put(packageName, module);
 			for (ModuleListener listener : mListeners) {
 				listener.onSingleInstalledModuleReloaded(mInstance, packageName,
 						module);
@@ -151,11 +145,10 @@ public final class ModuleUtil {
 			InstalledModule old = mInstalledModules.remove(packageName);
 			if (old != null) {
 				for (ModuleListener listener : mListeners) {
-					listener.onSingleInstalledModuleReloaded(mInstance,
-							packageName, null);
-				}
-			}
-			return null;
+                    listener.onSingleInstalledModuleReloaded(mInstance, packageName, null);
+                }
+            }
+            return null;
 		}
 	}
 
@@ -176,9 +169,8 @@ public final class ModuleUtil {
 	}
 
 	public boolean isInstalled(String packageName) {
-		return mInstalledModules.containsKey(packageName)
-				|| isFramework(packageName);
-	}
+        return mInstalledModules.containsKey(packageName) || isFramework(packageName);
+    }
 
 	public InstalledModule getModule(String packageName) {
 		return mInstalledModules.get(packageName);
@@ -218,26 +210,23 @@ public final class ModuleUtil {
 			Log.i(XposedApp.TAG, "updating modules.list");
 			int installedXposedVersion = XposedApp.getXposedVersion();
 			if (installedXposedVersion <= 0) {
-				Toast.makeText(mApp, "The Xposed framework is not installed",
-						Toast.LENGTH_SHORT).show();
-				return;
-			}
+                Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
 			PrintWriter modulesList = new PrintWriter(MODULES_LIST_FILE);
 			PrintWriter enabledModulesList = new PrintWriter(
 					XposedApp.ENABLED_MODULES_LIST_FILE);
 			List<InstalledModule> enabledModules = getEnabledModules();
 			for (InstalledModule module : enabledModules) {
-				if (module.minVersion > installedXposedVersion
-						|| module.minVersion < MIN_MODULE_VERSION)
-					continue;
+                if (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)
+                    continue;
 
 				modulesList.println(module.app.sourceDir);
-				String installer = mPm
-						.getInstallerPackageName(module.app.packageName);
-				if (!PLAY_STORE_PACKAGE.equals(installer))
-					enabledModulesList.println(module.app.packageName);
-			}
+                String installer = mPm.getInstallerPackageName(module.app.packageName);
+                if (!PLAY_STORE_PACKAGE.equals(installer))
+                    enabledModulesList.println(module.app.packageName);
+            }
 			modulesList.close();
 			enabledModulesList.close();
 
@@ -249,10 +238,9 @@ public final class ModuleUtil {
                 showToast(R.string.xposed_module_list_updated);
 		} catch (IOException e) {
 			Log.e(XposedApp.TAG, "cannot write " + MODULES_LIST_FILE, e);
-			Toast.makeText(mApp, "cannot write " + MODULES_LIST_FILE + e,
-					Toast.LENGTH_SHORT).show();
-		}
-	}
+            Toast.makeText(mApp, "cannot write " + MODULES_LIST_FILE + e, Toast.LENGTH_SHORT).show();
+        }
+    }
 
     private void showToast(int message) {
         if (mToast != null) {
@@ -277,8 +265,7 @@ public final class ModuleUtil {
 		 * Called whenever one (previously or now) installed module has been
 		 * reloaded
 		 */
-		void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil,
-				String packageName, InstalledModule module);
+        void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module);
 
 		/**
 		 * Called whenever all installed modules have been reloaded
@@ -348,16 +335,14 @@ public final class ModuleUtil {
 					try {
 						int resId = (Integer) descriptionRaw;
 						if (resId != 0)
-							descriptionTmp = mPm.getResourcesForApplication(app)
-									.getString(resId).trim();
-					} catch (Exception ignored) {
-					}
-				}
-				this.description = (descriptionTmp != null) ? descriptionTmp
-						: "";
-			}
-			return this.description;
-		}
+                            descriptionTmp = mPm.getResourcesForApplication(app).getString(resId).trim();
+                    } catch (Exception ignored) {
+                    }
+                }
+                this.description = (descriptionTmp != null) ? descriptionTmp : "";
+            }
+            return this.description;
+        }
 
 		public boolean isUpdate(ModuleVersion version) {
 			return (version != null) && version.code > versionCode;

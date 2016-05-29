@@ -1,7 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.darkenColor;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,6 +22,8 @@ import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
+
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
 public class WelcomeActivity extends XposedBaseActivity
 		implements NavigationView.OnNavigationItemSelectedListener,
@@ -57,14 +57,11 @@ public class WelcomeActivity extends XposedBaseActivity
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 		mDrawerToggle.syncState();
 
-		SharedPreferences prefs = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		mSelectedId = mNavigationView.getMenu()
-				.getItem(prefs.getInt("default_view", 0)).getItemId();
-		mSelectedId = savedInstanceState == null ? mSelectedId
-				: savedInstanceState.getInt(SELECTED_ITEM_ID);
-		mPrevSelectedId = mSelectedId;
-		mNavigationView.getMenu().findItem(mSelectedId).setChecked(true);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mSelectedId = mNavigationView.getMenu().getItem(prefs.getInt("default_view", 0)).getItemId();
+        mSelectedId = savedInstanceState == null ? mSelectedId : savedInstanceState.getInt(SELECTED_ITEM_ID);
+        mPrevSelectedId = mSelectedId;
+        mNavigationView.getMenu().findItem(mSelectedId).setChecked(true);
 
 		if (savedInstanceState == null) {
 			mDrawerHandler.removeCallbacksAndMessages(null);
@@ -85,10 +82,9 @@ public class WelcomeActivity extends XposedBaseActivity
 
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
-			int value = extras.getInt("fragment",
-					prefs.getInt("default_view", 0));
-			switchFragment(value);
-		}
+            int value = extras.getInt("fragment", prefs.getInt("default_view", 0));
+            switchFragment(value);
+        }
 
 		mRepoLoader = RepoLoader.getInstance();
 		ModuleUtil.getInstance().addListener(this);
@@ -101,8 +97,7 @@ public class WelcomeActivity extends XposedBaseActivity
 	protected void onResume() {
 		super.onResume();
 
-		mDrawerLayout.setStatusBarBackgroundColor(
-				darkenColor(XposedApp.getColor(this), 0.85f));
+        mDrawerLayout.setStatusBarBackgroundColor(darkenColor(XposedApp.getColor(this), 0.85f));
 
 	}
 
@@ -144,29 +139,25 @@ public class WelcomeActivity extends XposedBaseActivity
 				break;
 			case R.id.drawer_item_5:
 				startActivity(new Intent(this, SettingsActivity.class));
-				mNavigationView.getMenu().findItem(mPrevSelectedId)
-						.setChecked(true);
-				return;
-			case R.id.drawer_item_6:
-				startActivity(new Intent(this, SupportActivity.class));
-				mNavigationView.getMenu().findItem(mPrevSelectedId)
-						.setChecked(true);
-				return;
-			case R.id.drawer_item_7:
-				startActivity(new Intent(this, AboutActivity.class));
-				mNavigationView.getMenu().findItem(mPrevSelectedId)
-						.setChecked(true);
-				return;
-		}
+                mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
+                return;
+            case R.id.drawer_item_6:
+                startActivity(new Intent(this, SupportActivity.class));
+                mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
+                return;
+            case R.id.drawer_item_7:
+                startActivity(new Intent(this, AboutActivity.class));
+                mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
+                return;
+        }
 
 		if (navFragment != null) {
-			FragmentTransaction transaction = getSupportFragmentManager()
-					.beginTransaction();
-			try {
-				transaction.replace(R.id.content_frame, navFragment).commit();
-			} catch (IllegalStateException ignored) {
-			}
-		}
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            try {
+                transaction.replace(R.id.content_frame, navFragment).commit();
+            } catch (IllegalStateException ignored) {
+            }
+        }
 	}
 
 	@Override
@@ -208,30 +199,22 @@ public class WelcomeActivity extends XposedBaseActivity
 				.findFragmentById(R.id.content_frame);
 		if (currentFragment instanceof DownloadDetailsFragment) {
 			if (frameworkUpdateVersion != null) {
-				Snackbar.make(parentLayout,
-						R.string.welcome_framework_update_available + " "
-								+ String.valueOf(frameworkUpdateVersion),
-						Snackbar.LENGTH_LONG).show();
-			}
-		}
+                Snackbar.make(parentLayout, R.string.welcome_framework_update_available + " " + String.valueOf(frameworkUpdateVersion), Snackbar.LENGTH_LONG).show();
+            }
+        }
 
 		boolean snackBar = getSharedPreferences(
-				getPackageName() + "_preferences", MODE_PRIVATE)
-						.getBoolean("snack_bar", true);
+                getPackageName() + "_preferences", MODE_PRIVATE).getBoolean("snack_bar", true);
 
 		if (moduleUpdateAvailable && snackBar) {
-			Snackbar.make(parentLayout, R.string.modules_updates_available,
-					Snackbar.LENGTH_LONG)
-					.setAction(getString(R.string.view),
-							new View.OnClickListener() {
-								@Override
-								public void onClick(View view) {
-									switchFragment(2);
-								}
-							})
-					.show();
-		}
-	}
+            Snackbar.make(parentLayout, R.string.modules_updates_available, Snackbar.LENGTH_LONG).setAction(getString(R.string.view), new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switchFragment(2);
+                }
+            }).show();
+        }
+    }
 
 	@Override
 	public void onInstalledModulesReloaded(ModuleUtil moduleUtil) {
@@ -239,10 +222,9 @@ public class WelcomeActivity extends XposedBaseActivity
 	}
 
 	@Override
-	public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil,
-			String packageName, InstalledModule module) {
-		notifyDataSetChanged();
-	}
+    public void onSingleInstalledModuleReloaded(ModuleUtil moduleUtil, String packageName, InstalledModule module) {
+        notifyDataSetChanged();
+    }
 
 	@Override
 	public void onRepoReloaded(RepoLoader loader) {

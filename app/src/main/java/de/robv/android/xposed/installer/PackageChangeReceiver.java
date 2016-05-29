@@ -20,10 +20,9 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(final Context context, final Intent intent) {
-		if (intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)
-				&& intent.getBooleanExtra(Intent.EXTRA_REPLACING, false))
-			// Ignore existing packages being removed in order to be updated
-			return;
+        if (intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED) && intent.getBooleanExtra(Intent.EXTRA_REPLACING, false))
+            // Ignore existing packages being removed in order to be updated
+            return;
 
 		String packageName = getPackageName(intent);
 		if (packageName == null)
@@ -32,11 +31,10 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 		if (intent.getAction().equals(Intent.ACTION_PACKAGE_CHANGED)) {
 			// make sure that the change is for the complete package, not only a
 			// component
-			String[] components = intent.getStringArrayExtra(
-					Intent.EXTRA_CHANGED_COMPONENT_NAME_LIST);
-			if (components != null) {
-				boolean isForPackage = false;
-				for (String component : components) {
+            String[] components = intent.getStringArrayExtra(Intent.EXTRA_CHANGED_COMPONENT_NAME_LIST);
+            if (components != null) {
+                boolean isForPackage = false;
+                for (String component : components) {
 					if (packageName.equals(component)) {
 						isForPackage = true;
 						break;
@@ -53,11 +51,10 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			return;
 		}
 
-		InstalledModule module = ModuleUtil.getInstance()
-				.reloadSingleModule(packageName);
-		if (module == null
-				|| intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)) {
-			// Package being removed, disable it if it was a previously active
+        InstalledModule module = ModuleUtil.getInstance().reloadSingleModule(packageName);
+        if (module == null
+                || intent.getAction().equals(Intent.ACTION_PACKAGE_REMOVED)) {
+            // Package being removed, disable it if it was a previously active
 			// Xposed mod
 			if (mModuleUtil.isModuleEnabled(packageName)) {
 				mModuleUtil.setModuleEnabled(packageName, false);
@@ -70,8 +67,7 @@ public class PackageChangeReceiver extends BroadcastReceiver {
 			mModuleUtil.updateModulesList(false);
 			NotificationUtil.showModulesUpdatedNotification();
 		} else {
-			NotificationUtil.showNotActivatedNotification(packageName,
-					module.getAppName());
-		}
-	}
+            NotificationUtil.showNotActivatedNotification(packageName, module.getAppName());
+        }
+    }
 }

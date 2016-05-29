@@ -47,22 +47,19 @@ public class CustomTabsHelper {
 
 		PackageManager pm = context.getPackageManager();
 		// Get default VIEW intent handler.
-		Intent activityIntent = new Intent(Intent.ACTION_VIEW,
-				Uri.parse("http://www.example.com"));
-		ResolveInfo defaultViewHandlerInfo = pm.resolveActivity(activityIntent,
-				0);
-		String defaultViewHandlerPackageName = null;
-		if (defaultViewHandlerInfo != null) {
-			defaultViewHandlerPackageName = defaultViewHandlerInfo.activityInfo.packageName;
-		}
+        Intent activityIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.example.com"));
+        ResolveInfo defaultViewHandlerInfo = pm.resolveActivity(activityIntent, 0);
+        String defaultViewHandlerPackageName = null;
+        if (defaultViewHandlerInfo != null) {
+            defaultViewHandlerPackageName = defaultViewHandlerInfo.activityInfo.packageName;
+        }
 
 		// Get all apps that can handle VIEW intents.
-		List<ResolveInfo> resolvedActivityList = pm
-				.queryIntentActivities(activityIntent, 0);
-		List<String> packagesSupportingCustomTabs = new ArrayList<>();
-		for (ResolveInfo info : resolvedActivityList) {
-			Intent serviceIntent = new Intent();
-			serviceIntent.setAction(ACTION_CUSTOM_TABS_CONNECTION);
+        List<ResolveInfo> resolvedActivityList = pm.queryIntentActivities(activityIntent, 0);
+        List<String> packagesSupportingCustomTabs = new ArrayList<>();
+        for (ResolveInfo info : resolvedActivityList) {
+            Intent serviceIntent = new Intent();
+            serviceIntent.setAction(ACTION_CUSTOM_TABS_CONNECTION);
 			serviceIntent.setPackage(info.activityInfo.packageName);
 			if (pm.resolveService(serviceIntent, 0) != null) {
 				packagesSupportingCustomTabs.add(info.activityInfo.packageName);
@@ -76,14 +73,13 @@ public class CustomTabsHelper {
 			sPackageNameToUse = null;
 		} else if (packagesSupportingCustomTabs.size() == 1) {
 			sPackageNameToUse = packagesSupportingCustomTabs.get(0);
-		} else if (!TextUtils.isEmpty(defaultViewHandlerPackageName)
-				&& !hasSpecializedHandlerIntents(context, activityIntent)
-				&& packagesSupportingCustomTabs
-						.contains(defaultViewHandlerPackageName)) {
-			sPackageNameToUse = defaultViewHandlerPackageName;
-		} else if (packagesSupportingCustomTabs.contains(STABLE_PACKAGE)) {
-			sPackageNameToUse = STABLE_PACKAGE;
-		} else if (packagesSupportingCustomTabs.contains(BETA_PACKAGE)) {
+        } else if (!TextUtils.isEmpty(defaultViewHandlerPackageName)
+                && !hasSpecializedHandlerIntents(context, activityIntent)
+                && packagesSupportingCustomTabs.contains(defaultViewHandlerPackageName)) {
+            sPackageNameToUse = defaultViewHandlerPackageName;
+        } else if (packagesSupportingCustomTabs.contains(STABLE_PACKAGE)) {
+            sPackageNameToUse = STABLE_PACKAGE;
+        } else if (packagesSupportingCustomTabs.contains(BETA_PACKAGE)) {
 			sPackageNameToUse = BETA_PACKAGE;
 		} else if (packagesSupportingCustomTabs.contains(DEV_PACKAGE)) {
 			sPackageNameToUse = DEV_PACKAGE;
@@ -104,20 +100,18 @@ public class CustomTabsHelper {
 			Intent intent) {
 		try {
 			PackageManager pm = context.getPackageManager();
-			List<ResolveInfo> handlers = pm.queryIntentActivities(intent,
-					PackageManager.GET_RESOLVED_FILTER);
-			if (handlers == null || handlers.size() == 0) {
-				return false;
-			}
+            List<ResolveInfo> handlers = pm.queryIntentActivities(intent, PackageManager.GET_RESOLVED_FILTER);
+            if (handlers == null || handlers.size() == 0) {
+                return false;
+            }
 			for (ResolveInfo resolveInfo : handlers) {
 				IntentFilter filter = resolveInfo.filter;
 				if (filter == null)
 					continue;
-				if (filter.countDataAuthorities() == 0
-						|| filter.countDataPaths() == 0)
-					continue;
-				if (resolveInfo.activityInfo == null)
-					continue;
+                if (filter.countDataAuthorities() == 0 || filter.countDataPaths() == 0)
+                    continue;
+                if (resolveInfo.activityInfo == null)
+                    continue;
 				return true;
 			}
 		} catch (RuntimeException e) {
@@ -131,7 +125,6 @@ public class CustomTabsHelper {
 	 *         feature.
 	 */
 	public static String[] getPackages() {
-		return new String[] { "", STABLE_PACKAGE, BETA_PACKAGE, DEV_PACKAGE,
-				LOCAL_PACKAGE };
-	}
+        return new String[]{"", STABLE_PACKAGE, BETA_PACKAGE, DEV_PACKAGE, LOCAL_PACKAGE};
+    }
 }

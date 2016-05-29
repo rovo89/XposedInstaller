@@ -18,11 +18,10 @@ public class RootUtil {
 
 	private OnCommandResultListener commandResultListener = new OnCommandResultListener() {
 		@Override
-		public void onCommandResult(int commandCode, int exitCode,
-				List<String> output) {
-			mLastExitCode = exitCode;
-			mLastOutput = output;
-			synchronized (mCallbackThread) {
+        public void onCommandResult(int commandCode, int exitCode, List<String> output) {
+            mLastExitCode = exitCode;
+            mLastOutput = output;
+            synchronized (mCallbackThread) {
 				mCommandRunning = false;
 				mCallbackThread.notifyAll();
 			}
@@ -39,10 +38,9 @@ public class RootUtil {
 			}
 		}
 
-		if (mLastExitCode == OnCommandResultListener.WATCHDOG_EXIT
-				|| mLastExitCode == OnCommandResultListener.SHELL_DIED)
-			dispose();
-	}
+        if (mLastExitCode == OnCommandResultListener.WATCHDOG_EXIT || mLastExitCode == OnCommandResultListener.SHELL_DIED)
+            dispose();
+    }
 
 	/**
 	 * Starts an interactive shell with root permissions. Does nothing if
@@ -117,9 +115,8 @@ public class RootUtil {
 	 */
 	public int executeWithBusybox(String command, List<String> output) {
 		AssetUtil.extractBusybox();
-		return execute(AssetUtil.BUSYBOX_FILE.getAbsolutePath() + " " + command,
-				output);
-	}
+        return execute(AssetUtil.BUSYBOX_FILE.getAbsolutePath() + " " + command, output);
+    }
 
 	@Override
 	protected void finalize() throws Throwable {

@@ -1,8 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-import static de.robv.android.xposed.installer.XposedApp.darkenColor;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -42,6 +39,9 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UIUtil;
 
+import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
+import static de.robv.android.xposed.installer.XposedApp.darkenColor;
+
 public class ModulesBookmark extends XposedBaseActivity {
 
 	private static RepoLoader mRepoLoader;
@@ -74,15 +74,11 @@ public class ModulesBookmark extends XposedBaseActivity {
 		container = findViewById(R.id.container);
 
 		if (savedInstanceState == null) {
-			getSupportFragmentManager().beginTransaction()
-					.add(R.id.container, new ModulesBookmarkFragment())
-					.commit();
-		}
-	}
+            getSupportFragmentManager().beginTransaction().add(R.id.container, new ModulesBookmarkFragment()).commit();
+        }
+    }
 
-	public static class ModulesBookmarkFragment extends ListFragment
-			implements AdapterView.OnItemClickListener,
-			SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class ModulesBookmarkFragment extends ListFragment implements AdapterView.OnItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
 		private List<Module> mBookmarkedModules = new ArrayList<>();
 		private BookmarkModuleAdapter mAdapter;
@@ -94,10 +90,9 @@ public class ModulesBookmark extends XposedBaseActivity {
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 
-			mBookmarksPref = getContext().getSharedPreferences("bookmarks",
-					MODE_PRIVATE);
-			mBookmarksPref.registerOnSharedPreferenceChangeListener(this);
-		}
+            mBookmarksPref = getContext().getSharedPreferences("bookmarks", MODE_PRIVATE);
+            mBookmarksPref.registerOnSharedPreferenceChangeListener(this);
+        }
 
 		@Override
 		public void onResume() {
@@ -107,10 +102,9 @@ public class ModulesBookmark extends XposedBaseActivity {
 				getModules();
 
 			if (UIUtil.isLollipop()) {
-				getActivity().getWindow().setStatusBarColor(
-						darkenColor(XposedApp.getColor(getActivity()), 0.85f));
-			}
-		}
+                getActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
+            }
+        }
 
 		@Override
 		public void onDestroy() {
@@ -144,53 +138,47 @@ public class ModulesBookmark extends XposedBaseActivity {
 				boolean isBookmarked = mBookmarksPref.getBoolean(s, false);
 
 				if (isBookmarked) {
-					mBookmarkedModules.add(mRepoLoader.getModule(s));
-				}
-			}
-			Collections.sort(mBookmarkedModules, new Comparator<Module>() {
-				@Override
-				public int compare(Module mod1, Module mod2) {
-					return mod1.name.compareTo(mod2.name);
-				}
-			});
-			mAdapter.addAll(mBookmarkedModules);
-			mAdapter.notifyDataSetChanged();
-		}
+                    Module m = mRepoLoader.getModule(s);
+                    if (m != null) mBookmarkedModules.add(m);
+                }
+            }
+            Collections.sort(mBookmarkedModules, new Comparator<Module>() {
+                @Override
+                public int compare(Module mod1, Module mod2) {
+                    return mod1.name.compareTo(mod2.name);
+                }
+            });
+            mAdapter.addAll(mBookmarkedModules);
+            mAdapter.notifyDataSetChanged();
+        }
 
 		private int getDp(float value) {
 			DisplayMetrics metrics = getResources().getDisplayMetrics();
 
-			return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-					value, metrics);
-		}
+            return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, metrics);
+        }
 
 		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-				long id) {
-			Intent detailsIntent = new Intent(getActivity(),
-					DownloadDetailsActivity.class);
-			detailsIntent.setData(Uri.fromParts("package",
-					mBookmarkedModules.get(position).packageName, null));
-			startActivity(detailsIntent);
-		}
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent detailsIntent = new Intent(getActivity(), DownloadDetailsActivity.class);
+            detailsIntent.setData(Uri.fromParts("package", mBookmarkedModules.get(position).packageName, null));
+            startActivity(detailsIntent);
+        }
 
 		@Override
-		public void onSharedPreferenceChanged(
-				SharedPreferences sharedPreferences, String key) {
-			changed = true;
-		}
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            changed = true;
+        }
 
 		@Override
-		public void onCreateContextMenu(ContextMenu menu, View v,
-				ContextMenu.ContextMenuInfo menuInfo) {
-			Module module = getItemFromContextMenuInfo(menuInfo);
-			if (module == null)
-				return;
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            Module module = getItemFromContextMenuInfo(menuInfo);
+            if (module == null)
+                return;
 
 			menu.setHeaderTitle(module.name);
-			getActivity().getMenuInflater()
-					.inflate(R.menu.context_menu_modules_bookmark, menu);
-		}
+            getActivity().getMenuInflater().inflate(R.menu.context_menu_modules_bookmark, menu);
+        }
 
 		@Override
 		public boolean onContextItemSelected(MenuItem item) {
@@ -209,138 +197,107 @@ public class ModulesBookmark extends XposedBaseActivity {
 
 			switch (item.getItemId()) {
 				case R.id.install_bookmark:
-					DownloadsUtil.add(getContext(), module.name,
-							mv.downloadLink,
-							new DownloadsUtil.DownloadFinishedCallback() {
-								@Override
-								public void onDownloadFinished(Context context,
-										DownloadsUtil.DownloadInfo info) {
-									new InstallApkUtil(getContext(), info)
-											.execute();
-								}
-							}, DownloadsUtil.MIME_TYPES.APK);
-					break;
-				case R.id.install_remove_bookmark:
-					DownloadsUtil.add(getContext(), module.name,
-							mv.downloadLink,
-							new DownloadsUtil.DownloadFinishedCallback() {
-								@Override
-								public void onDownloadFinished(Context context,
-										DownloadsUtil.DownloadInfo info) {
-									new InstallApkUtil(getContext(), info)
-											.execute();
-									remove(pkg);
-								}
-							}, DownloadsUtil.MIME_TYPES.APK);
-					break;
-				case R.id.download_bookmark:
-					if (checkPermissions())
-						return false;
+                    DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                        @Override
+                        public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
+                            new InstallApkUtil(getContext(), info).execute();
+                        }
+                    }, DownloadsUtil.MIME_TYPES.APK);
+                    break;
+                case R.id.install_remove_bookmark:
+                    DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                        @Override
+                        public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
+                            new InstallApkUtil(getContext(), info).execute();
+                            remove(pkg);
+                        }
+                    }, DownloadsUtil.MIME_TYPES.APK);
+                    break;
+                case R.id.download_bookmark:
+                    if (checkPermissions())
+                        return false;
 
-					DownloadsUtil.add(getContext(), module.name,
-							mv.downloadLink,
-							new DownloadsUtil.DownloadFinishedCallback() {
-								@Override
-								public void onDownloadFinished(Context context,
-										DownloadsUtil.DownloadInfo info) {
-									Toast.makeText(context,
-											getString(R.string.module_saved,
-													info.localFilename),
-											Toast.LENGTH_SHORT).show();
-								}
-							}, DownloadsUtil.MIME_TYPES.APK, true, true);
-					break;
-				case R.id.download_remove_bookmark:
-					if (checkPermissions())
-						return false;
+                    DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                        @Override
+                        public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
+                            Toast.makeText(context, getString(R.string.module_saved,
+                                    info.localFilename), Toast.LENGTH_SHORT).show();
+                        }
+                    }, DownloadsUtil.MIME_TYPES.APK, true, true);
+                    break;
+                case R.id.download_remove_bookmark:
+                    if (checkPermissions())
+                        return false;
 
-					DownloadsUtil.add(getContext(), module.name,
-							mv.downloadLink,
-							new DownloadsUtil.DownloadFinishedCallback() {
-								@Override
-								public void onDownloadFinished(Context context,
-										DownloadsUtil.DownloadInfo info) {
-									remove(pkg);
-									Toast.makeText(context,
-											getString(R.string.module_saved,
-													info.localFilename),
-											Toast.LENGTH_SHORT).show();
-								}
-							}, DownloadsUtil.MIME_TYPES.APK, true, true);
-					break;
-				case R.id.remove:
-					remove(pkg);
-					break;
-			}
+                    DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                        @Override
+                        public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
+                            remove(pkg);
+                            Toast.makeText(context, getString(R.string.module_saved, info.localFilename), Toast.LENGTH_SHORT).show();
+                        }
+                    }, DownloadsUtil.MIME_TYPES.APK, true, true);
+                    break;
+                case R.id.remove:
+                    remove(pkg);
+                    break;
+            }
 
 			return false;
 		}
 
 		private boolean checkPermissions() {
-			if (ActivityCompat.checkSelfPermission(getActivity(),
-					Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-				requestPermissions(
-						new String[] {
-								Manifest.permission.WRITE_EXTERNAL_STORAGE },
-						WRITE_EXTERNAL_PERMISSION);
-				return true;
-			}
-			return false;
-		}
+            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
+                return true;
+            }
+            return false;
+        }
 
 		@Override
-		public void onRequestPermissionsResult(int requestCode,
-				@NonNull String[] permissions, @NonNull int[] grantResults) {
-			super.onRequestPermissionsResult(requestCode, permissions,
-					grantResults);
-			if (requestCode == WRITE_EXTERNAL_PERMISSION) {
-				if (grantResults.length == 1
-						&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-					if (mClickedMenuItem != null) {
-						new Handler().postDelayed(new Runnable() {
-							@Override
-							public void run() {
-								onContextItemSelected(mClickedMenuItem);
-							}
-						}, 500);
-					}
-				} else {
-					Toast.makeText(getActivity(), R.string.permissionNotGranted,
-							Toast.LENGTH_LONG).show();
-				}
-			}
-		}
+        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (requestCode == WRITE_EXTERNAL_PERMISSION) {
+                if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (mClickedMenuItem != null) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                onContextItemSelected(mClickedMenuItem);
+                            }
+                        }, 500);
+                    }
+                } else {
+                    Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
+                }
+            }
+        }
 
 		private void remove(final String pkg) {
 			mBookmarksPref.edit().putBoolean(pkg, false).apply();
 
-			Snackbar.make(container, R.string.bookmark_removed,
-					Snackbar.LENGTH_SHORT)
-					.setAction(R.string.undo, new View.OnClickListener() {
-						@Override
-						public void onClick(View v) {
-							mBookmarksPref.edit().putBoolean(pkg, true).apply();
+            Snackbar.make(container, R.string.bookmark_removed, Snackbar.LENGTH_SHORT).setAction(R.string.undo, new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mBookmarksPref.edit().putBoolean(pkg, true).apply();
 
-							getModules();
-						}
-					}).show();
+                    getModules();
+                }
+            }).show();
 
 			getModules();
 		}
 
-		private Module getItemFromContextMenuInfo(
-				ContextMenu.ContextMenuInfo menuInfo) {
-			AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-			int position = info.position - getListView().getHeaderViewsCount();
-			return (position >= 0) ? (Module) getListAdapter().getItem(position)
-					: null;
-		}
-	}
+        private Module getItemFromContextMenuInfo(ContextMenu.ContextMenuInfo menuInfo) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            int position = info.position - getListView().getHeaderViewsCount();
+            return (position >= 0) ? (Module) getListAdapter().getItem(position) : null;
+        }
+    }
 
 	private static class BookmarkModuleAdapter extends ArrayAdapter<Module> {
 		public BookmarkModuleAdapter(Context context) {
-			super(context, R.layout.list_item_module, R.id.title);
-		}
+            super(context, R.layout.list_item_module, R.id.title);
+        }
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
