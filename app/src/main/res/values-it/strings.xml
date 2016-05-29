@@ -305,5 +305,9 @@
     <string name="open_drawer_summ">Apri automaticamente il menù laterale all\'avvio</string>
     <string name="share_app">Condividi app</string>
     <string name="share_app_text">Vedi Xposed Installer in Material Design! %s</string>
+    <string name="disable_xposed">Disabilita Xposed</string>
+    <string name="status">Stato</string>
+    <string name="xposed_off_next_reboot">Xposed framework sarà disabilitato al prossimo riavvio</string>
+    <string name="xposed_on_next_reboot">Xposed framework sarà abilitato al prossimo riavvio</string>
 
 </resources>
