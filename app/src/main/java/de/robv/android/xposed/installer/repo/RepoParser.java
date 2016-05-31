@@ -27,19 +27,19 @@ import java.io.InputStream;
 import de.robv.android.xposed.installer.R;
 
 public class RepoParser {
-	public final static String TAG = "XposedRepoParser";
-	protected final static String NS = null;
-	protected final XmlPullParser parser;
-	protected RepoParserCallback mCallback;
-	private boolean mRepoEventTriggered = false;
+    public final static String TAG = "XposedRepoParser";
+    protected final static String NS = null;
+    protected final XmlPullParser parser;
+    protected RepoParserCallback mCallback;
+    private boolean mRepoEventTriggered = false;
 
     protected RepoParser(InputStream is, RepoParserCallback callback) throws XmlPullParserException, IOException {
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         parser = factory.newPullParser();
         parser.setInput(is, null);
         parser.nextTag();
-		mCallback = callback;
-	}
+        mCallback = callback;
+    }
 
     public static void parse(InputStream is, RepoParserCallback callback) throws XmlPullParserException, IOException {
         new RepoParser(is, callback).readRepo();
@@ -50,42 +50,42 @@ public class RepoParser {
         source = source.replaceAll("</li>", "<br>");
         Spanned html = Html.fromHtml(source, new Html.ImageGetter() {
             @Override
-			public Drawable getDrawable(String source) {
-				LevelListDrawable d = new LevelListDrawable();
+            public Drawable getDrawable(String source) {
+                LevelListDrawable d = new LevelListDrawable();
                 Drawable empty = c.getResources().getDrawable(R.drawable.ic_no_image);
                 d.addLevel(0, 0, empty);
                 assert empty != null;
                 d.setBounds(0, 0, empty.getIntrinsicWidth(), empty.getIntrinsicHeight());
                 new ImageGetterAsyncTask(c, source, d).execute(textView);
 
-				return d;
-			}
-		}, null);
+                return d;
+            }
+        }, null);
 
-		// trim trailing newlines
-		int len = html.length();
-		int end = len;
-		for (int i = len - 1; i >= 0; i--) {
-			if (html.charAt(i) != '\n')
-				break;
-			end = i;
-		}
+        // trim trailing newlines
+        int len = html.length();
+        int end = len;
+        for (int i = len - 1; i >= 0; i--) {
+            if (html.charAt(i) != '\n')
+                break;
+            end = i;
+        }
 
-		if (end == len)
-			return html;
-		else
-			return new SpannableStringBuilder(html, 0, end);
-	}
+        if (end == len)
+            return html;
+        else
+            return new SpannableStringBuilder(html, 0, end);
+    }
 
-	protected void readRepo() throws XmlPullParserException, IOException {
-		parser.require(XmlPullParser.START_TAG, NS, "repository");
-		Repository repository = new Repository();
+    protected void readRepo() throws XmlPullParserException, IOException {
+        parser.require(XmlPullParser.START_TAG, NS, "repository");
+        Repository repository = new Repository();
         repository.isPartial = "true".equals(parser.getAttributeValue(NS, "partial"));
         repository.partialUrl = parser.getAttributeValue(NS, "partial-url");
         repository.version = parser.getAttributeValue(NS, "version");
 
-		while (parser.nextTag() == XmlPullParser.START_TAG) {
-			String tagName = parser.getName();
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+            String tagName = parser.getName();
             switch (tagName) {
                 case "name":
                     repository.name = parser.nextText();
@@ -108,34 +108,34 @@ public class RepoParser {
             }
         }
 
-		mCallback.onCompleted(repository);
-	}
+        mCallback.onCompleted(repository);
+    }
 
-	private void triggerRepoEvent(Repository repository) {
-		if (mRepoEventTriggered)
-			return;
+    private void triggerRepoEvent(Repository repository) {
+        if (mRepoEventTriggered)
+            return;
 
-		mCallback.onRepositoryMetadata(repository);
-		mRepoEventTriggered = true;
-	}
+        mCallback.onRepositoryMetadata(repository);
+        mRepoEventTriggered = true;
+    }
 
     protected Module readModule(Repository repository) throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, NS, "module");
         final int startDepth = parser.getDepth();
 
-		Module module = new Module(repository);
-		module.packageName = parser.getAttributeValue(NS, "package");
-		if (module.packageName == null) {
-			logError("no package name defined");
-			leave(startDepth);
-			return null;
-		}
+        Module module = new Module(repository);
+        module.packageName = parser.getAttributeValue(NS, "package");
+        if (module.packageName == null) {
+            logError("no package name defined");
+            leave(startDepth);
+            return null;
+        }
 
-		module.created = parseTimestamp("created");
-		module.updated = parseTimestamp("updated");
+        module.created = parseTimestamp("created");
+        module.updated = parseTimestamp("updated");
 
-		while (parser.nextTag() == XmlPullParser.START_TAG) {
-			String tagName = parser.getName();
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+            String tagName = parser.getName();
             switch (tagName) {
                 case "name":
                     module.name = parser.nextText();
@@ -175,34 +175,34 @@ public class RepoParser {
             }
         }
 
-		if (module.name == null) {
-			logError("packages need at least a name");
-			return null;
-		}
+        if (module.name == null) {
+            logError("packages need at least a name");
+            return null;
+        }
 
-		return module;
-	}
+        return module;
+    }
 
-	private long parseTimestamp(String attName) {
-		String value = parser.getAttributeValue(NS, attName);
-		if (value == null)
-			return -1;
-		try {
-			return Long.parseLong(value) * 1000L;
-		} catch (NumberFormatException ex) {
-			return -1;
-		}
-	}
+    private long parseTimestamp(String attName) {
+        String value = parser.getAttributeValue(NS, attName);
+        if (value == null)
+            return -1;
+        try {
+            return Long.parseLong(value) * 1000L;
+        } catch (NumberFormatException ex) {
+            return -1;
+        }
+    }
 
     protected ModuleVersion readModuleVersion(Module module) throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, NS, "version");
         final int startDepth = parser.getDepth();
         ModuleVersion version = new ModuleVersion(module);
 
-		version.uploaded = parseTimestamp("uploaded");
+        version.uploaded = parseTimestamp("uploaded");
 
-		while (parser.nextTag() == XmlPullParser.START_TAG) {
-			String tagName = parser.getName();
+        while (parser.nextTag() == XmlPullParser.START_TAG) {
+            String tagName = parser.getName();
             switch (tagName) {
                 case "name":
                     version.name = parser.nextText();
@@ -241,22 +241,22 @@ public class RepoParser {
             }
         }
 
-		return version;
-	}
+        return version;
+    }
 
     protected String readRemoveModule() throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, NS, "remove-module");
         final int startDepth = parser.getDepth();
 
-		String packageName = parser.getAttributeValue(NS, "package");
-		if (packageName == null) {
-			logError("no package name defined");
-			leave(startDepth);
-			return null;
-		}
+        String packageName = parser.getAttributeValue(NS, "package");
+        if (packageName == null) {
+            logError("no package name defined");
+            leave(startDepth);
+            return null;
+        }
 
-		return packageName;
-	}
+        return packageName;
+    }
 
     protected void skip(boolean showWarning) throws XmlPullParserException, IOException {
         parser.require(XmlPullParser.START_TAG, null, null);
@@ -266,12 +266,12 @@ public class RepoParser {
         while (level > 0) {
             int eventType = parser.next();
             if (eventType == XmlPullParser.END_TAG) {
-				level--;
-			} else if (eventType == XmlPullParser.START_TAG) {
-				level++;
-			}
-		}
-	}
+                level--;
+            } else if (eventType == XmlPullParser.START_TAG) {
+                level++;
+            }
+        }
+    }
 
     protected void leave(int targetDepth) throws XmlPullParserException, IOException {
         Log.w(TAG, "leaving up to level " + targetDepth + ": " + parser.getPositionDescription());
@@ -279,29 +279,29 @@ public class RepoParser {
             while (parser.next() != XmlPullParser.END_TAG) {
                 // do nothing
             }
-		}
-	}
+        }
+    }
 
-	protected void logError(String error) {
-		Log.e(TAG, parser.getPositionDescription() + ": " + error);
-	}
+    protected void logError(String error) {
+        Log.e(TAG, parser.getPositionDescription() + ": " + error);
+    }
 
-	public interface RepoParserCallback {
-		void onRepositoryMetadata(Repository repository);
+    public interface RepoParserCallback {
+        void onRepositoryMetadata(Repository repository);
 
-		void onNewModule(Module module);
+        void onNewModule(Module module);
 
-		void onRemoveModule(String packageName);
+        void onRemoveModule(String packageName);
 
-		void onCompleted(Repository repository);
-	}
+        void onCompleted(Repository repository);
+    }
 
     static class ImageGetterAsyncTask extends AsyncTask<TextView, Void, Bitmap> {
 
-		private LevelListDrawable levelListDrawable;
-		private Context context;
-		private String source;
-		private TextView t;
+        private LevelListDrawable levelListDrawable;
+        private Context context;
+        private String source;
+        private TextView t;
 
         public ImageGetterAsyncTask(Context context, String source, LevelListDrawable levelListDrawable) {
             this.context = context;
@@ -309,21 +309,21 @@ public class RepoParser {
             this.levelListDrawable = levelListDrawable;
         }
 
-		@Override
-		protected Bitmap doInBackground(TextView... params) {
-			t = params[0];
-			try {
-				return Picasso.with(context).load(source).get();
-			} catch (Exception e) {
-				return null;
-			}
-		}
+        @Override
+        protected Bitmap doInBackground(TextView... params) {
+            t = params[0];
+            try {
+                return Picasso.with(context).load(source).get();
+            } catch (Exception e) {
+                return null;
+            }
+        }
 
-		@Override
-		protected void onPostExecute(final Bitmap bitmap) {
-			try {
-				Drawable d = new BitmapDrawable(context.getResources(), bitmap);
-				Point size = new Point();
+        @Override
+        protected void onPostExecute(final Bitmap bitmap) {
+            try {
+                Drawable d = new BitmapDrawable(context.getResources(), bitmap);
+                Point size = new Point();
                 ((Activity) context).getWindowManager().getDefaultDisplay().getSize(size);
                 int multiplier = size.x / bitmap.getWidth();
                 levelListDrawable.addLevel(1, 1, d);
@@ -332,7 +332,7 @@ public class RepoParser {
                 t.setText(t.getText());
             } catch (Exception e) { /* Like a null bitmap, etc. */
             }
-		}
-	}
+        }
+    }
 
 }

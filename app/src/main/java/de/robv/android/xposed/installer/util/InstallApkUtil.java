@@ -12,46 +12,45 @@ import de.robv.android.xposed.installer.XposedApp;
 
 public class InstallApkUtil extends AsyncTask<Void, Void, Boolean> {
 
-	private final DownloadsUtil.DownloadInfo info;
-	private final Context context;
-	private RootUtil mRootUtil;
-	private boolean enabled;
+    private final DownloadsUtil.DownloadInfo info;
+    private final Context context;
+    private RootUtil mRootUtil;
+    private boolean enabled;
 
-	public InstallApkUtil(Context context, DownloadsUtil.DownloadInfo info) {
-		this.context = context;
-		this.info = info;
+    public InstallApkUtil(Context context, DownloadsUtil.DownloadInfo info) {
+        this.context = context;
+        this.info = info;
 
-		mRootUtil = new RootUtil();
-	}
+        mRootUtil = new RootUtil();
+    }
 
-	@Override
-	protected void onPreExecute() {
-		super.onPreExecute();
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
 
-		SharedPreferences prefs = XposedApp.getPreferences();
-		enabled = prefs.getBoolean("install_with_su", false);
+        SharedPreferences prefs = XposedApp.getPreferences();
+        enabled = prefs.getBoolean("install_with_su", false);
 
-		if (enabled)
-			mRootUtil.startShell();
-	}
+        if (enabled)
+            mRootUtil.startShell();
+    }
 
-	@Override
-	protected Boolean doInBackground(Void... params) {
-		if (enabled) {
-			mRootUtil.execute("pm install -r \"" + info.localFilename + "\"",
-					null);
-		}
+    @Override
+    protected Boolean doInBackground(Void... params) {
+        if (enabled) {
+            mRootUtil.execute("pm install -r \"" + info.localFilename + "\"", null);
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	@Override
-	protected void onPostExecute(Boolean result) {
-		super.onPostExecute(result);
+    @Override
+    protected void onPostExecute(Boolean result) {
+        super.onPostExecute(result);
 
-		if (!enabled) {
-			Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-			installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (!enabled) {
+            Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+            installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             installIntent.setDataAndType(Uri.fromFile(new File(info.localFilename)), DownloadsUtil.MIME_TYPE_APK);
             installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, context.getApplicationInfo().packageName);
             context.startActivity(installIntent);

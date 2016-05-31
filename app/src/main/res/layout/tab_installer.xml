@@ -239,9 +239,6 @@
                         android:layout_below="@id/disableTv"
                         android:checked="true"
                         android:paddingTop="5dp"
-                        android:showText="false"
-                        android:singleLine="false"
-                        android:splitTrack="false"
                         android:text="@string/status"
                         android:textSize="16sp"/>
 

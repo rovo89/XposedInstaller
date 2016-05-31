@@ -44,100 +44,100 @@ import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
 public class ModulesBookmark extends XposedBaseActivity {
 
-	private static RepoLoader mRepoLoader;
-	private static View container;
+    private static RepoLoader mRepoLoader;
+    private static View container;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		ThemeUtil.setTheme(this);
-		setContentView(R.layout.activity_container);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ThemeUtil.setTheme(this);
+        setContentView(R.layout.activity_container);
 
-		mRepoLoader = RepoLoader.getInstance();
+        mRepoLoader = RepoLoader.getInstance();
 
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-		toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				finish();
-			}
-		});
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
-		ActionBar ab = getSupportActionBar();
-		if (ab != null) {
-			ab.setTitle(R.string.bookmarks);
-			ab.setDisplayHomeAsUpEnabled(true);
-		}
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setTitle(R.string.bookmarks);
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
-		container = findViewById(R.id.container);
+        container = findViewById(R.id.container);
 
-		if (savedInstanceState == null) {
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.container, new ModulesBookmarkFragment()).commit();
         }
     }
 
     public static class ModulesBookmarkFragment extends ListFragment implements AdapterView.OnItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
-		private List<Module> mBookmarkedModules = new ArrayList<>();
-		private BookmarkModuleAdapter mAdapter;
-		private SharedPreferences mBookmarksPref;
-		private boolean changed;
-		private MenuItem mClickedMenuItem = null;
+        private List<Module> mBookmarkedModules = new ArrayList<>();
+        private BookmarkModuleAdapter mAdapter;
+        private SharedPreferences mBookmarksPref;
+        private boolean changed;
+        private MenuItem mClickedMenuItem = null;
 
-		@Override
-		public void onCreate(Bundle savedInstanceState) {
-			super.onCreate(savedInstanceState);
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
 
             mBookmarksPref = getContext().getSharedPreferences("bookmarks", MODE_PRIVATE);
             mBookmarksPref.registerOnSharedPreferenceChangeListener(this);
         }
 
-		@Override
-		public void onResume() {
-			super.onResume();
+        @Override
+        public void onResume() {
+            super.onResume();
 
-			if (changed)
-				getModules();
+            if (changed)
+                getModules();
 
-			if (UIUtil.isLollipop()) {
+            if (UIUtil.isLollipop()) {
                 getActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
             }
         }
 
-		@Override
-		public void onDestroy() {
-			super.onDestroy();
-			mBookmarksPref.unregisterOnSharedPreferenceChangeListener(this);
-		}
+        @Override
+        public void onDestroy() {
+            super.onDestroy();
+            mBookmarksPref.unregisterOnSharedPreferenceChangeListener(this);
+        }
 
-		@Override
-		public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-			super.onActivityCreated(savedInstanceState);
+        @Override
+        public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
 
-			getListView().setDivider(null);
-			getListView().setDividerHeight(getDp(6));
-			getListView().setPadding(getDp(8), getDp(8), getDp(8), getDp(8));
-			getListView().setOnItemClickListener(this);
-			getListView().setClipToPadding(false);
-			registerForContextMenu(getListView());
-			setEmptyText(getString(R.string.no_bookmark_added));
+            getListView().setDivider(null);
+            getListView().setDividerHeight(getDp(6));
+            getListView().setPadding(getDp(8), getDp(8), getDp(8), getDp(8));
+            getListView().setOnItemClickListener(this);
+            getListView().setClipToPadding(false);
+            registerForContextMenu(getListView());
+            setEmptyText(getString(R.string.no_bookmark_added));
 
-			mAdapter = new BookmarkModuleAdapter(getContext());
-			getModules();
-			setListAdapter(mAdapter);
+            mAdapter = new BookmarkModuleAdapter(getContext());
+            getModules();
+            setListAdapter(mAdapter);
 
-			setHasOptionsMenu(true);
-		}
+            setHasOptionsMenu(true);
+        }
 
-		private void getModules() {
-			mAdapter.clear();
-			mBookmarkedModules.clear();
-			for (String s : mBookmarksPref.getAll().keySet()) {
-				boolean isBookmarked = mBookmarksPref.getBoolean(s, false);
+        private void getModules() {
+            mAdapter.clear();
+            mBookmarkedModules.clear();
+            for (String s : mBookmarksPref.getAll().keySet()) {
+                boolean isBookmarked = mBookmarksPref.getBoolean(s, false);
 
-				if (isBookmarked) {
+                if (isBookmarked) {
                     Module m = mRepoLoader.getModule(s);
                     if (m != null) mBookmarkedModules.add(m);
                 }
@@ -152,51 +152,51 @@ public class ModulesBookmark extends XposedBaseActivity {
             mAdapter.notifyDataSetChanged();
         }
 
-		private int getDp(float value) {
-			DisplayMetrics metrics = getResources().getDisplayMetrics();
+        private int getDp(float value) {
+            DisplayMetrics metrics = getResources().getDisplayMetrics();
 
             return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, metrics);
         }
 
-		@Override
+        @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent detailsIntent = new Intent(getActivity(), DownloadDetailsActivity.class);
             detailsIntent.setData(Uri.fromParts("package", mBookmarkedModules.get(position).packageName, null));
             startActivity(detailsIntent);
         }
 
-		@Override
+        @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             changed = true;
         }
 
-		@Override
+        @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             Module module = getItemFromContextMenuInfo(menuInfo);
             if (module == null)
                 return;
 
-			menu.setHeaderTitle(module.name);
+            menu.setHeaderTitle(module.name);
             getActivity().getMenuInflater().inflate(R.menu.context_menu_modules_bookmark, menu);
         }
 
-		@Override
-		public boolean onContextItemSelected(MenuItem item) {
-			final Module module = getItemFromContextMenuInfo(
-					item.getMenuInfo());
-			if (module == null)
-				return false;
+        @Override
+        public boolean onContextItemSelected(MenuItem item) {
+            final Module module = getItemFromContextMenuInfo(
+                    item.getMenuInfo());
+            if (module == null)
+                return false;
 
-			final String pkg = module.packageName;
-			ModuleVersion mv = DownloadsUtil.getStableVersion(module);
+            final String pkg = module.packageName;
+            ModuleVersion mv = DownloadsUtil.getStableVersion(module);
 
-			if (mv == null)
-				return false;
+            if (mv == null)
+                return false;
 
-			mClickedMenuItem = item;
+            mClickedMenuItem = item;
 
-			switch (item.getItemId()) {
-				case R.id.install_bookmark:
+            switch (item.getItemId()) {
+                case R.id.install_bookmark:
                     DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
@@ -242,10 +242,10 @@ public class ModulesBookmark extends XposedBaseActivity {
                     break;
             }
 
-			return false;
-		}
+            return false;
+        }
 
-		private boolean checkPermissions() {
+        private boolean checkPermissions() {
             if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
                 return true;
@@ -253,7 +253,7 @@ public class ModulesBookmark extends XposedBaseActivity {
             return false;
         }
 
-		@Override
+        @Override
         public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
             if (requestCode == WRITE_EXTERNAL_PERMISSION) {
@@ -272,8 +272,8 @@ public class ModulesBookmark extends XposedBaseActivity {
             }
         }
 
-		private void remove(final String pkg) {
-			mBookmarksPref.edit().putBoolean(pkg, false).apply();
+        private void remove(final String pkg) {
+            mBookmarksPref.edit().putBoolean(pkg, false).apply();
 
             Snackbar.make(container, R.string.bookmark_removed, Snackbar.LENGTH_SHORT).setAction(R.string.undo, new View.OnClickListener() {
                 @Override
@@ -284,8 +284,8 @@ public class ModulesBookmark extends XposedBaseActivity {
                 }
             }).show();
 
-			getModules();
-		}
+            getModules();
+        }
 
         private Module getItemFromContextMenuInfo(ContextMenu.ContextMenuInfo menuInfo) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
@@ -294,26 +294,26 @@ public class ModulesBookmark extends XposedBaseActivity {
         }
     }
 
-	private static class BookmarkModuleAdapter extends ArrayAdapter<Module> {
-		public BookmarkModuleAdapter(Context context) {
+    private static class BookmarkModuleAdapter extends ArrayAdapter<Module> {
+        public BookmarkModuleAdapter(Context context) {
             super(context, R.layout.list_item_module, R.id.title);
         }
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			View view = super.getView(position, convertView, parent);
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = super.getView(position, convertView, parent);
 
-			view.findViewById(R.id.checkbox).setVisibility(View.GONE);
-			view.findViewById(R.id.version_name).setVisibility(View.GONE);
-			view.findViewById(R.id.icon).setVisibility(View.GONE);
+            view.findViewById(R.id.checkbox).setVisibility(View.GONE);
+            view.findViewById(R.id.version_name).setVisibility(View.GONE);
+            view.findViewById(R.id.icon).setVisibility(View.GONE);
 
-			Module item = getItem(position);
+            Module item = getItem(position);
 
-			((TextView) view.findViewById(R.id.title)).setText(item.name);
-			((TextView) view.findViewById(R.id.description))
-					.setText(item.summary);
+            ((TextView) view.findViewById(R.id.title)).setText(item.name);
+            ((TextView) view.findViewById(R.id.description))
+                    .setText(item.summary);
 
-			return view;
-		}
-	}
+            return view;
+        }
+    }
 }

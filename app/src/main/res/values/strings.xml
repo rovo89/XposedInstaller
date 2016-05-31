@@ -314,7 +314,7 @@
     <string name="share_app">Share app</string>
     <string name="share_app_text">Check this out: Xposed Installer in Material Design! %s</string>
     <string name="disable_xposed">Disable Xposed</string>
-    <string name="status">Status</string>
+    <string name="status">Xposed Status</string>
     <string name="xposed_on_next_reboot">Xposed framework will be enabled on next reboot</string>
     <string name="xposed_off_next_reboot">Xposed framework will be disabled on next reboot</string>
 
