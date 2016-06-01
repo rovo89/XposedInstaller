@@ -314,7 +314,7 @@
     <string name="share_app">Zdieľať aplikáciu</string>
     <string name="share_app_text">Pozri na toto: Xposed Installer s Material dizajnom! %s</string>
     <string name="disable_xposed">Zakázať Xposed</string>
-    <string name="status">Stav</string>
+    <string name="status">Stav Xposed</string>
     <string name="xposed_on_next_reboot">Xposed framework bude povolený pri nasledujúcom reštarte</string>
     <string name="xposed_off_next_reboot">Xposed framework bude zakázaný pri nasledujúcom reštarte</string>
 
