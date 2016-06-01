@@ -311,5 +311,11 @@
     <string name="scroll_bottom">捲動至到底端</string>
     <string name="open_drawer_summ">啟動時自動開啟抽屜式導航欄</string>
     <string name="open_drawer">自動開啟抽屜式導航欄</string>
+    <string name="share_app">分享應用程式</string>
+    <string name="share_app_text">Check this out: Xposed Installer in Material Design! %s</string>
+    <string name="disable_xposed">停用 Xposed</string>
+    <string name="status">Xposed 狀態</string>
+    <string name="xposed_on_next_reboot">Xposed 框架將在下次重新啟動裝置後啟用</string>
+    <string name="xposed_off_next_reboot">Xposed 框架將在下次重新啟動裝置後停用</string>
 
 </resources>
