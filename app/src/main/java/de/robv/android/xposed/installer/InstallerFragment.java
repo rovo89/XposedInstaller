@@ -184,11 +184,15 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         mInfoUpdate = (ImageView) v.findViewById(R.id.infoUpdate);
 
         String installedXposedVersion = XposedApp.getXposedProp().get("version");
+        final Switch xposedDisable = (Switch) v.findViewById(R.id.disableSwitch);
+        TextView xposedDisableTv = (TextView) v.findViewById(R.id.disableTv);
 
         if (Build.VERSION.SDK_INT >= 21) {
             if (installedXposedVersion == null) {
                 txtInstallError.setText(R.string.installation_lollipop);
                 txtInstallError.setTextColor(getResources().getColor(R.color.warning));
+                xposedDisableTv.setVisibility(View.GONE);
+                xposedDisable.setVisibility(View.GONE);
             } else {
                 int installedXposedVersionInt = extractIntPart(installedXposedVersion);
                 if (installedXposedVersionInt == XposedApp.getXposedVersion()) {
@@ -208,6 +212,8 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
             } else {
                 txtInstallError.setText(getString(R.string.not_installed_no_lollipop));
                 txtInstallError.setTextColor(getResources().getColor(R.color.warning));
+                xposedDisableTv.setVisibility(View.GONE);
+                xposedDisable.setVisibility(View.GONE);
             }
         }
 
@@ -313,6 +319,8 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                 if (checkPermissions())
                     return;
 
+                new File(Environment.getExternalStoragePublicDirectory("XposedInstaller") + "XposedInstaller_by_dvdandroid.apk").delete();
+
                 DownloadsUtil.add(getContext(), "XposedInstaller_by_dvdandroid", newApkLink, new DownloadsUtil.DownloadFinishedCallback() {
                     @Override
                     public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
@@ -330,7 +338,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
             }
         });
 
-        final Switch xposedDisable = (Switch) v.findViewById(R.id.disableSwitch);
         xposedDisable.setChecked(!DISABLE_FILE.exists());
 
         xposedDisable.setOnClickListener(new View.OnClickListener() {
