@@ -319,7 +319,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                 if (checkPermissions())
                     return;
 
-                new File(Environment.getExternalStoragePublicDirectory("XposedInstaller") + "XposedInstaller_by_dvdandroid.apk").delete();
+                new File(Environment.getExternalStoragePublicDirectory("XposedInstaller") + "/XposedInstaller_by_dvdandroid.apk").delete();
 
                 DownloadsUtil.add(getContext(), "XposedInstaller_by_dvdandroid", newApkLink, new DownloadsUtil.DownloadFinishedCallback() {
                     @Override
