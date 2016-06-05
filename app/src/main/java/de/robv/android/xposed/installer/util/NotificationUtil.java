@@ -159,7 +159,7 @@ public final class NotificationUtil {
 
             RootUtil rootUtil = new RootUtil();
             if (!rootUtil.startShell()) {
-                Log.e(XposedApp.TAG, "NotificationUtil:162 -> Could not start root shell");
+                Log.e(XposedApp.TAG, "NotificationUtil -> Could not start root shell");
                 return;
             }
 
@@ -171,7 +171,7 @@ public final class NotificationUtil {
                     : rootUtil.executeWithBusybox("reboot", messages);
 
             if (returnCode != 0) {
-                Log.e(XposedApp.TAG, "NotificationUtil:174 -> Could not reboot:");
+                Log.e(XposedApp.TAG, "NotificationUtil -> Could not reboot:");
                 for (String line : messages) {
                     Log.e(XposedApp.TAG, line);
                 }

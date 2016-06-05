@@ -165,7 +165,7 @@
     <string name="settings_theme_light">Hell</string>
     <string name="settings_theme_dark">Dunkel</string>
     <string name="settings_theme_black">Schwarz (nützlich für AMOLED-Bildschirme)</string>
-    <string name="settings_default_view">Start-Ansicht</string>
+    <string name="settings_default_view">Ansicht beim Start</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Support für Module</string>
@@ -186,15 +186,15 @@
     <string name="log_is_empty">Log ist leer</string>
 
     <!-- About tab -->
-    <string name="about_developers_label">Hauptentwickler:</string>
+    <string name="about_developers_label">Hauptentwickler</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> und <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Bitte kontaktiere uns <b>nicht</b> direkt für Support. Verwende stattdessen die folgenden Links.</string>
     <string name="about_translator_label">Übersetzer:</string>
     <string name="translator">Nils Wasser (BobQuentok), rovo89, Philipp Ihling (ximmox)</string>
     <string name="about_version_label">Version dieser App:</string>
-    <string name="about_source_label">Quellcode:</string>
+    <string name="about_source_label">Quellcode</string>
     <string name="about_support_label">Support:</string>
-    <string name="about_libraries_label">Verwendete Bibliotheken:</string>
+    <string name="about_libraries_label">Verwendete Bibliotheken</string>
 
     <!-- DownloadView -->
     <string name="download_view_download">Herunterladen</string>
@@ -217,7 +217,7 @@
     <string name="repo_download_failed">Herunterladen von %1$s fehlgeschlagen: %2$s</string>
     <string name="repo_load_failed">Verzeichnis konnte nicht geladen werden von %1$s:\n%2$s</string>
 
-    <string name="choose_color">Wähle eine Farbe…</string>
+    <string name="choose_color">App-Farbe auswählen</string>
     <string name="warning_installed_on_external_storage">Dieses Modul kann nicht geladen werden, da es auf der SD-Karte installiert ist. Bitte verschiebe es auf den Internen Speicher.</string>
     <string name="warning_forward_locked">Dieses Modul kann nicht geladen werden, weil es "forward-locked" ist. Bitte kontaktiere den Entwickler des Moduls.</string>
     <string name="export_modules">Exportiere Liste aktiver Module</string>
@@ -230,14 +230,14 @@
     <string name="export_installed_modules">Exportiere Liste installierter Module</string>
     <string name="import_installed_modules">Importiere Liste installierter Module</string>
     <string name="no_installed_modules">Es ist kein Modul installiert!</string>
-    <string name="enable_heads_up">Aktiviere Heads-Up Benachrichtigungen</string>
-    <string name="enable_heads_up_summary">Dies aktiviert Heads-Up Benachrichtigungen bei neuen/aktualisierten Modulen</string>
+    <string name="enable_heads_up">Heads-Up Benachrichtigungen</string>
+    <string name="enable_heads_up_summary">Zeigt Heads-Up Benachrichtigungen bei neuen/aktualisierten Modulen</string>
     <string name="nav_bar_coloration">Navigationsleiste einfärben</string>
     <string name="no_backup_found">Keine Sicherung gefunden</string>
     <string name="no_enabled_modules">Es ist kein Modul aktiviert!</string>
 
     <string name="download_view_size">Größe: %s KB</string>
-    <string name="share">Teilen…</string>
+    <string name="share">Teilen</string>
     <string name="back">Zurück</string>
     <string name="loadingError">Fehler beim Laden der Xposed-Framework ZIP</string>
     <string name="info">Info</string>
@@ -258,10 +258,10 @@
     <string name="downloadUninstaller">Uninstaller herunterladen</string>
     <string name="selectFile">Heruntergeladene Datei auswählen</string>
     <string name="xposedZipNotFound">Zip nicht gefunden, vielleicht wurde eine neue Version veröffentlicht.</string>
-    <string name="warningArchitecture">WURDE DIE KORREKTE XPOSED ZIP ARCHITEKTUR GEWÄHLT?\nEine falsche ZIP-Datei kann dein Handy beschädigen!</string>
+    <string name="warningArchitecture">WURDE DIE KORREKTE ARCHITEKTUR DER XPOSED ZIP GEWÄHLT?\nEine falsche ZIP-Datei kann dein Handy beschädigen!</string>
     <string name="help">Hilfe</string>
     <string name="helpChoose">
-        Wie wählt man die richtige ZIP-Datei?\n
+        Wie wählt man die richtige ZIP-Datei?\n\n
 
         xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
 
@@ -272,7 +272,7 @@
     <string name="newVersion">Eine neue Version des Xposed-Installers ist verfügbar.</string>
     <string name="update">Aktualisieren</string>
     <string name="choose_icon">Wähle ein Launcher-Icon</string>
-    <string name="custom_icon">Icon ändern</string>
+    <string name="custom_icon">Icon anpassen</string>
     <string name="installationForbidden">Installation ist auf diesem Gerät nicht möglich. Um Xposed mit dieser App installieren zu können muss Android Lollipop oder höher installiert sein.</string>
     <string name="installed_no_lollipop">Xposed-Framework ist installiert.</string>
     <string name="not_installed_no_lollipop">Xposed-Framework ist nicht installiert.</string>
@@ -288,29 +288,29 @@
     <string name="md_presets_label">Voreinstellung</string>
     <string name="changelog">Changelog</string>
     <string name="scroll_top">Scrolle zum Anfang</string>
-    <string name="add_bookmark">Favorit markieren</string>
+    <string name="add_bookmark">Zu Favoriten</string>
     <string name="remove_bookmark">Entferne Favorit</string>
     <string name="bookmarks">Favoriten</string>
-    <string name="no_bookmark_added">Kein Favorit hinzugefügt</string>
+    <string name="no_bookmark_added">Noch keine Favoriten hinzugefügt</string>
     <string name="bookmark_added">Als Favorit hinzugefügt</string>
     <string name="bookmark_removed">Von Favoriten entfernt</string>
     <string name="undo">Rückgängig</string>
     <string name="notification_coloration">Benachrichtigungs-Icon einfärben</string>
     <string name="file_is_empty">Datei ist leer</string>
-    <string name="install_with_su">Installiere Modul mit Root</string>
+    <string name="install_with_su">Modul mittels Root installieren</string>
     <string name="install_with_su_summ">Wenn aktiviert werden Module ohne weitere Eingabeaufforderung installiert</string>
     <string name="install_remove">Installieren und entfernen</string>
     <string name="download_remove">Laden und entfernen</string>
     <string name="module_saved">Modul gespeichert unter %1$s</string>
-    <string name="ignore_updates">Ignoriere Aktualisierungen</string>
-    <string name="ignore_updates_summ">Ignoriere Aktualisierungen für ein bestimmte Module.</string>
+    <string name="ignore_updates">Aktualisierungen ignorieren</string>
+    <string name="ignore_updates_summ">Ignoriere Aktualisierungen für bestimmte Module</string>
     <string name="reboot_recovery">Neustart ins Recovery</string>
-    <string name="loading">Lade…</string>
+    <string name="loading">Lädt…</string>
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
-    <string name="chrome_custom_tabs_summ">Öffne Links in internem Browserbrowser</string>
+    <string name="chrome_custom_tabs_summ">Öffne Links im internen Browser</string>
     <string name="scroll_bottom">Scrolle zum Ende</string>
     <string name="open_drawer_summ">Beim Start automatisch das Navigations-Menü öffnen</string>
-    <string name="open_drawer">Öffne Navgations-Menü</string>
+    <string name="open_drawer">Öffne Navigations-Menü</string>
     <string name="share_app">Teile App</string>
     <string name="share_app_text">Schau dir das an: Xposed Installer im Material Design! %s</string>
     <string name="disable_xposed">Deaktiviere Xposed-Framework</string>

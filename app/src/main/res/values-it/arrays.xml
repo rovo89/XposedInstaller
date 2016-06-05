@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="icons">
+        <item>dvdandroid</item>
+        <item>hjmodi</item>
+        <item>rovo89</item>
+        <item>rovo89 (vecchia)</item>
+        <item>staol</item>
+    </string-array>
+</resources>

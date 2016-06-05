@@ -30,7 +30,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -47,10 +50,10 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     @SuppressLint("SdCardPath")
     public static final String BASE_DIR = "/data/data/de.robv.android.xposed.installer/";
     public static final String ENABLED_MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/enabled_modules.list";
-    public static final File XPOSED_PROP_FILE_SYSTEMLESS = new File("/su/xposed.prop");
+    public static final File XPOSED_PROP_FILE_SYSTEMLESS = new File("/xposed/xposed.prop");
     private static final File XPOSED_PROP_FILE = new File("/system/xposed.prop");
     public static int WRITE_EXTERNAL_PERMISSION = 69;
-    public static String THIS_APK_VERSION = "1464854400001";
+    public static String THIS_APK_VERSION = "1465119900000";
     public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
     private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
     private static XposedApp mInstance = null;
@@ -202,10 +205,17 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
         registerActivityLifecycleCallbacks(this);
 
-        try {
-            Log.i(TAG, String.format("XposedInstaller - %s - %s", THIS_APK_VERSION, getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+
+        if (!mPref.getString("date", "").equals(dateFormat.format(date))) {
+            mPref.edit().putString("date", dateFormat.format(date)).apply();
+
+            try {
+                Log.i(TAG, String.format("XposedInstaller - %s - %s", THIS_APK_VERSION, getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -255,7 +265,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
                     is = new FileInputStream(file);
                     map = parseXposedProp(is);
                 } catch (IOException e) {
-                    Log.e(XposedApp.TAG, "XposedApp:251 -> Could not read " + file.getPath(), e);
+                    Log.e(XposedApp.TAG, "XposedApp -> Could not read " + file.getPath(), e);
                 } finally {
                     if (is != null) {
                         try {

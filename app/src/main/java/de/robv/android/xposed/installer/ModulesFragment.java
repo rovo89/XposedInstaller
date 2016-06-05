@@ -299,7 +299,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
         try {
             ips = new FileInputStream(path);
         } catch (FileNotFoundException e) {
-            Log.e(XposedApp.TAG, "InstallerFragment:302 -> " + e.getMessage());
+            Log.e(XposedApp.TAG, "InstallerFragment -> " + e.getMessage());
         }
 
         if (path.length() == 0) {

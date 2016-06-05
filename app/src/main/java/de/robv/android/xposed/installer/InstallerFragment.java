@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -49,7 +48,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -65,7 +63,6 @@ import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.XposedZip;
 
-import static android.content.Context.MODE_PRIVATE;
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.util.XposedZip.Installer;
 import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
@@ -76,7 +73,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     private static final int INSTALL_MODE_NORMAL = 0;
     private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
     private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
-    private static final String JSON_LINK = "http://dvdandroid.eu5.org/xposed.php";
+    private static final String JSON_LINK = "https://raw.githubusercontent.com/DVDAndroid/XposedInstaller/material/app/xposed.json";
     private static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
     private static List<String> messages = new LinkedList<>();
     private static ArrayList<Installer> installers;
@@ -351,7 +348,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                         DISABLE_FILE.createNewFile();
                         Toast.makeText(getContext(), getString(R.string.xposed_off_next_reboot), Toast.LENGTH_LONG).show();
                     } catch (IOException e) {
-                        Log.e(XposedApp.TAG, "InstallerFragment:347 -> " + e.getMessage());
+                        Log.e(XposedApp.TAG, "InstallerFragment -> " + e.getMessage());
                     }
                 }
             }
@@ -437,7 +434,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                             || resolved.startsWith("/fd/"))
                         ;
                 } catch (Exception errnoe) {
-                    Log.e(XposedApp.TAG, "InstallerFragment:433 -> ReadError");
+                    Log.e(XposedApp.TAG, "InstallerFragment -> ReadError");
                 }
                 mRootUtil.execute("cp " + resolved + " /cache/xposed.zip",
                         messages);
@@ -871,7 +868,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
             try {
                 this.mUrl = new URL(mUrl);
             } catch (MalformedURLException e) {
-                Log.e(XposedApp.TAG, "InstallerFragment:867 -> " + e.getMessage());
+                Log.e(XposedApp.TAG, "InstallerFragment -> " + e.getMessage());
             }
         }
 
@@ -1014,23 +1011,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                     mInfoUpdate.setVisibility(View.GONE);
                 }
 
-                if (newApkVersion == null)
-                    return;
-
-                SharedPreferences prefs;
-                try {
-                    prefs = getContext().getSharedPreferences(getContext().getPackageName() + "_preferences", MODE_PRIVATE);
-
-                    prefs.edit().putString("changelog_" + newApkVersion, newApkChangelog).apply();
-                } catch (NullPointerException ignored) {
-                }
-
-                BigInteger a = new BigInteger(XposedApp.THIS_APK_VERSION);
-                BigInteger b = new BigInteger(newApkVersion);
-
-                if (a.compareTo(b) == -1) {
-                    mUpdateView.setVisibility(View.VISIBLE);
-                }
             } catch (NullPointerException ignored) {
             }
         }

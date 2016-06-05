@@ -207,7 +207,7 @@ public final class ModuleUtil {
 
     public synchronized void updateModulesList(boolean showToast) {
         try {
-            Log.i(XposedApp.TAG, "ModuleUtil:210 -> updating modules.list");
+            Log.i(XposedApp.TAG, "ModuleUtil -> updating modules.list");
             int installedXposedVersion = XposedApp.getXposedVersion();
             if (installedXposedVersion <= 0) {
                 Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
@@ -237,7 +237,7 @@ public final class ModuleUtil {
             if (showToast)
                 showToast(R.string.xposed_module_list_updated);
         } catch (IOException e) {
-            Log.e(XposedApp.TAG, "ModuleUtil:240 -> cannot write " + MODULES_LIST_FILE, e);
+            Log.e(XposedApp.TAG, "ModuleUtil -> cannot write " + MODULES_LIST_FILE, e);
             Toast.makeText(mApp, "cannot write " + MODULES_LIST_FILE + e, Toast.LENGTH_SHORT).show();
         }
     }

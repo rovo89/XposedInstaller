@@ -9,16 +9,6 @@
         app:showAsAction="ifRoom|withText"/>
 
     <item
-        android:id="@+id/menu_save"
-        android:title="@string/menuSaveToSd"
-        app:showAsAction="never"/>
-
-    <item
-        android:id="@+id/menu_send"
-        android:title="@string/menuSend"
-        app:showAsAction="never"/>
-
-    <item
         android:id="@+id/menu_scroll_top"
         android:icon="@drawable/ic_scroll_top"
         android:title="@string/scroll_top"
@@ -29,6 +19,16 @@
         android:icon="@drawable/ic_scroll_down"
         android:title="@string/scroll_bottom"
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menu_save"
+        android:title="@string/menuSaveToSd"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_send"
+        android:title="@string/menuSend"
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/menu_clear"

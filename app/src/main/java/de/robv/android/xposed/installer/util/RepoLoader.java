@@ -302,7 +302,7 @@ public class RepoLoader {
                     cacheFile);
 
             Log.i(XposedApp.TAG, String.format(
-                    "RepoLoader:305 -> Downloaded %s with status %d (error: %s), size %d bytes",
+                    "RepoLoader -> Downloaded %s with status %d (error: %s), size %d bytes",
                     url, info.status, info.errorMessage, cacheFile.length()));
 
             if (info.status != SyncDownloadInfo.STATUS_SUCCESS) {
@@ -354,7 +354,7 @@ public class RepoLoader {
                         }
 
                         Log.i(XposedApp.TAG, String.format(
-                                "RepoLoader:357 -> Updated repository %s to version %s (%d new / %d removed modules)",
+                                "RepoLoader -> Updated repository %s to version %s (%d new / %d removed modules)",
                                 repo.url, repo.version, insertCounter.get(),
                                 deleteCounter.get()));
                     }
@@ -363,7 +363,7 @@ public class RepoLoader {
                 RepoDb.setTransactionSuccessful();
 
             } catch (Throwable t) {
-                Log.e(XposedApp.TAG, "RepoLoader:366 -> Cannot load repository from " + url, t);
+                Log.e(XposedApp.TAG, "RepoLoader -> Cannot load repository from " + url, t);
                 messages.add(mApp.getString(R.string.repo_load_failed, url,
                         t.getMessage()));
                 DownloadsUtil.clearCache(url);

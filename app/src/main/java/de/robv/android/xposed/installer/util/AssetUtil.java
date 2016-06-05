@@ -72,7 +72,7 @@ public class AssetUtil {
 
             return targetFile;
         } catch (IOException e) {
-            Log.e(XposedApp.TAG, "AssetUtil:75 -> could not extract asset", e);
+            Log.e(XposedApp.TAG, "AssetUtil -> could not extract asset", e);
             if (targetFile != null)
                 targetFile.delete();
 
@@ -90,7 +90,7 @@ public class AssetUtil {
                 PackageManager pm = XposedApp.getInstance().getPackageManager();
                 assets = pm.getResourcesForApplication(mStaticBusyboxInfo.applicationInfo).getAssets();
             } catch (NameNotFoundException e) {
-                Log.e(XposedApp.TAG, "AssetUtil:93 -> could not load assets from " + STATIC_BUSYBOX_PACKAGE, e);
+                Log.e(XposedApp.TAG, "AssetUtil -> could not load assets from " + STATIC_BUSYBOX_PACKAGE, e);
             }
         }
 
@@ -114,18 +114,18 @@ public class AssetUtil {
 
         String myPackageName = ModuleUtil.getInstance().getFrameworkPackageName();
         if (pm.checkSignatures(STATIC_BUSYBOX_PACKAGE, myPackageName) != PackageManager.SIGNATURE_MATCH) {
-            Log.e(XposedApp.TAG, "AssetUtil:117 -> Rejecting static Busybox package because it is signed with a different key");
+            Log.e(XposedApp.TAG, "AssetUtil -> Rejecting static Busybox package because it is signed with a different key");
             return;
         }
 
         if (mStaticBusyboxInfo.versionCode != STATIC_BUSYBOX_REQUIRED_VERSION) {
-            Log.e(XposedApp.TAG, String.format("AssetUtil:122 -> Ignoring static BusyBox package with version %d, we need version %d",
+            Log.e(XposedApp.TAG, String.format("AssetUtil -> Ignoring static BusyBox package with version %d, we need version %d",
                     mStaticBusyboxInfo.versionCode,
                     STATIC_BUSYBOX_REQUIRED_VERSION));
             mStaticBusyboxInfo = null;
             return;
         } else if (!wasAvailable) {
-            Log.i(XposedApp.TAG, "AssetUtil:128 -> Detected static Busybox package");
+            Log.i(XposedApp.TAG, "AssetUtil -> Detected static Busybox package");
         }
     }
 
