@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
@@ -55,16 +56,17 @@ public class DownloadsUtil {
             mCallbacks.put(url, callback);
         }
 
+        String savePath = "XposedInstaller";
+        if (module)
+            savePath += "/modules";
+
+        new File(Environment.getExternalStorageDirectory().getAbsolutePath() + title + mimeType.getExtension()).delete();
+
         DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         Request request = new Request(Uri.parse(url));
         request.setTitle(title);
         request.setMimeType(mimeType.toString());
         if (save) {
-            String savePath = "XposedInstaller";
-
-            if (module)
-                savePath += "/modules";
-
             try {
                 request.setDestinationInExternalPublicDir(savePath, title + mimeType.getExtension());
             } catch (IllegalStateException e) {

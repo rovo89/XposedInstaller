@@ -9,19 +9,19 @@
     <!-- Welcome screen / main sections -->
     <string name="welcome">Welcome to the <b>Xposed Installer</b>!\nPlease choose what you want to do:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Here you can manage the Xposed framework, which is required for any modules to work.</string>
+    <string name="tabInstallDescription">Here you can manage the Xposed Framework, which is required for any modules to work.</string>
     <string name="tabModules">Modules</string>
     <string name="tabModulesDescription">The framework itself doesn\'t add any functionality. You need modules for that. In this section you can activate modules after you have installed them.</string>
     <string name="tabDownload">Download</string>
     <string name="tabDownloadDescription">This section gives you access to a repository of modules, so you can search and download the ones you like and keep them up to date.</string>
-    <string name="welcome_framework_update_available">An update for the Xposed framework is available (%s).</string>
+    <string name="welcome_framework_update_available">An update for the Xposed Framework is available (%s).</string>
     <string name="welcome_update_available">One or more update(s) for modules available.</string>
     <string name="tabSettings">Settings</string>
     <string name="tabSettingsDescription">Go to this section to configure the Xposed Installer and framework.</string>
     <string name="tabSupport">Support</string>
     <string name="tabSupportDescription">Find help for Xposed-related issues. You can also donate to say thanks for Xposed.</string>
     <string name="tabLogs">Logs</string>
-    <string name="tabLogsDescription">Display and save/send logs of the Xposed framework.</string>
+    <string name="tabLogsDescription">Display and save/send logs of the Xposed Framework.</string>
     <string name="tabAbout">About</string>
     <string name="tabAboutDescription">Learn about the people who created Xposed, where to get support for this app etc.</string>
 
@@ -61,9 +61,9 @@
     <string name="uninstall_reverted">app_process was uninstalled previously but version \"%s\" was found now. If you didn\'t expect an old file to be restored, you might want to try uninstalling via recovery (auto or manual).</string>
     <string name="tap_to_dismiss">Tap to dismiss</string>
     <string name="sdcard_location">SD card: %s</string>
-    <string name="installation_lollipop">The Xposed framework is not installed. Please download the latest ZIP file from XDA and flash it manually via recovery.</string>
-    <string name="installed_lollipop">Xposed framework version %s is active.</string>
-    <string name="installed_lollipop_inactive">Xposed framework version %s is installed, but not active. Please check the logs for details.</string>
+    <string name="installation_lollipop">The Xposed Framework is not installed. Please download the latest ZIP file from XDA and flash it manually via recovery.</string>
+    <string name="installed_lollipop">Xposed Framework version %s is active.</string>
+    <string name="installed_lollipop_inactive">Xposed Framework version %s is installed, but not active. Please check the logs for details.</string>
     <string name="modules_updates_available">Module update(s) are available</string>
 
     <!-- File operations -->
@@ -258,7 +258,7 @@
     <string name="downloadUninstaller">Download uninstaller</string>
     <string name="selectFile">Select downloaded file</string>
     <string name="xposedZipNotFound">Zip not found, probably a new version released.</string>
-    <string name="warningArchitecture">HAVE YOU CHOSEN RIGHT XPOSED ZIP ARCHITECTURE?\nWrong installer zip can damage your phone!</string>
+    <string name="warningArchitecture">HAVE YOU CHOSEN RIGHT XPOSED ZIP ARCHITECTURE?\nWrong zip can damage your phone!</string>
     <string name="help">Help</string>
     <string name="helpChoose">
         How to choose correct zip file?\n
@@ -274,8 +274,8 @@
     <string name="choose_icon">Choose an icon</string>
     <string name="custom_icon">Custom icon</string>
     <string name="installationForbidden">Installation is not possible on this device. To install Xposed through this app, the device must run Android Lollipop or higher.</string>
-    <string name="installed_no_lollipop">Xposed framework is installed.</string>
-    <string name="not_installed_no_lollipop">Xposed framework is not installed.</string>
+    <string name="installed_no_lollipop">Xposed Framework is installed.</string>
+    <string name="not_installed_no_lollipop">Xposed Framework is not installed.</string>
     <string name="notify_module_update">Enable module update notification</string>
 
     <string name="md_back_label">Back</string>
@@ -315,7 +315,8 @@
     <string name="share_app_text">Check this out: Xposed Installer in Material Design! %s</string>
     <string name="disable_xposed">Disable Xposed</string>
     <string name="status">Xposed Status</string>
-    <string name="xposed_on_next_reboot">Xposed framework will be enabled on next reboot</string>
-    <string name="xposed_off_next_reboot">Xposed framework will be disabled on next reboot</string>
+    <string name="xposed_on_next_reboot">Xposed Framework will be enabled on next reboot</string>
+    <string name="xposed_off_next_reboot">Xposed Framework will be disabled on next reboot</string>
+    <string name="rovo_89_old_icon">rovo89 (old)</string>
 
 </resources>

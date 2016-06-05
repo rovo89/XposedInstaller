@@ -249,7 +249,7 @@
     <string name="permissionGranted">Permesso concesso</string>
     <string name="permissionNotGranted">Questa funzionalità non funzionerà senza il permesso di scrittura della memoria esterna.</string>
     <string name="selectFile">Seleziona il file scaricato</string>
-    <string name="warningArchitecture">HAI SCELTO L\' ARCHITTETTURA GIUSTA DELLO ZIP?\nUn installer sbagliato può danneggiare il tuo telefono!</string>
+    <string name="warningArchitecture">HAI SCELTO L\' ARCHITTETTURA GIUSTA DELLO ZIP?\nUno zip sbagliato può danneggiare il tuo telefono!</string>
     <string name="xposedZipNotFound">File zip non trovato, probabilmemente una nuova versione è stata rilasciata.</string>
     <string name="helpChoose">
         Come scegliere il file zip corretto?\n
@@ -309,5 +309,6 @@
     <string name="status">Stato Xposed</string>
     <string name="xposed_off_next_reboot">Xposed framework sarà disabilitato al prossimo riavvio</string>
     <string name="xposed_on_next_reboot">Xposed framework sarà abilitato al prossimo riavvio</string>
+    <string name="rovo_89_old_icon">rovo89 (vecchia)</string>
 
 </resources>

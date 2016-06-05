@@ -317,5 +317,6 @@
     <string name="status">Состояние Xposed</string>
     <string name="xposed_on_next_reboot">Xposed Framework будет включен после перезагрузки</string>
     <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>
+    <string name="rovo_89_old_icon">rovo89 (старая)</string>
 
 </resources>

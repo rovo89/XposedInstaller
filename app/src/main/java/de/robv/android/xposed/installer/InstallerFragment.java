@@ -19,7 +19,6 @@ import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.system.Os;
 import android.text.Html;
 import android.text.TextUtils;
@@ -83,19 +82,19 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     private MaterialDialog.Builder dlgProgress;
     private TextView txtInstallError, txtKnownIssue;
     private Button btnInstall, btnUninstall;
-    private ProgressBar mInstallersLoading;
+    private ProgressBar mLoading;
     private Spinner mInstallersChooser;
-    private ProgressBar mUninstallersLoading;
     private Spinner mUninstallersChooser;
     private ImageView mInfoInstaller, mInfoUninstaller;
     private String newApkVersion = XposedApp.THIS_APK_VERSION;
     private String newApkLink;
     private String newApkChangelog;
-    private CardView mUpdateView;
     private Button mUpdateButton;
     private TextView mInstallForbidden;
     private ImageView mInfoUpdate;
     private Button mClickedButton;
+    private ImageView mErrorIcon;
+    private TextView mErrorTv;
 
     private static int extractIntPart(String str) {
         int result = 0, length = str.length();
@@ -165,11 +164,9 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         btnInstall = (Button) v.findViewById(R.id.btnInstall);
         btnUninstall = (Button) v.findViewById(R.id.btnUninstall);
 
-        mInstallersLoading = (ProgressBar) v.findViewById(R.id.loadingInstallers);
-        mUninstallersLoading = (ProgressBar) v.findViewById(R.id.loadingUninstallers);
+        mLoading = (ProgressBar) v.findViewById(R.id.loading);
         mInstallersChooser = (Spinner) v.findViewById(R.id.chooserInstallers);
         mUninstallersChooser = (Spinner) v.findViewById(R.id.chooserUninstallers);
-        mUpdateView = (CardView) v.findViewById(R.id.updateView);
         mUpdateButton = (Button) v.findViewById(R.id.updateButton);
 
         mInfoInstaller = (ImageView) v.findViewById(R.id.infoInstaller);
@@ -178,15 +175,16 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         mInstallForbidden = (TextView) v.findViewById(R.id.installationForbidden);
         mInfoUpdate = (ImageView) v.findViewById(R.id.infoUpdate);
 
+        mErrorIcon = (ImageView) v.findViewById(R.id.errorIcon);
+        mErrorTv = (TextView) v.findViewById(R.id.errorTv);
+
         String installedXposedVersion = XposedApp.getXposedProp().get("version");
         final Switch xposedDisable = (Switch) v.findViewById(R.id.disableSwitch);
-        TextView xposedDisableTv = (TextView) v.findViewById(R.id.disableTv);
 
         if (Build.VERSION.SDK_INT >= 21) {
             if (installedXposedVersion == null) {
                 txtInstallError.setText(R.string.installation_lollipop);
                 txtInstallError.setTextColor(getResources().getColor(R.color.warning));
-                xposedDisableTv.setVisibility(View.GONE);
                 xposedDisable.setVisibility(View.GONE);
             } else {
                 int installedXposedVersionInt = extractIntPart(installedXposedVersion);
@@ -207,7 +205,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
             } else {
                 txtInstallError.setText(getString(R.string.not_installed_no_lollipop));
                 txtInstallError.setTextColor(getResources().getColor(R.color.warning));
-                xposedDisableTv.setVisibility(View.GONE);
                 xposedDisable.setVisibility(View.GONE);
             }
         }
@@ -353,6 +350,31 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         });
 
         return v;
+    }
+
+    private void hideAllFrameworkItems() {
+        btnInstall.setVisibility(View.GONE);
+        btnUninstall.setVisibility(View.GONE);
+        mInfoInstaller.setVisibility(View.GONE);
+        mInfoUninstaller.setVisibility(View.GONE);
+        mInstallersChooser.setVisibility(View.GONE);
+        mUninstallersChooser.setVisibility(View.GONE);
+    }
+
+    private void showAllFrameworkItems() {
+        btnInstall.setVisibility(View.VISIBLE);
+        btnUninstall.setVisibility(View.VISIBLE);
+        mInfoInstaller.setVisibility(View.VISIBLE);
+        mInfoUninstaller.setVisibility(View.VISIBLE);
+        mInstallersChooser.setVisibility(View.VISIBLE);
+        mUninstallersChooser.setVisibility(View.VISIBLE);
+
+        btnInstall.setEnabled(true);
+        btnUninstall.setEnabled(true);
+        mInfoInstaller.setEnabled(true);
+        mInfoUninstaller.setEnabled(true);
+        mInstallersChooser.setEnabled(true);
+        mUninstallersChooser.setEnabled(true);
     }
 
     @Override
@@ -865,8 +887,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         protected void onPreExecute() {
             super.onPreExecute();
 
-            mInstallersLoading.setVisibility(View.VISIBLE);
-            mUninstallersLoading.setVisibility(View.VISIBLE);
+            mLoading.setVisibility(View.VISIBLE);
             mInfoInstaller.setVisibility(View.GONE);
             mInfoUninstaller.setVisibility(View.GONE);
         }
@@ -927,27 +948,10 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
 
-            btnInstall.setEnabled(result);
-            btnUninstall.setEnabled(result);
-
-            mInstallersLoading.setVisibility(View.GONE);
-            mUninstallersLoading.setVisibility(View.GONE);
-
-            int i = result ? View.VISIBLE : View.GONE;
-
-            mInstallersChooser.setVisibility(i);
-            mUninstallersChooser.setVisibility(i);
-
-            mInfoInstaller.setVisibility(i);
-            mInfoUninstaller.setVisibility(i);
+            mLoading.setVisibility(View.GONE);
 
             if (Build.VERSION.SDK_INT < 21) {
-                btnInstall.setEnabled(false);
-                btnUninstall.setEnabled(false);
-                mInfoInstaller.setEnabled(false);
-                mInfoUninstaller.setEnabled(false);
-                mInstallersChooser.setEnabled(false);
-                mUninstallersChooser.setEnabled(false);
+                hideAllFrameworkItems();
 
                 mInstallForbidden.setVisibility(View.VISIBLE);
             }
@@ -956,8 +960,12 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
 
                 if (!result) {
                     Toast.makeText(getContext(), R.string.loadingError, Toast.LENGTH_LONG).show();
+                    mErrorIcon.setVisibility(View.VISIBLE);
+                    mErrorTv.setVisibility(View.VISIBLE);
                     return;
                 }
+
+                showAllFrameworkItems();
 
                 String arch = System.getProperty("os.arch");
                 int archPos = 0;
