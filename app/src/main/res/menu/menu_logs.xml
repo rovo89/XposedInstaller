@@ -3,12 +3,6 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_refresh"
-        android:icon="@drawable/ic_menu_refresh"
-        android:title="@string/menuReload"
-        app:showAsAction="ifRoom|withText"/>
-
-    <item
         android:id="@+id/menu_scroll_top"
         android:icon="@drawable/ic_scroll_top"
         android:title="@string/scroll_top"
@@ -18,6 +12,12 @@
         android:id="@+id/menu_scroll_down"
         android:icon="@drawable/ic_scroll_down"
         android:title="@string/scroll_bottom"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menu_refresh"
+        android:icon="@drawable/ic_menu_refresh"
+        android:title="@string/menuReload"
         app:showAsAction="ifRoom"/>
 
     <item
