@@ -24,7 +24,6 @@ import java.io.IOException;
 
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
-import de.robv.android.xposed.installer.util.UIUtil;
 
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
@@ -172,7 +171,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
-            if (UIUtil.isLollipop())
+            if (Build.VERSION.SDK_INT >= 21)
                 getActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
         }
 

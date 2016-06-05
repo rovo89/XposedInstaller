@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -30,7 +31,6 @@ import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
-import de.robv.android.xposed.installer.util.UIUtil;
 
 import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
@@ -107,7 +107,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity
     protected void onResume() {
         super.onResume();
 
-        if (UIUtil.isLollipop())
+        if (Build.VERSION.SDK_INT >= 21)
             getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(this), 0.85f));
 
     }

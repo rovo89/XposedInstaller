@@ -3,6 +3,7 @@ package de.robv.android.xposed.installer;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
@@ -20,7 +21,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
-import de.robv.android.xposed.installer.util.UIUtil;
 
 import static android.content.Intent.ACTION_SEND;
 import static android.content.Intent.EXTRA_TEXT;
@@ -81,7 +81,7 @@ public class AboutActivity extends XposedBaseActivity {
         @Override
         public void onResume() {
             super.onResume();
-            if (UIUtil.isLollipop())
+            if (Build.VERSION.SDK_INT >= 21)
                 getActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
         }
 

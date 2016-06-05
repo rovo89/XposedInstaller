@@ -48,9 +48,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -58,6 +55,7 @@ import java.util.Locale;
 
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.JSONUtils;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
@@ -73,7 +71,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     private static final int INSTALL_MODE_NORMAL = 0;
     private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
     private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
-    private static final String JSON_LINK = "https://raw.githubusercontent.com/DVDAndroid/XposedInstaller/material/app/xposed.json";
+    private static final String JSON_LINK = "https://raw.githubusercontent.com/DVDAndroid/XposedInstaller/material/app/xposed_list.json";
     private static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
     private static List<String> messages = new LinkedList<>();
     private static ArrayList<Installer> installers;
@@ -234,7 +232,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                     }).cancelable(false).show();
         }
 
-        new JSONParser(JSON_LINK).execute();
+        new JSONParser().execute();
 
         mInfoInstaller.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -862,15 +860,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     }
 
     private class JSONParser extends AsyncTask<Void, Void, Boolean> {
-        private URL mUrl;
-
-        public JSONParser(String mUrl) {
-            try {
-                this.mUrl = new URL(mUrl);
-            } catch (MalformedURLException e) {
-                Log.e(XposedApp.TAG, "InstallerFragment -> " + e.getMessage());
-            }
-        }
 
         @Override
         protected void onPreExecute() {
@@ -885,22 +874,10 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                HttpURLConnection c = (HttpURLConnection) mUrl.openConnection();
-                c.setRequestMethod("GET");
-                c.setDoOutput(true);
-                c.connect();
+                String originalJson = JSONUtils.getFileContent(JSON_LINK);
+                String newJson = JSONUtils.listZip();
 
-                BufferedReader br = new BufferedReader(
-                        new InputStreamReader(c.getInputStream()));
-                StringBuilder sb = new StringBuilder();
-                String line;
-                while ((line = br.readLine()) != null) {
-                    sb.append(line);
-                }
-                br.close();
-
-                String jsonString = sb.toString();
-                jsonString = jsonString.replaceAll("<div.+div>", "");
+                String jsonString = originalJson.replace("%XPOSED_ZIP%", newJson);
 
                 JSONObject json = new JSONObject(jsonString);
                 JSONArray installerArray = json.getJSONArray("installer");
@@ -941,7 +918,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                 newApkChangelog = json.getJSONObject("apk").getString("changelog");
                 return true;
             } catch (Exception e) {
-                Log.e(XposedApp.TAG, "InstallerFragment:940 -> " + e.getMessage());
+                Log.e(XposedApp.TAG, "InstallerFragment -> " + e.getMessage());
                 return false;
             }
         }
@@ -993,8 +970,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                 mInstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), getInstallersBySdk(Build.VERSION.SDK_INT)));
                 mInstallersChooser.setSelection(archPos);
 
-                mUninstallersChooser.setAdapter(
-                        new XposedZip.MyAdapter<>(getContext(), uninstallers));
+                mUninstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers));
                 mUninstallersChooser.setSelection(archPos);
 
                 if (newApkChangelog != null) {
