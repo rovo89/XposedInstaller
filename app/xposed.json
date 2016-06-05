@@ -64,23 +64,23 @@
       "architecture": "x86"
     },
     {
-      "name": "xposed-v85.1-sdk23-arm-systemless.zip",
-      "version": "85.1",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3766404&d=1464566701",
+      "name": "xposed-v85.2-sdk23-arm-systemless.zip",
+      "version": "85.2",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3770755&d=1464908499",
       "sdk": 23,
       "architecture": "arm"
     },
     {
-      "name": "xposed-v85.1-sdk23-arm64-systemless.zip",
-      "version": "85.1",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3766405&d=1464566701",
+      "name": "xposed-v85.2-sdk23-arm64-systemless.zip",
+      "version": "85.2",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3770756&d=1464908499",
       "sdk": 23,
       "architecture": "arm64"
     },
     {
-      "name": "xposed-v85.1-sdk23-x86-systemless.zip",
-      "version": "85.1",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3766406&d=1464566701",
+      "name": "xposed-v85.2-sdk23-x86-systemless.zip",
+      "version": "85.2",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3770757&d=1464908499",
       "sdk": 23,
       "architecture": "x86"
     },
