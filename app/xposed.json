@@ -195,8 +195,8 @@
     }
   ],
   "apk": {
-    "version": "1465041600000",
-    "changelog": "<b>What's new:</b><br>&#149; Bug fixes<br>&#149;Systemless toggle fix<br>&#149; Updated: Synced translations!",
+    "version": "1465119900000",
+    "changelog": "<b>What's new:</b><br>&#149; Bug fixes<br>&#149;Systemless fix<br>&#149; Updated: Synced translations!",
     "link": "https://github.com/DVDAndroid/dvdandroid.github.io/blob/master/apks/XposedInstaller_by_dvdandroid.apk?raw=true"
   }
 }
