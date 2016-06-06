@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -19,6 +20,7 @@ import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.system.Os;
 import android.text.Html;
 import android.text.TextUtils;
@@ -47,6 +49,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -60,6 +63,7 @@ import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.XposedZip;
 
+import static android.content.Context.MODE_PRIVATE;
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.util.XposedZip.Installer;
 import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
@@ -95,6 +99,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     private Button mClickedButton;
     private ImageView mErrorIcon;
     private TextView mErrorTv;
+    private CardView mUpdateView;
 
     private static int extractIntPart(String str) {
         int result = 0, length = str.length();
@@ -130,20 +135,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         return list;
     }
 
-    /*
-    * public static ArrayList<Installer> getInstallersBySdkAndArchitecture( int
-    * sdk, String architecture) { ArrayList<Installer> list = new
-        * ArrayList<>(); ArrayList<Installer> list2 = new ArrayList<>(); for
-        * (Installer i : installers) { if (i.sdk == sdk) list.add(i); } for
-        * (Installer i : list) { if (i.architecture.equals(architecture))
-    * list2.add(i); } return list2; }
-    *
-    * public static ArrayList<Uninstaller> getUninstallersByArchitecture(
-    * String architecture) { ArrayList<Uninstaller> list = new ArrayList<>();
-        * for (Uninstaller u : uninstallers) { if
-    * (u.architecture.equals(architecture)) list.add(u); } return list; }
-    */
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -154,8 +145,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_installer, container, false);
 
         txtInstallError = (TextView) v.findViewById(R.id.framework_install_errors);
@@ -177,6 +167,8 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
 
         mErrorIcon = (ImageView) v.findViewById(R.id.errorIcon);
         mErrorTv = (TextView) v.findViewById(R.id.errorTv);
+
+        mUpdateView = (CardView) v.findViewById(R.id.updateView);
 
         String installedXposedVersion = XposedApp.getXposedProp().get("version");
         final Switch xposedDisable = (Switch) v.findViewById(R.id.disableSwitch);
@@ -470,10 +462,8 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions,
-                grantResults);
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == WRITE_EXTERNAL_PERMISSION) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (mClickedButton != null) {
@@ -993,6 +983,24 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                     });
                 } else {
                     mInfoUpdate.setVisibility(View.GONE);
+                }
+
+                if (newApkVersion == null)
+                    return;
+
+                SharedPreferences prefs;
+                try {
+                    prefs = getContext().getSharedPreferences(getContext().getPackageName() + "_preferences", MODE_PRIVATE);
+
+                    prefs.edit().putString("changelog_" + newApkVersion, newApkChangelog).apply();
+                } catch (NullPointerException ignored) {
+                }
+
+                BigInteger a = new BigInteger(XposedApp.THIS_APK_VERSION);
+                BigInteger b = new BigInteger(newApkVersion);
+
+                if (a.compareTo(b) == -1) {
+                    mUpdateView.setVisibility(View.VISIBLE);
                 }
 
             } catch (NullPointerException ignored) {
