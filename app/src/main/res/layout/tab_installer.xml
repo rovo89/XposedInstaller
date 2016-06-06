@@ -11,6 +11,7 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
+            android:id="@+id/disableView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:elevation="2dp"
@@ -46,7 +47,8 @@
                 android:background="?attr/background_card"
                 android:orientation="vertical"
                 android:visibility="gone"
-                app:cardBackgroundColor="?attr/list_download_item_color">
+                app:cardBackgroundColor="?attr/list_download_item_color"
+                app:cardUseCompatPadding="true">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -76,7 +78,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="4dp"
-                app:cardBackgroundColor="?attr/list_download_item_color">
+                app:cardBackgroundColor="?attr/list_download_item_color"
+                app:cardUseCompatPadding="true">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -110,7 +113,8 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="4dp"
                 app:cardBackgroundColor="?attr/list_download_item_color"
-                app:cardElevation="2dp">
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
 
                 <RelativeLayout
                     android:id="@+id/installers_uninstallers"
@@ -258,7 +262,8 @@
                 android:paddingTop="20dp"
                 android:visibility="gone"
                 app:cardBackgroundColor="?attr/list_download_item_color"
-                app:cardElevation="2dp">
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

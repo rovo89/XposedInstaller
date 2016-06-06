@@ -128,10 +128,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
             if (i.sdk == sdk)
                 list.add(i);
         }
-
-        if (list.size() == 0) {
-            list.add(new Installer());
-        }
         return list;
     }
 
@@ -171,13 +167,15 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         mUpdateView = (CardView) v.findViewById(R.id.updateView);
 
         String installedXposedVersion = XposedApp.getXposedProp().get("version");
-        final Switch xposedDisable = (Switch) v.findViewById(R.id.disableSwitch);
+        View disableView = v.findViewById(R.id.disableView);
+        Switch xposedDisable = (Switch) v.findViewById(R.id.disableSwitch);
 
         if (Build.VERSION.SDK_INT >= 21) {
             if (installedXposedVersion == null) {
                 txtInstallError.setText(R.string.installation_lollipop);
                 txtInstallError.setTextColor(getResources().getColor(R.color.warning));
                 xposedDisable.setVisibility(View.GONE);
+                disableView.setVisibility(View.GONE);
             } else {
                 int installedXposedVersionInt = extractIntPart(installedXposedVersion);
                 if (installedXposedVersionInt == XposedApp.getXposedVersion()) {
@@ -198,6 +196,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                 txtInstallError.setText(getString(R.string.not_installed_no_lollipop));
                 txtInstallError.setTextColor(getResources().getColor(R.color.warning));
                 xposedDisable.setVisibility(View.GONE);
+                disableView.setVisibility(View.GONE);
             }
         }
 
@@ -920,8 +919,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
 
                         uninstallers.add(new Uninstaller(link, name, architecture, date));
                     }
-                } else {
-                    uninstallers.add(new Uninstaller());
                 }
 
                 newApkVersion = json.getJSONObject("apk").getString("version");
@@ -965,11 +962,16 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                     archPos = Build.VERSION.SDK_INT > 19 ? 2 : 0;
                 }
 
-                mInstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), getInstallersBySdk(Build.VERSION.SDK_INT)));
-                mInstallersChooser.setSelection(archPos);
+                List<Installer> listInstallers = getInstallersBySdk(Build.VERSION.SDK_INT);
+                if (listInstallers.size() != 0 || uninstallers.size() != 0) {
+                    mInstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), listInstallers));
+                    mInstallersChooser.setSelection(archPos);
 
-                mUninstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers));
-                mUninstallersChooser.setSelection(archPos);
+                    mUninstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers));
+                    mUninstallersChooser.setSelection(archPos);
+                } else {
+                    hideAllFrameworkItems();
+                }
 
                 if (newApkChangelog != null) {
                     mInfoUpdate.setOnClickListener(new View.OnClickListener() {
