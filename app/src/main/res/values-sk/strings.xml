@@ -9,19 +9,19 @@
     <!-- Welcome screen / main sections -->
     <string name="welcome">Vitajte v <b>Xposed Installeri</b>!\nProsím, vyberte, čo chcete robiť:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Tu môžete spravovať Xposed framework, ktorý je nutný pre fungovanie modulov.</string>
+    <string name="tabInstallDescription">Tu môžete spravovať Xposed Framework, ktorý je nutný pre fungovanie modulov.</string>
     <string name="tabModules">Moduly</string>
     <string name="tabModulesDescription">Samotný framework neposkytuje žiadne funkcie. Tieto funkcie poskytujú rôzne moduly. V tejto sekcii môžete aktivovať moduly po ich inštalácií.</string>
     <string name="tabDownload">Sťahovanie</string>
     <string name="tabDownloadDescription">Táto sekcia vám umožní pristupovať k repozitáru s modulmi, takže môžete vyhľadávať a sťahovať tie, ktoré sa vám páčia a udržiavať ich stále aktuálne.</string>
-    <string name="welcome_framework_update_available">Je dostupná aktualizácia pre Xposed framework (%s).</string>
+    <string name="welcome_framework_update_available">Je dostupná aktualizácia pre Xposed Framework (%s).</string>
     <string name="welcome_update_available">Je dostupná jedna alebo viac aktualizácií pre moduly.</string>
     <string name="tabSettings">Nastavenia</string>
     <string name="tabSettingsDescription">Prejdite do tejto sekcie pre nastavenie Xposed Installera a frameworku.</string>
     <string name="tabSupport">Podpora</string>
     <string name="tabSupportDescription">Nájdite pomoc pre problémy s Xposed. Môžete tiež zaslať dar, ako vďaku za Xposed.</string>
     <string name="tabLogs">Záznamy</string>
-    <string name="tabLogsDescription">Zobraziť, uložiť, odoslať a vymazať záznamy Xposed frameworku.</string>
+    <string name="tabLogsDescription">Zobraziť, uložiť, odoslať a vymazať záznamy Xposed Frameworku.</string>
     <string name="tabAbout">O aplikácii</string>
     <string name="tabAboutDescription">Zistite viac o ľuďoch, ktorí vytvorili Xposed, kde môžete získať podporu pre túto aplikáciu, atď.</string>
 
@@ -61,9 +61,9 @@
     <string name="uninstall_reverted">Súbor app_process bol nedávno nainštalovaný, ale teraz bola nájdená verzia \"%s\". Ak ste neočakávali obnovenie starého súboru, môžete skúsiť odinštaláciu cez Recovery (automatickú alebo ručnú).</string>
     <string name="tap_to_dismiss">Kliknite pre zatvorenie</string>
     <string name="sdcard_location">Karta SD: %s</string>
-    <string name="installation_lollipop">Xposed framework nie je nainštalovaný. Prosím, stiahnite najnovší súbor ZIP z XDA a ručne ho flashnite cez recovery.</string>
-    <string name="installed_lollipop">Xposed framework verzia %s je aktívny.</string>
-    <string name="installed_lollipop_inactive">Xposed framework verzia %s je nainštalovaný, ale nie je aktívny. Prosím, skontrolujte záznamy pre viac informácií.</string>
+    <string name="installation_lollipop">Xposed Framework nie je nainštalovaný. Prosím, stiahnite najnovší súbor ZIP z XDA a ručne ho flashnite cez recovery.</string>
+    <string name="installed_lollipop">Xposed Framework verzia %s je aktívny.</string>
+    <string name="installed_lollipop_inactive">Xposed Framework verzia %s je nainštalovaný, ale nie je aktívny. Prosím, skontrolujte záznamy pre viac informácií.</string>
     <string name="modules_updates_available">Aktualizácia modulu(ov) je dostupná</string>
 
     <!-- File operations -->
@@ -258,7 +258,7 @@
     <string name="downloadUninstaller">Stiahnuť odinštalátor</string>
     <string name="selectFile">Zvoľte stiahnutý súbor</string>
     <string name="xposedZipNotFound">Zip nebol nájdený, pravdepodobne je dostupná nová verzia.</string>
-    <string name="warningArchitecture">ZVOLILI STE SPRÁVNU ARCHITEKTÚRU XPOSED ZIP?\nNesprávny inštalátor zip môže poškodiť vaše zariadenie!</string>
+    <string name="warningArchitecture">ZVOLILI STE SPRÁVNU ARCHITEKTÚRU XPOSED ZIP?\nNesprávny zip súbor môže poškodiť vaše zariadenie!</string>
     <string name="help">Pomoc</string>
     <string name="helpChoose">
         Ako zvoliť správny zip súbor?\n
@@ -274,8 +274,8 @@
     <string name="choose_icon">Zvoľte ikonu</string>
     <string name="custom_icon">Ikona</string>
     <string name="installationForbidden">Inštalácia na tomto zariadení nie je možná. Pre nainštalovanie Xposed cez túto aplikáciu, na zariadení musí bežať Android Lollipop alebo vyšší.</string>
-    <string name="installed_no_lollipop">Xposed framework je nainštalovaný.</string>
-    <string name="not_installed_no_lollipop">Xposed framework nie je nainštalovaný.</string>
+    <string name="installed_no_lollipop">Xposed Framework je nainštalovaný.</string>
+    <string name="not_installed_no_lollipop">Xposed Framework nie je nainštalovaný.</string>
     <string name="notify_module_update">Povoliť upozornenie na aktualizáciu modulu</string>
   
     <string name="md_back_label">Späť</string>
@@ -315,7 +315,8 @@
     <string name="share_app_text">Pozri na toto: Xposed Installer s Material dizajnom! %s</string>
     <string name="disable_xposed">Zakázať Xposed</string>
     <string name="status">Stav Xposed</string>
-    <string name="xposed_on_next_reboot">Xposed framework bude povolený pri nasledujúcom reštarte</string>
-    <string name="xposed_off_next_reboot">Xposed framework bude zakázaný pri nasledujúcom reštarte</string>
+    <string name="xposed_on_next_reboot">Xposed Framework bude povolený pri nasledujúcom reštarte</string>
+    <string name="xposed_off_next_reboot">Xposed Framework bude zakázaný pri nasledujúcom reštarte</string>
+    <string name="rovo_89_old_icon">rovo89 (stará)</string>
 
 </resources>
