@@ -2,23 +2,30 @@
   "installer": [
     %XPOSED_ZIP%
     {
-      "name": "xposed-v85.2-sdk23-arm-systemless",
-      "version": "85.2",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3770755&d=1464908499",
+      "name": "xposed-v85.3-sdk23-arm-systemless",
+      "version": "85.3",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3775285&d=1465306675",
       "sdk": 23,
       "architecture": "arm"
     },
     {
-      "name": "xposed-v85.2-sdk23-arm64-systemless",
-      "version": "85.2",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3770756&d=1464908499",
+      "name": "xposed-v85.3-sdk23-arm64-systemless",
+      "version": "85.3",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3775292&d=1465306707",
       "sdk": 23,
       "architecture": "arm64"
     },
     {
-      "name": "xposed-v85.2-sdk23-x86-systemless",
-      "version": "85.2",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3770757&d=1464908499",
+      "name": "xposed-v85.3-alt-sdk23-arm-systemless",
+      "version": "85.3",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3775286&d=1465306675",
+      "sdk": 23,
+      "architecture": "arm"
+    },
+    {
+      "name": "xposed-v85.3-sdk23-x86-systemless",
+      "version": "85.3",
+      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3775293&d=1465306707",
       "sdk": 23,
       "architecture": "x86"
     },
