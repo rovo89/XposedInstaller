@@ -111,19 +111,19 @@
     {
       "name": "xposed-uninstaller-20150831-arm",
       "date": "20150831",
-      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm",
+      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm.zip",
       "architecture": "arm"
     },
     {
       "name": "xposed-uninstaller-20150831-arm64",
       "date": "20150831",
-      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm64",
+      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm64.zip",
       "architecture": "arm64"
     },
     {
       "name": "xposed-uninstaller-20150831-x86",
       "date": "20150831",
-      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-x86",
+      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-x86.zip",
       "architecture": "x86"
     },
     {
