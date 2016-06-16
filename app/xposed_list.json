@@ -2,53 +2,25 @@
    "installer":[
     %XPOSED_ZIP%
       {
-         "name":"xposed-v85.5-sdk23-arm-systemless",
-         "version":"85.5",
-         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778880&d=1465588997",
+         "name":"xposed-v85.7-sdk23-systemless",
+         "version":"85.7",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3783179&d=1465938666",
+         "sdk":23,
+         "architecture":"all"
+      },
+      {
+         "name":"xposed-v85.7-sdk23-arm-alt-systemless",
+         "version":"85.7",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3783184&d=1465938696",
          "sdk":23,
          "architecture":"arm"
       },
       {
-         "name":"xposed-v85.5-sdk23-arm64-systemless",
-         "version":"85.5",
-         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778882&d=1465589024",
-         "sdk":23,
-         "architecture":"arm64"
-      },
-      {
-         "name":"xposed-v85.5-alt-sdk23-arm-systemless",
-         "version":"85.5",
-         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778881&d=1465588997",
-         "sdk":23,
-         "architecture":"arm"
-      },
-      {
-         "name":"xposed-v85.5-sdk23-x86-systemless",
-         "version":"85.5",
-         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778881&d=1465588997",
-         "sdk":23,
-         "architecture":"x86"
-      },
-      {
-         "name":"xposed-v85.5-sdk22-arm-systemless",
-         "version":"85.5",
-         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778884&d=1465589054",
+         "name":"xposed-v85.7-sdk22-systemless",
+         "version":"85.7",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3783185&d=1465938696",
          "sdk":22,
-         "architecture":"arm"
-      },
-      {
-         "name":"xposed-v85.5-sdk22-arm64-systemless",
-         "version":"85.5",
-         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778885&d=1465589054",
-         "sdk":22,
-         "architecture":"arm64"
-      },
-      {
-         "name":"xposed-v85.5-sdk22-x86-systemless",
-         "version":"85.5",
-         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778886&d=1465589054",
-         "sdk":22,
-         "architecture":"x86"
+         "architecture":"all"
       },
       {
          "name":"xposed-v85.1-sdk22-arm-custom-build-by-wanam-20160528",
