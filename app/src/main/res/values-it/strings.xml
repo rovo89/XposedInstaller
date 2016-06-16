@@ -245,7 +245,7 @@
     <string name="info">Info</string>
     <string name="infoInstaller">Nome: %1$s         \nSDK: %2$d         \nArchittettura: %3$s         \nVersione: %4$s</string>
     <string name="infoUninstaller">Nome: %1$s         \nArchittettura: %2$s         \nData: %3$s</string>
-    <string name="loadingError">Errore nel caricamento dei file Xposed Framework Zip</string>
+    <string name="loadingError">Si è verificato un errore nel caricamento della lista degli installer/uninstaller dispnibili.\nNon è possibile accedere a Internet o è un bug lato server</string>
     <string name="permissionGranted">Permesso concesso</string>
     <string name="permissionNotGranted">Questa funzionalità non funzionerà senza il permesso di scrittura della memoria esterna.</string>
     <string name="selectFile">Seleziona il file scaricato</string>

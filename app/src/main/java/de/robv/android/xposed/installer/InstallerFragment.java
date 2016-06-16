@@ -172,7 +172,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
 
         if (Build.VERSION.SDK_INT >= 21) {
             if (installedXposedVersion == null) {
-                txtInstallError.setText(R.string.installation_lollipop);
+                txtInstallError.setText(R.string.not_installed_no_lollipop);
                 txtInstallError.setTextColor(getResources().getColor(R.color.warning));
                 xposedDisable.setVisibility(View.GONE);
                 disableView.setVisibility(View.GONE);
@@ -963,14 +963,20 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                 }
 
                 List<Installer> listInstallers = getInstallersBySdk(Build.VERSION.SDK_INT);
-                if (listInstallers.size() != 0 || uninstallers.size() != 0) {
-                    mInstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), listInstallers));
-                    mInstallersChooser.setSelection(archPos);
-
-                    mUninstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers));
-                    mUninstallersChooser.setSelection(archPos);
-                } else {
+                if (listInstallers.size() == 0) {
                     hideAllFrameworkItems();
+                    mErrorTv.setVisibility(View.VISIBLE);
+                    mErrorTv.setText(getString(R.string.phone_not_compatible, Build.VERSION.SDK_INT, Build.CPU_ABI));
+                } else {
+                    if (uninstallers.size() != 0) {
+                        mInstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), listInstallers));
+                        mInstallersChooser.setSelection(archPos);
+
+                        mUninstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers));
+                        mUninstallersChooser.setSelection(archPos);
+                    } else {
+                        hideAllFrameworkItems();
+                    }
                 }
 
                 if (newApkChangelog != null) {
