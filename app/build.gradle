@@ -15,6 +15,14 @@ android {
         versionCode 37
         versionName "3.0 alpha4 by dvdandroid - 06/06/16"
         project.ext.set("archivesBaseName", "XposedInstaller_by_dvdandroid");
+        jackOptions {
+            enabled true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
