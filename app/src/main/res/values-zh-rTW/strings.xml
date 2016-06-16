@@ -317,5 +317,6 @@
     <string name="status">Xposed 狀態</string>
     <string name="xposed_on_next_reboot">Xposed 框架將在下次重新啟動裝置後啟用</string>
     <string name="xposed_off_next_reboot">Xposed 框架將在下次重新啟動裝置後停用</string>
+    <string name="rovo_89_old_icon">rovo89 (舊)</string>
 
 </resources>

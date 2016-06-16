@@ -1,147 +1,189 @@
 {
-  "installer": [
+   "installer":[
     %XPOSED_ZIP%
-    {
-      "name": "xposed-v85.3-sdk23-arm-systemless",
-      "version": "85.3",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3775285&d=1465306675",
-      "sdk": 23,
-      "architecture": "arm"
-    },
-    {
-      "name": "xposed-v85.3-sdk23-arm64-systemless",
-      "version": "85.3",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3775292&d=1465306707",
-      "sdk": 23,
-      "architecture": "arm64"
-    },
-    {
-      "name": "xposed-v85.3-alt-sdk23-arm-systemless",
-      "version": "85.3",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3775286&d=1465306675",
-      "sdk": 23,
-      "architecture": "arm"
-    },
-    {
-      "name": "xposed-v85.3-sdk23-x86-systemless",
-      "version": "85.3",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3775293&d=1465306707",
-      "sdk": 23,
-      "architecture": "x86"
-    },
-    {
-      "name": "xposed-v85.1-sdk22-arm-custom-build-by-wanam-20160528",
-      "version": "85.1",
-      "link": "https://drive.google.com/uc?id=0B3vJQtURk5A4ZlZuVmlOd3p3dW8&export=download",
-      "sdk": 22,
-      "architecture": "arm"
-    },
-    {
-      "name": "xposed-v85.1-sdk22-arm64-custom-build-by-wanam-20160528",
-      "version": "85.1",
-      "link": "https://drive.google.com/uc?id=0B3vJQtURk5A4UDR1dGpvb2Z3SU0&export=download",
-      "sdk": 22,
-      "architecture": "arm64"
-    },
-    {
-      "name": "xposed-v85.1-sdk23-arm-custom-build-by-wanam-20160528",
-      "version": "85.1",
-      "link": "https://drive.google.com/uc?id=0B3vJQtURk5A4YmRZM3o1TDlmOGc&export=download",
-      "sdk": 23,
-      "architecture": "arm"
-    },
-    {
-      "name": "xposed-v85.1-sdk23-arm64-custom-build-by-wanam-20160528",
-      "version": "85.1",
-      "link": "https://drive.google.com/uc?id=0B3vJQtURk5A4ZW1NVGpuV2NLVm8&export=download",
-      "sdk": 23,
-      "architecture": "arm64"
-    },
-    {
-      "name": "xposed-v85.1-alt-sdk23-arm-custom-build-by-wanam-20160528",
-      "version": "85.1",
-      "link": "https://drive.google.com/uc?id=0B3vJQtURk5A4MTVKa2gtQUdEaDA&export=download",
-      "sdk": 23,
-      "architecture": "arm"
-    },
-    {
-      "name": "xposed-v83-sdk21-arm-MIUI-edition-by-SolarWarez-20160428",
-      "version": "83",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3732997&d=1461817897",
-      "sdk": 21,
-      "architecture": "arm"
-    },
-    {
-      "name": "xposed-v83-sdk21-arm64-MIUI-edition-by-SolarWarez-20160428",
-      "version": "83",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3732998&d=1461817897",
-      "sdk": 21,
-      "architecture": "arm64"
-    },
-    {
-      "name": "xposed-v83-sdk22-arm-MIUI-edition-by-SolarWarez-20160428",
-      "version": "83",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3732999&d=1461817897",
-      "sdk": 22,
-      "architecture": "arm"
-    },
-    {
-      "name": "xposed-v83-sdk22-arm64-MIUI-edition-by-SolarWarez-20160428",
-      "version": "83",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3733000&d=1461817897",
-      "sdk": 22,
-      "architecture": "arm64"
-    },
-    {
-      "name": "xposed-v83-sdk23-arm-MIUI-edition-by-SolarWarez-20160428",
-      "version": "83",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3733001&d=1461817936",
-      "sdk": 23,
-      "architecture": "arm"
-    },
-    {
-      "name": "xposed-v83-sdk23-arm64-MIUI-edition-by-SolarWarez-20160428",
-      "version": "83",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3733002&d=1461817936",
-      "sdk": 23,
-      "architecture": "arm64"
-    }
-  ],
-  "uninstaller": [
-    {
-      "name": "xposed-uninstaller-20150831-arm",
-      "date": "20150831",
-      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm.zip",
-      "architecture": "arm"
-    },
-    {
-      "name": "xposed-uninstaller-20150831-arm64",
-      "date": "20150831",
-      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm64.zip",
-      "architecture": "arm64"
-    },
-    {
-      "name": "xposed-uninstaller-20150831-x86",
-      "date": "20150831",
-      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-x86.zip",
-      "architecture": "x86"
-    },
-    {
-      "name": "xposed-uninstaller-20150831-armv5",
-      "date": "20150831",
-      "link": "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-armv5",
-      "architecture": "armv5"
-    },
-    {
-      "name": "wanam-xposed-uninstaller-20160211",
-      "date": "20160211",
-      "link": "http://forum.xda-developers.com/attachment.php?attachmentid=3642692&d=1455225308",
-      "architecture": null
-    }
-  ],
-  "apk": {
-"version": "1465218000000",
-"changelog": "<b>What's new:</b><br>&#149; Bug fixes<br>&#149; Updated: Synced translations!",
-    "link": "https://github.com/DVDAndroid/dvdandroid.github.io/blob/master/apks/XposedInstaller_by_dvdandroid.apk?raw=true"
-  }
+      {
+         "name":"xposed-v85.5-sdk23-arm-systemless",
+         "version":"85.5",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778880&d=1465588997",
+         "sdk":23,
+         "architecture":"arm"
+      },
+      {
+         "name":"xposed-v85.5-sdk23-arm64-systemless",
+         "version":"85.5",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778882&d=1465589024",
+         "sdk":23,
+         "architecture":"arm64"
+      },
+      {
+         "name":"xposed-v85.5-alt-sdk23-arm-systemless",
+         "version":"85.5",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778881&d=1465588997",
+         "sdk":23,
+         "architecture":"arm"
+      },
+      {
+         "name":"xposed-v85.5-sdk23-x86-systemless",
+         "version":"85.5",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778881&d=1465588997",
+         "sdk":23,
+         "architecture":"x86"
+      },
+      {
+         "name":"xposed-v85.5-sdk22-arm-systemless",
+         "version":"85.5",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778884&d=1465589054",
+         "sdk":22,
+         "architecture":"arm"
+      },
+      {
+         "name":"xposed-v85.5-sdk22-arm64-systemless",
+         "version":"85.5",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778885&d=1465589054",
+         "sdk":22,
+         "architecture":"arm64"
+      },
+      {
+         "name":"xposed-v85.5-sdk22-x86-systemless",
+         "version":"85.5",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3778886&d=1465589054",
+         "sdk":22,
+         "architecture":"x86"
+      },
+      {
+         "name":"xposed-v85.1-sdk22-arm-custom-build-by-wanam-20160528",
+         "version":"85.1",
+         "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4ZlZuVmlOd3p3dW8&export=download",
+         "sdk":22,
+         "architecture":"arm"
+      },
+      {
+         "name":"xposed-v85.1-sdk22-arm64-custom-build-by-wanam-20160528",
+         "version":"85.1",
+         "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4UDR1dGpvb2Z3SU0&export=download",
+         "sdk":22,
+         "architecture":"arm64"
+      },
+      {
+         "name":"xposed-v85.1-sdk23-arm-custom-build-by-wanam-20160528",
+         "version":"85.1",
+         "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4YmRZM3o1TDlmOGc&export=download",
+         "sdk":23,
+         "architecture":"arm"
+      },
+      {
+         "name":"xposed-v85.1-sdk23-arm64-custom-build-by-wanam-20160528",
+         "version":"85.1",
+         "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4ZW1NVGpuV2NLVm8&export=download",
+         "sdk":23,
+         "architecture":"arm64"
+      },
+      {
+         "name":"xposed-v85.1-alt-sdk23-arm-custom-build-by-wanam-20160528",
+         "version":"85.1",
+         "link":"https://drive.google.com/uc?id=0B3vJQtURk5A4MTVKa2gtQUdEaDA&export=download",
+         "sdk":23,
+         "architecture":"arm"
+      },
+      {
+         "name":"xposed-v85-sdk21-arm-MIUI-edition-by-SolarWarez-20160609",
+         "version":"85",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776500&d=1465396079",
+         "sdk":21,
+         "architecture":"arm"
+      },
+      {
+         "name":"xposed-v85-sdk21-arm64-MIUI-edition-by-SolarWarez-20160609",
+         "version":"85",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776501&d=1465396079",
+         "sdk":21,
+         "architecture":"arm64"
+      },
+      {
+         "name":"xposed-v85-sdk21-x86-MIUI-edition-by-SolarWarez-20160609",
+         "version":"85",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776502&d=1465396079",
+         "sdk":21,
+         "architecture":"x86"
+      },
+      {
+         "name":"xposed-v85-sdk22-arm-MIUI-edition-by-SolarWarez-20160609",
+         "version":"85",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776503&d=1465396125",
+         "sdk":22,
+         "architecture":"arm"
+      },
+      {
+         "name":"xposed-v85-sdk22-arm64-MIUI-edition-by-SolarWarez-20160609",
+         "version":"85",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776504&d=1465396125",
+         "sdk":22,
+         "architecture":"arm64"
+      },
+      {
+         "name":"xposed-v85-sdk22-x86-MIUI-edition-by-SolarWarez-20160609",
+         "version":"85",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776505&d=1465396125",
+         "sdk":22,
+         "architecture":"x86"
+      },
+      {
+         "name":"xposed-v85-sdk23-arm-MIUI-edition-by-SolarWarez-20160609",
+         "version":"85",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776506&d=1465396175",
+         "sdk":23,
+         "architecture":"arm"
+      },
+      {
+         "name":"xposed-v85-sdk23-arm64-MIUI-edition-by-SolarWarez-20160609",
+         "version":"85",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776507&d=1465396175",
+         "sdk":23,
+         "architecture":"arm64"
+      },
+      {
+         "name":"xposed-v85-sdk23-x86-MIUI-edition-by-SolarWarez-20160609",
+         "version":"85",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3776508&d=1465396175",
+         "sdk":23,
+         "architecture":"x86"
+      }
+   ],
+   "uninstaller":[
+      {
+         "name":"xposed-uninstaller-20150831-arm",
+         "date":"20150831",
+         "link":"http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm.zip",
+         "architecture":"arm"
+      },
+      {
+         "name":"xposed-uninstaller-20150831-arm64",
+         "date":"20150831",
+         "link":"http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm64.zip",
+         "architecture":"arm64"
+      },
+      {
+         "name":"xposed-uninstaller-20150831-x86",
+         "date":"20150831",
+         "link":"http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-x86.zip",
+         "architecture":"x86"
+      },
+      {
+         "name":"xposed-uninstaller-20150831-armv5",
+         "date":"20150831",
+         "link":"http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-armv5",
+         "architecture":"armv5"
+      },
+      {
+         "name":"wanam-xposed-uninstaller-20160211",
+         "date":"20160211",
+         "link":"http://forum.xda-developers.com/attachment.php?attachmentid=3642692&d=1455225308",
+         "architecture":null
+      }
+   ],
+   "apk":{
+      "version":"1465218000000",
+      "changelog":"<b>What's new:</b><br>&#149; Bug fixes<br>&#149; Updated: Synced translations!",
+      "link":"https://github.com/DVDAndroid/dvdandroid.github.io/blob/master/apks/XposedInstaller_by_dvdandroid.apk?raw=true"
+   }
 }
