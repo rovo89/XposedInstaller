@@ -239,7 +239,7 @@
     <string name="download_view_size">大小： %s KB</string>
     <string name="share">分享至…</string>
     <string name="back">返回</string>
-    <string name="loadingError">載入 Xposed Zip 框架錯誤</string>
+    <string name="loadingError">取得安裝/移除清單錯誤。\n無法連線網際網路或是伺服器錯誤。</string>
     <string name="info">訊息</string>
     <string name="infoInstaller">
         名稱： %1$s
@@ -318,5 +318,4 @@
     <string name="xposed_on_next_reboot">Xposed 框架將在下次重新啟動裝置後啟用</string>
     <string name="xposed_off_next_reboot">Xposed 框架將在下次重新啟動裝置後停用</string>
     <string name="rovo_89_old_icon">rovo89 (舊)</string>
-
 </resources>
