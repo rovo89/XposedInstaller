@@ -104,7 +104,7 @@ public class RootUtil {
         mShell.addCommand(command, 0, commandResultListener);
         waitForCommandFinished();
 
-        if (output != null)
+        if (output != null && mLastOutput.size() != 0 && !mLastOutput.get(0).contains("WARNING"))
             output.addAll(mLastOutput);
 
         return mLastExitCode;

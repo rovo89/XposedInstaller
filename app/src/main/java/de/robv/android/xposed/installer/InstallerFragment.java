@@ -2,7 +2,6 @@ package de.robv.android.xposed.installer;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,12 +15,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
-import android.system.Os;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -419,47 +416,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         return super.onOptionsItemSelected(item);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public void performFileSearch() {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("application/zip");
-        startActivityForResult(intent, 123);
-    }
-
-    @Override
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public void onActivityResult(int requestCode, int resultCode,
-                                 Intent resultData) {
-        if (requestCode == 123 && resultCode == Activity.RESULT_OK) {
-            if (resultData != null) {
-                Uri uri = resultData.getData();
-                String resolved = null;
-                try (ParcelFileDescriptor fd = getActivity().getContentResolver().openFileDescriptor(uri, "r")) {
-                    final File procfsFdFile = new File("/proc/self/fd/" + fd.getFd());
-
-                    resolved = Os.readlink(procfsFdFile.getAbsolutePath());
-
-                    if (TextUtils.isEmpty(resolved) || resolved.charAt(0) != '/'
-                            || resolved.startsWith("/proc/")
-                            || resolved.startsWith("/fd/"))
-                        ;
-                } catch (Exception errnoe) {
-                    Log.e(XposedApp.TAG, "InstallerFragment -> ReadError");
-                }
-                mRootUtil.execute("cp " + resolved + " /cache/xposed.zip",
-                        messages);
-                installXposedZip();
-            }
-        }
-    }
-
-    private void installXposedZip() {
-        mRootUtil.execute("echo 'install /cache/xposed.zip' >/cache/recovery/openrecoveryscript ", messages);
-        mRootUtil.execute("sync", messages);
-        reboot("recovery");
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -590,12 +546,9 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
             return;
         }
 
-        MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
+        new MaterialDialog.Builder(getActivity())
                 .content(message).positiveText(android.R.string.yes)
-                .negativeText(android.R.string.no).callback(callback).build();
-
-        TextView txtMessage = (TextView) dialog.findViewById(android.R.id.message);
-        txtMessage.setTextSize(14);
+                .negativeText(android.R.string.no).callback(callback).show();
 
         mHadSegmentationFault = message.toLowerCase(Locale.US).contains("segmentation fault");
         refreshKnownIssue();
@@ -668,7 +621,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         throw new IllegalStateException("unknown install mode " + installMode);
     }
 
-    private boolean prepareAutoFlash(List<String> messages, String file) {
+    private boolean prepareAutoFlash(List<String> messages, File file) {
         if (mRootUtil.execute("ls /cache/recovery", null) != 0) {
             messages.add(getString(R.string.file_creating_directory,
                     "/cache/recovery"));
@@ -682,25 +635,16 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         }
 
         messages.add(getString(R.string.file_copying, file));
-        File tempFile = AssetUtil.writeAssetToCacheFile(file, 00644);
-        if (tempFile == null) {
-            messages.add("");
-            messages.add(getString(R.string.file_extract_failed, file));
-            return false;
-        }
 
-        if (mRootUtil.executeWithBusybox("cp -a " + tempFile.getAbsolutePath()
-                + " /cache/recovery/" + file, messages) != 0) {
+        if (mRootUtil.executeWithBusybox("cp -a " + file.getAbsolutePath()
+                + " /cache/recovery/", messages) != 0) {
             messages.add("");
             messages.add(getString(R.string.file_copy_failed, file, "/cache"));
-            tempFile.delete();
             return false;
         }
 
-        tempFile.delete();
-
         messages.add(getString(R.string.file_writing_recovery_command));
-        if (mRootUtil.execute("echo --update_package=/cache/recovery/" + file + "\n--show_text > /cache/recovery/command", messages) != 0) {
+        if (mRootUtil.execute("echo --update_package=/cache/recovery/" + file.getName() + " > /cache/recovery/command", messages) != 0) {
             messages.add("");
             messages.add(
                     getString(R.string.file_writing_recovery_command_failed));
@@ -804,7 +748,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     }
 
     @Override
-    public void onDownloadFinished(final Context context, DownloadsUtil.DownloadInfo info) {
+    public void onDownloadFinished(final Context context, final DownloadsUtil.DownloadInfo info) {
         Toast.makeText(context, getString(R.string.downloadZipOk, info.localFilename), Toast.LENGTH_LONG).show();
 
         if (getInstallMode() == INSTALL_MODE_RECOVERY_MANUAL)
@@ -814,10 +758,12 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
             @Override
             public void onPositive(MaterialDialog dialog) {
                 super.onPositive(dialog);
-                Toast.makeText(context, R.string.selectFile,
-                        Toast.LENGTH_LONG).show();
+                Toast.makeText(context, R.string.selectFile, Toast.LENGTH_LONG).show();
 
-                performFileSearch();
+                if (!startShell()) return;
+
+                prepareAutoFlash(messages, new File(info.localFilename));
+                offerRebootToRecovery(messages, info.title, INSTALL_MODE_RECOVERY_AUTO);
             }
         });
     }
