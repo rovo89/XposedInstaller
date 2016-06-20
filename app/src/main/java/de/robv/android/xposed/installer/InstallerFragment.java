@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.ParseException;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -21,6 +22,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -47,7 +49,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -378,11 +382,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                 new MaterialDialog.Builder(getContext()).title(R.string.help)
                         .content(R.string.helpChoose)
                         .positiveText(android.R.string.ok).show();
-                break;
-            case R.id.installation_mode:
-                Intent intent = new Intent(getActivity(),
-                        SettingsActivity.class);
-                startActivity(intent);
                 break;
             case R.id.reboot:
                 areYouSure(R.string.reboot, new MaterialDialog.ButtonCallback() {
@@ -861,9 +860,17 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                         String link = jsonObject.getString("link");
                         String name = jsonObject.getString("name");
                         String architecture = jsonObject.getString("architecture");
-                        String date = jsonObject.getString("date");
 
-                        uninstallers.add(new Uninstaller(link, name, architecture, date));
+                        @SuppressLint("SimpleDateFormat")
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                        Date date = null;
+                        try {
+                            date = sdf.parse(jsonObject.getString("date"));
+                        } catch (ParseException ignored) {
+                        }
+                        java.text.DateFormat dateFormat = DateFormat.getDateFormat(getContext());
+
+                        uninstallers.add(new Uninstaller(link, name, architecture, dateFormat.format(date)));
                     }
                 }
 

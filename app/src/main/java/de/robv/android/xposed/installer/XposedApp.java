@@ -50,7 +50,8 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     @SuppressLint("SdCardPath")
     public static final String BASE_DIR = "/data/data/de.robv.android.xposed.installer/";
     public static final String ENABLED_MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/enabled_modules.list";
-    public static final File XPOSED_PROP_FILE_SYSTEMLESS = new File("/xposed/xposed.prop");
+    private static final File XPOSED_PROP_FILE_SYSTEMLESS = new File("/xposed/xposed.prop");
+    private static final File XPOSED_PROP_FILE_SYSTEMLESS_2 = new File("/vendor/xposed.prop");
     private static final File XPOSED_PROP_FILE = new File("/system/xposed.prop");
     public static int WRITE_EXTERNAL_PERMISSION = 69;
     public static String THIS_APK_VERSION = "1465218000000";
@@ -251,12 +252,14 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
     private void reloadXposedProp() {
         Map<String, String> map = Collections.emptyMap();
-        if (XPOSED_PROP_FILE.canRead() || XPOSED_PROP_FILE_SYSTEMLESS.canRead()) {
+        if (XPOSED_PROP_FILE.canRead() || XPOSED_PROP_FILE_SYSTEMLESS.canRead() || XPOSED_PROP_FILE_SYSTEMLESS_2.canRead()) {
             File file = null;
             if (XPOSED_PROP_FILE.canRead()) {
                 file = XPOSED_PROP_FILE;
             } else if (XPOSED_PROP_FILE_SYSTEMLESS.canRead()) {
                 file = XPOSED_PROP_FILE_SYSTEMLESS;
+            } else if (XPOSED_PROP_FILE_SYSTEMLESS_2.canRead()) {
+                file = XPOSED_PROP_FILE_SYSTEMLESS_2;
             }
 
             if (file != null) {
