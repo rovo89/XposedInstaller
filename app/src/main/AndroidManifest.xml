@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="de.robv.android.xposed.installer"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest package="de.robv.android.xposed.installer"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -114,7 +114,7 @@
         <activity android:name=".ModulesBookmark"/>
 
         <receiver
-            android:name=".PackageChangeReceiver"
+            android:name=".receivers.PackageChangeReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED"/>
@@ -125,7 +125,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".DownloadReceiver"
+            android:name=".receivers.DownloadReceiver"
             android:exported="true"
             android:permission="android.permission.SEND_DOWNLOAD_COMPLETED_INTENTS">
             <intent-filter>
@@ -135,6 +135,20 @@
         <receiver
             android:name=".util.NotificationUtil$RebootReceiver"
             android:exported="false"/>
+
+        <receiver
+            android:name=".receivers.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".util.UpdateService"
+            android:enabled="true"
+            android:exported="true"/>
 
     </application>
 

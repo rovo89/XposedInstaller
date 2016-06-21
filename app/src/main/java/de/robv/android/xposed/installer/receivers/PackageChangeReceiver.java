@@ -1,4 +1,4 @@
-package de.robv.android.xposed.installer;
+package de.robv.android.xposed.installer.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

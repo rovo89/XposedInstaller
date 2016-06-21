@@ -75,7 +75,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     private static final int INSTALL_MODE_NORMAL = 0;
     private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
     private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
-    private static final String JSON_LINK = "https://raw.githubusercontent.com/DVDAndroid/XposedInstaller/material/app/xposed_list.json";
     private static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
     private static List<String> messages = new LinkedList<>();
     private static ArrayList<Installer> installers;
@@ -829,7 +828,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
-                String originalJson = JSONUtils.getFileContent(JSON_LINK);
+                String originalJson = JSONUtils.getFileContent(JSONUtils.JSON_LINK);
                 String newJson = JSONUtils.listZip();
 
                 String jsonString = originalJson.replace("%XPOSED_ZIP%", newJson);

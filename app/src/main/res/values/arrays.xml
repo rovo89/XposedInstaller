@@ -95,4 +95,23 @@
         <item>ic_launcher_staol</item>
     </string-array>
 
+    <string-array name="update_text">
+        <item>@string/hour1</item>
+        <item>@string/hour2</item>
+        <item>@string/hour3</item>
+        <item>@string/hour4</item>
+        <item>@string/hour5</item>
+        <item>@string/hour24</item>
+    </string-array>
+
+    <string-array name="update_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>24</item>
+    </string-array>
+
 </resources>

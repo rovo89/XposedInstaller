@@ -310,5 +310,12 @@
     <string name="xposed_off_next_reboot">Xposed framework sarà disabilitato al prossimo riavvio</string>
     <string name="xposed_on_next_reboot">Xposed framework sarà abilitato al prossimo riavvio</string>
     <string name="rovo_89_old_icon">rovo89 (vecchia)</string>
+    <string name="hour1">1 ora</string>
+    <string name="hour2">2 ore</string>
+    <string name="hour24">Ogni giorno</string>
+    <string name="hour3">3 ore</string>
+    <string name="hour4">4 ore</string>
+    <string name="hour5">5 ore</string>
+    <string name="update_interval">Intervallo controllo aggiornamenti background</string>
 
 </resources>

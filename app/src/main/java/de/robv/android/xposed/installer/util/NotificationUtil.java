@@ -21,6 +21,7 @@ import de.robv.android.xposed.installer.XposedApp;
 public final class NotificationUtil {
     public static final int NOTIFICATION_MODULE_NOT_ACTIVATED_YET = 0;
     public static final int NOTIFICATION_MODULES_UPDATED = 1;
+    public static final int NOTIFICATION_INSTALLER_UPDATE = 2;
     private static final int PENDING_INTENT_OPEN_MODULES = 0;
     private static final int PENDING_INTENT_OPEN_INSTALL = 1;
     private static final int PENDING_INTENT_SOFT_REBOOT = 2;
@@ -131,6 +132,36 @@ public final class NotificationUtil {
                 pSoftReboot);
 
         sNotificationManager.notify(null, NOTIFICATION_MODULES_UPDATED, builder.build());
+    }
+
+    public static void showInstallerUpdateNotification() {
+        Intent intent = new Intent(sContext, WelcomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("fragment", 0);
+
+        PendingIntent pInstallTab = PendingIntent.getActivity(sContext,
+                PENDING_INTENT_OPEN_INSTALL, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+        String title = sContext.getString(R.string.app_name);
+        String message = sContext.getString(R.string.newVersion);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext).setContentTitle(title).setContentText(message)
+                .setTicker(title).setContentIntent(pInstallTab)
+                .setVibrate(new long[]{0}).setAutoCancel(true)
+                .setSmallIcon(R.drawable.ic_notification);
+
+        if (prefs.getBoolean("heads_up", true) && Build.VERSION.SDK_INT >= 21)
+            builder.setPriority(2);
+
+        if (prefs.getBoolean("colored_notification", false))
+            builder.setColor(XposedApp.getColor(sContext));
+
+        NotificationCompat.BigTextStyle notiStyle = new NotificationCompat.BigTextStyle();
+        notiStyle.setBigContentTitle(title);
+        notiStyle.bigText(message);
+        builder.setStyle(notiStyle);
+
+        sNotificationManager.notify(null, NOTIFICATION_INSTALLER_UPDATE, builder.build());
     }
 
     public static class RebootReceiver extends BroadcastReceiver {
