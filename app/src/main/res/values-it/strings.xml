@@ -318,5 +318,9 @@
     <string name="hour5">5 ore</string>
     <string name="hour6">6 ore</string>
     <string name="update_interval">Intervallo controllo aggiornamenti background</string>
+    <string name="confirm_reboots">Conferma riavii</string>
+    <string name="detected_as">SDK rilevato: %1$d, ARCHITETTURA: %2$s</string>
+    <string name="skip_xposedminversion_check">Salta controllo \'xposedminversion\' </string>
+    <string name="skip_xposedminversion_check_summ">Salta controllo \'xposedminversion\' per i moduli</string>
 
 </resources>

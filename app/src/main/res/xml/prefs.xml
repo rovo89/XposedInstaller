@@ -67,6 +67,7 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="skip_xposedminversion_check"
+            android:summary="@string/skip_xposedminversion_check_summ"
             android:title="@string/skip_xposedminversion_check"/>
 
         <CheckBoxPreference
