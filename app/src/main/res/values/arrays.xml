@@ -101,6 +101,7 @@
         <item>@string/hour3</item>
         <item>@string/hour4</item>
         <item>@string/hour5</item>
+        <item>@string/hour6</item>
         <item>@string/hour24</item>
     </string-array>
 

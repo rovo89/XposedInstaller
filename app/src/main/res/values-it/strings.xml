@@ -316,6 +316,7 @@
     <string name="hour3">3 ore</string>
     <string name="hour4">4 ore</string>
     <string name="hour5">5 ore</string>
+    <string name="hour6">6 ore</string>
     <string name="update_interval">Intervallo controllo aggiornamenti background</string>
 
 </resources>
