@@ -770,7 +770,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
             @Override
             public void onPositive(MaterialDialog dialog) {
                 super.onPositive(dialog);
-                Toast.makeText(context, R.string.selectFile, Toast.LENGTH_LONG).show();
 
                 if (!startShell()) return;
 
