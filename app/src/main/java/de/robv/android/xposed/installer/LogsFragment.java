@@ -204,12 +204,11 @@ public class LogsFragment extends Fragment {
                 now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY),
                 now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
 
-        String path = Environment.getExternalStorageDirectory() + "/XposedInstaller";
-        File dir = new File(path);
+        File dir =  getActivity().getExternalFilesDir(null);
 
         if (!dir.exists()) dir.mkdir();
 
-        File targetFile = new File(path, filename);
+        File targetFile = new File(dir, filename);
 
         try {
             FileInputStream in = new FileInputStream(mFileErrorLog);

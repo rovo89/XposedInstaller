@@ -326,5 +326,9 @@
     <string name="hour5">5 hours</string>
     <string name="hour6">6 hours</string>
     <string name="hour24">Every day</string>
+    <string name="confirm_reboots">Confirm reboots</string>
+    <string name="skip_xposedminversion_check">Skip \'xposedminversion\' check for modules</string>
+    <string name="detected_as">Detected SDK: %1$d, ARCH: %2$s</string>
+
 
 </resources>

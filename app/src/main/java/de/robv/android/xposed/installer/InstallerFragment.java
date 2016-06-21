@@ -378,36 +378,50 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
 
         switch (item.getItemId()) {
             case R.id.help:
+                String arch = System.getProperty("os.arch");
+                String info = getString(R.string.helpChoose) + "\n\n\n" + getString(R.string.detected_as, Build.VERSION.SDK_INT, arch);
                 new MaterialDialog.Builder(getContext()).title(R.string.help)
-                        .content(R.string.helpChoose)
+                        .content(info)
                         .positiveText(android.R.string.ok).show();
                 break;
             case R.id.reboot:
-                areYouSure(R.string.reboot, new MaterialDialog.ButtonCallback() {
-                    @Override
-                    public void onPositive(MaterialDialog dialog) {
-                        super.onPositive(dialog);
-                        reboot(null);
-                    }
-                });
+                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
+                    areYouSure(R.string.reboot, new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            reboot(null);
+                        }
+                    });
+                } else {
+                    reboot(null);
+                }
                 break;
             case R.id.soft_reboot:
-                areYouSure(R.string.reboot, new MaterialDialog.ButtonCallback() {
-                    @Override
-                    public void onPositive(MaterialDialog dialog) {
-                        super.onPositive(dialog);
-                        softReboot();
-                    }
-                });
+                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
+                    areYouSure(R.string.soft_reboot, new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            reboot(null);
+                        }
+                    });
+                } else {
+                    softReboot();
+                }
                 break;
             case R.id.reboot_recovery:
-                areYouSure(R.string.reboot_recovery, new MaterialDialog.ButtonCallback() {
-                    @Override
-                    public void onPositive(MaterialDialog dialog) {
-                        super.onPositive(dialog);
-                        reboot("recovery");
-                    }
-                });
+                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
+                    areYouSure(R.string.reboot_recovery, new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            reboot("recovery");
+                        }
+                    });
+                } else {
+                    reboot("recovery");
+                }
                 break;
         }
 

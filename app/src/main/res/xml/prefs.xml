@@ -61,6 +61,16 @@
 
         <CheckBoxPreference
             android:defaultValue="true"
+            android:key="confirm_reboots"
+            android:title="@string/confirm_reboots"/>
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="skip_xposedminversion_check"
+            android:title="@string/skip_xposedminversion_check"/>
+
+        <CheckBoxPreference
+            android:defaultValue="true"
             android:key="heads_up"
             android:summary="@string/enable_heads_up_summary"
             android:title="@string/enable_heads_up"/>
@@ -102,6 +112,7 @@
             android:key="open_drawer"
             android:summary="@string/open_drawer_summ"
             android:title="@string/open_drawer"/>
+
 
     </PreferenceCategory>
 

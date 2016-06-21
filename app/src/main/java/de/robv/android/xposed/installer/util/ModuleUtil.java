@@ -297,13 +297,17 @@ public final class ModuleUtil {
                 this.minVersion = 0;
                 this.description = "";
             } else {
-                Object minVersionRaw = app.metaData.get("xposedminversion");
-                if (minVersionRaw instanceof Integer) {
-                    this.minVersion = (Integer) minVersionRaw;
-                } else if (minVersionRaw instanceof String) {
-                    this.minVersion = extractIntPart((String) minVersionRaw);
+                if (XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false)) {
+                    this.minVersion = XposedApp.getXposedVersion();
                 } else {
-                    this.minVersion = 0;
+                    Object minVersionRaw = app.metaData.get("xposedminversion");
+                    if (minVersionRaw instanceof Integer) {
+                        this.minVersion = (Integer) minVersionRaw;
+                    } else if (minVersionRaw instanceof String) {
+                        this.minVersion = extractIntPart((String) minVersionRaw);
+                    } else {
+                        this.minVersion = 0;
+                    }
                 }
             }
         }
