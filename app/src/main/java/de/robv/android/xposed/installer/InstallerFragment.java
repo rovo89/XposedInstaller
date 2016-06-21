@@ -403,7 +403,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                         @Override
                         public void onPositive(MaterialDialog dialog) {
                             super.onPositive(dialog);
-                            reboot(null);
+                            softReboot();
                         }
                     });
                 } else {
