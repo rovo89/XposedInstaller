@@ -32,6 +32,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -323,9 +324,9 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
 
         xposedDisable.setChecked(!DISABLE_FILE.exists());
 
-        xposedDisable.setOnClickListener(new View.OnClickListener() {
+        xposedDisable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (DISABLE_FILE.exists()) {
                     DISABLE_FILE.delete();
                     Toast.makeText(getContext(), getString(R.string.xposed_on_next_reboot), Toast.LENGTH_LONG).show();
@@ -448,20 +449,21 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     }
     
     private String getArch() {
-         String info = Build.SUPPORTED_ABIS[0];
-         if ("x86".equals(info)) {
-             return "x86"; // Intel 32 bit
-         }
-         else if ("x86_64".equals(info)) {
-             return "x86_64"; // Intel 64 bit
-         }
-         else if (info.startsWith("arm64")) {
-             return "arm64"; // Arm 64 bit
-         }
-         else {
-             return "arm"; // Arm 32 bit
-         }
-         
+        String info;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            info = Build.SUPPORTED_ABIS[0];
+        } else {
+            info = System.getenv("os.arch");
+        }
+        if ("x86".equals(info)) {
+            return "x86"; // Intel 32 bit
+        } else if ("x86_64".equals(info)) {
+            return "x86_64"; // Intel 64 bit
+        } else if (info.startsWith("arm64")) {
+            return "arm64"; // Arm 64 bit
+        } else {
+            return "arm"; // Arm 32 bit
+        }
     }
 
     private boolean checkPermissions() {
@@ -928,7 +930,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
             try {
 
                 if (!result) {
-                    Toast.makeText(getContext(), R.string.loadingError, Toast.LENGTH_LONG).show();
                     mErrorIcon.setVisibility(View.VISIBLE);
                     mErrorTv.setVisibility(View.VISIBLE);
                     return;
