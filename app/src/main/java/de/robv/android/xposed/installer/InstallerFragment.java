@@ -378,7 +378,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
 
         switch (item.getItemId()) {
             case R.id.help:
-                String arch = System.getProperty("os.arch");
+                String arch = getArch();
                 String info = getString(R.string.helpChoose) + "\n\n\n" + getString(R.string.detected_as, Build.VERSION.SDK_INT, arch);
                 new MaterialDialog.Builder(getContext()).title(R.string.help)
                         .content(info)
@@ -445,6 +445,23 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                 Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
             }
         }
+    }
+    
+    private String getArch() {
+         String info = Build.SUPPORTED_ABIS[0];
+         if ("x86".equals(info)) {
+             return "x86"; // Intel 32 bit
+         }
+         else if ("x86_64".equals(info)) {
+             return "x86_64"; // Intel 64 bit
+         }
+         else if (info.startsWith("arm64")) {
+             return "arm64"; // Arm 64 bit
+         }
+         else {
+             return "arm"; // Arm 32 bit
+         }
+         
     }
 
     private boolean checkPermissions() {
