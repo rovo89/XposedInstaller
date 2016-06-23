@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -123,13 +124,16 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         installedXposedVersion = XposedApp.getXposedVersion();
-        if (installedXposedVersion <= 0) {
-            View notActiveNote = getActivity().getLayoutInflater().inflate(
-                    R.layout.xposed_not_active_note, getListView(), false);
-            notActiveNote.setTag(NOT_ACTIVE_NOTE_TAG);
-            getListView().addHeaderView(notActiveNote);
+        if (Build.VERSION.SDK_INT >= 21) {
+            if (installedXposedVersion <= 0) {
+                addHeader();
+            }
+        } else {
+            if (InstallerFragment.DISABLE_FILE.exists()) installedXposedVersion = -1;
+            if (installedXposedVersion <= 0) {
+                addHeader();
+            }
         }
-
         mRootUtil = new RootUtil();
         mAdapter = new ModuleAdapter(getActivity());
         reloadModules.run();
@@ -138,8 +142,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
         registerForContextMenu(getListView());
         mModuleUtil.addListener(this);
 
-        ActionBar actionBar = ((WelcomeActivity) getActivity())
-                .getSupportActionBar();
+        ActionBar actionBar = ((WelcomeActivity) getActivity()).getSupportActionBar();
 
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         int sixDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, metrics);
@@ -155,14 +158,19 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
         setHasOptionsMenu(true);
     }
 
+    private void addHeader() {
+        View notActiveNote = getActivity().getLayoutInflater().inflate(R.layout.xposed_not_active_note, getListView(), false);
+        notActiveNote.setTag(NOT_ACTIVE_NOTE_TAG);
+        getListView().addHeaderView(notActiveNote);
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_modules, menu);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions,
                 grantResults);
         if (requestCode == WRITE_EXTERNAL_PERMISSION) {
@@ -566,8 +574,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
                 checkbox.setEnabled(false);
                 warningText.setText(getString(R.string.no_min_version_specified));
                 warningText.setVisibility(View.VISIBLE);
-            } else if (installedXposedVersion != 0
-                    && item.minVersion > installedXposedVersion) {
+            } else if (installedXposedVersion != 0 && item.minVersion > installedXposedVersion) {
                 checkbox.setEnabled(false);
                 warningText.setText(String.format(getString(R.string.warning_xposed_min_version), item.minVersion));
                 warningText.setVisibility(View.VISIBLE);
@@ -577,8 +584,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
                 warningText.setVisibility(View.VISIBLE);
             } else if (item.isInstalledOnExternalStorage()) {
                 checkbox.setEnabled(false);
-                warningText.setText(getString(
-                        R.string.warning_installed_on_external_storage));
+                warningText.setText(getString(R.string.warning_installed_on_external_storage));
                 warningText.setVisibility(View.VISIBLE);
             } else if (installedXposedVersion == 0) {
                 checkbox.setEnabled(false);

@@ -2,9 +2,7 @@ package de.robv.android.xposed.installer;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -72,11 +70,12 @@ import static de.robv.android.xposed.installer.util.XposedZip.Uninstaller;
 
 public class InstallerFragment extends Fragment implements DownloadsUtil.DownloadFinishedCallback {
 
-    public static final String JAR_PATH = "/system/framework/XposedBridge.jar";
+    public static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
+    public static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
     private static final int INSTALL_MODE_NORMAL = 0;
     private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
     private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
-    private static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
+    private static final String BINARIES_FOLDER = AssetUtil.getBinariesFolder();
     private static List<String> messages = new LinkedList<>();
     private static ArrayList<Installer> installers;
     private static ArrayList<Uninstaller> uninstallers;
@@ -84,7 +83,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     private String APP_PROCESS_NAME = null;
     private RootUtil mRootUtil = new RootUtil();
     private boolean mHadSegmentationFault = false;
-    private MaterialDialog.Builder dlgProgress;
     private TextView txtInstallError, txtKnownIssue;
     private Button btnInstall, btnUninstall;
     private ProgressBar mLoading;
@@ -95,12 +93,12 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     private String newApkLink;
     private String newApkChangelog;
     private Button mUpdateButton;
-    private TextView mInstallForbidden;
     private ImageView mInfoUpdate;
     private Button mClickedButton;
     private ImageView mErrorIcon;
     private TextView mErrorTv;
     private CardView mUpdateView;
+    private boolean isCompatible;
 
     private static int extractIntPart(String str) {
         int result = 0, length = str.length();
@@ -135,9 +133,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Activity activity = getActivity();
 
-        dlgProgress = new MaterialDialog.Builder(activity).progress(true, 0);
         setHasOptionsMenu(true);
     }
 
@@ -159,7 +155,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         mInfoInstaller = (ImageView) v.findViewById(R.id.infoInstaller);
         mInfoUninstaller = (ImageView) v.findViewById(R.id.infoUninstaller);
 
-        mInstallForbidden = (TextView) v.findViewById(R.id.installationForbidden);
         mInfoUpdate = (ImageView) v.findViewById(R.id.infoUpdate);
 
         mErrorIcon = (ImageView) v.findViewById(R.id.errorIcon);
@@ -189,16 +184,33 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                 }
             }
         } else {
-            if (XposedApp.getXposedVersion() != 0) {
-                txtInstallError.setText(getString(R.string.installed_lollipop,
-                        XposedApp.getXposedVersion()));
+            int installedXposedVersionInt = XposedApp.getXposedVersion();
+            if (installedXposedVersionInt != 0) {
+                txtInstallError.setText(getString(R.string.installed_lollipop, installedXposedVersionInt));
                 txtInstallError.setTextColor(getResources().getColor(R.color.darker_green));
+
+                if (DISABLE_FILE.exists()) {
+                    txtInstallError.setText(getString(R.string.installed_lollipop_inactive, installedXposedVersionInt));
+                    txtInstallError.setTextColor(getResources().getColor(R.color.warning));
+                }
             } else {
                 txtInstallError.setText(getString(R.string.not_installed_no_lollipop));
                 txtInstallError.setTextColor(getResources().getColor(R.color.warning));
                 xposedDisable.setVisibility(View.GONE);
                 disableView.setVisibility(View.GONE);
             }
+        }
+
+        isCompatible = true;
+        if (Build.VERSION.SDK_INT == 15) {
+            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk15";
+            isCompatible = checkCompatibility();
+        } else if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT <= 18) {
+            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
+            isCompatible = checkCompatibility();
+        } else if (Build.VERSION.SDK_INT == 19) {
+            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk19";
+            isCompatible = checkCompatibility();
         }
 
         txtInstallError.setVisibility(View.VISIBLE);
@@ -487,10 +499,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         mRootUtil.dispose();
     }
 
-    private String versionToText(int version) {
-        return (version == 0) ? getString(R.string.none) : Integer.toString(version);
-    }
-
     @SuppressLint("StringFormatInvalid")
     private void refreshKnownIssue() {
         String issueName = null;
@@ -556,8 +564,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         refreshKnownIssue();
     }
 
-    private void areYouSure(int contentTextId,
-                            MaterialDialog.ButtonCallback yesHandler) {
+    private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
         new MaterialDialog.Builder(getActivity()).title(R.string.areyousure)
                 .content(contentTextId)
                 .iconAttr(android.R.attr.alertDialogIcon)
@@ -565,8 +572,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                 .negativeText(android.R.string.no).callback(yesHandler).show();
     }
 
-    private void showConfirmDialog(final String message,
-                                   final MaterialDialog.ButtonCallback callback) {
+    private void showConfirmDialog(final String message, final MaterialDialog.ButtonCallback callback) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
@@ -653,22 +659,43 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     }
 
     private boolean prepareAutoFlash(List<String> messages, File file) {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+            if (!isCompatible) {
+                messages.addAll(mCompatibilityErrors);
+                messages.add(String.format(getString(R.string.phone_not_compatible), Build.VERSION.SDK_INT, Build.CPU_ABI));
+                return false;
+            }
+
+            File appProcessFile = AssetUtil.writeAssetToFile(APP_PROCESS_NAME, new File(XposedApp.BASE_DIR + "bin/app_process"), 00700);
+            if (appProcessFile == null) {
+                showAlert(getString(R.string.file_extract_failed, "app_process"));
+                return false;
+            }
+
+            messages.add(getString(R.string.file_copying, "XposedBridge.jar"));
+            File jarFile = AssetUtil.writeAssetToFile("XposedBridge.jar", new File(JAR_PATH), 00644);
+            if (jarFile == null) {
+                messages.add("");
+                messages.add(getString(R.string.file_extract_failed, "XposedBridge.jar"));
+                return false;
+            }
+
+            mRootUtil.executeWithBusybox("sync", messages);
+        }
+
         if (mRootUtil.execute("ls /cache/recovery", null) != 0) {
-            messages.add(getString(R.string.file_creating_directory,
-                    "/cache/recovery"));
+            messages.add(getString(R.string.file_creating_directory, "/cache/recovery"));
             if (mRootUtil.executeWithBusybox("mkdir /cache/recovery",
                     messages) != 0) {
                 messages.add("");
-                messages.add(getString(R.string.file_create_directory_failed,
-                        "/cache/recovery"));
+                messages.add(getString(R.string.file_create_directory_failed, "/cache/recovery"));
                 return false;
             }
         }
 
         messages.add(getString(R.string.file_copying, file));
 
-        if (mRootUtil.executeWithBusybox("cp -a " + file.getAbsolutePath()
-                + " /cache/recovery/", messages) != 0) {
+        if (mRootUtil.executeWithBusybox("cp -a " + file.getAbsolutePath() + " /cache/recovery/", messages) != 0) {
             messages.add("");
             messages.add(getString(R.string.file_copy_failed, file, "/cache"));
             return false;
@@ -677,37 +704,11 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         messages.add(getString(R.string.file_writing_recovery_command));
         if (mRootUtil.execute("echo --update_package=/cache/recovery/" + file.getName() + " > /cache/recovery/command", messages) != 0) {
             messages.add("");
-            messages.add(
-                    getString(R.string.file_writing_recovery_command_failed));
+            messages.add(getString(R.string.file_writing_recovery_command_failed));
             return false;
         }
 
         return true;
-    }
-
-    private boolean prepareManualFlash(List<String> messages, String file) {
-        messages.add(getString(R.string.file_copying, file));
-        if (AssetUtil.writeAssetToSdcardFile(file, 00644) == null) {
-            messages.add("");
-            messages.add(getString(R.string.file_extract_failed, file));
-            return false;
-        }
-
-        return true;
-    }
-
-    private void offerReboot(List<String> messages) {
-        messages.add(getString(R.string.file_done));
-        messages.add("");
-        messages.add(getString(R.string.reboot_confirmation));
-        showConfirmDialog(TextUtils.join("\n", messages).trim(),
-                new MaterialDialog.ButtonCallback() {
-                    @Override
-                    public void onPositive(MaterialDialog dialog) {
-                        super.onPositive(dialog);
-                        reboot(null);
-                    }
-                });
     }
 
     private void offerRebootToRecovery(List<String> messages, final String file,
@@ -732,10 +733,8 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                         super.onNegative(dialog);
                         if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
                             // clean up to avoid unwanted flashing
-                            mRootUtil.executeWithBusybox(
-                                    "rm /cache/recovery/command", null);
-                            mRootUtil.executeWithBusybox(
-                                    "rm /cache/recovery/" + file, null);
+                            mRootUtil.executeWithBusybox("rm /cache/recovery/command", null);
+                            mRootUtil.executeWithBusybox("rm /cache/recovery/" + file, null);
                             AssetUtil.removeBusybox();
                         }
                     }
@@ -748,7 +747,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         if (!startShell())
             return;
 
-        List<String> messages = new LinkedList<String>();
+        List<String> messages = new LinkedList<>();
         if (mRootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages) != 0) {
             messages.add("");
             messages.add(getString(R.string.reboot_failed));
@@ -760,7 +759,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         if (!startShell())
             return;
 
-        List<String> messages = new LinkedList<String>();
+        List<String> messages = new LinkedList<>();
 
         String command = "reboot";
         if (mode != null) {
@@ -780,6 +779,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
 
     @Override
     public void onDownloadFinished(final Context context, final DownloadsUtil.DownloadInfo info) {
+        messages.clear();
         Toast.makeText(context, getString(R.string.downloadZipOk, info.localFilename), Toast.LENGTH_LONG).show();
 
         if (getInstallMode() == INSTALL_MODE_RECOVERY_MANUAL)
@@ -796,54 +796,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                 offerRebootToRecovery(messages, info.title, INSTALL_MODE_RECOVERY_AUTO);
             }
         });
-    }
-
-    private abstract class AsyncClickListener implements View.OnClickListener {
-        private final CharSequence mProgressDlgText;
-
-        public AsyncClickListener(CharSequence progressDlgText) {
-            mProgressDlgText = progressDlgText;
-        }
-
-        @Override
-        public final void onClick(final View v) {
-            if (mProgressDlgText != null) {
-                dlgProgress.content(mProgressDlgText);
-                dlgProgress.show();
-            }
-            new Thread() {
-                public void run() {
-                    onAsyncClick(v);
-                    dlgProgress.build().dismiss();
-                }
-            }.start();
-        }
-
-        protected abstract void onAsyncClick(View v);
-    }
-
-    private abstract class AsyncDialogClickListener implements DialogInterface.OnClickListener {
-        private final CharSequence mProgressDlgText;
-
-        public AsyncDialogClickListener(CharSequence progressDlgText) {
-            mProgressDlgText = progressDlgText;
-        }
-
-        @Override
-        public void onClick(final DialogInterface dialog, final int which) {
-            if (mProgressDlgText != null) {
-                dlgProgress.content(mProgressDlgText);
-                dlgProgress.show();
-            }
-            new Thread() {
-                public void run() {
-                    onAsyncClick(dialog, which);
-                    dlgProgress.build().dismiss();
-                }
-            }.start();
-        }
-
-        protected abstract void onAsyncClick(DialogInterface dialog, int which);
     }
 
     private class JSONParser extends AsyncTask<Void, Void, Boolean> {
@@ -884,25 +836,23 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                     installers.add(new XposedZip.Installer(link, name, architecture, sdk, version));
                 }
 
-                if (Build.VERSION.SDK_INT >= 21) {
-                    for (int i = 0; i < uninstallerArray.length(); i++) {
-                        JSONObject jsonObject = uninstallerArray.getJSONObject(i);
+                for (int i = 0; i < uninstallerArray.length(); i++) {
+                    JSONObject jsonObject = uninstallerArray.getJSONObject(i);
 
-                        String link = jsonObject.getString("link");
-                        String name = jsonObject.getString("name");
-                        String architecture = jsonObject.getString("architecture");
+                    String link = jsonObject.getString("link");
+                    String name = jsonObject.getString("name");
+                    String architecture = jsonObject.getString("architecture");
 
-                        @SuppressLint("SimpleDateFormat")
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-                        Date date = null;
-                        try {
-                            date = sdf.parse(jsonObject.getString("date"));
-                        } catch (ParseException ignored) {
-                        }
-                        java.text.DateFormat dateFormat = DateFormat.getDateFormat(getContext());
-
-                        uninstallers.add(new Uninstaller(link, name, architecture, dateFormat.format(date)));
+                    @SuppressLint("SimpleDateFormat")
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                    Date date = null;
+                    try {
+                        date = sdf.parse(jsonObject.getString("date"));
+                    } catch (ParseException ignored) {
                     }
+                    java.text.DateFormat dateFormat = DateFormat.getDateFormat(getContext());
+
+                    uninstallers.add(new Uninstaller(link, name, architecture, dateFormat.format(date)));
                 }
 
                 newApkVersion = json.getJSONObject("apk").getString("version");
@@ -920,12 +870,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
             super.onPostExecute(result);
 
             mLoading.setVisibility(View.GONE);
-
-            if (Build.VERSION.SDK_INT < 21) {
-                hideAllFrameworkItems();
-
-                mInstallForbidden.setVisibility(View.VISIBLE);
-            }
 
             try {
 
@@ -955,10 +899,14 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                         mInstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), listInstallers));
                         mInstallersChooser.setSelection(archPos);
 
+                        if (Build.VERSION.SDK_INT <= 19) archPos = uninstallers.size() - 1;
+
                         mUninstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers));
                         mUninstallersChooser.setSelection(archPos);
                     } else {
                         hideAllFrameworkItems();
+                        mErrorTv.setVisibility(View.VISIBLE);
+                        mErrorTv.setText(getString(R.string.phone_not_compatible, Build.VERSION.SDK_INT, Build.CPU_ABI));
                     }
                 }
 
