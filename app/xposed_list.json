@@ -125,70 +125,35 @@
       "version":"58",
       "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
       "sdk":15,
-      "architecture":"arm"
+      "architecture":"all"
     },
     {
       "name":"Xposed-Installer-Recovery",
       "version":"58",
       "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
       "sdk":16,
-      "architecture":"arm"
+      "architecture":"all"
     },
     {
       "name":"Xposed-Installer-Recovery",
       "version":"58",
       "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
       "sdk":17,
-      "architecture":"arm"
+      "architecture":"all"
     },
     {
       "name":"Xposed-Installer-Recovery",
       "version":"58",
       "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
       "sdk":18,
-      "architecture":"arm"
+      "architecture":"all"
     },
     {
       "name":"Xposed-Installer-Recovery",
       "version":"58",
       "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
       "sdk":19,
-      "architecture":"arm"
-    },
-    {
-      "name":"Xposed-Installer-Recovery",
-      "version":"58",
-      "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
-      "sdk":15,
-      "architecture":"x86"
-    },
-    {
-      "name":"Xposed-Installer-Recovery",
-      "version":"58",
-      "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
-      "sdk":16,
-      "architecture":"x86"
-    },
-    {
-      "name":"Xposed-Installer-Recovery",
-      "version":"58",
-      "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
-      "sdk":17,
-      "architecture":"x86"
-    },
-    {
-      "name":"Xposed-Installer-Recovery",
-      "version":"58",
-      "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
-      "sdk":18,
-      "architecture":"x86"
-    },
-    {
-      "name":"Xposed-Installer-Recovery",
-      "version":"58",
-    "link": "https://github.com/DVDAndroid/XposedInstaller/blob/material/app/Xposed-Installer-Recovery.zip?raw=true",
-      "sdk":19,
-      "architecture":"x86"
+      "architecture":"all"
     }
   ],
   "uninstaller":[

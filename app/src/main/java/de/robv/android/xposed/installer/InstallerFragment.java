@@ -459,7 +459,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
             }
         }
     }
-    
+
     private String getArch() {
         String info;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -896,13 +896,23 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
                     mErrorTv.setText(getString(R.string.phone_not_compatible, Build.VERSION.SDK_INT, Build.CPU_ABI));
                 } else {
                     if (uninstallers.size() != 0) {
-                        mInstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), listInstallers));
-                        mInstallersChooser.setSelection(archPos);
+                        if (Build.VERSION.SDK_INT <= 19) {
+                            List<XposedZip> temp = new ArrayList<>();
+                            temp.add(listInstallers.get(0));
 
-                        if (Build.VERSION.SDK_INT <= 19) archPos = uninstallers.size() - 1;
+                            mInstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), temp));
 
-                        mUninstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers));
-                        mUninstallersChooser.setSelection(archPos);
+                            temp = new ArrayList<>();
+                            temp.add(uninstallers.get(uninstallers.size() - 1));
+
+                            mUninstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), temp));
+                        } else {
+                            mInstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), listInstallers));
+                            mInstallersChooser.setSelection(archPos);
+
+                            mUninstallersChooser.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers));
+                            mUninstallersChooser.setSelection(archPos);
+                        }
                     } else {
                         hideAllFrameworkItems();
                         mErrorTv.setVisibility(View.VISIBLE);
