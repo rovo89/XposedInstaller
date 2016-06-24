@@ -392,7 +392,8 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         switch (item.getItemId()) {
             case R.id.help:
                 String arch = getArch();
-                String info = getString(R.string.helpChoose) + "\n\n\n" + getString(R.string.detected_as, Build.VERSION.SDK_INT, arch);
+                String info = getString(R.string.helpChoose) + "\n\n\n" + getString(R.string.detected_as, Build.VERSION.SDK_INT, arch + "\n");
+                info += getUIFramework();
                 new MaterialDialog.Builder(getContext()).title(R.string.help)
                         .content(info)
                         .positiveText(android.R.string.ok).show();
@@ -476,6 +477,17 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         } else {
             return "arm"; // Arm 32 bit
         }
+    }
+    
+    private String getUIFramework() {
+        String ui = "";
+        if (Build.MANUFACTURER.equalsIgnoreCase("samsung") && new File("/system/framework/twframework.jar").exists()) {
+            return "Samsung TouchWiz";
+        }
+        if (Build.MANUFACTURER.equalsIgnoreCase("xioami") && new File("/system/framework/framework-miui-res.apk").exists()) {
+            return "Xiaomi MIUI";
+        }
+        return ui;
     }
 
     private boolean checkPermissions() {
