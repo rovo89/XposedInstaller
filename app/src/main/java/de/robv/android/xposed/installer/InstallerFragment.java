@@ -484,7 +484,7 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
         if (Build.MANUFACTURER.equalsIgnoreCase("samsung") && new File("/system/framework/twframework.jar").exists()) {
             return "Samsung TouchWiz";
         }
-        if (Build.MANUFACTURER.equalsIgnoreCase("xioami") && new File("/system/framework/framework-miui-res.apk").exists()) {
+        if (Build.MANUFACTURER.equalsIgnoreCase("xiaomi") && new File("/system/framework/framework-miui-res.apk").exists()) {
             return "Xiaomi MIUI";
         }
         return ui;
