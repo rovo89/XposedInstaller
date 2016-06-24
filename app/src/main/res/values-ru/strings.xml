@@ -127,7 +127,7 @@
     <string name="download_author">от %s</string>
     <string name="download_unknown_author">Автор неизвестен</string>
     <string name="download_status_installed">Установленная (версия %s)</string>
-    <string name="download_status_update_available">оступно обновление (версия %1$s \u2192 %2$s)</string>
+    <string name="download_status_update_available">Доступно обновление (версия %1$s \u2192 %2$s)</string>
     <string name="download_timestamps">Добавлено %1$s \u00b7 Обновлено %2$s</string>
     <string name="download_sorting_title">Порядок сортировк</string>
     <string name="download_sorting_status">Сортировать по статусу</string>
@@ -198,13 +198,13 @@
 
     <!-- DownloadView -->
     <string name="download_view_download">Скачать</string>
-    <string name="download_view_install">Установить</string>
-    <string name="download_view_cancel">Отмена</string>
+	<string name="download_view_install">Установить</string>
+	<string name="download_view_cancel">Отмена</string>
     <string name="download_view_no_url">Нет доступных URL для загрузки</string>
-    <string name="download_view_running">Скачивание и установка (%1$,d из %2$,d кб)</string>
+	<string name="download_view_running">Скачивание и установка (%1$,d из %2$,d кб)</string>
     <string name="download_view_waiting">Ожидает скачивания</string>
-    <string name="download_view_successful">Скачивание завершено</string>
-    <string name="download_view_failed">Ошибка загрузки (ошибка %d)</string>
+	<string name="download_view_successful">Скачивание завершено</string>
+	<string name="download_view_failed">Ошибка загрузки (ошибка %d)</string>
 
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">Сумма MD5 не совпадает (загружено: %1$s, ожидалось: %2$s)</string>
@@ -279,11 +279,11 @@
     <string name="notify_module_update">Включить уведомления об обновлении модулей</string>
 
     <string name="md_back_label">Назад</string>
-    <string name="md_done_label">Готово</string>
+	<string name="md_done_label">Готово</string>
     <string name="md_cancel_label">Отмена</string>
     <string name="md_choose_label">Выбрать</string>
-    <string name="md_error_label">Ошибка</string>
-    <string name="md_storage_perm_error">Для вашего приложения не предоставлены права на чтение READ_EXTERNAL_STORAGE.</string>
+	<string name="md_error_label">Ошибка</string>
+	<string name="md_storage_perm_error">Для вашего приложения не предоставлены права на чтение READ_EXTERNAL_STORAGE.</string>
     <string name="md_custom_label">Пользовательские</string>
     <string name="md_presets_label">Пресеты</string>
     <string name="changelog">Список изменений</string>
@@ -317,6 +317,19 @@
     <string name="status">Состояние Xposed</string>
     <string name="xposed_on_next_reboot">Xposed Framework будет включен после перезагрузки</string>
     <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>
-    <string name="rovo_89_old_icon">rovo89 (старая)</string>
+	<string name="rovo_89_old_icon">rovo89 (старая)</string>
+    <string name="update_interval">Интервал фоновой проверки обновлений</string>
+    <string name="hour1">1 час</string>
+    <string name="hour2">2 часа</string>
+    <string name="hour3">3 часа</string>
+    <string name="hour4">4 часа</string>
+    <string name="hour5">5 часа</string>
+    <string name="hour6">6 часа</string>
+    <string name="hour24">Каждый день</string>
+    <string name="confirm_reboots">Подтверждать перезагрузку</string>
+    <string name="skip_xposedminversion_check">Пропускать проверку \'Xposed мин. версии\'</string>
+    <string name="skip_xposedminversion_check_summ">Пропустить \'Xposed мин. версии\' проверку модулей</string>
+    <string name="detected_as">Обнаружен SDK: %1$d, ARCH: %2$s</string>
 
+	
 </resources>
