@@ -31,15 +31,11 @@ import static de.robv.android.xposed.installer.XposedApp.darkenColor;
 
 public class SettingsActivity extends XposedBaseActivity implements ColorChooserDialog.ColorCallback {
 
-    private static Context mContext;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_container);
-
-        mContext = getApplicationContext();
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -78,6 +74,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         private Preference colors;
         private PackageManager pm;
         private String packName;
+        private Context mContext;
 
         private Preference.OnPreferenceChangeListener iconChange = new Preference.OnPreferenceChangeListener() {
             @Override
@@ -128,6 +125,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 heads_up.setSummary(heads_up.getSummary() + " LOLLIPOP+");
                 nav_bar.setSummary("LOLLIPOP+");
             }
+
+            mContext = getActivity();
 
             findPreference("release_type_global").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
