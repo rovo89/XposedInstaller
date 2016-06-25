@@ -43,7 +43,6 @@ import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSI
 public abstract class BaseAdvancedInstaller extends Fragment implements DownloadsUtil.DownloadFinishedCallback {
 
     public static final String JAR_PATH = XposedApp.BASE_DIR + "bin/XposedBridge.jar";
-    public static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
     private static final int INSTALL_MODE_NORMAL = 0;
     private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
     private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
@@ -66,6 +65,8 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         final Button btnUninstall = (Button) view.findViewById(R.id.btnUninstall);
         ImageView infoInstaller = (ImageView) view.findViewById(R.id.infoInstaller);
         ImageView infoUninstaller = (ImageView) view.findViewById(R.id.infoUninstaller);
+        TextView compatibleTv = (TextView) view.findViewById(R.id.compatibilityTv);
+        TextView incompatibleTv = (TextView) view.findViewById(R.id.incompatibilityTv);
 
         chooserInstallers.setAdapter(new XposedZip.MyAdapter<>(getContext(), installers()));
         chooserUninstallers.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers()));
@@ -152,6 +153,9 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
             APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk19";
             isCompatible = checkCompatibility();
         }
+
+        compatibleTv.setText(compatibility());
+        incompatibleTv.setText(incompatibility());
 
         return view;
     }

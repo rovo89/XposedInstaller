@@ -10,11 +10,13 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,38 +26,36 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import de.robv.android.xposed.installer.DownloadFragment;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
-import de.robv.android.xposed.installer.util.CustomViewPager;
 import de.robv.android.xposed.installer.util.JSONUtils;
 import de.robv.android.xposed.installer.util.XposedZip;
 
 public class AdvancedInstallerFragment extends Fragment {
 
-    private static List<XposedZip.Installer> listOfficialInstaller = new ArrayList<>();
-    private static List<XposedZip.Installer> listSystemlessInstallers = new ArrayList<>();
-    private static List<XposedZip.Installer> listSamsungInstallers = new ArrayList<>();
-    private static List<XposedZip.Installer> listHuaweiInstallers = new ArrayList<>();
+    private static final List<XposedZip.Installer> listOfficialInstaller = new ArrayList<>();
+    private static final List<XposedZip.Installer> listSystemlessInstallers = new ArrayList<>();
+    private static final List<XposedZip.Installer> listSamsungInstallers = new ArrayList<>();
+    private static final List<XposedZip.Installer> listHuaweiInstallers = new ArrayList<>();
 
-    private static List<XposedZip.Uninstaller> listOfficialUninstaller = new ArrayList<>();
-    private static List<XposedZip.Uninstaller> listSystemlessUninstallers = new ArrayList<>();
-    private static List<XposedZip.Uninstaller> listSamsungUninstallers = new ArrayList<>();
-    private static List<XposedZip.Uninstaller> listHuaweiUninstallers = new ArrayList<>();
+    private static final List<XposedZip.Uninstaller> listOfficialUninstaller = new ArrayList<>();
+    private static final List<XposedZip.Uninstaller> listSystemlessUninstallers = new ArrayList<>();
+    private static final List<XposedZip.Uninstaller> listSamsungUninstallers = new ArrayList<>();
+    private static final List<XposedZip.Uninstaller> listHuaweiUninstallers = new ArrayList<>();
 
-    private CustomViewPager mPager;
+    private ViewPager mPager;
+    private TabLayout mTabLayout;
+    private ProgressBar mProgress;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_advanced_installer, container, false);
-        mPager = (CustomViewPager) view.findViewById(R.id.pager);
-        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+        mPager = (ViewPager) view.findViewById(R.id.pager);
+        mTabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
+        mProgress = (ProgressBar) view.findViewById(R.id.progressBar);
 
-        mPager.setSwipeable(false);
-        mPager.setAdapter(new TabsAdapter(getChildFragmentManager(), false));
-        tabLayout.setBackgroundColor(XposedApp.getColor(getContext()));
-        tabLayout.setupWithViewPager(mPager);
+        mTabLayout.setBackgroundColor(XposedApp.getColor(getContext()));
 
         new JSONParser().execute();
 
@@ -86,7 +86,80 @@ public class AdvancedInstallerFragment extends Fragment {
 
     }
 
+    public static class SystemlessInstaller extends BaseAdvancedInstaller {
+
+        @Override
+        protected List<XposedZip.Installer> installers() {
+            return listSystemlessInstallers;
+        }
+
+        @Override
+        protected List<XposedZip.Uninstaller> uninstallers() {
+            return listSystemlessUninstallers;
+        }
+
+        @Override
+        protected int compatibility() {
+            return R.string.systemless_compatibility;
+        }
+
+        @Override
+        protected int incompatibility() {
+            return R.string.no_incompatibility;
+        }
+
+    }
+
+    public static class SamsungInstaller extends BaseAdvancedInstaller {
+
+        @Override
+        protected List<XposedZip.Installer> installers() {
+            return listSamsungInstallers;
+        }
+
+        @Override
+        protected List<XposedZip.Uninstaller> uninstallers() {
+            return listSamsungUninstallers;
+        }
+
+        @Override
+        protected int compatibility() {
+            return R.string.samsung_compatibility;
+        }
+
+        @Override
+        protected int incompatibility() {
+            return R.string.samsung_incompatibility;
+        }
+
+    }
+
+    public static class HuaweiInstaller extends BaseAdvancedInstaller {
+
+        @Override
+        protected List<XposedZip.Installer> installers() {
+            return listHuaweiInstallers;
+        }
+
+        @Override
+        protected List<XposedZip.Uninstaller> uninstallers() {
+            return listHuaweiUninstallers;
+        }
+
+        @Override
+        protected int compatibility() {
+            return R.string.huawei_compatibility;
+        }
+
+        @Override
+        protected int incompatibility() {
+            return R.string.huawei_incompatibility;
+        }
+
+    }
+
     private class JSONParser extends AsyncTask<Void, Void, Boolean> {
+
         @Override
         protected Boolean doInBackground(Void... params) {
             try {
@@ -150,11 +223,18 @@ public class AdvancedInstallerFragment extends Fragment {
 
                 for (XposedZip.Uninstaller u : uninstallers) {
                     String name = u.name;
-                    if (name.contains("wanam")) {
-                        listSamsungUninstallers.add(u);
+                    if (Build.VERSION.SDK_INT < 21) {
+                        if (name.contains("disabler")) {
+                            listOfficialUninstaller.add(u);
+                            break;
+                        }
                     } else {
-                        listOfficialUninstaller.add(u);
-                        listHuaweiUninstallers.add(u);
+                        if (name.contains("wanam")) {
+                            listSamsungUninstallers.add(u);
+                        } else {
+                            listOfficialUninstaller.add(u);
+                            listHuaweiUninstallers.add(u);
+                        }
                     }
                 }
                 return true;
@@ -168,21 +248,22 @@ public class AdvancedInstallerFragment extends Fragment {
         protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
 
-            mPager.setAdapter(new TabsAdapter(getChildFragmentManager(), false));
+            mProgress.setVisibility(View.GONE);
+
+            mPager.setAdapter(new TabsAdapter(getChildFragmentManager(), !result));
+            mTabLayout.setupWithViewPager(mPager);
         }
     }
 
     class TabsAdapter extends FragmentPagerAdapter {
-        /*
-                String[] tabsTitles = new String[]{getString(R.string.status), getString(R.string.official),
-                        getString(R.string.systemless), getString(R.string.samsung), getString(R.string.huawei)};
-        */
-        String[] tabsTitles = new String[]{getString(R.string.status), getString(R.string.official)};
+
+        String[] tabsTitles = new String[]{getString(R.string.status), getString(R.string.official),
+                getString(R.string.systemless), getString(R.string.samsung), getString(R.string.huawei)};
 
         public TabsAdapter(FragmentManager mgr, boolean lock) {
             super(mgr);
             if (lock) {
-                tabsTitles = new String[]{tabsTitles[0]};
+                tabsTitles = Build.VERSION.SDK_INT < 21 ? new String[]{tabsTitles[0], tabsTitles[1]} : new String[]{tabsTitles[0]};
             }
         }
 
@@ -191,10 +272,22 @@ public class AdvancedInstallerFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            Fragment fragment = new DownloadFragment();
+            Fragment fragment = null;
             switch (position) {
                 case 0:
+                    fragment = new StatusInstallerFragment();
+                    break;
+                case 1:
                     fragment = new OfficialInstaller();
+                    break;
+                case 2:
+                    fragment = new SystemlessInstaller();
+                    break;
+                case 3:
+                    fragment = new SamsungInstaller();
+                    break;
+                case 4:
+                    fragment = new HuaweiInstaller();
                     break;
             }
             return fragment;

@@ -334,8 +334,15 @@
     <string name="systemless">Systemless</string>
     <string name="samsung">Samsung</string>
     <string name="huawei">Huawei</string>
-    <string name="official_compatibility">All AOSP ROM, Nexus devices, LG devices, Asus devices</string>
-    <string name="official_incompatibility">Samsung ROMS</string>
+    <string name="official_compatibility">All AOSP ROM, Nexus, LG, HTC, Asus devices</string>
+    <string name="official_incompatibility">Samsung ROMs</string>
+    <string name="systemless_compatibility">All AOSP-based ROMs, Samsung ROMs, LG, HTC, Asus devices</string>
+    <string name="samsung_compatibility">Only Samsung ROMs. \n<b>Note: alt</b> version is for Samsung Note phones</string>
+    <string name="samsung_incompatibility">All other ROMs</string>
+    <string name="huawei_compatibility">Only Huawei ROMs</string>
+    <string name="huawei_incompatibility">All other ROMs</string>
+    <string name="compatibility">Compatibility</string>
+    <string name="no_incompatibility">No incompatibility</string>
 
 
 </resources>
