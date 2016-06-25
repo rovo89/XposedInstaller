@@ -15,7 +15,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
+import android.widget.LinearLayout;
 
+import de.robv.android.xposed.installer.advanced.AdvancedInstallerFragment;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
@@ -36,6 +41,7 @@ public class WelcomeActivity extends XposedBaseActivity
     private int mPrevSelectedId;
     private NavigationView mNavigationView;
     private int mSelectedId;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +50,7 @@ public class WelcomeActivity extends XposedBaseActivity
         setContentView(R.layout.activity_welcome);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
@@ -115,12 +121,13 @@ public class WelcomeActivity extends XposedBaseActivity
     }
 
     private void navigate(final int itemId) {
+        final View elevation = findViewById(R.id.elevation);
         Fragment navFragment = null;
         switch (itemId) {
             case R.id.drawer_item_1:
                 mPrevSelectedId = itemId;
                 setTitle(R.string.app_name);
-                navFragment = new InstallerFragment();
+                navFragment = new AdvancedInstallerFragment();
                 break;
             case R.id.drawer_item_2:
                 mPrevSelectedId = itemId;
@@ -151,14 +158,38 @@ public class WelcomeActivity extends XposedBaseActivity
                 return;
         }
 
+        final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(4));
+
         if (navFragment != null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
             try {
                 transaction.replace(R.id.content_frame, navFragment).commit();
+
+                if (elevation != null) {
+                    params.topMargin = navFragment instanceof AdvancedInstallerFragment ? dp(48) : 0;
+
+                    Animation a = new Animation() {
+                        @Override
+                        protected void applyTransformation(float interpolatedTime, Transformation t) {
+                            elevation.setLayoutParams(params);
+                        }
+                    };
+                    a.setDuration(150);
+                    elevation.startAnimation(a);
+                }
             } catch (IllegalStateException ignored) {
             }
         }
+    }
+
+    public int dp(float value) {
+        float density = getApplicationContext().getResources().getDisplayMetrics().density;
+
+        if (value == 0) {
+            return 0;
+        }
+        return (int) Math.ceil(density * value);
     }
 
     @Override

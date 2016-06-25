@@ -330,6 +330,12 @@
     <string name="skip_xposedminversion_check">Skip \'xposedminversion\' check</string>
     <string name="skip_xposedminversion_check_summ">Skip \'xposedminversion\' check for modules</string>
     <string name="detected_as">Detected SDK: %1$d, ARCH: %2$s</string>
+    <string name="official">Official</string>
+    <string name="systemless">Systemless</string>
+    <string name="samsung">Samsung</string>
+    <string name="huawei">Huawei</string>
+    <string name="official_compatibility">All AOSP ROM, Nexus devices, LG devices, Asus devices</string>
+    <string name="official_incompatibility">Samsung ROMS</string>
 
 
 </resources>
