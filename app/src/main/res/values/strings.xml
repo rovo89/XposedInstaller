@@ -325,6 +325,7 @@
     <string name="hour4">4 hours</string>
     <string name="hour5">5 hours</string>
     <string name="hour6">6 hours</string>
+    <string name="off">Off</string>
     <string name="hour24">Every day</string>
     <string name="confirm_reboots">Confirm reboots</string>
     <string name="skip_xposedminversion_check">Skip \'xposedminversion\' check</string>

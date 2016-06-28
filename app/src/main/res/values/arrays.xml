@@ -103,6 +103,7 @@
         <item>@string/hour5</item>
         <item>@string/hour6</item>
         <item>@string/hour24</item>
+        <item>@string/off</item>
     </string-array>
 
     <string-array name="update_values">
@@ -112,7 +113,7 @@
         <item>4</item>
         <item>5</item>
         <item>6</item>
-        <item>24</item>
+        <item>-1</item>
     </string-array>
 
 </resources>
