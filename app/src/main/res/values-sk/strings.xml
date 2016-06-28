@@ -325,6 +325,7 @@
     <string name="hour4">4 hod.</string>
     <string name="hour5">5 hod.</string>
     <string name="hour6">6 hod.</string>
+    <string name="off">Vyp.</string>
     <string name="hour24">Každý deň</string>
     <string name="confirm_reboots">Potvrdiť reštart</string>
     <string name="skip_xposedminversion_check">Preskočiť \'xposedminversion\' kontrolu</string>
