@@ -70,7 +70,7 @@ public class UpdateService extends Service {
     public void onDestroy() {
         super.onDestroy();
 
-        mTimer.cancel();
-        mTask.cancel();
+        if (mTimer != null) mTimer.cancel();
+        if (mTask != null) mTask.cancel();
     }
 }
