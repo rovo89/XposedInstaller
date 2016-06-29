@@ -55,7 +55,10 @@ public class UpdateService extends Service {
 
         SharedPreferences prefs = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
         int interval = Integer.parseInt(prefs.getString("update_service_interval", "3"));
-        if (interval == -1) return;
+        if (interval == -1) {
+            stopSelf();
+            return;
+        }
         mTimer = new Timer();
         mTimer.schedule(mTask, 2000, interval * 60 * 60 * 1000);
     }
