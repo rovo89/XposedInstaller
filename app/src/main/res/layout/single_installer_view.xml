@@ -12,6 +12,7 @@
         android:layout_marginTop="4dp"
         app:cardBackgroundColor="?attr/list_download_item_color"
         app:cardElevation="2dp"
+        android:layout_margin="8dp"
         app:cardUseCompatPadding="true">
 
         <RelativeLayout
@@ -104,10 +105,10 @@
                 android:id="@+id/textView4"
                 android:textAllCaps="true"
                 android:textStyle="bold"
-                android:layout_below="@+id/btnUninstall"
+                android:layout_below="@+id/author"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="5dp"/>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -151,6 +152,17 @@
                     android:gravity="center"/>
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/author"
+                android:id="@+id/author"
+                android:layout_below="@+id/btnUninstall"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textStyle="italic"/>
 
         </RelativeLayout>
 

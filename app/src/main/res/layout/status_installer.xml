@@ -90,6 +90,43 @@
 
             </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
+                app:cardBackgroundColor="?attr/list_download_item_color"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:id="@+id/installers_uninstallers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp">
+
+                    <ImageView
+                        android:id="@+id/errorIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_alert_warning"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/errorTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/errorIcon"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/loadingError"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:visibility="gone"/>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
         </LinearLayout>
 
     </LinearLayout>

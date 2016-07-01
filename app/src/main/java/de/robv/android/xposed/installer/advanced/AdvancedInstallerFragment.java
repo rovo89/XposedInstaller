@@ -46,6 +46,7 @@ public class AdvancedInstallerFragment extends Fragment {
     private ViewPager mPager;
     private TabLayout mTabLayout;
     private ProgressBar mProgress;
+    private int thisSdkCount = 0;
 
     @Nullable
     @Override
@@ -84,6 +85,11 @@ public class AdvancedInstallerFragment extends Fragment {
             return R.string.official_incompatibility;
         }
 
+        @Override
+        protected CharSequence author() {
+            return "rovo89";
+        }
+
     }
 
     public static class SystemlessInstaller extends BaseAdvancedInstaller {
@@ -106,6 +112,11 @@ public class AdvancedInstallerFragment extends Fragment {
         @Override
         protected int incompatibility() {
             return R.string.no_incompatibility;
+        }
+
+        @Override
+        protected CharSequence author() {
+            return "topjohnwu";
         }
 
     }
@@ -132,6 +143,11 @@ public class AdvancedInstallerFragment extends Fragment {
             return R.string.samsung_incompatibility;
         }
 
+        @Override
+        protected CharSequence author() {
+            return "wanam";
+        }
+
     }
 
     public static class HuaweiInstaller extends BaseAdvancedInstaller {
@@ -154,6 +170,11 @@ public class AdvancedInstallerFragment extends Fragment {
         @Override
         protected int incompatibility() {
             return R.string.huawei_incompatibility;
+        }
+
+        @Override
+        protected CharSequence author() {
+            return "SolarWarez";
         }
 
     }
@@ -208,6 +229,7 @@ public class AdvancedInstallerFragment extends Fragment {
 
                 for (XposedZip.Installer i : installers) {
                     if (Build.VERSION.SDK_INT == i.sdk) {
+                        thisSdkCount++;
                         String name = i.name;
                         if (name.contains("systemless")) {
                             listSystemlessInstallers.add(i);
@@ -231,7 +253,7 @@ public class AdvancedInstallerFragment extends Fragment {
                     } else {
                         if (name.contains("wanam")) {
                             listSamsungUninstallers.add(u);
-                        } else {
+                        } else if (!name.contains("disabler")) {
                             listOfficialUninstaller.add(u);
                             listHuaweiUninstallers.add(u);
                         }
@@ -248,6 +270,10 @@ public class AdvancedInstallerFragment extends Fragment {
         protected void onPostExecute(Boolean result) {
             super.onPostExecute(result);
 
+            if (!result) {
+                thisSdkCount = Integer.MAX_VALUE;
+            }
+
             mProgress.setVisibility(View.GONE);
 
             mPager.setAdapter(new TabsAdapter(getChildFragmentManager(), !result));
@@ -262,8 +288,11 @@ public class AdvancedInstallerFragment extends Fragment {
 
         public TabsAdapter(FragmentManager mgr, boolean lock) {
             super(mgr);
+            if (Build.VERSION.SDK_INT < 21) {
+                tabsTitles = new String[]{tabsTitles[0], tabsTitles[1]};
+            }
             if (lock) {
-                tabsTitles = Build.VERSION.SDK_INT < 21 ? new String[]{tabsTitles[0], tabsTitles[1]} : new String[]{tabsTitles[0]};
+                tabsTitles = new String[]{tabsTitles[0]};
             }
         }
 
@@ -275,7 +304,7 @@ public class AdvancedInstallerFragment extends Fragment {
             Fragment fragment = null;
             switch (position) {
                 case 0:
-                    fragment = new StatusInstallerFragment();
+                    fragment = StatusInstallerFragment.newInstance(thisSdkCount);
                     break;
                 case 1:
                     fragment = new OfficialInstaller();

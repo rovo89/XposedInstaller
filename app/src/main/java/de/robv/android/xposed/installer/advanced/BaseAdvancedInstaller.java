@@ -24,10 +24,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -46,13 +43,10 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
     private static final int INSTALL_MODE_NORMAL = 0;
     private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
     private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
-    private static final String BINARIES_FOLDER = AssetUtil.getBinariesFolder();
     private RootUtil mRootUtil = new RootUtil();
     private Button mClickedButton;
     private List<String> messages;
-    private boolean isCompatible;
-    private LinkedList<String> mCompatibilityErrors = new LinkedList<>();
-    private String APP_PROCESS_NAME = null;
+    public static String APP_PROCESS_NAME = null;
 
     @Nullable
     @Override
@@ -67,6 +61,7 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         ImageView infoUninstaller = (ImageView) view.findViewById(R.id.infoUninstaller);
         TextView compatibleTv = (TextView) view.findViewById(R.id.compatibilityTv);
         TextView incompatibleTv = (TextView) view.findViewById(R.id.incompatibilityTv);
+        TextView author = (TextView) view.findViewById(R.id.author);
 
         chooserInstallers.setAdapter(new XposedZip.MyAdapter<>(getContext(), installers()));
         chooserUninstallers.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers()));
@@ -142,20 +137,10 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
             }
         });
 
-        isCompatible = true;
-        if (Build.VERSION.SDK_INT == 15) {
-            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk15";
-            isCompatible = checkCompatibility();
-        } else if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT <= 18) {
-            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
-            isCompatible = checkCompatibility();
-        } else if (Build.VERSION.SDK_INT == 19) {
-            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk19";
-            isCompatible = checkCompatibility();
-        }
 
         compatibleTv.setText(compatibility());
         incompatibleTv.setText(incompatibility());
+        author.setText(getString(R.string.author, author()));
 
         return view;
     }
@@ -214,16 +199,6 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
                 .negativeText(android.R.string.no).callback(yesHandler).show();
     }
 
-    protected abstract List<XposedZip.Installer> installers();
-
-    protected abstract List<XposedZip.Uninstaller> uninstallers();
-
-    @StringRes
-    protected abstract int compatibility();
-
-    @StringRes
-    protected abstract int incompatibility();
-
     private boolean startShell() {
         if (mRootUtil.startShell())
             return true;
@@ -277,53 +252,9 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
                 .negativeText(android.R.string.no).callback(callback).show();
     }
 
-    private boolean checkCompatibility() {
-        mCompatibilityErrors.clear();
-        return checkAppProcessCompatibility();
-    }
-
-    private boolean checkAppProcessCompatibility() {
-        try {
-            if (APP_PROCESS_NAME == null)
-                return false;
-
-            File testFile = AssetUtil.writeAssetToCacheFile(APP_PROCESS_NAME, "app_process", 00700);
-            if (testFile == null) {
-                mCompatibilityErrors.add("could not write app_process to cache");
-                return false;
-            }
-
-            Process p = Runtime.getRuntime().exec(new String[]{testFile.getAbsolutePath(), "--xposedversion"});
-
-            BufferedReader stdout = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String result = stdout.readLine();
-            stdout.close();
-
-            BufferedReader stderr = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-            String errorLine;
-            while ((errorLine = stderr.readLine()) != null) {
-                mCompatibilityErrors.add(errorLine);
-            }
-            stderr.close();
-
-            p.destroy();
-
-            testFile.delete();
-            return result != null && result.startsWith("Xposed version: ");
-        } catch (IOException e) {
-            mCompatibilityErrors.add(e.getMessage());
-            return false;
-        }
-    }
 
     private boolean prepareAutoFlash(List<String> messages, File file) {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
-            if (!isCompatible) {
-                messages.addAll(mCompatibilityErrors);
-                messages.add(String.format(getString(R.string.phone_not_compatible), Build.VERSION.SDK_INT, Build.CPU_ABI));
-                return false;
-            }
-
             File appProcessFile = AssetUtil.writeAssetToFile(APP_PROCESS_NAME, new File(XposedApp.BASE_DIR + "bin/app_process"), 00700);
             if (appProcessFile == null) {
                 showAlert(getString(R.string.file_extract_failed, "app_process"));
@@ -430,4 +361,15 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         return false;
     }
 
+    protected abstract List<XposedZip.Installer> installers();
+
+    protected abstract List<XposedZip.Uninstaller> uninstallers();
+
+    @StringRes
+    protected abstract int compatibility();
+
+    @StringRes
+    protected abstract int incompatibility();
+
+    protected abstract CharSequence author();
 }

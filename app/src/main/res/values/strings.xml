@@ -343,6 +343,7 @@
     <string name="huawei_incompatibility">All other ROMs</string>
     <string name="compatibility">Compatibility</string>
     <string name="no_incompatibility">No incompatibility</string>
+    <string name="author">author: %s</string>
 
 
 </resources>
