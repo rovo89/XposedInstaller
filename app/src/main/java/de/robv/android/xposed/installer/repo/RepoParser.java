@@ -52,6 +52,7 @@ public class RepoParser {
             @Override
             public Drawable getDrawable(String source) {
                 LevelListDrawable d = new LevelListDrawable();
+                @SuppressWarnings("deprecation")
                 Drawable empty = c.getResources().getDrawable(R.drawable.ic_no_image);
                 d.addLevel(0, 0, empty);
                 assert empty != null;
@@ -159,7 +160,7 @@ public class RepoParser {
                     String label = parser.getAttributeValue(NS, "label");
                     String role = parser.getAttributeValue(NS, "role");
                     String value = parser.nextText();
-                    module.moreInfo.add(new Pair<String, String>(label, value));
+                    module.moreInfo.add(new Pair<>(label, value));
 
                     if (role != null && role.contains("support"))
                         module.support = value;
@@ -276,6 +277,7 @@ public class RepoParser {
     protected void leave(int targetDepth) throws XmlPullParserException, IOException {
         Log.w(TAG, "leaving up to level " + targetDepth + ": " + parser.getPositionDescription());
         while (parser.getDepth() > targetDepth) {
+            //noinspection StatementWithEmptyBody
             while (parser.next() != XmlPullParser.END_TAG) {
                 // do nothing
             }
@@ -326,6 +328,7 @@ public class RepoParser {
                 Point size = new Point();
                 ((Activity) context).getWindowManager().getDefaultDisplay().getSize(size);
                 int multiplier = size.x / bitmap.getWidth();
+                if (multiplier <= 0) multiplier = 1;
                 levelListDrawable.addLevel(1, 1, d);
                 levelListDrawable.setBounds(0, 0, bitmap.getWidth() * multiplier, bitmap.getHeight() * multiplier);
                 levelListDrawable.setLevel(1);
