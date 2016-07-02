@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/help"
-        android:icon="@drawable/ic_help"
+        android:icon="@drawable/ic_nav_support"
         android:title="@string/help"
         app:showAsAction="always|withText"/>
 

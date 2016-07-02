@@ -38,9 +38,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:key="group_app"
-        android:title="@string/settings_group_app">
+    <PreferenceCategory android:title="@string/look_and_feel">
 
         <de.robv.android.xposed.installer.widget.IconListPreference
             android:defaultValue="0"
@@ -58,6 +56,26 @@
             android:key="theme"
             android:summary="%s"
             android:title="@string/settings_theme"/>
+
+        <Preference
+            android:key="colors"
+            android:title="@string/choose_color"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="nav_bar"
+            android:title="@string/nav_bar_coloration"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="colored_notification"
+            android:title="@string/notification_coloration"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="group_app"
+        android:title="@string/settings_group_app">
 
         <CheckBoxPreference
             android:defaultValue="true"
@@ -81,19 +99,6 @@
             android:key="snack_bar"
             android:title="@string/notify_module_update"/>
 
-        <Preference
-            android:key="colors"
-            android:title="@string/choose_color"/>
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="nav_bar"
-            android:title="@string/nav_bar_coloration"/>
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="colored_notification"
-            android:title="@string/notification_coloration"/>
 
         <CheckBoxPreference
             android:defaultValue="true"
@@ -113,7 +118,6 @@
             android:key="open_drawer"
             android:summary="@string/open_drawer_summ"
             android:title="@string/open_drawer"/>
-
 
     </PreferenceCategory>
 

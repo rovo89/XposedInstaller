@@ -84,7 +84,7 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_nav_support"/>
+                        android:src="@drawable/ic_help"/>
 
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -120,7 +120,7 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/ic_bug_report"/>
+                        android:src="@drawable/ic_nav_logs"/>
 
                     <LinearLayout
                         android:layout_width="fill_parent"

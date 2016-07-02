@@ -61,12 +61,26 @@ public class IconListPreference extends ListPreference {
 
             mEntryDrawables.add(d);
         }
+
+        setWidgetLayoutResource(R.layout.color_icon_preview);
     }
 
     protected ListAdapter createListAdapter() {
         final String selectedValue = getValue();
         int selectedIndex = findIndexOfValue(selectedValue);
         return new AppArrayAdapter(getContext(), R.layout.icon_preference_item, getEntries(), mEntryDrawables, selectedIndex);
+    }
+
+    @Override
+    protected void onBindView(View view) {
+        super.onBindView(view);
+
+        String selectedValue = getValue();
+        int selectedIndex = findIndexOfValue(selectedValue);
+
+        Drawable drawable = mEntryDrawables.get(selectedIndex);
+
+        ((ImageView) view.findViewById(R.id.preview)).setImageDrawable(drawable);
     }
 
     @Override

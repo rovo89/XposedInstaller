@@ -188,7 +188,6 @@
                         android:layout_marginTop="5dp"
                         android:layout_toLeftOf="@+id/infoUninstaller"
                         android:layout_toStartOf="@+id/infoUninstaller"
-                        android:layout_weight="1"
                         android:spinnerMode="dropdown"
                         android:visibility="gone"/>
 
@@ -200,7 +199,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_below="@+id/btnInstall"
-                        android:layout_gravity="center|right"
+                        android:layout_gravity="center|end"
                         android:layout_marginTop="5dp"
                         android:padding="5dp"
                         android:src="@drawable/ic_info"
@@ -232,6 +231,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/errorIcon"
                         android:layout_centerHorizontal="true"
+                        android:gravity="center"
                         android:text="@string/loadingError"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:visibility="gone"/>

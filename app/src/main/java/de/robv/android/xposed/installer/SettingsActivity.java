@@ -37,10 +37,10 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_container);
 
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -52,6 +52,8 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             ab.setTitle(R.string.nav_item_settings);
             ab.setDisplayHomeAsUpEnabled(true);
         }
+
+        setFloating(toolbar, 0);
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()

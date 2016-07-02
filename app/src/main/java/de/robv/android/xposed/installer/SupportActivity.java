@@ -22,10 +22,10 @@ public class SupportActivity extends XposedBaseActivity {
         ThemeUtil.setTheme(this);
         setContentView(R.layout.activity_container);
 
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -37,6 +37,8 @@ public class SupportActivity extends XposedBaseActivity {
             ab.setTitle(R.string.nav_item_support);
             ab.setDisplayHomeAsUpEnabled(true);
         }
+
+        setFloating(toolbar, 0);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.container, new SupportFragment()).commit();
