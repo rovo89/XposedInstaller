@@ -345,5 +345,7 @@
     <string name="no_incompatibility">No incompatibility</string>
     <string name="author">author: %s</string>
 
+    <string name="details">Details</string>
+    <string name="look_and_feel">Look and feel</string>
 
 </resources>

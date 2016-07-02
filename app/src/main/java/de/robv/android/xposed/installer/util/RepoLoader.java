@@ -366,6 +366,7 @@ public class RepoLoader {
                 Log.e(XposedApp.TAG, "RepoLoader -> Cannot load repository from " + url, t);
                 messages.add(mApp.getString(R.string.repo_load_failed, url,
                         t.getMessage()));
+                messages.add("Clear app data!!");
                 DownloadsUtil.clearCache(url);
 
             } finally {

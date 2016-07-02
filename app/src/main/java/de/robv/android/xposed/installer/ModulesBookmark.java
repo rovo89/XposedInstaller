@@ -71,6 +71,8 @@ public class ModulesBookmark extends XposedBaseActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        setFloating(toolbar, 0);
+
         container = findViewById(R.id.container);
 
         if (savedInstanceState == null) {

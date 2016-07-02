@@ -34,7 +34,6 @@ import de.robv.android.xposed.installer.repo.RepoDbDefinitions.OverviewColumnsIn
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
-import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
@@ -133,9 +132,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
 
                 Intent detailsIntent = new Intent(getActivity(), DownloadDetailsActivity.class);
                 detailsIntent.setData(Uri.fromParts("package", packageName, null));
-                detailsIntent.putExtra(NavUtil.FINISH_ON_UP_NAVIGATION, true);
                 startActivity(detailsIntent);
-                NavUtil.setTransitionSlideEnter(getActivity());
             }
         });
         mListView.setOnKeyListener(new View.OnKeyListener() {

@@ -88,7 +88,8 @@
         <activity
             android:name=".DownloadDetailsActivity"
             android:configChanges="orientation|screenSize"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.XposedInstaller.Transparent">
             <intent-filter>
                 <action android:name="de.robv.android.xposed.installer.DOWNLOAD_DETAILS"/>
 
@@ -108,10 +109,19 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
         </activity>
-        <activity android:name=".SettingsActivity"/>
-        <activity android:name=".SupportActivity"/>
-        <activity android:name=".AboutActivity"/>
-        <activity android:name=".ModulesBookmark"/>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:theme="@style/Theme.XposedInstaller.Transparent"/>
+        <activity
+            android:name=".SupportActivity"
+            android:theme="@style/Theme.XposedInstaller.Transparent"/>
+        <activity
+            android:name=".AboutActivity"
+            android:theme="@style/Theme.XposedInstaller.Transparent"/>
+        <activity
+            android:name=".ModulesBookmark"
+            android:theme="@style/Theme.XposedInstaller.Transparent"/>
 
         <receiver
             android:name=".receivers.PackageChangeReceiver"

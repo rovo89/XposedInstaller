@@ -9,7 +9,7 @@
             android:title="@string/nav_item_install"/>
         <item
             android:id="@+id/drawer_item_2"
-            android:icon="@drawable/ic_nav_moduals"
+            android:icon="@drawable/ic_nav_modules"
             android:title="@string/nav_item_modules"/>
         <item
             android:id="@+id/drawer_item_3"

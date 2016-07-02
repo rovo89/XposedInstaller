@@ -64,10 +64,10 @@ public class DownloadDetailsActivity extends XposedBaseActivity
         if (mModule != null) {
             setContentView(R.layout.activity_download_details);
 
-            Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(mToolbar);
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     finish();
@@ -75,10 +75,13 @@ public class DownloadDetailsActivity extends XposedBaseActivity
             });
 
             ActionBar ab = getSupportActionBar();
+
             if (ab != null) {
                 ab.setTitle(R.string.nav_item_download);
                 ab.setDisplayHomeAsUpEnabled(true);
             }
+
+            setFloating(toolbar, 0);
 
             setupTabs();
 
