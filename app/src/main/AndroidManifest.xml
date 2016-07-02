@@ -88,6 +88,7 @@
         <activity
             android:name=".DownloadDetailsActivity"
             android:configChanges="orientation|screenSize"
+            android:theme="@style/Theme.XposedInstaller.Transparent"
             android:exported="true">
             <intent-filter>
                 <action android:name="de.robv.android.xposed.installer.DOWNLOAD_DETAILS"/>

@@ -334,6 +334,7 @@ public class RepoParser {
                 levelListDrawable.setLevel(1);
                 t.setText(t.getText());
             } catch (Exception e) { /* Like a null bitmap, etc. */
+                Log.d(TAG, e.getMessage());
             }
         }
     }

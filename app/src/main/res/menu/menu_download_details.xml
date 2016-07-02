@@ -5,20 +5,20 @@
 
     <item
         android:id="@+id/menu_bookmark"
-        app:showAsAction="ifRoom|withText"
+        app:showAsAction="ifRoom"
         tools:ignore="MenuTitle"/>
 
     <item
         android:id="@+id/menu_share"
         android:icon="@drawable/ic_action_share"
         android:title="@string/share"
-        app:showAsAction="ifRoom|withText"/>
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/menu_refresh"
         android:icon="@drawable/ic_menu_refresh"
         android:title="@string/menuReload"
-        app:showAsAction="ifRoom|withText"/>
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/ignoreUpdate"

@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import java.util.List;
@@ -64,10 +65,10 @@ public class DownloadDetailsActivity extends XposedBaseActivity
         if (mModule != null) {
             setContentView(R.layout.activity_download_details);
 
-            Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
-            setSupportActionBar(mToolbar);
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     finish();
@@ -75,9 +76,24 @@ public class DownloadDetailsActivity extends XposedBaseActivity
             });
 
             ActionBar ab = getSupportActionBar();
+            boolean isTablet = getResources().getBoolean(R.bool.isTablet);
+
             if (ab != null) {
-                ab.setTitle(R.string.nav_item_download);
+                ab.setTitle(!isTablet ? R.string.nav_item_download : R.string.details);
                 ab.setDisplayHomeAsUpEnabled(true);
+            }
+
+            if (isTablet) {
+                WindowManager.LayoutParams params = getWindow().getAttributes();
+                params.height = getResources().getDimensionPixelSize(R.dimen.floating_height);
+                params.width = getResources().getDimensionPixelSize(R.dimen.floating_width);
+                params.alpha = 1.0f;
+                params.dimAmount = 0.6f;
+                params.flags |= 2;
+                getWindow().setAttributes(params);
+
+                toolbar.setNavigationIcon(R.drawable.ic_close);
+                setFinishOnTouchOutside(true);
             }
 
             setupTabs();

@@ -331,6 +331,6 @@
     <string name="skip_xposedminversion_check">Skip \'xposedminversion\' check</string>
     <string name="skip_xposedminversion_check_summ">Skip \'xposedminversion\' check for modules</string>
     <string name="detected_as">Detected SDK: %1$d, ARCH: %2$s</string>
-
+<string name="details">Details</string>
 
 </resources>
