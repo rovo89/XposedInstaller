@@ -331,5 +331,6 @@
     <string name="skip_xposedminversion_check">Preskočiť \'xposedminversion\' kontrolu</string>
     <string name="skip_xposedminversion_check_summ">Preskočiť \'xposedminversion\' kontrolu pre moduly</string>
     <string name="detected_as">Zistené SDK: %1$d, ARCH: %2$s</string>
+    <string name="details">Detaily</string>
 
 </resources>
