@@ -4,22 +4,22 @@
     <!-- General/various strings -->
     <string name="menuSend">Envoyer</string>
     <string name="menuSaveToSd">Sauver sur la carte SD</string>
-    <string name="xposed_not_active">"La dernière version d'Xposed est inactive. Avez-vous installé le framework et redémarré ?"</string>
+    <string name="xposed_not_active">"La dernière version d'Xposed est inactive. Avez-vous installé le Framework et redémarré ?"</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Bienvenue dans <b>l\'installateur Xposed</b> !\nVeuillez choisir ce que vous voulez faire:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Ici vous pouvez gérer le framework Xposed, qui est nécessaire au fonctionnement de n\'importe quel module.</string>
+    <string name="tabInstallDescription">Ici vous pouvez gérer le Framework Xposed, qui est nécessaire au fonctionnement de n\'importe quel module.</string>
     <string name="tabModules">Modules</string>
-    <string name="tabModulesDescription">Le framework en lui-même n\'apporte aucune fonctionnalité, vous avez besoin de modules pour ça. Dans cette section vous pouvez activer les modules après les avoir installé.</string>
+    <string name="tabModulesDescription">Le Framework en lui-même n\'apporte aucune fonctionnalité, vous avez besoin de modules pour ça. Dans cette section vous pouvez activer les modules après les avoir installé.</string>
     <string name="tabDownload">Téléchargements</string>
     <string name="tabDownloadDescription">Cette section vous donne accès à un dépôt de modules, vous pouvez donc chercher et télécharger ceux qui vous intéressent et les garder à jour.</string>
-    <string name="welcome_framework_update_available">Une mise à jour du framework Xposed est disponible.</string>
+    <string name="welcome_framework_update_available">Une mise à jour du Framework Xposed est disponible.</string>
     <string name="welcome_update_available">Des mises à jour pour vos modules sont disponibles.</string>
     <string name="tabSettings">Paramètres</string>
-    <string name="tabSettingsDescription">Allez dans cette section pour configurer l\'installateur Xposed et le framework.</string>
+    <string name="tabSettingsDescription">Allez dans cette section pour configurer l\'installateur Xposed et le Framework.</string>
     <string name="tabLogs">Journaux</string>
-    <string name="tabLogsDescription">Affiche et permet d\'enregistrer/envoyer les journaux du framework Xposed.</string>
+    <string name="tabLogsDescription">Affiche et permet d\'enregistrer/envoyer les journaux du Framework Xposed.</string>
     <string name="tabAbout">À propos</string>
     <string name="tabAboutDescription">Apprenez-en à propos des créateurs de Xposed, où vous pouvez obtenir du support pour cette application, etc&#8230;</string>
 
@@ -41,9 +41,9 @@
     <string name="reboot_confirmation">Voulez-vous redémarrer maintenant ?</string>
     <string name="reboot_recovery_confirmation">Voulez-vous redémarrer en recovery maintenant ?</string>
     <string name="install_warning_title">Soyez prudent !</string>
-    <string name="install_warning">Dans certains cas, votre appareil pourrait ne plus démarrer après avoir installé le framework Xposed.\n\nSi vous n\'avez jamais entendu parler de \"soft brick\" et de \"bootloop\" avant ou si vous ne savez pas comment récupérer d\'une telle situation, n\'installez <b>PAS</b> le framework Xposed !\n\nDans tous les cas, il est fortement recommandé d\'avoir une sauvegarde récente.</string>
+    <string name="install_warning">Dans certains cas, votre appareil pourrait ne plus démarrer après avoir installé le Framework Xposed.\n\nSi vous n\'avez jamais entendu parler de \"soft brick\" et de \"bootloop\" avant ou si vous ne savez pas comment récupérer d\'une telle situation, n\'installez <b>PAS</b> le Framework Xposed !\n\nDans tous les cas, il est fortement recommandé d\'avoir une sauvegarde récente.</string>
     <string name="dont_show_again">Ne plus afficher</string>
-    <string name="install_known_issue">Il semble y avoir un problème connu (\"%s\") avec votre ROM. Installer le framework Xposed pourrait ne pas fonctionner ou provoquer des problèmes. Appuyez ici pour plus de détails.</string>
+    <string name="install_known_issue">Il semble y avoir un problème connu (\"%s\") avec votre ROM. Installer le Framework Xposed pourrait ne pas fonctionner ou provoquer des problèmes. Appuyez ici pour plus de détails.</string>
     <string name="install_reverted">La version \"%1$s\" de app_process a été installée dernièrement, mais la version \"%2$s\" vient d\'être détectée. Si vous ne vous attendiez pas à voir l\'ancienne version restaurée, vous devriez tenter l\'installation via recovery (auto ou manuel).</string>
     <string name="uninstall_reverted">app_process a été désinstallé dernièrement, mais la version \"%s\" vient d\'être détectée. Si vous ne vous attendiez pas à voir l\'ancienne version restaurée, vous devriez tenter la désinstallation via recovery (auto ou manuel).</string>
     <string name="tap_to_dismiss">Appuyez pour masquer</string>
@@ -142,7 +142,7 @@
     <string name="settings_disable_resources">Désactiver \"resource hooks\"</string>
     <string name="settings_disable_resources_summary">Solution pour éviter les conflits avec les moteurs de thème\n<b>ATTENTION:</b> Les modules qui essaient de modifier les ressources ne fonctionneront pas si vous activez ceci.</string>
     <string name="settings_performance_experiment">Expérimentation pour les performances</string>
-    <string name="settings_performance_experiment_summary">Si vous activez ceci, les performances de votre système peuvent être améliorées, diminuées ou rester identiques. N`hésitez pas à essayer et à nous rapporter les effets obtenus (ou s\'il n\'y en a pas eu). Vous devez réinstaller le framework et redémarrer après avoir changé ce paramètre.</string>
+    <string name="settings_performance_experiment_summary">Si vous activez ceci, les performances de votre système peuvent être améliorées, diminuées ou rester identiques. N`hésitez pas à essayer et à nous rapporter les effets obtenus (ou s\'il n\'y en a pas eu). Vous devez réinstaller le Framework et redémarrer après avoir changé ce paramètre.</string>
     <string name="settings_group_app">Application</string>
     <string name="settings_theme">Thème</string>
     <string name="settings_theme_light">Clair</string>

@@ -9,17 +9,17 @@
     <!-- Welcome screen / main sections -->
     <string name="welcome">Ласкаво просимо до <b>Xposed Installer</b>!\nОберіть, будь-ласка, що Ви хочете зробити:</string>
     <string name="tabInstall">Фреймворк</string>
-    <string name="tabInstallDescription">Тут ви можете керувати налаштуваннями Xposed framework, необхідними для роботи модулів.</string>
+    <string name="tabInstallDescription">Тут ви можете керувати налаштуваннями Xposed Framework, необхідними для роботи модулів.</string>
     <string name="tabModules">Модулі</string>
     <string name="tabModulesDescription">Сам Фреймворк не додає ніяких функцій - він лише надає таку можливість окремим модулям, які Ви можете встановити. В цьому розділі Ви можете активувати встановлені модулі.</string>
     <string name="tabDownload">Звантаження</string>
     <string name="tabDownloadDescription">В цьому розділі Ви маєте доступ до репозитарію модулів, тож тепер Ви можете шукати та звантажувати саме необхідні Вам модулі та підтримувати їх в оновленому стані.</string>
-    <string name="welcome_framework_update_available">Є оновлення для Xposed framework (%s).</string>
+    <string name="welcome_framework_update_available">Є оновлення для Xposed Framework (%s).</string>
     <string name="welcome_update_available">Є оновлення для модулів.</string>
     <string name="tabSettings">Налаштування</string>
     <string name="tabSettingsDescription">Заходьте у цей розділ для налаштування Xposed Installer та Фреймворку.</string>
     <string name="tabLogs">Журнал</string>
-    <string name="tabLogsDescription">Перегляд, збереження та відправка журналу Xposed framework.</string>
+    <string name="tabLogsDescription">Перегляд, збереження та відправка журналу Xposed Framework.</string>
     <string name="tabAbout">Про додаток</string>
     <string name="tabAboutDescription">Дізнайтеся про людей, що створили Xposed, де отримати підтримку щодо цього додатку та інше.</string>
 

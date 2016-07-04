@@ -222,7 +222,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/textView"
                         android:layout_centerHorizontal="true"
-                        android:src="@drawable/ic_alert_warning"
+                        android:src="@drawable/ic_no_connection"
                         android:visibility="gone"/>
 
                     <TextView

@@ -4,22 +4,22 @@
     <!-- General/various strings -->
     <string name="menuSend">Gửi</string>
     <string name="menuSaveToSd">Lưu vào thẻ SD</string>
-    <string name="xposed_not_active">Phiên bản mới nhất của Xposed chưa hoạt động. Bạn đã cài framework và khởi động lại chưa?</string>
+    <string name="xposed_not_active">Phiên bản mới nhất của Xposed chưa hoạt động. Bạn đã cài Framework và khởi động lại chưa?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Chào mừng bạn đến với <b>Xposed Installer</b>!\nVui lòng chọn một trong các mục sau:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Quản lý framework của Xposed, cần để các module hoạt động.</string>
+    <string name="tabInstallDescription">Quản lý Framework của Xposed, cần để các module hoạt động.</string>
     <string name="tabModules">Module</string>
-    <string name="tabModulesDescription">Bản thân framework không thêm tính năng gì. Bạn cần sử dụng các module. Trong mục này bạn có thể kích hoạt các module sau khi cài đặt chúng.</string>
+    <string name="tabModulesDescription">Bản thân Framework không thêm tính năng gì. Bạn cần sử dụng các module. Trong mục này bạn có thể kích hoạt các module sau khi cài đặt chúng.</string>
     <string name="tabDownload">Tải xuống</string>
     <string name="tabDownloadDescription">Mục này cho phép bạn truy cập vào kho module để tìm kiếm, tải về thiết bị và cập nhật chúng.</string>
-    <string name="welcome_framework_update_available">Đã có bản mới cho framework của Xposed (%s).</string>
+    <string name="welcome_framework_update_available">Đã có bản mới cho Framework của Xposed (%s).</string>
     <string name="welcome_update_available">Một hoặc nhiều module có phiên bản mới.</string>
     <string name="tabSettings">Thiết lập</string>
-    <string name="tabSettingsDescription">Vào mục này để thiết lập Xposed Installer và framework.</string>
+    <string name="tabSettingsDescription">Vào mục này để thiết lập Xposed Installer và Framework.</string>
     <string name="tabLogs">Nhật ký</string>
-    <string name="tabLogsDescription">Hiển thị và lưu/gửi các bản ghi nhật ký của framework của Xposed.</string>
+    <string name="tabLogsDescription">Hiển thị và lưu/gửi các bản ghi nhật ký của Framework của Xposed.</string>
     <string name="tabAbout">Giới thiệu</string>
     <string name="tabAboutDescription">Xem thông tin về các tác giả của Xposed, nơi tìm kiếm trợ giúp, vv&#8230;</string>
 
@@ -142,7 +142,7 @@
     <string name="settings_disable_resources">Ngắt các kết nối tài nguyên</string>
     <string name="settings_disable_resources_summary">Tránh xung đột với các máy giao diện\n<b>CẢNH BÁO:</b> Các module cần thay đổi tài nguyên sẽ không hoạt động khi bật tính năng này.</string>
     <string name="settings_performance_experiment">Thử nghiệm hiệu năng</string>
-    <string name="settings_performance_experiment_summary">Nếu bật tính năng này, hiệu năng hệ thống của bạn có thể tăng, giảm, hoặc giữ nguyên như cũ.  Nếu muốn, hãy thử và cho chúng tôi biết kết quả (ngay cả khi không thấy có thay đổi gì). Bạn phải cài lại framework và khởi động lại sau khi thay đổi tuỳ chọn này.</string>
+    <string name="settings_performance_experiment_summary">Nếu bật tính năng này, hiệu năng hệ thống của bạn có thể tăng, giảm, hoặc giữ nguyên như cũ.  Nếu muốn, hãy thử và cho chúng tôi biết kết quả (ngay cả khi không thấy có thay đổi gì). Bạn phải cài lại Framework và khởi động lại sau khi thay đổi tuỳ chọn này.</string>
     <string name="settings_group_app">Ứng dụng</string>
     <string name="settings_theme">Kiểu giao diện</string>
     <string name="settings_theme_light">Sáng</string>

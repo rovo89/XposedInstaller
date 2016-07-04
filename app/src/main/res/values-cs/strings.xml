@@ -4,14 +4,14 @@
     <!-- General/various strings -->
     <string name="menuSend">Odeslat</string>
     <string name="menuSaveToSd">Uložit na SD kartu</string>
-    <string name="xposed_not_active">Poslední verze Xposed frameworku není aktivní. Byl framework nainstalován a zařízení restartováno?</string>
+    <string name="xposed_not_active">Poslední verze Xposed frameworku není aktivní. Byl Framework nainstalován a zařízení restartováno?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Vítejte v <b>Instalátoru Xposed</b>!\nZvolte z následujícího:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Zde je možné spravovat Xposed framework, který je vyžadován pro funkci modulů.</string>
+    <string name="tabInstallDescription">Zde je možné spravovat Xposed Framework, který je vyžadován pro funkci modulů.</string>
     <string name="tabModules">Moduly</string>
-    <string name="tabModulesDescription">Samotný framework nepřidává žádnou funkcionalitu. K tomu jsou potřeba moduly. V této sekci je možné je po jejich instalaci aktivovat.</string>
+    <string name="tabModulesDescription">Samotný Framework nepřidává žádnou funkcionalitu. K tomu jsou potřeba moduly. V této sekci je možné je po jejich instalaci aktivovat.</string>
     <string name="tabDownload">Stáhnout</string>
     <string name="tabDownloadDescription">Tato sekce slouží pro přístup k repozitáři modulů. Zde je možné moduly vyhledávat, stahovat a udržovat jejich aktuální verze.</string>
     <string name="welcome_framework_update_available">Aktualizace Xposed frameworku je k dispozici (%s).</string>
@@ -61,9 +61,9 @@
     <string name="uninstall_reverted">app_process byl naposledy odinstalován, v zařízení však nyní byla detekována verze \"%s\". Pokud jste neobnovovali starší verzi souboru, zkuste odinstalaci pomocí recovery (automaticky nebo ručně)..</string>
     <string name="tap_to_dismiss">Zavřít</string>
     <string name="sdcard_location">SD karta: %s</string>
-    <string name="installation_lollipop">Xposed framework není nainstalován. Stáhněte prosím z XDA nejnovější soubor ZIP a nainstalujte jej ručně pomocí recovery.</string>
-    <string name="installed_lollipop">Xposed framework verze %s je aktivní.</string>
-    <string name="installed_lollipop_inactive">Xposed framework verze %s je nainstalován, ale není aktivní. Prosím zkontrolujte log pro podrobnosti.</string>
+    <string name="installation_lollipop">Xposed Framework není nainstalován. Stáhněte prosím z XDA nejnovější soubor ZIP a nainstalujte jej ručně pomocí recovery.</string>
+    <string name="installed_lollipop">Xposed Framework verze %s je aktivní.</string>
+    <string name="installed_lollipop_inactive">Xposed Framework verze %s je nainstalován, ale není aktivní. Prosím zkontrolujte log pro podrobnosti.</string>
     <string name="modules_updates_available">Aktualizace modulu k dispozici</string>
 
     <!-- File operations -->
@@ -159,7 +159,7 @@
     <string name="settings_disable_resources">Zakázat ovlivňování prostředků</string>
     <string name="settings_disable_resources_summary">(Resource hooks)\nŘeší konflikty s tématy (theme engines).\n<b>VAROVÁNÍ:</b> Je-li aktivní, moduly měnící prostředky nebudou správně pracovat.</string>
     <string name="settings_performance_experiment">Výkonový experiment</string>
-    <string name="settings_performance_experiment_summary">Zapnutím této volby se rychlost systému může zvýšit, snížit, nebo zůstat stejná. Neváhejte ji vyzkoušet a dát vědět, který z efektů pozorujete (pokud se vůbec nějaký dostaví). Po změně této hodnoty je nutné přeinstalovat framework a restartovat.</string>
+    <string name="settings_performance_experiment_summary">Zapnutím této volby se rychlost systému může zvýšit, snížit, nebo zůstat stejná. Neváhejte ji vyzkoušet a dát vědět, který z efektů pozorujete (pokud se vůbec nějaký dostaví). Po změně této hodnoty je nutné přeinstalovat Framework a restartovat.</string>
     <string name="settings_group_app">Aplikace</string>
     <string name="settings_theme">Téma</string>
     <string name="settings_theme_light">Světlé</string>
@@ -170,7 +170,7 @@
     <!-- Support tab -->
     <string name="support_modules_label">Podpora pro jednotlivé moduly</string>
     <string name="support_modules_description">Podržte prst na kterémkoliv z modulů v seznamu nainstalovaných modulů a zvolte \"%1$s\".</string>
-    <string name="support_framework_label">Podpora pro framework/instalátor</string>
+    <string name="support_framework_label">Podpora pro Framework/instalátor</string>
     <string name="support_faq_label">FAQ/známé problémy</string>
     <string name="support_donate_label">Finanční příspěvek</string>
     <string name="support_donate_description">Pokud chcete poděkovat za Xposed, můžete rovo89 zaslat finanční příspěvek zde:</string>
@@ -274,8 +274,8 @@
     <string name="choose_icon">Zvolit ikonu</string>
     <string name="custom_icon">Vlastní ikona</string>
     <string name="installationForbidden">Instalace na tomto zařízení není možná. Pro instalaci Xposed skrze tuto aplikaci musí být v zařízení Android Lollipop nebo novější.</string>
-    <string name="installed_no_lollipop">Xposed framework je nainstalován.</string>
-    <string name="not_installed_no_lollipop">Xposed framework není nainstalován.</string>
+    <string name="installed_no_lollipop">Xposed Framework je nainstalován.</string>
+    <string name="not_installed_no_lollipop">Xposed Framework není nainstalován.</string>
     <string name="notify_module_update">Povolit oznámení o aktualizaci modulu</string>
 
 </resources>

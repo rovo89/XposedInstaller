@@ -4,22 +4,22 @@
     <!-- General/various strings -->
     <string name="menuSend">Αποστολή</string>
     <string name="menuSaveToSd">Αποθήκευση στην κάρτα SD</string>
-    <string name="xposed_not_active">Η τελευταία έκδοση του Xposed δεν είναι ενεργή προς το παρόν. Εγκαταστήσατε το framework και επανεκκινήσατε;</string>
+    <string name="xposed_not_active">Η τελευταία έκδοση του Xposed δεν είναι ενεργή προς το παρόν. Εγκαταστήσατε το Framework και επανεκκινήσατε;</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Καλώς ήρθατε στην <b>Εγκατάσταση του Xposed</b>!\nΠαρακαλώ διαλέξτε τι θέλετε να κάνετε:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Εδώ μπορείτε να διαχειριστείτε το Xposed framework, το οποίο είναι απαραίτητο για οποιοδήποτε module να δουλέψει.</string>
+    <string name="tabInstallDescription">Εδώ μπορείτε να διαχειριστείτε το Xposed Framework, το οποίο είναι απαραίτητο για οποιοδήποτε module να δουλέψει.</string>
     <string name="tabModules">Modules</string>
-    <string name="tabModulesDescription">Το framework δεν προσθέτει καμία λειτουργικότητα από μόνο του. Γι\' αυτό χρειάζεστε modules. Σε αυτό το τμήμα μπορείτε να ενεργοποιήσετε modules αφού τα εγκαταστήσετε πρώτα.</string>
+    <string name="tabModulesDescription">Το Framework δεν προσθέτει καμία λειτουργικότητα από μόνο του. Γι\' αυτό χρειάζεστε modules. Σε αυτό το τμήμα μπορείτε να ενεργοποιήσετε modules αφού τα εγκαταστήσετε πρώτα.</string>
     <string name="tabDownload">Κατέβασμα</string>
     <string name="tabDownloadDescription">Αυτό το τμήμα σας δίνει πρόσβαση σε ένα αποθετήριο (repository) modules, έτσι ώστε να μπορέσετε να ψάξετε και να κατεβάσετε όποια σας αρέσουν και να τα έχετε αναβαθμισμένα.</string>
-    <string name="welcome_framework_update_available">Μία αναβάθμιση για το Xposed framework είναι διαθέσιμη.</string>
+    <string name="welcome_framework_update_available">Μία αναβάθμιση για το Xposed Framework είναι διαθέσιμη.</string>
     <string name="welcome_update_available">Ένα ή περισσότερα update(s) για τα modules είναι διαθέσιμο/α.</string>
     <string name="tabSettings">Ρυθμίσεις</string>
-    <string name="tabSettingsDescription">Πηγαίνετε σε αυτό το τμήμα για να ρυθμίσετε την Εγκατάσταση του Xposed και του framework.</string>
+    <string name="tabSettingsDescription">Πηγαίνετε σε αυτό το τμήμα για να ρυθμίσετε την Εγκατάσταση του Xposed και του Framework.</string>
     <string name="tabLogs">Αρχεία Καταγραφής</string>
-    <string name="tabLogsDescription">Προβολή και αποθήκευση/αποστολή των αρχείων καταγραφής για το Xposed framework.</string>
+    <string name="tabLogsDescription">Προβολή και αποθήκευση/αποστολή των αρχείων καταγραφής για το Xposed Framework.</string>
     <string name="tabAbout">Σχετικά</string>
     <string name="tabAboutDescription">Μάθετε για τους ανθρώπους που δημιούργησαν το Xposed, πού θα βρείτε υποστήριξη για αυτήν την εφαρμογή κλπ.</string>
 
@@ -142,7 +142,7 @@
     <string name="settings_disable_resources">Απενεργοποίηση resource hooks</string>
     <string name="settings_disable_resources_summary">Χακεριά για συγκρούσεις με theming engines\n<b>ΠΡΟΣΟΧΗ:</b>Τα modules που προσπαθούν να αλλάξουν resources δεν θα δουλέψουν όταν αυτό είναι ενεργοποιημένο.</string>
     <string name="settings_performance_experiment">Πείραμα έπίδοσης</string>
-    <string name="settings_performance_experiment_summary">Αν ενεργοποιήσετε αυτήν την επιλογή, η επίδοση του συστήματος σας μπορεί είτε να μεγαλώσει, είτε να μικραίνει ή να μείνει ίδια. Δοκιμάστε το ελεύθερα και αναφέρετε τι αποτέλεσμα έχει (ή το ότι δεν έχει αποτέλεσμα). Μπορείτε να επαναεγκαταστήσετε το framework και να επανεκκινήσετε αφού αλλάξετε αυτήν την επιλογή.</string>
+    <string name="settings_performance_experiment_summary">Αν ενεργοποιήσετε αυτήν την επιλογή, η επίδοση του συστήματος σας μπορεί είτε να μεγαλώσει, είτε να μικραίνει ή να μείνει ίδια. Δοκιμάστε το ελεύθερα και αναφέρετε τι αποτέλεσμα έχει (ή το ότι δεν έχει αποτέλεσμα). Μπορείτε να επαναεγκαταστήσετε το Framework και να επανεκκινήσετε αφού αλλάξετε αυτήν την επιλογή.</string>
     <string name="settings_group_app">Εφαρμογή</string>
     <string name="settings_theme">Θέμα</string>
     <string name="settings_theme_light">Φωτεινό</string>

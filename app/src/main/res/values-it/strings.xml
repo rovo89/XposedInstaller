@@ -4,22 +4,22 @@
     <!-- General/various strings -->
     <string name="menuSend">Invia</string>
     <string name="menuSaveToSd">Salva sulla scheda SD</string>
-    <string name="xposed_not_active">L\'ultima versione di Xposed al momento non è attiva. Hai installato il framework e riavviato?</string>
+    <string name="xposed_not_active">L\'ultima versione di Xposed al momento non è attiva. Hai installato il Framework e riavviato?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Benvenuto in <b>Xposed Installer</b>!\nScegli cosa desideri fare:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Qui puoi gestire il framework Xposed, richiesto da ogni modulo per poter funzionare.</string>
+    <string name="tabInstallDescription">Qui puoi gestire il Framework Xposed, richiesto da ogni modulo per poter funzionare.</string>
     <string name="tabModules">Moduli</string>
-    <string name="tabModulesDescription">Il framework in sé non aggiunge alcuna funzionalità. È necessario installare i moduli per farlo. In questa sezione puoi attivare i moduli dopo averli installati.</string>
+    <string name="tabModulesDescription">Il Framework in sé non aggiunge alcuna funzionalità. È necessario installare i moduli per farlo. In questa sezione puoi attivare i moduli dopo averli installati.</string>
     <string name="tabDownload">Download</string>
     <string name="tabDownloadDescription">Questa sezione fornisce l\'accesso ad un repository di moduli, è quindi possibile cercare e scaricare quelli che preferisci e mantenerli aggiornati.</string>
-    <string name="welcome_framework_update_available">È disponibile un aggiornamento per il framework Xposed.</string>
+    <string name="welcome_framework_update_available">È disponibile un aggiornamento per il Framework Xposed.</string>
     <string name="welcome_update_available">Uno o più aggiornamenti per moduli sono disponibili.</string>
     <string name="tabSettings">Impostazioni</string>
-    <string name="tabSettingsDescription">In questa sezione è possibile configurare Xposed Installer ed il framework.</string>
+    <string name="tabSettingsDescription">In questa sezione è possibile configurare Xposed Installer ed il Framework.</string>
     <string name="tabLogs">Log</string>
-    <string name="tabLogsDescription">Mostra e salva/invia log di Xposed framework.</string>
+    <string name="tabLogsDescription">Mostra e salva/invia log di Xposed Framework.</string>
     <string name="tabAbout">Informazioni</string>
     <string name="tabAboutDescription">Qui è possibile conoscere chi ha creato Xposed, come richiedere supporto, ecc.</string>
 
@@ -48,9 +48,9 @@
     <string name="uninstall_reverted">app_process è stato disinstallato precedentemente ma la versione \"%s\" è stata trovata ora. Se non si deve ripristinare un vecchio file puoi provare ad installare via recovery (automaticamente o manualmente).</string>
     <string name="tap_to_dismiss">Tocca per chiudere</string>
     <string name="sdcard_location">Scheda SD: %s</string>
-    <string name="installation_lollipop">Xposed framework non è installato. Perfavore scarica l\'ultimo ZIP file da XDA e installalo manualmente in recovery.</string>
-    <string name="installed_lollipop">La versione di Xposed framework attiva è: %s.</string>
-    <string name="installed_lollipop_inactive">La versione di Xposed framework installata è %s, ma non è attiva. Perfavore controlla i log per dettagli.</string>
+    <string name="installation_lollipop">Xposed Framework non è installato. Perfavore scarica l\'ultimo ZIP file da XDA e installalo manualmente in recovery.</string>
+    <string name="installed_lollipop">La versione di Xposed Framework attiva è: %s.</string>
+    <string name="installed_lollipop_inactive">La versione di Xposed Framework installata è %s, ma non è attiva. Perfavore controlla i log per dettagli.</string>
 
     <!-- File operations -->
     <string name="root_failed">Impossibile ottenere l\'accesso root.\n\nAssicurati di avere correttamente i permessi e di non aver bloccato comandi shell.</string>
@@ -145,7 +145,7 @@
     <string name="settings_disable_resources">Disabilita agganci alle risorse</string>
     <string name="settings_disable_resources_summary">Soluzioni di conflitti con i theme engine\n<b>ATTENZIONE:</b> I moduli che cambiano le risorse non funzioneranno attivando questa funzione.</string>
     <string name="settings_performance_experiment">Esperimento performance</string>
-    <string name="settings_performance_experiment_summary">Se attivi questo, la performance del sistema potrebbe aumentare, diminuire o restare invariata. Sei libero di testarla e segnalarci gli effetti che essa ha avuto. È necessario reinstallare il framework e riavviare dopo aver cambiato questo.</string>
+    <string name="settings_performance_experiment_summary">Se attivi questo, la performance del sistema potrebbe aumentare, diminuire o restare invariata. Sei libero di testarla e segnalarci gli effetti che essa ha avuto. È necessario reinstallare il Framework e riavviare dopo aver cambiato questo.</string>
     <string name="settings_group_app">Applicazione</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Chiaro</string>
@@ -265,8 +265,8 @@
     <string name="choose_icon">Scegli un\' icona</string>
     <string name="custom_icon">Icona personalizzata</string>
     <string name="installationForbidden">L\' installazione non è possibile su questo dispositivo. Per installare Xposed attraverso questa app, il dispositivo deve avere Android Lollipop o superiore.</string>
-    <string name="installed_no_lollipop">Xposed framework è installato.</string>
-    <string name="not_installed_no_lollipop">Xposed framework non è installato.</string>
+    <string name="installed_no_lollipop">Xposed Framework è installato.</string>
+    <string name="not_installed_no_lollipop">Xposed Framework non è installato.</string>
     <string name="notify_module_update">Abilita notifica aggiornamenti dei moduli</string>
     <string name="md_back_label">Indietro</string>
     <string name="md_done_label">Fatto</string>
@@ -307,8 +307,8 @@
     <string name="share_app_text">Vedi Xposed Installer in Material Design! %s</string>
     <string name="disable_xposed">Disabilita Xposed</string>
     <string name="status">Stato Xposed</string>
-    <string name="xposed_off_next_reboot">Xposed framework sarà disabilitato al prossimo riavvio</string>
-    <string name="xposed_on_next_reboot">Xposed framework sarà abilitato al prossimo riavvio</string>
+    <string name="xposed_off_next_reboot">Xposed Framework sarà disabilitato al prossimo riavvio</string>
+    <string name="xposed_on_next_reboot">Xposed Framework sarà abilitato al prossimo riavvio</string>
     <string name="rovo_89_old_icon">rovo89 (vecchia)</string>
     <string name="hour1">1 ora</string>
     <string name="hour2">2 ore</string>

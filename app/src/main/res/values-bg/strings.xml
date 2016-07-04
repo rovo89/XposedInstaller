@@ -4,22 +4,22 @@
     <!-- General/various strings -->
     <string name="menuSend">Изпрати</string>
     <string name="menuSaveToSd">Запиши в SD картата</string>
-    <string name="xposed_not_active">Последната версия на Xposed не е активна. Инсталирахте ли framework и рестартирахте ли?</string>
+    <string name="xposed_not_active">Последната версия на Xposed не е активна. Инсталирахте ли Framework и рестартирахте ли?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Добре дошли в <b>Xposed Installer</b>!\nМоля, изберете какво желаете да направите:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">От тук можете да управлявате Xposed framework, който е необходим за да работят модулите.</string>
+    <string name="tabInstallDescription">От тук можете да управлявате Xposed Framework, който е необходим за да работят модулите.</string>
     <string name="tabModules">Модули</string>
-    <string name="tabModulesDescription">Самият framework не добавя никаква функционалност. За тази цел се нуждаете от модули. В тази секция можете да активирате модулите, след като ги изтеглите.</string>
+    <string name="tabModulesDescription">Самият Framework не добавя никаква функционалност. За тази цел се нуждаете от модули. В тази секция можете да активирате модулите, след като ги изтеглите.</string>
     <string name="tabDownload">Изтегляне</string>
     <string name="tabDownloadDescription">Този раздел Ви дава достъп до хранилището с модули, където можете да ги търсите и изтегляте, а също така да ги държите обновени.</string>
-    <string name="welcome_framework_update_available">Налично е обновление за Xposed framework (%s).</string>
+    <string name="welcome_framework_update_available">Налично е обновление за Xposed Framework (%s).</string>
     <string name="welcome_update_available">Налични са едно или повече обновления за модулите.</string>
     <string name="tabSettings">Настройки</string>
-    <string name="tabSettingsDescription">Отидете в този раздел за да настроите Xposed Installer и framework.</string>
+    <string name="tabSettingsDescription">Отидете в този раздел за да настроите Xposed Installer и Framework.</string>
     <string name="tabLogs">Дневници</string>
-    <string name="tabLogsDescription">Показва и записва/изпраща дневници за Xposed framework.</string>
+    <string name="tabLogsDescription">Показва и записва/изпраща дневници за Xposed Framework.</string>
     <string name="tabAbout">Относно</string>
     <string name="tabAboutDescription">Научете за хората създали Xposed, къде да намерите поддръжка и т.н.</string>
 
@@ -142,7 +142,7 @@
     <string name="settings_disable_resources">Изключевно прихващане на ресурси</string>
     <string name="settings_disable_resources_summary">Решаване на конфликти с темите\n<b>ВНИМАНИЕ:</b> Модули които се опитват да променят ресурсите няма да работят.</string>
     <string name="settings_performance_experiment">Експеримент за производителност</string>
-    <string name="settings_performance_experiment_summary">Ако позволите това, производителността на системата може да се увеличи, да се намали или да се запази. Чувствайте се свободни да пробвате и да дадете отзиви. Необходимо е да преинсталирате framework и да рестартирате след промяна на тази настройка.</string>
+    <string name="settings_performance_experiment_summary">Ако позволите това, производителността на системата може да се увеличи, да се намали или да се запази. Чувствайте се свободни да пробвате и да дадете отзиви. Необходимо е да преинсталирате Framework и да рестартирате след промяна на тази настройка.</string>
     <string name="settings_group_app">Приложение</string>
     <string name="settings_theme">Тема</string>
     <string name="settings_theme_light">Светла</string>

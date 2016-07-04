@@ -4,22 +4,22 @@
     <!-- General/various strings -->
     <string name="menuSend">Menghantar</string>
     <string name="menuSaveToSd">Simpan Ke SD Kad</string>
-    <string name="xposed_not_active">Versi terkini Xposed masih tidak aktif. Adakah anda memasang framework dan hidupkan semula?</string>
+    <string name="xposed_not_active">Versi terkini Xposed masih tidak aktif. Adakah anda memasang Framework dan hidupkan semula?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Selamat Datang <b>Xposed Installer</b>!\nSila pilih apa yang anda mahukan:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Disini anda boleh mengurus Xposed framework, yang mana memerlukan moduls untuk berfungsi.</string>
+    <string name="tabInstallDescription">Disini anda boleh mengurus Xposed Framework, yang mana memerlukan moduls untuk berfungsi.</string>
     <string name="tabModules">Modul</string>
     <string name="tabModulesDescription">Framework tidak bekerja sendiri\'anda perlu tambahkan lain2 fungsi. Jika anda memerlukan modul utk itu. Dibahagian ini anda boleh aktifkan module selepas anda memasang semuanya.</string>
     <string name="tabDownload">Muat turun</string>
     <string name="tabDownloadDescription">Bahagian ini memberikan anda kebenaran utk akses module repositori, jadi anda boleh mencari dan muat turun salah satu yang anda suka dan terkini.</string>
-    <string name="welcome_framework_update_available">Terdapat kemaskini terbaru Xposed framework tersedia (%s).</string>
+    <string name="welcome_framework_update_available">Terdapat kemaskini terbaru Xposed Framework tersedia (%s).</string>
     <string name="welcome_update_available">Satu atau lebih kemaskini(s) untuk module tersedia.</string>
     <string name="tabSettings">Tetapan</string>
-    <string name="tabSettingsDescription">Pergi kebahagian ini untuk mengenal pasti Xposed Installer dan framework.</string>
+    <string name="tabSettingsDescription">Pergi kebahagian ini untuk mengenal pasti Xposed Installer dan Framework.</string>
     <string name="tabLogs">Logs</string>
-    <string name="tabLogsDescription">Papar dan simpan/hantar log daripada Xposed framework.</string>
+    <string name="tabLogsDescription">Papar dan simpan/hantar log daripada Xposed Framework.</string>
     <string name="tabAbout">Mengenai</string>
     <string name="tabAboutDescription">Mengenali mengenai siapa orang yang mencipta Xposed, dan dimana untuk mendapat bantuan untuk aplikasi ini dan lain².</string>
 
@@ -142,7 +142,7 @@
     <string name="settings_disable_resources">Matikan resource hooks</string>
     <string name="settings_disable_resources_summary">Melihat sekeliling untuk konflik dengan enjin tema\n<b>AMARAN:</b> Yang mana Modul yg cuba ditukar resources tidak akan berfungsi jika ini dihidupkan.</string>
     <string name="settings_performance_experiment">Kemajuan Pengujian</string>
-    <string name="settings_performance_experiment_summary">Jika anda hidupkan ini, sistem anda mungkin akan meningkat atau sebaliknya, atau masih kekal pada tahap asal. Luangkan masa untuk mencuba dan laporkan sekiranya anda melihat atau merasai kesannya (atau langsung tiada apa²). Anda perlu memasang semula framework dan hidupkan semula selepas menukar ini.</string>
+    <string name="settings_performance_experiment_summary">Jika anda hidupkan ini, sistem anda mungkin akan meningkat atau sebaliknya, atau masih kekal pada tahap asal. Luangkan masa untuk mencuba dan laporkan sekiranya anda melihat atau merasai kesannya (atau langsung tiada apa²). Anda perlu memasang semula Framework dan hidupkan semula selepas menukar ini.</string>
     <string name="settings_group_app">Aplikasi</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Cerah</string>

@@ -4,22 +4,22 @@
     <!-- General/various strings -->
     <string name="menuSend">Wyślij</string>
     <string name="menuSaveToSd">Zapisz na karcie SD</string>
-	<string name="xposed_not_active">Ostatnia wersja Xposed jest aktualnie nieaktywna. Czy zainstalowałeś proces framework i uruchomiłeś ponownie telefon??</string>
+    <string name="xposed_not_active">Ostatnia wersja Xposed jest aktualnie nieaktywna. Czy zainstalowałeś proces Framework i uruchomiłeś ponownie telefon??</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Witamy <b>w aplikacji Xposed</b>!\nProszę wybierz, co chcesz zrobić::</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Tutaj możesz zarządzać procesem framework dostarczonym przez aplikację Xposed, która jest niezbędna do pracy modułów.</string>
+    <string name="tabInstallDescription">Tutaj możesz zarządzać procesem Framework dostarczonym przez aplikację Xposed, która jest niezbędna do pracy modułów.</string>
     <string name="tabModules">Moduły</string>
-    <string name="tabModulesDescription">Proces framework nie dodaje żadnych funkcji. Do tego potrzebujesz modułów. W tej sekcji można włączyć moduły po ich zainstalowaniu.</string>
+    <string name="tabModulesDescription">Proces Framework nie dodaje żadnych funkcji. Do tego potrzebujesz modułów. W tej sekcji można włączyć moduły po ich zainstalowaniu.</string>
 
     <string name="tabDownload">Pobierz</string>
     <string name="tabDownloadDescription">Ta sekcja umożliwia dostęp do repozytorium modułów, dzięki czemu można wyszukać i pobrać te, które lubisz i aktualizować je na bieżąco.</string>
 
-    <string name="welcome_framework_update_available">Aktualizacja procesu framework dostarczanego przez aplikację Xposed jest dostępna (%s).</string>
+    <string name="welcome_framework_update_available">Aktualizacja procesu Framework dostarczanego przez aplikację Xposed jest dostępna (%s).</string>
     <string name="welcome_update_available">Jedna lub więcej aktualizacji dla modułów jest dostępna.</string>
     <string name="tabSettings">Ustawienia</string>
-    <string name="tabSettingsDescription">Przejdź do tej sekcji, aby skonfigurować aplikację Xposed i proces framework.</string>
+    <string name="tabSettingsDescription">Przejdź do tej sekcji, aby skonfigurować aplikację Xposed i proces Framework.</string>
     <string name="tabSupport">Wsparcie</string>
     <string name="tabSupportDescription">Szukaj pomocy dla powiązanych problemów Xposed. Możesz również przekazać dotację, aby podziękować za Xposed.</string>
     <string name="tabLogs">Logi</string>
@@ -64,8 +64,8 @@
     <string name="tap_to_dismiss">Stuknij, aby zamknąć</string>
     <string name="sdcard_location">Karta SD: %s</string>
     <string name="installation_lollipop">Framework Xposed jest niezainstalowany. Prosze pobrać najnowszy plik ZIP z XDA z zainstalować ręcznie przez recovery.</string>
-    <string name="installed_lollipop">Wersja %s Xposed framework jest aktywna.</string>
-    <string name="installed_lollipop_inactive">Wersja %s Xposed framework jest zainstalowana, ale nie jest aktywna. Proszę sprawdzić logi, aby poznać szczegóły.</string>
+    <string name="installed_lollipop">Wersja %s Xposed Framework jest aktywna.</string>
+    <string name="installed_lollipop_inactive">Wersja %s Xposed Framework jest zainstalowana, ale nie jest aktywna. Proszę sprawdzić logi, aby poznać szczegóły.</string>
     <string name="modules_updates_available">Dostępna aktualizacja modułów</string>
 
     <!-- File operations -->
@@ -161,7 +161,7 @@
     <string name="settings_disable_resources">Wyłącz zasoby konfliktów</string>
     <string name="settings_disable_resources_summary">Rozwiązanie konfliktów z silnikiem\n<b>OSTRZEŻENIE:</b> Moduły, które próbują zmienić zasoby nie będą pracowały, kiedy to jest włączone.</string>
     <string name="settings_performance_experiment" tools:ignore="UnusedResources">Wyniki eksperymentu</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Jeśli to włączysz, wydajność systemu może albo się zwiększyć, zmniejszyć lub pozostać taka sama. Prosimy spróbować i zaraportować nam, który efekt widzisz. Musisz zainstalować ponownie framework i zresetować telefon po zmianie tego.</string>
+    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Jeśli to włączysz, wydajność systemu może albo się zwiększyć, zmniejszyć lub pozostać taka sama. Prosimy spróbować i zaraportować nam, który efekt widzisz. Musisz zainstalować ponownie Framework i zresetować telefon po zmianie tego.</string>
     <string name="settings_group_app">Aplikacja</string>
     <string name="settings_theme">Motyw</string>
     <string name="settings_theme_light">Jasny</string>
@@ -276,8 +276,8 @@
     <string name="choose_icon">Wybierz ikonę</string>
     <string name="custom_icon">Niestandardowa ikona</string>
     <string name="installationForbidden">Instalacja na tym urządzeniu jest niemożliwa. Aby zainstalować Xposed przez tą aplikację, urządzenie musi działać na wersji Android Lollipop lub wyższej.</string>
-    <string name="installed_no_lollipop">Xposed framework jest zainstalowany.</string>
-    <string name="not_installed_no_lollipop">Xposed framework jest niezainstalowany.</string>
+    <string name="installed_no_lollipop">Xposed Framework jest zainstalowany.</string>
+    <string name="not_installed_no_lollipop">Xposed Framework jest niezainstalowany.</string>
     <string name="notify_module_update">Włącz powiadomienia o aktualizacji modułów</string>
 
     <string name="md_back_label">Wstecz</string>

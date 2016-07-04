@@ -4,20 +4,20 @@
     <!-- General/various strings -->
     <string name="menuSend">Send</string>
     <string name="menuSaveToSd">Save to SD card</string>
-    <string name="xposed_not_active">The latest version of Xposed is currently not active. Did you install the framework and reboot?</string>
+    <string name="xposed_not_active">The latest version of Xposed is currently not active. Did you install the Framework and reboot?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Welcome to the <b>Xposed Installer</b>!\nPlease choose what you want to do:</string>
     <string name="tabInstall">Framework</string>
     <string name="tabInstallDescription">Here you can manage the Xposed Framework, which is required for any modules to work.</string>
     <string name="tabModules">Modules</string>
-    <string name="tabModulesDescription">The framework itself doesn\'t add any functionality. You need modules for that. In this section you can activate modules after you have installed them.</string>
+    <string name="tabModulesDescription">The Framework itself doesn\'t add any functionality. You need modules for that. In this section you can activate modules after you have installed them.</string>
     <string name="tabDownload">Download</string>
     <string name="tabDownloadDescription">This section gives you access to a repository of modules, so you can search and download the ones you like and keep them up to date.</string>
     <string name="welcome_framework_update_available">An update for the Xposed Framework is available (%s).</string>
     <string name="welcome_update_available">One or more update(s) for modules available.</string>
     <string name="tabSettings">Settings</string>
-    <string name="tabSettingsDescription">Go to this section to configure the Xposed Installer and framework.</string>
+    <string name="tabSettingsDescription">Go to this section to configure the Xposed Installer and Framework.</string>
     <string name="tabSupport">Support</string>
     <string name="tabSupportDescription">Find help for Xposed-related issues. You can also donate to say thanks for Xposed.</string>
     <string name="tabLogs">Logs</string>
@@ -159,7 +159,7 @@
     <string name="settings_disable_resources">Disabled resource hooks</string>
     <string name="settings_disable_resources_summary">Workaround for conflicts with theming engines\n<b>WARNING:</b> Modules which try to change resources will not work when this is enabled.</string>
     <string name="settings_performance_experiment" tools:ignore="UnusedResources">Performance experiment</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">If you enable this, your system performance might either increase, decrease or stay the same. Feel free to try it and report back which effect you see (or if there is none at all). You need to reinstall the framework and reboot after changing this.</string>
+    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">If you enable this, your system performance might either increase, decrease or stay the same. Feel free to try it and report back which effect you see (or if there is none at all). You need to reinstall the Framework and reboot after changing this.</string>
     <string name="settings_group_app">Application</string>
     <string name="settings_theme">Theme</string>
     <string name="settings_theme_light">Light</string>
@@ -326,6 +326,7 @@
     <string name="hour5">5 hours</string>
     <string name="hour6">6 hours</string>
     <string name="hour24">Every day</string>
+    <string name="off">Never</string>
     <string name="confirm_reboots">Confirm reboots</string>
     <string name="skip_xposedminversion_check">Skip \'xposedminversion\' check</string>
     <string name="skip_xposedminversion_check_summ">Skip \'xposedminversion\' check for modules</string>
@@ -337,15 +338,16 @@
     <string name="official_compatibility">All AOSP ROM, Nexus, LG, HTC, Asus devices</string>
     <string name="official_incompatibility">Samsung ROMs</string>
     <string name="systemless_compatibility">All AOSP-based ROMs, Samsung ROMs, LG, HTC, Asus devices</string>
-    <string name="samsung_compatibility">Only Samsung ROMs. \n<b>Note: alt</b> version is for Samsung Note phones</string>
+    <string name="samsung_compatibility">Only Samsung ROMs. <b>Note: alt</b> version is for Samsung Note phones</string>
     <string name="samsung_incompatibility">All other ROMs</string>
     <string name="huawei_compatibility">Only Huawei ROMs</string>
     <string name="huawei_incompatibility">All other ROMs</string>
     <string name="compatibility">Compatibility</string>
     <string name="no_incompatibility">No incompatibility</string>
-    <string name="author">author: %s</string>
 
     <string name="details">Details</string>
     <string name="look_and_feel">Look and feel</string>
+    <string name="no_connection_available">No connection available. Cannot download frameworks or modules.</string>
+    <string name="support_xda">Get support on XDA thread</string>
 
 </resources>

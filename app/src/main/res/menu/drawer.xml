@@ -22,7 +22,7 @@
     </group>
     <group
         android:id="@+id/option_items"
-        android:checkableBehavior="single">
+        android:checkableBehavior="all">
         <item
             android:id="@+id/drawer_item_5"
             android:icon="@drawable/ic_nav_settings"

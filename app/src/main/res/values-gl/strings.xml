@@ -14,7 +14,7 @@
     <string name="welcome_framework_update_available">Unha actualización está dispoñible para Xposed Framework.</string>
     <string name="welcome_update_available">Un ou máis actualizacións están dispoñibles para os módulos.</string>
     <string name="tabSettings">Axustes</string>
-    <string name="tabSettingsDescription">Veña a esta sección para configurar o Instalador Xposed y e framework.</string>
+    <string name="tabSettingsDescription">Veña a esta sección para configurar o Instalador Xposed y e Framework.</string>
     <string name="tabAbout">Sobre</string>
     <string name="tabAboutDescription">Información sobre as persoas que crearon Xposed, onde obter axuda para esta aplicación, etc</string>
 

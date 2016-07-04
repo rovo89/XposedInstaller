@@ -4,22 +4,22 @@
     <!-- General/various strings -->
     <string name="menuSend">Enviar</string>
     <string name="menuSaveToSd">Guardar para o cartão SD</string>
-    <string name="xposed_not_active">A versão mais recente da \"Xposed\" ainda não foi ativada. Instalou a \"framework\" e reiniciou o dispositivo?</string>
+    <string name="xposed_not_active">A versão mais recente da \"Xposed\" ainda não foi ativada. Instalou a \"Framework\" e reiniciou o dispositivo?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Bem-vindo à <b>Xposed Installer</b>!\nPor favor, escolha o que pretende fazer:</string>
     <string name="tabInstall">\"Framework\"</string>
-    <string name="tabInstallDescription">Aqui pode gerir a \"Xposed framework\", a qual é necessária para que os módulos funcionem.</string>
+    <string name="tabInstallDescription">Aqui pode gerir a \"Xposed Framework\", a qual é necessária para que os módulos funcionem.</string>
     <string name="tabModules">Módulos</string>
-    <string name="tabModulesDescription">A \"framework\", por si só, não adiciona qualquer funcionalidade. São precisos módulos para isso. Nesta secção pode ativar os módulos após a sua instalação.</string>
+    <string name="tabModulesDescription">A \"Framework\", por si só, não adiciona qualquer funcionalidade. São precisos módulos para isso. Nesta secção pode ativar os módulos após a sua instalação.</string>
     <string name="tabDownload">Descarregar</string>
     <string name="tabDownloadDescription">Esta secção dá-lhe acesso ao repositório de módulos. Aqui é possível pesquisar e descarregar os módulos que mais lhe interessem, bem como, mantê-los atualizados.</string>
-    <string name="welcome_framework_update_available">Está disponível uma atualização da \"Xposed framework\".</string>
+    <string name="welcome_framework_update_available">Está disponível uma atualização da \"Xposed Framework\".</string>
     <string name="welcome_update_available">Está disponível uma, ou mais, atualizações de módulos.</string>
     <string name="tabSettings">Definições</string>
-    <string name="tabSettingsDescription">Aceda a esta secção para configurar a \"Xposed framework\".</string>
+    <string name="tabSettingsDescription">Aceda a esta secção para configurar a \"Xposed Framework\".</string>
     <string name="tabLogs">Registos</string>
-    <string name="tabLogsDescription">Exibir e também guardar/enviar registos da \"Xposed framework\".</string>
+    <string name="tabLogsDescription">Exibir e também guardar/enviar registos da \"Xposed Framework\".</string>
     <string name="tabAbout">Sobre</string>
     <string name="tabAboutDescription">Saber mais sobre os criadores da \"Xposed\", onde obter suporte, etc.</string>
 
@@ -136,13 +136,13 @@
     <string name="install_mode_recovery_manual">Através da \"Recovery\" (mas gravar o zip no cartão SD e fazer \"flash\" manualmente)</string>
     <string name="settings_group_download">Descarregar</string>
     <string name="settings_enable_downloads">Ativar descarregamentos</string>
-    <string name="settings_enable_downloads_summary">Permitir que a \"Xposed Installer\" verifique atualizações dos módulos e da \"framework\"</string>
+    <string name="settings_enable_downloads_summary">Permitir que a \"Xposed Installer\" verifique atualizações dos módulos e da \"Framework\"</string>
     <string name="settings_release_type">Versões a apresentar</string>
     <string name="settings_group_experimental">Experimental</string>
     <string name="settings_disable_resources">Desativar a substituição de recursos</string>
     <string name="settings_disable_resources_summary">Solução para conflitos com gestores de temas \n<b>AVISO:</b> Os módulos que dependam da alteração de recursos não irão funcionar se ativar esta opção.</string>
     <string name="settings_performance_experiment">Experiência de desempenho</string>
-    <string name="settings_performance_experiment_summary">Quando ativa, o desempenho do seu dispositivo poderá melhorar, piorar ou ficar na mesma. É livre para experimentar e reportar-me os seus efeitos (ou a ausência deles).  Após ativar esta opção, é necessário reinstalar a \"framework\" e reiniciar.</string>
+    <string name="settings_performance_experiment_summary">Quando ativa, o desempenho do seu dispositivo poderá melhorar, piorar ou ficar na mesma. É livre para experimentar e reportar-me os seus efeitos (ou a ausência deles).  Após ativar esta opção, é necessário reinstalar a \"Framework\" e reiniciar.</string>
     <string name="settings_group_app">Aplicação</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Claro</string>
@@ -222,12 +222,12 @@
     <string name="install_remove">Instalar e remover</string>
     <string name="install_with_su">Instalar módulo(s) com permissão \"root\"</string>
     <string name="install_with_su_summ">Se ativado, a \"Xposed Installer\" irá instalar os módulos sem avisos</string>
-    <string name="installationForbidden">Não é possível instalar neste dispositivo. A instalação da \"Xposed framework\", através desta APP, requer que o dispositivo tenha, no mínimo, o Android Lollipop.</string>
-    <string name="installation_lollipop">A \"Xposed framework\" não está instalada. Por favor, descarregue do XDA o ZIP mais recente e instale manualmente através da \"Recovery\".</string>
-    <string name="installed_lollipop">A versão %s da \"Xposed framework\" está ativa.</string>
-    <string name="installed_lollipop_inactive">A versão %s da \"Xposed framework\" está instalada mas não está ativa. Por favor verifique os registos para mais detalhes.</string>
-    <string name="installed_no_lollipop">A \"Xposed framework\" está instalada.</string>
-    <string name="loadingError">Erro a carregar os ZIP da \"Xposed framework\"</string>
+    <string name="installationForbidden">Não é possível instalar neste dispositivo. A instalação da \"Xposed Framework\", através desta APP, requer que o dispositivo tenha, no mínimo, o Android Lollipop.</string>
+    <string name="installation_lollipop">A \"Xposed Framework\" não está instalada. Por favor, descarregue do XDA o ZIP mais recente e instale manualmente através da \"Recovery\".</string>
+    <string name="installed_lollipop">A versão %s da \"Xposed Framework\" está ativa.</string>
+    <string name="installed_lollipop_inactive">A versão %s da \"Xposed Framework\" está instalada mas não está ativa. Por favor verifique os registos para mais detalhes.</string>
+    <string name="installed_no_lollipop">A \"Xposed Framework\" está instalada.</string>
+    <string name="loadingError">Erro a carregar os ZIP da \"Xposed Framework\"</string>
     <string name="md_back_label">Voltar</string>
     <string name="md_cancel_label">Cancelar</string>
     <string name="md_choose_label">Escolher</string>
@@ -253,7 +253,7 @@
     <string name="no_bookmark_added">Não foi adicionado nenhum marcador</string>
     <string name="no_enabled_modules">Não existem módulos ativos</string>
     <string name="no_installed_modules">Não existem módulos instalados!</string>
-    <string name="not_installed_no_lollipop">A \"Xposed framework\" não está instalada.</string>
+    <string name="not_installed_no_lollipop">A \"Xposed Framework\" não está instalada.</string>
     <string name="notification_coloration">Colorir o ícone de notificação</string>
     <string name="notify_module_update">Ativar a notificação de atualização de módulo</string>
     <string name="permissionGranted">Permissão concedida</string>

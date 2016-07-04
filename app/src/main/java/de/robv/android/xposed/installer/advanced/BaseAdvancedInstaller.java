@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,6 +33,7 @@ import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.XposedZip;
 
@@ -43,10 +45,10 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
     private static final int INSTALL_MODE_NORMAL = 0;
     private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
     private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
+    public static String APP_PROCESS_NAME = null;
     private RootUtil mRootUtil = new RootUtil();
     private Button mClickedButton;
-    private List<String> messages;
-    public static String APP_PROCESS_NAME = null;
+    private List<String> messages = new ArrayList<>();
 
     @Nullable
     @Override
@@ -62,6 +64,7 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         TextView compatibleTv = (TextView) view.findViewById(R.id.compatibilityTv);
         TextView incompatibleTv = (TextView) view.findViewById(R.id.incompatibilityTv);
         TextView author = (TextView) view.findViewById(R.id.author);
+        View showOnXda = view.findViewById(R.id.show_on_xda);
 
         chooserInstallers.setAdapter(new XposedZip.MyAdapter<>(getContext(), installers()));
         chooserUninstallers.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers()));
@@ -140,7 +143,21 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
 
         compatibleTv.setText(compatibility());
         incompatibleTv.setText(incompatibility());
-        author.setText(getString(R.string.author, author()));
+        author.setText(getString(R.string.download_author, author()));
+
+        if (uninstallers().size() == 0) {
+            infoUninstaller.setVisibility(View.GONE);
+            chooserUninstallers.setVisibility(View.GONE);
+            btnUninstall.setVisibility(View.GONE);
+        }
+
+        showOnXda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //NavUtil.startURL(getActivity(), xdaUrl());
+                NavUtil.startURL(getActivity(), "http://google.com");
+            }
+        });
 
         return view;
     }
@@ -372,4 +389,6 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
     protected abstract int incompatibility();
 
     protected abstract CharSequence author();
+
+    protected abstract CharSequence xdaUrl();
 }

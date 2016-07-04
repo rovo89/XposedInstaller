@@ -14,12 +14,12 @@
     <string name="tabModulesDescription">Framework hərhansı funksionallıq əlavə etmir. Bunun üçün o modullara ehtiyacınız var. Bu şöbədə modulları yüklədiktən sonra aktivləşdirə bilərsiniz.</string>
     <string name="tabDownload">Yüklə</string>
     <string name="tabDownloadDescription">Bu şöbə sizə modulların deposuna girmək üçün icazə verir, belə ki siz istədiyinizi axtara,yükləyə və güncəl saxlaya bilərsiniz.</string>
-    <string name="welcome_framework_update_available">Xposed framework üçün yeniləmə mövcuddur.</string>
+    <string name="welcome_framework_update_available">Xposed Framework üçün yeniləmə mövcuddur.</string>
     <string name="welcome_update_available">Bir və ya bir neçə yeniləmə mövcuddur.</string>
     <string name="tabSettings">Parametrlər</string>
-    <string name="tabSettingsDescription">Xposed Yükləyici və framework\'ü konfiqurasiya eləmək üçün bu şöbəyə gedin.</string>
+    <string name="tabSettingsDescription">Xposed Yükləyici və Framework\'ü konfiqurasiya eləmək üçün bu şöbəyə gedin.</string>
     <string name="tabLogs">Loqlar</string>
-    <string name="tabLogsDescription">Xposed framework loqlarını göstər və yadda saxla/göndər.</string>
+    <string name="tabLogsDescription">Xposed Framework loqlarını göstər və yadda saxla/göndər.</string>
     <string name="tabAbout">Haqqında</string>
     <string name="tabAboutDescription">Xposed\'i hazırlayanlar haqqında məlumat əldə edin, haradan ki əlavə kömək əldə edə bilərsiniz və s.</string>
 
@@ -80,7 +80,7 @@
     <string name="settings_enable_downloads_summary">Xposed Yükləyiciyə yeni modullara və yeniləmələrin olub-olmadığına yoxlamağa icazə ver.</string>
     <string name="settings_group_experimental">Təcrübi</string>
     <string name="settings_performance_experiment">İcra təcrübəsi</string>
-    <string name="settings_performance_experiment_summary">Əgər bunu aktiv etsəniz,sistem istifadəsi zəifləyə,arta və ya olduğu kimi qala bilər. Cəhd etməkdən çəkinməyin və bu barədə məruzə verin. Bunu dəyişdiktən sonra framework\'ü yenidən quraşdırmalı və cihazı yenidən başlatmalısınız.</string>
+    <string name="settings_performance_experiment_summary">Əgər bunu aktiv etsəniz,sistem istifadəsi zəifləyə,arta və ya olduğu kimi qala bilər. Cəhd etməkdən çəkinməyin və bu barədə məruzə verin. Bunu dəyişdiktən sonra Framework\'ü yenidən quraşdırmalı və cihazı yenidən başlatmalısınız.</string>
 
     <!-- Support tab -->
 

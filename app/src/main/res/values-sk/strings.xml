@@ -4,14 +4,14 @@
     <!-- General/various strings -->
     <string name="menuSend">Odoslať</string>
     <string name="menuSaveToSd">Uložiť na kartu SD</string>
-    <string name="xposed_not_active">Najnovšia verzia Xposed nie je aktuálne aktívna. Nainštalovali ste framework a reštartovali zariadenie?</string>
+    <string name="xposed_not_active">Najnovšia verzia Xposed nie je aktuálne aktívna. Nainštalovali ste Framework a reštartovali zariadenie?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Vitajte v <b>Xposed Installeri</b>!\nProsím, vyberte, čo chcete robiť:</string>
     <string name="tabInstall">Framework</string>
     <string name="tabInstallDescription">Tu môžete spravovať Xposed Framework, ktorý je nutný pre fungovanie modulov.</string>
     <string name="tabModules">Moduly</string>
-    <string name="tabModulesDescription">Samotný framework neposkytuje žiadne funkcie. Tieto funkcie poskytujú rôzne moduly. V tejto sekcii môžete aktivovať moduly po ich inštalácií.</string>
+    <string name="tabModulesDescription">Samotný Framework neposkytuje žiadne funkcie. Tieto funkcie poskytujú rôzne moduly. V tejto sekcii môžete aktivovať moduly po ich inštalácií.</string>
     <string name="tabDownload">Sťahovanie</string>
     <string name="tabDownloadDescription">Táto sekcia vám umožní pristupovať k repozitáru s modulmi, takže môžete vyhľadávať a sťahovať tie, ktoré sa vám páčia a udržiavať ich stále aktuálne.</string>
     <string name="welcome_framework_update_available">Je dostupná aktualizácia pre Xposed Framework (%s).</string>
@@ -159,7 +159,7 @@
     <string name="settings_disable_resources">Zakázať zmenu zdrojov</string>
     <string name="settings_disable_resources_summary">Riešenie konfliktov s témami\n<b>VAROVANIE:</b> Ak je táto možnosť povolená, moduly, ktoré sa snažia zmeniť zdroje, nebudú fungovať.</string>
     <string name="settings_performance_experiment">Experiment s výkonom</string>
-    <string name="settings_performance_experiment_summary">Ak povolíte túto možnosť, výkon systému sa môže buď zvýšiť, znížiť, alebo zostať rovnaký. Nebojte sa vyskúšať experiment s výkonom a podajte správu o efekte, ktorý vidíte (nemusí byť však vôbec žiadny). Po zmene tejto možnosti je nutné znovu nainštalovať framework a vykonať reštart zariadenia.</string>
+    <string name="settings_performance_experiment_summary">Ak povolíte túto možnosť, výkon systému sa môže buď zvýšiť, znížiť, alebo zostať rovnaký. Nebojte sa vyskúšať experiment s výkonom a podajte správu o efekte, ktorý vidíte (nemusí byť však vôbec žiadny). Po zmene tejto možnosti je nutné znovu nainštalovať Framework a vykonať reštart zariadenia.</string>
     <string name="settings_group_app">Aplikácia</string>
     <string name="settings_theme">Téma</string>
     <string name="settings_theme_light">Svetlá</string>
@@ -170,7 +170,7 @@
     <!-- Support tab -->
     <string name="support_modules_label">Podpora pre moduly</string>
     <string name="support_modules_description">Podržte dlho na module v zozname modulov a zvoľte \"%1$s\".</string>
-    <string name="support_framework_label">Podpora pre framework/Installer</string>
+    <string name="support_framework_label">Podpora pre Framework/Installer</string>
     <string name="support_faq_label">FAQ/známe chyby</string>
     <string name="support_donate_label">Podporiť</string>
     <string name="support_donate_description">Ak chcete poďakovať za Xposed, môžete poslať dar pre rovo89 tu</string>

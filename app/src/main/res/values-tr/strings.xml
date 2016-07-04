@@ -9,9 +9,9 @@
     <!-- Welcome screen / main sections -->
     <string name="welcome">Xposed Yükleyici <b>Hoşgeldiniz</b>\nLütfen ne yapmak istediğinizi seçin:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Bu bölümden Xposed framework,yükleyip kaldırabilirsiniz..</string>
+    <string name="tabInstallDescription">Bu bölümden Xposed Framework,yükleyip kaldırabilirsiniz..</string>
     <string name="tabModules">Modüller</string>
-    <string name="tabModulesDescription">Framework tek başına bir işe yaramaz.Kullanım için Modüller gerekir.Bu bölümden framework ile çalışacak Modülleri seçebilirsiniz.</string>
+    <string name="tabModulesDescription">Framework tek başına bir işe yaramaz.Kullanım için Modüller gerekir.Bu bölümden Framework ile çalışacak Modülleri seçebilirsiniz.</string>
     <string name="tabDownload">Modül İndir</string>
     <string name="tabDownloadDescription">Bu bölüm modül deposuna erişim sağlar, Böylece aramak ve indirmek istediğiniz uygulamaları ve güncellemeleri yapabilirsiniz..</string>
     <string name="welcome_framework_update_available">Xposed için kullanılabilir bir güncelleştirme var.</string>
@@ -19,7 +19,7 @@
     <string name="tabSettings">Ayarlar</string>
     <string name="tabSettingsDescription">Xposed Yükleme ve Framework yapılandırmak için bu bölümüne gidin.</string>
     <string name="tabLogs">Log Kayıtları</string>
-    <string name="tabLogsDescription">Xposed framework loglarını görüntüleme veya kaydet/gönder</string>
+    <string name="tabLogsDescription">Xposed Framework loglarını görüntüleme veya kaydet/gönder</string>
     <string name="tabAbout">Hakkında</string>
     <string name="tabAboutDescription">Xposed,yazılımcılarına ulaşmak ve destek almak için bu bölümü kullanın..</string>
 
@@ -142,7 +142,7 @@
     <string name="settings_disable_resources">Kaynak bilgiler engelli</string>
     <string name="settings_disable_resources_summary">Tema motoru ile çakışmalar için çözüm\n<b>UYARI:</b> Bu etkinleştirildiğinde kaynaklarını değiştirmeye çalışmayın modüller çalışmaz.</string>
     <string name="settings_performance_experiment">Performans deneyleri</string>
-    <string name="settings_performance_experiment_summary">Bunu etkinleştirirseni sistemde performans artışı veya azalma olabilir.. Bunu deneyin ve gördüğünüz herhangi bir etki raporunu bize bildirmekten çekinmeyin. Bunu değiştirdikten sonra framework ve modülleri yeniden yüklemeniz gerekir.</string>
+    <string name="settings_performance_experiment_summary">Bunu etkinleştirirseni sistemde performans artışı veya azalma olabilir.. Bunu deneyin ve gördüğünüz herhangi bir etki raporunu bize bildirmekten çekinmeyin. Bunu değiştirdikten sonra Framework ve modülleri yeniden yüklemeniz gerekir.</string>
     <string name="settings_group_app">Uygulama</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Hafif</string>

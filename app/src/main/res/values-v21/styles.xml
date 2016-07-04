@@ -9,7 +9,7 @@
         <item name="background_card">@drawable/background_card_light</item>
         <item name="background_card_pressed">@drawable/background_card_pressed_light</item>
         <item name="pager_tab_strip_bg">@color/pager_tab_strip_bg_light</item>
-        <item name="text_important">@android:color/holo_red_light</item>
+        <item name="text_important">@color/red_500</item>
         <item name="download_status_installed">@android:color/holo_orange_dark</item>
     </style>
 
@@ -33,12 +33,6 @@
     </style>
 
     <style name="Theme.XposedInstaller.Transparent" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowNoTitle">true</item>
     </style>
 
 </resources>

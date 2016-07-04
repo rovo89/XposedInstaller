@@ -4,22 +4,22 @@
     <!-- General/various strings -->
     <string name="menuSend">Deel</string>
     <string name="menuSaveToSd">Opslaan op SD-kaart</string>
-    <string name="xposed_not_active">De laatste versie van Xposed is momenteel niet actief. Heeft u het framework geïnstalleerd en het systeem herstart?</string>
+    <string name="xposed_not_active">De laatste versie van Xposed is momenteel niet actief. Heeft u het Framework geïnstalleerd en het systeem herstart?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Welkom bij de <b>Xposed Installer</b>!\nKies alstublieft wat u wenst te doen:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Hier kunt u het Xposed framework instellen, dit is nodig voor elke module, om te kunnen functioneren.</string>
+    <string name="tabInstallDescription">Hier kunt u het Xposed Framework instellen, dit is nodig voor elke module, om te kunnen functioneren.</string>
     <string name="tabModules">Modules</string>
-    <string name="tabModulesDescription">Het framework op zich voegt geen functionaliteit toe. Daar heeft u modules voor nodig. In dit onderdeel kunt u modules activeren nadat u ze geinstalleerd hebt.</string>
+    <string name="tabModulesDescription">Het Framework op zich voegt geen functionaliteit toe. Daar heeft u modules voor nodig. In dit onderdeel kunt u modules activeren nadat u ze geinstalleerd hebt.</string>
     <string name="tabDownload">Download</string>
     <string name="tabDownloadDescription">Deze sectie geeft u toegang tot een verzameling van modules, zodat u de modules die u goed vind kunt zoeken, downloaden en bijgewerkt houden.</string>
-    <string name="welcome_framework_update_available">Een update voor het Xposed framework is beschikbaar.</string>
+    <string name="welcome_framework_update_available">Een update voor het Xposed Framework is beschikbaar.</string>
     <string name="welcome_update_available">Eén of meer update(s) voor modules beschikbaar.</string>
     <string name="tabSettings">Instellingen</string>
-    <string name="tabSettingsDescription">Ga naar dit onderdeel om de Xposed Installer en het framework te configureren.</string>
+    <string name="tabSettingsDescription">Ga naar dit onderdeel om de Xposed Installer en het Framework te configureren.</string>
     <string name="tabLogs">Logboek</string>
-    <string name="tabLogsDescription">Bekijk en sla het logboek op of verstuur het logboek van het Xposed framework.</string>
+    <string name="tabLogsDescription">Bekijk en sla het logboek op of verstuur het logboek van het Xposed Framework.</string>
     <string name="tabAbout">Over</string>
     <string name="tabAboutDescription">Leer meer over de mensen die Xposed hebben gecreëerd, waar ondersteuning voor deze app te vinden is, etc.</string>
 
@@ -142,7 +142,7 @@
     <string name="settings_disable_resources">Resource-hooks uitschakelen</string>
     <string name="settings_disable_resources_summary">Tijdelijke oplossing voor conflicten met thema-applicaties\n<b>WAARSCHUWING:</b> Modules die resources proberen te veranderen werken niet wanneer deze optie geactiveerd is.</string>
     <string name="settings_performance_experiment">Prestatie-experiment</string>
-    <string name="settings_performance_experiment_summary">Als u dit inschakelt, kunnen uw systeemprestaties verhogen, verminderen of hetzelfde blijven. Het is gratis te proberen, laat ons weten welk effect u ziet (ook als er helemaal geen effect is). U moet het framework herinstalleren en herstarten nadat u dit veranderd hebt.</string>
+    <string name="settings_performance_experiment_summary">Als u dit inschakelt, kunnen uw systeemprestaties verhogen, verminderen of hetzelfde blijven. Het is gratis te proberen, laat ons weten welk effect u ziet (ook als er helemaal geen effect is). U moet het Framework herinstalleren en herstarten nadat u dit veranderd hebt.</string>
     <string name="settings_group_app">Applicaties</string>
     <string name="settings_theme">Thema</string>
     <string name="settings_theme_light">Licht</string>
@@ -165,7 +165,7 @@
     <string name="about_developers_label">Hoofdontwikkelaars:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> en <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Contacteer ons alstublieft <b>niet</b> direct voor ondersteuning: gebruik de onderstaande link. (Onder de titel "Krijg ondersteuning")</string>
-    <string name="about_translator_label">Het framework is naar het Nederlands vertaald door:</string>
+    <string name="about_translator_label">Het Framework is naar het Nederlands vertaald door:</string>
     <string name="translator"><a href="https://github.com/Martinusbe">Martin Coulon (Martinusbe)</a>, <a href="http://code.gertlily.com/">Gert-Jan Anema (GertlilyNL)</a> &amp; <a href="https://github.com/lionzeye">Leonard Simonse (lionzeye)</a></string>
     <string name="about_version_label">Versie van deze app:</string>
     <string name="about_source_label">Broncode:</string>

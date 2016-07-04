@@ -6,14 +6,15 @@
     <color name="colorPrimaryLight">#727272</color>
     <color name="colorAccent">#448aff</color>
     <color name="list_header">#777</color>
-    <color name="warning">@android:color/holo_red_light</color>
-    <color name="warning_box">@android:color/holo_red_dark</color>
+    <color name="red_500">#F44336</color>
+    <color name="warning">@color/red_500</color>
+    <color name="warning_box">@color/red_500</color>
     <color name="pager_tab_strip">#fff</color>
     <color name="download_details_title">#777</color>
     <color name="download_status_update_available">@color/darker_green</color>
     <color name="welcome_framework_update_available">@color/download_status_update_available</color>
     <color name="welcome_update_available">@color/download_status_update_available</color>
-    <color name="darker_green">#ff22aa00</color>
+    <color name="darker_green">#4CAF50</color>
 
 
     <!-- light theme-->
@@ -40,5 +41,6 @@
     <color name="card_background_black">#181818</color>
     <color name="card_background_pressed_black">#303030</color>
     <color name="card_shadow_black">#121212</color>
+
 
 </resources>

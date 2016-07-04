@@ -4,20 +4,20 @@
     <!-- General/various strings -->
     <string name="menuSend">Enviar</string>
     <string name="menuSaveToSd">Guardar en la tarjeta SD</string>
-    <string name="xposed_not_active">La última version del Xposed no está activa. ¿Ya instaló el framework y reinició?</string>
+    <string name="xposed_not_active">La última version del Xposed no está activa. ¿Ya instaló el Framework y reinició?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Bienvenido al <b>Instalador del Xposed</b>!\nPor favor elija que quiere hacer:</string>
     <string name="tabInstall">Framework</string>
     <string name="tabInstallDescription">Aqui puedes administrar el Xposed Framework, que es requerido por cualquier módulo para funcionar.</string>
     <string name="tabModules">Módulos</string>
-    <string name="tabModulesDescription">El framework en sí mismo no adiciona funcionalidad alguna. Necesitas instalar módulos para eso. En esta sección puedes activar los módulos una vez los has instalado.</string>
+    <string name="tabModulesDescription">El Framework en sí mismo no adiciona funcionalidad alguna. Necesitas instalar módulos para eso. En esta sección puedes activar los módulos una vez los has instalado.</string>
     <string name="tabDownload">Descargar</string>
     <string name="tabDownloadDescription">Ésta seccion te da acceso al repositorio de módulos, así puedes buscar y descargar el que quieras y mantenerlo siempre actualizado.</string>
     <string name="welcome_framework_update_available">Hay una actualización para el Xposed Framework disponible (%s).</string>
     <string name="welcome_update_available">Una o más actualizaciones para los módulos están disponibles.</string>
     <string name="tabSettings">Ajustes</string>
-    <string name="tabSettingsDescription">Vaya a ésta sección para configurar el Xposed Installer y el framework.</string>
+    <string name="tabSettingsDescription">Vaya a ésta sección para configurar el Xposed Installer y el Framework.</string>
     <string name="tabSupport">Soporte</string>
     <string name="tabSupportDescription">Encuentre ayuda acerca de inconvenientes relacionados al Xposed. También puedes donar para agradecer por el Xposed.</string>
     <string name="tabLogs">Registros</string>
@@ -159,7 +159,7 @@
     <string name="settings_disable_resources">Deshabilitar resource hooks</string>
     <string name="settings_disable_resources_summary">Solución para conflictos con motores de temas\n<b>PRECAUCIÓN:</b> Los módulos que intentan cambiar los recursos no funcionarán mientras ésto esté habilitado.</string>
     <string name="settings_performance_experiment" tools:ignore="UnusedResources">Experimentos de rendimiento</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Si habilita esto, el rendimiento de su sistema podría incrementarse, reducirse o permanecer igual. Siéntase en libertad de probarlo y reportarnos cual efecto observa (o si no hay efecto alguno). Necesita reinstalar el framework y reiniicar después de haber cambiado ésto.</string>
+    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Si habilita esto, el rendimiento de su sistema podría incrementarse, reducirse o permanecer igual. Siéntase en libertad de probarlo y reportarnos cual efecto observa (o si no hay efecto alguno). Necesita reinstalar el Framework y reiniicar después de haber cambiado ésto.</string>
     <string name="settings_group_app">Aplicación</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Claro</string>
@@ -239,7 +239,7 @@
     <string name="download_view_size">Tamaño: %s KB</string>
     <string name="share">Compartir con…</string>
     <string name="back">Volver</string>
-    <string name="loadingError">Error al cargar el archivo .Zip del Xposed framework</string>
+    <string name="loadingError">Error al cargar el archivo .Zip del Xposed Framework</string>
     <string name="info">Información</string>
     <string name="infoInstaller">
         Nombre: %1$s

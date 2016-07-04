@@ -8,7 +8,7 @@
     <string name="support_material_xda" translatable="false">http://forum.xda-developers.com/xposed/material-design-xposed-installer-t3137758</string>
     <string name="support_faq_url" translatable="false">http://forum.xda-developers.com/xposed/xposed-faq-issues-t2735540</string>
     <string name="support_donate_url" translatable="false">http://repo.xposed.info/donate</string>
-    <string name="about_source" translatable="false">https://github.com/rovo89</string>
+    <string name="about_source" translatable="false">https://github.com/dvdandroid/XposedInstaller/</string>
     <string name="about_support" translatable="false">http://forum.xda-developers.com/xposed</string>
     <string name="about_libraries" translatable="false"><a href="https://github.com/emilsjolander/StickyListHeaders">StickyListHeaders</a>\n<a href="https://github.com/Chainfire/libsuperuser">libsuperuser</a>\n<a href="https://github.com/afollestad/material-dialogs">MaterialDialogs</a></string>
 

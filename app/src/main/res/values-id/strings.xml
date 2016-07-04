@@ -6,7 +6,7 @@
     <!-- Welcome screen / main sections -->
     <string name="welcome">Selamat datang di <b>Installer Xposed</b>!\nPilih pilihan Anda:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Anda dapat mengatur framework Xposed, yang harus diinstall agar Xposed bekerja.</string>
+    <string name="tabInstallDescription">Anda dapat mengatur Framework Xposed, yang harus diinstall agar Xposed bekerja.</string>
     <string name="tabModules">Modul</string>
     <string name="tabModulesDescription">Framework sendiri tidak menambah fungsi apapun. Anda butuh modul. Anda dapat mengaktifkan modul di sini setelah Anda menginstallnya.</string>
     <string name="tabDownload">Unduh</string>
@@ -14,7 +14,7 @@
     <string name="welcome_framework_update_available">Update tersedia.</string>
     <string name="welcome_update_available">Update tersedia untuk modul.</string>
     <string name="tabSettings">Pengaturan</string>
-    <string name="tabSettingsDescription">Tempat ini mengatur Xposed dan framework.</string>
+    <string name="tabSettingsDescription">Tempat ini mengatur Xposed dan Framework.</string>
     <string name="tabAbout">Tentang</string>
     <string name="tabAboutDescription">Ketahui siapa yang membuat Xposed, dan di mana Anda bisa mendapat bantuan, dll.</string>
 

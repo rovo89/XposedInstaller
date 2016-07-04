@@ -315,7 +315,7 @@
     <string name="share_app_text">Olhe isso: Xposed Installer com Material Design! %s</string>
     <string name="disable_xposed">Desabilitar Xposed</string>
     <string name="status">Estado do Xposed</string>
-    <string name="xposed_on_next_reboot">O Xposed framework vai ser ativado no próximo reinício</string>
-    <string name="xposed_off_next_reboot">O Xposed framework vai ser desativado no próximo reinício</string>
+    <string name="xposed_on_next_reboot">O Xposed Framework vai ser ativado no próximo reinício</string>
+    <string name="xposed_off_next_reboot">O Xposed Framework vai ser desativado no próximo reinício</string>
 
 </resources>

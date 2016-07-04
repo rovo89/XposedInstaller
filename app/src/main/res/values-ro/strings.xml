@@ -4,22 +4,22 @@
     <!-- General/various strings -->
     <string name="menuSend">Trimite</string>
     <string name="menuSaveToSd">Salveaza pe cardul SD</string>
-    <string name="xposed_not_active">Cea mai recenta versiune de Xposed nu este inca activa. Ati instalat framework-ul si ati repornit ?</string>
+    <string name="xposed_not_active">Cea mai recenta versiune de Xposed nu este inca activa. Ati instalat Framework-ul si ati repornit ?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Bine ati venit la <b>Xposed Installer</b>!\nAlegeti ce vreti sa faceti:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Aici puteti modifica framework-ul Xposed, necesar pentru functionarea altor module.</string>
+    <string name="tabInstallDescription">Aici puteti modifica Framework-ul Xposed, necesar pentru functionarea altor module.</string>
     <string name="tabModules">Module</string>
-    <string name="tabModulesDescription">Acest framework nu adauga nici o functionalitate. Sunt necesare module pentru acest lucru. In acesta sectiune poti activa module dupa ce au fost in prealabil instalate.</string>
+    <string name="tabModulesDescription">Acest Framework nu adauga nici o functionalitate. Sunt necesare module pentru acest lucru. In acesta sectiune poti activa module dupa ce au fost in prealabil instalate.</string>
     <string name="tabDownload">Descarca</string>
     <string name="tabDownloadDescription">Acesta sectiune permite accesul la o baza de module, astfel le puteti cauta si descarca pe cele care va plac si le puteti actualiza.</string>
-    <string name="welcome_framework_update_available">Un update pentru framework-ul Xposed este disponibil (%s).</string>
+    <string name="welcome_framework_update_available">Un update pentru Framework-ul Xposed este disponibil (%s).</string>
     <string name="welcome_update_available">Una sau mai multe actualizari sunt disponibile pentru module.</string>
     <string name="tabSettings">Setari</string>
-    <string name="tabSettingsDescription">Mergeti la aceasta sectiune pentru a configura installer-ul Xposed si framework-ul.</string>
+    <string name="tabSettingsDescription">Mergeti la aceasta sectiune pentru a configura installer-ul Xposed si Framework-ul.</string>
     <string name="tabLogs">Loguri</string>
-    <string name="tabLogsDescription">Afiseaza si salveaza/trimite log-uri ale framework-ului Xposed.</string>
+    <string name="tabLogsDescription">Afiseaza si salveaza/trimite log-uri ale Framework-ului Xposed.</string>
     <string name="tabAbout">Despre</string>
     <string name="tabAboutDescription">Afla detalii despre cei care au creat Xposed, unde poti oferi suport pentru Xposed etc.</string>
 
@@ -142,7 +142,7 @@
     <string name="settings_disable_resources">Dezactivare resource hooks</string>
     <string name="settings_disable_resources_summary">Solutie pentru conflictele cu teme\n<b>ATENTIE:</b> Modulele care vor incerca sa modifice resursele nu vor functiona cand aceasta este activata.</string>
     <string name="settings_performance_experiment">Experiment de performanta</string>
-    <string name="settings_performance_experiment_summary">Daca activati , performanta sistemului poate creste, descreste sau ramane la fel. Sunteti liber sa-l incercati si sa raportati ce efect ati simtit (sau daca nu a existat unul). Este necesar sa reinstalati framework-ul si sa reporniti dupa aceasta modificare.</string>
+    <string name="settings_performance_experiment_summary">Daca activati , performanta sistemului poate creste, descreste sau ramane la fel. Sunteti liber sa-l incercati si sa raportati ce efect ati simtit (sau daca nu a existat unul). Este necesar sa reinstalati Framework-ul si sa reporniti dupa aceasta modificare.</string>
     <string name="settings_group_app">Aplicatie</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Aprins</string>

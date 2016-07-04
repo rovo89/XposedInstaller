@@ -390,14 +390,6 @@ public class InstallerFragment extends Fragment implements DownloadsUtil.Downloa
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.help:
-                String arch = getArch();
-                String info = getString(R.string.helpChoose) + "\n\n\n" + getString(R.string.detected_as, Build.VERSION.SDK_INT, arch + "\n");
-                info += getUIFramework();
-                new MaterialDialog.Builder(getContext()).title(R.string.help)
-                        .content(info)
-                        .positiveText(android.R.string.ok).show();
-                break;
             case R.id.reboot:
                 if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
                     areYouSure(R.string.reboot, new MaterialDialog.ButtonCallback() {

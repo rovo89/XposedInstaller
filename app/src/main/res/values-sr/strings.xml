@@ -4,22 +4,22 @@
     <!-- General/various strings -->
     <string name="menuSend">Pošalji</string>
     <string name="menuSaveToSd">Snimi na SD kartu</string>
-    <string name="xposed_not_active">Poslednja verzija Xposed programa trenutno nije aktivna. Da li ste instalirali framework i restartovali uređaj?</string>
+    <string name="xposed_not_active">Poslednja verzija Xposed programa trenutno nije aktivna. Da li ste instalirali Framework i restartovali uređaj?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome">Dobrodošli u <b>Xposed Installer</b>!\Molim, izaberite šta želite:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Ovde imate izbor podešavanja Xposed framework-a, za rad sa vašim modulima.</string>
+    <string name="tabInstallDescription">Ovde imate izbor podešavanja Xposed Framework-a, za rad sa vašim modulima.</string>
     <string name="tabModules">Moduli</string>
     <string name="tabModulesDescription">Framework sam po sebi ne dodaje funkcionalnosti. Potrebni su vam moduli. U ovom delu možete dodati module nakon što ste ih prethodno instalirali.</string>
     <string name="tabDownload">Učitavanje</string>
     <string name="tabDownloadDescription">Ovaj deo daje vam pristup respzitoriju modula tako da možete pretraživati i učitavati one koje želite.</string>
-    <string name="welcome_framework_update_available">Nova verzija Xposed framework-a je dostupna (%s).</string>
+    <string name="welcome_framework_update_available">Nova verzija Xposed Framework-a je dostupna (%s).</string>
     <string name="welcome_update_available">Jedna ili više novih verzija za module je dostupna.</string>
     <string name="tabSettings">Podešavanja</string>
-    <string name="tabSettingsDescription">U ovom delu možete izvršiti podešavanja Xposed Installer-a i framework-a.</string>
+    <string name="tabSettingsDescription">U ovom delu možete izvršiti podešavanja Xposed Installer-a i Framework-a.</string>
     <string name="tabLogs">Logovi</string>
-    <string name="tabLogsDescription">Prikaži i snimi/pošalji log Xposed framework-a.</string>
+    <string name="tabLogsDescription">Prikaži i snimi/pošalji log Xposed Framework-a.</string>
     <string name="tabAbout">O</string>
     <string name="tabAboutDescription">Saznajte ko su ljudi koji su kreirali Xposed, gde možete naći podršku za ovu aplikaciju i sl&#8230;</string>
 
