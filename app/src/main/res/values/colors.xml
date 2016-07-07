@@ -15,6 +15,7 @@
     <color name="welcome_framework_update_available">@color/download_status_update_available</color>
     <color name="welcome_update_available">@color/download_status_update_available</color>
     <color name="darker_green">#4CAF50</color>
+    <color name="amber_500">#FFC107</color>
 
 
     <!-- light theme-->

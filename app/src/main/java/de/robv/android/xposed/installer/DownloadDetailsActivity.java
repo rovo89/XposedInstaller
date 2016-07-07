@@ -1,13 +1,9 @@
 package de.robv.android.xposed.installer;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -50,22 +46,6 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
     private Module mModule;
     private InstalledModule mInstalledModule;
     private MenuItem mItemBookmark;
-    private Snackbar noConnectionSnack;
-
-    private BroadcastReceiver connectionListener = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-
-            onNetworkChange(networkInfo != null && networkInfo.isConnected());
-        }
-    };
-
-    private void onNetworkChange(boolean state) {
-        if (state) noConnectionSnack.dismiss();
-        else noConnectionSnack.show();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,8 +73,6 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
                 }
             });
 
-            noConnectionSnack = Snackbar.make(toolbar, R.string.no_connection_available, Snackbar.LENGTH_INDEFINITE);
-
             ActionBar ab = getSupportActionBar();
 
             if (ab != null) {
@@ -114,7 +92,6 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
             if (Build.VERSION.SDK_INT >= 21)
                 findViewById(R.id.fake_elevation).setVisibility(View.GONE);
 
-            registerReceiver(connectionListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
         } else {
             setContentView(R.layout.activity_download_details_not_found);
 
@@ -138,13 +115,6 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
         if (Build.VERSION.SDK_INT >= 21)
             getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(this), 0.85f));
 
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        unregisterReceiver(connectionListener);
     }
 
     private void setupTabs() {

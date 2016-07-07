@@ -333,8 +333,7 @@ public class RepoParser {
                 levelListDrawable.setBounds(0, 0, bitmap.getWidth() * multiplier, bitmap.getHeight() * multiplier);
                 levelListDrawable.setLevel(1);
                 t.setText(t.getText());
-            } catch (Exception e) { /* Like a null bitmap, etc. */
-                Log.d(TAG, e.getMessage());
+            } catch (Exception ignored) { /* Like a null bitmap, etc. */
             }
         }
     }

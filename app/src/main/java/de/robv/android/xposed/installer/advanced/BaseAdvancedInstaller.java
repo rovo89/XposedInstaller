@@ -1,6 +1,7 @@
 package de.robv.android.xposed.installer.advanced;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -45,10 +46,37 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
     private static final int INSTALL_MODE_NORMAL = 0;
     private static final int INSTALL_MODE_RECOVERY_AUTO = 1;
     private static final int INSTALL_MODE_RECOVERY_MANUAL = 2;
+    private static final String BINARIES_FOLDER = AssetUtil.getBinariesFolder();
     public static String APP_PROCESS_NAME = null;
+    private static Activity sActivity;
+    private static Fragment sFragment;
     private RootUtil mRootUtil = new RootUtil();
-    private Button mClickedButton;
     private List<String> messages = new ArrayList<>();
+    private View mClickedButton;
+
+    private static boolean checkPermissions() {
+        if (Build.VERSION.SDK_INT < 23) return true;
+
+        if (ActivityCompat.checkSelfPermission(sActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            sFragment.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        sActivity = getActivity();
+        sFragment = this;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mRootUtil.dispose();
+    }
 
     @Nullable
     @Override
@@ -100,8 +128,7 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
             @Override
             public void onClick(View v) {
                 mClickedButton = btnInstall;
-                if (checkPermissions())
-                    return;
+                if (checkPermissions()) return;
 
                 areYouSure(R.string.warningArchitecture,
                         new MaterialDialog.ButtonCallback() {
@@ -154,18 +181,19 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         showOnXda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //NavUtil.startURL(getActivity(), xdaUrl());
-                NavUtil.startURL(getActivity(), "http://google.com");
+                NavUtil.startURL(getActivity(), xdaUrl());
             }
         });
 
-        return view;
-    }
+        if (Build.VERSION.SDK_INT == 15) {
+            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk15";
+        } else if (Build.VERSION.SDK_INT >= 16 && Build.VERSION.SDK_INT <= 18) {
+            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk16";
+        } else if (Build.VERSION.SDK_INT == 19) {
+            APP_PROCESS_NAME = BINARIES_FOLDER + "app_process_xposed_sdk19";
+        }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mRootUtil.dispose();
+        return view;
     }
 
     @Override
@@ -269,7 +297,6 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
                 .negativeText(android.R.string.no).callback(callback).show();
     }
 
-
     private boolean prepareAutoFlash(List<String> messages, File file) {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
             File appProcessFile = AssetUtil.writeAssetToFile(APP_PROCESS_NAME, new File(XposedApp.BASE_DIR + "bin/app_process"), 00700);
@@ -370,14 +397,6 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         AssetUtil.removeBusybox();
     }
 
-    private boolean checkPermissions() {
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
-            return true;
-        }
-        return false;
-    }
-
     protected abstract List<XposedZip.Installer> installers();
 
     protected abstract List<XposedZip.Uninstaller> uninstallers();
@@ -390,5 +409,5 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
 
     protected abstract CharSequence author();
 
-    protected abstract CharSequence xdaUrl();
+    protected abstract String xdaUrl();
 }

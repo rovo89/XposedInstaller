@@ -33,7 +33,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:customtabs:23.4.0'
-    compile 'com.afollestad.material-dialogs:commons:0.8.5.8'
+    compile 'com.afollestad.material-dialogs:commons:0.8.6.1'
     compile 'com.github.machinarius:preferencefragment:0.1.1'
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
     compile 'com.squareup.picasso:picasso:2.5.2'

@@ -60,6 +60,23 @@ public class LogsFragment extends Fragment {
         mSVLog = (ScrollView) v.findViewById(R.id.svLog);
         mHSVLog = (HorizontalScrollView) v.findViewById(R.id.hsvLog);
         reloadErrorLog();
+/*
+        View scrollTop = v.findViewById(R.id.scroll_top);
+        View scrollDown = v.findViewById(R.id.scroll_down);
+
+        scrollTop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scrollTop();
+            }
+        });
+        scrollDown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scrollDown();
+            }
+        });
+*/
         return v;
     }
 
@@ -294,7 +311,6 @@ public class LogsFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String llog) {
-            Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
             mProgressDialog.dismiss();
             mTxtLog.append(llog);
 
