@@ -57,7 +57,18 @@ public class WelcomeActivity extends XposedBaseActivity
 
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,
                 mDrawerLayout, toolbar, R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close);
+                R.string.navigation_drawer_close) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                super.onDrawerSlide(drawerView, 0); // this disables the arrow @ completed state
+            }
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, 0); // this disables the animation
+            }
+        };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
