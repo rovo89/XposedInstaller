@@ -19,6 +19,11 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import de.psdev.licensesdialog.LicensesDialog;
+import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
+import de.psdev.licensesdialog.licenses.MITLicense;
+import de.psdev.licensesdialog.model.Notice;
+import de.psdev.licensesdialog.model.Notices;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
@@ -124,8 +129,25 @@ public class AboutActivity extends XposedBaseActivity {
             } catch (NameNotFoundException ignored) {
             }
 
-            createListener(licensesView, R.string.about_libraries_label, R.string.about_libraries);
-            createListener(developersView, R.string.about_developers_label, R.string.about_developers);
+            licensesView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    createLicenseDialog();
+                }
+            });
+
+            developersView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MaterialDialog dialog = new MaterialDialog.Builder(getContext())
+                            .title(R.string.about_developers_label)
+                            .content(R.string.about_developers)
+                            .positiveText(android.R.string.ok)
+                            .show();
+
+                    ((TextView) dialog.findViewById(R.id.content)).setMovementMethod(LinkMovementMethod.getInstance());
+                }
+            });
 
             sourceCodeView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -141,15 +163,19 @@ public class AboutActivity extends XposedBaseActivity {
             return v;
         }
 
-        public void createListener(View v, final int title, final int content) {
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    MaterialDialog dialog = new MaterialDialog.Builder(getContext()).title(title).content(content).positiveText(android.R.string.ok).show();
+        private void createLicenseDialog() {
+            Notices notices = new Notices();
+            notices.addNotice(new Notice("material-dialogs", "https://github.com/afollestad/material-dialogs", "Copyright (c) 2014-2016 Aidan Michael Follestad", new MITLicense()));
+            notices.addNotice(new Notice("StickyListHeaders", "https://github.com/emilsjolander/StickyListHeaders", "Emil Sjölander", new ApacheSoftwareLicense20()));
+            notices.addNotice(new Notice("PreferenceFragment-Compat", "https://github.com/Machinarius/PreferenceFragment-Compat", "machinarius", new ApacheSoftwareLicense20()));
+            notices.addNotice(new Notice("libsuperuser", "https://github.com/Chainfire/libsuperuser", "Copyright (C) 2012-2015 Jorrit \"Chainfire\" Jongma", new ApacheSoftwareLicense20()));
+            notices.addNotice(new Notice("picasso", "https://github.com/square/picasso", "Copyright 2013 Square, Inc.", new ApacheSoftwareLicense20()));
 
-                    ((TextView) dialog.findViewById(R.id.content)).setMovementMethod(LinkMovementMethod.getInstance());
-                }
-            });
+            new LicensesDialog.Builder(getContext())
+                    .setNotices(notices)
+                    .setIncludeOwnLicense(true)
+                    .build()
+                    .show();
         }
     }
 }

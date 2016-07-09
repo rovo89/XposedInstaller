@@ -1,4 +1,4 @@
-package de.robv.android.xposed.installer.advanced;
+package de.robv.android.xposed.installer.installation;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -28,6 +28,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -62,10 +63,8 @@ public class AdvancedInstallerFragment extends Fragment {
     private static final List<XposedZip.Uninstaller> listSystemlessUninstallers = new ArrayList<>();
     private static final List<XposedZip.Uninstaller> listSamsungUninstallers = new ArrayList<>();
     private static final List<XposedZip.Uninstaller> listMiuiUninstallers = new ArrayList<>();
-
-    private ViewPager mPager;
+    private static ViewPager mPager;
     private TabLayout mTabLayout;
-
     private int counter = 0;
     private BroadcastReceiver connectionListener = new BroadcastReceiver() {
         @Override
@@ -81,6 +80,8 @@ public class AdvancedInstallerFragment extends Fragment {
     };
     private RootUtil mRootUtil = new RootUtil();
     private int thisSdkCount = 0;
+
+    public static void gotoPage(int page) {mPager.setCurrentItem(page);}
 
     private void onNetworkChange(boolean state) {
         if (state) new JSONParser().execute();
@@ -117,6 +118,24 @@ public class AdvancedInstallerFragment extends Fragment {
         setHasOptionsMenu(true);
         new JSONParser().execute();
         getActivity().registerReceiver(connectionListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
+        if (!XposedApp.getPreferences().getBoolean("hide_install_warning", false)) {
+            final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
+
+            new MaterialDialog.Builder(getActivity())
+                    .title(R.string.install_warning_title)
+                    .customView(dontShowAgainView, false)
+                    .positiveText(android.R.string.ok)
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            CheckBox checkBox = (CheckBox) dontShowAgainView.findViewById(android.R.id.checkbox);
+                            if (checkBox.isChecked())
+                                XposedApp.getPreferences().edit().putBoolean("hide_install_warning", true).apply();
+                        }
+                    }).cancelable(false).show();
+        }
 
         return view;
     }
@@ -274,12 +293,26 @@ public class AdvancedInstallerFragment extends Fragment {
 
         @Override
         protected int compatibility() {
-            return R.string.official_compatibility;
+            switch (Build.VERSION.SDK_INT) {
+                case 21:
+                case 22:
+                case 23:
+                    return R.string.official_compatibility_v21;
+                default:
+                    return R.string.official_compatibility;
+            }
         }
 
         @Override
         protected int incompatibility() {
-            return R.string.official_incompatibility;
+            switch (Build.VERSION.SDK_INT) {
+                case 21:
+                case 22:
+                case 23:
+                    return R.string.official_incompatibility_v21;
+                default:
+                    return R.string.official_incompatibility;
+            }
         }
 
         @Override
@@ -321,7 +354,7 @@ public class AdvancedInstallerFragment extends Fragment {
 
         @Override
         protected int incompatibility() {
-            return R.string.no_incompatibility;
+            return R.string.systemless_incompatibility;
         }
 
         @Override
@@ -495,7 +528,7 @@ public class AdvancedInstallerFragment extends Fragment {
 
                 return true;
             } catch (Exception e) {
-                Log.e(XposedApp.TAG, "InstallerFragment -> " + e.getMessage());
+                Log.e(XposedApp.TAG, "AdvcancedInstallerFragment -> " + e.getMessage());
                 return false;
             }
         }

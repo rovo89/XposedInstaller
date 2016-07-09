@@ -1,6 +1,7 @@
-package de.robv.android.xposed.installer.advanced;
+package de.robv.android.xposed.installer.installation;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.SwitchCompat;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,7 @@ import java.io.IOException;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.NavUtil;
 
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
@@ -44,15 +46,22 @@ public class StatusInstallerFragment extends Fragment {
 
     public static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
     private static Activity sActivity;
+    private static Fragment sFragment;
+    private static String mUpdateLink;
     private static ImageView mErrorIcon;
-    private static TextView mErrorTv;
     private static View mUpdateView;
     private static View mUpdateButton;
-    private static String mUpdateLink;
-    private static Fragment sFragment;
+    private static View mHintContainer;
+    private static TextView mHint;
+    private static TextView mErrorTv;
+    private TextView txtKnownIssue;
 
     public static void setError(boolean connectionFailed, boolean noSdks) {
-        if (!connectionFailed && !noSdks) return;
+        if (!connectionFailed && !noSdks) {
+            mHintContainer.setVisibility(View.VISIBLE);
+            mHint.setText(mHint.getText() + "\n" + sActivity.getString(R.string.goto_framework));
+            return;
+        }
 
         mErrorTv.setVisibility(View.VISIBLE);
         mErrorIcon.setVisibility(View.VISIBLE);
@@ -110,13 +119,22 @@ public class StatusInstallerFragment extends Fragment {
     }
 
     private static boolean checkPermissions() {
-        if (Build.VERSION.SDK_INT < 23) return true;
+        if (Build.VERSION.SDK_INT < 23) return false;
 
         if (ActivityCompat.checkSelfPermission(sActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             sFragment.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
             return true;
         }
         return false;
+    }
+
+    private static boolean checkClassExists(String className) {
+        try {
+            Class.forName(className);
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
     }
 
     @Override
@@ -128,6 +146,23 @@ public class StatusInstallerFragment extends Fragment {
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == WRITE_EXTERNAL_PERMISSION) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        update();
+                    }
+                }, 500);
+            } else {
+                Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.status_installer, container, false);
 
@@ -136,17 +171,22 @@ public class StatusInstallerFragment extends Fragment {
         mUpdateView = v.findViewById(R.id.updateView);
         mUpdateButton = v.findViewById(R.id.click_to_update);
 
+        txtKnownIssue = (TextView) v.findViewById(R.id.framework_known_issue);
+
         TextView txtInstallError = (TextView) v.findViewById(R.id.framework_install_errors);
         View txtInstallContainer = v.findViewById(R.id.status_container);
         ImageView txtInstallIcon = (ImageView) v.findViewById(R.id.status_icon);
 
         String installedXposedVersion = XposedApp.getXposedProp().get("version");
         View disableView = v.findViewById(R.id.disableView);
-        final Switch xposedDisable = (Switch) v.findViewById(R.id.disableSwitch);
+        final SwitchCompat xposedDisable = (SwitchCompat) v.findViewById(R.id.disableSwitch);
 
         TextView androidSdk = (TextView) v.findViewById(R.id.android_version);
         TextView manufacturer = (TextView) v.findViewById(R.id.ic_manufacturer);
         TextView cpu = (TextView) v.findViewById(R.id.cpu);
+
+        mHintContainer = v.findViewById(R.id.hint_container);
+        mHint = (TextView) v.findViewById(R.id.hint);
 
         if (Build.VERSION.SDK_INT >= 21) {
             if (installedXposedVersion != null) {
@@ -166,7 +206,7 @@ public class StatusInstallerFragment extends Fragment {
                 txtInstallError.setText(R.string.not_installed_no_lollipop);
                 txtInstallError.setTextColor(getResources().getColor(R.color.warning));
                 txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.warning));
-                txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_image));
+                txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_error));
                 xposedDisable.setVisibility(View.GONE);
                 disableView.setVisibility(View.GONE);
             }
@@ -187,7 +227,7 @@ public class StatusInstallerFragment extends Fragment {
                 txtInstallError.setText(getString(R.string.not_installed_no_lollipop));
                 txtInstallError.setTextColor(getResources().getColor(R.color.warning));
                 txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.warning));
-                txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_image));
+                txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_error));
                 xposedDisable.setVisibility(View.GONE);
                 disableView.setVisibility(View.GONE);
             }
@@ -206,7 +246,7 @@ public class StatusInstallerFragment extends Fragment {
                         DISABLE_FILE.createNewFile();
                         Snackbar.make(xposedDisable, R.string.xposed_off_next_reboot, Snackbar.LENGTH_LONG).show();
                     } catch (IOException e) {
-                        Log.e(XposedApp.TAG, "InstallerFragment -> " + e.getMessage());
+                        Log.e(XposedApp.TAG, "StatusInstallerFragment -> " + e.getMessage());
                     }
                 }
             }
@@ -216,24 +256,80 @@ public class StatusInstallerFragment extends Fragment {
         manufacturer.setText(getUIFramework());
         cpu.setText(getArch());
 
+        refreshKnownIssue();
+        setHint();
         return v;
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == WRITE_EXTERNAL_PERMISSION) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        update();
-                    }
-                }, 500);
+    @SuppressLint("StringFormatInvalid")
+    private void refreshKnownIssue() {
+        String issueName = null;
+        String issueLink = null;
+
+        if (new File("/system/framework/core.jar.jex").exists()) {
+            issueName = "Aliyun OS";
+            issueLink = "http://forum.xda-developers.com/showpost.php?p=52289793&postcount=5";
+
+        } else if (new File("/data/miui/DexspyInstaller.jar").exists() || checkClassExists("miui.dexspy.DexspyInstaller")) {
+            issueName = "MIUI/Dexspy";
+            issueLink = "http://forum.xda-developers.com/showpost.php?p=52291098&postcount=6";
+
+        } else if (checkClassExists("com.huawei.android.content.res.ResourcesEx")
+                || checkClassExists("android.content.res.NubiaResources")) {
+            issueName = "Resources subclass";
+            issueLink = "http://forum.xda-developers.com/showpost.php?p=52801382&postcount=8";
+        }
+
+        if (issueName != null) {
+            final String issueLinkFinal = issueLink;
+            txtKnownIssue.setText(getString(R.string.install_known_issue, issueName));
+            txtKnownIssue.setVisibility(View.VISIBLE);
+            txtKnownIssue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    NavUtil.startURL(getActivity(), issueLinkFinal);
+                }
+            });
+        } else {
+            txtKnownIssue.setVisibility(View.GONE);
+        }
+    }
+
+    private void setHint() {
+        String manufacturer = Build.MANUFACTURER;
+
+        File twFramework = new File("/system/framework/twframework.jar");
+        File miuiFramework = new File("/system/framework/framework-miui-res.jar");
+
+        String hint = getString(R.string.original_framework);
+        int tab = 1;
+        if (manufacturer.contains("samsung")) {
+            if (twFramework.exists()) {
+                hint = getString(R.string.device_own, "Samsung", "TouchWiz");
+                tab = 3;
             } else {
-                Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
+                hint = getString(R.string.device_own, "Samsung", "AOSP-based");
+                tab = 1;
+            }
+        } else if (manufacturer.contains("xioami")) {
+            if (miuiFramework.exists()) {
+                hint = getString(R.string.device_own, "Xioami", "MIUI");
+                tab = 4;
+            } else {
+                hint = getString(R.string.device_own, "Xioami", "AOSP-based");
+                tab = 1;
             }
         }
+
+        final int finalTab = tab;
+
+        mHint.setText(hint);
+        mHintContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AdvancedInstallerFragment.gotoPage(finalTab);
+            }
+        });
     }
 
     private String getAndroidVersion() {
@@ -280,7 +376,7 @@ public class StatusInstallerFragment extends Fragment {
                 if (!text.startsWith("processor")) break;
             }
             br.close();
-            String[] array = text.split(":\\s+", 2);
+            String[] array = text != null ? text.split(":\\s+", 2) : new String[0];
             if (array.length >= 2) {
                 info += array[1] + " ";
             }

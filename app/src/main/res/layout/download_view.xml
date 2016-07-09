@@ -22,6 +22,14 @@
             android:textAppearance="?android:attr/textAppearanceSmall"/>
 
         <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="30dip"
+            android:text="@string/save"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+        <Button
             android:id="@+id/btnDownloadCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

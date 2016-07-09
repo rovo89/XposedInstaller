@@ -335,20 +335,29 @@
     <string name="systemless">Systemless</string>
     <string name="samsung">Samsung</string>
     <string name="miui">MIUI</string>
-    <string name="official_compatibility">All AOSP ROM, Nexus, LG, HTC, Asus devices</string>
-    <string name="official_incompatibility">Samsung ROMs</string>
-    <string name="systemless_compatibility">All AOSP-based ROMs, Samsung ROMs, LG, HTC, Asus devices</string>
-    <string name="samsung_compatibility">Only Samsung ROMs. <b>Note: alt</b> version is for Samsung Note phones</string>
-    <string name="samsung_incompatibility">All other ROMs</string>
+
+    <!-- Start compatibility -->
+    <string name="official_compatibility">All AOSP and Samsung ROM, Nexus, LG, HTC, Asus devices</string>
+    <string name="official_incompatibility">No incompatibility</string>
+    <string name="official_compatibility_v21">All AOSP ROM, Nexus, LG, HTC, Huawei, Asus devices</string>
+    <string name="official_incompatibility_v21">Samsung ROMs</string>
+    <string name="systemless_compatibility">All AOSP-based ROMs, Samsung ROMs, LG, HTC, Asus, Pixel C devices</string>
+    <string name="systemless_incompatibility">No incompatibility</string>
+    <string name="samsung_compatibility">All AOSP and Samsung ROM, Nexus, LG, HTC, Asus devices. <b>Note: alt</b> version is for Samsung Note phones</string>
+    <string name="samsung_incompatibility">No incompatibility</string>
     <string name="miui_compatibility">Only MIUI ROMs</string>
     <string name="miui_incompatibility">All other ROMs</string>
-    <string name="compatibility">Compatibility</string>
-    <string name="no_incompatibility">No incompatibility</string>
+    <!-- End compatibility -->
 
+    <string name="compatibility">Compatibility</string>
     <string name="details">Details</string>
     <string name="look_and_feel">Look and feel</string>
     <string name="support_xda">Get support on XDA thread</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Later</string>
+    <string name="device_own">You own a %1$s device with a %2$s ROM.</string>
+    <string name="original_framework">Your device is compatible with the official Xposed Framework.</string>
+    <string name="goto_framework">Click here to go to the right section for your device</string>
+    <string name="save">Save</string>
 
 </resources>

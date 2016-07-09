@@ -27,6 +27,7 @@ public class DownloadView extends LinearLayout {
     private final Button btnDownload;
     private final Button btnDownloadCancel;
     private final Button btnInstall;
+    private final Button btnSave;
     private final ProgressBar progressBar;
     private final TextView txtInfo;
     public Fragment fragment;
@@ -37,6 +38,7 @@ public class DownloadView extends LinearLayout {
         public void run() {
             if (mUrl == null) {
                 btnDownload.setVisibility(View.GONE);
+                btnSave.setVisibility(View.GONE);
                 btnDownloadCancel.setVisibility(View.GONE);
                 btnInstall.setVisibility(View.GONE);
                 progressBar.setVisibility(View.GONE);
@@ -44,6 +46,7 @@ public class DownloadView extends LinearLayout {
                 txtInfo.setText(R.string.download_view_no_url);
             } else if (mInfo == null) {
                 btnDownload.setVisibility(View.VISIBLE);
+                btnSave.setVisibility(View.VISIBLE);
                 btnDownloadCancel.setVisibility(View.GONE);
                 btnInstall.setVisibility(View.GONE);
                 progressBar.setVisibility(View.GONE);
@@ -54,6 +57,7 @@ public class DownloadView extends LinearLayout {
                     case DownloadManager.STATUS_PAUSED:
                     case DownloadManager.STATUS_RUNNING:
                         btnDownload.setVisibility(View.GONE);
+                        btnSave.setVisibility(View.GONE);
                         btnDownloadCancel.setVisibility(View.VISIBLE);
                         btnInstall.setVisibility(View.GONE);
                         progressBar.setVisibility(View.VISIBLE);
@@ -74,6 +78,7 @@ public class DownloadView extends LinearLayout {
 
                     case DownloadManager.STATUS_FAILED:
                         btnDownload.setVisibility(View.VISIBLE);
+                        btnSave.setVisibility(View.VISIBLE);
                         btnDownloadCancel.setVisibility(View.GONE);
                         btnInstall.setVisibility(View.GONE);
                         progressBar.setVisibility(View.GONE);
@@ -84,6 +89,7 @@ public class DownloadView extends LinearLayout {
 
                     case DownloadManager.STATUS_SUCCESSFUL:
                         btnDownload.setVisibility(View.GONE);
+                        btnSave.setVisibility(View.GONE);
                         btnDownloadCancel.setVisibility(View.GONE);
                         btnInstall.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.GONE);
@@ -108,6 +114,7 @@ public class DownloadView extends LinearLayout {
         btnDownload = (Button) findViewById(R.id.btnDownload);
         btnDownloadCancel = (Button) findViewById(R.id.btnDownloadCancel);
         btnInstall = (Button) findViewById(R.id.btnInstall);
+        btnSave = (Button) findViewById(R.id.save);
 
         btnDownload.setOnClickListener(new View.OnClickListener() {
             @Override

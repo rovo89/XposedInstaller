@@ -36,6 +36,8 @@ dependencies {
     compile 'com.afollestad.material-dialogs:commons:0.8.6.1'
     compile 'com.github.machinarius:preferencefragment:0.1.1'
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
+    compile 'eu.chainfire:libsuperuser:1.0.0.201607041850'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'de.psdev.licensesdialog:licensesdialog:1.8.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

@@ -1,4 +1,4 @@
-package de.robv.android.xposed.installer.advanced;
+package de.robv.android.xposed.installer.installation;
 
 import android.Manifest;
 import android.app.Activity;
@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
@@ -55,7 +56,7 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
     private View mClickedButton;
 
     private static boolean checkPermissions() {
-        if (Build.VERSION.SDK_INT < 23) return true;
+        if (Build.VERSION.SDK_INT < 23) return false;
 
         if (ActivityCompat.checkSelfPermission(sActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             sFragment.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
@@ -138,6 +139,8 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
 
                                 XposedZip.Installer selectedInstaller = (XposedZip.Installer) chooserInstallers.getSelectedItem();
 
+                                checkAndDelete(selectedInstaller.name);
+
                                 DownloadsUtil.add(getContext(), selectedInstaller.name, selectedInstaller.link, BaseAdvancedInstaller.this,
                                         DownloadsUtil.MIME_TYPES.ZIP, true);
                             }
@@ -158,9 +161,11 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
                             public void onPositive(MaterialDialog dialog) {
                                 super.onPositive(dialog);
 
-                                XposedZip.Uninstaller selectedInstaller = (XposedZip.Uninstaller) chooserUninstallers.getSelectedItem();
+                                XposedZip.Uninstaller selectedUninstaller = (XposedZip.Uninstaller) chooserUninstallers.getSelectedItem();
 
-                                DownloadsUtil.add(getContext(), selectedInstaller.name, selectedInstaller.link, BaseAdvancedInstaller.this,
+                                checkAndDelete(selectedUninstaller.name);
+
+                                DownloadsUtil.add(getContext(), selectedUninstaller.name, selectedUninstaller.link, BaseAdvancedInstaller.this,
                                         DownloadsUtil.MIME_TYPES.ZIP, true);
                             }
                         });
@@ -194,6 +199,10 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         }
 
         return view;
+    }
+
+    private void checkAndDelete(String name) {
+        new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/XposedInstaller/" + name + ".zip").delete();
     }
 
     @Override

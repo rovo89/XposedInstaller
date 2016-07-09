@@ -58,6 +58,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import de.robv.android.xposed.installer.installation.StatusInstallerFragment;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.repo.ReleaseType;
@@ -129,7 +130,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
                 addHeader();
             }
         } else {
-            if (InstallerFragment.DISABLE_FILE.exists()) installedXposedVersion = -1;
+            if (StatusInstallerFragment.DISABLE_FILE.exists()) installedXposedVersion = -1;
             if (installedXposedVersion <= 0) {
                 addHeader();
             }
@@ -307,7 +308,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
         try {
             ips = new FileInputStream(path);
         } catch (FileNotFoundException e) {
-            Log.e(XposedApp.TAG, "InstallerFragment -> " + e.getMessage());
+            Log.e(XposedApp.TAG, "ModulesFragment -> " + e.getMessage());
         }
 
         if (path.length() == 0) {
