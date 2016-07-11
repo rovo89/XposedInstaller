@@ -1,4 +1,4 @@
-#*.apk
+*.apk
 *.ap_
 *.iml
 *.dex
