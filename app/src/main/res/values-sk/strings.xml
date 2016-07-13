@@ -318,7 +318,7 @@
     <string name="xposed_on_next_reboot">Xposed Framework bude povolený pri nasledujúcom reštarte</string>
     <string name="xposed_off_next_reboot">Xposed Framework bude zakázaný pri nasledujúcom reštarte</string>
 
-    <string name="update_interval">Interval kontroly aktualizácii na pozadí</string>
+
     <string name="hour1">1 hod.</string>
     <string name="hour2">2 hod.</string>
     <string name="hour3">3 hod.</string>

@@ -1,7 +1,6 @@
 package de.robv.android.xposed.installer;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -17,7 +16,6 @@ import java.io.IOException;
 
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
-import de.robv.android.xposed.installer.util.UpdateService;
 
 public class SettingsActivity extends XposedBaseActivity {
 
@@ -111,20 +109,7 @@ public class SettingsActivity extends XposedBaseActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (key.equals("theme"))
-                getActivity().recreate();
-
-            if (key.equals("update_service_interval")) {
-                final Intent intent = new Intent(getActivity(), UpdateService.class);
-                getActivity().stopService(intent);
-                new android.os.Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        getActivity().startService(intent);
-                    }
-                }, 1000);
-
-            }
+            if (key.equals("theme")) getActivity().recreate();
         }
     }
 }

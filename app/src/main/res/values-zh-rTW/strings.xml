@@ -318,7 +318,7 @@
     <string name="xposed_on_next_reboot">Xposed 框架將在下次重新啟動裝置後啟用</string>
     <string name="xposed_off_next_reboot">Xposed 框架將在下次重新啟動裝置後停用</string>
 
-    <string name="update_interval">背景檢查更新間隔</string>
+
     <string name="hour1">1 小時</string>
     <string name="hour2">2 小時</string>
     <string name="hour3">3 小時</string>

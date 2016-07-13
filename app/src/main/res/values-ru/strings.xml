@@ -318,7 +318,7 @@
     <string name="xposed_on_next_reboot">Xposed Framework будет включен после перезагрузки</string>
     <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>
 
-    <string name="update_interval">Интервал фоновой проверки обновлений</string>
+
     <string name="hour1">1 час</string>
     <string name="hour2">2 часа</string>
     <string name="hour3">3 часа</string>

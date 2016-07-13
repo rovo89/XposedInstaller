@@ -317,7 +317,7 @@
     <string name="hour4">4 ore</string>
     <string name="hour5">5 ore</string>
     <string name="hour6">6 ore</string>
-    <string name="update_interval">Intervallo controllo aggiornamenti background</string>
+
 
     <string name="detected_as">SDK rilevato: %1$d, ARCHITETTURA: %2$s</string>
     <string name="skip_xposedminversion_check">Salta controllo \'xposedminversion\' </string>
