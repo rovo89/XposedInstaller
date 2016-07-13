@@ -231,7 +231,6 @@
     <string name="import_installed_modules">Импорт списка установленных модулей</string>
     <string name="no_installed_modules">Установленных модулей нет!</string>
 
-    <string name="enable_heads_up_summary">Эта опция включает Heads-Up уведомления для новых/обновленных модулей</string>
 
     <string name="no_backup_found">Резервные копии не найдены</string>
     <string name="no_enabled_modules">Нет включенных модулей</string>
@@ -260,7 +259,7 @@
     <string name="xposedZipNotFound">Не найден Zip, вероятно есть новая версия.</string>
     <string name="warningArchitecture">ВЫ ВЫБРАЛИ ПАРВИЛЬНУЮ АРХИТЕКТУРУ ZIP XPOSED?\nНе правильный zip установщик может навредить вашему устройству!</string>
     <string name="help">Справка</string>
-    <string name="newVersion">Доступна новая версия Xposed Installer!</string>
+
     <string name="update">Установить обновление</string>
 
 
@@ -309,8 +308,6 @@
     <string name="xposed_on_next_reboot">Xposed Framework будет включен после перезагрузки</string>
     <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>
 
-
-    <string name="hour24">Каждый день</string>
 
     <string name="skip_xposedminversion_check">Пропускать проверку \'Xposed мин. версии\'</string>
     <string name="skip_xposedminversion_check_summ">Пропустить \'Xposed мин. версии\' проверку модулей</string>

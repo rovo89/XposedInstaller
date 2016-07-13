@@ -23,7 +23,7 @@
     <string name="tabLogs">Registres</string>
     <string name="tabLogsDescription">Mostra i desa/envia els registres del marc Xposed.</string>
     <string name="tabAbout">Quant a</string>
-    <string name="tabAboutDescription">Informeu-vos de la gent que ha creat l\'Xposed, d\'on aconseguir ajuda per a aquesta app...</string>
+    <string name="tabAboutDescription">Informeu-vos de la gent que ha creat l\'Xposed, d\'on aconseguir ajuda per a aquesta app…</string>
 
     <!-- navigation view items -->
     <string name="nav_item_install">Marc</string>
@@ -231,7 +231,6 @@
     <string name="import_installed_modules">Importa la llista de mòduls instal·lats</string>
     <string name="no_installed_modules">No hi ha cap mòdul instal·lat!</string>
 
-    <string name="enable_heads_up_summary">Aquesta opció habilita la notificació d\'avisos de mòduls nous/actualitzats</string>
 
     <string name="no_backup_found">No s\'ha trobat cap còpia de seguretat</string>
     <string name="no_enabled_modules">No hi ha cap mòdul habilitat</string>
@@ -260,7 +259,7 @@
     <string name="xposedZipNotFound">No s\'ha trobat el Zip, probablement s\'ha llançat una versió nova.</string>
     <string name="warningArchitecture">HEU TRIAT EL ZIP D\'XPOSED DE L\'ARQUITECTURA CORRECTA?\nUn intal·lador zip equivocat pot fer malbé el telèfon!</string>
     <string name="help">Ajuda</string>
-    <string name="newVersion">Hi ha una versió nova de l\'Instal·lador Xposed disponible! Actualitzeu-lo!</string>
+
     <string name="update">Actualització</string>
 
 

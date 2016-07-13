@@ -7,7 +7,7 @@
     <string name="xposed_not_active">A última versão do Framework não está ativa. Você instalou o Framework e reiniciou o dispositivo?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Bem vindo ao <b>Xposed Installer</b>!\nPor favor, escolha o que deseja fazer:</string>
+    <string name="welcome">Bem-vindo ao <b>Xposed Installer</b>!\nPor favor, escolha o que deseja fazer:</string>
     <string name="tabInstall">Framework</string>
     <string name="tabInstallDescription">Aqui você pode gerenciar o Xposed Framework, que é necessário para que qualquer módulo funcione.</string>
     <string name="tabModules">Módulos</string>
@@ -143,7 +143,7 @@
     <string name="download_section_older">Mais de 30 dias atrás</string>
     <string name="download_details_not_found">Nenhum módulo com o nome de pacote \"%s\" no repositório.</string>
     <string name="download_no_versions">O autor não colocou nada ainda.</string>
-    <string name="download_test_version_not_shown">Uma versão de testes está disponivel, entretanto não é exibida devido às suas configurações globais ou específicas do módulo.</string>
+    <string name="download_test_version_not_shown">Uma versão de testes está disponível, entretanto não é exibida devido às suas configurações globais ou específicas do módulo.</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">Instalação</string>
@@ -231,7 +231,6 @@
     <string name="import_installed_modules">Importar lista de módulos instalados</string>
     <string name="no_installed_modules">Nenhum módulo instalado!</string>
 
-    <string name="enable_heads_up_summary">Esta opção habilita notificações Heads-up para módulos instalados/atualizados</string>
 
     <string name="no_backup_found">Nenhum backup encontrado</string>
     <string name="no_enabled_modules">Não há nenhum módulo habilitado</string>
@@ -260,7 +259,7 @@
     <string name="xposedZipNotFound">Zip não encontrado, provavelmente uma nova versão foi lançada.</string>
     <string name="warningArchitecture">Você escolheu corretamente a ARQUITETURA do XPOSED ZIP?\nUm instalador zip errado pode danificar seu dispositivo!</string>
     <string name="help">Ajuda</string>
-    <string name="newVersion">Uma nova versão do Xposed Installer está disponível! Atualize agora!</string>
+
     <string name="update">Atualizar</string>
 
 

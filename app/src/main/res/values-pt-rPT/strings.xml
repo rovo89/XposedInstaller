@@ -202,14 +202,14 @@
     <string name="download_remove">Descarregar e remover</string>
     <string name="download_view_size">Tamanho: %s KB</string>
 
-    <string name="enable_heads_up_summary">Ativa as notificações \"heads up\" para módulos novos ou atualizados</string>
-    <string name="export_">Exportar...</string>
+
+    <string name="export_">Exportar…</string>
     <string name="export_enabled_modules">Exportar lista de módulos ativos</string>
     <string name="export_installed_modules">Exportar lista de módulos instalados</string>
     <string name="export_modules">Exportar lista de módulos ativos</string>
     <string name="file_is_empty">O ficheiro está vazio</string>
     <string name="help">Ajuda</string>
-    <string name="import_">Importar...</string>
+    <string name="import_">Importar…</string>
     <string name="import_enabled_modules">Importar lista de módulos ativos</string>
     <string name="import_installed_modules">Importar lista de módulos instalados</string>
     <string name="import_modules">Importar lista de módulos </string>
@@ -245,7 +245,7 @@
     <string name="nav_item_support">Suporte</string>
     <string name="navigation_drawer_close">Fechar a gaveta de navegação</string>
     <string name="navigation_drawer_open">Abrir a gaveta de navegação</string>
-    <string name="newVersion">Está disponível uma nova versão da \"Xposed Installer\"! Atualize-a!</string>
+
     <string name="no_backup_found">Não foi encontrado nenhum \"backup\"</string>
     <string name="no_bookmark_added">Não foi adicionado nenhum marcador</string>
     <string name="no_enabled_modules">Não existem módulos ativos</string>
@@ -259,7 +259,7 @@
     <string name="scroll_top">Voltar ao topo</string>
     <string name="selectFile">Escolha o ficheiro descarregado</string>
     <string name="settings_default_view">Vista padrão</string>
-    <string name="share">Partilhar com...</string>
+    <string name="share">Partilhar com…</string>
     <string name="support_donate_description">Se quiser agradecer pela \"Xposed\", pode fazer um donativo ao rovo89 aqui</string>
     <string name="support_donate_label">Doar</string>
     <string name="support_faq_label">FAQ/Problemas conhecidos</string>

@@ -231,7 +231,6 @@
     <string name="import_installed_modules">Importovať zoznam inštalovaných modulov</string>
     <string name="no_installed_modules">Nie je nainštalovaný žiadny modul!</string>
 
-    <string name="enable_heads_up_summary">Táto možnosť povolí nahliadnutie upozornenia pri novom/aktualizovanom module</string>
 
     <string name="no_backup_found">Záloha nenájdená</string>
     <string name="no_enabled_modules">Nie sú povolené žiadne moduly</string>
@@ -260,7 +259,7 @@
     <string name="xposedZipNotFound">Zip nebol nájdený, pravdepodobne je dostupná nová verzia.</string>
     <string name="warningArchitecture">ZVOLILI STE SPRÁVNU ARCHITEKTÚRU XPOSED ZIP?\nNesprávny zip súbor môže poškodiť vaše zariadenie!</string>
     <string name="help">Pomoc</string>
-    <string name="newVersion">Je dostupná nová verzia Xposed Installera! Aktualizujte ju!</string>
+
     <string name="update">Aktualizovať</string>
 
 
@@ -309,8 +308,6 @@
     <string name="xposed_on_next_reboot">Xposed Framework bude povolený pri nasledujúcom reštarte</string>
     <string name="xposed_off_next_reboot">Xposed Framework bude zakázaný pri nasledujúcom reštarte</string>
 
-
-    <string name="hour24">Každý deň</string>
 
     <string name="skip_xposedminversion_check">Preskočiť \'xposedminversion\' kontrolu</string>
     <string name="skip_xposedminversion_check_summ">Preskočiť \'xposedminversion\' kontrolu pre moduly</string>

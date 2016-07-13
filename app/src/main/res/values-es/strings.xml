@@ -9,7 +9,7 @@
     <!-- Welcome screen / main sections -->
     <string name="welcome">Bienvenido al <b>Instalador del Xposed</b>!\nPor favor elija que quiere hacer:</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Aqui puedes administrar el Xposed Framework, que es requerido por cualquier módulo para funcionar.</string>
+    <string name="tabInstallDescription">Aquí puedes administrar el Xposed Framework, que es requerido por cualquier módulo para funcionar.</string>
     <string name="tabModules">Módulos</string>
     <string name="tabModulesDescription">El Framework en sí mismo no adiciona funcionalidad alguna. Necesitas instalar módulos para eso. En esta sección puedes activar los módulos una vez los has instalado.</string>
     <string name="tabDownload">Descargar</string>
@@ -22,7 +22,7 @@
     <string name="tabSupportDescription">Encuentre ayuda acerca de inconvenientes relacionados al Xposed. También puedes donar para agradecer por el Xposed.</string>
     <string name="tabLogs">Registros</string>
     <string name="tabLogsDescription">Mostrar y guardar/enviar registros del Xposed Framework.</string>
-    <string name="tabAbout">Acerca de...</string>
+    <string name="tabAbout">Acerca de…</string>
     <string name="tabAboutDescription">Aprenda acerca de las personas quienes crearon el Xposed, para obtener soporte de ésta aplicación, etc.</string>
 
     <!-- navigation view items -->
@@ -32,7 +32,7 @@
     <string name="nav_item_settings">Ajustes</string>
     <string name="nav_item_support">Soporte</string>
     <string name="nav_item_logs">Registros</string>
-    <string name="nav_item_about">Acerca de...</string>
+    <string name="nav_item_about">Acerca de…</string>
     <string name="navigation_drawer_open">Abrir menú lateral</string>
     <string name="navigation_drawer_close">Cerrar menú lateral</string>
 
@@ -48,7 +48,7 @@
     <string name="areyousure">¿Está seguro?</string>
     <string name="phone_not_compatible">El Xposed no es (todavía) compatible con la version SDK de Android  %1$d o tu arquitectura de procesador (%2$s).</string>
     <string name="not_tested_but_compatible">El Xposed no ha sido probado con la version SDK de Android  %d, pero parece ser compatible. Puedes probar instalándolo si te crées arriesgado.</string>
-    <string name="reboot_failed">El Reinicio falló. Por favor use la funcion normal de reinicio del dispositivo.</string>
+    <string name="reboot_failed">El Reinicio falló. Por favor use la función normal de reinicio del dispositivo.</string>
     <string name="auto_flash_note">%s debería ser flasheado automaticamente una vez presione "OK".</string>
     <string name="manual_flash_note">Por favor flashée %s desde una tarjeta SD para completar la operación.</string>
     <string name="reboot_confirmation">Quiere reiniciar ahora?</string>
@@ -57,8 +57,8 @@
     <string name="install_warning">En algunos casos, su dispositivo puede no iniciar después de haber instalado el Xposed.\n\nSi nunca antes ha escuchado acerca de \"soft brick\" y \"bootloop\" o si no sabe cómo recuperarlo de esa situación, mejor <b>NO</b> instale el Xposed!\n\nEn cualquier caso, tener una copia de seguridad es altamente recommendable.</string>
     <string name="dont_show_again">No mostrar esto nuevamente</string>
     <string name="install_known_issue">Al parecer hay un inconveniente conocido (\"%s\") con su ROM. Instalar el Xposed puede no funcionar o conducir a severos problemas. Click aquí para más detalles acerca del inconveniente.</string>
-    <string name="install_reverted">app_process version \"%1$s\" ha sido instalado previamente pero la versión \"%2$s\" fué encontrada. Si no esperaba restaurar un archivo antiguo, seguramente quiera tratar de instalarlo mediante recovery (automático o manual).</string>
-    <string name="uninstall_reverted">app_process fué instalada previamente pero la versión \"%s\" fué encontrada. Si no esperaba restaurar un archivo antiguo, seguramente quiera tratar de instalarlo mediante recovery (automático o manual).</string>
+    <string name="install_reverted">app_process version \"%1$s\" ha sido instalado previamente pero la versión \"%2$s\" fue encontrada. Si no esperaba restaurar un archivo antiguo, seguramente quiera tratar de instalarlo mediante recovery (automático o manual).</string>
+    <string name="uninstall_reverted">app_process fue instalada previamente pero la versión \"%s\" fue encontrada. Si no esperaba restaurar un archivo antiguo, seguramente quiera tratar de instalarlo mediante recovery (automático o manual).</string>
     <string name="tap_to_dismiss">Toque para descartar</string>
     <string name="sdcard_location">Tarjeta SD: %s</string>
     <string name="installation_lollipop">El Xposed Framework no está instalado. Por favor descargue el último archivo ZIP de XDA y flashéelo manualmente mediante recovery.</string>
@@ -96,14 +96,14 @@
     <string name="activate_and_reboot">Activar y reiniciar</string>
     <string name="module_activated">El módulo Xposed ha sido activado</string>
     <string name="module_empty_description">(no posee descripción)</string>
-    <string name="module_no_ui">Éste módulo no posee una interface de usuario</string>
+    <string name="module_no_ui">Éste módulo no posee una interfaz de usuario</string>
     <string name="no_xposed_modules_found">No se encontraron módulos Xposed!</string>
-    <string name="xposed_module_list_updated">La lista de módulos Xposed fué actualizada\nLos cambios tendrán efecto después de reiniciar</string>
+    <string name="xposed_module_list_updated">La lista de módulos Xposed fue actualizada\nLos cambios tendrán efecto después de reiniciar</string>
     <string name="xposed_module_updated_notification_title">Módulo Xposed actualizado</string>
     <string name="xposed_module_updated_notification">Reinicie para que los cambios surtan efecto</string>
     <string name="warning_xposed_min_version">Éste módulo requiere una nueva versión del XposedBridge (%d) y debido a esto no puede ser activado.</string>
     <string name="no_min_version_specified">Éste módulo no especifica la versión del XposedBridge que necesita.</string>
-    <string name="warning_min_version_too_low">Éste módulo fué creado para la versión del XposedBridge %1$d, pero debido a incompatibilidades de los cambios hechos en la versión %2$d, han sido deshabilitados.</string>
+    <string name="warning_min_version_too_low">Éste módulo fue creado para la versión del XposedBridge %1$d, pero debido a incompatibilidades de los cambios hechos en la versión %2$d, han sido deshabilitados.</string>
     <string name="module_launch">Lanzando Interfaz de usuario</string>
     <string name="module_download_updates">Descargas/Actualizaciones</string>
     <string name="module_support">Soporte</string>
@@ -231,7 +231,6 @@
     <string name="import_installed_modules">Importar lista de módulos instalados</string>
     <string name="no_installed_modules">No hay ningún módulo instalado!</string>
 
-    <string name="enable_heads_up_summary">Ésta opción habilita las notificaciones Heads-up en los módulos nuevos/actualizados</string>
 
     <string name="no_backup_found">No se encontró copia de seguridad</string>
     <string name="no_enabled_modules">No hay ningún módulo activado</string>
@@ -260,7 +259,7 @@
     <string name="xposedZipNotFound">Archivo .Zip no encontrado, probablemente hay una nueva versión.</string>
     <string name="warningArchitecture">HA ELEGIDO LA ARQUITECTURA CORRECTA EN EL ARCHIVO .ZIP DEL XPOSED?\nUn archivo .zip equivocado puede dañar su dispositivo!</string>
     <string name="help">Ayuda</string>
-    <string name="newVersion">Una nueva versión del Xposed Installer está disponible! Actualízalo!</string>
+
     <string name="update">Actualizar</string>
 
 

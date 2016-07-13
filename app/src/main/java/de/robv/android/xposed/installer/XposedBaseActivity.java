@@ -1,5 +1,6 @@
 package de.robv.android.xposed.installer;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,7 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
         ThemeUtil.reloadTheme(this);
     }
 
+    @SuppressWarnings("deprecation")
     public void setFloating(android.support.v7.widget.Toolbar toolbar, @StringRes int details) {
         boolean isTablet = getResources().getBoolean(R.bool.isTablet);
         if (isTablet) {
@@ -39,6 +41,9 @@ public abstract class XposedBaseActivity extends AppCompatActivity {
             }
             toolbar.setNavigationIcon(R.drawable.ic_close);
             setFinishOnTouchOutside(true);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
     }
 }

@@ -231,7 +231,6 @@
     <string name="import_installed_modules">นำเข้ารายการโมดูลที่ติดตั้ง</string>
     <string name="no_installed_modules">ยังไม่ได้ติดตั้งโมดูล</string>
 
-    <string name="enable_heads_up_summary">ตัวเลือกนี้จะเปิดใช้งานการแจ้งเตือน Heads-Up สำหรับโมดูลและการอัพเดทใหม่</string>
 
     <string name="no_backup_found">ไม่พบสำรองข้อมูล</string>
     <string name="no_enabled_modules">ยังไม่มีโมดูลเปิดใช้งาน</string>
@@ -260,7 +259,7 @@
     <string name="xposedZipNotFound">ไม่พบ Zip หรืออาจจะมีเวอร์ชั่นใหม่แล้ว</string>
     <string name="warningArchitecture">เลือกไฟล์ Zip ให้ถูกต้องการกับสถาปัตยกรรม?\nหากตดตั้งผิดอาจจะทำให้โทรศัพท์เสียได้!</string>
     <string name="help">ช่วยเหลือ</string>
-    <string name="newVersion">พบเวอร์ชั่นตัวติดตั้ง Xposed ใหม่ โปรดอัพเดท!</string>
+
     <string name="update">อัพเดท</string>
 
 

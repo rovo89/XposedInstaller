@@ -49,6 +49,7 @@ public final class NotificationUtil {
         sNotificationManager.cancelAll();
     }
 
+    @SuppressWarnings("deprecation")
     public static void showNotActivatedNotification(String packageName,
                                                     String appName) {
         Intent intent = new Intent(sContext, WelcomeActivity.class);
@@ -89,6 +90,7 @@ public final class NotificationUtil {
                 NOTIFICATION_MODULE_NOT_ACTIVATED_YET, builder.build());
     }
 
+    @SuppressWarnings("deprecation")
     public static void showModulesUpdatedNotification() {
         Intent intent = new Intent(sContext, WelcomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -128,34 +130,6 @@ public final class NotificationUtil {
                 pSoftReboot);
 
         sNotificationManager.notify(null, NOTIFICATION_MODULES_UPDATED, builder.build());
-    }
-
-    public static void showInstallerUpdateNotification() {
-        Intent intent = new Intent(sContext, WelcomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("fragment", 0);
-
-        PendingIntent pInstallTab = PendingIntent.getActivity(sContext,
-                PENDING_INTENT_OPEN_INSTALL, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-
-        String title = sContext.getString(R.string.app_name);
-        String message = sContext.getString(R.string.newVersion);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext).setContentTitle(title).setContentText(message)
-                .setTicker(title).setContentIntent(pInstallTab)
-                .setVibrate(new long[]{0}).setAutoCancel(true)
-                .setSmallIcon(R.drawable.ic_notification)
-                .setColor(sContext.getResources().getColor(R.color.colorPrimary));
-
-        if (Build.VERSION.SDK_INT >= 21)
-            builder.setPriority(2);
-
-        NotificationCompat.BigTextStyle notiStyle = new NotificationCompat.BigTextStyle();
-        notiStyle.setBigContentTitle(title);
-        notiStyle.bigText(message);
-        builder.setStyle(notiStyle);
-
-        sNotificationManager.notify(null, NOTIFICATION_INSTALLER_UPDATE, builder.build());
     }
 
     public static class RebootReceiver extends BroadcastReceiver {

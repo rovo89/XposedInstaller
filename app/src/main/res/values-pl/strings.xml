@@ -4,29 +4,32 @@
     <!-- General/various strings -->
     <string name="menuSend">Wyślij</string>
     <string name="menuSaveToSd">Zapisz na karcie SD</string>
-    <string name="xposed_not_active">Ostatnia wersja Xposed jest aktualnie nieaktywna. Czy zainstalowałeś proces Framework i uruchomiłeś ponownie telefon??</string>
 
+    <string name="xposed_not_active">Ostatnia wersja Xposed jest aktualnie nieaktywna. Czy zainstalowałeś proces framework i uruchomiłeś ponownie telefon??</string>
     <!-- Welcome screen / main sections -->
     <string name="welcome">Witamy <b>w aplikacji Xposed</b>!\nProszę wybierz, co chcesz zrobić::</string>
     <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Tutaj możesz zarządzać procesem Framework dostarczonym przez aplikację Xposed, która jest niezbędna do pracy modułów.</string>
+
+    <string name="tabInstallDescription">Tutaj możesz zarządzać procesem framework dostarczonym przez aplikację Xposed, która jest niezbędna do pracy modułów.</string>
     <string name="tabModules">Moduły</string>
-    <string name="tabModulesDescription">Proces Framework nie dodaje żadnych funkcji. Do tego potrzebujesz modułów. W tej sekcji można włączyć moduły po ich zainstalowaniu.</string>
 
+
+    <string name="tabModulesDescription">Proces framework nie dodaje żadnych funkcji. Do tego potrzebujesz modułów. W tej sekcji można włączyć moduły po ich zainstalowaniu.</string>
     <string name="tabDownload">Pobierz</string>
-    <string name="tabDownloadDescription">Ta sekcja umożliwia dostęp do repozytorium modułów, dzięki czemu można wyszukać i pobrać te, które lubisz i aktualizować je na bieżąco.</string>
 
-    <string name="welcome_framework_update_available">Aktualizacja procesu Framework dostarczanego przez aplikację Xposed jest dostępna (%s).</string>
+
+    <string name="tabDownloadDescription">Ta sekcja umożliwia dostęp do repozytorium modułów, dzięki czemu można wyszukać i pobrać te, które lubisz i aktualizować je na bieżąco.</string>
+    <string name="welcome_framework_update_available">Aktualizacja procesu framework dostarczanego przez aplikację Xposed jest dostępna (%s).</string>
     <string name="welcome_update_available">Jedna lub więcej aktualizacji dla modułów jest dostępna.</string>
     <string name="tabSettings">Ustawienia</string>
-    <string name="tabSettingsDescription">Przejdź do tej sekcji, aby skonfigurować aplikację Xposed i proces Framework.</string>
+    <string name="tabSettingsDescription">Przejdź do tej sekcji, aby skonfigurować aplikację Xposed i proces framework.</string>
     <string name="tabSupport">Wsparcie</string>
     <string name="tabSupportDescription">Szukaj pomocy dla powiązanych problemów Xposed. Możesz również przekazać dotację, aby podziękować za Xposed.</string>
     <string name="tabLogs">Logi</string>
     <string name="tabLogsDescription">Wyświetl, zapisz i wyślij logi.</string>
     <string name="tabAbout">O aplikacji</string>
-    <string name="tabAboutDescription">Dowiedz się o ludziach, którzy stworzyli Xposed, od których można uzyskać wsparcie dla tej aplikacji, itp.</string>
 
+    <string name="tabAboutDescription">Dowiedz się o ludziach, którzy stworzyli Xposed, od których można uzyskać wsparcie dla tej aplikacji, itp.</string>
     <!-- navigation view items -->
     <string name="nav_item_install">Framework</string>
     <string name="nav_item_modules">Moduły</string>
@@ -56,19 +59,24 @@
     <string name="reboot_confirmation">Chcesz teraz zrestartować telefon?</string>
     <string name="reboot_recovery_confirmation">Chcesz teraz zrestartować telefon w trybie recovery?</string>
     <string name="install_warning_title">Bądź ostrożny!</string>
+
     <string name="install_warning">W niektórych przypadkach urządzenie może nie uruchomić się po instalacji Xposed. Jeśli nigdy nie słyszałeś o miękkiej cegle, bootloopie i nie wiesz jak odzyskać w takiej sytuacji system, nie instaluj Xposed! W każdym bądź razie, zrobienie kopii  zapasowej jest bardzo zalecane.</string>
     <string name="dont_show_again">Nie pokazuj ponownie</string>
+
+
     <string name="install_known_issue">Wydaje się, że to znany problem z ROM. Instalacja Xposed może nie działać lub prowadzić do poważnych problemów. Kliknij tutaj, aby uzyskać szczegółowe informacje na temat tej kwestii.</string>
     <string name="install_reverted">Proces aplikacji w wersji \"%1$s\" został zainstalowany wcześniej, ale w wersji \"%2$s\" został znaleziony teraz. Jeśli nie spodziewałeś się tego, może chcesz spróbować zainstalować poprzez recovery (automatycznie lub ręcznie).</string>
     <string name="uninstall_reverted">Proces aplikacji odinstalowano wcześniej, ale w wersji \"%s\" został znaleziony teraz. Jeśli nie spodziewałeś się tego, możesz spróbować odinstalować poprzez recovery (automoatycznie lub ręcznie).</string>
     <string name="tap_to_dismiss">Stuknij, aby zamknąć</string>
     <string name="sdcard_location">Karta SD: %s</string>
     <string name="installation_lollipop">Framework Xposed jest niezainstalowany. Prosze pobrać najnowszy plik ZIP z XDA z zainstalować ręcznie przez recovery.</string>
-    <string name="installed_lollipop">Wersja %s Xposed Framework jest aktywna.</string>
-    <string name="installed_lollipop_inactive">Wersja %s Xposed Framework jest zainstalowana, ale nie jest aktywna. Proszę sprawdzić logi, aby poznać szczegóły.</string>
+    <string name="installed_lollipop">Wersja %s Xposed framework jest aktywna.</string>
+
+    <string name="installed_lollipop_inactive">Wersja %s Xposed framework jest zainstalowana, ale nie jest aktywna. Proszę sprawdzić logi, aby poznać szczegóły.</string>
     <string name="modules_updates_available">Dostępna aktualizacja modułów</string>
 
     <!-- File operations -->
+
     <string name="root_failed">Nie udało się uzyskać dostępu do konta roota. Upewnij się, że urządzenie jest zrootowane prawidłowo i nie zostały zablokowane polecenia powłoki.</string>
     <string name="file_extract_failed">Nie można wyodrębnić %s</string>
     <string name="file_mounting_writable">Montowanie %s do zapisu&#8230;</string>
@@ -109,7 +117,7 @@
     <string name="module_launch">Uruchom UI</string>
     <string name="module_download_updates">Pobierz/Aktualizuj</string>
     <string name="module_support">Wsparcie</string>
-    <string name="module_app_info">Informacja o aplikacji</string>
+    <string name="module_app_info">Informacje o aplikacji</string>
     <string name="module_uninstall">Odinstaluj</string>
 
     <!-- Download tab -->
@@ -145,8 +153,8 @@
     <string name="download_section_older">Więcej niż 30 dni temu</string>
     <string name="download_details_not_found">Nie ma modułu z nazwą pakietu \"%s\" w repozytorium.</string>
     <string name="download_no_versions">Autor nie przekazał jeszcze niczego.</string>
-    <string name="download_test_version_not_shown">Wersja testowa jest dostępna, jednak nie jest ona widoczna z powodu globalnych lub specyficznych ustawień modułu.</string>
 
+    <string name="download_test_version_not_shown">Wersja testowa jest dostępna, jednak nie jest ona widoczna z powodu globalnych lub specyficznych ustawień modułu.</string>
     <!-- Settings tab -->
     <string name="settings_group_installation">Instalacja</string>
     <string name="settings_install_mode">Tryb instalacji</string>
@@ -161,7 +169,8 @@
     <string name="settings_disable_resources">Wyłącz zasoby konfliktów</string>
     <string name="settings_disable_resources_summary">Rozwiązanie konfliktów z silnikiem\n<b>OSTRZEŻENIE:</b> Moduły, które próbują zmienić zasoby nie będą pracowały, kiedy to jest włączone.</string>
     <string name="settings_performance_experiment" tools:ignore="UnusedResources">Wyniki eksperymentu</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Jeśli to włączysz, wydajność systemu może albo się zwiększyć, zmniejszyć lub pozostać taka sama. Prosimy spróbować i zaraportować nam, który efekt widzisz. Musisz zainstalować ponownie Framework i zresetować telefon po zmianie tego.</string>
+
+    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Jeśli to włączysz, wydajność systemu może albo się zwiększyć, zmniejszyć lub pozostać taka sama. Prosimy spróbować i zaraportować nam, który efekt widzisz. Musisz zainstalować ponownie framework i zresetować telefon po zmianie tego.</string>
     <string name="settings_group_app">Aplikacja</string>
     <string name="settings_theme">Motyw</string>
     <string name="settings_theme_light">Jasny</string>
@@ -219,8 +228,8 @@
     <string name="repo_download_failed">Pobieranie %1$s błędne: %2$s</string>
     <string name="repo_load_failed">Nie można załadować repozytorium z %1$s:\n%2$s</string>
 
-
     <string name="warning_installed_on_external_storage">Ten moduł nie może zostać załadowany, ponieważ jest zainstalowany na karcie SD, przenieś go do pamięci wewnętrznej.</string>
+
     <string name="warning_forward_locked">Ten moduł nie może zostać załadowany, ponieważ jest z blokadą dalszego rozpowszechniania, skontaktuj się z deweloperem modułu.</string>
     <string name="export_modules">Eksport listy włączonych modułów</string>
     <string name="import_modules">Import listy włączonych modułów</string>
@@ -233,8 +242,6 @@
     <string name="import_installed_modules">Import listy zainstalowanych modułów</string>
     <string name="no_installed_modules">Brak zainstalowanych modułów!</string>
 
-    <string name="enable_heads_up_summary">Ta opcja włącza pływające powiadomienie o nowych/zaktualizowanych modułach</string>
-
     <string name="no_backup_found">Nie znaleziono kopii zapasowej</string>
     <string name="no_enabled_modules">Brak aktywnych modułów</string>
 
@@ -244,13 +251,19 @@
     <string name="loadingError">Błąd ładowania Xposed Zip frameworks</string>
     <string name="info">Info</string>
     <string name="infoInstaller">
-        Nazwa: %1$s
-        \nSDK: %2$s
-        \nArchitektura: %3$s
+
+		Nazwa: %1$s
+		\nSDK: %2$s
+        
+		
+		\nArchitektura: %3$s
         \nWersja: %4$s
 	</string>
     <string name="infoUninstaller">
-        Nazwa: %1$s
+        
+		
+		
+		Nazwa: %1$s
         \nArchitektura: %2$s
         \nData: %3$s
 	</string>
@@ -262,13 +275,12 @@
     <string name="xposedZipNotFound">Nie znaleziono Zip, prawdopodobnie nowa wersja została wydana.</string>
     <string name="warningArchitecture">WYBRAŁEŚ PRAWIDŁOWĄ WERSJĘ ARCHITEKTURY XPOSED ZIP?\nBłędny instalator zip może uszkodzić twój telefon!</string>
     <string name="help">Pomoc</string>
-    <string name="newVersion">Nowa wersja Xposed Installer jest dostępna! Zaktualizuj!</string>
+
     <string name="update">Aktualizuj</string>
 
-
     <string name="installationForbidden">Instalacja na tym urządzeniu jest niemożliwa. Aby zainstalować Xposed przez tą aplikację, urządzenie musi działać na wersji Android Lollipop lub wyższej.</string>
-    <string name="installed_no_lollipop">Xposed Framework jest zainstalowany.</string>
-    <string name="not_installed_no_lollipop">Xposed Framework jest niezainstalowany.</string>
+    <string name="installed_no_lollipop">Xposed framework jest zainstalowany.</string>
+    <string name="not_installed_no_lollipop">Xposed framework jest niezainstalowany.</string>
     <string name="notify_module_update">Włącz powiadomienia o aktualizacji modułów</string>
 
     <string name="md_back_label">Wstecz</string>
@@ -288,16 +300,25 @@
     <string name="bookmark_added">Dodano zakładkę</string>
     <string name="bookmark_removed">Usunięto zakładkę</string>
     <string name="undo">Cofnij</string>
-
     <string name="file_is_empty">Plik jest pusty</string>
-
-
     <string name="install_remove">Zainstaluj i usuń</string>
     <string name="download_remove">Pobierz i usuń</string>
     <string name="module_saved">Moduł zapisany %1$s</string>
-
-
     <string name="reboot_recovery">Restart do trybu recovery</string>
     <string name="loading">Ładowanie…</string>
+    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs_summ">Otwieraj linki w wewnętrznej przeglądarce</string>
+    <string name="scroll_bottom">Przewiń do dołu</string>
+    <string name="open_drawer_summ">Otwórz automatycznie szufladę nawigacji podczas uruchamiania</string>
+    <string name="open_drawer">Otwórz automatycznie szufladę nawigacji</string>
+    <string name="share_app">Udostępnij aplikację</string>
+    <string name="share_app_text">Sprawdź to: Xposed Installer in Material Design! %s</string>
+    <string name="disable_xposed">Wyłącz Xposed</string>
+    <string name="status">Status Xposed</string>
+    <string name="xposed_on_next_reboot">Xposed Framework zostanie włączony po ponownym uruchoimieniu</string>
+    <string name="xposed_off_next_reboot">Xposed Framework zostanie wyłączony po ponownym uruchoimieniu</string>
 
+    <string name="skip_xposedminversion_check">Pomiń sprawdzanie \'xposedminversion\'</string>
+    <string name="skip_xposedminversion_check_summ">Pomiń sprawdzanie modułów \'xposedminversion\'</string>
+    <string name="details">Szczegóły</string>
 </resources>

@@ -1,6 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -52,7 +51,6 @@ public class SettingsActivity extends XposedBaseActivity {
 
     public static class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
         private static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
-        private Context mContext;
 
         public SettingsFragment() {
         }
@@ -61,8 +59,6 @@ public class SettingsActivity extends XposedBaseActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.prefs);
-
-            mContext = getActivity();
 
             findPreference("release_type_global").setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
@@ -80,11 +76,13 @@ public class SettingsActivity extends XposedBaseActivity {
                     boolean enabled = (Boolean) newValue;
                     if (enabled) {
                         try {
+                            //noinspection ResultOfMethodCallIgnored
                             mDisableResourcesFlag.createNewFile();
                         } catch (IOException e) {
                             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     } else {
+                        //noinspection ResultOfMethodCallIgnored
                         mDisableResourcesFlag.delete();
                     }
                     return (enabled == mDisableResourcesFlag.exists());

@@ -231,7 +231,6 @@
     <string name="import_installed_modules">Importovat seznam nainstalovaných modulů</string>
     <string name="no_installed_modules">Žádné Xposed moduly nebyly nalezeny!</string>
 
-    <string name="enable_heads_up_summary">Tato volba povolí heads up oznámení při novém/aktualizovaném modulu</string>
 
     <string name="no_backup_found">Nenalezena žádná záloha</string>
     <string name="no_enabled_modules">Nejsou povoleny žádné moduly</string>
@@ -260,7 +259,7 @@
     <string name="xposedZipNotFound">Zip nebyl nalezen, pravděpodobně byla vydána novější verze.</string>
     <string name="warningArchitecture">ZVOLIL JSI ZIP S XPOSED PRO SPRÁVNOU ARCHITEKTURU?\nNesprávný instalační zip může poškodit tvé zařízení!</string>
     <string name="help">Pomoc</string>
-    <string name="newVersion">Je dostupná nová verze Instalátoru Xposed! Aktualizujte jej!</string>
+
     <string name="update">Aktualizovat</string>
 
 

@@ -231,7 +231,6 @@
     <string name="import_installed_modules">匯入安裝模組清單</string>
     <string name="no_installed_modules">無任何已安裝的模組！</string>
 
-    <string name="enable_heads_up_summary">當模組更新時啟用抬頭通知</string>
 
     <string name="no_backup_found">找不到備份</string>
     <string name="no_enabled_modules">沒有任何啟用的模組</string>
@@ -260,7 +259,7 @@
     <string name="xposedZipNotFound">找不到 ZIP 檔案，可能是新版本發布了。</string>
     <string name="warningArchitecture">您是否選擇正確架構的 XPOSED ZIP？\n安裝錯誤的 ZIP 可能會損壞您的手機！</string>
     <string name="help">幫助</string>
-    <string name="newVersion">新的 Xposed Installer 可供更新！ 更新它！</string>
+
     <string name="update">更新</string>
 
 
@@ -309,8 +308,6 @@
     <string name="xposed_on_next_reboot">Xposed 框架將在下次重新啟動裝置後啟用</string>
     <string name="xposed_off_next_reboot">Xposed 框架將在下次重新啟動裝置後停用</string>
 
-
-    <string name="hour24">每天</string>
 
     <string name="skip_xposedminversion_check">略過 \'Xposed 最低版本\' 檢查</string>
     <string name="skip_xposedminversion_check_summ">略過模組 \'Xposed 最低版本\' 檢查</string>

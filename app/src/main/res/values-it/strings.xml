@@ -209,8 +209,6 @@
     <string name="warning_installed_on_external_storage">Questo modulo non può essere caricato perché è installato nella memoria SD, per favore spostalo nella memoria interna</string>
     <string name="warning_forward_locked">Questo modulo non può essere caricato perché è forward-locked, perfavore contatta lo sviluppatore del modulo.</string>
 
-    <string name="enable_heads_up_summary">Questa opzione abilita la notifica heads up ad ogni nuovo/aggiornato modulo</string>
-
 
     <!-- Support tab -->
     <string name="support_modules_label">Supporto per i moduli</string>
@@ -251,7 +249,7 @@
     <string name="selectFile">Seleziona il file scaricato</string>
     <string name="warningArchitecture">HAI SCELTO L\' ARCHITTETTURA GIUSTA DELLO ZIP?\nUno zip sbagliato può danneggiare il tuo telefono!</string>
     <string name="xposedZipNotFound">File zip non trovato, probabilmemente una nuova versione è stata rilasciata.</string>
-    <string name="newVersion">Una nuova versione di Xposed Installer è disponibile! Aggiorna!</string>
+
     <string name="update">Aggiorna</string>
 
 
@@ -300,9 +298,6 @@
     <string name="status">Stato Xposed</string>
     <string name="xposed_off_next_reboot">Xposed Framework sarà disabilitato al prossimo riavvio</string>
     <string name="xposed_on_next_reboot">Xposed Framework sarà abilitato al prossimo riavvio</string>
-
-
-    <string name="hour24">Ogni giorno</string>
 
 
     <string name="skip_xposedminversion_check">Salta controllo \'xposedminversion\' </string>

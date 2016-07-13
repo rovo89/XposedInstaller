@@ -231,7 +231,6 @@
     <string name="import_installed_modules">インストールされていたモジュールのリストをインポート</string>
     <string name="no_installed_modules">インストールされているモジュールがありません</string>
 
-    <string name="enable_heads_up_summary">このオプションは新しいモジュール/モジュールの更新があるときにヘッドアップ通知を有効化します。</string>
 
     <string name="no_backup_found">バックアップが見つかりません</string>
     <string name="no_enabled_modules">有効になっているモジュールがありません</string>
@@ -260,7 +259,7 @@
     <string name="xposedZipNotFound">zipが見つかりません、おそらく新しいバージョンがリリースされています。</string>
     <string name="warningArchitecture">正しいXposedのzipのアーキテクチャを選択しましたか？\n異なるインストーラzipは携帯電話に損害を与える可能性があります。</string>
     <string name="help">ヘルプ</string>
-    <string name="newVersion">新しいバージョンのXposed Installerがあります。更新してください。</string>
+
     <string name="update">更新</string>
 
 

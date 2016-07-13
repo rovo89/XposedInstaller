@@ -231,7 +231,6 @@
     <string name="import_installed_modules">Importiere Liste installierter Module</string>
     <string name="no_installed_modules">Es ist kein Modul installiert!</string>
 
-    <string name="enable_heads_up_summary">Zeigt Heads-Up Benachrichtigungen bei neuen/aktualisierten Modulen</string>
 
     <string name="no_backup_found">Keine Sicherung gefunden</string>
     <string name="no_enabled_modules">Es ist kein Modul aktiviert!</string>
@@ -260,7 +259,7 @@
     <string name="xposedZipNotFound">Zip nicht gefunden, vielleicht wurde eine neue Version veröffentlicht.</string>
     <string name="warningArchitecture">WURDE DIE KORREKTE ARCHITEKTUR DER XPOSED ZIP GEWÄHLT?\nEine falsche ZIP-Datei kann dein Handy beschädigen!</string>
     <string name="help">Hilfe</string>
-    <string name="newVersion">Eine neue Version des Xposed-Installers ist verfügbar.</string>
+
     <string name="update">Aktualisieren</string>
 
     <string name="installationForbidden">Installation ist auf diesem Gerät nicht möglich. Um Xposed mit dieser App installieren zu können muss Android Lollipop oder höher installiert sein.</string>

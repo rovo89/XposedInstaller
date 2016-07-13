@@ -190,7 +190,7 @@
     <string name="download_remove">下载和移除</string>
     <string name="download_view_size">大小：%s KB</string>
 
-    <string name="enable_heads_up_summary">该选项可启用模块更新的浮动通知</string>
+
     <string name="export_">导出…</string>
     <string name="export_enabled_modules">导出已启用模块列表</string>
     <string name="export_installed_modules">导出已安装模块列表</string>
@@ -238,7 +238,7 @@ SDK：%2$s \n
     <string name="nav_item_support">支持</string>
     <string name="navigation_drawer_close">关闭导航抽屉</string>
     <string name="navigation_drawer_open">打开导航抽屉</string>
-    <string name="newVersion">有新版 Xposed 安装器！马上更新！</string>
+
     <string name="no_backup_found">未找到备份</string>
     <string name="no_bookmark_added">未添加书签</string>
     <string name="no_enabled_modules">未启用任何模块</string>
