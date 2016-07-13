@@ -302,8 +302,8 @@
     <string name="install_remove">Instal·la i suprimeix</string>
     <string name="download_remove">Baixa i suprimeix</string>
     <string name="module_saved">S\'ha desat el mòdul a %1$s</string>
-    <string name="ignore_updates">Ignora les actualitzacions</string>
-    <string name="ignore_updates_summ">Ignora les actualitzacions per a un mòdul concret.</string>
+
+
     <string name="reboot_recovery">Reinici a recuperació</string>
     <string name="loading">S\'està carregant…</string>
     <string name="chrome_custom_tabs">Pestanyes personalitzades del Chrome</string>

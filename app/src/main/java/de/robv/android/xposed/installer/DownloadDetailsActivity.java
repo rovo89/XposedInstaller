@@ -192,16 +192,6 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_download_details, menu);
 
-        boolean updateIgnorePreference = XposedApp.getPreferences().getBoolean("ignore_updates", false);
-        if (updateIgnorePreference) {
-            SharedPreferences prefs = getSharedPreferences("update_ignored", Context.MODE_PRIVATE);
-
-            boolean ignored = prefs.getBoolean(mModule.packageName, false);
-            menu.findItem(R.id.ignoreUpdate).setChecked(ignored);
-        } else {
-            menu.removeItem(R.id.ignoreUpdate);
-        }
-
         mItemBookmark = menu.findItem(R.id.menu_bookmark);
         setupBookmark(false);
         return true;
@@ -270,13 +260,6 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
                 sharingIntent.putExtra(Intent.EXTRA_TEXT, text);
                 startActivity(Intent.createChooser(sharingIntent, getString(R.string.share)));
                 return true;
-            case R.id.ignoreUpdate:
-                SharedPreferences prefs = getSharedPreferences("update_ignored", Context.MODE_PRIVATE);
-
-                boolean ignored = prefs.getBoolean(mModule.packageName, false);
-                prefs.edit().putBoolean(mModule.packageName, !ignored).apply();
-                item.setChecked(!ignored);
-                break;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -304,8 +304,8 @@
     <string name="install_remove">Zainstaluj i usuń</string>
     <string name="download_remove">Pobierz i usuń</string>
     <string name="module_saved">Moduł zapisany %1$s</string>
-    <string name="ignore_updates">Ignoruj aktualizację</string>
-    <string name="ignore_updates_summ">Ignoruj aktualizację dla określonego modułu.</string>
+
+
     <string name="reboot_recovery">Restart do trybu recovery</string>
     <string name="loading">Ładowanie…</string>
 

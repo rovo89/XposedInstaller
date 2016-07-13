@@ -302,8 +302,8 @@
     <string name="install_remove">Install and remove</string>
     <string name="download_remove">Download and remove</string>
     <string name="module_saved">Module saved at %1$s</string>
-    <string name="ignore_updates">Ignore update</string>
-    <string name="ignore_updates_summ">Ignore updates for a specific module.</string>
+
+
     <string name="reboot_recovery">Reboot to recovery</string>
     <string name="loading">Loading…</string>
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>

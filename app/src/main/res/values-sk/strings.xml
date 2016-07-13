@@ -302,8 +302,8 @@
     <string name="install_remove">Nainštalovať a odstrániť</string>
     <string name="download_remove">Stiahnuť a odstrániť</string>
     <string name="module_saved">Modul uložený %1$s</string>
-    <string name="ignore_updates">Ignorovať aktualizácie</string>
-    <string name="ignore_updates_summ">Ignorovať aktualizácie pre konkrétny modul.</string>
+
+
     <string name="reboot_recovery">Reštartovať do recovery</string>
     <string name="loading">Načítavanie…</string>
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>

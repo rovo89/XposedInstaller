@@ -277,8 +277,8 @@ SDK：%2$d \n
     <string name="xposedZipNotFound">Zip 文件未找到，可能新版本已发布。</string>
     <string name="chrome_custom_tabs">Chrome 自定义标签</string>
     <string name="chrome_custom_tabs_summ">在内置浏览器中打开链接</string>
-    <string name="ignore_updates">忽略更新</string>
-    <string name="ignore_updates_summ">忽略特定模块的更新</string>
+
+
     <string name="loading">载入中…</string>
     <string name="reboot_recovery">重启设备至恢复模式</string>
 </resources>

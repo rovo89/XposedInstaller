@@ -302,8 +302,8 @@
     <string name="install_remove">ติดตั้งและลบ</string>
     <string name="download_remove">ดาวน์โหลดและลบ</string>
     <string name="module_saved">โมดูลบันทึกที่ %1$s</string>
-    <string name="ignore_updates">ไม่สนอัพเดท</string>
-    <string name="ignore_updates_summ">ไม่สนอัพเดทสำหรับโมดูลเฉพาะ</string>
+
+
     <string name="reboot_recovery">รีบูตไปยังโหมดกู้คืน</string>
     <string name="loading">กำลังโหลด…</string>
     <string name="chrome_custom_tabs">แท็บปรับแต่ง Chrome</string>

@@ -288,8 +288,8 @@
     <string name="notification_coloration">Colora icona notifica</string>
     <string name="download_remove">Scarica e rimuovi </string>
     <string name="file_is_empty">Il file è vuoto</string>
-    <string name="ignore_updates">Ignora aggiornamento</string>
-    <string name="ignore_updates_summ">Ignora aggiornamenti per un modulo specifico</string>
+
+
     <string name="install_remove">Installa e rimuovi</string>
 
 

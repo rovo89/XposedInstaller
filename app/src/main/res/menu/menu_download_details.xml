@@ -20,9 +20,4 @@
         android:title="@string/menuReload"
         app:showAsAction="ifRoom"/>
 
-    <item
-        android:id="@+id/ignoreUpdate"
-        android:checkable="true"
-        android:title="@string/ignore_updates"/>
-
 </menu>

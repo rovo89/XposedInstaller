@@ -302,8 +302,8 @@
     <string name="install_remove">Установить и удалить</string>
     <string name="download_remove">Скачать и удалить</string>
     <string name="module_saved">Модуль сохранен в %1$s</string>
-    <string name="ignore_updates">Игнорировать обновление</string>
-    <string name="ignore_updates_summ">Игнорировать обновления для конкретного модуля.</string>
+
+
     <string name="reboot_recovery">Перезагрузить в Recovery</string>
     <string name="loading">Загрузка…</string>
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>

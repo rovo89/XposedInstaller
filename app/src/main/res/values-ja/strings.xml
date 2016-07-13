@@ -302,8 +302,8 @@
     <string name="install_remove">インストールして削除</string>
     <string name="download_remove">ダウンロードして削除</string>
     <string name="module_saved">モジュールを%1$sに保存しました</string>
-    <string name="ignore_updates">更新を無視</string>
-    <string name="ignore_updates_summ">指定したモジュールの更新を無視します。</string>
+
+
     <string name="reboot_recovery">リカバリーで再起動</string>
     <string name="loading">読み込み中…</string>
     <string name="chrome_custom_tabs">Chromeカスタムタブ</string>

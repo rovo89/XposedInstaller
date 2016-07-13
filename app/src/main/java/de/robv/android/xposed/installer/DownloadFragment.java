@@ -299,13 +299,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
             long updated = cursor.getLong(OverviewColumnsIndexes.UPDATED);
             boolean isFramework = cursor.getInt(OverviewColumnsIndexes.IS_FRAMEWORK) > 0;
             boolean isInstalled = cursor.getInt(OverviewColumnsIndexes.IS_INSTALLED) > 0;
-            boolean updateIgnored = mPrefs.getBoolean(cursor.getString(OverviewColumnsIndexes.PKGNAME), false);
-            boolean updateIgnorePreference = XposedApp.getPreferences().getBoolean("ignore_updates", false);
             boolean hasUpdate = cursor.getInt(OverviewColumnsIndexes.HAS_UPDATE) > 0;
-
-            if (hasUpdate && updateIgnored && updateIgnorePreference) {
-                hasUpdate = false;
-            }
 
             if (mSortingOrder != RepoDb.SORT_STATUS) {
                 long timestamp = (mSortingOrder == RepoDb.SORT_UPDATED) ? updated : created;
@@ -345,13 +339,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
             long created = cursor.getLong(OverviewColumnsIndexes.CREATED);
             long updated = cursor.getLong(OverviewColumnsIndexes.UPDATED);
             boolean isInstalled = cursor.getInt(OverviewColumnsIndexes.IS_INSTALLED) > 0;
-            boolean updateIgnored = mPrefs.getBoolean(cursor.getString(OverviewColumnsIndexes.PKGNAME), false);
-            boolean updateIgnorePreference = XposedApp.getPreferences().getBoolean("ignore_updates", false);
             boolean hasUpdate = cursor.getInt(OverviewColumnsIndexes.HAS_UPDATE) > 0;
-
-            if (hasUpdate && updateIgnored && updateIgnorePreference) {
-                hasUpdate = false;
-            }
 
             TextView txtTitle = (TextView) view.findViewById(android.R.id.text1);
             txtTitle.setText(title);

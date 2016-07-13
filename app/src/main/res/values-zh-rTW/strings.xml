@@ -302,8 +302,8 @@
     <string name="install_remove">安裝和移除</string>
     <string name="download_remove">下載和移除</string>
     <string name="module_saved">儲存模組於 %1$s</string>
-    <string name="ignore_updates">忽略更新</string>
-    <string name="ignore_updates_summ">忽略特定模組更新。</string>
+
+
     <string name="reboot_recovery">重新啟動至 Recovery 模式</string>
     <string name="loading">載入中…</string>
     <string name="chrome_custom_tabs">Chrome 式自訂分頁</string>
