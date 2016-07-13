@@ -26,7 +26,6 @@ import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoParser;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.HashUtil;
-import de.robv.android.xposed.installer.util.InstallApkUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
@@ -171,7 +170,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
                 return;
             }
 
-            new InstallApkUtil(context, info).execute();
+            XposedApp.installApk(context, info);
         }
     }
 

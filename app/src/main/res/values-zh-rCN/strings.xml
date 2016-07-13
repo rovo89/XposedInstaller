@@ -216,8 +216,8 @@ SDK：%2$d \n
 架构：%2$s \n
 日期：%3$s"</string>
     <string name="install_remove">安装和移除</string>
-    <string name="install_with_su">以 root 权限安装模块</string>
-    <string name="install_with_su_summ">如果勾选，Xposed 安装器将无提示即安装模块</string>
+
+
     <string name="installationForbidden">安装无法在该设备上进行。要通过本应用安装 Xposed，设备必须运行 Android Lollipop 或更高版本系统。</string>
     <string name="installation_lollipop">Xposed 框架未安装。请从 XDA 下载最新 zip 文件并通过恢复模式刷入。</string>
     <string name="installed_lollipop">Xposed 框架 %s 版已激活。</string>

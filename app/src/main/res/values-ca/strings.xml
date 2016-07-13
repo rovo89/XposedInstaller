@@ -297,8 +297,8 @@
     <string name="undo">Desfés</string>
     <string name="notification_coloration">Acoloreix la icona de notificació</string>
     <string name="file_is_empty">El fitxer està buit</string>
-    <string name="install_with_su">Instal·lació del mòdul amb usuari primari</string>
-    <string name="install_with_su_summ">Si s\'activa, l\'instal·lador Xposed instal·larà els mòduls sense cap pregunta</string>
+
+
     <string name="install_remove">Instal·la i suprimeix</string>
     <string name="download_remove">Baixa i suprimeix</string>
     <string name="module_saved">S\'ha desat el mòdul a %1$s</string>

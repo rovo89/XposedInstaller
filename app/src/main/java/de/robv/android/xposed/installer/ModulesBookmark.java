@@ -35,7 +35,6 @@ import java.util.List;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
-import de.robv.android.xposed.installer.util.InstallApkUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
@@ -202,7 +201,7 @@ public class ModulesBookmark extends XposedBaseActivity {
                     DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                            new InstallApkUtil(getContext(), info).execute();
+                            XposedApp.installApk(context, info);
                         }
                     }, DownloadsUtil.MIME_TYPES.APK);
                     break;
@@ -210,7 +209,7 @@ public class ModulesBookmark extends XposedBaseActivity {
                     DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                            new InstallApkUtil(getContext(), info).execute();
+                            XposedApp.installApk(context, info);
                             remove(pkg);
                         }
                     }, DownloadsUtil.MIME_TYPES.APK);

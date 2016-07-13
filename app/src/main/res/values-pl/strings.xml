@@ -299,8 +299,8 @@
     <string name="undo">Cofnij</string>
     <string name="notification_coloration">Koloruj ikonę powiadomienia</string>
 	<string name="file_is_empty">Plik jest pusty</string>
-    <string name="install_with_su">Zainstaluj moduł z dostępem roota</string>
-    <string name="install_with_su_summ">Jeśli zaznaczone, Instalator Xposed zainstaluje moduł bez monitu</string>
+
+
     <string name="install_remove">Zainstaluj i usuń</string>
     <string name="download_remove">Pobierz i usuń</string>
     <string name="module_saved">Moduł zapisany %1$s</string>

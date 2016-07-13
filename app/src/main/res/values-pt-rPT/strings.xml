@@ -219,8 +219,8 @@
     <string name="infoInstaller">Nome: %1$s         \nSDK: %2$d         \nArquitetura: %3$s         \nVersão: %4$s</string>
     <string name="infoUninstaller">Nome: %1$s         \nArquitetura: %2$s         \nData: %3$s</string>
     <string name="install_remove">Instalar e remover</string>
-    <string name="install_with_su">Instalar módulo(s) com permissão \"root\"</string>
-    <string name="install_with_su_summ">Se ativado, a \"Xposed Installer\" irá instalar os módulos sem avisos</string>
+
+
     <string name="installationForbidden">Não é possível instalar neste dispositivo. A instalação da \"Xposed Framework\", através desta APP, requer que o dispositivo tenha, no mínimo, o Android Lollipop.</string>
     <string name="installation_lollipop">A \"Xposed Framework\" não está instalada. Por favor, descarregue do XDA o ZIP mais recente e instale manualmente através da \"Recovery\".</string>
     <string name="installed_lollipop">A versão %s da \"Xposed Framework\" está ativa.</string>

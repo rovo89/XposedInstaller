@@ -297,8 +297,8 @@
     <string name="undo">Deshacer</string>
     <string name="notification_coloration">Colorear el ícono de notificación</string>
     <string name="file_is_empty">El archivo está vacío</string>
-    <string name="install_with_su">Instalar el módulo con acceso root</string>
-    <string name="install_with_su_summ">Si está marcado, el Xposed Installer instalará el módulo sin ninguna aviso</string>
+
+
     <string name="install_remove">Instalar y remover</string>
     <string name="download_remove">Descargar y remover</string>
     <string name="module_saved">Módulo guardado en %1$s</string>

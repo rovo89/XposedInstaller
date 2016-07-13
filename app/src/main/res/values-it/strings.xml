@@ -291,8 +291,8 @@
     <string name="ignore_updates">Ignora aggiornamento</string>
     <string name="ignore_updates_summ">Ignora aggiornamenti per un modulo specifico</string>
     <string name="install_remove">Installa e rimuovi</string>
-    <string name="install_with_su">Installa modulo con root</string>
-    <string name="install_with_su_summ">Se è selezionato, Xposed Installer installerà i moduli senza un avviso</string>
+
+
     <string name="module_saved">Modulo salvato in %1$s</string>
     <string name="navigation_drawer_close">Chiudi navigation drawer</string>
     <string name="navigation_drawer_open">Apri navigation drawer</string>

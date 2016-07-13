@@ -297,8 +297,8 @@
     <string name="undo">Späť</string>
     <string name="notification_coloration">Zafarbiť ikonu upozornenia</string>
     <string name="file_is_empty">Súbor je prázdny</string>
-    <string name="install_with_su">Nainštalovať modul pomocou rootu</string>
-    <string name="install_with_su_summ">Ak je povolené, Xposed Installer nainštaluje modul bez výzvy</string>
+
+
     <string name="install_remove">Nainštalovať a odstrániť</string>
     <string name="download_remove">Stiahnuť a odstrániť</string>
     <string name="module_saved">Modul uložený %1$s</string>

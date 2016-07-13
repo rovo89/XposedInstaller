@@ -297,8 +297,8 @@
     <string name="undo">Отменить</string>
     <string name="notification_coloration">Цветная иконка уведомлений</string>
     <string name="file_is_empty">Файлов нет</string>
-    <string name="install_with_su">Автоустановка модуля</string>
-    <string name="install_with_su_summ">Если выбрано, Xposed Installer будет устанавливать модули без запроса на установку</string>
+
+
     <string name="install_remove">Установить и удалить</string>
     <string name="download_remove">Скачать и удалить</string>
     <string name="module_saved">Модуль сохранен в %1$s</string>

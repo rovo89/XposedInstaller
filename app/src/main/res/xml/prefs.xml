@@ -134,12 +134,6 @@
 
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="install_with_su"
-            android:summary="@string/install_with_su_summ"
-            android:title="@string/install_with_su"/>
-
-        <CheckBoxPreference
-            android:defaultValue="false"
             android:key="ignore_updates"
             android:summary="@string/ignore_updates_summ"
             android:title="@string/ignore_updates"/>

@@ -297,8 +297,8 @@
     <string name="undo">Rückgängig</string>
     <string name="notification_coloration">Benachrichtigungs-Icon einfärben</string>
     <string name="file_is_empty">Datei ist leer</string>
-    <string name="install_with_su">Modul mittels Root installieren</string>
-    <string name="install_with_su_summ">Wenn aktiviert werden Module ohne weitere Eingabeaufforderung installiert</string>
+
+
     <string name="install_remove">Installieren und entfernen</string>
     <string name="download_remove">Laden und entfernen</string>
     <string name="module_saved">Modul gespeichert unter %1$s</string>

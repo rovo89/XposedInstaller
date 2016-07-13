@@ -65,7 +65,6 @@ import de.robv.android.xposed.installer.repo.ReleaseType;
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoDb.RowNotFoundException;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
-import de.robv.android.xposed.installer.util.InstallApkUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
@@ -352,7 +351,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
                 DownloadsUtil.add(getActivity(), m.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                     @Override
                     public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                        new InstallApkUtil(getContext(), info).execute();
+                        XposedApp.installApk(context, info);
                     }
                 }, DownloadsUtil.MIME_TYPES.APK);
             }

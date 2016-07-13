@@ -297,8 +297,8 @@
     <string name="undo">還原</string>
     <string name="notification_coloration">通知圖示著色</string>
     <string name="file_is_empty">檔案為空</string>
-    <string name="install_with_su">Root 下安裝模組</string>
-    <string name="install_with_su_summ">若勾選則 Xposed Installer 在安裝模組時將不會提示。</string>
+
+
     <string name="install_remove">安裝和移除</string>
     <string name="download_remove">下載和移除</string>
     <string name="module_saved">儲存模組於 %1$s</string>

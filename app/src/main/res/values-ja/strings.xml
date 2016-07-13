@@ -297,8 +297,8 @@
     <string name="undo">元に戻す</string>
     <string name="notification_coloration">通知アイコンを色付け</string>
     <string name="file_is_empty">ファイルは空です</string>
-    <string name="install_with_su">ルートでモジュールをインストール</string>
-    <string name="install_with_su_summ">チェックするとXposed Installerはダイアログを表示しないでモジュールをインストールするようになります</string>
+
+
     <string name="install_remove">インストールして削除</string>
     <string name="download_remove">ダウンロードして削除</string>
     <string name="module_saved">モジュールを%1$sに保存しました</string>
