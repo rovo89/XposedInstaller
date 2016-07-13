@@ -243,7 +243,7 @@
     <string name="info">訊息</string>
     <string name="infoInstaller">
         名稱： %1$s
-        \nSDK： %2$d
+        \nSDK： %2$s
         \n架構： %3$s
         \n版本： %4$s
     </string>
@@ -260,15 +260,6 @@
     <string name="xposedZipNotFound">找不到 ZIP 檔案，可能是新版本發布了。</string>
     <string name="warningArchitecture">您是否選擇正確架構的 XPOSED ZIP？\n安裝錯誤的 ZIP 可能會損壞您的手機！</string>
     <string name="help">幫助</string>
-    <string name="helpChoose">
-        如何選擇正確的 ZIP 檔案?\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        從何區分：\n
-        %%SDK%% 為您 Android SDK 版本\n\n
-        %%ARCH%% 為您裝置的CPU架構
-    </string>
     <string name="newVersion">新的 Xposed Installer 可供更新！ 更新它！</string>
     <string name="update">更新</string>
 
@@ -319,17 +310,10 @@
     <string name="xposed_off_next_reboot">Xposed 框架將在下次重新啟動裝置後停用</string>
 
 
-    <string name="hour1">1 小時</string>
-    <string name="hour2">2 小時</string>
-    <string name="hour3">3 小時</string>
-    <string name="hour4">4 小時</string>
-    <string name="hour5">5 小時</string>
-    <string name="hour6">6 小時</string>
     <string name="hour24">每天</string>
 
     <string name="skip_xposedminversion_check">略過 \'Xposed 最低版本\' 檢查</string>
     <string name="skip_xposedminversion_check_summ">略過模組 \'Xposed 最低版本\' 檢查</string>
-    <string name="detected_as">檢測 SDK： %1$d, CPU架構： %2$s</string>
-    
-    
+
+
 </resources>

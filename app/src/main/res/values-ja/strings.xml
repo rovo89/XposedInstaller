@@ -243,7 +243,7 @@
     <string name="info">情報</string>
     <string name="infoInstaller">
         名前: %1$s
-        \nSDK: %2$d
+        \nSDK: %2$s
         \nアーキテクチャ: %3$s
         \nバージョン: %4$s
     </string>
@@ -260,15 +260,6 @@
     <string name="xposedZipNotFound">zipが見つかりません、おそらく新しいバージョンがリリースされています。</string>
     <string name="warningArchitecture">正しいXposedのzipのアーキテクチャを選択しましたか？\n異なるインストーラzipは携帯電話に損害を与える可能性があります。</string>
     <string name="help">ヘルプ</string>
-    <string name="helpChoose">
-        適切なzipの選び方:\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        説明:\n
-        %%SDK%%はAndroid SDKバージョンです\n\n
-        %%ARCH%%は端末のCPUアーキテクチャです
-    </string>
     <string name="newVersion">新しいバージョンのXposed Installerがあります。更新してください。</string>
     <string name="update">更新</string>
 

@@ -1,13 +1,18 @@
 package de.robv.android.xposed.installer.util;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class XposedZip {
@@ -17,31 +22,36 @@ public class XposedZip {
 
     public static class Installer extends XposedZip {
         public String version = "";
-        public int sdk = -1;
+        public String sdk = "";
+        public boolean systemless = false;
 
-        public Installer() {
-        }
-
-        public Installer(String link, String name, String architecture, int sdk, String version) {
+        public Installer(String link, String name, String architecture, String sdk, String version) {
             this.link = link;
             this.name = name;
             this.architecture = architecture;
             this.sdk = sdk;
             this.version = version;
+
+            this.systemless = name.contains("systemless");
         }
     }
 
     public static class Uninstaller extends XposedZip {
         public String date = "";
 
-        public Uninstaller() {
-        }
-
-        public Uninstaller(String link, String name, String architecture, String date) {
+        public Uninstaller(Context context, String link, String name, String architecture, String dateString) {
             this.link = link;
             this.name = name;
             super.architecture = architecture;
-            this.date = date;
+
+            try {
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                Date date = sdf.parse(dateString);
+                java.text.DateFormat dateFormat = DateFormat.getDateFormat(context);
+                this.date = dateFormat.format(date);
+            } catch (ParseException ignored) {
+            }
+
         }
     }
 

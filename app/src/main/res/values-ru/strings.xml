@@ -243,7 +243,7 @@
     <string name="info">Информация</string>
     <string name="infoInstaller">
         Имя: %1$s
-        \nSDK: %2$d
+        \nSDK: %2$s
         \nАрхитектура: %3$s
         \nВерсия: %4$s
     </string>
@@ -260,15 +260,6 @@
     <string name="xposedZipNotFound">Не найден Zip, вероятно есть новая версия.</string>
     <string name="warningArchitecture">ВЫ ВЫБРАЛИ ПАРВИЛЬНУЮ АРХИТЕКТУРУ ZIP XPOSED?\nНе правильный zip установщик может навредить вашему устройству!</string>
     <string name="help">Справка</string>
-    <string name="helpChoose">
-        Как правильно выбрать zip файл?\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        Где:\n
-        %%SDK%% Это версия Android SDK\n\n
-        %%ARCH%% Это версия архитектуры CPU устройства
-    </string>
     <string name="newVersion">Доступна новая версия Xposed Installer!</string>
     <string name="update">Установить обновление</string>
 
@@ -319,17 +310,10 @@
     <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>
 
 
-    <string name="hour1">1 час</string>
-    <string name="hour2">2 часа</string>
-    <string name="hour3">3 часа</string>
-    <string name="hour4">4 часа</string>
-    <string name="hour5">5 часа</string>
-    <string name="hour6">6 часа</string>
     <string name="hour24">Каждый день</string>
 
     <string name="skip_xposedminversion_check">Пропускать проверку \'Xposed мин. версии\'</string>
     <string name="skip_xposedminversion_check_summ">Пропустить \'Xposed мин. версии\' проверку модулей</string>
-    <string name="detected_as">Обнаружен SDK: %1$d, ARCH: %2$s</string>
 
-	
+
 </resources>

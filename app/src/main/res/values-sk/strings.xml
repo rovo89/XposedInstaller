@@ -243,7 +243,7 @@
     <string name="info">Informácie</string>
     <string name="infoInstaller">
         Názov: %1$s
-        \nSDK: %2$d
+        \nSDK: %2$s
         \nArchitektúra: %3$s
         \nVerzia: %4$s
     </string>
@@ -260,15 +260,6 @@
     <string name="xposedZipNotFound">Zip nebol nájdený, pravdepodobne je dostupná nová verzia.</string>
     <string name="warningArchitecture">ZVOLILI STE SPRÁVNU ARCHITEKTÚRU XPOSED ZIP?\nNesprávny zip súbor môže poškodiť vaše zariadenie!</string>
     <string name="help">Pomoc</string>
-    <string name="helpChoose">
-        Ako zvoliť správny zip súbor?\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        Kde:\n
-        %%SDK%% je vaša verzia Android SDK\n\n
-        %%ARCH%% je architektúra CPU vášho zariadenia
-    </string>
     <string name="newVersion">Je dostupná nová verzia Xposed Installera! Aktualizujte ju!</string>
     <string name="update">Aktualizovať</string>
 
@@ -319,18 +310,11 @@
     <string name="xposed_off_next_reboot">Xposed Framework bude zakázaný pri nasledujúcom reštarte</string>
 
 
-    <string name="hour1">1 hod.</string>
-    <string name="hour2">2 hod.</string>
-    <string name="hour3">3 hod.</string>
-    <string name="hour4">4 hod.</string>
-    <string name="hour5">5 hod.</string>
-    <string name="hour6">6 hod.</string>
-    <string name="off">Vyp.</string>
     <string name="hour24">Každý deň</string>
 
     <string name="skip_xposedminversion_check">Preskočiť \'xposedminversion\' kontrolu</string>
     <string name="skip_xposedminversion_check_summ">Preskočiť \'xposedminversion\' kontrolu pre moduly</string>
-    <string name="detected_as">Zistené SDK: %1$d, ARCH: %2$s</string>
+
     <string name="details">Detaily</string>
 
 </resources>

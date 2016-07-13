@@ -197,18 +197,13 @@
     <string name="export_modules">导出已启用模块列表</string>
     <string name="file_is_empty">文件为空</string>
     <string name="help">帮助</string>
-    <string name="helpChoose">"如何选择正确的 zip 文件？\n\n
-xposed-v*-sdk%%SDK%%-%%ARCH%%\n
-其中：\n
-%%SDK%% 是您的 Android SDK 版本\n
-%%ARCH%% 是您的设备中央处理器架构"</string>
     <string name="import_">导入…</string>
     <string name="import_enabled_modules">导入已启用模块列表</string>
     <string name="import_installed_modules">导入已安装模块列表</string>
     <string name="import_modules">导入已启用模块列表</string>
     <string name="info">信息</string>
     <string name="infoInstaller">"名称：%1$s\n
-SDK：%2$d \n
+SDK：%2$s \n
 架构：%3$s \n
 版本：%4$s"</string>
     <string name="infoUninstaller">"名称：%1$s \n

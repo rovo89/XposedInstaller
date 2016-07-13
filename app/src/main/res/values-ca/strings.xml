@@ -243,7 +243,7 @@
     <string name="info">Informació</string>
     <string name="infoInstaller">
         Nom: %1$s
-        \nSDK: %2$d
+        \nSDK: %2$s
         \nArquitectura: %3$s
         \nVersió: %4$s
     </string>
@@ -260,15 +260,6 @@
     <string name="xposedZipNotFound">No s\'ha trobat el Zip, probablement s\'ha llançat una versió nova.</string>
     <string name="warningArchitecture">HEU TRIAT EL ZIP D\'XPOSED DE L\'ARQUITECTURA CORRECTA?\nUn intal·lador zip equivocat pot fer malbé el telèfon!</string>
     <string name="help">Ajuda</string>
-    <string name="helpChoose">
-        Com es tria el fitxer zip correcte?\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        on:\n
-        %%SDK%% és la versió d\'Android SDK\n\n
-        %%ARCH%% és l\'arquitectura de la CPU
-    </string>
     <string name="newVersion">Hi ha una versió nova de l\'Instal·lador Xposed disponible! Actualitzeu-lo!</string>
     <string name="update">Actualització</string>
 

@@ -111,49 +111,10 @@
                 </RelativeLayout>
 
                 <LinearLayout
-                    android:id="@+id/author_view"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/container"
-                    android:layout_marginTop="4dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:gravity="center_vertical"
-                    android:minHeight="48dp"
-                    android:orientation="horizontal"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_person"/>
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginStart="32dp"
-                        android:orientation="vertical"
-                        android:paddingBottom="8dp"
-                        android:paddingTop="8dp">
-
-                        <TextView
-                            android:id="@+id/author"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/download_author"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/show_on_xda"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/author_view"
+                    android:layout_below="@id/container"
                     android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:gravity="center_vertical"

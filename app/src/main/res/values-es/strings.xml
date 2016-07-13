@@ -243,7 +243,7 @@
     <string name="info">Información</string>
     <string name="infoInstaller">
         Nombre: %1$s
-        \nSDK: %2$d
+        \nSDK: %2$s
         \nArquitectura: %3$s
         \nVersión: %4$s
     </string>
@@ -260,15 +260,6 @@
     <string name="xposedZipNotFound">Archivo .Zip no encontrado, probablemente hay una nueva versión.</string>
     <string name="warningArchitecture">HA ELEGIDO LA ARQUITECTURA CORRECTA EN EL ARCHIVO .ZIP DEL XPOSED?\nUn archivo .zip equivocado puede dañar su dispositivo!</string>
     <string name="help">Ayuda</string>
-    <string name="helpChoose">
-        ¿Cómo seleccionar el archivo .zip correcto?\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        Donde:\n
-        %%SDK%% es su versión de SDK de Android\n\n
-        %%ARCH%% es la arquitectura de procesador (CPU) de su dispositivo
-    </string>
     <string name="newVersion">Una nueva versión del Xposed Installer está disponible! Actualízalo!</string>
     <string name="update">Actualizar</string>
 

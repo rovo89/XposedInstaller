@@ -243,7 +243,7 @@
     <string name="info">ข้อมูล</string>
     <string name="infoInstaller">
         ชื่อ: %1$s
-        \nSDK: %2$d
+        \nSDK: %2$s
         \nสถาปัตยกรรม: %3$s
         \nเวอร์ชั่น: %4$s
     </string>
@@ -260,15 +260,6 @@
     <string name="xposedZipNotFound">ไม่พบ Zip หรืออาจจะมีเวอร์ชั่นใหม่แล้ว</string>
     <string name="warningArchitecture">เลือกไฟล์ Zip ให้ถูกต้องการกับสถาปัตยกรรม?\nหากตดตั้งผิดอาจจะทำให้โทรศัพท์เสียได้!</string>
     <string name="help">ช่วยเหลือ</string>
-    <string name="helpChoose">
-        วิธีเลือกไฟล์ Zip ให้ถูกต้อง?\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        คือ:\n
-        %%SDK%% เวอร์ชั่น Android SDK\n\n
-        %%ARCH%% สถาปัตยกรรมประมวลผล
-    </string>
     <string name="newVersion">พบเวอร์ชั่นตัวติดตั้ง Xposed ใหม่ โปรดอัพเดท!</string>
     <string name="update">อัพเดท</string>
 

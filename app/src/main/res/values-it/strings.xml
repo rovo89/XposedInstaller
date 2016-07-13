@@ -243,7 +243,7 @@
     <string name="downloadZipOk">%1$s scaricato correttamente</string>
     <string name="help">Aiuto</string>
     <string name="info">Info</string>
-    <string name="infoInstaller">Nome: %1$s         \nSDK: %2$d         \nArchittettura: %3$s         \nVersione: %4$s</string>
+    <string name="infoInstaller">Nome: %1$s         \nSDK: %2$s         \nArchittettura: %3$s         \nVersione: %4$s</string>
     <string name="infoUninstaller">Nome: %1$s         \nArchittettura: %2$s         \nData: %3$s</string>
     <string name="loadingError">Si è verificato un errore nel caricamento della lista degli installer/uninstaller dispnibili.\nNon è possibile accedere a Internet o è un bug lato server</string>
     <string name="permissionGranted">Permesso concesso</string>
@@ -251,15 +251,6 @@
     <string name="selectFile">Seleziona il file scaricato</string>
     <string name="warningArchitecture">HAI SCELTO L\' ARCHITTETTURA GIUSTA DELLO ZIP?\nUno zip sbagliato può danneggiare il tuo telefono!</string>
     <string name="xposedZipNotFound">File zip non trovato, probabilmemente una nuova versione è stata rilasciata.</string>
-    <string name="helpChoose">
-        Come scegliere il file zip corretto?\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        Dove:\n
-        %%SDK%% è la tua versione Android SDK \n\n
-        %%ARCH%% è l\'architettura della CPU del tuo telefono
-    </string>
     <string name="newVersion">Una nuova versione di Xposed Installer è disponibile! Aggiorna!</string>
     <string name="update">Aggiorna</string>
 
@@ -310,19 +301,17 @@
     <string name="xposed_off_next_reboot">Xposed Framework sarà disabilitato al prossimo riavvio</string>
     <string name="xposed_on_next_reboot">Xposed Framework sarà abilitato al prossimo riavvio</string>
 
-    <string name="hour1">1 ora</string>
-    <string name="hour2">2 ore</string>
+
     <string name="hour24">Ogni giorno</string>
-    <string name="hour3">3 ore</string>
-    <string name="hour4">4 ore</string>
-    <string name="hour5">5 ore</string>
-    <string name="hour6">6 ore</string>
 
 
-    <string name="detected_as">SDK rilevato: %1$d, ARCHITETTURA: %2$s</string>
     <string name="skip_xposedminversion_check">Salta controllo \'xposedminversion\' </string>
     <string name="skip_xposedminversion_check_summ">Salta controllo \'xposedminversion\' per i moduli</string>
     <string name="details">Dettagli</string>
+    <string name="save">Salva</string>
+    <string name="support_xda">Ottieni supporto su XDA</string>
+    <string name="systemless">Systemless</string>
+    <string name="classic">Classico</string>
 
 
 </resources>

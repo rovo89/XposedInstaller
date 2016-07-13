@@ -243,7 +243,7 @@
     <string name="info">Info</string>
     <string name="infoInstaller">
         Název: %1$s
-        \nSDK: %2$d
+        \nSDK: %2$s
         \nArchitektura: %3$s
         \nVerze: %4$s
     </string>
@@ -260,15 +260,6 @@
     <string name="xposedZipNotFound">Zip nebyl nalezen, pravděpodobně byla vydána novější verze.</string>
     <string name="warningArchitecture">ZVOLIL JSI ZIP S XPOSED PRO SPRÁVNOU ARCHITEKTURU?\nNesprávný instalační zip může poškodit tvé zařízení!</string>
     <string name="help">Pomoc</string>
-    <string name="helpChoose">
-        Jak zvolit správný soubor zip?\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        Kde:\n
-        %%SDK%% je verze Android SDK\n\n
-        %%ARCH%% je architektura CPU vašeho zařízení
-    </string>
     <string name="newVersion">Je dostupná nová verze Instalátoru Xposed! Aktualizujte jej!</string>
     <string name="update">Aktualizovat</string>
 

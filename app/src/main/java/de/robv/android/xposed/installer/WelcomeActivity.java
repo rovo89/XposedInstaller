@@ -33,13 +33,13 @@ public class WelcomeActivity extends XposedBaseActivity
         ModuleListener, RepoListener {
 
     private static final String SELECTED_ITEM_ID = "SELECTED_ITEM_ID";
+    public static View mProgress;
     private final Handler mDrawerHandler = new Handler();
     private RepoLoader mRepoLoader;
     private DrawerLayout mDrawerLayout;
     private int mPrevSelectedId;
     private NavigationView mNavigationView;
     private int mSelectedId;
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,15 +48,15 @@ public class WelcomeActivity extends XposedBaseActivity
         setContentView(R.layout.activity_welcome);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         assert mNavigationView != null;
         mNavigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,
-                mDrawerLayout, mToolbar, R.string.navigation_drawer_open,
+                mDrawerLayout, toolbar, R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
@@ -93,6 +93,8 @@ public class WelcomeActivity extends XposedBaseActivity
         mRepoLoader = RepoLoader.getInstance();
         ModuleUtil.getInstance().addListener(this);
         mRepoLoader.addListener(this, false);
+
+        mProgress = toolbar.findViewById(R.id.toolbar_progress_bar);
 
         notifyDataSetChanged();
     }
@@ -154,6 +156,7 @@ public class WelcomeActivity extends XposedBaseActivity
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
             try {
+                mProgress.setVisibility(View.GONE);
                 transaction.replace(R.id.content_frame, navFragment).commit();
 
                 if (elevation != null) {

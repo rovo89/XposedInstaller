@@ -92,7 +92,6 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         ImageView infoUninstaller = (ImageView) view.findViewById(R.id.infoUninstaller);
         TextView compatibleTv = (TextView) view.findViewById(R.id.compatibilityTv);
         TextView incompatibleTv = (TextView) view.findViewById(R.id.incompatibilityTv);
-        TextView author = (TextView) view.findViewById(R.id.author);
         View showOnXda = view.findViewById(R.id.show_on_xda);
 
         chooserInstallers.setAdapter(new XposedZip.MyAdapter<>(getContext(), installers()));
@@ -139,10 +138,17 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
 
                                 XposedZip.Installer selectedInstaller = (XposedZip.Installer) chooserInstallers.getSelectedItem();
 
-                                checkAndDelete(selectedInstaller.name);
+                                File file = checkAndDelete(selectedInstaller.name);
 
-                                DownloadsUtil.add(getContext(), selectedInstaller.name, selectedInstaller.link, BaseAdvancedInstaller.this,
-                                        DownloadsUtil.MIME_TYPES.ZIP, true);
+                                if (selectedInstaller.link == null) {
+                                    if (AssetUtil.writeAssetToFile(selectedInstaller.name + ".zip", file, 00644) == null) {
+                                        messages.add(getString(R.string.file_copy_failed, selectedInstaller.name, "memory"));
+                                    }
+                                    onDownloadFinished(getContext(), new DownloadsUtil.DownloadInfo(file));
+                                } else {
+                                    DownloadsUtil.add(getContext(), selectedInstaller.name, selectedInstaller.link, BaseAdvancedInstaller.this,
+                                            DownloadsUtil.MIME_TYPES.ZIP, true);
+                                }
                             }
                         });
             }
@@ -163,10 +169,17 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
 
                                 XposedZip.Uninstaller selectedUninstaller = (XposedZip.Uninstaller) chooserUninstallers.getSelectedItem();
 
-                                checkAndDelete(selectedUninstaller.name);
+                                File file = checkAndDelete(selectedUninstaller.name);
 
-                                DownloadsUtil.add(getContext(), selectedUninstaller.name, selectedUninstaller.link, BaseAdvancedInstaller.this,
-                                        DownloadsUtil.MIME_TYPES.ZIP, true);
+                                if (selectedUninstaller.link == null) {
+                                    if (AssetUtil.writeAssetToFile(selectedUninstaller.name + ".zip", file, 00644) == null) {
+                                        messages.add(getString(R.string.file_copy_failed, selectedUninstaller.name, "memory"));
+                                    }
+                                    onDownloadFinished(getContext(), new DownloadsUtil.DownloadInfo(file));
+                                } else {
+                                    DownloadsUtil.add(getContext(), selectedUninstaller.name, selectedUninstaller.link, BaseAdvancedInstaller.this,
+                                            DownloadsUtil.MIME_TYPES.ZIP, true);
+                                }
                             }
                         });
             }
@@ -175,7 +188,6 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
 
         compatibleTv.setText(compatibility());
         incompatibleTv.setText(incompatibility());
-        author.setText(getString(R.string.download_author, author()));
 
         if (uninstallers().size() == 0) {
             infoUninstaller.setVisibility(View.GONE);
@@ -201,8 +213,10 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         return view;
     }
 
-    private void checkAndDelete(String name) {
-        new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/XposedInstaller/" + name + ".zip").delete();
+    private File checkAndDelete(String name) {
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/XposedInstaller/" + name + ".zip");
+        file.delete();
+        return file;
     }
 
     @Override
@@ -415,8 +429,6 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
 
     @StringRes
     protected abstract int incompatibility();
-
-    protected abstract CharSequence author();
 
     protected abstract String xdaUrl();
 }

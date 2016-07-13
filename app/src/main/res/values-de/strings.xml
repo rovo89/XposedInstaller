@@ -243,7 +243,7 @@
     <string name="info">Info</string>
     <string name="infoInstaller">
         Name: %1$s
-        \nSDK: %2$d
+        \nSDK: %2$s
         \nArchitektur: %3$s
         \nVersion: %4$s
     </string>
@@ -260,18 +260,8 @@
     <string name="xposedZipNotFound">Zip nicht gefunden, vielleicht wurde eine neue Version veröffentlicht.</string>
     <string name="warningArchitecture">WURDE DIE KORREKTE ARCHITEKTUR DER XPOSED ZIP GEWÄHLT?\nEine falsche ZIP-Datei kann dein Handy beschädigen!</string>
     <string name="help">Hilfe</string>
-    <string name="helpChoose">
-        Wie wählt man die richtige ZIP-Datei?\n\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        Hierbei ist:\n
-        %%SDK%% deine aktuelle Android SDK Version\n\n
-        %%ARCH%% die CPU Architektur deines Geräts
-    </string>
     <string name="newVersion">Eine neue Version des Xposed-Installers ist verfügbar.</string>
     <string name="update">Aktualisieren</string>
-
 
     <string name="installationForbidden">Installation ist auf diesem Gerät nicht möglich. Um Xposed mit dieser App installieren zu können muss Android Lollipop oder höher installiert sein.</string>
     <string name="installed_no_lollipop">Xposed-Framework ist installiert.</string>
