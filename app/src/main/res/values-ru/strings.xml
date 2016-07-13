@@ -326,7 +326,7 @@
     <string name="hour5">5 часа</string>
     <string name="hour6">6 часа</string>
     <string name="hour24">Каждый день</string>
-    <string name="confirm_reboots">Подтверждать перезагрузку</string>
+
     <string name="skip_xposedminversion_check">Пропускать проверку \'Xposed мин. версии\'</string>
     <string name="skip_xposedminversion_check_summ">Пропустить \'Xposed мин. версии\' проверку модулей</string>
     <string name="detected_as">Обнаружен SDK: %1$d, ARCH: %2$s</string>

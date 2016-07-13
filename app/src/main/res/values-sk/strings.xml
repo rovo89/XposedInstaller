@@ -327,7 +327,7 @@
     <string name="hour6">6 hod.</string>
     <string name="off">Vyp.</string>
     <string name="hour24">Každý deň</string>
-    <string name="confirm_reboots">Potvrdiť reštart</string>
+
     <string name="skip_xposedminversion_check">Preskočiť \'xposedminversion\' kontrolu</string>
     <string name="skip_xposedminversion_check_summ">Preskočiť \'xposedminversion\' kontrolu pre moduly</string>
     <string name="detected_as">Zistené SDK: %1$d, ARCH: %2$s</string>

@@ -164,43 +164,31 @@ public class AdvancedInstallerFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.reboot:
-                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            reboot(null);
-                        }
-                    });
-                } else {
-                    reboot(null);
-                }
+                areYouSure(R.string.reboot, new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        super.onPositive(dialog);
+                        reboot(null);
+                    }
+                });
                 break;
             case R.id.soft_reboot:
-                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.soft_reboot, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            softReboot();
-                        }
-                    });
-                } else {
-                    softReboot();
-                }
+                areYouSure(R.string.soft_reboot, new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        super.onPositive(dialog);
+                        softReboot();
+                    }
+                });
                 break;
             case R.id.reboot_recovery:
-                if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-                    areYouSure(R.string.reboot_recovery, new MaterialDialog.ButtonCallback() {
-                        @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
-                            reboot("recovery");
-                        }
-                    });
-                } else {
-                    reboot("recovery");
-                }
+                areYouSure(R.string.reboot_recovery, new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        super.onPositive(dialog);
+                        reboot("recovery");
+                    }
+                });
                 break;
         }
 
