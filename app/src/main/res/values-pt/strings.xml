@@ -203,7 +203,7 @@
     <string name="downloadZipOk">%1$s corretamente descarregado</string>
     <string name="download_remove">Descarregar e remover</string>
     <string name="download_view_size">Tamanho: %s KB</string>
-    <string name="enable_heads_up">Ativar notificações \"Heads-Up\"</string>
+
     <string name="enable_heads_up_summary">Ativa as notificações \"heads up\" para módulos novos ou atualizados</string>
     <string name="export_">Exportar...</string>
     <string name="export_enabled_modules">Exportar lista de módulos ativos</string>

@@ -230,7 +230,7 @@
     <string name="export_installed_modules">Exportiere Liste installierter Module</string>
     <string name="import_installed_modules">Importiere Liste installierter Module</string>
     <string name="no_installed_modules">Es ist kein Modul installiert!</string>
-    <string name="enable_heads_up">Heads-Up Benachrichtigungen</string>
+
     <string name="enable_heads_up_summary">Zeigt Heads-Up Benachrichtigungen bei neuen/aktualisierten Modulen</string>
     <string name="nav_bar_coloration">Navigationsleiste einfärben</string>
     <string name="no_backup_found">Keine Sicherung gefunden</string>

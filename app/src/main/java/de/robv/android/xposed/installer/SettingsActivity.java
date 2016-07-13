@@ -120,11 +120,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             nav_bar = findPreference("nav_bar");
             colors = findPreference("colors");
             if (Build.VERSION.SDK_INT < 21) {
-                Preference heads_up = findPreference("heads_up");
-
-                heads_up.setEnabled(false);
                 nav_bar.setEnabled(false);
-                heads_up.setSummary(heads_up.getSummary() + " LOLLIPOP+");
                 nav_bar.setSummary("LOLLIPOP+");
             }
 

@@ -208,7 +208,7 @@
 
     <string name="warning_installed_on_external_storage">Questo modulo non può essere caricato perché è installato nella memoria SD, per favore spostalo nella memoria interna</string>
     <string name="warning_forward_locked">Questo modulo non può essere caricato perché è forward-locked, perfavore contatta lo sviluppatore del modulo.</string>
-    <string name="enable_heads_up">Abilita le notifiche Heads-Up</string>
+
     <string name="enable_heads_up_summary">Questa opzione abilita la notifica heads up ad ogni nuovo/aggiornato modulo</string>
     <string name="choose_color">Scegli un colore…</string>
 

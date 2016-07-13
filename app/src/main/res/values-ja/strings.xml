@@ -230,7 +230,7 @@
     <string name="export_installed_modules">インストールされているモジュールのリストをエクスポート</string>
     <string name="import_installed_modules">インストールされていたモジュールのリストをインポート</string>
     <string name="no_installed_modules">インストールされているモジュールがありません</string>
-    <string name="enable_heads_up">ヘッドアップ通知を有効化</string>
+
     <string name="enable_heads_up_summary">このオプションは新しいモジュール/モジュールの更新があるときにヘッドアップ通知を有効化します。</string>
     <string name="nav_bar_coloration">ナビゲーションバーを色付け</string>
     <string name="no_backup_found">バックアップが見つかりません</string>

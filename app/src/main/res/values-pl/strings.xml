@@ -232,7 +232,7 @@
     <string name="export_installed_modules">Eksport listy zainstalowanych modułów</string>
     <string name="import_installed_modules">Import listy zainstalowanych modułów</string>
     <string name="no_installed_modules">Brak zainstalowanych modułów!</string>
-    <string name="enable_heads_up">Włącz pływające powiadomienie</string>
+
     <string name="enable_heads_up_summary">Ta opcja włącza pływające powiadomienie o nowych/zaktualizowanych modułach</string>
     <string name="nav_bar_coloration">Koloruj pasek nawigacji</string>
     <string name="no_backup_found">Nie znaleziono kopii zapasowej</string>

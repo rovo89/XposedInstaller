@@ -190,7 +190,7 @@
     <string name="downloadZipOk">%1$s 下载完成</string>
     <string name="download_remove">下载和移除</string>
     <string name="download_view_size">大小：%s KB</string>
-    <string name="enable_heads_up">启用浮动通知</string>
+
     <string name="enable_heads_up_summary">该选项可启用模块更新的浮动通知</string>
     <string name="export_">导出…</string>
     <string name="export_enabled_modules">导出已启用模块列表</string>

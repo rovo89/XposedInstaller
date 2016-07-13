@@ -230,7 +230,7 @@
     <string name="export_installed_modules">Exportovat seznam nainstalovaných modulů</string>
     <string name="import_installed_modules">Importovat seznam nainstalovaných modulů</string>
     <string name="no_installed_modules">Žádné Xposed moduly nebyly nalezeny!</string>
-    <string name="enable_heads_up">Povolit Heads-Up notifikace</string>
+
     <string name="enable_heads_up_summary">Tato volba povolí heads up oznámení při novém/aktualizovaném modulu</string>
     <string name="nav_bar_coloration">Obarvit navigační lištu</string>
     <string name="no_backup_found">Nenalezena žádná záloha</string>

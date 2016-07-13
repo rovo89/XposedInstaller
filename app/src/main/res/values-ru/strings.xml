@@ -230,7 +230,7 @@
     <string name="export_installed_modules">Экспорт списка установленных модулей</string>
     <string name="import_installed_modules">Импорт списка установленных модулей</string>
     <string name="no_installed_modules">Установленных модулей нет!</string>
-    <string name="enable_heads_up">Включить Heads-Up уведомления</string>
+
     <string name="enable_heads_up_summary">Эта опция включает Heads-Up уведомления для новых/обновленных модулей</string>
     <string name="nav_bar_coloration">Раскрасить \"Панель навигации\"</string>
     <string name="no_backup_found">Резервные копии не найдены</string>

@@ -230,7 +230,7 @@
     <string name="export_installed_modules">ส่งออกรายการโมดูลที่ติดตั้ง</string>
     <string name="import_installed_modules">นำเข้ารายการโมดูลที่ติดตั้ง</string>
     <string name="no_installed_modules">ยังไม่ได้ติดตั้งโมดูล</string>
-    <string name="enable_heads_up">เปิดใช้งานการแจ้งเตือน Heads-Up</string>
+
     <string name="enable_heads_up_summary">ตัวเลือกนี้จะเปิดใช้งานการแจ้งเตือน Heads-Up สำหรับโมดูลและการอัพเดทใหม่</string>
     <string name="nav_bar_coloration">สีแถบนำทาง</string>
     <string name="no_backup_found">ไม่พบสำรองข้อมูล</string>

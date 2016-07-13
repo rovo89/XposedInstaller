@@ -230,7 +230,7 @@
     <string name="export_installed_modules">Exporta la llista de mòduls instal·lats</string>
     <string name="import_installed_modules">Importa la llista de mòduls instal·lats</string>
     <string name="no_installed_modules">No hi ha cap mòdul instal·lat!</string>
-    <string name="enable_heads_up">Habilita la notificació d\'avisos</string>
+
     <string name="enable_heads_up_summary">Aquesta opció habilita la notificació d\'avisos de mòduls nous/actualitzats</string>
     <string name="nav_bar_coloration">Acoloreix la barra de navegació</string>
     <string name="no_backup_found">No s\'ha trobat cap còpia de seguretat</string>

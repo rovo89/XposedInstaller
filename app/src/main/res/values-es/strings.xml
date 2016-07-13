@@ -230,7 +230,7 @@
     <string name="export_installed_modules">Exportar lista de módulos instalados</string>
     <string name="import_installed_modules">Importar lista de módulos instalados</string>
     <string name="no_installed_modules">No hay ningún módulo instalado!</string>
-    <string name="enable_heads_up">habilitar notificaciones Heads-Up</string>
+
     <string name="enable_heads_up_summary">Ésta opción habilita las notificaciones Heads-up en los módulos nuevos/actualizados</string>
     <string name="nav_bar_coloration">Colorear barra de navegación</string>
     <string name="no_backup_found">No se encontró copia de seguridad</string>
