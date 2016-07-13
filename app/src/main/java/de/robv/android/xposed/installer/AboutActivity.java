@@ -1,7 +1,6 @@
 package de.robv.android.xposed.installer;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +16,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 import de.psdev.licensesdialog.LicensesDialog;
 import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
@@ -96,19 +98,29 @@ public class AboutActivity extends XposedBaseActivity {
             String packageName = getActivity().getPackageName();
             String translator = getResources().getString(R.string.translator);
 
-            SharedPreferences prefs = getContext().getSharedPreferences(packageName + "_preferences", MODE_PRIVATE);
+            String changes = null;
+            try {
+                InputStream is = getContext().getAssets().open("changelog.html");
+                int size = is.available();
 
-            final String changes = prefs.getString("changelog_" + XposedApp.THIS_APK_VERSION, null);
+                byte[] buffer = new byte[size];
+                is.read(buffer);
+                is.close();
+
+                changes = new String(buffer);
+            } catch (IOException ignored) {
+            }
 
             if (changes == null) {
                 changelogView.setVisibility(View.GONE);
             } else {
+                final String finalChanges = changes;
                 changelogView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         new MaterialDialog.Builder(getContext())
                                 .title(R.string.changes)
-                                .content(Html.fromHtml(changes))
+                                .content(Html.fromHtml(finalChanges))
                                 .positiveText(android.R.string.ok).show();
                     }
                 });
