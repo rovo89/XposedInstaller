@@ -141,14 +141,6 @@ public class AdvancedInstallerFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-
-        mTabLayout.setBackgroundColor(XposedApp.getColor(getContext()));
-
-    }
-
-    @Override
     public void onDestroy() {
         super.onDestroy();
 

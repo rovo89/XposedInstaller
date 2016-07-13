@@ -216,7 +216,7 @@
     <string name="repo_download_failed_http">Загрузка %1$s прервана: %2$d (%3$s)</string>
     <string name="repo_download_failed">Загрузка %1$s прервана: %2$s</string>
     <string name="repo_load_failed">Не могу загрузить репозиторий %1$s:\n%2$s</string>
-    <string name="choose_color">Изменить цвет \"Панели действий\"</string>
+
 
     <string name="warning_installed_on_external_storage">Этот модуль не может быть загружен, потому что он установлен на SD-карту, переместите его во внутреннюю память.</string>
     <string name="warning_forward_locked">Этот модуль не может быть загружен, потому что он заблокирован, пожалуйста свяжитесь с разработчиком.</string>
@@ -271,8 +271,8 @@
     </string>
     <string name="newVersion">Доступна новая версия Xposed Installer!</string>
     <string name="update">Установить обновление</string>
-    <string name="choose_icon">Изменить иконку приложения</string>
-    <string name="custom_icon">Выбрать иконку</string>
+
+
     <string name="installationForbidden">Установка не возможна! Чтобы установить Xposed Framework через это приложение, необходим Android 5 и выше.</string>
     <string name="installed_no_lollipop">Xposed Framework установлен.</string>
     <string name="not_installed_no_lollipop">Xposed Framework не установлен.</string>
@@ -317,7 +317,7 @@
     <string name="status">Состояние Xposed</string>
     <string name="xposed_on_next_reboot">Xposed Framework будет включен после перезагрузки</string>
     <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>
-	<string name="rovo_89_old_icon">rovo89 (старая)</string>
+
     <string name="update_interval">Интервал фоновой проверки обновлений</string>
     <string name="hour1">1 час</string>
     <string name="hour2">2 часа</string>

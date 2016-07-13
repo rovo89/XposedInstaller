@@ -216,7 +216,7 @@
     <string name="repo_download_failed_http">Descargando %1$s ha fallado: %2$d (%3$s)</string>
     <string name="repo_download_failed">Descargando %1$s ha fallado: %2$s</string>
     <string name="repo_load_failed">No se puede cargar el repositorio desde %1$s:\n%2$s</string>
-    <string name="choose_color">Elige un color…</string>
+
 
     <string name="warning_installed_on_external_storage">Éste módulo no puede ser cargado porque está instalado en la tarjeta SD, por favor muévala hacia el almacenamiento interno.</string>
     <string name="warning_forward_locked">Éste módulo no puede ser cargado porque está bloqueado (Derechos de Autor), por favor contacta al desarrollador del módulo.</string>
@@ -271,8 +271,8 @@
     </string>
     <string name="newVersion">Una nueva versión del Xposed Installer está disponible! Actualízalo!</string>
     <string name="update">Actualizar</string>
-    <string name="choose_icon">Elija un ícono</string>
-    <string name="custom_icon">Ícono personalizado</string>
+
+
     <string name="installationForbidden">La instalación no es posible en éste dispositivo. Para instalar el Xposed a través de ésta aplicación, el dispositivo debe correr sobre Android Lollipop ó una versión mayor.</string>
     <string name="installed_no_lollipop">El Xposed Framework está instalado.</string>
     <string name="not_installed_no_lollipop">El Xposed Framework no está instalado.</string>
@@ -317,6 +317,6 @@
     <string name="status">Estado del Xposed</string>
     <string name="xposed_on_next_reboot">El Xposed Framework se activará en el próximo reinicio</string>
     <string name="xposed_off_next_reboot">El Xposed Framework se desactivará en el próximo reinicio</string>
-    <string name="rovo_89_old_icon">rovo89 (antiguo)</string>
+
 
 </resources>

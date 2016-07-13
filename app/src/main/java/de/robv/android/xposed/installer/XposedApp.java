@@ -2,19 +2,12 @@ package de.robv.android.xposed.installer;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.Application;
 import android.app.Application.ActivityLifecycleCallbacks;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,7 +16,6 @@ import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -58,7 +50,6 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     private static final File XPOSED_PROP_FILE = new File("/system/xposed.prop");
     public static int WRITE_EXTERNAL_PERMISSION = 69;
     public static String THIS_APK_VERSION = "1466672400000";
-    public static int[] iconsValues = new int[]{R.mipmap.ic_launcher, R.mipmap.ic_launcher_hjmodi, R.mipmap.ic_launcher_rovo, R.mipmap.ic_launcher_rovo_old, R.mipmap.ic_launcher_staol};
     private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
     private static XposedApp mInstance = null;
     private static Thread mUiThread;
@@ -128,70 +119,12 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         return mInstance.mPref;
     }
 
-    public static int getColor(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences(context.getPackageName() + "_preferences", MODE_PRIVATE);
-        int defaultColor = context.getResources().getColor(R.color.colorPrimary);
-
-        return prefs.getInt("colors", defaultColor);
-    }
-
-    public static void setColors(ActionBar actionBar, Object value,
-                                 Activity activity) {
-        int color = (int) value;
-        SharedPreferences prefs = activity.getSharedPreferences(activity.getPackageName() + "_preferences", MODE_PRIVATE);
-
-        int drawable = iconsValues[Integer.parseInt(prefs.getString("custom_icon", "0"))];
-
-        if (actionBar != null)
-            actionBar.setBackgroundDrawable(new ColorDrawable(color));
-
-        if (Build.VERSION.SDK_INT >= 21) {
-
-            ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(activity.getString(R.string.app_name),
-                    drawableToBitmap(activity.getDrawable(drawable)), color);
-            activity.setTaskDescription(tDesc);
-        }
-    }
-
     public static void installApk(Context context, DownloadsUtil.DownloadInfo info) {
         Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
         installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         installIntent.setDataAndType(Uri.fromFile(new File(info.localFilename)), DownloadsUtil.MIME_TYPE_APK);
         installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, context.getApplicationInfo().packageName);
         context.startActivity(installIntent);
-    }
-
-    public static Bitmap drawableToBitmap(Drawable drawable) {
-        Bitmap bitmap;
-
-        if (drawable instanceof BitmapDrawable) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            if (bitmapDrawable.getBitmap() != null) {
-                return bitmapDrawable.getBitmap();
-            }
-        }
-
-        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
-        } else {
-            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        }
-
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-        return bitmap;
-    }
-
-    /**
-     * @author PeterCxy https://github.com/PeterCxy/Lolistat/blob/aide/app/src/
-     * main/java/info/papdt/lolistat/support/Utility.java
-     */
-    public static int darkenColor(int color, float factor) {
-        float[] hsv = new float[3];
-        Color.colorToHSV(color, hsv);
-        hsv[2] *= factor;
-        return Color.HSVToColor(hsv);
     }
 
     public void onCreate() {

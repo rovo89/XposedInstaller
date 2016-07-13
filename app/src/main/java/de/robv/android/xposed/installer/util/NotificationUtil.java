@@ -62,7 +62,7 @@ public final class NotificationUtil {
                 .setTicker(title).setContentIntent(pModulesTab)
                 .setVibrate(new long[]{0}).setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setColor(XposedApp.getColor(sContext));
+                .setColor(sContext.getResources().getColor(R.color.colorPrimary));
 
         if (Build.VERSION.SDK_INT >= 21)
             builder.setPriority(2);
@@ -107,7 +107,7 @@ public final class NotificationUtil {
                 .setTicker(title).setContentIntent(pInstallTab)
                 .setVibrate(new long[]{0}).setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setColor(XposedApp.getColor(sContext));
+                .setColor(sContext.getResources().getColor(R.color.colorPrimary));
 
         if (Build.VERSION.SDK_INT >= 21)
             builder.setPriority(2);
@@ -145,7 +145,7 @@ public final class NotificationUtil {
                 .setTicker(title).setContentIntent(pInstallTab)
                 .setVibrate(new long[]{0}).setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_notification)
-                .setColor(XposedApp.getColor(sContext));
+                .setColor(sContext.getResources().getColor(R.color.colorPrimary));
 
         if (Build.VERSION.SDK_INT >= 21)
             builder.setPriority(2);

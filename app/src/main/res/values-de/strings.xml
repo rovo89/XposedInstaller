@@ -217,7 +217,7 @@
     <string name="repo_download_failed">Herunterladen von %1$s fehlgeschlagen: %2$s</string>
     <string name="repo_load_failed">Verzeichnis konnte nicht geladen werden von %1$s:\n%2$s</string>
 
-    <string name="choose_color">App-Farbe auswählen</string>
+
     <string name="warning_installed_on_external_storage">Dieses Modul kann nicht geladen werden, da es auf der SD-Karte installiert ist. Bitte verschiebe es auf den Internen Speicher.</string>
     <string name="warning_forward_locked">Dieses Modul kann nicht geladen werden, weil es "forward-locked" ist. Bitte kontaktiere den Entwickler des Moduls.</string>
     <string name="export_modules">Exportiere Liste aktiver Module</string>
@@ -271,8 +271,8 @@
     </string>
     <string name="newVersion">Eine neue Version des Xposed-Installers ist verfügbar.</string>
     <string name="update">Aktualisieren</string>
-    <string name="choose_icon">Wähle ein Launcher-Icon</string>
-    <string name="custom_icon">Icon anpassen</string>
+
+
     <string name="installationForbidden">Installation ist auf diesem Gerät nicht möglich. Um Xposed mit dieser App installieren zu können muss Android Lollipop oder höher installiert sein.</string>
     <string name="installed_no_lollipop">Xposed-Framework ist installiert.</string>
     <string name="not_installed_no_lollipop">Xposed-Framework ist nicht installiert.</string>

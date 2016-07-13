@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
         android:key="group_installation"
@@ -38,16 +37,9 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/look_and_feel">
-
-        <de.robv.android.xposed.installer.widget.IconListPreference
-            android:defaultValue="0"
-            android:entries="@array/icons"
-            android:entryValues="@array/iconsValues"
-            android:key="custom_icon"
-            android:summary="@string/choose_icon"
-            android:title="@string/custom_icon"
-            app:icons="@array/iconsDrawables"/>
+    <PreferenceCategory
+        android:key="group_app"
+        android:title="@string/settings_group_app">
 
         <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
@@ -56,16 +48,6 @@
             android:key="theme"
             android:summary="%s"
             android:title="@string/settings_theme"/>
-
-        <Preference
-            android:key="colors"
-            android:title="@string/choose_color"/>
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:key="group_app"
-        android:title="@string/settings_group_app">
 
         <CheckBoxPreference
             android:defaultValue="false"

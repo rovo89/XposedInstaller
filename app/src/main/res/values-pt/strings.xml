@@ -196,9 +196,8 @@
     <string name="bookmark_removed">Marcador removido</string>
     <string name="bookmarks">Marcadores</string>
     <string name="changelog">Registo de alterações</string>
-    <string name="choose_color">Escolha uma cor...</string>
-    <string name="choose_icon">Escolha um ícone</string>
-    <string name="custom_icon">Ícone personalizado</string>
+
+
     <string name="downloadUninstaller">Descarregar zip de desinstalação</string>
     <string name="downloadZipOk">%1$s corretamente descarregado</string>
     <string name="download_remove">Descarregar e remover</string>

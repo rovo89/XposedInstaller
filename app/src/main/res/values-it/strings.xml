@@ -210,7 +210,7 @@
     <string name="warning_forward_locked">Questo modulo non può essere caricato perché è forward-locked, perfavore contatta lo sviluppatore del modulo.</string>
 
     <string name="enable_heads_up_summary">Questa opzione abilita la notifica heads up ad ogni nuovo/aggiornato modulo</string>
-    <string name="choose_color">Scegli un colore…</string>
+
 
     <!-- Support tab -->
     <string name="support_modules_label">Supporto per i moduli</string>
@@ -262,8 +262,8 @@
     </string>
     <string name="newVersion">Una nuova versione di Xposed Installer è disponibile! Aggiorna!</string>
     <string name="update">Aggiorna</string>
-    <string name="choose_icon">Scegli un\' icona</string>
-    <string name="custom_icon">Icona personalizzata</string>
+
+
     <string name="installationForbidden">L\' installazione non è possibile su questo dispositivo. Per installare Xposed attraverso questa app, il dispositivo deve avere Android Lollipop o superiore.</string>
     <string name="installed_no_lollipop">Xposed Framework è installato.</string>
     <string name="not_installed_no_lollipop">Xposed Framework non è installato.</string>
@@ -309,7 +309,7 @@
     <string name="status">Stato Xposed</string>
     <string name="xposed_off_next_reboot">Xposed Framework sarà disabilitato al prossimo riavvio</string>
     <string name="xposed_on_next_reboot">Xposed Framework sarà abilitato al prossimo riavvio</string>
-    <string name="rovo_89_old_icon">rovo89 (vecchia)</string>
+
     <string name="hour1">1 ora</string>
     <string name="hour2">2 ore</string>
     <string name="hour24">Ogni giorno</string>
@@ -323,6 +323,6 @@
     <string name="skip_xposedminversion_check">Salta controllo \'xposedminversion\' </string>
     <string name="skip_xposedminversion_check_summ">Salta controllo \'xposedminversion\' per i moduli</string>
     <string name="details">Dettagli</string>
-    <string name="look_and_feel">Aspetto</string>
+
 
 </resources>

@@ -216,7 +216,7 @@
     <string name="repo_download_failed_http">Stahování %1$s selhalo: %2$d (%3$s)</string>
     <string name="repo_download_failed">Stahování %1$s selhalo: %2$s</string>
     <string name="repo_load_failed">Nemohu načíst repozitář z %1$s:\n%2$s</string>
-    <string name="choose_color">Zvolit barvu…</string>
+
 
     <string name="warning_installed_on_external_storage">Tento modul nemohl být načten protože je nainstalován na kartě SD, přesuňte jej prosím do interní paměti.</string>
     <string name="warning_forward_locked">Tento modul nemohl být načten protože je \"forward-locked\", prosím, kontaktujte vývojáře modulu.</string>
@@ -271,8 +271,8 @@
     </string>
     <string name="newVersion">Je dostupná nová verze Instalátoru Xposed! Aktualizujte jej!</string>
     <string name="update">Aktualizovat</string>
-    <string name="choose_icon">Zvolit ikonu</string>
-    <string name="custom_icon">Vlastní ikona</string>
+
+
     <string name="installationForbidden">Instalace na tomto zařízení není možná. Pro instalaci Xposed skrze tuto aplikaci musí být v zařízení Android Lollipop nebo novější.</string>
     <string name="installed_no_lollipop">Xposed Framework je nainstalován.</string>
     <string name="not_installed_no_lollipop">Xposed Framework není nainstalován.</string>

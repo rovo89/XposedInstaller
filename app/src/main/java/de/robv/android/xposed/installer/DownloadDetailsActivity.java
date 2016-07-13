@@ -32,8 +32,6 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
-import static de.robv.android.xposed.installer.XposedApp.darkenColor;
-
 public class DownloadDetailsActivity extends XposedBaseActivity implements RepoListener, ModuleListener {
 
     public static final int DOWNLOAD_DESCRIPTION = 0;
@@ -108,21 +106,11 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (Build.VERSION.SDK_INT >= 21)
-            getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(this), 0.85f));
-
-    }
-
     private void setupTabs() {
         mPager = (ViewPager) findViewById(R.id.download_pager);
         mPager.setAdapter(new SwipeFragmentPagerAdapter(getSupportFragmentManager()));
         TabLayout mTabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         mTabLayout.setupWithViewPager(mPager);
-        mTabLayout.setBackgroundColor(XposedApp.getColor(this));
     }
 
     private String getModulePackageName() {

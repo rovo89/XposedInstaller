@@ -216,7 +216,7 @@
     <string name="repo_download_failed_http">%1$sがダウンロードできませんでした: %2$d（%3$s）</string>
     <string name="repo_download_failed">%1$sがダウンロードできませんでした: %2$s</string>
     <string name="repo_load_failed">%1$sからレポジトリをロードできませんでした\n%2$s</string>
-    <string name="choose_color">色を選択</string>
+
 
     <string name="warning_installed_on_external_storage">このモジュールはSDカードにインストールされているため、読み込めませんでした。内部ストレージに移動してください。</string>
     <string name="warning_forward_locked">このモジュールは転送禁止に設定されているため、読み込めませんでした。モジュールの開発者に問い合わせてください。</string>
@@ -271,8 +271,8 @@
     </string>
     <string name="newVersion">新しいバージョンのXposed Installerがあります。更新してください。</string>
     <string name="update">更新</string>
-    <string name="choose_icon">アイコンを選択</string>
-    <string name="custom_icon">カスタムのアイコン</string>
+
+
     <string name="installationForbidden">この端末ではインストールができません。このアプリでインストールをするには、Lollipop以上のAndroidが動作している必要があります。</string>
     <string name="installed_no_lollipop">Xposedフレームワークはインストールされています。</string>
     <string name="not_installed_no_lollipop">Xposedフレームワークはインストールされていません。</string>

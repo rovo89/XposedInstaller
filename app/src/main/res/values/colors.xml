@@ -4,7 +4,7 @@
     <color name="colorPrimary">#2196f3</color>
     <color name="colorPrimaryDark">#1976d2</color>
     <color name="colorPrimaryLight">#727272</color>
-    <color name="colorAccent">#448aff</color>
+    <color name="colorAccent">#FF9800</color>
     <color name="list_header">#777</color>
     <color name="red_500">#F44336</color>
     <color name="warning">@color/red_500</color>
@@ -16,7 +16,6 @@
     <color name="welcome_update_available">@color/download_status_update_available</color>
     <color name="darker_green">#4CAF50</color>
     <color name="amber_500">#FFC107</color>
-
 
     <!-- light theme-->
     <color name="background_material_light">#ffeeeeee</color>

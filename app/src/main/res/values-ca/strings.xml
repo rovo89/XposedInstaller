@@ -216,7 +216,7 @@
     <string name="repo_download_failed_http">S\'està baixant %1$s ha fallat: %2$d (%3$s)</string>
     <string name="repo_download_failed">S\'està baixant %1$s ha fallat: %2$s</string>
     <string name="repo_load_failed">No s\'ha pogut carregar el dipòsit des de %1$s:\n%2$s</string>
-    <string name="choose_color">Trieu un color…</string>
+
 
     <string name="warning_installed_on_external_storage">No es pot carregar aquest mòdul perquè s\'ha instal·lat a la targeta SD, moveu-lo a l\'emmagatzematge intern.</string>
     <string name="warning_forward_locked">No es pot carregar aquest mòdul perquè està \"forward-locked\", contacteu el desenvolupador del mòdul.</string>
@@ -271,8 +271,8 @@
     </string>
     <string name="newVersion">Hi ha una versió nova de l\'Instal·lador Xposed disponible! Actualitzeu-lo!</string>
     <string name="update">Actualització</string>
-    <string name="choose_icon">Trieu una icona</string>
-    <string name="custom_icon">Icona personalitzada</string>
+
+
     <string name="installationForbidden">La instal·lació no és possible en aquest dispositiu. Per instal·lar l\'Xposed des d\'aquesta app, el dispositiu ha de tenir instal·lat Android Lollipop o posterior.</string>
     <string name="installed_no_lollipop">El marc Xposed està instal·lat.</string>
     <string name="not_installed_no_lollipop">El marc Xposed no està instal·lat.</string>

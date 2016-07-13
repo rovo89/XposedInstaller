@@ -110,7 +110,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
                 .findViewById(R.id.listModules);
         final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v
                 .findViewById(R.id.swiperefreshlayout);
-        refreshLayout.setColorSchemeColors(XposedApp.getColor(getContext()));
+        refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
         refreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override

@@ -28,8 +28,6 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
-import static de.robv.android.xposed.installer.XposedApp.darkenColor;
-
 public class WelcomeActivity extends XposedBaseActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         ModuleListener, RepoListener {
@@ -97,14 +95,6 @@ public class WelcomeActivity extends XposedBaseActivity
         mRepoLoader.addListener(this, false);
 
         notifyDataSetChanged();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        mDrawerLayout.setStatusBarBackgroundColor(darkenColor(XposedApp.getColor(this), 0.85f));
-
     }
 
     public void switchFragment(int itemId) {

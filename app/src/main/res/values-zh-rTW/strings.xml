@@ -216,7 +216,7 @@
     <string name="repo_download_failed_http">下載 %1$s 時出錯：%2$d (%3$s)</string>
     <string name="repo_download_failed">下載 %1$s 時出錯：%2$s</string>
     <string name="repo_load_failed">無法載入倉庫 %1$s:\n%2$s</string>
-    <string name="choose_color">選擇顏色…</string>
+
 
     <string name="warning_installed_on_external_storage">此模組安裝在SD卡中導致無法載入，請將此模組移回內部儲存空間。</string>
     <string name="warning_forward_locked">此模組為 forward-locked 狀態導致無法載入，請聯繫此模組的開發者。</string>
@@ -271,8 +271,8 @@
     </string>
     <string name="newVersion">新的 Xposed Installer 可供更新！ 更新它！</string>
     <string name="update">更新</string>
-    <string name="choose_icon">選取一個圖示</string>
-    <string name="custom_icon">自訂圖示</string>
+
+
     <string name="installationForbidden">無法安裝在此裝置上。要透過本程式安裝 Xposed，裝置至少需運行 Android Lollipop 或更高版本。</string>
     <string name="installed_no_lollipop">Xposed 框架已安裝。</string>
     <string name="not_installed_no_lollipop">Xposed 框架未安裝。</string>
@@ -317,7 +317,7 @@
     <string name="status">Xposed 狀態</string>
     <string name="xposed_on_next_reboot">Xposed 框架將在下次重新啟動裝置後啟用</string>
     <string name="xposed_off_next_reboot">Xposed 框架將在下次重新啟動裝置後停用</string>
-    <string name="rovo_89_old_icon">rovo89 (舊)</string>
+
     <string name="update_interval">背景檢查更新間隔</string>
     <string name="hour1">1 小時</string>
     <string name="hour2">2 小時</string>

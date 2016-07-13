@@ -216,7 +216,7 @@
     <string name="repo_download_failed_http">Sťahovanie %1$s zlyhalo: %2$d (%3$s)</string>
     <string name="repo_download_failed">Sťahovanie %1$s zlyhalo: %2$s</string>
     <string name="repo_load_failed">Nemožno načítať z repozitára %1$s:\n%2$s</string>
-    <string name="choose_color">Zvoľte farbu…</string>
+
 
     <string name="warning_installed_on_external_storage">Tento modul nemôže byť načítaný, pretože je nainštalovaný na karte SD, prosím, presuňte ho do interného úložiska.</string>
     <string name="warning_forward_locked">Tento modul nemôže byť načítaný, pretože je uzamknutý, prosím, kontaktujte vývojára modulu.</string>
@@ -271,8 +271,8 @@
     </string>
     <string name="newVersion">Je dostupná nová verzia Xposed Installera! Aktualizujte ju!</string>
     <string name="update">Aktualizovať</string>
-    <string name="choose_icon">Zvoľte ikonu</string>
-    <string name="custom_icon">Ikona</string>
+
+
     <string name="installationForbidden">Inštalácia na tomto zariadení nie je možná. Pre nainštalovanie Xposed cez túto aplikáciu, na zariadení musí bežať Android Lollipop alebo vyšší.</string>
     <string name="installed_no_lollipop">Xposed Framework je nainštalovaný.</string>
     <string name="not_installed_no_lollipop">Xposed Framework nie je nainštalovaný.</string>
@@ -317,7 +317,7 @@
     <string name="status">Stav Xposed</string>
     <string name="xposed_on_next_reboot">Xposed Framework bude povolený pri nasledujúcom reštarte</string>
     <string name="xposed_off_next_reboot">Xposed Framework bude zakázaný pri nasledujúcom reštarte</string>
-    <string name="rovo_89_old_icon">rovo89 (stará)</string>
+
     <string name="update_interval">Interval kontroly aktualizácii na pozadí</string>
     <string name="hour1">1 hod.</string>
     <string name="hour2">2 hod.</string>

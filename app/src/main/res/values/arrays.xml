@@ -71,30 +71,6 @@
         <item>experimental</item>
     </string-array>
 
-    <string-array name="icons">
-        <item>dvdandroid</item>
-        <item>hjmodi</item>
-        <item>rovo89</item>
-        <item>@string/rovo_89_old_icon</item>
-        <item>staol</item>
-    </string-array>
-
-    <string-array name="iconsValues" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-
-    <string-array name="iconsDrawables" translatable="false">
-        <item>ic_launcher</item>
-        <item>ic_launcher_hjmodi</item>
-        <item>ic_launcher_rovo</item>
-        <item>ic_launcher_rovo_old</item>
-        <item>ic_launcher_staol</item>
-    </string-array>
-
     <string-array name="update_text">
         <item>@string/hour1</item>
         <item>@string/hour2</item>

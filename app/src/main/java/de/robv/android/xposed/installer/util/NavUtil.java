@@ -10,6 +10,7 @@ import android.text.SpannableString;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
 
+import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 
 public final class NavUtil {
@@ -34,7 +35,7 @@ public final class NavUtil {
 
         CustomTabsIntent.Builder customTabsIntent = new CustomTabsIntent.Builder();
         customTabsIntent.setShowTitle(true);
-        customTabsIntent.setToolbarColor(XposedApp.getColor(activity));
+        customTabsIntent.setToolbarColor(activity.getResources().getColor(R.color.colorPrimary));
         customTabsIntent.build().launchUrl(activity, uri);
     }
 

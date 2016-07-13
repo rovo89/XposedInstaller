@@ -183,9 +183,8 @@
     <string name="bookmark_removed">书签已移除</string>
     <string name="bookmarks">书签</string>
     <string name="changelog">更新日志</string>
-    <string name="choose_color">选择一种颜色…</string>
-    <string name="choose_icon">选择一个图标</string>
-    <string name="custom_icon">自定义图标</string>
+
+
     <string name="downloadUninstaller">下载卸载器</string>
     <string name="downloadZipOk">%1$s 下载完成</string>
     <string name="download_remove">下载和移除</string>

@@ -216,7 +216,7 @@
     <string name="repo_download_failed_http">Downloading %1$s failed: %2$d (%3$s)</string>
     <string name="repo_download_failed">Downloading %1$s failed: %2$s</string>
     <string name="repo_load_failed">Cannot load repository from %1$s:\n%2$s</string>
-    <string name="choose_color">Choose a color…</string>
+
 
     <string name="warning_installed_on_external_storage">This module cannot be loaded because it\'s installed on the SD card, please move it to internal storage.</string>
     <string name="warning_forward_locked">This module cannot be loaded because it\'s is forward-locked, please contact the module\'s developer.</string>
@@ -271,8 +271,8 @@
     </string>
     <string name="newVersion">New version of Xposed Installer is available! Update it!</string>
     <string name="update">Update</string>
-    <string name="choose_icon">Choose an icon</string>
-    <string name="custom_icon">Custom icon</string>
+
+
     <string name="installationForbidden">Installation is not possible on this device. To install Xposed through this app, the device must run Android Lollipop or higher.</string>
     <string name="installed_no_lollipop">Xposed Framework is installed.</string>
     <string name="not_installed_no_lollipop">Xposed Framework is not installed.</string>
@@ -317,7 +317,7 @@
     <string name="status">Xposed Status</string>
     <string name="xposed_on_next_reboot">Xposed Framework will be enabled on next reboot</string>
     <string name="xposed_off_next_reboot">Xposed Framework will be disabled on next reboot</string>
-    <string name="rovo_89_old_icon">rovo89 (old)</string>
+
     <string name="update_interval">Background update check interval</string>
     <string name="hour1">1 hour</string>
     <string name="hour2">2 hours</string>
@@ -351,7 +351,7 @@
 
     <string name="compatibility">Compatibility</string>
     <string name="details">Details</string>
-    <string name="look_and_feel">Look and feel</string>
+
     <string name="support_xda">Get support on XDA thread</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Later</string>

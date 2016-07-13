@@ -216,7 +216,7 @@
     <string name="repo_download_failed_http">กำลังดาวน์โหลด %1$s ล้มเหลว: %2$d (%3$s)</string>
     <string name="repo_download_failed">กำลังดาวน์โหลด %1$s ล้มเหลว: %2$s</string>
     <string name="repo_load_failed">ไม่สามารถโหลดที่จัดเก็บจาก %1$s:\n%2$s</string>
-    <string name="choose_color">เลือกสี…</string>
+
 
     <string name="warning_installed_on_external_storage">ไม่สามารถโหลดโมดูลนี้เพราะติดตั้งบนการ์ดความจำ กรุณาย้ายไปยังหน่วยความจำภายใน</string>
     <string name="warning_forward_locked">ไม่สามารถโหลดโมดูลนี้เพราะถูกล็อค กรุณาติดตั้งผู้พัฒนาโมดูล</string>
@@ -271,8 +271,8 @@
     </string>
     <string name="newVersion">พบเวอร์ชั่นตัวติดตั้ง Xposed ใหม่ โปรดอัพเดท!</string>
     <string name="update">อัพเดท</string>
-    <string name="choose_icon">เลือกไอคอน</string>
-    <string name="custom_icon">ปรับแต่งไอคอน</string>
+
+
     <string name="installationForbidden">ไม่สามารถติดตั้งบนโทรศัพท์นี้ได้ เพื่อติดตั้งเฟรมเวิร์คโทรศัพท์จำเป็นต้องใช้งานแอนดรอยเวอร์ชั่น Lollipop หรือสูงกว่า</string>
     <string name="installed_no_lollipop">ติดตั้งเฟรมเวิร์ค Xposed แล้ว</string>
     <string name="not_installed_no_lollipop">ยังไม่ได้ติดตั้งเฟรมเวิร์ค Xposed</string>

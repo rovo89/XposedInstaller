@@ -1,24 +1,16 @@
 package de.robv.android.xposed.installer;
 
-import android.app.ActivityManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.support.annotation.ColorInt;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
-
-import com.afollestad.materialdialogs.color.ColorChooserDialog;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,9 +19,7 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.UpdateService;
 
-import static de.robv.android.xposed.installer.XposedApp.darkenColor;
-
-public class SettingsActivity extends XposedBaseActivity implements ColorChooserDialog.ColorCallback {
+public class SettingsActivity extends XposedBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,51 +52,9 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
     }
 
-    @Override
-    public void onColorSelection(ColorChooserDialog dialog,
-                                 @ColorInt int color) {
-        if (!dialog.isAccentMode()) {
-            XposedApp.getPreferences().edit().putInt("colors", color).apply();
-        }
-    }
-
-    public static class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
         private static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
-        private Preference colors;
-        private PackageManager pm;
-        private String packName;
         private Context mContext;
-
-        private Preference.OnPreferenceChangeListener iconChange = new Preference.OnPreferenceChangeListener() {
-            @Override
-            public boolean onPreferenceChange(Preference preference,
-                                              Object newValue) {
-
-                String act = ".WelcomeActivity-";
-                String[] iconsValues = new String[]{"dvdandroid", "hjmodi", "rovo", "rovo-old", "staol"};
-
-                for (String s : iconsValues) {
-                    pm.setComponentEnabledSetting(new ComponentName(mContext, packName + act + s), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-                }
-
-                act += iconsValues[Integer.parseInt((String) newValue)];
-
-                int drawable = XposedApp.iconsValues[Integer
-                        .parseInt((String) newValue)];
-
-                if (Build.VERSION.SDK_INT >= 21) {
-
-                    ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(getString(R.string.app_name),
-                            XposedApp.drawableToBitmap(mContext.getDrawable(drawable)),
-                            XposedApp.getColor(mContext));
-                    getActivity().setTaskDescription(tDesc);
-                }
-
-                pm.setComponentEnabledSetting(new ComponentName(mContext, packName + act), PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
-
-                return true;
-            }
-        };
 
         public SettingsFragment() {
         }
@@ -115,8 +63,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.prefs);
-
-            colors = findPreference("colors");
 
             mContext = getActivity();
 
@@ -147,15 +93,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 }
             });
 
-            colors.setOnPreferenceClickListener(this);
-
-            ListPreference customIcon = (ListPreference) findPreference("custom_icon");
-
-            pm = mContext.getPackageManager();
-            packName = mContext.getPackageName();
-
-            customIcon.setOnPreferenceChangeListener(iconChange);
-
         }
 
         @Override
@@ -163,9 +100,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             super.onResume();
 
             getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-
-            if (Build.VERSION.SDK_INT >= 21)
-                getActivity().getWindow().setStatusBarColor(darkenColor(XposedApp.getColor(getActivity()), 0.85f));
         }
 
         @Override
@@ -177,7 +111,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (key.equals(colors.getKey()) || key.equals("theme"))
+            if (key.equals("theme"))
                 getActivity().recreate();
 
             if (key.equals("update_service_interval")) {
@@ -191,21 +125,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
                 }, 1000);
 
             }
-        }
-
-        @Override
-        public boolean onPreferenceClick(Preference preference) {
-            SettingsActivity act = (SettingsActivity) getActivity();
-            if (act == null)
-                return false;
-
-            if (preference.getKey().equals(colors.getKey()))
-                new ColorChooserDialog.Builder(act, preference.getTitleRes())
-                        .backButton(R.string.back)
-                        .doneButton(android.R.string.ok)
-                        .preselect(XposedApp.getColor(act)).show();
-
-            return true;
         }
     }
 }

@@ -218,7 +218,7 @@
     <string name="repo_download_failed_http">Pobieranie %1$s błędne: %2$d (%3$s)</string>
     <string name="repo_download_failed">Pobieranie %1$s błędne: %2$s</string>
     <string name="repo_load_failed">Nie można załadować repozytorium z %1$s:\n%2$s</string>
-    <string name="choose_color">Wybierz kolor…</string>
+
 
     <string name="warning_installed_on_external_storage">Ten moduł nie może zostać załadowany, ponieważ jest zainstalowany na karcie SD, przenieś go do pamięci wewnętrznej.</string>
     <string name="warning_forward_locked">Ten moduł nie może zostać załadowany, ponieważ jest z blokadą dalszego rozpowszechniania, skontaktuj się z deweloperem modułu.</string>
@@ -273,8 +273,8 @@
 	</string>
     <string name="newVersion">Nowa wersja Xposed Installer jest dostępna! Zaktualizuj!</string>
     <string name="update">Aktualizuj</string>
-    <string name="choose_icon">Wybierz ikonę</string>
-    <string name="custom_icon">Niestandardowa ikona</string>
+
+
     <string name="installationForbidden">Instalacja na tym urządzeniu jest niemożliwa. Aby zainstalować Xposed przez tą aplikację, urządzenie musi działać na wersji Android Lollipop lub wyższej.</string>
     <string name="installed_no_lollipop">Xposed Framework jest zainstalowany.</string>
     <string name="not_installed_no_lollipop">Xposed Framework jest niezainstalowany.</string>
