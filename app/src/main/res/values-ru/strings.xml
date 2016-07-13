@@ -232,7 +232,7 @@
     <string name="no_installed_modules">Установленных модулей нет!</string>
 
     <string name="enable_heads_up_summary">Эта опция включает Heads-Up уведомления для новых/обновленных модулей</string>
-    <string name="nav_bar_coloration">Раскрасить \"Панель навигации\"</string>
+
     <string name="no_backup_found">Резервные копии не найдены</string>
     <string name="no_enabled_modules">Нет включенных модулей</string>
 

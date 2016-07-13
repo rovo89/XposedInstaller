@@ -61,11 +61,6 @@
             android:key="colors"
             android:title="@string/choose_color"/>
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="nav_bar"
-            android:title="@string/nav_bar_coloration"/>
-
     </PreferenceCategory>
 
     <PreferenceCategory

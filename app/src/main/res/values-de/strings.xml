@@ -232,7 +232,7 @@
     <string name="no_installed_modules">Es ist kein Modul installiert!</string>
 
     <string name="enable_heads_up_summary">Zeigt Heads-Up Benachrichtigungen bei neuen/aktualisierten Modulen</string>
-    <string name="nav_bar_coloration">Navigationsleiste einfärben</string>
+
     <string name="no_backup_found">Keine Sicherung gefunden</string>
     <string name="no_enabled_modules">Es ist kein Modul aktiviert!</string>
 

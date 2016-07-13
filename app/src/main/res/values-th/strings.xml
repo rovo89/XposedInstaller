@@ -232,7 +232,7 @@
     <string name="no_installed_modules">ยังไม่ได้ติดตั้งโมดูล</string>
 
     <string name="enable_heads_up_summary">ตัวเลือกนี้จะเปิดใช้งานการแจ้งเตือน Heads-Up สำหรับโมดูลและการอัพเดทใหม่</string>
-    <string name="nav_bar_coloration">สีแถบนำทาง</string>
+
     <string name="no_backup_found">ไม่พบสำรองข้อมูล</string>
     <string name="no_enabled_modules">ยังไม่มีโมดูลเปิดใช้งาน</string>
 

@@ -232,7 +232,7 @@
     <string name="no_installed_modules">無任何已安裝的模組！</string>
 
     <string name="enable_heads_up_summary">當模組更新時啟用抬頭通知</string>
-    <string name="nav_bar_coloration">導航列上色</string>
+
     <string name="no_backup_found">找不到備份</string>
     <string name="no_enabled_modules">沒有任何啟用的模組</string>
 

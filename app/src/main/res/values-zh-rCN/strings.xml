@@ -234,7 +234,7 @@ SDK：%2$d \n
     <string name="md_storage_perm_error">您的应用尚未获得 READ_EXTERNAL_STORAGE（读取外部存储）权限。</string>
     <string name="module_saved">模块保存于 %1$s</string>
     <string name="modules_updates_available">有模块可更新</string>
-    <string name="nav_bar_coloration">导航栏着色</string>
+
     <string name="nav_item_about">关于</string>
     <string name="nav_item_download">下载</string>
     <string name="nav_item_install">框架</string>

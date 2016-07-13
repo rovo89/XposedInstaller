@@ -232,7 +232,7 @@
     <string name="no_installed_modules">Nie je nainštalovaný žiadny modul!</string>
 
     <string name="enable_heads_up_summary">Táto možnosť povolí nahliadnutie upozornenia pri novom/aktualizovanom module</string>
-    <string name="nav_bar_coloration">Zafarbiť navigačnú lištu</string>
+
     <string name="no_backup_found">Záloha nenájdená</string>
     <string name="no_enabled_modules">Nie sú povolené žiadne moduly</string>
 

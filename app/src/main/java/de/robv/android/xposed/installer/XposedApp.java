@@ -150,13 +150,6 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
             ActivityManager.TaskDescription tDesc = new ActivityManager.TaskDescription(activity.getString(R.string.app_name),
                     drawableToBitmap(activity.getDrawable(drawable)), color);
             activity.setTaskDescription(tDesc);
-
-            if (getPreferences().getBoolean("nav_bar", false)) {
-                activity.getWindow().setNavigationBarColor(darkenColor(color, 0.85f));
-            } else {
-                int black = activity.getResources().getColor(android.R.color.black);
-                activity.getWindow().setNavigationBarColor(black);
-            }
         }
     }
 

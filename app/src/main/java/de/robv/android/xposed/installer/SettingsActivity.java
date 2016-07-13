@@ -72,7 +72,6 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
     public static class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
         private static final File mDisableResourcesFlag = new File(XposedApp.BASE_DIR + "conf/disable_resources");
-        private Preference nav_bar;
         private Preference colors;
         private PackageManager pm;
         private String packName;
@@ -117,12 +116,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.prefs);
 
-            nav_bar = findPreference("nav_bar");
             colors = findPreference("colors");
-            if (Build.VERSION.SDK_INT < 21) {
-                nav_bar.setEnabled(false);
-                nav_bar.setSummary("LOLLIPOP+");
-            }
 
             mContext = getActivity();
 
@@ -183,7 +177,7 @@ public class SettingsActivity extends XposedBaseActivity implements ColorChooser
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (key.equals(colors.getKey()) || key.equals("theme") || key.equals(nav_bar.getKey()))
+            if (key.equals(colors.getKey()) || key.equals("theme"))
                 getActivity().recreate();
 
             if (key.equals("update_service_interval")) {

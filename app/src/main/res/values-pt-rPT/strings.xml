@@ -237,7 +237,7 @@
     <string name="md_storage_perm_error">Não foi dada permissão à app para ler o conteúdo do cartão SD.</string>
     <string name="module_saved">Módulo guardado em %1$s</string>
     <string name="modules_updates_available">Estão disponíveis atualizações para alguns Módulos</string>
-    <string name="nav_bar_coloration">Colorir a barra de navegação</string>
+
     <string name="nav_item_about">Acerca</string>
     <string name="nav_item_download">Descarregar</string>
     <string name="nav_item_install">\"Framework\"</string>

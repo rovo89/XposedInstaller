@@ -232,7 +232,7 @@
     <string name="no_installed_modules">Žádné Xposed moduly nebyly nalezeny!</string>
 
     <string name="enable_heads_up_summary">Tato volba povolí heads up oznámení při novém/aktualizovaném modulu</string>
-    <string name="nav_bar_coloration">Obarvit navigační lištu</string>
+
     <string name="no_backup_found">Nenalezena žádná záloha</string>
     <string name="no_enabled_modules">Nejsou povoleny žádné moduly</string>
 
