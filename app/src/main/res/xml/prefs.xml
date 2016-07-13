@@ -66,11 +66,6 @@
             android:key="nav_bar"
             android:title="@string/nav_bar_coloration"/>
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="colored_notification"
-            android:title="@string/notification_coloration"/>
-
     </PreferenceCategory>
 
     <PreferenceCategory

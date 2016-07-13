@@ -253,7 +253,7 @@
     <string name="no_enabled_modules">Não existem módulos ativos</string>
     <string name="no_installed_modules">Não existem módulos instalados!</string>
     <string name="not_installed_no_lollipop">A \"Xposed Framework\" não está instalada.</string>
-    <string name="notification_coloration">Colorir o ícone de notificação</string>
+
     <string name="notify_module_update">Ativar a notificação de atualização de módulo</string>
     <string name="permissionGranted">Permissão concedida</string>
     <string name="permissionNotGranted">Esta funcionalidade não funcionará sem a permissão de escrita para o cartão SD.</string>

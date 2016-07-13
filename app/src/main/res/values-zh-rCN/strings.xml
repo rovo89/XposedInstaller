@@ -250,7 +250,7 @@ SDK：%2$d \n
     <string name="no_enabled_modules">未启用任何模块</string>
     <string name="no_installed_modules">未安装任何模块</string>
     <string name="not_installed_no_lollipop">Xposed 框架未安装。</string>
-    <string name="notification_coloration">通知图标着色</string>
+
     <string name="notify_module_update">启用模块更新通知</string>
     <string name="permissionGranted">权限已获得</string>
     <string name="permissionNotGranted">没有写入外部存储权限该功能将不能工作。</string>

@@ -297,8 +297,8 @@
     <string name="bookmark_added">Dodano zakładkę</string>
     <string name="bookmark_removed">Usunięto zakładkę</string>
     <string name="undo">Cofnij</string>
-    <string name="notification_coloration">Koloruj ikonę powiadomienia</string>
-	<string name="file_is_empty">Plik jest pusty</string>
+
+    <string name="file_is_empty">Plik jest pusty</string>
 
 
     <string name="install_remove">Zainstaluj i usuń</string>

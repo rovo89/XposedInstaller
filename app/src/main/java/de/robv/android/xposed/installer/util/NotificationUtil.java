@@ -61,13 +61,11 @@ public final class NotificationUtil {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext).setContentTitle(title).setContentText(appName)
                 .setTicker(title).setContentIntent(pModulesTab)
                 .setVibrate(new long[]{0}).setAutoCancel(true)
-                .setSmallIcon(R.drawable.ic_notification);
+                .setSmallIcon(R.drawable.ic_notification)
+                .setColor(XposedApp.getColor(sContext));
 
         if (Build.VERSION.SDK_INT >= 21)
             builder.setPriority(2);
-
-        if (prefs.getBoolean("colored_notification", false))
-            builder.setColor(XposedApp.getColor(sContext));
 
         Intent iActivateAndReboot = new Intent(sContext, RebootReceiver.class);
         iActivateAndReboot.putExtra(RebootReceiver.EXTRA_ACTIVATE_MODULE, packageName);
@@ -108,13 +106,11 @@ public final class NotificationUtil {
                 sContext).setContentTitle(title).setContentText(message)
                 .setTicker(title).setContentIntent(pInstallTab)
                 .setVibrate(new long[]{0}).setAutoCancel(true)
-                .setSmallIcon(R.drawable.ic_notification);
+                .setSmallIcon(R.drawable.ic_notification)
+                .setColor(XposedApp.getColor(sContext));
 
         if (Build.VERSION.SDK_INT >= 21)
             builder.setPriority(2);
-
-        if (prefs.getBoolean("colored_notification", false))
-            builder.setColor(XposedApp.getColor(sContext));
 
         Intent iSoftReboot = new Intent(sContext, RebootReceiver.class);
         iSoftReboot.putExtra(RebootReceiver.EXTRA_SOFT_REBOOT, true);
@@ -148,13 +144,11 @@ public final class NotificationUtil {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(sContext).setContentTitle(title).setContentText(message)
                 .setTicker(title).setContentIntent(pInstallTab)
                 .setVibrate(new long[]{0}).setAutoCancel(true)
-                .setSmallIcon(R.drawable.ic_notification);
+                .setSmallIcon(R.drawable.ic_notification)
+                .setColor(XposedApp.getColor(sContext));
 
         if (Build.VERSION.SDK_INT >= 21)
             builder.setPriority(2);
-
-        if (prefs.getBoolean("colored_notification", false))
-            builder.setColor(XposedApp.getColor(sContext));
 
         NotificationCompat.BigTextStyle notiStyle = new NotificationCompat.BigTextStyle();
         notiStyle.setBigContentTitle(title);
