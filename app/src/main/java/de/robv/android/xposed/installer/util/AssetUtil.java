@@ -58,18 +58,7 @@ public class AssetUtil {
             if (assets == null)
                 assets = XposedApp.getInstance().getAssets();
             InputStream in = assets.open(assetName);
-            FileOutputStream out = new FileOutputStream(targetFile);
-
-            byte[] buffer = new byte[1024];
-            int len;
-            while ((len = in.read(buffer)) > 0) {
-                out.write(buffer, 0, len);
-            }
-            in.close();
-            out.close();
-
-            FileUtils.setPermissions(targetFile.getAbsolutePath(), mode, -1, -1);
-
+            writeStreamToFile(in, targetFile, mode);;
             return targetFile;
         } catch (IOException e) {
             Log.e(XposedApp.TAG, "AssetUtil -> could not extract asset", e);
@@ -78,6 +67,20 @@ public class AssetUtil {
 
             return null;
         }
+    }
+
+    public static void writeStreamToFile(InputStream in, File targetFile, int mode) throws IOException {
+        FileOutputStream out = new FileOutputStream(targetFile);
+
+        byte[] buffer = new byte[1024];
+        int len;
+        while ((len = in.read(buffer)) > 0) {
+            out.write(buffer, 0, len);
+        }
+        in.close();
+        out.close();
+
+        FileUtils.setPermissions(targetFile.getAbsolutePath(), mode, -1, -1);
     }
 
     public synchronized static void extractBusybox() {
