@@ -328,5 +328,8 @@
     <string name="support_xda">Get support on XDA thread</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="save">Save</string>
+    <string name="not_flashable_inapp">This zip file cannot be flashed in app. Installing automatically in recovery</string>
+    <string name="installation_started">Installation started</string>
+    <string name="installation_finished">Installation ended</string>
 
 </resources>

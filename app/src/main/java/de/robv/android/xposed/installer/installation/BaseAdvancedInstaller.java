@@ -3,6 +3,7 @@ package de.robv.android.xposed.installer.installation;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.XposedZip;
@@ -51,7 +53,7 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
     public static String APP_PROCESS_NAME = null;
     private static Activity sActivity;
     private static Fragment sFragment;
-    private RootUtil mRootUtil = new RootUtil();
+    private static RootUtil mRootUtil = new RootUtil();
     private List<String> messages = new ArrayList<>();
     private View mClickedButton;
 
@@ -246,6 +248,26 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         if (getInstallMode() == INSTALL_MODE_RECOVERY_MANUAL)
             return;
 
+        if (getInstallMode() == INSTALL_MODE_NORMAL) {
+            if (InstallZipUtil.checkZip(info.localFilename).isFlashableInApp()) {
+                areYouSure(R.string.install_warning, new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        super.onPositive(dialog);
+
+                        if (!startShell()) return;
+
+                        Intent install = new Intent(getContext(), InstallationActivity.class);
+                        install.putExtra("path", info.localFilename);
+                        startActivity(install);
+                    }
+                });
+                return;
+            } else {
+                Toast.makeText(context, R.string.not_flashable_inapp, Toast.LENGTH_LONG).show();
+            }
+        }
+
         areYouSure(R.string.install_warning, new MaterialDialog.ButtonCallback() {
             @Override
             public void onPositive(MaterialDialog dialog) {
@@ -298,10 +320,7 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
     }
 
     private int getInstallMode() {
-        int mode = XposedApp.getPreferences().getInt("install_mode", INSTALL_MODE_NORMAL);
-        if (mode < INSTALL_MODE_NORMAL || mode > INSTALL_MODE_RECOVERY_MANUAL)
-            mode = INSTALL_MODE_NORMAL;
-        return mode;
+        return XposedApp.getPreferences().getInt("install_mode", INSTALL_MODE_NORMAL);
     }
 
     private void showConfirmDialog(final String message, final MaterialDialog.ButtonCallback callback) {

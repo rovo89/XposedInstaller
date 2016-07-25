@@ -49,7 +49,6 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
         </activity>
-
         <activity
             android:name=".SettingsActivity"
             android:theme="@style/Theme.XposedInstaller.Transparent"/>
@@ -62,7 +61,10 @@
         <activity
             android:name=".ModulesBookmark"
             android:theme="@style/Theme.XposedInstaller.Transparent"/>
-
+        <activity
+            android:name=".installation.InstallationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.XposedInstaller.Transparent"/>
         <receiver
             android:name=".receivers.PackageChangeReceiver"
             android:exported="false">

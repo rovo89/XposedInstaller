@@ -40,9 +40,7 @@ import de.robv.android.xposed.installer.util.ThemeUtil;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
-import static android.content.Context.MODE_PRIVATE;
-
-public class DownloadFragment extends Fragment implements RepoListener, ModuleListener, SharedPreferences.OnSharedPreferenceChangeListener {
+public class DownloadFragment extends Fragment implements RepoListener, ModuleListener {
     private SharedPreferences mPref;
     private DownloadsAdapter mAdapter;
     private String mFilterText;
@@ -51,8 +49,6 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
     private int mSortingOrder;
     private SearchView mSearchView;
     private StickyListHeadersListView mListView;
-    private SharedPreferences mIgnoredUpdatesPref;
-    private boolean changed = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,8 +66,6 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         mSortingOrder = mPref.getInt("download_sorting_order",
                 RepoDb.SORT_STATUS);
 
-        mIgnoredUpdatesPref = getContext()
-                .getSharedPreferences("update_ignored", MODE_PRIVATE);
         setHasOptionsMenu(true);
     }
 
@@ -85,48 +79,26 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-
-        mIgnoredUpdatesPref.registerOnSharedPreferenceChangeListener(this);
-        if (changed) {
-            reloadItems();
-            changed = !changed;
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-        mIgnoredUpdatesPref.unregisterOnSharedPreferenceChangeListener(this);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_downloader, container, false);
-        mListView = (StickyListHeadersListView) v
-                .findViewById(R.id.listModules);
-        final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v
-                .findViewById(R.id.swiperefreshlayout);
+        mListView = (StickyListHeadersListView) v.findViewById(R.id.listModules);
+        final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swiperefreshlayout);
         refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
-        refreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        mRepoLoader.setSwipeRefreshLayout(refreshLayout);
-                        mRepoLoader.triggerReload(true);
-                    }
-                });
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mRepoLoader.setSwipeRefreshLayout(refreshLayout);
+                mRepoLoader.triggerReload(true);
+            }
+        });
         mRepoLoader.addListener(this, true);
         mModuleUtil.addListener(this);
         mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Cursor cursor = (Cursor) mAdapter.getItem(position);
                 String packageName = cursor.getString(OverviewColumnsIndexes.PKGNAME);
 
@@ -244,16 +216,10 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         reloadItems();
     }
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        changed = true;
-    }
-
     private class DownloadsAdapter extends CursorAdapter implements StickyListHeadersAdapter {
         private final Context mContext;
         private final DateFormat mDateFormatter = DateFormat.getDateInstance(DateFormat.SHORT);
         private final LayoutInflater mInflater;
-        private final SharedPreferences mPrefs;
         private String[] sectionHeadersStatus;
         private String[] sectionHeadersDate;
 
@@ -261,7 +227,6 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
             super(context, null, 0);
             mContext = context;
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            mPrefs = context.getSharedPreferences("update_ignored", MODE_PRIVATE);
 
             Resources res = context.getResources();
             sectionHeadersStatus = new String[]{
@@ -277,8 +242,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         }
 
         @Override
-        public View getHeaderView(int position, View convertView,
-                                  ViewGroup parent) {
+        public View getHeaderView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = mInflater.inflate(R.layout.list_sticky_header_download, parent, false);
             }
