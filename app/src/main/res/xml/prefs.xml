@@ -7,7 +7,7 @@
         android:title="@string/settings_group_installation">
 
         <de.robv.android.xposed.installer.widget.IntegerListPreference
-            android:defaultValue="1"
+            android:defaultValue="0"
             android:entries="@array/install_mode_texts"
             android:entryValues="@array/install_mode_values"
             android:key="install_mode"
