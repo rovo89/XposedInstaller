@@ -141,6 +141,43 @@ public class StatusInstallerFragment extends Fragment {
         return result;
     }
 
+    public static String getArch() {
+        String info = "";
+
+        try {
+            FileReader fr = new FileReader("/proc/cpuinfo");
+            BufferedReader br = new BufferedReader(fr);
+            String text;
+            while ((text = br.readLine()) != null) {
+                if (!text.startsWith("processor")) break;
+            }
+            br.close();
+            String[] array = text != null ? text.split(":\\s+", 2) : new String[0];
+            if (array.length >= 2) {
+                info += array[1] + " ";
+            }
+        } catch (IOException ignored) {
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            info += Build.SUPPORTED_ABIS[0];
+        } else {
+            String arch = System.getenv("os.arch");
+            if (arch != null) info += arch;
+        }
+        info += " (";
+        if (info.contains("x86")) {
+            info += "x86";
+        } else if (info.contains("x86_64")) {
+            info += "x86_64";
+        } else if (info.contains("arm64")) {
+            info += "arm64";
+        } else {
+            info += "arm";
+        }
+        return info + ")";
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.status_installer, container, false);
@@ -244,42 +281,5 @@ public class StatusInstallerFragment extends Fragment {
             manufacturer += new File("/system/framework/framework-miui-res.apk").exists() ? "(MIUI)" : "(AOSP-based ROM)";
         }
         return manufacturer;
-    }
-
-    private String getArch() {
-        String info = "";
-
-        try {
-            FileReader fr = new FileReader("/proc/cpuinfo");
-            BufferedReader br = new BufferedReader(fr);
-            String text;
-            while ((text = br.readLine()) != null) {
-                if (!text.startsWith("processor")) break;
-            }
-            br.close();
-            String[] array = text != null ? text.split(":\\s+", 2) : new String[0];
-            if (array.length >= 2) {
-                info += array[1] + " ";
-            }
-        } catch (IOException ignored) {
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            info += Build.SUPPORTED_ABIS[0];
-        } else {
-            String arch = System.getenv("os.arch");
-            if (arch != null) info += arch;
-        }
-        info += " (";
-        if (info.contains("x86")) {
-            info += "x86";
-        } else if (info.contains("x86_64")) {
-            info += "x86_64";
-        } else if (info.contains("arm64")) {
-            info += "arm64";
-        } else {
-            info += "arm";
-        }
-        return info + ")";
     }
 }

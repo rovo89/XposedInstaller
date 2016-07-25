@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         android:key="group_installation"
@@ -11,7 +12,8 @@
             android:entryValues="@array/install_mode_values"
             android:key="install_mode"
             android:summary="%s"
-            android:title="@string/settings_install_mode"/>
+            android:title="@string/settings_install_mode"
+            app:useStockLayout="true"/>
 
     </PreferenceCategory>
 
@@ -25,7 +27,8 @@
             android:entryValues="@array/release_type_values"
             android:key="release_type_global"
             android:summary="%s"
-            android:title="@string/settings_release_type"/>
+            android:title="@string/settings_release_type"
+            app:useStockLayout="true"/>
 
     </PreferenceCategory>
 
@@ -39,7 +42,8 @@
             android:entryValues="@array/theme_values"
             android:key="theme"
             android:summary="%s"
-            android:title="@string/settings_theme"/>
+            android:title="@string/settings_theme"
+            app:useStockLayout="true"/>
 
         <CheckBoxPreference
             android:defaultValue="false"
@@ -64,7 +68,8 @@
             android:entryValues="@array/default_view_values"
             android:key="default_view"
             android:summary="%s"
-            android:title="@string/settings_default_view"/>
+            android:title="@string/settings_default_view"
+            app:useStockLayout="true"/>
 
         <CheckBoxPreference
             android:key="open_drawer"

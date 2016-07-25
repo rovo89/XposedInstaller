@@ -99,6 +99,14 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         chooserInstallers.setAdapter(new XposedZip.MyAdapter<>(getContext(), installers()));
         chooserUninstallers.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers()));
 
+        if (StatusInstallerFragment.getArch().contains("64")) {
+            chooserInstallers.setSelection(1);
+            chooserUninstallers.setSelection(1);
+        } else if (StatusInstallerFragment.getArch().contains("86")) {
+            chooserInstallers.setSelection(2);
+            chooserUninstallers.setSelection(3);
+        }
+
         infoInstaller.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
