@@ -330,6 +330,7 @@
     <string name="save">Save</string>
     <string name="not_flashable_inapp">This zip file cannot be flashed in app. Installing automatically in recovery</string>
     <string name="installation_started">Installation started</string>
-    <string name="installation_finished">Installation ended</string>
+    <string name="installation_finished">Installation ended. Reboot device now</string>
+    <string name="systemless_mode">Systemless mode: %b</string>
 
 </resources>
