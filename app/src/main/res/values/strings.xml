@@ -310,7 +310,6 @@
     <string name="skip_xposedminversion_check">Skip \'xposedminversion\' check</string>
     <string name="skip_xposedminversion_check_summ">Skip \'xposedminversion\' check for modules</string>
 
-    <string name="classic">Classic</string>
     <string name="systemless">Systemless</string>
 
     <!-- Start compatibility -->

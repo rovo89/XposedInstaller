@@ -13,8 +13,9 @@
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:tabGravity="fill"
         app:tabIndicatorColor="@android:color/white"
-        app:tabMode="scrollable"
+        app:tabMode="fixed"
         app:tabTextAppearance="@style/TextAppearance.Design.Tab"/>
 
     <android.support.v4.view.ViewPager

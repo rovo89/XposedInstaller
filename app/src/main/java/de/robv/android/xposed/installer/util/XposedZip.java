@@ -23,7 +23,6 @@ public class XposedZip {
     public static class Installer extends XposedZip {
         public String version = "";
         public String sdk = "";
-        public boolean systemless = false;
 
         public Installer(String link, String name, String architecture, String sdk, String version) {
             this.link = link;
@@ -31,8 +30,6 @@ public class XposedZip {
             this.architecture = architecture;
             this.sdk = sdk;
             this.version = version;
-
-            this.systemless = name.contains("systemless");
         }
     }
 
@@ -51,7 +48,6 @@ public class XposedZip {
                 this.date = dateFormat.format(date);
             } catch (ParseException ignored) {
             }
-
         }
     }
 

@@ -43,11 +43,9 @@ import de.robv.android.xposed.installer.util.ZipUtils;
 
 public class AdvancedInstallerFragment extends Fragment {
 
-    private static final List<XposedZip.Installer> listClassicInstaller = new ArrayList<>();
-    private static final List<XposedZip.Installer> listSystemlessInstallers = new ArrayList<>();
+    private static final List<XposedZip.Installer> listInstaller = new ArrayList<>();
+    private static final List<XposedZip.Uninstaller> listUninstaller = new ArrayList<>();
 
-    private static final List<XposedZip.Uninstaller> listClassicUninstaller = new ArrayList<>();
-    private static final List<XposedZip.Uninstaller> listSystemlessUninstallers = new ArrayList<>();
     private static ViewPager mPager;
     private TabLayout mTabLayout;
     private int counter = 0;
@@ -77,11 +75,8 @@ public class AdvancedInstallerFragment extends Fragment {
 
         counter = 0;
 
-        listClassicInstaller.clear();
-        listSystemlessInstallers.clear();
-
-        listClassicUninstaller.clear();
-        listSystemlessUninstallers.clear();
+        listInstaller.clear();
+        listUninstaller.clear();
     }
 
     @Nullable
@@ -242,12 +237,12 @@ public class AdvancedInstallerFragment extends Fragment {
 
         @Override
         protected List<XposedZip.Installer> installers() {
-            return listClassicInstaller;
+            return listInstaller;
         }
 
         @Override
         protected List<XposedZip.Uninstaller> uninstallers() {
-            return listClassicUninstaller;
+            return listUninstaller;
         }
 
         @Override
@@ -289,35 +284,6 @@ public class AdvancedInstallerFragment extends Fragment {
 
     }
 
-    public static class SystemlessInstaller extends BaseAdvancedInstaller {
-
-        @Override
-        protected List<XposedZip.Installer> installers() {
-            return listSystemlessInstallers;
-        }
-
-        @Override
-        protected List<XposedZip.Uninstaller> uninstallers() {
-            return listSystemlessUninstallers;
-        }
-
-        @Override
-        protected int compatibility() {
-            return R.string.systemless_compatibility; // FIXME: 13/07/2016 TODO: Change with official systemless release
-        }
-
-        @Override
-        protected int incompatibility() {
-            return R.string.systemless_incompatibility; // FIXME: 13/07/2016 TODO: Change with official systemless release
-        }
-
-        @Override
-        protected String xdaUrl() {
-            return "http://forum.xda-developers.com/xposed"; // FIXME: 13/07/2016 TODO: Change with official systemless release
-        }
-
-    }
-
     private class ZipLoader extends AsyncTask<Void, Void, Boolean> {
 
         @Override
@@ -332,8 +298,8 @@ public class AdvancedInstallerFragment extends Fragment {
             try {
                 if (Build.VERSION.SDK_INT < 21) {
                     thisSdkCount++;
-                    listClassicInstaller.add(new XposedZip.Installer(null, "Xposed-Installer-Recovery", "arm + x86", String.valueOf(Build.VERSION.SDK_INT), "58"));
-                    listClassicUninstaller.add(new XposedZip.Uninstaller(getContext(), null, "Xposed-Disabler-Recovery", "arm + x86", "20140101"));
+                    listInstaller.add(new XposedZip.Installer(null, "Xposed-Installer-Recovery", "arm + x86", String.valueOf(Build.VERSION.SDK_INT), "58"));
+                    listUninstaller.add(new XposedZip.Uninstaller(getContext(), null, "Xposed-Disabler-Recovery", "arm + x86", "20140101"));
                     return true;
                 }
 
@@ -342,22 +308,11 @@ public class AdvancedInstallerFragment extends Fragment {
                 for (XposedZip.Installer i : ZipUtils.getInstallers()) {
                     if (Build.VERSION.SDK_INT == Integer.parseInt(i.sdk)) {
                         thisSdkCount++;
-                        if (i.systemless) {
-                            listSystemlessInstallers.add(i);
-                        } else {
-                            listClassicInstaller.add(i);
-                        }
+                        listInstaller.add(i);
                     }
                 }
 
-                for (XposedZip.Uninstaller u : ZipUtils.getUninstallers(getContext())) {
-                    /*
-                        If a special uninstaller is required to uninstall systemless Xposed, this code must be uncommented
-                        if (u.systemless) listSystemlessUninstallers.add(u);
-                        else
-                    */
-                    listClassicUninstaller.add(u);
-                }
+                listUninstaller.addAll(ZipUtils.getUninstallers(getContext()));
 
                 return true;
             } catch (Exception e) {
@@ -393,13 +348,11 @@ public class AdvancedInstallerFragment extends Fragment {
 
     class TabsAdapter extends FragmentPagerAdapter {
 
-        String[] tabsTitles = new String[]{getString(R.string.status), getString(R.string.classic), getString(R.string.systemless)};
+        String[] tabsTitles = new String[]{getString(R.string.status), getString(R.string.install)};
 
         public TabsAdapter(FragmentManager mgr, boolean lock) {
             super(mgr);
-            if (listSystemlessInstallers.size() == 0 || Build.VERSION.SDK_INT < 21) {
-                tabsTitles = new String[]{tabsTitles[0], tabsTitles[1]};
-            }
+
             if (lock) {
                 tabsTitles = new String[]{tabsTitles[0]};
             }
@@ -417,9 +370,6 @@ public class AdvancedInstallerFragment extends Fragment {
                     break;
                 case 1:
                     fragment = new ClassicInstaller();
-                    break;
-                case 2:
-                    fragment = new SystemlessInstaller();
                     break;
             }
             return fragment;

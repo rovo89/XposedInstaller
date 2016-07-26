@@ -173,7 +173,7 @@ public class InstallationActivity extends XposedBaseActivity {
 
         private boolean isOkSystemless() {
             boolean suPartition = new File("/su").exists() && new File("/data/su.img").exists();
-            boolean m = Build.VERSION.SDK_INT >= 23; //redundant
+            boolean m = Build.VERSION.SDK_INT >= 23;
 
             /*
             TODO: Add toggle for user to force system installation
