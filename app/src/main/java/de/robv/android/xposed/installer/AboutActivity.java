@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,12 +16,10 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import de.psdev.licensesdialog.LicensesDialog;
 import de.psdev.licensesdialog.licenses.ApacheSoftwareLicense20;
 import de.psdev.licensesdialog.licenses.MITLicense;
+import de.psdev.licensesdialog.licenses.SILOpenFontLicense11;
 import de.psdev.licensesdialog.model.Notice;
 import de.psdev.licensesdialog.model.Notices;
 import de.robv.android.xposed.installer.util.NavUtil;
@@ -89,7 +86,6 @@ public class AboutActivity extends XposedBaseActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.tab_about, container, false);
 
-            View changelogView = v.findViewById(R.id.changelogView);
             View developersView = v.findViewById(R.id.developersView);
             View licensesView = v.findViewById(R.id.licensesView);
             View translatorsView = v.findViewById(R.id.translatorsView);
@@ -97,34 +93,6 @@ public class AboutActivity extends XposedBaseActivity {
 
             String packageName = getActivity().getPackageName();
             String translator = getResources().getString(R.string.translator);
-
-            String changes = null;
-            try {
-                InputStream is = getContext().getAssets().open("changelog.html");
-                int size = is.available();
-
-                byte[] buffer = new byte[size];
-                is.read(buffer);
-                is.close();
-
-                changes = new String(buffer);
-            } catch (IOException ignored) {
-            }
-
-            if (changes == null) {
-                changelogView.setVisibility(View.GONE);
-            } else {
-                final String finalChanges = changes;
-                changelogView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        new MaterialDialog.Builder(getContext())
-                                .title(R.string.changes)
-                                .content(Html.fromHtml(finalChanges))
-                                .positiveText(android.R.string.ok).show();
-                    }
-                });
-            }
 
             try {
                 String version = getActivity().getPackageManager().getPackageInfo(packageName, 0).versionName;
@@ -173,6 +141,7 @@ public class AboutActivity extends XposedBaseActivity {
             notices.addNotice(new Notice("PreferenceFragment-Compat", "https://github.com/Machinarius/PreferenceFragment-Compat", "machinarius", new ApacheSoftwareLicense20()));
             notices.addNotice(new Notice("libsuperuser", "https://github.com/Chainfire/libsuperuser", "Copyright (C) 2012-2015 Jorrit \"Chainfire\" Jongma", new ApacheSoftwareLicense20()));
             notices.addNotice(new Notice("picasso", "https://github.com/square/picasso", "Copyright 2013 Square, Inc.", new ApacheSoftwareLicense20()));
+            notices.addNotice(new Notice("materialdesignicons", "http://materialdesignicons.com", "Copyright (c) 2014, Austin Andrews", new SILOpenFontLicense11()));
 
             new LicensesDialog.Builder(getContext())
                     .setNotices(notices)

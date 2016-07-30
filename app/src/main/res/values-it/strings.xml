@@ -306,6 +306,8 @@
     <string name="save">Salva</string>
     <string name="support_xda">Ottieni supporto su XDA</string>
     <string name="systemless">Systemless</string>
+    <string name="installation_started">Installazione partita</string>
+    <string name="not_flashable_inapp">Questo file zip non può essere flashato in questa app. Installazione automatica in recovery</string>
 
 
 </resources>

@@ -28,8 +28,7 @@ import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
-public class WelcomeActivity extends XposedBaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener,
+public class WelcomeActivity extends XposedBaseActivity implements NavigationView.OnNavigationItemSelectedListener,
         ModuleListener, RepoListener {
 
     private static final String SELECTED_ITEM_ID = "SELECTED_ITEM_ID";
@@ -231,16 +230,14 @@ public class WelcomeActivity extends XposedBaseActivity
         String frameworkUpdateVersion = mRepoLoader.getFrameworkUpdateVersion();
         boolean moduleUpdateAvailable = mRepoLoader.hasModuleUpdates();
 
-        Fragment currentFragment = getSupportFragmentManager()
-                .findFragmentById(R.id.content_frame);
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
         if (currentFragment instanceof DownloadDetailsFragment) {
             if (frameworkUpdateVersion != null) {
                 Snackbar.make(parentLayout, R.string.welcome_framework_update_available + " " + String.valueOf(frameworkUpdateVersion), Snackbar.LENGTH_LONG).show();
             }
         }
 
-        boolean snackBar = getSharedPreferences(
-                getPackageName() + "_preferences", MODE_PRIVATE).getBoolean("snack_bar", true);
+        boolean snackBar = XposedApp.getPreferences().getBoolean("snack_bar", true);
 
         if (moduleUpdateAvailable && snackBar) {
             Snackbar.make(parentLayout, R.string.modules_updates_available, Snackbar.LENGTH_LONG).setAction(getString(R.string.view), new View.OnClickListener() {

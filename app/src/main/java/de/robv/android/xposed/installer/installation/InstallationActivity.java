@@ -77,7 +77,12 @@ public class InstallationActivity extends XposedBaseActivity {
             setRetainInstance(true);
 
             if (savedInstanceState == null) {
-                InstallDirect.install(mPath, this, isOkSystemless());
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        InstallDirect.install(mPath, InstallationFragment.this, isOkSystemless());
+                    }
+                }, 1500); // wait 1.5 secs. installation is so fast
             }
         }
 
@@ -113,7 +118,7 @@ public class InstallationActivity extends XposedBaseActivity {
 
         @Override
         public void onDone() {
-            appendText(getString(R.string.installation_finished), TYPE_OK);
+            appendText(getString(R.string.file_done), TYPE_OK);
 
             mProgress.setIndeterminate(false);
             mConsoleResult.setImageResource(R.drawable.ic_check_circle);

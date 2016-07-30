@@ -25,6 +25,7 @@
                 android:background="@android:color/transparent"
                 android:padding="8dp"
                 android:textColor="@android:color/white"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 android:typeface="monospace"/>
 
