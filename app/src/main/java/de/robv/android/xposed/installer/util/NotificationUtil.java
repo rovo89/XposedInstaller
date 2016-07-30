@@ -74,6 +74,13 @@ public final class NotificationUtil {
                 PENDING_INTENT_ACTIVATE_MODULE_AND_REBOOT, iActivateAndReboot,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
+        Intent iActivate = new Intent(sContext, RebootReceiver.class);
+        iActivate.putExtra(RebootReceiver.EXTRA_ACTIVATE_MODULE, packageName);
+        iActivate.putExtra(RebootReceiver.EXTRA_ACTIVATE_MODULE_AND_RETURN, true);
+        PendingIntent pActivate = PendingIntent.getBroadcast(sContext,
+                PENDING_INTENT_ACTIVATE_MODULE_AND_REBOOT, iActivate,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
         NotificationCompat.BigTextStyle notiStyle = new NotificationCompat.BigTextStyle();
         notiStyle.setBigContentTitle(title);
         notiStyle.bigText(sContext.getString(
@@ -83,8 +90,10 @@ public final class NotificationUtil {
         // Only show the quick activation button if any module has been
         // enabled before,
         // to ensure that the user know the way to disable the module later.
-        if (!ModuleUtil.getInstance().getEnabledModules().isEmpty())
+        if (!ModuleUtil.getInstance().getEnabledModules().isEmpty()) {
             builder.addAction(R.drawable.ic_menu_refresh, sContext.getString(R.string.activate_and_reboot), pActivateAndReboot);
+            builder.addAction(R.drawable.ic_save, sContext.getString(R.string.activate_only), pActivate);
+        }
 
         sNotificationManager.notify(packageName,
                 NOTIFICATION_MODULE_NOT_ACTIVATED_YET, builder.build());
@@ -135,6 +144,7 @@ public final class NotificationUtil {
     public static class RebootReceiver extends BroadcastReceiver {
         public static String EXTRA_SOFT_REBOOT = "soft";
         public static String EXTRA_ACTIVATE_MODULE = "activate_module";
+        public static String EXTRA_ACTIVATE_MODULE_AND_RETURN = "activate_module_and_return";
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -154,6 +164,8 @@ public final class NotificationUtil {
                 moduleUtil.setModuleEnabled(packageName, true);
                 moduleUtil.updateModulesList(false);
                 Toast.makeText(sContext, R.string.module_activated, Toast.LENGTH_SHORT).show();
+
+                if (intent.hasExtra(EXTRA_ACTIVATE_MODULE_AND_RETURN)) return;
             }
 
             RootUtil rootUtil = new RootUtil();

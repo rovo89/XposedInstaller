@@ -94,6 +94,7 @@
     <string name="module_is_not_activated_yet">Xposed module is not activated yet</string>
     <string name="module_is_not_activated_yet_detailed">%s has been installed, but is not activated yet.</string>
     <string name="activate_and_reboot">Activate and reboot</string>
+    <string name="activate_only">Activate only</string>
     <string name="module_activated">Xposed module has been activated</string>
     <string name="module_empty_description">(no description provided)</string>
     <string name="module_no_ui">This module does not provide a user interface</string>
