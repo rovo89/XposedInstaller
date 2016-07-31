@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.SearchView;
@@ -41,6 +42,7 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public class DownloadFragment extends Fragment implements RepoListener, ModuleListener {
+    public static FragmentActivity sActivity;
     private SharedPreferences mPref;
     private DownloadsAdapter mAdapter;
     private String mFilterText;
@@ -76,11 +78,12 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         if (mAdapter != null && mListView != null) {
             mListView.setAdapter(mAdapter);
         }
+
+        sActivity = getActivity();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_downloader, container, false);
         mListView = (StickyListHeadersListView) v.findViewById(R.id.listModules);
         final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swiperefreshlayout);

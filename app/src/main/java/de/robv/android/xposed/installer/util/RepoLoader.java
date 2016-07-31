@@ -1,13 +1,21 @@
 package de.robv.android.xposed.installer.util;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,7 +32,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.GZIPInputStream;
 
+import de.robv.android.xposed.installer.DownloadFragment;
 import de.robv.android.xposed.installer.R;
+import de.robv.android.xposed.installer.WelcomeActivity;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
@@ -361,14 +371,37 @@ public class RepoLoader {
                 });
 
                 RepoDb.setTransactionSuccessful();
+            } catch (SQLiteException e) {
+                XposedApp.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        new MaterialDialog.Builder(DownloadFragment.sActivity)
+                                .title(R.string.restart_needed)
+                                .content(R.string.cache_cleaned)
+                                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                    @Override
+                                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                        Intent i = new Intent(DownloadFragment.sActivity, WelcomeActivity.class);
+                                        i.putExtra("fragment", 2);
 
+                                        PendingIntent pi = PendingIntent.getActivity(DownloadFragment.sActivity, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
+
+                                        AlarmManager mgr = (AlarmManager) mApp.getSystemService(Context.ALARM_SERVICE);
+                                        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pi);
+                                        System.exit(0);
+                                    }
+                                })
+                                .positiveText(android.R.string.ok)
+                                .canceledOnTouchOutside(false)
+                                .show();
+                    }
+                });
+
+                DownloadsUtil.clearCache(url);
             } catch (Throwable t) {
                 Log.e(XposedApp.TAG, "RepoLoader -> Cannot load repository from " + url, t);
-                messages.add(mApp.getString(R.string.repo_load_failed, url,
-                        t.getMessage()));
-                messages.add("Clear app data!!");
+                messages.add(mApp.getString(R.string.repo_load_failed, url, t.getMessage()));
                 DownloadsUtil.clearCache(url);
-
             } finally {
                 if (in != null)
                     try {

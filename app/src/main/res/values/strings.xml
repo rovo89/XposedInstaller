@@ -331,5 +331,8 @@
     <string name="not_flashable_inapp">This zip file cannot be flashed in app. Installing automatically in recovery</string>
     <string name="installation_started">Installation started</string>
     <string name="systemless_mode">Systemless mode: %b</string>
+    <string name="restart_needed">Restart needed</string>
+    <string name="cache_cleaned">App\'s cache has been cleaned. Restart is needed</string>
+    <string name="update_download_list">Pulldown to refresh download\'s module list</string>
 
 </resources>
