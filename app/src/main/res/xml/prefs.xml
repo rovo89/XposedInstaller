@@ -62,6 +62,11 @@
             android:summary="@string/chrome_custom_tabs_summ"
             android:title="@string/chrome_custom_tabs"/>
 
+        <Preference
+            android:key="download_location"
+            android:summary="@string/download_location_summ"
+            android:title="@string/download_location"/>
+
         <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
             android:entries="@array/default_view_texts"

@@ -57,10 +57,9 @@ public class DownloadsUtil {
         }
 
         String savePath = "XposedInstaller";
-        if (module)
-            savePath += "/modules";
-
-        new File(Environment.getExternalStorageDirectory().getAbsolutePath() + title + mimeType.getExtension()).delete();
+        if (module) {
+            savePath = XposedApp.getDownloadPath().replace(Environment.getExternalStorageDirectory() + "", "");
+        }
 
         DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         Request request = new Request(Uri.parse(url));

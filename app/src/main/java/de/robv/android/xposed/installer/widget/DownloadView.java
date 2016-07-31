@@ -127,13 +127,12 @@ public class DownloadView extends LinearLayout {
             }
         });
 
-        btnDownload.setOnLongClickListener(new OnLongClickListener() {
+        btnSave.setOnClickListener(new OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 mClickedUrl = mUrl;
 
-                if (checkPermissions())
-                    return false;
+                if (checkPermissions()) return;
 
                 DownloadsUtil.add(getContext(), mTitle, mUrl,
                         new DownloadFinishedCallback() {
@@ -143,7 +142,6 @@ public class DownloadView extends LinearLayout {
                                         info.localFilename), Toast.LENGTH_SHORT).show();
                             }
                         }, DownloadsUtil.MIME_TYPES.APK, true, true);
-                return true;
             }
         });
 
