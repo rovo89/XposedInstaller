@@ -9,7 +9,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
+import android.text.Spannable;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -101,7 +102,6 @@ public class InstallationActivity extends XposedBaseActivity {
         @Override
         public void onStarted() {
             appendText(getString(R.string.installation_started), TYPE_NONE);
-            appendText(getString(R.string.systemless_mode, isOkSystemless()), TYPE_NONE);
 
             mProgress.setIndeterminate(true);
         }
@@ -159,21 +159,26 @@ public class InstallationActivity extends XposedBaseActivity {
 
         @SuppressLint("SetTextI18n")
         private void appendText(String text, int type) {
+            // TODO colors should probably be defined in resources
+            int color;
             switch (type) {
                 case TYPE_ERROR:
-                    text = "<font color=\"#F44336\">" + text + "</font>";
+                    color = 0xFFF44336;
                     break;
                 case TYPE_OK:
-                    text = "<font color=\"#4CAF50\">" + text + "</font>";
+                    color = 0xFF4CAF50;
                     break;
+                default:
+                    mLogText.append(text);
+                    mLogText.append("\n");
+                    return;
             }
 
-            if (mLogText.getText().length() != 0) {
-                String msg = Html.toHtml(mLogText.getEditableText()) + text;
-                mLogText.setText(Html.fromHtml(msg), TextView.BufferType.EDITABLE);
-            } else {
-                mLogText.setText(Html.fromHtml(text), TextView.BufferType.EDITABLE);
-            }
+            int start = mLogText.length();
+            mLogText.append(text);
+            int end = mLogText.length();
+            ((Spannable) mLogText.getText()).setSpan(new ForegroundColorSpan(color), start, end, 0);
+            mLogText.append("\n");
         }
 
         private boolean isOkSystemless() {
@@ -182,8 +187,6 @@ public class InstallationActivity extends XposedBaseActivity {
 
             /*
             TODO: Add toggle for user to force system installation
-
-            This can be done with a "nosystemless" file in app's folder and with a check in update-binary
              */
 
             return m && suPartition;
