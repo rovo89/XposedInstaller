@@ -38,36 +38,96 @@ public class DownloadsUtil {
     private static final SharedPreferences mPref = mApp
             .getSharedPreferences("download_cache", Context.MODE_PRIVATE);
 
-    public static DownloadInfo add(Context context, String title, String url, DownloadFinishedCallback callback, MIME_TYPES mimeType) {
+    public static class Builder {
+        private final Context mContext;
+        private String mTitle = null;
+        private String mUrl = null;
+        private DownloadFinishedCallback mCallback = null;
+        private MIME_TYPES mMimeType = MIME_TYPES.APK;
+        private boolean mSave = false;
+        private boolean mModule = false;
 
+        public Builder(Context context) {
+            mContext = context;
+        }
+
+        public Builder setTitle(String title) {
+            mTitle = title;
+            return this;
+        }
+
+        public Builder setUrl(String url) {
+            mUrl = url;
+            return this;
+        }
+
+        public Builder setCallback(DownloadFinishedCallback callback) {
+            mCallback = callback;
+            return this;
+        }
+
+        public Builder setMimeType(MIME_TYPES mimeType) {
+            mMimeType = mimeType;
+            return this;
+        }
+
+        public Builder setSave(boolean save) {
+            mSave = save;
+            return this;
+        }
+
+        public Builder setModule(boolean module) {
+            mModule = module;
+            return this;
+        }
+
+        public DownloadInfo download() {
+            return add(this);
+        }
+    }
+
+    @Deprecated
+    public static DownloadInfo add(Context context, String title, String url, DownloadFinishedCallback callback, MIME_TYPES mimeType) {
         return add(context, title, url, callback, mimeType, false, false);
     }
 
-    public static DownloadInfo add(Context context, String title, String url, DownloadFinishedCallback callback, MIME_TYPES mimeType,
-                                   boolean save) {
-
+    @Deprecated
+    public static DownloadInfo add(Context context, String title, String url, DownloadFinishedCallback callback, MIME_TYPES mimeType, boolean save) {
         return add(context, title, url, callback, mimeType, save, false);
     }
 
+    @Deprecated
     public static DownloadInfo add(Context context, String title, String url, DownloadFinishedCallback callback, MIME_TYPES mimeType, boolean save, boolean module) {
-        removeAllForUrl(context, url);
+        return new Builder(context)
+                .setTitle(title)
+                .setUrl(url)
+                .setCallback(callback)
+                .setMimeType(mimeType)
+                .setSave(save)
+                .setModule(module)
+                .download();
+    }
+
+    private static DownloadInfo add(Builder b) {
+        Context context = b.mContext;
+        removeAllForUrl(context, b.mUrl);
 
         synchronized (mCallbacks) {
-            mCallbacks.put(url, callback);
+            mCallbacks.put(b.mUrl, b.mCallback);
         }
 
         String savePath = "XposedInstaller";
-        if (module) {
+        if (b.mModule) {
             savePath = XposedApp.getDownloadPath().replace(Environment.getExternalStorageDirectory() + "", "");
         }
 
         DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-        Request request = new Request(Uri.parse(url));
-        request.setTitle(title);
-        request.setMimeType(mimeType.toString());
-        if (save) {
+        Request request = new Request(Uri.parse(b.mUrl));
+        request.setTitle(b.mTitle);
+        request.setMimeType(b.mMimeType.toString());
+        if (b.mSave) {
             try {
-                request.setDestinationInExternalPublicDir(savePath, title + mimeType.getExtension());
+                request.setDestinationInExternalPublicDir(savePath, b.mTitle + b.mMimeType.getExtension());
             } catch (IllegalStateException e) {
                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
