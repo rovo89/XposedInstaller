@@ -212,6 +212,8 @@
     <string name="download_could_not_read_file">Could not read downloaded file: %s</string>
     <string name="download_no_valid_apk">Downloaded file is not a valid APK (or incompatible)</string>
     <string name="download_incorrect_package_name">Package name is incorrect (downloaded: %1$s, expected: %2$s)</string>
+    <string name="download_running">Download is running</string>
+    <string name="download_progress">%1$,d / %2$,d kB</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Downloading %1$s failed: %2$d (%3$s)</string>

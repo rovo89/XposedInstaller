@@ -4,12 +4,19 @@ import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
 import android.app.DownloadManager.Request;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.annotation.UiThread;
+import android.view.View;
 import android.widget.Toast;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.MaterialDialog.SingleButtonCallback;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -46,6 +53,7 @@ public class DownloadsUtil {
         private MIME_TYPES mMimeType = MIME_TYPES.APK;
         private boolean mSave = false;
         private boolean mModule = false;
+        private boolean mDialog = false;
 
         public Builder(Context context) {
             mContext = context;
@@ -81,6 +89,11 @@ public class DownloadsUtil {
             return this;
         }
 
+        public Builder setDialog(boolean dialog) {
+            mDialog = dialog;
+            return this;
+        }
+
         public DownloadInfo download() {
             return add(this);
         }
@@ -112,8 +125,10 @@ public class DownloadsUtil {
         Context context = b.mContext;
         removeAllForUrl(context, b.mUrl);
 
-        synchronized (mCallbacks) {
-            mCallbacks.put(b.mUrl, b.mCallback);
+        if (!b.mDialog) {
+            synchronized (mCallbacks) {
+                mCallbacks.put(b.mUrl, b.mCallback);
+            }
         }
 
         String savePath = "XposedInstaller";
@@ -135,7 +150,97 @@ public class DownloadsUtil {
         request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
         long id = dm.enqueue(request);
 
+        if (b.mDialog) {
+            showDownloadDialog(b, id);
+        }
+
         return getById(context, id);
+    }
+
+    private static void showDownloadDialog(final Builder b, final long id) {
+        final Context context = b.mContext;
+        final DownloadDialog dialog = new DownloadDialog(new MaterialDialog.Builder(context)
+                .title(b.mTitle)
+                .content(R.string.download_view_waiting)
+                .progress(false, 0, true)
+                .progressNumberFormat(context.getString(R.string.download_progress))
+                .canceledOnTouchOutside(false)
+                .negativeText(R.string.download_view_cancel)
+                .onNegative(new SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.cancel();
+                    }
+                })
+                .cancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        removeById(context, id);
+                    }
+                })
+        );
+        dialog.setShowProcess(false);
+        dialog.show();
+
+        new Thread("DownloadDialog") {
+            @Override
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        return;
+                    }
+
+                    final DownloadInfo info = getById(context, id);
+                    if (info == null) {
+                        dialog.cancel();
+                        return;
+                    } else if (info.status == DownloadManager.STATUS_FAILED) {
+                        dialog.cancel();
+                        Toast.makeText(context,
+                                context.getString(R.string.download_view_failed, info.reason),
+                                Toast.LENGTH_LONG).show();
+                        return;
+                    }  else if (info.status == DownloadManager.STATUS_SUCCESSFUL) {
+                        dialog.dismiss();
+                        if (b.mCallback != null) {
+                            b.mCallback.onDownloadFinished(context, info);
+                        }
+                        return;
+                    }
+
+                    XposedApp.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (info.totalSize <= 0 || info.status != DownloadManager.STATUS_RUNNING) {
+                                dialog.setContent(R.string.download_view_waiting);
+                                dialog.setShowProcess(false);
+                            } else {
+                                dialog.setContent(R.string.download_running);
+                                dialog.setProgress(info.bytesDownloaded / 1024);
+                                dialog.setMaxProgress(info.totalSize / 1024);
+                                dialog.setShowProcess(true);
+                            }
+                        }
+                    });
+                }
+            }
+        }.start();
+    }
+
+    private static class DownloadDialog extends MaterialDialog {
+        public DownloadDialog(Builder builder) {
+            super(builder);
+        }
+
+        @UiThread
+        public void setShowProcess(boolean show) {
+            int visibility = show ? View.VISIBLE : View.GONE;
+            mProgress.setVisibility(visibility);
+            mProgressLabel.setVisibility(visibility);
+            mProgressMinMax.setVisibility(visibility);
+        }
     }
 
     public static ModuleVersion getStableVersion(Module m) {
@@ -148,7 +253,6 @@ public class DownloadsUtil {
         }
         return null;
     }
-
 
     public static DownloadInfo getById(Context context, long id) {
         DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
