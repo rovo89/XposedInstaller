@@ -11,6 +11,9 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.os.EnvironmentCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -52,6 +55,7 @@ public class DownloadsUtil {
         private DownloadFinishedCallback mCallback = null;
         private MIME_TYPES mMimeType = MIME_TYPES.APK;
         private boolean mSave = false;
+        private File mDestination = null;
         private boolean mModule = false;
         private boolean mDialog = false;
 
@@ -84,6 +88,18 @@ public class DownloadsUtil {
             return this;
         }
 
+        public Builder setDestination(File file) {
+            mDestination = file;
+            return this;
+        }
+
+        public Builder setDestinationFromUrl(String subDir) {
+            if (mUrl == null) {
+                throw new IllegalStateException("URL must be set first");
+            }
+            return setDestination(getDownloadTargetForUrl(subDir, mUrl));
+        }
+
         public Builder setModule(boolean module) {
             mModule = module;
             return this;
@@ -97,6 +113,29 @@ public class DownloadsUtil {
         public DownloadInfo download() {
             return add(this);
         }
+    }
+
+    public static String DOWNLOAD_FRAMEWORK = "framework";
+    public static String DOWNLOAD_MODULES = "modules";
+
+    public static File[] getDownloadDirs(String subDir) {
+        Context context = XposedApp.getInstance();
+        ArrayList<File> dirs = new ArrayList<>(2);
+        for (File dir :  ContextCompat.getExternalCacheDirs(context)) {
+            if (Environment.MEDIA_MOUNTED.equals(EnvironmentCompat.getStorageState(dir))) {
+                dirs.add(new File(new File(dir, "downloads"), subDir));
+            }
+        }
+        dirs.add(new File(new File(context.getCacheDir(), "downloads"), subDir));
+        return dirs.toArray(new File[dirs.size()]);
+    }
+
+    public static File getDownloadTarget(String subDir, String filename) {
+        return new File(getDownloadDirs(subDir)[0], filename);
+    }
+
+    public static File getDownloadTargetForUrl(String subDir, String url) {
+        return getDownloadTarget(subDir, Uri.parse(url).getLastPathSegment());
     }
 
     @Deprecated
@@ -136,11 +175,13 @@ public class DownloadsUtil {
             savePath = XposedApp.getDownloadPath().replace(Environment.getExternalStorageDirectory() + "", "");
         }
 
-        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         Request request = new Request(Uri.parse(b.mUrl));
         request.setTitle(b.mTitle);
         request.setMimeType(b.mMimeType.toString());
-        if (b.mSave) {
+        if (b.mDestination != null) {
+            removeAllForLocalFile(context, b.mDestination);
+            request.setDestinationUri(Uri.fromFile(b.mDestination));
+        } else if (b.mSave) {
             try {
                 request.setDestinationInExternalPublicDir(savePath, b.mTitle + b.mMimeType.getExtension());
             } catch (IllegalStateException e) {
@@ -148,6 +189,8 @@ public class DownloadsUtil {
             }
         }
         request.setNotificationVisibility(Request.VISIBILITY_VISIBLE);
+
+        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         long id = dm.enqueue(request);
 
         if (b.mDialog) {
