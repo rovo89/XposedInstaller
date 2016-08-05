@@ -23,8 +23,7 @@ public final class InstallDirect {
         try {
             zip = new ZipFile(zipPath);
         } catch (IOException e) {
-            Log.e(XposedApp.TAG, "Could not open ZIP file", e);
-            triggerError(callback, InstallCallback.ERROR_INVALID_ZIP);
+            triggerError(callback, InstallCallback.ERROR_INVALID_ZIP, e.getLocalizedMessage());
             return;
         }
 

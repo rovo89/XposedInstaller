@@ -50,7 +50,7 @@ public final class InstallZipUtil {
         return result;
     }
 
-    public static String messageForError(int code) {
+    public static String messageForError(int code, Object... args) {
         // TODO make translatable
         switch (code) {
             case InstallCallback.ERROR_TIMEOUT:
@@ -64,7 +64,11 @@ public final class InstallZipUtil {
                 return "Could not gain root access";
 
             case InstallCallback.ERROR_INVALID_ZIP:
-                return "Not a flashable ZIP file";
+                if (args.length > 0) {
+                    return "Not a flashable ZIP file" + "\n" + args[0];
+                } else {
+                    return "Not a flashable ZIP file";
+                }
 
             case InstallCallback.ERROR_NOT_FLASHABLE_IN_APP:
                 return "This file can only be flashed via recovery";
@@ -74,8 +78,8 @@ public final class InstallZipUtil {
         }
     }
 
-    public static void triggerError(InstallCallback callback, int code) {
-        callback.onError(code, messageForError(code));
+    public static void triggerError(InstallCallback callback, int code, Object... args) {
+        callback.onError(code, messageForError(code, args));
     }
 
     public static void closeSilently(ZipFile z) {
