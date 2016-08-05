@@ -389,7 +389,7 @@ public class DownloadsUtil {
         int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
         int columnUri = c.getColumnIndexOrThrow(DownloadManager.COLUMN_URI);
 
-        List<Long> idsList = new ArrayList<>();
+        List<Long> idsList = new ArrayList<>(1);
         while (c.moveToNext()) {
             if (url.equals(c.getString(columnUri)))
                 idsList.add(c.getLong(columnId));
@@ -401,7 +401,50 @@ public class DownloadsUtil {
 
         long ids[] = new long[idsList.size()];
         for (int i = 0; i < ids.length; i++)
-            ids[i] = idsList.get(0);
+            ids[i] = idsList.get(i);
+
+        dm.remove(ids);
+    }
+
+    public static void removeAllForLocalFile(Context context, File file) {
+        file.delete();
+
+        String filename;
+        try {
+            filename = file.getCanonicalPath();
+        } catch (IOException e) {
+            Log.w(XposedApp.TAG, "Could not resolve path for " + file.getAbsolutePath(), e);
+            return;
+        }
+
+        DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        Cursor c = dm.query(new Query());
+        int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
+        int columnFilename = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_FILENAME);
+
+        List<Long> idsList = new ArrayList<>(1);
+        while (c.moveToNext()) {
+            String itemFilename = c.getString(columnFilename);
+            if (itemFilename != null) {
+                if (filename.equals(itemFilename)) {
+                    idsList.add(c.getLong(columnId));
+                } else {
+                    try {
+                        if (filename.equals(new File(itemFilename).getCanonicalPath())) {
+                            idsList.add(c.getLong(columnId));
+                        }
+                    } catch (IOException ignored) {}
+                }
+            }
+        }
+        c.close();
+
+        if (idsList.isEmpty())
+            return;
+
+        long ids[] = new long[idsList.size()];
+        for (int i = 0; i < ids.length; i++)
+            ids[i] = idsList.get(i);
 
         dm.remove(ids);
     }
