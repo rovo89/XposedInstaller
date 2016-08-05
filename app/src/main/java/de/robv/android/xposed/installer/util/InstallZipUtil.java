@@ -1,6 +1,11 @@
 package de.robv.android.xposed.installer.util;
 
+import android.os.Build;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.zip.ZipFile;
 
 import de.robv.android.xposed.installer.installation.InstallCallback;
@@ -48,6 +53,71 @@ public final class InstallZipUtil {
         }
 
         return result;
+    }
+
+    public static class XposedProp {
+        private String mVersion = null;
+        private int mVersionInt = 0;
+        private String mArch = null;
+        private int mMinSdk = 0;
+        private int mMaxSdk = 0;
+
+        private boolean isComplete() {
+            return mVersion != null
+                    && mVersionInt > 0
+                    && mArch != null
+                    && mMinSdk > 0
+                    && mMaxSdk > 0;
+        }
+
+        public String getVersion() {
+            return mVersion;
+        }
+
+        public boolean isArchCompatible() {
+            // FIXME
+            return mArch.equals("x86");
+        }
+
+        public boolean isSdkCompatible() {
+            return mMinSdk <= Build.VERSION.SDK_INT && Build.VERSION.SDK_INT <= mMaxSdk;
+        }
+
+        public boolean isCompatible() {
+            return isSdkCompatible() && isArchCompatible();
+        }
+    }
+
+    public static XposedProp parseXposedProp(InputStream is) throws IOException {
+        XposedProp prop = new XposedProp();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split("=", 2);
+            if (parts.length != 2) {
+                continue;
+            }
+
+            String key = parts[0].trim();
+            if (key.charAt(0) == '#') {
+                continue;
+            }
+
+            String value = parts[1].trim();
+
+            if (key.equals("version")) {
+                prop.mVersion = value;
+                prop.mVersionInt = ModuleUtil.extractIntPart(value);
+            } else if (key.equals("arch")) {
+                prop.mArch = value;
+            } else if (key.equals("minsdk")) {
+                prop.mMinSdk = Integer.parseInt(value);
+            } else if (key.equals("maxsdk")) {
+                prop.mMaxSdk = Integer.parseInt(value);
+            }
+        }
+        reader.close();
+        return prop.isComplete() ? prop : null;
     }
 
     public static String messageForError(int code, Object... args) {
