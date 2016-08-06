@@ -15,6 +15,7 @@ import eu.chainfire.libsuperuser.Shell;
 
 import static de.robv.android.xposed.installer.util.InstallZipUtil.closeSilently;
 import static de.robv.android.xposed.installer.util.InstallZipUtil.triggerError;
+import static de.robv.android.xposed.installer.util.RootUtil.getShellPath;
 
 public final class InstallDirect {
     public static void install(String zipPath, InstallCallback callback, boolean systemless) {
@@ -63,7 +64,7 @@ public final class InstallDirect {
         }
 
         Shell.Interactive shell = builder.open(new OpenListener(callback));
-        shell.addCommand(updateBinaryFile.getAbsolutePath() + " 2 1 " + zipPath, 0, new StdoutListener(callback));
+        shell.addCommand(getShellPath(updateBinaryFile) + " 2 1 " + getShellPath(zipPath), 0, new StdoutListener(callback));
         shell.addCommand("exit");
     }
 

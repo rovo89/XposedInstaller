@@ -179,6 +179,7 @@ public class DownloadsUtil {
         request.setTitle(b.mTitle);
         request.setMimeType(b.mMimeType.toString());
         if (b.mDestination != null) {
+            b.mDestination.getParentFile().mkdirs();
             removeAllForLocalFile(context, b.mDestination);
             request.setDestinationUri(Uri.fromFile(b.mDestination));
         } else if (b.mSave) {

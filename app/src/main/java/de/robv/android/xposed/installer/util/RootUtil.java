@@ -2,9 +2,13 @@ package de.robv.android.xposed.installer.util;
 
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.util.Log;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import de.robv.android.xposed.installer.XposedApp;
 import eu.chainfire.libsuperuser.Shell;
 import eu.chainfire.libsuperuser.Shell.OnCommandResultListener;
 
@@ -15,6 +19,25 @@ public class RootUtil {
     private boolean mCommandRunning = false;
     private int mLastExitCode = -1;
     private List<String> mLastOutput = null;
+
+    private static final String EMULATED_STORAGE_SOURCE;
+    private static final String EMULATED_STORAGE_TARGET;
+
+    static {
+        EMULATED_STORAGE_SOURCE = getEmulatedStorageVariable("EMULATED_STORAGE_SOURCE");
+        EMULATED_STORAGE_TARGET = getEmulatedStorageVariable("EMULATED_STORAGE_TARGET");
+    }
+
+    private static String getEmulatedStorageVariable(String variable) {
+        String result = System.getenv(variable);
+        if (result != null) {
+            result = getCanonicalPath(new File(result));
+            if (!result.endsWith("/")) {
+                result += "/";
+            }
+        }
+        return result;
+    }
 
     private OnCommandResultListener commandResultListener = new OnCommandResultListener() {
         @Override
@@ -117,6 +140,28 @@ public class RootUtil {
         AssetUtil.extractBusybox();
         return execute(AssetUtil.BUSYBOX_FILE.getAbsolutePath() + " " + command, output);
     }
+
+    private static String getCanonicalPath(File file) {
+        try {
+            return file.getCanonicalPath();
+        } catch (IOException e) {
+            Log.w(XposedApp.TAG, "Could not get canonical path for " + file);
+            return file.getAbsolutePath();
+        }
+    }
+
+    public static String getShellPath(File file) {
+        return getShellPath(getCanonicalPath(file));
+    }
+
+    public static String getShellPath(String path) {
+        if (EMULATED_STORAGE_SOURCE != null && EMULATED_STORAGE_TARGET != null
+                && path.startsWith(EMULATED_STORAGE_TARGET)) {
+            path = EMULATED_STORAGE_SOURCE + path.substring(EMULATED_STORAGE_TARGET.length());
+        }
+        return path;
+    }
+
 
     @Override
     protected void finalize() throws Throwable {
