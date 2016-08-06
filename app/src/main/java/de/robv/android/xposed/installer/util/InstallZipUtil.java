@@ -75,8 +75,7 @@ public final class InstallZipUtil {
         }
 
         public boolean isArchCompatible() {
-            // FIXME
-            return mArch.equals("x86");
+            return FrameworkZips.ARCH.equals(mArch);
         }
 
         public boolean isSdkCompatible() {

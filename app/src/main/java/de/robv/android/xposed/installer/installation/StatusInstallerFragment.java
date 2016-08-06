@@ -16,13 +16,12 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
+import de.robv.android.xposed.installer.util.FrameworkZips;
 import de.robv.android.xposed.installer.util.NavUtil;
 
 public class StatusInstallerFragment extends Fragment {
@@ -68,43 +67,6 @@ public class StatusInstallerFragment extends Fragment {
                 break;
         }
         return result;
-    }
-
-    public static String getArch() {
-        String info = "";
-
-        try {
-            FileReader fr = new FileReader("/proc/cpuinfo");
-            BufferedReader br = new BufferedReader(fr);
-            String text;
-            while ((text = br.readLine()) != null) {
-                if (!text.startsWith("processor")) break;
-            }
-            br.close();
-            String[] array = text != null ? text.split(":\\s+", 2) : new String[0];
-            if (array.length >= 2) {
-                info += array[1] + " ";
-            }
-        } catch (IOException ignored) {
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            info += Build.SUPPORTED_ABIS[0];
-        } else {
-            String arch = System.getenv("os.arch");
-            if (arch != null) info += arch;
-        }
-        info += " (";
-        if (info.contains("x86")) {
-            info += "x86";
-        } else if (info.contains("x86_64")) {
-            info += "x86_64";
-        } else if (info.contains("arm64")) {
-            info += "arm64";
-        } else {
-            info += "arm";
-        }
-        return info + ")";
     }
 
     @Override
@@ -194,7 +156,7 @@ public class StatusInstallerFragment extends Fragment {
 
         androidSdk.setText(getString(R.string.android_sdk, getAndroidVersion(), Build.VERSION.RELEASE, Build.VERSION.SDK_INT));
         manufacturer.setText(getUIFramework());
-        cpu.setText(getArch());
+        cpu.setText(FrameworkZips.ARCH);
 
         refreshKnownIssue();
         return v;

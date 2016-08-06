@@ -1,6 +1,7 @@
 package de.robv.android.xposed.installer.util;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.WorkerThread;
 import android.util.Log;
 
@@ -22,6 +23,8 @@ import de.robv.android.xposed.installer.util.InstallZipUtil.XposedProp;
 import de.robv.android.xposed.installer.util.InstallZipUtil.ZipCheckResult;
 
 public class FrameworkZips {
+    public static String ARCH = getArch();
+
     private static Map<String, OnlineFrameworkZip> sOnline = Collections.emptyMap();
     private static Map<String, List<LocalFrameworkZip>> sLocal = Collections.emptyMap();
 
@@ -175,6 +178,25 @@ public class FrameworkZips {
             if (zipFile != null) {
                 InstallZipUtil.closeSilently(zipFile);
             }
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    private static String getArch() {
+        if (Build.CPU_ABI.equals("arm64-v8a")) {
+            return "arm64";
+        } else if (Build.CPU_ABI.equals("x86_64")) {
+            return "x86_64";
+        } else if (Build.CPU_ABI.equals("mips64")) {
+            return "mips64";
+        } else if (Build.CPU_ABI.startsWith("x86") || Build.CPU_ABI2.startsWith("x86")) {
+            return "x86";
+        } else if (Build.CPU_ABI.startsWith("mips")) {
+            return "mips";
+        } else if (Build.CPU_ABI.startsWith("armeabi-v5") || Build.CPU_ABI.startsWith("armeabi-v6")) {
+            return "armv5";
+        } else {
+            return "arm";
         }
     }
 

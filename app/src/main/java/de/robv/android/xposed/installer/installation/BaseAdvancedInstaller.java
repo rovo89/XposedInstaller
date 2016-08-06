@@ -36,6 +36,7 @@ import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.FrameworkZips;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
@@ -100,10 +101,10 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
         chooserUninstallers.setAdapter(new XposedZip.MyAdapter<>(getContext(), uninstallers()));
 
         if (Build.VERSION.SDK_INT >= 21) {
-            if (StatusInstallerFragment.getArch().contains("86")) {
+            if (FrameworkZips.ARCH.contains("86")) {
                 chooserInstallers.setSelection(2);
                 chooserUninstallers.setSelection(3);
-            } else if (StatusInstallerFragment.getArch().contains("64")) {
+            } else if (FrameworkZips.ARCH.contains("64")) {
                 chooserInstallers.setSelection(1);
                 chooserUninstallers.setSelection(1);
             }
