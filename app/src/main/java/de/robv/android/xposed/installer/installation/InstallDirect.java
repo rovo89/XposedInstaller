@@ -56,14 +56,13 @@ public final class InstallDirect {
         // Execute the flash commands.
         Shell.Builder builder = new Shell.Builder()
                 .useSU()
-                .setOnSTDERRLineListener(new StderrListener(callback))
-                .addEnvironment("NO_UIPRINT", "1");
-
-        if (systemless) {
-            builder.addEnvironment("SYSTEMLESS", "1");
-        }
+                .setOnSTDERRLineListener(new StderrListener(callback));
 
         Shell.Interactive shell = builder.open(new OpenListener(callback));
+        shell.addCommand("export NO_UIPRINT=1");
+        if (systemless) {
+            shell.addCommand("export SYSTEMLESS=1");
+        }
         shell.addCommand(getShellPath(updateBinaryFile) + " 2 1 " + getShellPath(zipPath), 0, new StdoutListener(callback));
         shell.addCommand("exit");
     }
