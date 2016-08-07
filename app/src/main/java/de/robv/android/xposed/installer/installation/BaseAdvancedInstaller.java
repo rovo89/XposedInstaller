@@ -369,7 +369,7 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
             mRootUtil.executeWithBusybox("sync", messages);
         }
 
-        if (mRootUtil.execute("ls /cache/recovery", null) != 0) {
+        if (mRootUtil.execute("ls /cache/recovery") != 0) {
             messages.add(getString(R.string.file_creating_directory, "/cache/recovery"));
             if (mRootUtil.executeWithBusybox("mkdir /cache/recovery",
                     messages) != 0) {

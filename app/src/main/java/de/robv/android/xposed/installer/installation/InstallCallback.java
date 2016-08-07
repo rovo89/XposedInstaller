@@ -1,11 +1,10 @@
 package de.robv.android.xposed.installer.installation;
 
+import de.robv.android.xposed.installer.util.RootUtil;
 import eu.chainfire.libsuperuser.Shell;
 
-public interface InstallCallback {
+public interface InstallCallback extends RootUtil.LineCallback {
     void onStarted();
-    void onLine(String line);
-    void onErrorLine(String line);
     void onDone();
     void onError(int exitCode, String error);
 
@@ -14,8 +13,7 @@ public interface InstallCallback {
     // SU errors
     int ERROR_TIMEOUT = Shell.OnCommandResultListener.WATCHDOG_EXIT;
     int ERROR_SHELL_DIED = Shell.OnCommandResultListener.SHELL_DIED;
-    int ERROR_EXEC_FAILED = Shell.OnCommandResultListener.SHELL_EXEC_FAILED;
-    int ERROR_WRONG_UID = Shell.OnCommandResultListener.SHELL_WRONG_UID;
+    int ERROR_NO_ROOT_ACCESS = Shell.OnCommandResultListener.SHELL_EXEC_FAILED;
 
     // ZIP errors
     int ERROR_INVALID_ZIP = -100;

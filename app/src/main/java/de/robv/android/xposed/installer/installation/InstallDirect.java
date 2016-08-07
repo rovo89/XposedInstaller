@@ -4,14 +4,13 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
-import eu.chainfire.libsuperuser.Shell;
+import de.robv.android.xposed.installer.util.RootUtil;
 
 import static de.robv.android.xposed.installer.util.InstallZipUtil.closeSilently;
 import static de.robv.android.xposed.installer.util.InstallZipUtil.triggerError;
@@ -54,74 +53,26 @@ public final class InstallDirect {
         }
 
         // Execute the flash commands.
-        Shell.Builder builder = new Shell.Builder()
-                .useSU()
-                .setOnSTDERRLineListener(new StderrListener(callback));
+        RootUtil rootUtil = new RootUtil();
+        if (!rootUtil.startShell()) {
+            triggerError(callback, InstallCallback.ERROR_NO_ROOT_ACCESS);
+            return;
+        }
 
-        Shell.Interactive shell = builder.open(new OpenListener(callback));
-        shell.addCommand("export NO_UIPRINT=1");
+        callback.onStarted();
+
+        rootUtil.execute("export NO_UIPRINT=1", callback);
         if (systemless) {
-            shell.addCommand("export SYSTEMLESS=1");
-        }
-        shell.addCommand(getShellPath(updateBinaryFile) + " 2 1 " + getShellPath(zipPath), 0, new StdoutListener(callback));
-        shell.addCommand("exit");
-    }
-
-    private static class OpenListener implements Shell.OnCommandResultListener {
-        private InstallCallback callback;
-
-        public OpenListener(InstallCallback callback) {
-            this.callback = callback;
+            rootUtil.execute("export SYSTEMLESS=1", callback);
         }
 
-        @Override
-        public void onCommandResult(int commandCode, int exitCode, List<String> output) {
-            if (exitCode == SHELL_RUNNING) {
-                callback.onStarted();
-            } else {
-                triggerError(callback, exitCode);
-            }
-        }
-    }
-
-    private static class StdoutListener implements Shell.OnCommandLineListener {
-        private InstallCallback callback;
-
-        public StdoutListener(InstallCallback callback) {
-            this.callback = callback;
+        int result = rootUtil.execute(getShellPath(updateBinaryFile) + " 2 1 " + getShellPath(zipPath), callback);
+        if (result != 0) {
+            triggerError(callback, result);
+            return;
         }
 
-        @Override
-        public void onLine(String line) {
-            callback.onLine(line);
-        }
-
-        @Override
-        public void onCommandResult(int commandCode, int exitCode) {
-            if (exitCode == InstallCallback.OK) {
-                callback.onDone();
-            } else {
-                triggerError(callback, exitCode);
-            }
-        }
-    }
-
-    private static class StderrListener implements Shell.OnCommandLineListener {
-        private InstallCallback callback;
-
-        public StderrListener(InstallCallback callback) {
-            this.callback = callback;
-        }
-
-        @Override
-        public void onLine(String line) {
-            callback.onErrorLine(line);
-        }
-
-        @Override
-        public void onCommandResult(int commandCode, int exitCode) {
-            // Not called for STDERR listener.
-        }
+        callback.onDone();
     }
 
     private InstallDirect() {}

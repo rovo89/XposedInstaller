@@ -128,8 +128,7 @@ public final class InstallZipUtil {
             case InstallCallback.ERROR_SHELL_DIED:
                 return "Execution aborted unexpectedly";
 
-            case InstallCallback.ERROR_EXEC_FAILED:
-            case InstallCallback.ERROR_WRONG_UID:
+            case InstallCallback.ERROR_NO_ROOT_ACCESS:
                 return "Could not gain root access";
 
             case InstallCallback.ERROR_INVALID_ZIP:

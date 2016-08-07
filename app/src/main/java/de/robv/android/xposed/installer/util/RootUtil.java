@@ -18,7 +18,7 @@ public class RootUtil {
 
     private boolean mCommandRunning = false;
     private int mLastExitCode = -1;
-    private List<String> mLastOutput = null;
+    private LineCallback mCallback = null;
 
     private static final String EMULATED_STORAGE_SOURCE;
     private static final String EMULATED_STORAGE_TARGET;
@@ -26,6 +26,11 @@ public class RootUtil {
     static {
         EMULATED_STORAGE_SOURCE = getEmulatedStorageVariable("EMULATED_STORAGE_SOURCE");
         EMULATED_STORAGE_TARGET = getEmulatedStorageVariable("EMULATED_STORAGE_TARGET");
+    }
+
+    public interface LineCallback {
+        void onLine(String line);
+        void onErrorLine(String line);
     }
 
     private static String getEmulatedStorageVariable(String variable) {
@@ -39,15 +44,42 @@ public class RootUtil {
         return result;
     }
 
-    private OnCommandResultListener commandResultListener = new OnCommandResultListener() {
+
+    private final Shell.OnCommandResultListener mOpenListener = new Shell.OnCommandResultListener() {
         @Override
         public void onCommandResult(int commandCode, int exitCode, List<String> output) {
+            mStdoutListener.onCommandResult(commandCode, exitCode);
+        }
+    };
+
+    private final Shell.OnCommandLineListener mStdoutListener = new Shell.OnCommandLineListener() {
+        public void onLine(String line) {
+            if (mCallback != null) {
+                mCallback.onLine(line);
+            }
+        }
+
+        @Override
+        public void onCommandResult(int commandCode, int exitCode) {
             mLastExitCode = exitCode;
-            mLastOutput = output;
             synchronized (mCallbackThread) {
                 mCommandRunning = false;
                 mCallbackThread.notifyAll();
             }
+        }
+    };
+
+    private final Shell.OnCommandLineListener mStderrListener = new Shell.OnCommandLineListener() {
+        @Override
+        public void onLine(String line) {
+            if (mCallback != null) {
+                mCallback.onErrorLine(line);
+            }
+        }
+
+        @Override
+        public void onCommandResult(int commandCode, int exitCode) {
+            // Not called for STDERR listener.
         }
     };
 
@@ -61,8 +93,9 @@ public class RootUtil {
             }
         }
 
-        if (mLastExitCode == OnCommandResultListener.WATCHDOG_EXIT || mLastExitCode == OnCommandResultListener.SHELL_DIED)
+        if (mLastExitCode == OnCommandResultListener.WATCHDOG_EXIT || mLastExitCode == OnCommandResultListener.SHELL_DIED) {
             dispose();
+        }
     }
 
     /**
@@ -73,10 +106,11 @@ public class RootUtil {
      */
     public synchronized boolean startShell() {
         if (mShell != null) {
-            if (mShell.isRunning())
+            if (mShell.isRunning()) {
                 return true;
-            else
+            } else {
                 dispose();
+            }
         }
 
         mCallbackThread = new HandlerThread("su callback listener");
@@ -85,8 +119,8 @@ public class RootUtil {
         mCommandRunning = true;
         mShell = new Shell.Builder().useSU()
                 .setHandler(new Handler(mCallbackThread.getLooper()))
-                .setWantSTDERR(true).setWatchdogTimeout(10)
-                .open(commandResultListener);
+                .setOnSTDERRLineListener(mStderrListener)
+                .open(mOpenListener);
 
         waitForCommandFinished();
 
@@ -102,8 +136,9 @@ public class RootUtil {
      * Closes all resources related to the shell.
      */
     public synchronized void dispose() {
-        if (mShell == null)
+        if (mShell == null) {
             return;
+        }
 
         try {
             mShell.close();
@@ -115,22 +150,39 @@ public class RootUtil {
         mCallbackThread = null;
     }
 
+    public synchronized int execute(String command, LineCallback callback) {
+        if (mShell == null) {
+            startShell();
+        }
+
+        mCallback = callback;
+        mCommandRunning = true;
+        mShell.addCommand(command, 0, mStdoutListener);
+        waitForCommandFinished();
+
+        return mLastExitCode;
+    }
+
     /**
      * Executes a single command, waits for its termination and returns the
      * result
      */
-    public synchronized int execute(String command, List<String> output) {
-        if (mShell == null)
-            startShell();
+    public synchronized int execute(String command, final List<String> output) {
+        return execute(command, new LineCallback() {
+            @Override
+            public void onLine(String line) {
+                output.add(line);
+            }
 
-        mCommandRunning = true;
-        mShell.addCommand(command, 0, commandResultListener);
-        waitForCommandFinished();
+            @Override
+            public void onErrorLine(String line) {
+                output.add(line);
+            }
+        });
+    }
 
-        if (output != null && mLastOutput.size() != 0 && !mLastOutput.get(0).contains("WARNING"))
-            output.addAll(mLastOutput);
-
-        return mLastExitCode;
+    public synchronized int execute(String command) {
+        return execute(command, (LineCallback) null);
     }
 
     /**
@@ -161,7 +213,6 @@ public class RootUtil {
         }
         return path;
     }
-
 
     @Override
     protected void finalize() throws Throwable {
