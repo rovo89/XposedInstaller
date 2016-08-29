@@ -3,12 +3,13 @@ package de.robv.android.xposed.installer.installation;
 import de.robv.android.xposed.installer.util.RootUtil;
 import eu.chainfire.libsuperuser.Shell;
 
-public interface InstallCallback extends RootUtil.LineCallback {
+public interface FlashCallback extends RootUtil.LineCallback {
     void onStarted();
     void onDone();
     void onError(int exitCode, String error);
 
     int OK = 0;
+    int ERROR_GENERIC = 1;
 
     // SU errors
     int ERROR_TIMEOUT = Shell.OnCommandResultListener.WATCHDOG_EXIT;

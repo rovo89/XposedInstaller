@@ -418,8 +418,8 @@ public abstract class BaseAdvancedInstaller extends Fragment implements Download
                         super.onNegative(dialog);
                         if (installMode == INSTALL_MODE_RECOVERY_AUTO) {
                             // clean up to avoid unwanted flashing
-                            mRootUtil.executeWithBusybox("rm /cache/recovery/command", null);
-                            mRootUtil.executeWithBusybox("rm /cache/recovery/" + file, null);
+                            mRootUtil.executeWithBusybox("rm /cache/recovery/command");
+                            mRootUtil.executeWithBusybox("rm /cache/recovery/" + file);
                             AssetUtil.removeBusybox();
                         }
                     }

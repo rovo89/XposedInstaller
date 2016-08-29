@@ -185,12 +185,22 @@ public class RootUtil {
         return execute(command, (LineCallback) null);
     }
 
+    public int executeWithBusybox(String command, LineCallback callback) {
+        AssetUtil.extractBusybox();
+        return execute(AssetUtil.BUSYBOX_FILE.getAbsolutePath() + " " + command, callback);
+    }
+
     /**
      * Executes a single command via the bundled BusyBox executable
      */
     public int executeWithBusybox(String command, List<String> output) {
         AssetUtil.extractBusybox();
         return execute(AssetUtil.BUSYBOX_FILE.getAbsolutePath() + " " + command, output);
+    }
+
+    public int executeWithBusybox(String command) {
+        AssetUtil.extractBusybox();
+        return execute(AssetUtil.BUSYBOX_FILE.getAbsolutePath() + " " + command);
     }
 
     private static String getCanonicalPath(File file) {

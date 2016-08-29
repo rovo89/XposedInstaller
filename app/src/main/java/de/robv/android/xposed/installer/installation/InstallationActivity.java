@@ -2,6 +2,7 @@ package de.robv.android.xposed.installer.installation;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -22,17 +24,21 @@ import android.widget.TextView;
 import java.io.File;
 
 import de.robv.android.xposed.installer.R;
+import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.XposedBaseActivity;
-import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class InstallationActivity extends XposedBaseActivity {
-
-    private static String mPath;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setTheme(this);
+
+        Flashable flashable = getIntent().getParcelableExtra(Flashable.KEY);
+        if (flashable == null) {
+            Log.e(XposedApp.TAG, InstallationActivity.class.getName() + ": Flashable is missing");
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_container);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -53,17 +59,14 @@ public class InstallationActivity extends XposedBaseActivity {
 
         setFloating(toolbar, R.string.install);
 
-        if (getIntent().getExtras() != null) {
-            mPath = getIntent().getExtras().getString("path");
-        }
-
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, new InstallationFragment()).commit();
+            InstallationFragment logFragment = new InstallationFragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, logFragment).commit();
+            logFragment.startInstallation(this, flashable);
         }
     }
 
-    public static class InstallationFragment extends Fragment implements InstallCallback {
-
+    public static class InstallationFragment extends Fragment implements FlashCallback {
         private static final int TYPE_NONE = 0;
         private static final int TYPE_ERROR = -1;
         private static final int TYPE_OK = 1;
@@ -72,19 +75,19 @@ public class InstallationActivity extends XposedBaseActivity {
         private ImageView mConsoleResult;
         private CardView mResultContainer;
 
+        public void startInstallation(final Context context, final Flashable flashable) {
+            new Thread("FlashZip") {
+                @Override
+                public void run() {
+                    flashable.flash(context, InstallationFragment.this);
+                }
+            }.start();
+        }
+
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setRetainInstance(true);
-
-            if (savedInstanceState == null) {
-                new android.os.Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        InstallDirect.install(mPath, InstallationFragment.this, isOkSystemless());
-                    }
-                }, 1500); // wait 1.5 secs. installation is so fast
-            }
         }
 
         @Override
@@ -101,41 +104,65 @@ public class InstallationActivity extends XposedBaseActivity {
 
         @Override
         public void onStarted() {
-            appendText(getString(R.string.installation_started), TYPE_NONE);
-
-            mProgress.setIndeterminate(true);
+            XposedApp.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    appendText(getString(R.string.installation_started), TYPE_NONE);
+                    mProgress.setIndeterminate(true);
+                }
+            });
         }
 
         @Override
-        public void onLine(String line) {
-            appendText(line, TYPE_NONE);
+        public void onLine(final String line) {
+            XposedApp.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    appendText(line, TYPE_NONE);
+                }
+            });
         }
 
         @Override
-        public void onErrorLine(String line) {
-            appendText(line, TYPE_ERROR);
+        public void onErrorLine(final String line) {
+            XposedApp.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    appendText(line, TYPE_ERROR);
+                }
+            });
         }
 
         @Override
         public void onDone() {
-            appendText(getString(R.string.file_done), TYPE_OK);
+            XposedApp.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    appendText(getString(R.string.file_done), TYPE_OK);
 
-            mProgress.setIndeterminate(false);
-            mConsoleResult.setImageResource(R.drawable.ic_check_circle);
-            //noinspection deprecation
-            mResultContainer.setCardBackgroundColor(getResources().getColor(R.color.darker_green));
-            animateResult();
+                    mProgress.setIndeterminate(false);
+                    mConsoleResult.setImageResource(R.drawable.ic_check_circle);
+                    //noinspection deprecation
+                    mResultContainer.setCardBackgroundColor(getResources().getColor(R.color.darker_green));
+                    animateResult();
+                }
+            });
         }
 
         @Override
-        public void onError(int exitCode, String error) {
-            appendText(error, TYPE_ERROR);
+        public void onError(final int exitCode, final String error) {
+            XposedApp.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    appendText(error, TYPE_ERROR);
 
-            mProgress.setIndeterminate(false);
-            mConsoleResult.setImageResource(R.drawable.ic_error);
-            //noinspection deprecation
-            mResultContainer.setCardBackgroundColor(getResources().getColor(R.color.red_500));
-            animateResult();
+                    mProgress.setIndeterminate(false);
+                    mConsoleResult.setImageResource(R.drawable.ic_error);
+                    //noinspection deprecation
+                    mResultContainer.setCardBackgroundColor(getResources().getColor(R.color.red_500));
+                    animateResult();
+                }
+            });
         }
 
         private void animateResult() {

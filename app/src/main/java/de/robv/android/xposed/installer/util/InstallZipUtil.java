@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.zip.ZipFile;
 
-import de.robv.android.xposed.installer.installation.InstallCallback;
+import de.robv.android.xposed.installer.installation.FlashCallback;
 
 public final class InstallZipUtil {
     public static class ZipCheckResult {
@@ -122,23 +122,23 @@ public final class InstallZipUtil {
     public static String messageForError(int code, Object... args) {
         // TODO make translatable
         switch (code) {
-            case InstallCallback.ERROR_TIMEOUT:
+            case FlashCallback.ERROR_TIMEOUT:
                 return "Timeout occured";
 
-            case InstallCallback.ERROR_SHELL_DIED:
+            case FlashCallback.ERROR_SHELL_DIED:
                 return "Execution aborted unexpectedly";
 
-            case InstallCallback.ERROR_NO_ROOT_ACCESS:
+            case FlashCallback.ERROR_NO_ROOT_ACCESS:
                 return "Could not gain root access";
 
-            case InstallCallback.ERROR_INVALID_ZIP:
+            case FlashCallback.ERROR_INVALID_ZIP:
                 if (args.length > 0) {
                     return "Not a flashable ZIP file" + "\n" + args[0];
                 } else {
                     return "Not a flashable ZIP file";
                 }
 
-            case InstallCallback.ERROR_NOT_FLASHABLE_IN_APP:
+            case FlashCallback.ERROR_NOT_FLASHABLE_IN_APP:
                 return "This file can only be flashed via recovery";
 
             default:
@@ -146,7 +146,7 @@ public final class InstallZipUtil {
         }
     }
 
-    public static void triggerError(InstallCallback callback, int code, Object... args) {
+    public static void triggerError(FlashCallback callback, int code, Object... args) {
         callback.onError(code, messageForError(code, args));
     }
 

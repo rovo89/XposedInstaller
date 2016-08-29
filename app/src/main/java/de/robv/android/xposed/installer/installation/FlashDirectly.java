@@ -1,5 +1,8 @@
 package de.robv.android.xposed.installer.installation;
 
+import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import java.io.File;
@@ -16,25 +19,32 @@ import static de.robv.android.xposed.installer.util.InstallZipUtil.closeSilently
 import static de.robv.android.xposed.installer.util.InstallZipUtil.triggerError;
 import static de.robv.android.xposed.installer.util.RootUtil.getShellPath;
 
-public final class InstallDirect {
-    public static void install(String zipPath, InstallCallback callback, boolean systemless) {
+public class FlashDirectly extends Flashable {
+    private final boolean mSystemless;
+
+    public FlashDirectly(File zipPath, boolean systemless) {
+        super(zipPath);
+        mSystemless = systemless;
+    }
+
+    public void flash(Context context, FlashCallback callback) {
         // Open the ZIP file.
         ZipFile zip;
         try {
-            zip = new ZipFile(zipPath);
+            zip = new ZipFile(mZipPath);
         } catch (IOException e) {
-            triggerError(callback, InstallCallback.ERROR_INVALID_ZIP, e.getLocalizedMessage());
+            triggerError(callback, FlashCallback.ERROR_INVALID_ZIP, e.getLocalizedMessage());
             return;
         }
 
         // Do some checks.
         InstallZipUtil.ZipCheckResult zipCheck = InstallZipUtil.checkZip(zip);
         if (!zipCheck.isValidZip()) {
-            triggerError(callback, InstallCallback.ERROR_INVALID_ZIP);
+            triggerError(callback, FlashCallback.ERROR_INVALID_ZIP);
             closeSilently(zip);
             return;
         } else if (!zipCheck.isFlashableInApp()) {
-            triggerError(callback, InstallCallback.ERROR_NOT_FLASHABLE_IN_APP);
+            triggerError(callback, FlashCallback.ERROR_NOT_FLASHABLE_IN_APP);
             closeSilently(zip);
             return;
         }
@@ -46,7 +56,7 @@ public final class InstallDirect {
             AssetUtil.writeStreamToFile(zip.getInputStream(entry), updateBinaryFile, 0700);
         } catch (IOException e) {
             Log.e(XposedApp.TAG, "Could not extract update-binary", e);
-            triggerError(callback, InstallCallback.ERROR_INVALID_ZIP);
+            triggerError(callback, FlashCallback.ERROR_INVALID_ZIP);
             return;
         } finally {
             closeSilently(zip);
@@ -55,18 +65,18 @@ public final class InstallDirect {
         // Execute the flash commands.
         RootUtil rootUtil = new RootUtil();
         if (!rootUtil.startShell()) {
-            triggerError(callback, InstallCallback.ERROR_NO_ROOT_ACCESS);
+            triggerError(callback, FlashCallback.ERROR_NO_ROOT_ACCESS);
             return;
         }
 
         callback.onStarted();
 
         rootUtil.execute("export NO_UIPRINT=1", callback);
-        if (systemless) {
+        if (mSystemless) {
             rootUtil.execute("export SYSTEMLESS=1", callback);
         }
 
-        int result = rootUtil.execute(getShellPath(updateBinaryFile) + " 2 1 " + getShellPath(zipPath), callback);
+        int result = rootUtil.execute(getShellPath(updateBinaryFile) + " 2 1 " + getShellPath(mZipPath), callback);
         if (result != 0) {
             triggerError(callback, result);
             return;
@@ -75,5 +85,27 @@ public final class InstallDirect {
         callback.onDone();
     }
 
-    private InstallDirect() {}
+    public static final Parcelable.Creator<FlashDirectly> CREATOR
+            = new Parcelable.Creator<FlashDirectly>() {
+        @Override
+        public FlashDirectly createFromParcel(Parcel in) {
+            return new FlashDirectly(in);
+        }
+
+        @Override
+        public FlashDirectly[] newArray(int size) {
+            return new FlashDirectly[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+        dest.writeInt(mSystemless ? 1 : 0);
+    }
+
+    protected FlashDirectly(Parcel in) {
+        super(in);
+        mSystemless = in.readInt() == 1;
+    }
 }

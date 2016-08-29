@@ -196,14 +196,14 @@ public class FrameworkDownloader extends Fragment {
                             runAfterDownload = new RunnableWithParam<File>() {
                                 @Override
                                 public void run(File file) {
-                                    install(context, file);
+                                    flash(context, new FlashDirectly(file, false));
                                 }
                             };
                         } else if (action == ACTION_INSTALL_RECOVERY) {
                             runAfterDownload = new RunnableWithParam<File>() {
                                 @Override
                                 public void run(File file) {
-                                    installRecovery(context, file);
+                                    flash(context, new FlashRecoveryAuto(file));
                                 }
                             };
                         } else if (action == ACTION_SAVE) {
@@ -253,9 +253,9 @@ public class FrameworkDownloader extends Fragment {
                 .download();
     }
 
-    private static void install(Context context, File file) {
+    private static void flash(Context context, Flashable flashable) {
         Intent install = new Intent(context, InstallationActivity.class);
-        install.putExtra("path", file.getAbsolutePath());
+        install.putExtra(Flashable.KEY, flashable);
         context.startActivity(install);
     }
 
