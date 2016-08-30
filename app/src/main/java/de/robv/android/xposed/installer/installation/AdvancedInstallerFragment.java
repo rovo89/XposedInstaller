@@ -1,13 +1,5 @@
 package de.robv.android.xposed.installer.installation;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.Nullable;
@@ -17,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,54 +20,22 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import de.robv.android.xposed.installer.R;
-import de.robv.android.xposed.installer.WelcomeActivity;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
-import de.robv.android.xposed.installer.util.XposedZip;
-import de.robv.android.xposed.installer.util.ZipUtils;
 
 public class AdvancedInstallerFragment extends Fragment {
-
-    private static final List<XposedZip.Installer> listInstaller = new ArrayList<>();
-    private static final List<XposedZip.Uninstaller> listUninstaller = new ArrayList<>();
-
     private static ViewPager mPager;
     private TabLayout mTabLayout;
-    private int counter = 0;
-    private BroadcastReceiver connectionListener = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            counter++;
-
-            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-
-            if (counter == 1) return;
-            onNetworkChange(networkInfo != null && networkInfo.isConnected());
-        }
-    };
     private RootUtil mRootUtil = new RootUtil();
-    private int thisSdkCount = 0;
-
-    private void onNetworkChange(boolean state) {
-        if (state) new ZipLoader().execute();
-        else StatusInstallerFragment.setError(true, false);
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        counter = 0;
-
-        listInstaller.clear();
-        listUninstaller.clear();
     }
 
     @Nullable
@@ -84,14 +43,11 @@ public class AdvancedInstallerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_advanced_installer, container, false);
         mPager = (ViewPager) view.findViewById(R.id.pager);
+        mPager.setAdapter(new TabsAdapter(getChildFragmentManager(), false));
         mTabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-
-        mPager.setAdapter(new TabsAdapter(getChildFragmentManager(), true));
         mTabLayout.setupWithViewPager(mPager);
 
         setHasOptionsMenu(true);
-        new ZipLoader().execute();
-        getActivity().registerReceiver(connectionListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         if (!XposedApp.getPreferences().getBoolean("hide_install_warning", false)) {
             final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
@@ -112,13 +68,6 @@ public class AdvancedInstallerFragment extends Fragment {
         }
 
         return view;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-        getActivity().unregisterReceiver(connectionListener);
     }
 
     @Override
@@ -233,122 +182,9 @@ public class AdvancedInstallerFragment extends Fragment {
         AssetUtil.removeBusybox();
     }
 
-    public static class ClassicInstaller extends BaseAdvancedInstaller {
-
-        @Override
-        protected List<XposedZip.Installer> installers() {
-            return listInstaller;
-        }
-
-        @Override
-        protected List<XposedZip.Uninstaller> uninstallers() {
-            return listUninstaller;
-        }
-
-        @Override
-        protected int compatibility() {
-            switch (Build.VERSION.SDK_INT) {
-                case 21:
-                case 22:
-                case 23:
-                    return R.string.classic_compatibility_v21;
-                default:
-                    return R.string.classic_compatibility;
-            }
-        }
-
-        @Override
-        protected int incompatibility() {
-            switch (Build.VERSION.SDK_INT) {
-                case 21:
-                case 22:
-                case 23:
-                    return R.string.classic_incompatibility_v21;
-                default:
-                    return R.string.classic_incompatibility;
-            }
-        }
-
-        @Override
-        protected String xdaUrl() {
-            switch (Build.VERSION.SDK_INT) {
-                case 21:
-                case 22:
-                    return "http://forum.xda-developers.com/xposed/official-xposed-lollipop-t3030118";
-                case 23:
-                    return "http://forum.xda-developers.com/xposed/discussion-xposed-marshmallow-t3249095";
-                default:
-                    return "http://forum.xda-developers.com/xposed";
-            }
-        }
-
-    }
-
-    private class ZipLoader extends AsyncTask<Void, Void, Boolean> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            WelcomeActivity.mProgress.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            try {
-                if (Build.VERSION.SDK_INT < 21) {
-                    thisSdkCount++;
-                    listInstaller.add(new XposedZip.Installer(null, "Xposed-Installer-Recovery", "arm + x86", String.valueOf(Build.VERSION.SDK_INT), "58"));
-                    listUninstaller.add(new XposedZip.Uninstaller(getContext(), null, "Xposed-Disabler-Recovery", "arm + x86", "20140101"));
-                    return true;
-                }
-
-                ZipUtils.init();
-
-                for (XposedZip.Installer i : ZipUtils.getInstallers()) {
-                    if (Build.VERSION.SDK_INT == Integer.parseInt(i.sdk)) {
-                        thisSdkCount++;
-                        listInstaller.add(i);
-                    }
-                }
-
-                listUninstaller.addAll(ZipUtils.getUninstallers(getContext()));
-
-                return true;
-            } catch (Exception e) {
-                Log.e(XposedApp.TAG, "AdvancedInstallerFragment -> " + e.getMessage());
-                return false;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(Boolean result) {
-            super.onPostExecute(result);
-
-            WelcomeActivity.mProgress.setVisibility(View.GONE);
-            try {
-                if (thisSdkCount == 0) {
-                    mPager.setAdapter(new TabsAdapter(getChildFragmentManager(), true));
-                } else {
-                    mPager.setAdapter(new TabsAdapter(getChildFragmentManager(), !result));
-                }
-
-                mTabLayout.setupWithViewPager(mPager);
-
-                if (!result) {
-                    StatusInstallerFragment.setError(true/* connection failed */, true /* so no sdks available*/);
-                } else {
-                    StatusInstallerFragment.setError(false /*connection ok*/, thisSdkCount == 0 /*if counter is 0 there aren't sdks*/);
-                }
-
-            } catch (IllegalStateException ignored) {
-            }
-        }
-    }
 
     class TabsAdapter extends FragmentPagerAdapter {
-
-        String[] tabsTitles = new String[]{getString(R.string.status), getString(R.string.install), "Download"};
+        String[] tabsTitles = new String[]{getString(R.string.status), "Download"};
 
         public TabsAdapter(FragmentManager mgr, boolean lock) {
             super(mgr);
@@ -369,9 +205,6 @@ public class AdvancedInstallerFragment extends Fragment {
                     fragment = new StatusInstallerFragment();
                     break;
                 case 1:
-                    fragment = new ClassicInstaller();
-                    break;
-                case 2:
                     fragment = new FrameworkDownloader();
                     break;
             }
