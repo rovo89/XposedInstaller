@@ -5,25 +5,40 @@ import android.os.Build;
 import android.support.annotation.WorkerThread;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import de.robv.android.xposed.installer.XposedApp;
+import de.robv.android.xposed.installer.util.DownloadsUtil.SyncDownloadInfo;
 import de.robv.android.xposed.installer.util.InstallZipUtil.XposedProp;
 import de.robv.android.xposed.installer.util.InstallZipUtil.ZipCheckResult;
 
-public class FrameworkZips {
-    public static String ARCH = getArch();
+public final class FrameworkZips {
+    public static final String ARCH = getArch();
+    public static final String SDK = Integer.toString(Build.VERSION.SDK_INT);
+
+    private static final File ONLINE_FILE = new File(XposedApp.getInstance().getCacheDir(), "framework.json");
+    private static final String ONLINE_URL = "http://dl-xda.xposed.info/framework.json";
 
     private static Map<String, OnlineFrameworkZip> sOnline = Collections.emptyMap();
     private static Map<String, List<LocalFrameworkZip>> sLocal = Collections.emptyMap();
@@ -44,33 +59,165 @@ public class FrameworkZips {
 
     @WorkerThread
     public static void refreshOnline() {
-        // TODO fetch list from server, make sure no duplicates exist
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException ignored) {}
-        Map<String, OnlineFrameworkZip> zips = new LinkedHashMap<>();
-        for (int version = 86; version >= 79; version--) {
-            String title = "Version " + version;
-            if (zips.containsKey(title)) {
-                continue;
-            }
-            OnlineFrameworkZip zip = new OnlineFrameworkZip();
-            zip.title = title;
-            zip.url = "http://dl-xda.xposed.info/framework/sdk23/x86/xposed-v" + version + "-sdk23-x86.zip";
-            zip.current = version >= 84;
-            zips.put(zip.title, zip);
-        }
-
-        OnlineFrameworkZip zip = new OnlineFrameworkZip();
-        zip.title = "Uninstaller (20150831)";
-        zip.url = "http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-x86.zip";
-        zip.current = true;
-        zip.uninstaller = true;
-        zips.put(zip.title, zip);
-
+        Map<String, OnlineFrameworkZip> zips = getOnline();
         synchronized (FrameworkZips.class) {
             sOnline = zips;
         }
+    }
+
+    // TODO provide user feedback in case of errors
+    private static Map<String, OnlineFrameworkZip> getOnline() {
+        SyncDownloadInfo info = DownloadsUtil.downloadSynchronously(ONLINE_URL, ONLINE_FILE);
+        if (info.status == SyncDownloadInfo.STATUS_FAILED) {
+            return Collections.emptyMap();
+        }
+
+        String text;
+        try {
+            text = fileToString(ONLINE_FILE);
+        } catch (IOException e) {
+            Log.e(XposedApp.TAG, "Could not read " + ONLINE_FILE, e);
+            return Collections.emptyMap();
+        }
+
+        try {
+            JSONObject json = new JSONObject(text);
+
+            Map<String, OnlineFrameworkZip> zips = new LinkedHashMap<>();
+            JSONArray jsonZips = json.getJSONArray("zips");
+            for (int i = 0; i < jsonZips.length(); i++) {
+                parseZipSpec(jsonZips.getJSONObject(i), zips);
+            }
+
+            return zips;
+        } catch (JSONException e) {
+            Log.e(XposedApp.TAG, "Could not parse " + ONLINE_URL, e);
+            return Collections.emptyMap();
+        }
+    }
+
+    private static String fileToString(File file) throws IOException {
+        Reader reader = null;
+        try {
+            reader = new FileReader(file);
+            StringBuilder sb = new StringBuilder((int) file.length());
+            char[] buffer = new char[8192];
+            int read;
+            while ((read = reader.read(buffer, 0, buffer.length)) > 0) {
+                sb.append(buffer, 0, read);
+            }
+            return sb.toString();
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException ignored) {}
+        }
+    }
+
+    private static void parseZipSpec(JSONObject jsonZip, Map<String, OnlineFrameworkZip> zips) throws JSONException {
+        if (!contains(jsonZip, "archs", ARCH) || !contains(jsonZip, "sdks", SDK)) {
+            return;
+        }
+
+        String titleTemplate = jsonZip.getString("title");
+        String urlTemplate = jsonZip.getString("url");
+        boolean current = jsonZip.optBoolean("current", false);
+        boolean uninstaller = jsonZip.optBoolean("uninstaller", false);
+        Map<String, String> attributes = new HashMap<>(3);
+
+        JSONArray jsonVersions = jsonZip.optJSONArray("versions");
+        if (jsonVersions != null) {
+            Set<String> excludes = Collections.emptySet();
+            JSONArray jsonExcludes = jsonZip.optJSONArray("exclude");
+            if (jsonExcludes != null) {
+                excludes = new HashSet<>();
+                for (int i = 0; i < jsonExcludes.length(); i++) {
+                    JSONObject jsonExclude = jsonExcludes.getJSONObject(i);
+                    if (contains(jsonExclude, "archs", ARCH) && contains(jsonExclude, "sdks", SDK)) {
+                        JSONArray jsonExcludeVersions = jsonExclude.getJSONArray("versions");
+                        for (int j = 0; j < jsonExcludeVersions.length(); j++) {
+                            excludes.add(jsonExcludeVersions.getString(j));
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < jsonVersions.length(); i++) {
+                JSONObject versionData = jsonVersions.getJSONObject(i);
+                String version = versionData.getString("version");
+                if (excludes.contains(version)) {
+                    continue;
+                }
+
+                attributes.clear();
+                attributes.put("arch", ARCH);
+                attributes.put("sdk", SDK);
+                parseAttributes(versionData, attributes);
+
+                addZip(zips, titleTemplate, urlTemplate, attributes,
+                        versionData.optBoolean("current", current), uninstaller);
+            }
+        } else {
+            attributes.put("arch", ARCH);
+            attributes.put("sdk", SDK);
+            addZip(zips, titleTemplate, urlTemplate, attributes, current, uninstaller);
+        }
+    }
+
+    private static boolean contains(JSONObject obj, String key, String value) throws JSONException {
+        JSONArray array = obj.optJSONArray(key);
+        if (array == null) {
+            return true;
+        }
+        for (int i = 0; i < array.length(); i++) {
+            if (array.getString(i).equals(value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static void parseAttributes(JSONObject obj, Map<String, String> attributes) throws JSONException {
+        if (obj != null) {
+            Iterator<String> it = obj.keys();
+            while (it.hasNext()) {
+                String key = it.next();
+                Object value = obj.get(key);
+                if (value instanceof String) {
+                    attributes.put(key, (String) value);
+                }
+            }
+        }
+    }
+
+    private static void addZip(Map<String, OnlineFrameworkZip> zips, String titleTemplate, String urlTemplate,
+                               Map<String, String> attributes, boolean current, boolean uninstaller) {
+        String title = replacePlaceholders(titleTemplate, attributes);
+        if (!zips.containsKey(title)) {
+            OnlineFrameworkZip zip = new OnlineFrameworkZip();
+            zip.title = title;
+            zip.url = replacePlaceholders(urlTemplate, attributes);
+            zip.current = current;
+            zip.uninstaller = uninstaller;
+            zips.put(zip.title, zip);
+        }
+    }
+
+    private static String replacePlaceholders(String template, Map<String, String> values) {
+        if (!template.contains("$(")) {
+            return template;
+        }
+
+        StringBuilder sb = new StringBuilder(template);
+        for (Entry<String, String> entry : values.entrySet()) {
+            String search = "$(" + entry.getKey() + ")";
+            int length = search.length();
+            int index;
+            while ((index = sb.indexOf(search)) != -1) {
+                sb.replace(index, index + length, entry.getValue());
+            }
+        }
+        return sb.toString();
     }
 
     @WorkerThread
