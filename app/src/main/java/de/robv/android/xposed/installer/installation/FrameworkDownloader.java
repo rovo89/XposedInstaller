@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -102,26 +103,39 @@ public class FrameworkDownloader extends Fragment {
             LocalFrameworkZip local = FrameworkZips.getLocal(title);
             if (online != null) {
                 if (online.uninstaller == uninstaller && online.current) {
-                    addZipView(inflater, container, online, local != null);
+                    addZipView(inflater, container, online, true, local != null);
                 }
             } else if (local != null) {
                 if (local.uninstaller == uninstaller) {
-                    addZipView(inflater, container, local, true);
+                    addZipView(inflater, container, local, false, true);
                 }
             }
         }
     }
 
-    public void addZipView(LayoutInflater inflater, ViewGroup container, final FrameworkZip zip, boolean hasLocal) {
+    public void addZipView(LayoutInflater inflater, ViewGroup container, final FrameworkZip zip, boolean hasOnline, boolean hasLocal) {
         View view = inflater.inflate(R.layout.list_item_framework_zip, container, false);
+
         TextView tvTitle = (TextView) view.findViewById(R.id.title);
         tvTitle.setText(zip.title);
-        if (zip.uninstaller) {
+
+        ImageView ivStatus = (ImageView) view.findViewById(R.id.framework_zip_status);
+        if (!hasLocal) {
+            ivStatus.setImageResource(R.drawable.ic_cloud);
+        } else if (hasOnline) {
+            ivStatus.setImageResource(R.drawable.ic_cloud_download);
+        } else {
+            ivStatus.setImageResource(R.drawable.ic_cloud_off);
+        }
+
+        if (zip instanceof OnlineFrameworkZip && !((OnlineFrameworkZip) zip).current) {
+            int gray = Color.parseColor("#A0A0A0");
+            tvTitle.setTextColor(gray);
+            ivStatus.setColorFilter(gray);
+        } else if (zip.uninstaller) {
             tvTitle.setTextColor(Color.RED);
         }
-        if (!hasLocal) {
-            view.findViewById(R.id.framework_zip_downloaded).setVisibility(View.GONE);
-        }
+
         view.setClickable(true);
         view.setOnClickListener(new View.OnClickListener() {
             @Override

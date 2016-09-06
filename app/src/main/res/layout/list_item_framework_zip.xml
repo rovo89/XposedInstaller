@@ -34,11 +34,9 @@
                 android:textIsSelectable="false"/>
 
             <ImageView
-                android:id="@+id/framework_zip_downloaded"
+                android:id="@+id/framework_zip_status"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tint="@color/darker_green"
-                android:src="@drawable/ic_save"/>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
 </android.support.v7.widget.CardView>
