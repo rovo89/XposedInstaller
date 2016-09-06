@@ -1,5 +1,7 @@
 package de.robv.android.xposed.installer;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,9 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -108,7 +108,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
 
     private void setupTabs() {
         mPager = (ViewPager) findViewById(R.id.download_pager);
-        mPager.setAdapter(new SwipeFragmentPagerAdapter(getSupportFragmentManager()));
+        mPager.setAdapter(new SwipeFragmentPagerAdapter(getFragmentManager()));
         TabLayout mTabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         mTabLayout.setupWithViewPager(mPager);
     }

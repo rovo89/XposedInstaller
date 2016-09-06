@@ -1,5 +1,7 @@
 package de.robv.android.xposed.installer;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,8 +9,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -163,8 +163,8 @@ public class WelcomeActivity extends XposedBaseActivity implements NavigationVie
         final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(4));
 
         if (navFragment != null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.setCustomAnimations(R.animator.fade_in, R.animator.fade_out);
             try {
                 mProgress.setVisibility(View.GONE);
                 transaction.replace(R.id.content_frame, navFragment).commit();
@@ -230,7 +230,7 @@ public class WelcomeActivity extends XposedBaseActivity implements NavigationVie
         String frameworkUpdateVersion = mRepoLoader.getFrameworkUpdateVersion();
         boolean moduleUpdateAvailable = mRepoLoader.hasModuleUpdates();
 
-        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
+        Fragment currentFragment = getFragmentManager().findFragmentById(R.id.content_frame);
         if (currentFragment instanceof DownloadDetailsFragment) {
             if (frameworkUpdateVersion != null) {
                 Snackbar.make(parentLayout, R.string.welcome_framework_update_available + " " + String.valueOf(frameworkUpdateVersion), Snackbar.LENGTH_LONG).show();

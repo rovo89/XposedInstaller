@@ -2,11 +2,11 @@ package de.robv.android.xposed.installer.installation;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;

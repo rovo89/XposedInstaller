@@ -1,5 +1,7 @@
 package de.robv.android.xposed.installer;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,8 +9,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.SearchView;
@@ -42,7 +42,7 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public class DownloadFragment extends Fragment implements RepoListener, ModuleListener {
-    public static FragmentActivity sActivity;
+    public static Activity sActivity;
     private SharedPreferences mPref;
     private DownloadsAdapter mAdapter;
     private String mFilterText;

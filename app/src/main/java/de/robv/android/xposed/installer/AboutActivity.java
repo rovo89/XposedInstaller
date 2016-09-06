@@ -1,9 +1,9 @@
 package de.robv.android.xposed.installer;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
@@ -55,7 +55,7 @@ public class AboutActivity extends XposedBaseActivity {
         setFloating(toolbar, R.string.details);
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.container, new AboutFragment()).commit();
+            getFragmentManager().beginTransaction().add(R.id.container, new AboutFragment()).commit();
         }
     }
 
@@ -110,13 +110,13 @@ public class AboutActivity extends XposedBaseActivity {
             developersView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MaterialDialog dialog = new MaterialDialog.Builder(getContext())
+                    MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
                             .title(R.string.about_developers_label)
                             .content(R.string.about_developers)
                             .positiveText(android.R.string.ok)
                             .show();
 
-                    ((TextView) dialog.findViewById(R.id.content)).setMovementMethod(LinkMovementMethod.getInstance());
+                    ((TextView) dialog.findViewById(R.id.md_content)).setMovementMethod(LinkMovementMethod.getInstance());
                 }
             });
 
@@ -143,7 +143,7 @@ public class AboutActivity extends XposedBaseActivity {
             notices.addNotice(new Notice("picasso", "https://github.com/square/picasso", "Copyright 2013 Square, Inc.", new ApacheSoftwareLicense20()));
             notices.addNotice(new Notice("materialdesignicons", "http://materialdesignicons.com", "Copyright (c) 2014, Austin Andrews", new SILOpenFontLicense11()));
 
-            new LicensesDialog.Builder(getContext())
+            new LicensesDialog.Builder(getActivity())
                     .setNotices(notices)
                     .setIncludeOwnLicense(true)
                     .build()

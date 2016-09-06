@@ -2,11 +2,11 @@ package de.robv.android.xposed.installer.installation;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
+import android.app.Fragment;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
@@ -61,7 +61,7 @@ public class InstallationActivity extends XposedBaseActivity {
 
         if (savedInstanceState == null) {
             InstallationFragment logFragment = new InstallationFragment();
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, logFragment).commit();
+            getFragmentManager().beginTransaction().replace(R.id.container, logFragment).commit();
             logFragment.startInstallation(this, flashable);
         }
     }

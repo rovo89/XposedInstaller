@@ -1,11 +1,11 @@
 package de.robv.android.xposed.installer;
 
 import android.app.Activity;
+import android.app.ListFragment;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.text.method.LinkMovementMethod;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -100,7 +100,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
         if (requestCode == WRITE_EXTERNAL_PERMISSION) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                DownloadsUtil.add(getContext(), module.name,
+                DownloadsUtil.add(getActivity(), module.name,
                         DownloadView.mClickedUrl,
                         new DownloadsUtil.DownloadFinishedCallback() {
                             @Override
@@ -110,7 +110,7 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
                         }, DownloadsUtil.MIME_TYPES.APK, true, true);
 
             } else {
-                Toast.makeText(this.getContext(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
             }
         }
     }

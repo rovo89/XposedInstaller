@@ -1,6 +1,7 @@
 package de.robv.android.xposed.installer;
 
 import android.Manifest;
+import android.app.ListFragment;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +16,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBar;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -192,7 +192,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.bookmarks) {
-            startActivity(new Intent(getContext(), ModulesBookmark.class));
+            startActivity(new Intent(getActivity(), ModulesBookmark.class));
             return true;
         }
 

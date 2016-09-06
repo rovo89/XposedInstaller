@@ -2,10 +2,10 @@ package de.robv.android.xposed.installer.widget;
 
 import android.Manifest;
 import android.app.DownloadManager;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;

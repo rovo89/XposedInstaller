@@ -1,6 +1,7 @@
 package de.robv.android.xposed.installer;
 
 import android.Manifest;
+import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,8 +12,8 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v13.app.FragmentCompat;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ListFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -73,7 +74,7 @@ public class ModulesBookmark extends XposedBaseActivity {
         container = findViewById(R.id.container);
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.container, new ModulesBookmarkFragment()).commit();
+            getFragmentManager().beginTransaction().add(R.id.container, new ModulesBookmarkFragment()).commit();
         }
     }
 
@@ -89,7 +90,7 @@ public class ModulesBookmark extends XposedBaseActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            mBookmarksPref = getContext().getSharedPreferences("bookmarks", MODE_PRIVATE);
+            mBookmarksPref = getActivity().getSharedPreferences("bookmarks", MODE_PRIVATE);
             mBookmarksPref.registerOnSharedPreferenceChangeListener(this);
         }
 
@@ -119,7 +120,7 @@ public class ModulesBookmark extends XposedBaseActivity {
             registerForContextMenu(getListView());
             setEmptyText(getString(R.string.no_bookmark_added));
 
-            mAdapter = new BookmarkModuleAdapter(getContext());
+            mAdapter = new BookmarkModuleAdapter(getActivity());
             getModules();
             setListAdapter(mAdapter);
 
@@ -192,7 +193,7 @@ public class ModulesBookmark extends XposedBaseActivity {
 
             switch (item.getItemId()) {
                 case R.id.install_bookmark:
-                    DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
                             XposedApp.installApk(context, info);
@@ -200,7 +201,7 @@ public class ModulesBookmark extends XposedBaseActivity {
                     }, DownloadsUtil.MIME_TYPES.APK);
                     break;
                 case R.id.install_remove_bookmark:
-                    DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
                             XposedApp.installApk(context, info);
@@ -212,7 +213,7 @@ public class ModulesBookmark extends XposedBaseActivity {
                     if (checkPermissions())
                         return false;
 
-                    DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
                             Toast.makeText(context, getString(R.string.module_saved,
@@ -224,7 +225,7 @@ public class ModulesBookmark extends XposedBaseActivity {
                     if (checkPermissions())
                         return false;
 
-                    DownloadsUtil.add(getContext(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
                             remove(pkg);
@@ -242,7 +243,7 @@ public class ModulesBookmark extends XposedBaseActivity {
 
         private boolean checkPermissions() {
             if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
+                FragmentCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
                 return true;
             }
             return false;

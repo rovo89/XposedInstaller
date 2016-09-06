@@ -1,7 +1,7 @@
 package de.robv.android.xposed.installer;
 
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -38,7 +38,7 @@ public class SupportActivity extends XposedBaseActivity {
         setFloating(toolbar, 0);
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.container, new SupportFragment()).commit();
+            getFragmentManager().beginTransaction().add(R.id.container, new SupportFragment()).commit();
         }
     }
 

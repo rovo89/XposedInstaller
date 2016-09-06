@@ -1,12 +1,12 @@
 package de.robv.android.xposed.installer.installation;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.MaterialDialog.Builder;
-import com.afollestad.materialdialogs.MaterialDialog.ListCallback;
 import com.afollestad.materialdialogs.simplelist.MaterialSimpleListAdapter;
 import com.afollestad.materialdialogs.simplelist.MaterialSimpleListItem;
 
@@ -88,7 +87,7 @@ public class FrameworkDownloader extends Fragment {
         LinearLayout zips = (LinearLayout) getView().findViewById(R.id.zips);
 
         // TODO add a proper layout, spinner or something like that
-        TextView tv = new TextView(getContext());
+        TextView tv = new TextView(getActivity());
         tv.setText("loading...");
         tv.setTextSize(20);
 
@@ -166,7 +165,57 @@ public class FrameworkDownloader extends Fragment {
         final long ACTION_SAVE = 2;
         final long ACTION_DELETE = 3;
 
-        final MaterialSimpleListAdapter adapter = new MaterialSimpleListAdapter(context);
+        // TODO this is a work-around as the callback can only access final variables
+        // see also: https://github.com/afollestad/material-dialogs/issues/1175
+        final MaterialDialog[] dialogRef = new MaterialDialog[1];
+
+        final MaterialSimpleListAdapter adapter = new MaterialSimpleListAdapter(new MaterialSimpleListAdapter.Callback() {
+            @Override
+            public void onMaterialListItemSelected(int index, MaterialSimpleListItem item) {
+                MaterialDialog dialog = dialogRef[0];
+                dialog.dismiss();
+                long action = item.getId();
+
+                // Handle delete simple actions.
+                if (action == ACTION_DELETE) {
+                    FrameworkZips.delete(context, title);
+                    triggerRefresh(false, true);
+                    return;
+                }
+
+                // Handle actions that need a download first.
+                RunnableWithParam<File> runAfterDownload = null;
+                if (action == ACTION_INSTALL) {
+                    runAfterDownload = new RunnableWithParam<File>() {
+                        @Override
+                        public void run(File file) {
+                            flash(context, new FlashDirectly(file, false));
+                        }
+                    };
+                } else if (action == ACTION_INSTALL_RECOVERY) {
+                    runAfterDownload = new RunnableWithParam<File>() {
+                        @Override
+                        public void run(File file) {
+                            flash(context, new FlashRecoveryAuto(file));
+                        }
+                    };
+                } else if (action == ACTION_SAVE) {
+                    runAfterDownload = new RunnableWithParam<File>() {
+                        @Override
+                        public void run(File file) {
+                            saveTo(context, file);
+                        }
+                    };
+                }
+
+                LocalFrameworkZip local = FrameworkZips.getLocal(title);
+                if (local != null) {
+                    runAfterDownload.run(local.path);
+                } else {
+                    download(context, title, runAfterDownload);
+                }
+            }
+        });
 
         // TODO Adjust texts for uninstaller (e.g. "execute")
         adapter.add(new MaterialSimpleListItem.Builder(context)
@@ -197,69 +246,11 @@ public class FrameworkDownloader extends Fragment {
 
         MaterialDialog dialog = new Builder(context)
                 .title(title)
-                .adapter(adapter, new ListCallback() {
-                    @Override
-                    public void onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
-                        int numHeaders = dialog.getListView().getHeaderViewsCount();
-                        if (which < numHeaders) {
-                            // TODO if we really want to add a description, this could expand it
-                            return;
-                        }
-
-                        dialog.dismiss();
-                        MaterialSimpleListItem item = adapter.getItem(which - numHeaders);
-                        long action = item.getId();
-
-                        // Handle delete simple actions.
-                        if (action == ACTION_DELETE) {
-                            FrameworkZips.delete(context, title);
-                            triggerRefresh(false, true);
-                            return;
-                        }
-
-                        // Handle actions that need a download first.
-                        RunnableWithParam<File> runAfterDownload = null;
-                        if (action == ACTION_INSTALL) {
-                            runAfterDownload = new RunnableWithParam<File>() {
-                                @Override
-                                public void run(File file) {
-                                    flash(context, new FlashDirectly(file, false));
-                                }
-                            };
-                        } else if (action == ACTION_INSTALL_RECOVERY) {
-                            runAfterDownload = new RunnableWithParam<File>() {
-                                @Override
-                                public void run(File file) {
-                                    flash(context, new FlashRecoveryAuto(file));
-                                }
-                            };
-                        } else if (action == ACTION_SAVE) {
-                            runAfterDownload = new RunnableWithParam<File>() {
-                                @Override
-                                public void run(File file) {
-                                    saveTo(context, file);
-                                }
-                            };
-                        }
-
-                        LocalFrameworkZip local = FrameworkZips.getLocal(title);
-                        if (local != null) {
-                            runAfterDownload.run(local.path);
-                        } else {
-                            download(context, title, runAfterDownload);
-                        }
-
-                    }
-                })
+                .adapter(adapter, null)
                 .build();
 
-        TextView header = new TextView(context);
-        header.setText("Here we could add a description, changelog, ...");
-        header.setTextSize(16);
-        header.setPadding(20, 0, 20, 0);
-        dialog.getListView().addHeaderView(header);
-
         dialog.show();
+        dialogRef[0] = dialog;
     }
 
     private void download(Context context, String title, final RunnableWithParam<File> callback) {
