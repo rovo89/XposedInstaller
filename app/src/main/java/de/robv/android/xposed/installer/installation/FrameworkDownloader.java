@@ -8,6 +8,9 @@ import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -36,6 +39,16 @@ import de.robv.android.xposed.installer.util.FrameworkZips.OnlineFrameworkZip;
 import de.robv.android.xposed.installer.util.RunnableWithParam;
 
 public class FrameworkDownloader extends Fragment {
+    private boolean mShowOutdated = false;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mShowOutdated = XposedApp.getPreferences().getBoolean("framework_download_show_outdated", false);
+        setHasOptionsMenu(true);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.framework_download, container, false);
@@ -102,7 +115,7 @@ public class FrameworkDownloader extends Fragment {
             OnlineFrameworkZip online = FrameworkZips.getOnline(title);
             LocalFrameworkZip local = FrameworkZips.getLocal(title);
             if (online != null) {
-                if (online.uninstaller == uninstaller && online.current) {
+                if (online.uninstaller == uninstaller && (mShowOutdated || online.current)) {
                     addZipView(inflater, container, online, true, local != null);
                 }
             } else if (local != null) {
@@ -279,5 +292,23 @@ public class FrameworkDownloader extends Fragment {
 
     private static void saveTo(Context context, File file) {
         Toast.makeText(context, "Not implemented yet", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_framework_download, menu);
+        menu.findItem(R.id.show_outdated).setChecked(mShowOutdated);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.show_outdated) {
+            mShowOutdated = !item.isChecked();
+            XposedApp.getPreferences().edit().putBoolean("framework_download_show_outdated", mShowOutdated).apply();
+            item.setChecked(mShowOutdated);
+            refreshZipViews();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
