@@ -29,6 +29,7 @@
     <string name="installedVersion">Aktivna</string>
     <string name="latestVersion">Paket</string>
     <string name="versions">Verzija:</string>
+    <string name="install_header_reboot">Restart</string>
     <string name="soft_reboot">Softverski restart</string>
     <string name="reboot">Restart</string>
     <string name="areyousure">Da li ste sigurni?</string>
@@ -42,6 +43,11 @@
     <string name="install_warning_title">Budite oprezni!</string>
     <string name="install_warning">U nekim slučajevima, može se desiti da vaš uređaj ne podigne sistem nakon instalacije Xposed-a.\n\Ako nikada niste čuli o terminima \"soft brick\" i \"bootloop\" do sada ili ako ne znate kako da nađete rešenje ako se nađete u toj situaciji, <b>NE</b> instalirajte Xposed!\n\nU svakom slučaju, imati rezervnu kopiju sistema je preporučljivo.</string>
     <string name="dont_show_again">Ne prikazuj ponovo</string>
+    <string name="install_known_issue">Izgleda da postoji sledeća greška (\"%s\") sa vašim ROM-om. Instaliranje Xposed framework-a možda neće raditi ili će uzrokovati veće probleme. Kliknite ovde za više detalja o ovome.</string>
+    <string name="install_reverted">app_process verzija \"%1$s\" je ranije bila instalirana, ali sada je pronađena verzija \"%2$s\". Ako niste očekivali vraćanje (restore) starog fajla, možda biste želeli da pokušate instaliranje preko recovery (automatski ili ručno).</string>
+    <string name="uninstall_reverted">app_process je ranije bio obrisan, ali verzija \"%s\" je sada pronađena. Ako niste očekivali vraćanje (restore) starog fajla, možda biste želeli da pokušate instaliranje preko recovery (automatski ili ručno).</string>
+    <string name="tap_to_dismiss">Pritisnite ekran kako biste sklonili poruku.</string>
+    <string name="sdcard_location">SD kartica: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Neuspešan pristup root direktorijumu.\n\nProverite još jednom da li je vaš uređaj root-ovan pravilno i da niste blokirali shell komande.</string>
@@ -69,10 +75,15 @@
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed modul još nije aktivan</string>
+    <string name="module_is_not_activated_yet_detailed">%s je uspešno instaliran, ali još nije aktiviran.</string>
+    <string name="activate_and_reboot">Aktiviraj i restartuj</string>
+    <string name="module_activated">Xposed je aktivan</string>
     <string name="module_empty_description">(trenutno bez opisa)</string>
     <string name="module_no_ui">Ovaj modul ne daje korisnički interfejs</string>
     <string name="no_xposed_modules_found">Ni jedan Xposed modul nije pronađen!</string>
     <string name="xposed_module_list_updated">Xposed modul lista je osvežena\nPromene će biti aktivne nakon ponovnog pokretanja sistema </string>
+    <string name="xposed_module_updated_notification_title">Novija verzija Xposed modula je instalirana</string>
+    <string name="xposed_module_updated_notification">Restartujte telefon da biste aktivirali promene</string>
     <string name="warning_xposed_min_version">Ovaj modul zahteva noviju verziju XposedBridge-a (%d) i zato ne može biti aktiviran.</string>
     <string name="no_min_version_specified">Ovaj modul nije precizirao XposedBridge verziju koja je potrebna.</string>
     <string name="warning_min_version_too_low">Ovaj modul je kreiran za XposedBridge verziju %1$d, ali zbog nekompaktibilnosti u verziji %2$d, je onemogućen.</string>
@@ -86,6 +97,16 @@
     <string name="menuSearch">Pretraži</string>
     <string name="menuReload">Učitaj ponovo</string>
     <string name="changes">Promene:</string>
+    <string name="download_details_page_description">Opis</string>
+    <string name="download_details_page_versions">Verzije</string>
+    <string name="download_details_page_settings">Podešavanja</string>
+    <string name="reltype_stable">Stabilno</string>
+    <string name="reltype_stable_summary">Stabilno (ne očekuju se greške)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (možda postoje neke greške)</string>
+    <string name="reltype_experimental">Experimentalno</string>
+    <string name="reltype_experimental_summary">Experimentalno (očekuju se greške)</string>
+    <string name="reltype_use_global_summary">Koristi svetsko podešavanje</string>
     <string name="download_author">Od %s</string>
     <string name="download_unknown_author">Nepoznat autor</string>
     <string name="download_status_installed">Instalirano (verzija %s)</string>
@@ -99,10 +120,13 @@
     <string name="download_section_update_available">Nadogradn ja dostupna</string>
     <string name="download_section_installed">Instalirano</string>
     <string name="download_section_not_installed">Nije instalirano</string>
-    <string name="download_section_24h">Zadnjih 24 sata</string>
-    <string name="download_section_7d">Zadnjih 7 dana</string>
-    <string name="download_section_30d">Zadnjih 30 dana</string>
+    <string name="download_section_24h">Poslednjih 24 sata</string>
+    <string name="download_section_7d">Poslednjih 7 dana</string>
+    <string name="download_section_30d">Poslednjih 30 dana</string>
     <string name="download_section_older">Pre više od 30 dana</string>
+    <string name="download_details_not_found">Ne postoji modul sa imenom \"%s\" u repozitoriju.</string>
+    <string name="download_no_versions">Autor još nije ništa uploadovao.</string>
+    <string name="download_test_version_not_shown">Postoji i test verzija, ali nije prikazana zbog Vaših podešavanja.</string>
 
     <!-- Settings tab -->
     <string name="settings_group_installation">Instalacija</string>
@@ -113,9 +137,17 @@
     <string name="settings_group_download">Učitaj</string>
     <string name="settings_enable_downloads">Dozvoli učitavanje</string>
     <string name="settings_enable_downloads_summary">Dozvoli Xposed Instaleru proveru novih verzija i modula</string>
+    <string name="settings_release_type">Koje verzije želite da se prikažu?</string>
     <string name="settings_group_experimental">Eksperimentalno </string>
     <string name="settings_disable_resources">Onemogući resource hooks</string>
     <string name="settings_disable_resources_summary">Radi na konfliktima sa theming endžinom\n<b>UPOZORENJE:</b> Moduli koji pokušavaju da izmene resurse neće raditi ako je ova opcija omogućena.</string>
+    <string name="settings_performance_experiment">Experiment vezan za performanse</string>
+    <string name="settings_performance_experiment_summary">Ukoliko aktivirate ovo performanse Vašeg sistema mogu da se ili povećaju, smanje ili da ostanu iste. Osećajte se slobodnim da isprobate i da nam javite kakav je efekat (odnosno da li uopšte postoji). Potrebno je da reinstalirate framework i restartujete posle ove promene.</string>
+    <string name="settings_group_app">Aplikacija</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Svetla</string>
+    <string name="settings_theme_dark">Tamna</string>
+    <string name="settings_theme_black">Crna (korisna za AMOLED ekrane)</string>
 
     <!-- Logs tab  -->
     <string name="logs_load_failed">Nemoguće pročitati log:</string>
@@ -132,7 +164,7 @@
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> i <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Molim Vas <b>ne</b> kontaktirajte nas direktno za podršku, koristite link ispod.</string>
     <string name="about_translator_label">Prevodilac:</string>
-    <string name="translator">maleksa</string>
+    <string name="translator">maleksa, Option58</string>
     <string name="about_version_label">Verzija ove aplikacije:</string>
     <string name="about_source_label">Izvor koda:</string>
     <string name="about_support_label">Podrška:</string>
