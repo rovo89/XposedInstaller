@@ -1,7 +1,6 @@
 package de.robv.android.xposed.installer.installation;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,26 +24,25 @@ import de.robv.android.xposed.installer.util.FrameworkZips;
 import de.robv.android.xposed.installer.util.NavUtil;
 
 public class StatusInstallerFragment extends Fragment {
-
     public static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
-    private static Activity sActivity;
+
     private static ImageView mErrorIcon;
     private static TextView mErrorTv;
     private static TextView txtKnownIssue;
     private static SwitchCompat xposedDisable;
 
-    public static void setError(boolean connectionFailed, boolean noSdks) {
+    public void setError(boolean connectionFailed, boolean noSdks) {
         if (!connectionFailed && !noSdks) return;
 
         mErrorTv.setVisibility(View.VISIBLE);
         mErrorIcon.setVisibility(View.VISIBLE);
         if (noSdks) {
-            mErrorIcon.setImageDrawable(sActivity.getResources().getDrawable(R.drawable.ic_warning_grey));
-            mErrorTv.setText(String.format(sActivity.getString(R.string.phone_not_compatible), Build.VERSION.SDK_INT, Build.CPU_ABI));
+            mErrorIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_warning_grey));
+            mErrorTv.setText(String.format(getString(R.string.phone_not_compatible), Build.VERSION.SDK_INT, Build.CPU_ABI));
         }
         if (connectionFailed) {
-            mErrorIcon.setImageDrawable(sActivity.getResources().getDrawable(R.drawable.ic_no_connection));
-            mErrorTv.setText(sActivity.getString(R.string.loadingError));
+            mErrorIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_connection));
+            mErrorTv.setText(getString(R.string.loadingError));
         }
     }
 
@@ -94,42 +92,42 @@ public class StatusInstallerFragment extends Fragment {
             if (installedXposedVersion != null) {
                 int installedXposedVersionInt = extractIntPart(installedXposedVersion);
                 if (installedXposedVersionInt == XposedApp.getXposedVersion()) {
-                    txtInstallError.setText(sActivity.getString(R.string.installed_lollipop, installedXposedVersion));
-                    txtInstallError.setTextColor(sActivity.getResources().getColor(R.color.darker_green));
-                    txtInstallContainer.setBackgroundColor(sActivity.getResources().getColor(R.color.darker_green));
-                    txtInstallIcon.setImageDrawable(sActivity.getResources().getDrawable(R.drawable.ic_check_circle));
+                    txtInstallError.setText(getString(R.string.installed_lollipop, installedXposedVersion));
+                    txtInstallError.setTextColor(getResources().getColor(R.color.darker_green));
+                    txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.darker_green));
+                    txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle));
                 } else {
-                    txtInstallError.setText(sActivity.getString(R.string.installed_lollipop_inactive, installedXposedVersion));
-                    txtInstallError.setTextColor(sActivity.getResources().getColor(R.color.amber_500));
-                    txtInstallContainer.setBackgroundColor(sActivity.getResources().getColor(R.color.amber_500));
-                    txtInstallIcon.setImageDrawable(sActivity.getResources().getDrawable(R.drawable.ic_warning));
+                    txtInstallError.setText(getString(R.string.installed_lollipop_inactive, installedXposedVersion));
+                    txtInstallError.setTextColor(getResources().getColor(R.color.amber_500));
+                    txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.amber_500));
+                    txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_warning));
                 }
             } else {
                 txtInstallError.setText(R.string.not_installed_no_lollipop);
-                txtInstallError.setTextColor(sActivity.getResources().getColor(R.color.warning));
-                txtInstallContainer.setBackgroundColor(sActivity.getResources().getColor(R.color.warning));
-                txtInstallIcon.setImageDrawable(sActivity.getResources().getDrawable(R.drawable.ic_error));
+                txtInstallError.setTextColor(getResources().getColor(R.color.warning));
+                txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.warning));
+                txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_error));
                 xposedDisable.setVisibility(View.GONE);
                 disableView.setVisibility(View.GONE);
             }
         } else {
             int installedXposedVersionInt = XposedApp.getXposedVersion();
             if (installedXposedVersionInt != 0) {
-                txtInstallError.setText(sActivity.getString(R.string.installed_lollipop, installedXposedVersionInt));
-                txtInstallError.setTextColor(sActivity.getResources().getColor(R.color.darker_green));
-                txtInstallContainer.setBackgroundColor(sActivity.getResources().getColor(R.color.darker_green));
-                txtInstallIcon.setImageDrawable(sActivity.getResources().getDrawable(R.drawable.ic_check_circle));
+                txtInstallError.setText(getString(R.string.installed_lollipop, installedXposedVersionInt));
+                txtInstallError.setTextColor(getResources().getColor(R.color.darker_green));
+                txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.darker_green));
+                txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle));
                 if (DISABLE_FILE.exists()) {
-                    txtInstallError.setText(sActivity.getString(R.string.installed_lollipop_inactive, installedXposedVersionInt));
-                    txtInstallError.setTextColor(sActivity.getResources().getColor(R.color.amber_500));
-                    txtInstallContainer.setBackgroundColor(sActivity.getResources().getColor(R.color.amber_500));
-                    txtInstallIcon.setImageDrawable(sActivity.getResources().getDrawable(R.drawable.ic_warning));
+                    txtInstallError.setText(getString(R.string.installed_lollipop_inactive, installedXposedVersionInt));
+                    txtInstallError.setTextColor(getResources().getColor(R.color.amber_500));
+                    txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.amber_500));
+                    txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_warning));
                 }
             } else {
-                txtInstallError.setText(sActivity.getString(R.string.not_installed_no_lollipop));
-                txtInstallError.setTextColor(sActivity.getResources().getColor(R.color.warning));
-                txtInstallContainer.setBackgroundColor(sActivity.getResources().getColor(R.color.warning));
-                txtInstallIcon.setImageDrawable(sActivity.getResources().getDrawable(R.drawable.ic_error));
+                txtInstallError.setText(getString(R.string.not_installed_no_lollipop));
+                txtInstallError.setTextColor(getResources().getColor(R.color.warning));
+                txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.warning));
+                txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_error));
                 xposedDisable.setVisibility(View.GONE);
                 disableView.setVisibility(View.GONE);
             }
@@ -166,7 +164,6 @@ public class StatusInstallerFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        sActivity = getActivity();
     }
 
     @SuppressLint("StringFormatInvalid")
