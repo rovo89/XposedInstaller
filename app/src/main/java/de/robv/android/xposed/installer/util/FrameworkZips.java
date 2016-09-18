@@ -158,7 +158,16 @@ public final class FrameworkZips {
         String titleTemplate = jsonZip.getString("title");
         String urlTemplate = jsonZip.getString("url");
         boolean current = jsonZip.optBoolean("current", false);
-        Type type = jsonZip.optBoolean("uninstaller", false) ? Type.UNINSTALLER : Type.INSTALLER;
+        String typeString = jsonZip.optString("type", null);
+        Type type;
+        if (typeString == null) {
+            type = Type.INSTALLER;
+        } else if (typeString.equals("uninstaller")) {
+            type = Type.UNINSTALLER;
+        } else {
+            Log.w(XposedApp.TAG, "Unsupported framework zip type: " + typeString);
+            return;
+        }
         Map<String, OnlineFrameworkZip> zips = zipsArray[type.ordinal()];
 
         Map<String, String> attributes = new HashMap<>(3);
