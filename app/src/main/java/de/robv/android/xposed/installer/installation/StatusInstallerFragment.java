@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.SwitchCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -31,10 +34,13 @@ import com.afollestad.materialdialogs.simplelist.MaterialSimpleListItem;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
+import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadFinishedCallback;
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;
@@ -43,6 +49,7 @@ import de.robv.android.xposed.installer.util.FrameworkZips.FrameworkZip;
 import de.robv.android.xposed.installer.util.FrameworkZips.LocalFrameworkZip;
 import de.robv.android.xposed.installer.util.FrameworkZips.OnlineFrameworkZip;
 import de.robv.android.xposed.installer.util.NavUtil;
+import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.RunnableWithParam;
 
 public class StatusInstallerFragment extends Fragment {
@@ -53,6 +60,7 @@ public class StatusInstallerFragment extends Fragment {
     private static TextView txtKnownIssue;
     private static SwitchCompat xposedDisable;
     private boolean mShowOutdated = false;
+    private RootUtil mRootUtil = new RootUtil();
 
     public void setError(boolean connectionFailed, boolean noSdks) {
         if (!connectionFailed && !noSdks) return;
@@ -182,6 +190,25 @@ public class StatusInstallerFragment extends Fragment {
         cpu.setText(FrameworkZips.ARCH);
 
         refreshKnownIssue();
+
+        if (!XposedApp.getPreferences().getBoolean("hide_install_warning", false)) {
+            final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
+
+            new MaterialDialog.Builder(getActivity())
+                    .title(R.string.install_warning_title)
+                    .customView(dontShowAgainView, false)
+                    .positiveText(android.R.string.ok)
+                    .callback(new MaterialDialog.ButtonCallback() {
+                        @Override
+                        public void onPositive(MaterialDialog dialog) {
+                            super.onPositive(dialog);
+                            CheckBox checkBox = (CheckBox) dontShowAgainView.findViewById(android.R.id.checkbox);
+                            if (checkBox.isChecked())
+                                XposedApp.getPreferences().edit().putBoolean("hide_install_warning", true).apply();
+                        }
+                    }).cancelable(false).show();
+        }
+
         return v;
     }
 
@@ -195,20 +222,60 @@ public class StatusInstallerFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_framework_download, menu);
+        inflater.inflate(R.menu.menu_installer, menu);
         menu.findItem(R.id.show_outdated).setChecked(mShowOutdated);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.show_outdated) {
-            mShowOutdated = !item.isChecked();
-            XposedApp.getPreferences().edit().putBoolean("framework_download_show_outdated", mShowOutdated).apply();
-            item.setChecked(mShowOutdated);
-            refreshZipViews();
-            return true;
+        switch (item.getItemId()) {
+            case R.id.reboot:
+                areYouSure(R.string.reboot, new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        super.onPositive(dialog);
+                        reboot(null);
+                    }
+                });
+                return true;
+
+            case R.id.soft_reboot:
+                areYouSure(R.string.soft_reboot, new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        super.onPositive(dialog);
+                        softReboot();
+                    }
+                });
+                return true;
+
+            case R.id.reboot_recovery:
+                areYouSure(R.string.reboot_recovery, new MaterialDialog.ButtonCallback() {
+                    @Override
+                    public void onPositive(MaterialDialog dialog) {
+                        super.onPositive(dialog);
+                        reboot("recovery");
+                    }
+                });
+                return true;
+
+            case R.id.show_outdated:
+                mShowOutdated = !item.isChecked();
+                XposedApp.getPreferences().edit().putBoolean("framework_download_show_outdated", mShowOutdated).apply();
+                item.setChecked(mShowOutdated);
+                refreshZipViews();
+                return true;
         }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
+        new MaterialDialog.Builder(getActivity()).title(R.string.areyousure)
+                .content(contentTextId)
+                .iconAttr(android.R.attr.alertDialogIcon)
+                .positiveText(android.R.string.yes)
+                .negativeText(android.R.string.no).callback(yesHandler).show();
     }
 
     @SuppressLint("StringFormatInvalid")
@@ -503,5 +570,69 @@ public class StatusInstallerFragment extends Fragment {
 
     private static void saveTo(Context context, File file) {
         Toast.makeText(context, "Not implemented yet", Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean startShell() {
+        if (mRootUtil.startShell())
+            return true;
+
+        showAlert(getString(R.string.root_failed));
+        return false;
+    }
+
+    private void showAlert(final String result) {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    showAlert(result);
+                }
+            });
+            return;
+        }
+
+        MaterialDialog dialog = new MaterialDialog.Builder(getActivity()).content(result).positiveText(android.R.string.ok).build();
+        dialog.show();
+
+        TextView txtMessage = (TextView) dialog
+                .findViewById(android.R.id.message);
+        try {
+            txtMessage.setTextSize(14);
+        } catch (NullPointerException ignored) {
+        }
+    }
+
+    private void softReboot() {
+        if (!startShell())
+            return;
+
+        List<String> messages = new LinkedList<>();
+        if (mRootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages) != 0) {
+            messages.add("");
+            messages.add(getString(R.string.reboot_failed));
+            showAlert(TextUtils.join("\n", messages).trim());
+        }
+    }
+
+    private void reboot(String mode) {
+        if (!startShell())
+            return;
+
+        List<String> messages = new LinkedList<>();
+
+        String command = "reboot";
+        if (mode != null) {
+            command += " " + mode;
+            if (mode.equals("recovery"))
+                // create a flag used by some kernels to boot into recovery
+                mRootUtil.executeWithBusybox("touch /cache/recovery/boot", messages);
+        }
+
+        if (mRootUtil.executeWithBusybox(command, messages) != 0) {
+            messages.add("");
+            messages.add(getString(R.string.reboot_failed));
+            showAlert(TextUtils.join("\n", messages).trim());
+        }
+        AssetUtil.removeBusybox();
     }
 }

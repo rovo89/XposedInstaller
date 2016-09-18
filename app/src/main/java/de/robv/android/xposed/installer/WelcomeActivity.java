@@ -20,7 +20,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 
-import de.robv.android.xposed.installer.installation.AdvancedInstallerFragment;
+import de.robv.android.xposed.installer.installation.StatusInstallerFragment;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
@@ -129,7 +129,7 @@ public class WelcomeActivity extends XposedBaseActivity implements NavigationVie
             case R.id.drawer_item_1:
                 mPrevSelectedId = itemId;
                 setTitle(R.string.app_name);
-                navFragment = new AdvancedInstallerFragment();
+                navFragment = new StatusInstallerFragment();
                 break;
             case R.id.drawer_item_2:
                 mPrevSelectedId = itemId;
@@ -170,8 +170,6 @@ public class WelcomeActivity extends XposedBaseActivity implements NavigationVie
                 transaction.replace(R.id.content_frame, navFragment).commit();
 
                 if (elevation != null) {
-                    params.topMargin = navFragment instanceof AdvancedInstallerFragment ? dp(48) : 0;
-
                     Animation a = new Animation() {
                         @Override
                         protected void applyTransformation(float interpolatedTime, Transformation t) {
