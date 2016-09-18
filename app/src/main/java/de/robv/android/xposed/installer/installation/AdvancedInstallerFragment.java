@@ -184,7 +184,7 @@ public class AdvancedInstallerFragment extends Fragment {
 
 
     class TabsAdapter extends FragmentPagerAdapter {
-        String[] tabsTitles = new String[]{getString(R.string.status), "Download"};
+        String[] tabsTitles = new String[]{getString(R.string.status)};
 
         public TabsAdapter(FragmentManager mgr, boolean lock) {
             super(mgr);
@@ -203,9 +203,6 @@ public class AdvancedInstallerFragment extends Fragment {
             switch (position) {
                 case 0:
                     fragment = new StatusInstallerFragment();
-                    break;
-                case 1:
-                    fragment = new FrameworkDownloader();
                     break;
             }
             return fragment;

@@ -281,6 +281,13 @@
 
             </android.support.v7.widget.CardView>
 
+            <LinearLayout
+                android:id="@+id/zips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
