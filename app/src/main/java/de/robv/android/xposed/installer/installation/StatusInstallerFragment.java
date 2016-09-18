@@ -388,38 +388,43 @@ public class StatusInstallerFragment extends Fragment {
 
     @UiThread
     private void refreshZipViews() {
-        LayoutInflater inflater = getActivity().getLayoutInflater();
         LinearLayout zips = (LinearLayout) getView().findViewById(R.id.zips);
-
         zips.removeAllViews();
         synchronized (FrameworkZip.class) {
-            Set<String> allTitles = FrameworkZips.getAllTitles();
             // TODO handle "no ZIPs" case
-            addZipViews(inflater, zips, false, allTitles);
-            addZipViews(inflater, zips, true, allTitles);
+            for (FrameworkZips.Type type : FrameworkZips.Type.values()) {
+                addZipViews(getActivity().getLayoutInflater(), zips, type);
+            }
         }
     }
 
-    private void addZipViews(LayoutInflater inflater, ViewGroup container, boolean uninstaller, Set<String> allTitles) {
+    private void addZipViews(LayoutInflater inflater, ViewGroup root, FrameworkZips.Type type) {
+        ViewGroup container = null;
+        Set<String> allTitles = FrameworkZips.getAllTitles(type);
         for (String title : allTitles) {
-            OnlineFrameworkZip online = FrameworkZips.getOnline(title);
-            LocalFrameworkZip local = FrameworkZips.getLocal(title);
-            if (online != null) {
-                if (online.uninstaller == uninstaller && (mShowOutdated || online.current)) {
-                    addZipView(inflater, container, online, true, local != null);
+            OnlineFrameworkZip online = FrameworkZips.getOnline(title, type);
+            LocalFrameworkZip local = FrameworkZips.getLocal(title, type);
+
+            boolean hasOnline = (online != null);
+            boolean hasLocal = (local != null);
+            if ((hasOnline && (mShowOutdated || online.current)) || hasLocal) {
+                if (container == null) {
+                    View card = inflater.inflate(R.layout.framework_zip_group, root, false);
+                    TextView tv = (TextView) card.findViewById(android.R.id.title);
+                    tv.setText(type.title);
+                    tv.setBackgroundResource(type.color);
+                    container = (ViewGroup) card.findViewById(android.R.id.content);
+                    root.addView(card);
                 }
-            } else if (local != null) {
-                if (local.uninstaller == uninstaller) {
-                    addZipView(inflater, container, local, false, true);
-                }
+                addZipView(inflater, container, hasOnline ? online : local, hasOnline, hasLocal);
             }
         }
     }
 
     public void addZipView(LayoutInflater inflater, ViewGroup container, final FrameworkZip zip, boolean hasOnline, boolean hasLocal) {
-        View view = inflater.inflate(R.layout.list_item_framework_zip, container, false);
+        View view = inflater.inflate(R.layout.framework_zip_item, container, false);
 
-        TextView tvTitle = (TextView) view.findViewById(R.id.title);
+        TextView tvTitle = (TextView) view.findViewById(android.R.id.title);
         tvTitle.setText(zip.title);
 
         ImageView ivStatus = (ImageView) view.findViewById(R.id.framework_zip_status);
@@ -435,22 +440,20 @@ public class StatusInstallerFragment extends Fragment {
             int gray = Color.parseColor("#A0A0A0");
             tvTitle.setTextColor(gray);
             ivStatus.setColorFilter(gray);
-        } else if (zip.uninstaller) {
-            tvTitle.setTextColor(Color.RED);
         }
 
         view.setClickable(true);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showActionDialog(getActivity(), zip.title);
+                showActionDialog(getActivity(), zip.title, zip.type);
             }
         });
         container.addView(view);
     }
 
 
-    private void showActionDialog(final Context context, final String title) {
+    private void showActionDialog(final Context context, final String title, final FrameworkZips.Type type) {
         final long ACTION_INSTALL = 0;
         final long ACTION_INSTALL_RECOVERY = 1;
         final long ACTION_SAVE = 2;
@@ -469,7 +472,7 @@ public class StatusInstallerFragment extends Fragment {
 
                 // Handle delete simple actions.
                 if (action == ACTION_DELETE) {
-                    FrameworkZips.delete(context, title);
+                    FrameworkZips.delete(context, title, type);
                     triggerRefresh(false, true);
                     return;
                 }
@@ -499,11 +502,11 @@ public class StatusInstallerFragment extends Fragment {
                     };
                 }
 
-                LocalFrameworkZip local = FrameworkZips.getLocal(title);
+                LocalFrameworkZip local = FrameworkZips.getLocal(title, type);
                 if (local != null) {
                     runAfterDownload.run(local.path);
                 } else {
-                    download(context, title, runAfterDownload);
+                    download(context, title, type, runAfterDownload);
                 }
             }
         });
@@ -527,7 +530,7 @@ public class StatusInstallerFragment extends Fragment {
                 .icon(R.drawable.ic_save)
                 .build());
 
-        if (FrameworkZips.hasLocal(title)) {
+        if (FrameworkZips.hasLocal(title, type)) {
             adapter.add(new MaterialSimpleListItem.Builder(context)
                     .content("Delete downloaded file")
                     .id(ACTION_DELETE)
@@ -544,8 +547,8 @@ public class StatusInstallerFragment extends Fragment {
         dialogRef[0] = dialog;
     }
 
-    private void download(Context context, String title, final RunnableWithParam<File> callback) {
-        OnlineFrameworkZip zip = FrameworkZips.getOnline(title);
+    private void download(Context context, String title, FrameworkZips.Type type, final RunnableWithParam<File> callback) {
+        OnlineFrameworkZip zip = FrameworkZips.getOnline(title, type);
         new DownloadsUtil.Builder(context)
                 .setTitle(zip.title)
                 .setUrl(zip.url)

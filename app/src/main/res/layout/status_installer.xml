@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="8dp"
@@ -58,12 +59,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:foregroundGravity="center"
+                        tools:background="@color/darker_green"
                         android:orientation="vertical">
 
                         <ImageView
                             android:id="@+id/status_icon"
                             android:layout_width="84dp"
                             android:layout_height="84dp"
+                            tools:src="@drawable/ic_check_circle"
                             android:layout_gravity="center"/>
 
                     </FrameLayout>
@@ -76,6 +79,8 @@
                         android:gravity="center"
                         android:padding="6dp"
                         android:textColor="@color/warning"
+                        tools:textColor="@color/darker_green"
+                        tools:text="@string/installed_lollipop"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -88,6 +93,13 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/zips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -135,7 +147,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="6dp"
-                        android:text="@string/tabInstall"
+                        android:text="ROM"
                         android:textAllCaps="true"
                         android:textStyle="bold"/>
 
@@ -145,7 +157,6 @@
                         android:background="?android:attr/selectableItemBackground"
                         android:clickable="true"
                         android:gravity="center_vertical"
-                        android:minHeight="48dp"
                         android:orientation="horizontal"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp">
@@ -168,7 +179,8 @@
                                 android:id="@+id/android_version"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                tools:text="Android Marshmallow 6.0.1 (API 23)"/>
 
                         </LinearLayout>
 
@@ -180,7 +192,6 @@
                         android:background="?android:attr/selectableItemBackground"
                         android:clickable="true"
                         android:gravity="center_vertical"
-                        android:minHeight="48dp"
                         android:orientation="horizontal"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp">
@@ -203,7 +214,8 @@
                                 android:id="@+id/ic_manufacturer"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                tools:text="LGE Google Nexus 5"/>
 
                         </LinearLayout>
 
@@ -215,7 +227,6 @@
                         android:background="?android:attr/selectableItemBackground"
                         android:clickable="true"
                         android:gravity="center_vertical"
-                        android:minHeight="48dp"
                         android:orientation="horizontal"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp">
@@ -238,7 +249,8 @@
                                 android:id="@+id/cpu"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
+                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                tools:text="arm"/>
 
                         </LinearLayout>
 
@@ -247,13 +259,6 @@
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
-
-            <LinearLayout
-                android:id="@+id/zips"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-            </LinearLayout>
 
         </LinearLayout>
 

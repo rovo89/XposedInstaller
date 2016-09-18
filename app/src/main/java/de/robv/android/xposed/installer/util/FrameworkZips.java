@@ -2,6 +2,8 @@ package de.robv.android.xposed.installer.util;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.ColorRes;
+import android.support.annotation.StringRes;
 import android.support.annotation.WorkerThread;
 import android.util.Log;
 
@@ -14,6 +16,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -28,6 +31,7 @@ import java.util.TreeMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.DownloadsUtil.SyncDownloadInfo;
 import de.robv.android.xposed.installer.util.InstallZipUtil.XposedProp;
@@ -40,12 +44,37 @@ public final class FrameworkZips {
     private static final File ONLINE_FILE = new File(XposedApp.getInstance().getCacheDir(), "framework.json");
     private static final String ONLINE_URL = "http://dl-xda.xposed.info/framework.json";
 
-    private static Map<String, OnlineFrameworkZip> sOnline = Collections.emptyMap();
-    private static Map<String, List<LocalFrameworkZip>> sLocal = Collections.emptyMap();
+    public enum Type {
+        INSTALLER(R.string.install, R.color.darker_green),
+        UNINSTALLER(R.string.uninstall, R.color.red_500);
+
+        public final int title;
+        public final int color;
+
+        Type(@StringRes int title, @ColorRes int color) {
+            this.title = title;
+            this.color = color;
+        }
+    }
+    private static final int TYPE_COUNT = Type.values().length;
+
+    @SuppressWarnings("rawtypes")
+    private static final Map[] EMPTY_MAP_ARRAY = new Map[TYPE_COUNT];
+    static {
+        Arrays.fill(EMPTY_MAP_ARRAY, Collections.emptyMap());
+    }
+
+    private static Map<String, OnlineFrameworkZip>[] sOnline = emptyMapArray();
+    private static Map<String, List<LocalFrameworkZip>>[] sLocal = emptyMapArray();
+
+    @SuppressWarnings("unchecked")
+    public static <K,V> Map<K,V>[] emptyMapArray() {
+        return (Map<K,V>[]) EMPTY_MAP_ARRAY;
+    }
 
     public static class FrameworkZip {
         public String title;
-        public boolean uninstaller = false;
+        public Type type = Type.INSTALLER;
     }
 
     public static class OnlineFrameworkZip extends FrameworkZip {
@@ -59,17 +88,17 @@ public final class FrameworkZips {
 
     @WorkerThread
     public static void refreshOnline() {
-        Map<String, OnlineFrameworkZip> zips = getOnline();
+        Map<String, OnlineFrameworkZip>[] zips = getOnline();
         synchronized (FrameworkZips.class) {
             sOnline = zips;
         }
     }
 
     // TODO provide user feedback in case of errors
-    private static Map<String, OnlineFrameworkZip> getOnline() {
+    private static Map<String, OnlineFrameworkZip>[] getOnline() {
         SyncDownloadInfo info = DownloadsUtil.downloadSynchronously(ONLINE_URL, ONLINE_FILE);
         if (info.status == SyncDownloadInfo.STATUS_FAILED) {
-            return Collections.emptyMap();
+            return emptyMapArray();
         }
 
         String text;
@@ -77,22 +106,27 @@ public final class FrameworkZips {
             text = fileToString(ONLINE_FILE);
         } catch (IOException e) {
             Log.e(XposedApp.TAG, "Could not read " + ONLINE_FILE, e);
-            return Collections.emptyMap();
+            return emptyMapArray();
         }
 
         try {
             JSONObject json = new JSONObject(text);
 
-            Map<String, OnlineFrameworkZip> zips = new LinkedHashMap<>();
-            JSONArray jsonZips = json.getJSONArray("zips");
-            for (int i = 0; i < jsonZips.length(); i++) {
-                parseZipSpec(jsonZips.getJSONObject(i), zips);
+            //noinspection unchecked
+            Map<String, OnlineFrameworkZip>[] zipsArray = new Map[TYPE_COUNT];
+            for (int i = 0; i < TYPE_COUNT; i++) {
+                zipsArray[i] = new LinkedHashMap<>();
             }
 
-            return zips;
+            JSONArray jsonZips = json.getJSONArray("zips");
+            for (int i = 0; i < jsonZips.length(); i++) {
+                parseZipSpec(jsonZips.getJSONObject(i), zipsArray);
+            }
+
+            return zipsArray;
         } catch (JSONException e) {
             Log.e(XposedApp.TAG, "Could not parse " + ONLINE_URL, e);
-            return Collections.emptyMap();
+            return emptyMapArray();
         }
     }
 
@@ -108,13 +142,15 @@ public final class FrameworkZips {
             }
             return sb.toString();
         } finally {
-            try {
-                reader.close();
-            } catch (IOException ignored) {}
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException ignored) {}
+            }
         }
     }
 
-    private static void parseZipSpec(JSONObject jsonZip, Map<String, OnlineFrameworkZip> zips) throws JSONException {
+    private static void parseZipSpec(JSONObject jsonZip, Map<String, OnlineFrameworkZip>[] zipsArray) throws JSONException {
         if (!contains(jsonZip, "archs", ARCH) || !contains(jsonZip, "sdks", SDK)) {
             return;
         }
@@ -122,7 +158,9 @@ public final class FrameworkZips {
         String titleTemplate = jsonZip.getString("title");
         String urlTemplate = jsonZip.getString("url");
         boolean current = jsonZip.optBoolean("current", false);
-        boolean uninstaller = jsonZip.optBoolean("uninstaller", false);
+        Type type = jsonZip.optBoolean("uninstaller", false) ? Type.UNINSTALLER : Type.INSTALLER;
+        Map<String, OnlineFrameworkZip> zips = zipsArray[type.ordinal()];
+
         Map<String, String> attributes = new HashMap<>(3);
 
         JSONArray jsonVersions = jsonZip.optJSONArray("versions");
@@ -155,12 +193,12 @@ public final class FrameworkZips {
                 parseAttributes(versionData, attributes);
 
                 addZip(zips, titleTemplate, urlTemplate, attributes,
-                        versionData.optBoolean("current", current), uninstaller);
+                        versionData.optBoolean("current", current), type);
             }
         } else {
             attributes.put("arch", ARCH);
             attributes.put("sdk", SDK);
-            addZip(zips, titleTemplate, urlTemplate, attributes, current, uninstaller);
+            addZip(zips, titleTemplate, urlTemplate, attributes, current, type);
         }
     }
 
@@ -191,14 +229,14 @@ public final class FrameworkZips {
     }
 
     private static void addZip(Map<String, OnlineFrameworkZip> zips, String titleTemplate, String urlTemplate,
-                               Map<String, String> attributes, boolean current, boolean uninstaller) {
+                               Map<String, String> attributes, boolean current, Type type) {
         String title = replacePlaceholders(titleTemplate, attributes);
         if (!zips.containsKey(title)) {
             OnlineFrameworkZip zip = new OnlineFrameworkZip();
             zip.title = title;
             zip.url = replacePlaceholders(urlTemplate, attributes);
             zip.current = current;
-            zip.uninstaller = uninstaller;
+            zip.type = type;
             zips.put(zip.title, zip);
         }
     }
@@ -222,7 +260,12 @@ public final class FrameworkZips {
 
     @WorkerThread
     public static void refreshLocal() {
-        Map<String, List<LocalFrameworkZip>> zips = new TreeMap<>();
+        //noinspection unchecked
+        Map<String, List<LocalFrameworkZip>>[] zipsArray = new Map[TYPE_COUNT];
+        for (int i = 0; i < TYPE_COUNT; i++) {
+            zipsArray[i] = new TreeMap<>();
+        }
+
         for (File dir : DownloadsUtil.getDownloadDirs(DownloadsUtil.DOWNLOAD_FRAMEWORK)) {
             if (!dir.isDirectory()) {
                 continue;
@@ -233,6 +276,7 @@ public final class FrameworkZips {
                 }
                 LocalFrameworkZip zip = analyze(new File(dir, filename));
                 if (zip != null) {
+                    Map<String, List<LocalFrameworkZip>> zips = zipsArray[zip.type.ordinal()];
                     List<LocalFrameworkZip> list = zips.get(zip.title);
                     if (list == null) {
                         list = new ArrayList<>(1);
@@ -243,41 +287,41 @@ public final class FrameworkZips {
             }
         }
         synchronized (FrameworkZips.class) {
-            sLocal = zips;
+            sLocal = zipsArray;
         }
     }
 
-    public static Set<String> getAllTitles() {
-        Set<String> result = new LinkedHashSet<>(sOnline.keySet());
-        result.addAll(sLocal.keySet());
+    public static Set<String> getAllTitles(Type type) {
+        Set<String> result = new LinkedHashSet<>(sOnline[type.ordinal()].keySet());
+        result.addAll(sLocal[type.ordinal()].keySet());
         return result;
     }
 
-    public static OnlineFrameworkZip getOnline(String title) {
-        return sOnline.get(title);
+    public static OnlineFrameworkZip getOnline(String title, Type type) {
+        return sOnline[type.ordinal()].get(title);
     }
 
-    public static LocalFrameworkZip getLocal(String title) {
-        List<LocalFrameworkZip> all = sLocal.get(title);
+    public static LocalFrameworkZip getLocal(String title, Type type) {
+        List<LocalFrameworkZip> all = sLocal[type.ordinal()].get(title);
         return all != null ? all.get(0) : null;
     }
 
-    public static boolean hasLocal(String title) {
-        return sLocal.containsKey(title);
+    public static boolean hasLocal(String title, Type type) {
+        return sLocal[type.ordinal()].containsKey(title);
     }
 
-    public static List<LocalFrameworkZip> getAllLocal(String title) {
-        List<LocalFrameworkZip> all = sLocal.get(title);
+    public static List<LocalFrameworkZip> getAllLocal(String title, Type type) {
+        List<LocalFrameworkZip> all = sLocal[type.ordinal()].get(title);
         return all != null ? all : Collections.<LocalFrameworkZip>emptyList();
     }
 
-    public static void delete(Context context, String title) {
-        OnlineFrameworkZip online = getOnline(title);
+    public static void delete(Context context, String title, Type type) {
+        OnlineFrameworkZip online = getOnline(title, type);
         if (online != null) {
             DownloadsUtil.removeAllForUrl(context, online.url);
         }
 
-        List<LocalFrameworkZip> locals = getAllLocal(title);
+        List<LocalFrameworkZip> locals = getAllLocal(title, type);
         for (LocalFrameworkZip local : locals) {
             DownloadsUtil.removeAllForLocalFile(context, local.path);
         }
@@ -305,7 +349,7 @@ public final class FrameworkZips {
                 zip.title = "Version " + prop.getVersion();
             } else if (filename.startsWith("xposed-uninstaller-")) {
                 // TODO provide more information inside uninstaller ZIPs
-                zip.uninstaller = true;
+                zip.type = Type.UNINSTALLER;
                 zip.title = "Uninstaller";
                 int start = "xposed-uninstaller-".length();
                 int end = filename.lastIndexOf('-');
