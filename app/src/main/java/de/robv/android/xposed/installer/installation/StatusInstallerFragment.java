@@ -407,21 +407,28 @@ public class StatusInstallerFragment extends Fragment {
 
             boolean hasOnline = (online != null);
             boolean hasLocal = (local != null);
-            if ((hasOnline && (mShowOutdated || online.current)) || hasLocal) {
-                if (container == null) {
-                    View card = inflater.inflate(R.layout.framework_zip_group, root, false);
-                    TextView tv = (TextView) card.findViewById(android.R.id.title);
-                    tv.setText(type.title);
-                    tv.setBackgroundResource(type.color);
-                    container = (ViewGroup) card.findViewById(android.R.id.content);
-                    root.addView(card);
-                }
-                addZipView(inflater, container, hasOnline ? online : local, hasOnline, hasLocal);
+            FrameworkZip zip = hasOnline ? online : local;
+            boolean isOutdated = zip.isOutdated();
+
+            if (isOutdated && !mShowOutdated) {
+                continue;
             }
+
+            if (container == null) {
+                View card = inflater.inflate(R.layout.framework_zip_group, root, false);
+                TextView tv = (TextView) card.findViewById(android.R.id.title);
+                tv.setText(type.title);
+                tv.setBackgroundResource(type.color);
+                container = (ViewGroup) card.findViewById(android.R.id.content);
+                root.addView(card);
+            }
+
+            addZipView(inflater, container, zip, hasOnline, hasLocal, isOutdated);
         }
     }
 
-    public void addZipView(LayoutInflater inflater, ViewGroup container, final FrameworkZip zip, boolean hasOnline, boolean hasLocal) {
+    public void addZipView(LayoutInflater inflater, ViewGroup container, final FrameworkZip zip,
+                           boolean hasOnline, boolean hasLocal, boolean isOutdated) {
         View view = inflater.inflate(R.layout.framework_zip_item, container, false);
 
         TextView tvTitle = (TextView) view.findViewById(android.R.id.title);
@@ -436,7 +443,7 @@ public class StatusInstallerFragment extends Fragment {
             ivStatus.setImageResource(R.drawable.ic_cloud_off);
         }
 
-        if (zip instanceof OnlineFrameworkZip && !((OnlineFrameworkZip) zip).current) {
+        if (isOutdated) {
             int gray = Color.parseColor("#A0A0A0");
             tvTitle.setTextColor(gray);
             ivStatus.setColorFilter(gray);

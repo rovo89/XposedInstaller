@@ -75,11 +75,19 @@ public final class FrameworkZips {
     public static class FrameworkZip {
         public String title;
         public Type type = Type.INSTALLER;
+
+        public boolean isOutdated() {
+            return true;
+        }
     }
 
     public static class OnlineFrameworkZip extends FrameworkZip {
         public String url;
         public boolean current = true;
+
+        public boolean isOutdated() {
+            return !current;
+        }
     }
 
     public static class LocalFrameworkZip extends FrameworkZip {
