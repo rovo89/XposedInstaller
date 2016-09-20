@@ -1,6 +1,7 @@
 package de.robv.android.xposed.installer.installation;
 
-import android.animation.Animator;
+import android.animation.TimeAnimator;
+import android.animation.TimeAnimator.TimeListener;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Context;
@@ -8,15 +9,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,6 +31,8 @@ import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.XposedBaseActivity;
 
 public class InstallationActivity extends XposedBaseActivity {
+    private static final int REBOOT_COUNTDOWN = 15000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +78,7 @@ public class InstallationActivity extends XposedBaseActivity {
         private TextView mLogText;
         private ProgressBar mProgress;
         private ImageView mConsoleResult;
-        private CardView mResultContainer;
+        private Button mBtnReboot;
 
         public void startInstallation(final Context context, final Flashable flashable) {
             new Thread("FlashZip") {
@@ -97,20 +102,18 @@ public class InstallationActivity extends XposedBaseActivity {
             mLogText = (TextView) view.findViewById(R.id.console);
             mProgress = (ProgressBar) view.findViewById(R.id.progressBar);
             mConsoleResult = (ImageView) view.findViewById(R.id.console_result);
-            mResultContainer = (CardView) view.findViewById(R.id.result_container);
+            mBtnReboot = (Button) view.findViewById(R.id.reboot);
+
 
             return view;
         }
 
         @Override
         public void onStarted() {
-            XposedApp.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    appendText(getString(R.string.installation_started), TYPE_NONE);
-                    mProgress.setIndeterminate(true);
-                }
-            });
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException ignored) {
+            }
         }
 
         @Override
@@ -133,6 +136,27 @@ public class InstallationActivity extends XposedBaseActivity {
             });
         }
 
+        private static void expand(final View v, int duration) {
+            v.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+            final int targetHeight = v.getMeasuredHeight();
+
+            v.getLayoutParams().height = 1;
+            v.setVisibility(View.VISIBLE);
+
+            Animation a = new Animation() {
+                @Override
+                protected void applyTransformation(float interpolatedTime, Transformation t) {
+                    v.getLayoutParams().height = (interpolatedTime == 1)
+                            ? LayoutParams.WRAP_CONTENT
+                            : (int) (targetHeight * interpolatedTime);
+                    v.requestLayout();
+                }
+            };
+
+            a.setDuration(duration);
+            v.startAnimation(a);
+        }
+
         @Override
         public void onDone() {
             XposedApp.runOnUiThread(new Runnable() {
@@ -140,11 +164,51 @@ public class InstallationActivity extends XposedBaseActivity {
                 public void run() {
                     appendText(getString(R.string.file_done), TYPE_OK);
 
-                    mProgress.setIndeterminate(false);
                     mConsoleResult.setImageResource(R.drawable.ic_check_circle);
-                    //noinspection deprecation
-                    mResultContainer.setCardBackgroundColor(getResources().getColor(R.color.darker_green));
-                    animateResult();
+                    mConsoleResult.setVisibility(View.VISIBLE);
+
+                    mProgress.setIndeterminate(false);
+                    mProgress.setRotation(180);
+                    mProgress.setMax(REBOOT_COUNTDOWN);
+
+                    expand(getView().findViewById(R.id.buttonPanel),
+                            getResources().getInteger(android.R.integer.config_mediumAnimTime));
+
+                    // TODO extract to string resources
+                    final String format = "%1$s (%2$d)";
+                    final String action = "Reboot to recovery";
+
+                    TimeAnimator countdown = new TimeAnimator();
+                    countdown.setTimeListener(new TimeListener() {
+                        private int minWidth = 0;
+                        private int prevSeconds = -1;
+
+                        @Override
+                        public void onTimeUpdate(TimeAnimator animation, long totalTime, long deltaTime) {
+                            int remaining = REBOOT_COUNTDOWN - (int) totalTime;
+                            mProgress.setProgress(remaining);
+                            if (remaining <= 0) {
+                                mBtnReboot.setText(String.format(format, action, 0));
+                                animation.end();
+
+                                // TODO execute action here
+                            } else {
+                                int seconds = remaining / 1000 + 1;
+                                if (seconds != prevSeconds) {
+                                    mBtnReboot.setText(String.format(format, action, seconds));
+
+                                    // Make sure that the button width doesn't shrink.
+                                    if (mBtnReboot.getWidth() > minWidth) {
+                                        minWidth = mBtnReboot.getWidth();
+                                        mBtnReboot.setMinimumWidth(minWidth);
+                                    }
+
+                                    prevSeconds = seconds;
+                                }
+                            }
+                        }
+                    });
+                    countdown.start();
                 }
             });
         }
@@ -155,33 +219,12 @@ public class InstallationActivity extends XposedBaseActivity {
                 @Override
                 public void run() {
                     appendText(error, TYPE_ERROR);
+                    mConsoleResult.setImageResource(R.drawable.ic_error);
+                    mConsoleResult.setVisibility(View.VISIBLE);
 
                     mProgress.setIndeterminate(false);
-                    mConsoleResult.setImageResource(R.drawable.ic_error);
-                    //noinspection deprecation
-                    mResultContainer.setCardBackgroundColor(getResources().getColor(R.color.red_500));
-                    animateResult();
                 }
             });
-        }
-
-        private void animateResult() {
-            mProgress.setVisibility(View.GONE);
-
-            int centerX = mResultContainer.getMeasuredWidth() / 2;
-            int centerY = mResultContainer.getMeasuredHeight() / 2;
-
-            int radius = Math.max(mResultContainer.getMeasuredWidth(), mResultContainer.getMeasuredHeight()) / 2;
-
-            Animator anim = null;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                anim = ViewAnimationUtils.createCircularReveal(mResultContainer, centerX, centerY, 0, radius);
-                anim.setDuration(750);
-            }
-
-            mResultContainer.setVisibility(View.VISIBLE);
-
-            if (anim != null) anim.start();
         }
 
         @SuppressLint("SetTextI18n")
