@@ -118,7 +118,7 @@ public class InstallationActivity extends XposedBaseActivity {
 
         @Override
         public void onLine(final String line) {
-            XposedApp.runOnUiThread(new Runnable() {
+            XposedApp.postOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     appendText(line, TYPE_NONE);
@@ -128,7 +128,7 @@ public class InstallationActivity extends XposedBaseActivity {
 
         @Override
         public void onErrorLine(final String line) {
-            XposedApp.runOnUiThread(new Runnable() {
+            XposedApp.postOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     appendText(line, TYPE_ERROR);
@@ -159,7 +159,7 @@ public class InstallationActivity extends XposedBaseActivity {
 
         @Override
         public void onDone() {
-            XposedApp.runOnUiThread(new Runnable() {
+            XposedApp.postOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     appendText(getString(R.string.file_done), TYPE_OK);
@@ -215,7 +215,7 @@ public class InstallationActivity extends XposedBaseActivity {
 
         @Override
         public void onError(final int exitCode, final String error) {
-            XposedApp.runOnUiThread(new Runnable() {
+            XposedApp.postOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     appendText(error, TYPE_ERROR);

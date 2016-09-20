@@ -73,6 +73,10 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         }
     }
 
+    public static void postOnUiThread(Runnable action) {
+        mMainHandler.post(action);
+    }
+
     public static Integer getXposedVersion() {
         if (Build.VERSION.SDK_INT >= 21) {
             return getActiveXposedVersion();
