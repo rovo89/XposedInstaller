@@ -33,7 +33,7 @@
                 android:id="@+id/console_result"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha="0.02"
+                android:alpha="0.03"
                 android:scaleType="fitStart"
                 android:visibility="gone"
                 tools:src="@drawable/ic_check_circle"
@@ -44,6 +44,7 @@
     </ScrollView>
 
     <RelativeLayout
+        android:id="@+id/buttonPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="4dp">
@@ -59,33 +60,30 @@
             tools:progress="10"
             tools:rotation="180"/>
 
-        <LinearLayout
-            android:id="@+id/buttonPanel"
+        <Button
+            android:id="@+id/cancel"
+            style="?attr/buttonBarNegativeButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressBar"
+            android:layout_toLeftOf="@+id/reboot"
+            android:text="Not now"
+            android:textColor="?android:attr/textColorSecondary"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <Button
+            android:id="@+id/reboot"
+            style="?attr/buttonBarPositiveButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@id/progressBar"
+            android:gravity="start|center_vertical"
             android:visibility="gone"
-            tools:visibility="visible">
-
-            <Button
-                android:id="@+id/cancel"
-                style="?attr/buttonBarNegativeButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Not now"
-                android:textColor="?android:attr/textColorSecondary"/>
-
-            <Button
-                android:id="@+id/reboot"
-                style="?attr/buttonBarPositiveButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="start|center_vertical"
-                tools:text="Reboot (14)"/>
-
-        </LinearLayout>
+            tools:text="Reboot (15)"
+            tools:visibility="visible"/>
 
     </RelativeLayout>
 

@@ -1,7 +1,10 @@
 package de.robv.android.xposed.installer.installation;
 
-import android.animation.TimeAnimator;
-import android.animation.TimeAnimator.TimeListener;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Context;
@@ -16,9 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -32,6 +33,11 @@ import de.robv.android.xposed.installer.XposedBaseActivity;
 
 public class InstallationActivity extends XposedBaseActivity {
     private static final int REBOOT_COUNTDOWN = 15000;
+
+    private static final int MEDIUM_ANIM_TIME = XposedApp.getInstance().getResources()
+            .getInteger(android.R.integer.config_mediumAnimTime);
+    private static final int LONG_ANIM_TIME = XposedApp.getInstance().getResources()
+            .getInteger(android.R.integer.config_longAnimTime);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,13 +117,17 @@ public class InstallationActivity extends XposedBaseActivity {
         @Override
         public void onStarted() {
             try {
-                Thread.sleep(1500);
+                Thread.sleep(LONG_ANIM_TIME * 3);
             } catch (InterruptedException ignored) {
             }
         }
 
         @Override
         public void onLine(final String line) {
+            try {
+                Thread.sleep(60);
+            } catch (InterruptedException ignored) {
+            }
             XposedApp.postOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -128,6 +138,10 @@ public class InstallationActivity extends XposedBaseActivity {
 
         @Override
         public void onErrorLine(final String line) {
+            try {
+                Thread.sleep(60);
+            } catch (InterruptedException ignored) {
+            }
             XposedApp.postOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -136,79 +150,133 @@ public class InstallationActivity extends XposedBaseActivity {
             });
         }
 
-        private static void expand(final View v, int duration) {
-            v.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-            final int targetHeight = v.getMeasuredHeight();
-
-            v.getLayoutParams().height = 1;
-            v.setVisibility(View.VISIBLE);
-
-            Animation a = new Animation() {
+        private static ValueAnimator createExpandCollapseAnimator(final View view, final boolean expand) {
+            ValueAnimator animator = new ValueAnimator() {
                 @Override
-                protected void applyTransformation(float interpolatedTime, Transformation t) {
-                    v.getLayoutParams().height = (interpolatedTime == 1)
-                            ? LayoutParams.WRAP_CONTENT
-                            : (int) (targetHeight * interpolatedTime);
-                    v.requestLayout();
+                public void start() {
+                    view.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    int height = view.getMeasuredHeight();
+
+                    int start = 0, end = 0;
+                    if (expand) {
+                        start = -height;
+                    } else {
+                        end = -height;
+                    }
+
+                    setIntValues(start, end);
+
+                    super.start();
                 }
             };
 
-            a.setDuration(duration);
-            v.startAnimation(a);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                final ViewGroup.MarginLayoutParams mLayoutParams = ((ViewGroup.MarginLayoutParams) view.getLayoutParams());
+
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    mLayoutParams.bottomMargin = (Integer) animation.getAnimatedValue();
+                    view.requestLayout();
+                }
+            });
+
+            animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    view.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (!expand) {
+                        view.setVisibility(View.GONE);
+                    }
+                }
+            });
+
+            return animator;
         }
 
         @Override
         public void onDone() {
+            try {
+                Thread.sleep(LONG_ANIM_TIME);
+            } catch (InterruptedException ignored) {
+            }
             XposedApp.postOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    appendText(getString(R.string.file_done), TYPE_OK);
+                    appendText("\n" + getString(R.string.file_done), TYPE_OK);
 
+                    // Fade in the result image.
                     mConsoleResult.setImageResource(R.drawable.ic_check_circle);
                     mConsoleResult.setVisibility(View.VISIBLE);
+                    ObjectAnimator fadeInResult = ObjectAnimator.ofFloat(mConsoleResult, "alpha", 0.0f, 0.03f);
+                    fadeInResult.setDuration(MEDIUM_ANIM_TIME * 2);
 
-                    mProgress.setIndeterminate(false);
-                    mProgress.setRotation(180);
-                    mProgress.setMax(REBOOT_COUNTDOWN);
+                    // Collapse the whole bottom bar.
+                    View buttomBar = getView().findViewById(R.id.buttonPanel);
+                    Animator collapseBottomBar = createExpandCollapseAnimator(buttomBar, false);
+                    collapseBottomBar.setDuration(MEDIUM_ANIM_TIME);
+                    collapseBottomBar.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            mProgress.setIndeterminate(false);
+                            mProgress.setRotation(180);
+                            mProgress.setMax(REBOOT_COUNTDOWN);
+                            mProgress.setProgress(REBOOT_COUNTDOWN);
 
-                    expand(getView().findViewById(R.id.buttonPanel),
-                            getResources().getInteger(android.R.integer.config_mediumAnimTime));
+                            mBtnReboot.setVisibility(View.VISIBLE);
+                            mBtnCancel.setVisibility(View.VISIBLE);
+                        }
+                    });
+
+                    Animator expandBottomBar = createExpandCollapseAnimator(buttomBar, true);
+                    expandBottomBar.setDuration(MEDIUM_ANIM_TIME * 2);
+                    expandBottomBar.setStartDelay(LONG_ANIM_TIME * 4);
+
+                    final ObjectAnimator countdownProgress = ObjectAnimator.ofInt(mProgress, "progress", REBOOT_COUNTDOWN, 0);
+                    countdownProgress.setDuration(REBOOT_COUNTDOWN);
+                    countdownProgress.setInterpolator(new LinearInterpolator());
+
+                    final ValueAnimator countdownButton = ValueAnimator.ofInt(REBOOT_COUNTDOWN / 1000, 0);
+                    countdownButton.setDuration(REBOOT_COUNTDOWN);
+                    countdownButton.setInterpolator(new LinearInterpolator());
 
                     // TODO extract to string resources
                     final String format = "%1$s (%2$d)";
                     final String action = "Reboot to recovery";
+                    mBtnReboot.setText(String.format(format, action, REBOOT_COUNTDOWN / 1000));
 
-                    TimeAnimator countdown = new TimeAnimator();
-                    countdown.setTimeListener(new TimeListener() {
+                    countdownButton.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         private int minWidth = 0;
-                        private int prevSeconds = -1;
 
                         @Override
-                        public void onTimeUpdate(TimeAnimator animation, long totalTime, long deltaTime) {
-                            int remaining = REBOOT_COUNTDOWN - (int) totalTime;
-                            mProgress.setProgress(remaining);
-                            if (remaining <= 0) {
-                                mBtnReboot.setText(String.format(format, action, 0));
-                                animation.end();
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            mBtnReboot.setText(String.format(format, action, animation.getAnimatedValue()));
 
-                                // TODO execute action here
-                            } else {
-                                int seconds = remaining / 1000 + 1;
-                                if (seconds != prevSeconds) {
-                                    mBtnReboot.setText(String.format(format, action, seconds));
-
-                                    // Make sure that the button width doesn't shrink.
-                                    if (mBtnReboot.getWidth() > minWidth) {
-                                        minWidth = mBtnReboot.getWidth();
-                                        mBtnReboot.setMinimumWidth(minWidth);
-                                    }
-
-                                    prevSeconds = seconds;
-                                }
+                            // Make sure that the button width doesn't shrink.
+                            if (mBtnReboot.getWidth() > minWidth) {
+                                minWidth = mBtnReboot.getWidth();
+                                mBtnReboot.setMinimumWidth(minWidth);
                             }
                         }
                     });
-                    countdown.start();
+
+                    countdownButton.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            mBtnReboot.callOnClick();
+                        }
+                    });
+
+                    AnimatorSet as = new AnimatorSet();
+                    as.play(fadeInResult);
+                    as.play(collapseBottomBar).with(fadeInResult);
+                    as.play(expandBottomBar).after(collapseBottomBar);
+                    as.play(countdownProgress).after(expandBottomBar);
+                    as.play(countdownButton).after(expandBottomBar);
+                    as.start();
                 }
             });
         }
@@ -219,10 +287,20 @@ public class InstallationActivity extends XposedBaseActivity {
                 @Override
                 public void run() {
                     appendText(error, TYPE_ERROR);
+
                     mConsoleResult.setImageResource(R.drawable.ic_error);
                     mConsoleResult.setVisibility(View.VISIBLE);
+                    ObjectAnimator fadeInResult = ObjectAnimator.ofFloat(mConsoleResult, "alpha", 0.0f, 0.03f);
+                    fadeInResult.setDuration(MEDIUM_ANIM_TIME * 2);
 
-                    mProgress.setIndeterminate(false);
+                    View buttomBar = getView().findViewById(R.id.buttonPanel);
+                    Animator collapseBottomBar = createExpandCollapseAnimator(buttomBar, false);
+                    collapseBottomBar.setDuration(MEDIUM_ANIM_TIME);
+
+                    AnimatorSet as = new AnimatorSet();
+                    as.play(fadeInResult);
+                    as.play(collapseBottomBar).with(fadeInResult);
+                    as.start();
                 }
             });
         }
