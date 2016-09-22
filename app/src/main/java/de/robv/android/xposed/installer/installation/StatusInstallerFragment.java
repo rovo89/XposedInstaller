@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
 import android.support.design.widget.Snackbar;
@@ -27,6 +28,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.MaterialDialog.Builder;
 import com.afollestad.materialdialogs.simplelist.MaterialSimpleListAdapter;
@@ -198,10 +200,9 @@ public class StatusInstallerFragment extends Fragment {
                     .title(R.string.install_warning_title)
                     .customView(dontShowAgainView, false)
                     .positiveText(android.R.string.ok)
-                    .callback(new MaterialDialog.ButtonCallback() {
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
-                        public void onPositive(MaterialDialog dialog) {
-                            super.onPositive(dialog);
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                             CheckBox checkBox = (CheckBox) dontShowAgainView.findViewById(android.R.id.checkbox);
                             if (checkBox.isChecked())
                                 XposedApp.getPreferences().edit().putBoolean("hide_install_warning", true).apply();
@@ -230,30 +231,27 @@ public class StatusInstallerFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.reboot:
-                areYouSure(R.string.reboot, new MaterialDialog.ButtonCallback() {
+                areYouSure(R.string.reboot, new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onPositive(MaterialDialog dialog) {
-                        super.onPositive(dialog);
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         reboot(null);
                     }
                 });
                 return true;
 
             case R.id.soft_reboot:
-                areYouSure(R.string.soft_reboot, new MaterialDialog.ButtonCallback() {
+                areYouSure(R.string.soft_reboot, new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onPositive(MaterialDialog dialog) {
-                        super.onPositive(dialog);
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         softReboot();
                     }
                 });
                 return true;
 
             case R.id.reboot_recovery:
-                areYouSure(R.string.reboot_recovery, new MaterialDialog.ButtonCallback() {
+                areYouSure(R.string.reboot_recovery, new MaterialDialog.SingleButtonCallback() {
                     @Override
-                    public void onPositive(MaterialDialog dialog) {
-                        super.onPositive(dialog);
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         reboot("recovery");
                     }
                 });
@@ -270,12 +268,13 @@ public class StatusInstallerFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    private void areYouSure(int contentTextId, MaterialDialog.ButtonCallback yesHandler) {
-        new MaterialDialog.Builder(getActivity()).title(R.string.areyousure)
-                .content(contentTextId)
-                .iconAttr(android.R.attr.alertDialogIcon)
-                .positiveText(android.R.string.yes)
-                .negativeText(android.R.string.no).callback(yesHandler).show();
+    private void areYouSure(int contentTextId, MaterialDialog.SingleButtonCallback yesHandler) {
+        new MaterialDialog.Builder(getActivity())
+                .content(R.string.areyousure)
+                .positiveText(contentTextId)
+                .negativeText(android.R.string.no)
+                .onPositive(yesHandler)
+                .show();
     }
 
     @SuppressLint("StringFormatInvalid")

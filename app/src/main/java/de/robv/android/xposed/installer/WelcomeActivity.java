@@ -68,7 +68,7 @@ public class WelcomeActivity extends XposedBaseActivity implements NavigationVie
                 super.onDrawerSlide(drawerView, 0); // this disables the animation
             }
         };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
