@@ -24,7 +24,7 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support:customtabs:24.2.1'
     compile 'com.android.support:support-v13:24.2.1'
-    compile 'com.afollestad.material-dialogs:commons:0.9.0.1'
+    compile 'com.afollestad.material-dialogs:commons:0.9.0.2'
     compile 'se.emilsjolander:stickylistheaders:2.7.0'
     compile 'eu.chainfire:libsuperuser:1.0.0.201608240809'
     compile 'com.squareup.picasso:picasso:2.5.2'

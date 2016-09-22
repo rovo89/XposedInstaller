@@ -466,14 +466,9 @@ public class StatusInstallerFragment extends Fragment {
         final long ACTION_SAVE = 2;
         final long ACTION_DELETE = 3;
 
-        // TODO this is a work-around as the callback can only access final variables
-        // see also: https://github.com/afollestad/material-dialogs/issues/1175
-        final MaterialDialog[] dialogRef = new MaterialDialog[1];
-
         final MaterialSimpleListAdapter adapter = new MaterialSimpleListAdapter(new MaterialSimpleListAdapter.Callback() {
             @Override
-            public void onMaterialListItemSelected(int index, MaterialSimpleListItem item) {
-                MaterialDialog dialog = dialogRef[0];
+            public void onMaterialListItemSelected(MaterialDialog dialog, int index, MaterialSimpleListItem item) {
                 dialog.dismiss();
                 long action = item.getId();
 
@@ -551,7 +546,6 @@ public class StatusInstallerFragment extends Fragment {
                 .build();
 
         dialog.show();
-        dialogRef[0] = dialog;
     }
 
     private void download(Context context, String title, FrameworkZips.Type type, final RunnableWithParam<File> callback) {
