@@ -64,8 +64,7 @@ public class FlashDirectly extends Flashable {
 
         // Execute the flash commands.
         RootUtil rootUtil = new RootUtil();
-        if (!rootUtil.startShell()) {
-            triggerError(callback, FlashCallback.ERROR_NO_ROOT_ACCESS);
+        if (!rootUtil.startShell(callback)) {
             return;
         }
 

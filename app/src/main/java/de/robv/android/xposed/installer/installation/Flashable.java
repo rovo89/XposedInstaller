@@ -6,6 +6,8 @@ import android.os.Parcelable;
 
 import java.io.File;
 
+import de.robv.android.xposed.installer.util.RootUtil;
+
 public abstract class Flashable implements Parcelable {
     public static final String KEY = "flash";
 
@@ -20,6 +22,10 @@ public abstract class Flashable implements Parcelable {
     }
 
     public abstract void flash(Context context, FlashCallback callback);
+
+    public RootUtil.RebootMode getRebootMode() {
+        return RootUtil.RebootMode.NORMAL;
+    }
 
     @Override
     public int describeContents() {

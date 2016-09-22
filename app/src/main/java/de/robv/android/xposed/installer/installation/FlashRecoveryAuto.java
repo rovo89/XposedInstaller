@@ -9,8 +9,6 @@ import java.io.File;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.util.RootUtil;
 
-import static de.robv.android.xposed.installer.util.InstallZipUtil.triggerError;
-
 public class FlashRecoveryAuto extends Flashable {
     public FlashRecoveryAuto(File zipPath) {
         super(zipPath);
@@ -23,8 +21,7 @@ public class FlashRecoveryAuto extends Flashable {
 
         // Execute the flash commands.
         RootUtil rootUtil = new RootUtil();
-        if (!rootUtil.startShell()) {
-            triggerError(callback, FlashCallback.ERROR_NO_ROOT_ACCESS);
+        if (!rootUtil.startShell(callback)) {
             return;
         }
 
@@ -60,6 +57,11 @@ public class FlashRecoveryAuto extends Flashable {
 
         callback.onLine(context.getString(R.string.auto_flash_note, zipName));
         callback.onDone();
+    }
+
+    @Override
+    public RootUtil.RebootMode getRebootMode() {
+        return RootUtil.RebootMode.RECOVERY;
     }
 
     public static final Parcelable.Creator<FlashRecoveryAuto> CREATOR

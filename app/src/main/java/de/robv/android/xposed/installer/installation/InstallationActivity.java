@@ -30,6 +30,7 @@ import java.io.File;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.XposedBaseActivity;
+import de.robv.android.xposed.installer.util.RootUtil;
 
 public class InstallationActivity extends XposedBaseActivity {
     private static final int REBOOT_COUNTDOWN = 15000;
@@ -78,6 +79,7 @@ public class InstallationActivity extends XposedBaseActivity {
     }
 
     public static class InstallationFragment extends Fragment implements FlashCallback {
+        private Flashable mFlashable;
         private static final int TYPE_NONE = 0;
         private static final int TYPE_ERROR = -1;
         private static final int TYPE_OK = 1;
@@ -85,12 +87,14 @@ public class InstallationActivity extends XposedBaseActivity {
         private ProgressBar mProgress;
         private ImageView mConsoleResult;
         private Button mBtnReboot;
+        private Button mBtnCancel;
 
         public void startInstallation(final Context context, final Flashable flashable) {
+            mFlashable = flashable;
             new Thread("FlashZip") {
                 @Override
                 public void run() {
-                    flashable.flash(context, InstallationFragment.this);
+                    mFlashable.flash(context, InstallationFragment.this);
                 }
             }.start();
         }
@@ -109,7 +113,7 @@ public class InstallationActivity extends XposedBaseActivity {
             mProgress = (ProgressBar) view.findViewById(R.id.progressBar);
             mConsoleResult = (ImageView) view.findViewById(R.id.console_result);
             mBtnReboot = (Button) view.findViewById(R.id.reboot);
-
+            mBtnCancel = (Button) view.findViewById(R.id.cancel);
 
             return view;
         }
@@ -171,11 +175,11 @@ public class InstallationActivity extends XposedBaseActivity {
             };
 
             animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                final ViewGroup.MarginLayoutParams mLayoutParams = ((ViewGroup.MarginLayoutParams) view.getLayoutParams());
+                final ViewGroup.MarginLayoutParams layoutParams = ((ViewGroup.MarginLayoutParams) view.getLayoutParams());
 
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
-                    mLayoutParams.bottomMargin = (Integer) animation.getAnimatedValue();
+                    layoutParams.bottomMargin = (Integer) animation.getAnimatedValue();
                     view.requestLayout();
                 }
             });
@@ -245,7 +249,8 @@ public class InstallationActivity extends XposedBaseActivity {
 
                     // TODO extract to string resources
                     final String format = "%1$s (%2$d)";
-                    final String action = "Reboot to recovery";
+                    final RootUtil.RebootMode rebootMode = mFlashable.getRebootMode();
+                    final String action = getString(rebootMode.titleRes);
                     mBtnReboot.setText(String.format(format, action, REBOOT_COUNTDOWN / 1000));
 
                     countdownButton.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -264,9 +269,42 @@ public class InstallationActivity extends XposedBaseActivity {
                     });
 
                     countdownButton.addListener(new AnimatorListenerAdapter() {
+                        private boolean canceled = false;
+
+                        @Override
+                        public void onAnimationCancel(Animator animation) {
+                            canceled = true;
+                        }
+
                         @Override
                         public void onAnimationEnd(Animator animation) {
-                            mBtnReboot.callOnClick();
+                            if (!canceled) {
+                                mBtnReboot.callOnClick();
+                            }
+                        }
+                    });
+
+                    mBtnReboot.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            countdownProgress.cancel();
+                            countdownButton.cancel();
+
+                            RootUtil rootUtil = new RootUtil();
+                            if (!rootUtil.startShell(InstallationFragment.this)
+                                    || !rootUtil.reboot(rebootMode, InstallationFragment.this)) {
+                                onError(FlashCallback.ERROR_GENERIC, getString(R.string.reboot_failed));
+                            }
+                        }
+                    });
+
+                    mBtnCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            countdownProgress.cancel();
+                            countdownButton.cancel();
+
+                            getActivity().finish();
                         }
                     });
 
