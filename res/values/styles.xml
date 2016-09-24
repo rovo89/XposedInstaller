@@ -4,7 +4,7 @@
 
     <style
         name="Theme.Light"
-        parent="android:Theme.Holo.Light.DarkActionBar" >
+        parent="android:Theme.Holo.Light" >
         <item name="android:windowBackground">@color/app_background_light</item>
         <item name="background_card">@drawable/background_card_light</item>
         <item name="background_card_pressed">@drawable/background_card_pressed_light</item>
