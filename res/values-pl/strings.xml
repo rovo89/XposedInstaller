@@ -45,7 +45,7 @@
     <string name="dont_show_again">Nie pokazuj ponownie</string>
     <string name="install_known_issue">Wydaje się, że to znany problem z ROM. Instalacja Xposed może nie działać lub prowadzić do poważnych problemów. Kliknij tutaj, aby uzyskać szczegółowe informacje na temat tej kwestii.</string>
     <string name="install_reverted">Proces aplikacji w wersji \"%1$s\" został zainstalowany wcześniej, ale w wersji \"%2$s\" został znaleziony teraz. Jeśli nie spodziewałeś się tego, może chcesz spróbować zainstalować poprzez recovery (automatycznie lub ręcznie).</string>
-    <string name="uninstall_reverted">Proces aplikacji odinstalowano wcześniej, ale w wersji \"%s\" został znaleziony teraz. Jeśli nie spodziewałeś się tego, możesz spróbować odinstalować poprzez recovery (automoatycznie lub ręcznie).</string>
+    <string name="uninstall_reverted">Proces aplikacji odinstalowano wcześniej, ale w wersji \"%s\" został znaleziony teraz. Jeśli nie spodziewałeś się tego, możesz spróbować odinstalować poprzez recovery (automatycznie lub ręcznie).</string>
     <string name="tap_to_dismiss">Stuknij, aby zamknąć</string>
     <string name="sdcard_location">Karta SD</string>
 
@@ -83,14 +83,14 @@
     <string name="no_xposed_modules_found">Nie znaleziono żadnych modułów Xposed!</string>
     <string name="xposed_module_list_updated">Lista modułów Xposed została zaktualizowana.\nZmiany zostaną uaktywnione po restarcie</string>
     <string name="xposed_module_updated_notification_title">Moduł został zaktualizowany</string>
-    <string name="xposed_module_updated_notification">Zresetuj, aby aktywować zmiany</string>
+    <string name="xposed_module_updated_notification">Zresetuj, aby wprowadzić zmiany</string>
     <string name="warning_xposed_min_version">Ten moduł wymaga nowszej wersji XposedBridge (%d) i nie może być aktywowany.</string>
     <string name="no_min_version_specified">Ten moduł nie określa wymaganej wersji XposedBridge.</string>
     <string name="warning_min_version_too_low">Ten moduł był stworzony dla XposedBridge w wersji %1$d, ale przez niekompatybilne zmiany w wersji %2$d, został wyłączony.</string>
     <string name="module_launch">Uruchom UI</string>
     <string name="module_download_updates">Pobierz/Aktualizuj</string>
     <string name="module_support">Wsparcie</string>
-    <string name="module_app_info">Informacja o aplikacji</string>
+    <string name="module_app_info">Informacje o aplikacji</string>
     <string name="module_uninstall">Odinstaluj</string>
 
     <!-- Download tab -->
@@ -103,7 +103,7 @@
     <string name="reltype_stable">Stabilna</string>
     <string name="reltype_stable_summary">Stabilna (niskie ryzyko błędów)</string>
     <string name="reltype_beta">Beta</string>
-    <string name="reltype_beta_summary">Beta (spodziewaj się trochę błędów)</string>
+    <string name="reltype_beta_summary">Beta (średnie ryzyko błędów)</string>
     <string name="reltype_experimental">Eksperymentalna</string>
     <string name="reltype_experimental_summary">Eksperymentalna (wysokie ryzyko błędów)</string>
     <string name="reltype_use_global_summary">Użyj globalnych ustawień</string>
@@ -154,9 +154,9 @@
     <string name="logs_save_failed">Nie można zapisać logu na kartę SD:</string>
     <string name="sdcard_not_writable">Karta SD nie znaleziona lub nie można jej odczytać</string>
     <string name="log_too_large">Plik loga jest dłuższy niż %1$,d kB, pominięto pierwszy %2$,d kB</string>
-    <string name="menuClearLog">Wyczyść teraz logi</string>
-    <string name="logs_cleared">Logi wyczyszczone</string>
-    <string name="logs_clear_failed">Nie można wyczyścić logu:</string>
+    <string name="menuClearLog">Usuń teraz logi</string>
+    <string name="logs_cleared">Logi usunięte</string>
+    <string name="logs_clear_failed">Nie można usunąć logu:</string>
     <string name="log_is_empty">Log jest pusty</string>
 
     <!-- About tab -->
@@ -164,7 +164,7 @@
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> oraz <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_developers_warning">Proszę nie kontaktować się z nimi bezpośrednio. Użyj poniższego linku.</string>
     <string name="about_translator_label">Tłumacz:</string>
-    <string name="translator">czeci</string>
+    <string name="translator">Michał Bator</string>
     <string name="about_version_label">Wersja tej aplikacji:</string>
     <string name="about_source_label">Źródło kodu:</string>
     <string name="about_support_label">Uzyskaj wsparcie z:</string>
@@ -184,7 +184,7 @@
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">Suma MD5 jest niepoprawna (pobrano: %1$s, przewidziano: %2$s)</string>
     <string name="download_could_not_read_file">Nie można odczytać pliku ściągniętego: %s</string>
-    <string name="download_no_valid_apk">Ściągnięte pliki nie są poprawne (lub niekompatybilne)</string>
+    <string name="download_no_valid_apk">Ściągnięte pliki są niepoprawne (lub niekompatybilne)</string>
     <string name="download_incorrect_package_name">Nazwa paczki jest niewłaściwa (pobrano: %1$s, przewidziano: %2$s)</string>
 
     <!-- RepoLoader -->
