@@ -124,7 +124,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        installedXposedVersion = XposedApp.getXposedVersion();
+        installedXposedVersion = XposedApp.getActiveXposedVersion();
         if (Build.VERSION.SDK_INT >= 21) {
             if (installedXposedVersion <= 0) {
                 addHeader();

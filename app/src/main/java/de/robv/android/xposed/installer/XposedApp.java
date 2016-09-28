@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
@@ -30,8 +29,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
@@ -52,7 +49,6 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     private static final File XPOSED_PROP_FILE = new File("/system/xposed.prop");
     public static int WRITE_EXTERNAL_PERMISSION = 69;
     public static String THIS_APK_VERSION = "1466672400000";
-    private static Pattern PATTERN_APP_PROCESS_VERSION = Pattern.compile(".*with Xposed support \\(version (.+)\\).*");
     private static XposedApp mInstance = null;
     private static Thread mUiThread;
     private static Handler mMainHandler;
@@ -75,39 +71,6 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
     public static void postOnUiThread(Runnable action) {
         mMainHandler.post(action);
-    }
-
-    public static Integer getXposedVersion() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            return getActiveXposedVersion();
-        } else {
-            return getInstalledAppProcessVersion();
-        }
-    }
-
-    private static int getInstalledAppProcessVersion() {
-        try {
-            return getAppProcessVersion(new FileInputStream("/system/bin/app_process"));
-        } catch (IOException e) {
-            return 0;
-        }
-    }
-
-    private static int getAppProcessVersion(InputStream is) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        String line;
-        while ((line = br.readLine()) != null) {
-            if (!line.contains("Xposed"))
-                continue;
-
-            Matcher m = PATTERN_APP_PROCESS_VERSION.matcher(line);
-            if (m.find()) {
-                is.close();
-                return ModuleUtil.extractIntPart(m.group(1));
-            }
-        }
-        is.close();
-        return 0;
     }
 
     // This method is hooked by XposedBridge to return the current version

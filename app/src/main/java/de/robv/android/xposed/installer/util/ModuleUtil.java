@@ -208,7 +208,7 @@ public final class ModuleUtil {
     public synchronized void updateModulesList(boolean showToast) {
         try {
             Log.i(XposedApp.TAG, "ModuleUtil -> updating modules.list");
-            int installedXposedVersion = XposedApp.getXposedVersion();
+            int installedXposedVersion = XposedApp.getActiveXposedVersion();
             if (installedXposedVersion <= 0) {
                 Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
                 return;
@@ -298,7 +298,7 @@ public final class ModuleUtil {
                 this.description = "";
             } else {
                 if (XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false)) {
-                    this.minVersion = XposedApp.getXposedVersion();
+                    this.minVersion = XposedApp.getActiveXposedVersion();
                 } else {
                     Object minVersionRaw = app.metaData.get("xposedminversion");
                     if (minVersionRaw instanceof Integer) {
