@@ -8,6 +8,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.zip.ZipFile;
 
+import de.robv.android.xposed.installer.R;
+import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.installation.FlashCallback;
 
 public final class InstallZipUtil {
@@ -129,7 +131,7 @@ public final class InstallZipUtil {
                 return "Execution aborted unexpectedly";
 
             case FlashCallback.ERROR_NO_ROOT_ACCESS:
-                return "Could not gain root access";
+                return XposedApp.getInstance().getString(R.string.root_failed);
 
             case FlashCallback.ERROR_INVALID_ZIP:
                 if (args.length > 0) {

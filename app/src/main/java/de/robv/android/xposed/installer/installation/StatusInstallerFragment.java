@@ -7,13 +7,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.SwitchCompat;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,13 +34,10 @@ import com.afollestad.materialdialogs.simplelist.MaterialSimpleListItem;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
-import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadFinishedCallback;
 import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;
@@ -231,28 +226,13 @@ public class StatusInstallerFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.reboot:
-                areYouSure(R.string.reboot, new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        reboot(null);
-                    }
-                });
-                return true;
-
             case R.id.soft_reboot:
-                areYouSure(R.string.soft_reboot, new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        softReboot();
-                    }
-                });
-                return true;
-
             case R.id.reboot_recovery:
-                areYouSure(R.string.reboot_recovery, new MaterialDialog.SingleButtonCallback() {
+                final RootUtil.RebootMode mode = RootUtil.RebootMode.fromId(item.getItemId());
+                confirmReboot(mode.titleRes, new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        reboot("recovery");
+                        RootUtil.reboot(mode, getActivity());
                     }
                 });
                 return true;
@@ -268,9 +248,9 @@ public class StatusInstallerFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    private void areYouSure(int contentTextId, MaterialDialog.SingleButtonCallback yesHandler) {
+    private void confirmReboot(int contentTextId, MaterialDialog.SingleButtonCallback yesHandler) {
         new MaterialDialog.Builder(getActivity())
-                .content(R.string.areyousure)
+                .content(R.string.reboot_confirmation)
                 .positiveText(contentTextId)
                 .negativeText(android.R.string.no)
                 .onPositive(yesHandler)
@@ -573,69 +553,5 @@ public class StatusInstallerFragment extends Fragment {
 
     private static void saveTo(Context context, File file) {
         Toast.makeText(context, "Not implemented yet", Toast.LENGTH_SHORT).show();
-    }
-
-    private boolean startShell() {
-        if (mRootUtil.startShell())
-            return true;
-
-        showAlert(getString(R.string.root_failed));
-        return false;
-    }
-
-    private void showAlert(final String result) {
-        if (Looper.myLooper() != Looper.getMainLooper()) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    showAlert(result);
-                }
-            });
-            return;
-        }
-
-        MaterialDialog dialog = new MaterialDialog.Builder(getActivity()).content(result).positiveText(android.R.string.ok).build();
-        dialog.show();
-
-        TextView txtMessage = (TextView) dialog
-                .findViewById(android.R.id.message);
-        try {
-            txtMessage.setTextSize(14);
-        } catch (NullPointerException ignored) {
-        }
-    }
-
-    private void softReboot() {
-        if (!startShell())
-            return;
-
-        List<String> messages = new LinkedList<>();
-        if (mRootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages) != 0) {
-            messages.add("");
-            messages.add(getString(R.string.reboot_failed));
-            showAlert(TextUtils.join("\n", messages).trim());
-        }
-    }
-
-    private void reboot(String mode) {
-        if (!startShell())
-            return;
-
-        List<String> messages = new LinkedList<>();
-
-        String command = "reboot";
-        if (mode != null) {
-            command += " " + mode;
-            if (mode.equals("recovery"))
-                // create a flag used by some kernels to boot into recovery
-                mRootUtil.executeWithBusybox("touch /cache/recovery/boot", messages);
-        }
-
-        if (mRootUtil.executeWithBusybox(command, messages) != 0) {
-            messages.add("");
-            messages.add(getString(R.string.reboot_failed));
-            showAlert(TextUtils.join("\n", messages).trim());
-        }
-        AssetUtil.removeBusybox();
     }
 }

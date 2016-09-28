@@ -1,12 +1,17 @@
 package de.robv.android.xposed.installer.util;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
+import android.text.TextUtils;
 import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import de.robv.android.xposed.installer.R;
@@ -36,6 +41,29 @@ public class RootUtil {
     public interface LineCallback {
         void onLine(String line);
         void onErrorLine(String line);
+    }
+
+    public static class CollectingLineCallback implements LineCallback {
+        protected List<String> mLines = new LinkedList<>();
+
+        @Override
+        public void onLine(String line) {
+            mLines.add(line);
+        }
+
+        @Override
+        public void onErrorLine(String line) {
+            mLines.add(line);
+        }
+
+        public List<String> getLines() {
+            return mLines;
+        }
+
+        @Override
+        public String toString() {
+            return TextUtils.join("\n", mLines);
+        }
     }
 
     private static String getEmulatedStorageVariable(String variable) {
@@ -252,6 +280,40 @@ public class RootUtil {
         RebootMode(@StringRes int titleRes) {
             this.titleRes = titleRes;
         }
+
+        public static RebootMode fromId(@IdRes int id) {
+            switch (id) {
+                case R.id.reboot:
+                    return NORMAL;
+                case R.id.soft_reboot:
+                    return SOFT;
+                case R.id.reboot_recovery:
+                    return RECOVERY;
+                default:
+                    throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public static boolean reboot(RebootMode mode, @NonNull Context context) {
+        RootUtil rootUtil = new RootUtil();
+        if (!rootUtil.startShell()) {
+            NavUtil.showMessage(context, context.getString(R.string.root_failed));
+            return false;
+        }
+
+        LineCallback callback = new CollectingLineCallback();
+        if (!rootUtil.reboot(mode, callback)) {
+            StringBuilder message = new StringBuilder(callback.toString());
+            if (message.length() > 0) {
+                message.append("\n\n");
+            }
+            message.append(context.getString(R.string.reboot_failed));
+            NavUtil.showMessage(context, message);
+            return false;
+        }
+
+        return true;
     }
 
     public boolean reboot(RebootMode mode, LineCallback callback) {
