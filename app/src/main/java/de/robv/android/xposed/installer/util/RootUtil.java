@@ -66,6 +66,18 @@ public class RootUtil {
         }
     }
 
+    public static class LogLineCallback implements LineCallback {
+        @Override
+        public void onLine(String line) {
+            Log.i(XposedApp.TAG, line);
+        }
+
+        @Override
+        public void onErrorLine(String line) {
+            Log.e(XposedApp.TAG, line);
+        }
+    }
+
     private static String getEmulatedStorageVariable(String variable) {
         String result = System.getenv(variable);
         if (result != null) {

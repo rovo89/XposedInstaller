@@ -11,9 +11,6 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.WelcomeActivity;
 import de.robv.android.xposed.installer.XposedApp;
@@ -49,7 +46,6 @@ public final class NotificationUtil {
         sNotificationManager.cancelAll();
     }
 
-    @SuppressWarnings("deprecation")
     public static void showNotActivatedNotification(String packageName,
                                                     String appName) {
         Intent intent = new Intent(sContext, WelcomeActivity.class);
@@ -174,21 +170,10 @@ public final class NotificationUtil {
                 return;
             }
 
-            List<String> messages = new LinkedList<>();
-            boolean isSoftReboot = intent.getBooleanExtra(EXTRA_SOFT_REBOOT,
-                    false);
-            int returnCode = isSoftReboot
-                    ? rootUtil.execute("setprop ctl.restart surfaceflinger; setprop ctl.restart zygote", messages)
-                    : rootUtil.executeWithBusybox("reboot", messages);
+            boolean isSoftReboot = intent.getBooleanExtra(EXTRA_SOFT_REBOOT, false);
+            rootUtil.reboot(isSoftReboot ? RootUtil.RebootMode.SOFT : RootUtil.RebootMode.NORMAL,
+                    new RootUtil.LogLineCallback());
 
-            if (returnCode != 0) {
-                Log.e(XposedApp.TAG, "NotificationUtil -> Could not reboot:");
-                for (String line : messages) {
-                    Log.e(XposedApp.TAG, line);
-                }
-            }
-
-            rootUtil.dispose();
             AssetUtil.removeBusybox();
         }
     }
