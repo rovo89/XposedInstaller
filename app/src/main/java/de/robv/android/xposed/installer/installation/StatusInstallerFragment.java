@@ -110,7 +110,7 @@ public class StatusInstallerFragment extends Fragment {
         View txtInstallContainer = v.findViewById(R.id.status_container);
         ImageView txtInstallIcon = (ImageView) v.findViewById(R.id.status_icon);
 
-        String installedXposedVersion = XposedApp.getXposedProp().get("version");
+        String installedXposedVersion = XposedApp.getXposedProp().getVersion();
         View disableView = v.findViewById(R.id.disableView);
         xposedDisable = (SwitchCompat) v.findViewById(R.id.disableSwitch);
 

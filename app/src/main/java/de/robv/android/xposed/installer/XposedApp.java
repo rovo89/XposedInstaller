@@ -17,21 +17,16 @@ import android.preference.PreferenceManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
@@ -42,11 +37,12 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     @SuppressLint("SdCardPath")
     public static final String BASE_DIR = "/data/data/de.robv.android.xposed.installer/";
     public static final String ENABLED_MODULES_LIST_FILE = XposedApp.BASE_DIR + "conf/enabled_modules.list";
-    private static final File XPOSED_PROP_FILE_SYSTEMLESS = new File("/magisk/xposed/system/xposed.prop");
-    private static final File XPOSED_PROP_FILE_SYSTEMLESS_2 = new File("/su/xposed/system/xposed.prop");
-    private static final File XPOSED_PROP_FILE_SYSTEMLESS_3 = new File("/vendor/xposed.prop");
-    private static final File XPOSED_PROP_FILE_SYSTEMLESS_4 = new File("/xposed/xposed.prop");
-    private static final File XPOSED_PROP_FILE = new File("/system/xposed.prop");
+
+    private static final String[] XPOSED_PROP_FILES = new String[]{
+            "/su/xposed/xposed.prop", // official systemless
+            "/system/xposed.prop",    // classical
+    };
+
     public static int WRITE_EXTERNAL_PERMISSION = 69;
     public static String THIS_APK_VERSION = "1466672400000";
     private static XposedApp mInstance = null;
@@ -55,7 +51,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     private boolean mIsUiLoaded = false;
     private Activity mCurrentActivity = null;
     private SharedPreferences mPref;
-    private Map<String, String> mXposedProp;
+    private InstallZipUtil.XposedProp mXposedProp;
 
     public static XposedApp getInstance() {
         return mInstance;
@@ -78,7 +74,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         return -1;
     }
 
-    public static Map<String, String> getXposedProp() {
+    public static InstallZipUtil.XposedProp getXposedProp() {
         synchronized (mInstance) {
             return mInstance.mXposedProp;
         }
@@ -142,29 +138,18 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     private void reloadXposedProp() {
-        Map<String, String> map = Collections.emptyMap();
-        if (XPOSED_PROP_FILE.canRead() || XPOSED_PROP_FILE_SYSTEMLESS.canRead() || XPOSED_PROP_FILE_SYSTEMLESS_2.canRead()
-                || XPOSED_PROP_FILE_SYSTEMLESS_3.canRead() || XPOSED_PROP_FILE_SYSTEMLESS_4.canRead()) {
-            File file = null;
-            if (XPOSED_PROP_FILE.canRead()) {
-                file = XPOSED_PROP_FILE;
-            } else if (XPOSED_PROP_FILE_SYSTEMLESS.canRead()) {
-                file = XPOSED_PROP_FILE_SYSTEMLESS;
-            } else if (XPOSED_PROP_FILE_SYSTEMLESS_2.canRead()) {
-                file = XPOSED_PROP_FILE_SYSTEMLESS_2;
-            } else if (XPOSED_PROP_FILE_SYSTEMLESS_3.canRead()) {
-                file = XPOSED_PROP_FILE_SYSTEMLESS_3;
-            } else if (XPOSED_PROP_FILE_SYSTEMLESS_4.canRead()) {
-                file = XPOSED_PROP_FILE_SYSTEMLESS_4;
-            }
+        InstallZipUtil.XposedProp prop = null;
 
-            if (file != null) {
+        for (String path : XPOSED_PROP_FILES) {
+            File file = new File(path);
+            if (file.canRead()) {
                 FileInputStream is = null;
                 try {
                     is = new FileInputStream(file);
-                    map = parseXposedProp(is);
+                    prop = InstallZipUtil.parseXposedProp(is);
+                    break;
                 } catch (IOException e) {
-                    Log.e(XposedApp.TAG, "XposedApp -> Could not read " + file.getPath(), e);
+                    Log.e(XposedApp.TAG, "Could not read " + file.getPath(), e);
                 } finally {
                     if (is != null) {
                         try {
@@ -177,27 +162,8 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         }
 
         synchronized (this) {
-            mXposedProp = map;
+            mXposedProp = prop;
         }
-    }
-
-    private Map<String, String> parseXposedProp(InputStream stream)
-            throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-        Map<String, String> map = new LinkedHashMap<String, String>();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String[] parts = line.split("=", 2);
-            if (parts.length != 2)
-                continue;
-
-            String key = parts[0].trim();
-            if (key.charAt(0) == '#')
-                continue;
-
-            map.put(key, parts[1].trim());
-        }
-        return Collections.unmodifiableMap(map);
     }
 
     public void updateProgressIndicator(final SwipeRefreshLayout refreshLayout) {
