@@ -397,7 +397,6 @@ public class StatusInstallerFragment extends Fragment {
                 View card = inflater.inflate(R.layout.framework_zip_group, root, false);
                 TextView tv = (TextView) card.findViewById(android.R.id.title);
                 tv.setText(type.title);
-                tv.setBackgroundResource(type.color);
                 container = (ViewGroup) card.findViewById(android.R.id.content);
                 root.addView(card);
             }

@@ -2,7 +2,6 @@ package de.robv.android.xposed.installer.util;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.ColorRes;
 import android.support.annotation.StringRes;
 import android.support.annotation.WorkerThread;
 import android.util.Log;
@@ -45,15 +44,13 @@ public final class FrameworkZips {
     private static final String ONLINE_URL = "http://dl-xda.xposed.info/framework.json";
 
     public enum Type {
-        INSTALLER(R.string.install, R.color.darker_green),
-        UNINSTALLER(R.string.uninstall, R.color.red_500);
+        INSTALLER(R.string.install),
+        UNINSTALLER(R.string.uninstall);
 
         public final int title;
-        public final int color;
 
-        Type(@StringRes int title, @ColorRes int color) {
+        Type(@StringRes int title) {
             this.title = title;
-            this.color = color;
         }
     }
     private static final int TYPE_COUNT = Type.values().length;

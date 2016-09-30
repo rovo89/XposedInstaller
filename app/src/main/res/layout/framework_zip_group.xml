@@ -24,6 +24,7 @@
             android:padding="6dp"
             android:textAllCaps="true"
             android:textStyle="bold"
+            android:background="?attr/sticky_header_background"
             tools:text="@string/install"/>
     </LinearLayout>
 
