@@ -89,7 +89,13 @@ public final class RepoDb extends SQLiteOpenHelper {
     public static Map<Long, Repository> getRepositories() {
         Map<Long, Repository> result = new LinkedHashMap<Long, Repository>(1);
 
-        String[] projection = new String[]{RepositoriesColumns._ID, RepositoriesColumns.URL, RepositoriesColumns.TITLE, RepositoriesColumns.PARTIAL_URL, RepositoriesColumns.VERSION,};
+        String[] projection = new String[]{
+                RepositoriesColumns._ID,
+                RepositoriesColumns.URL,
+                RepositoriesColumns.TITLE,
+                RepositoriesColumns.PARTIAL_URL,
+                RepositoriesColumns.VERSION,
+        };
 
         Cursor c = mDb.query(RepositoriesColumns.TABLE_NAME, projection, null, null, null, null, RepositoriesColumns._ID);
         while (c.moveToNext()) {
@@ -166,8 +172,7 @@ public final class RepoDb extends SQLiteOpenHelper {
         }
     }
 
-    private static long insertModuleVersion(long moduleId,
-                                            ModuleVersion version) {
+    private static long insertModuleVersion(long moduleId, ModuleVersion version) {
         ContentValues values = new ContentValues();
         values.put(ModuleVersionsColumns.MODULE_ID, moduleId);
         values.put(ModuleVersionsColumns.NAME, version.name);
@@ -182,8 +187,7 @@ public final class RepoDb extends SQLiteOpenHelper {
                 values);
     }
 
-    private static long insertMoreInfo(long moduleId, String title,
-                                       String value) {
+    private static long insertMoreInfo(long moduleId, String title, String value) {
         ContentValues values = new ContentValues();
         values.put(MoreInfoColumns.MODULE_ID, moduleId);
         values.put(MoreInfoColumns.LABEL, title);
@@ -201,12 +205,19 @@ public final class RepoDb extends SQLiteOpenHelper {
 
     public static Module getModuleByPackageName(String packageName) {
         // The module itself
-        String[] projection = new String[]{ModulesColumns._ID,
-                ModulesColumns.REPO_ID, ModulesColumns.PKGNAME,
-                ModulesColumns.TITLE, ModulesColumns.SUMMARY,
-                ModulesColumns.DESCRIPTION, ModulesColumns.DESCRIPTION_IS_HTML,
-                ModulesColumns.AUTHOR, ModulesColumns.SUPPORT,
-                ModulesColumns.CREATED, ModulesColumns.UPDATED,};
+        String[] projection = new String[]{
+                ModulesColumns._ID,
+                ModulesColumns.REPO_ID,
+                ModulesColumns.PKGNAME,
+                ModulesColumns.TITLE,
+                ModulesColumns.SUMMARY,
+                ModulesColumns.DESCRIPTION,
+                ModulesColumns.DESCRIPTION_IS_HTML,
+                ModulesColumns.AUTHOR,
+                ModulesColumns.SUPPORT,
+                ModulesColumns.CREATED,
+                ModulesColumns.UPDATED,
+        };
 
         String where = ModulesColumns.PREFERRED + " = 1 AND " + ModulesColumns.PKGNAME + " = ?";
         String[] whereArgs = new String[]{packageName};
@@ -234,18 +245,19 @@ public final class RepoDb extends SQLiteOpenHelper {
         c.close();
 
         // Versions
-        projection = new String[]{ModuleVersionsColumns.NAME,
+        projection = new String[]{
+                ModuleVersionsColumns.NAME,
                 ModuleVersionsColumns.CODE, ModuleVersionsColumns.DOWNLOAD_LINK,
                 ModuleVersionsColumns.MD5SUM, ModuleVersionsColumns.CHANGELOG,
                 ModuleVersionsColumns.CHANGELOG_IS_HTML,
                 ModuleVersionsColumns.RELTYPE,
-                ModuleVersionsColumns.UPLOADED,};
+                ModuleVersionsColumns.UPLOADED,
+        };
 
         where = ModuleVersionsColumns.MODULE_ID + " = ?";
         whereArgs = new String[]{Long.toString(moduleId)};
 
-        c = mDb.query(ModuleVersionsColumns.TABLE_NAME, projection, where,
-                whereArgs, null, null, null);
+        c = mDb.query(ModuleVersionsColumns.TABLE_NAME, projection, where, whereArgs, null, null, null);
         while (c.moveToNext()) {
             ModuleVersion version = new ModuleVersion(mod);
             version.name = c.getString(c.getColumnIndexOrThrow(ModuleVersionsColumns.NAME));
@@ -261,18 +273,19 @@ public final class RepoDb extends SQLiteOpenHelper {
         c.close();
 
         // MoreInfo
-        projection = new String[]{MoreInfoColumns.LABEL, MoreInfoColumns.VALUE,};
+        projection = new String[]{
+                MoreInfoColumns.LABEL,
+                MoreInfoColumns.VALUE,
+        };
 
         where = MoreInfoColumns.MODULE_ID + " = ?";
         whereArgs = new String[]{Long.toString(moduleId)};
 
         c = mDb.query(MoreInfoColumns.TABLE_NAME, projection, where, whereArgs, null, null, MoreInfoColumns._ID);
         while (c.moveToNext()) {
-            String label = c
-                    .getString(c.getColumnIndexOrThrow(MoreInfoColumns.LABEL));
-            String value = c
-                    .getString(c.getColumnIndexOrThrow(MoreInfoColumns.VALUE));
-            mod.moreInfo.add(new Pair<String, String>(label, value));
+            String label = c.getString(c.getColumnIndexOrThrow(MoreInfoColumns.LABEL));
+            String value = c.getString(c.getColumnIndexOrThrow(MoreInfoColumns.VALUE));
+            mod.moreInfo.add(new Pair<>(label, value));
         }
         c.close();
 
@@ -285,15 +298,13 @@ public final class RepoDb extends SQLiteOpenHelper {
 
     public static void updateModuleLatestVersion(String packageName) {
         int maxShownReleaseType = mRepoLoader.getMaxShownReleaseType(packageName).ordinal();
-        mDb.execSQL(
-                "UPDATE " + ModulesColumns.TABLE_NAME + " SET "
-                        + ModulesColumns.LATEST_VERSION + " = (SELECT "
-                        + ModuleVersionsColumns._ID + " FROM "
-                        + ModuleVersionsColumns.TABLE_NAME + " AS v"
-                        + " WHERE v." + ModuleVersionsColumns.MODULE_ID + " = "
-                        + ModulesColumns.TABLE_NAME + "." + ModulesColumns._ID
-                        + " AND reltype <= ? LIMIT 1)" + " WHERE "
-                        + ModulesColumns.PKGNAME + " = ?",
+        mDb.execSQL("UPDATE " + ModulesColumns.TABLE_NAME
+                        + " SET " + ModulesColumns.LATEST_VERSION
+                            + " = (SELECT " + ModuleVersionsColumns._ID + " FROM " + ModuleVersionsColumns.TABLE_NAME + " AS v"
+                            + " WHERE v." + ModuleVersionsColumns.MODULE_ID
+                            + " = " + ModulesColumns.TABLE_NAME + "." + ModulesColumns._ID
+                            + " AND reltype <= ? LIMIT 1)"
+                        + " WHERE " + ModulesColumns.PKGNAME + " = ?",
                 new Object[]{maxShownReleaseType, packageName});
     }
 
@@ -331,24 +342,35 @@ public final class RepoDb extends SQLiteOpenHelper {
     public static Cursor queryModuleOverview(int sortingOrder,
                                              CharSequence filterText) {
         // Columns
-        String[] projection = new String[]{"m." + ModulesColumns._ID,
-                "m." + ModulesColumns.PKGNAME, "m." + ModulesColumns.TITLE,
-                "m." + ModulesColumns.SUMMARY, "m." + ModulesColumns.CREATED,
+        String[] projection = new String[]{
+                "m." + ModulesColumns._ID,
+                "m." + ModulesColumns.PKGNAME,
+                "m." + ModulesColumns.TITLE,
+                "m." + ModulesColumns.SUMMARY,
+                "m." + ModulesColumns.CREATED,
                 "m." + ModulesColumns.UPDATED,
 
-                "v." + ModuleVersionsColumns.NAME + " AS " + OverviewColumns.LATEST_VERSION, "i." + InstalledModulesColumns.VERSION_NAME + " AS " + OverviewColumns.INSTALLED_VERSION,
+                "v." + ModuleVersionsColumns.NAME + " AS " + OverviewColumns.LATEST_VERSION,
+                "i." + InstalledModulesColumns.VERSION_NAME + " AS " + OverviewColumns.INSTALLED_VERSION,
 
-                "(CASE WHEN m." + ModulesColumns.PKGNAME + " = '" + ModuleUtil.getInstance().getFrameworkPackageName() + "' THEN 1 ELSE 0 END) AS " + OverviewColumns.IS_FRAMEWORK,
+                "(CASE WHEN m." + ModulesColumns.PKGNAME + " = '" + ModuleUtil.getInstance().getFrameworkPackageName()
+                        + "' THEN 1 ELSE 0 END) AS " + OverviewColumns.IS_FRAMEWORK,
 
-                "(CASE WHEN i." + InstalledModulesColumns.VERSION_NAME + " IS NOT NULL" + " THEN 1 ELSE 0 END) AS " + OverviewColumns.IS_INSTALLED,
+                "(CASE WHEN i." + InstalledModulesColumns.VERSION_NAME + " IS NOT NULL"
+                        + " THEN 1 ELSE 0 END) AS " + OverviewColumns.IS_INSTALLED,
 
-                "(CASE WHEN v." + ModuleVersionsColumns.CODE + " > " + InstalledModulesColumns.VERSION_CODE + " THEN 1 ELSE 0 END) AS " + OverviewColumns.HAS_UPDATE,};
+                "(CASE WHEN v." + ModuleVersionsColumns.CODE + " > " + InstalledModulesColumns.VERSION_CODE
+                        + " THEN 1 ELSE 0 END) AS " + OverviewColumns.HAS_UPDATE,
+        };
 
         // Conditions
         String where = ModulesColumns.PREFERRED + " = 1";
         String whereArgs[] = null;
         if (!TextUtils.isEmpty(filterText)) {
-            where += " AND (m." + ModulesColumns.TITLE + " LIKE ?" + " OR m." + ModulesColumns.SUMMARY + " LIKE ?" + " OR m." + ModulesColumns.DESCRIPTION + " LIKE ?" + " OR m." + ModulesColumns.AUTHOR + " LIKE ?)";
+            where += " AND (m." + ModulesColumns.TITLE + " LIKE ?"
+                    + " OR m." + ModulesColumns.SUMMARY + " LIKE ?"
+                    + " OR m." + ModulesColumns.DESCRIPTION + " LIKE ?"
+                    + " OR m." + ModulesColumns.AUTHOR + " LIKE ?)";
             String filterTextArg = "%" + filterText + "%";
             whereArgs = new String[]{filterTextArg, filterTextArg, filterTextArg, filterTextArg};
         }
@@ -375,13 +397,13 @@ public final class RepoDb extends SQLiteOpenHelper {
         sbOrder.append(OverviewColumns.PKGNAME);
 
         // Query
-        Cursor c = mDb.query(ModulesColumns.TABLE_NAME + " AS m" + " LEFT JOIN "
-                + ModuleVersionsColumns.TABLE_NAME + " AS v" + " ON v."
-                + ModuleVersionsColumns._ID + " = m."
-                + ModulesColumns.LATEST_VERSION + " LEFT JOIN "
-                + InstalledModulesColumns.TABLE_NAME + " AS i"
-                + " ON i." + InstalledModulesColumns.PKGNAME + " = m."
-                + ModulesColumns.PKGNAME, projection, where, whereArgs, null, null, sbOrder.toString());
+        Cursor c = mDb.query(
+                ModulesColumns.TABLE_NAME + " AS m"
+                    + " LEFT JOIN " + ModuleVersionsColumns.TABLE_NAME + " AS v"
+                        + " ON v." + ModuleVersionsColumns._ID + " = m." + ModulesColumns.LATEST_VERSION
+                    + " LEFT JOIN " + InstalledModulesColumns.TABLE_NAME + " AS i"
+                        + " ON i." + InstalledModulesColumns.PKGNAME + " = m." + ModulesColumns.PKGNAME,
+                projection, where, whereArgs, null, null, sbOrder.toString());
 
         // Cache column indexes
         OverviewColumnsIndexes.fillFromCursor(c);

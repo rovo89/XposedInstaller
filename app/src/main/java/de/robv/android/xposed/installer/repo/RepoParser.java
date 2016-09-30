@@ -290,16 +290,12 @@ public class RepoParser {
 
     public interface RepoParserCallback {
         void onRepositoryMetadata(Repository repository);
-
         void onNewModule(Module module);
-
         void onRemoveModule(String packageName);
-
         void onCompleted(Repository repository);
     }
 
     static class ImageGetterAsyncTask extends AsyncTask<TextView, Void, Bitmap> {
-
         private LevelListDrawable levelListDrawable;
         private Context context;
         private String source;
