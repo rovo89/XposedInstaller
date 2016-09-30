@@ -7,7 +7,6 @@ import android.app.Application.ActivityLifecycleCallbacks;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,9 +19,6 @@ import android.util.Log;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
@@ -44,7 +40,6 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     };
 
     public static int WRITE_EXTERNAL_PERMISSION = 69;
-    public static String THIS_APK_VERSION = "1466672400000";
     private static XposedApp mInstance = null;
     private static Thread mUiThread;
     private static Handler mMainHandler;
@@ -110,19 +105,6 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         AssetUtil.removeBusybox();
 
         registerActivityLifecycleCallbacks(this);
-
-        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-
-        if (!mPref.getString("date", "").equals(dateFormat.format(date))) {
-            mPref.edit().putString("date", dateFormat.format(date)).apply();
-
-            try {
-                Log.i(TAG, String.format("XposedInstaller - %s - %s", THIS_APK_VERSION, getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private void createDirectories() {

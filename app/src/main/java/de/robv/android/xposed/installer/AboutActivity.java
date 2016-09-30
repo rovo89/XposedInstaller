@@ -1,15 +1,12 @@
 package de.robv.android.xposed.installer;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -24,9 +21,6 @@ import de.psdev.licensesdialog.model.Notice;
 import de.psdev.licensesdialog.model.Notices;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
-
-import static android.content.Intent.ACTION_SEND;
-import static android.content.Intent.EXTRA_TEXT;
 
 public class AboutActivity extends XposedBaseActivity {
 
@@ -57,22 +51,6 @@ public class AboutActivity extends XposedBaseActivity {
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new AboutFragment()).commit();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_about, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent sharingIntent = new Intent(ACTION_SEND);
-        sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(EXTRA_TEXT, getString(R.string.share_app_text, getString(R.string.support_material_xda)));
-        startActivity(Intent.createChooser(sharingIntent, getString(R.string.share)));
-
-        return super.onOptionsItemSelected(item);
     }
 
     public static class AboutFragment extends Fragment {
