@@ -21,15 +21,15 @@ import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 
 import de.robv.android.xposed.installer.installation.StatusInstallerFragment;
+import de.robv.android.xposed.installer.util.Loader;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.RepoLoader;
-import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class WelcomeActivity extends XposedBaseActivity implements NavigationView.OnNavigationItemSelectedListener,
-        ModuleListener, RepoListener {
+        ModuleListener, Loader.Listener<RepoLoader> {
 
     private static final String SELECTED_ITEM_ID = "SELECTED_ITEM_ID";
     public static View mProgress;
@@ -258,7 +258,7 @@ public class WelcomeActivity extends XposedBaseActivity implements NavigationVie
     }
 
     @Override
-    public void onRepoReloaded(RepoLoader loader) {
+    public void onReloadDone(RepoLoader loader) {
         notifyDataSetChanged();
     }
 

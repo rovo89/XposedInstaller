@@ -6,10 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteException;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -27,7 +24,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.GZIPInputStream;
@@ -45,28 +41,19 @@ import de.robv.android.xposed.installer.repo.RepoParser.RepoParserCallback;
 import de.robv.android.xposed.installer.repo.Repository;
 import de.robv.android.xposed.installer.util.DownloadsUtil.SyncDownloadInfo;
 
-public class RepoLoader {
-    private static final int UPDATE_FREQUENCY = 24 * 60 * 60 * 1000;
+public class RepoLoader extends Loader<RepoLoader> {
     private static final String DEFAULT_REPOSITORIES = "http://dl.xposed.info/repo/full.xml.gz";
     private static RepoLoader mInstance = null;
-    private final List<RepoListener> mListeners = new CopyOnWriteArrayList<>();
     private final Map<String, ReleaseType> mLocalReleaseTypesCache = new HashMap<>();
-    private XposedApp mApp = null;
-    private SharedPreferences mPref;
     private SharedPreferences mModulePref;
-    private ConnectivityManager mConMgr;
-    private boolean mIsLoading = false;
-    private boolean mReloadTriggeredOnce = false;
     private Map<Long, Repository> mRepositories = null;
     private ReleaseType mGlobalReleaseType;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     private RepoLoader() {
         mInstance = this;
-        mApp = XposedApp.getInstance();
         mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
+        mPrefKeyLastUpdateCheck = "last_update_check";
         mModulePref = mApp.getSharedPreferences("module_settings", Context.MODE_PRIVATE);
-        mConMgr = (ConnectivityManager) mApp.getSystemService(Context.CONNECTIVITY_SERVICE);
         mGlobalReleaseType = ReleaseType.fromString(XposedApp.getPreferences().getString("release_type_global", "stable"));
 
         RepoDb.init(mApp, this);
@@ -185,87 +172,11 @@ public class RepoLoader {
             return mGlobalReleaseType;
     }
 
-    public void triggerReload(final boolean force) {
-        mReloadTriggeredOnce = true;
-
-        if (force) {
-            resetLastUpdateCheck();
-        } else {
-            long lastUpdateCheck = mPref.getLong("last_update_check", 0);
-            if (System.currentTimeMillis() < lastUpdateCheck + UPDATE_FREQUENCY)
-                return;
-        }
-
-        NetworkInfo netInfo = mConMgr.getActiveNetworkInfo();
-        if (netInfo == null || !netInfo.isConnected())
-            return;
-
-        synchronized (this) {
-            if (mIsLoading)
-                return;
-            mIsLoading = true;
-        }
-        mApp.updateProgressIndicator(mSwipeRefreshLayout);
-
-        new Thread("RepositoryReload") {
-            public void run() {
-                final List<String> messages = new LinkedList<>();
-                boolean hasChanged = downloadAndParseFiles(messages);
-
-                mPref.edit().putLong("last_update_check", System.currentTimeMillis()).apply();
-
-                if (!messages.isEmpty()) {
-                    XposedApp.runOnUiThread(new Runnable() {
-                        public void run() {
-                            for (String message : messages) {
-                                Toast.makeText(mApp, message, Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-                }
-
-                if (hasChanged)
-                    notifyListeners();
-
-                synchronized (this) {
-                    mIsLoading = false;
-                }
-                mApp.updateProgressIndicator(mSwipeRefreshLayout);
-            }
-        }.start();
-    }
-
-    public void setSwipeRefreshLayout(SwipeRefreshLayout mSwipeRefreshLayout) {
-        this.mSwipeRefreshLayout = mSwipeRefreshLayout;
-    }
-
-    public void triggerFirstLoadIfNecessary() {
-        if (!mReloadTriggeredOnce)
-            triggerReload(false);
-    }
-
-    public void resetLastUpdateCheck() {
-        mPref.edit().remove("last_update_check").apply();
-    }
-
-    public synchronized boolean isLoading() {
-        return mIsLoading;
-    }
-
-    public void clear(boolean notify) {
-        synchronized (this) {
-            // TODO Stop reloading repository when it should be cleared
-            if (mIsLoading)
-                return;
-
-            RepoDb.deleteRepositories();
-            mRepositories = new LinkedHashMap<Long, Repository>(0);
-            DownloadsUtil.clearCache(null);
-            resetLastUpdateCheck();
-        }
-
-        if (notify)
-            notifyListeners();
+    @Override
+    protected void onClear() {
+        RepoDb.deleteRepositories();
+        mRepositories = new LinkedHashMap<>(0);
+        DownloadsUtil.clearCache(null);
     }
 
     public void setRepositories(String... repos) {
@@ -293,6 +204,24 @@ public class RepoLoader {
         if (repo.endsWith(".gz"))
             filename += ".gz";
         return new File(mApp.getCacheDir(), filename);
+    }
+
+    @Override
+    protected boolean onReload() {
+        final List<String> messages = new LinkedList<>();
+
+        boolean hasChanged = downloadAndParseFiles(messages);
+        if (!messages.isEmpty()) {
+            XposedApp.runOnUiThread(new Runnable() {
+                public void run() {
+                    for (String message : messages) {
+                        Toast.makeText(mApp, message, Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
+
+        return hasChanged;
     }
 
     private boolean downloadAndParseFiles(List<String> messages) {
@@ -416,31 +345,5 @@ public class RepoLoader {
         // TODO Set ModuleColumns.PREFERRED for modules which appear in multiple
         // repositories
         return hasChanged.get();
-    }
-
-    public void addListener(RepoListener listener, boolean triggerImmediately) {
-        if (!mListeners.contains(listener))
-            mListeners.add(listener);
-
-        if (triggerImmediately)
-            listener.onRepoReloaded(this);
-    }
-
-    public void removeListener(RepoListener listener) {
-        mListeners.remove(listener);
-    }
-
-    private void notifyListeners() {
-        for (RepoListener listener : mListeners) {
-            listener.onRepoReloaded(mInstance);
-        }
-    }
-
-    public interface RepoListener {
-        /**
-         * Called whenever the list of modules from repositories has been
-         * successfully reloaded
-         */
-        void onRepoReloaded(RepoLoader loader);
     }
 }

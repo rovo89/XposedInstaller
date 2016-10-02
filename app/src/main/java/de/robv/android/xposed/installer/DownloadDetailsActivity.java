@@ -25,14 +25,14 @@ import android.widget.TextView;
 import java.util.List;
 
 import de.robv.android.xposed.installer.repo.Module;
+import de.robv.android.xposed.installer.util.Loader;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.RepoLoader;
-import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
-public class DownloadDetailsActivity extends XposedBaseActivity implements RepoListener, ModuleListener {
+public class DownloadDetailsActivity extends XposedBaseActivity implements Loader.Listener<RepoLoader>, ModuleListener {
 
     public static final int DOWNLOAD_DESCRIPTION = 0;
     public static final int DOWNLOAD_VERSIONS = 1;
@@ -160,7 +160,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements RepoL
     }
 
     @Override
-    public void onRepoReloaded(RepoLoader loader) {
+    public void onReloadDone(RepoLoader loader) {
         reload();
     }
 

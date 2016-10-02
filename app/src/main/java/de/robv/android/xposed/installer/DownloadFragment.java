@@ -32,16 +32,16 @@ import java.util.Date;
 
 import de.robv.android.xposed.installer.repo.RepoDb;
 import de.robv.android.xposed.installer.repo.RepoDbDefinitions.OverviewColumnsIndexes;
+import de.robv.android.xposed.installer.util.Loader;
 import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.RepoLoader;
-import de.robv.android.xposed.installer.util.RepoLoader.RepoListener;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
-public class DownloadFragment extends Fragment implements RepoListener, ModuleListener {
+public class DownloadFragment extends Fragment implements Loader.Listener<RepoLoader>, ModuleListener {
     public static Activity sActivity;
     private SharedPreferences mPref;
     private DownloadsAdapter mAdapter;
@@ -205,7 +205,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
     }
 
     @Override
-    public void onRepoReloaded(final RepoLoader loader) {
+    public void onReloadDone(final RepoLoader loader) {
         reloadItems();
     }
 
