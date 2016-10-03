@@ -148,7 +148,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     public void updateProgressIndicator(final SwipeRefreshLayout refreshLayout) {
-        final boolean isLoading = RepoLoader.getInstance().isLoading() || ModuleUtil.getInstance().isLoading();
+        final boolean isLoading = RepoLoader.getInstance().isLoading();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
