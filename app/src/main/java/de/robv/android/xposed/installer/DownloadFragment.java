@@ -85,18 +85,14 @@ public class DownloadFragment extends Fragment implements Loader.Listener<RepoLo
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_downloader, container, false);
-        mListView = (StickyListHeadersListView) v.findViewById(R.id.listModules);
+
         final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swiperefreshlayout);
         refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mRepoLoader.setSwipeRefreshLayout(refreshLayout);
-                mRepoLoader.triggerReload(true);
-            }
-        });
         mRepoLoader.addListener(this, true);
+        mRepoLoader.setSwipeRefreshLayout(refreshLayout);
         mModuleUtil.addListener(this);
+
+        mListView = (StickyListHeadersListView) v.findViewById(R.id.listModules);
         mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(new OnItemClickListener() {
@@ -132,6 +128,7 @@ public class DownloadFragment extends Fragment implements Loader.Listener<RepoLo
     public void onDestroyView() {
         super.onDestroyView();
         mRepoLoader.removeListener(this);
+        mRepoLoader.setSwipeRefreshLayout(null);
         mModuleUtil.removeListener(this);
     }
 

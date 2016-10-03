@@ -13,7 +13,6 @@ import android.os.Environment;
 import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 
 import java.io.File;
@@ -23,7 +22,6 @@ import java.io.IOException;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
-import de.robv.android.xposed.installer.util.ModuleUtil;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
@@ -44,7 +42,6 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     private static Thread mUiThread;
     private static Handler mMainHandler;
     private boolean mIsUiLoaded = false;
-    private Activity mCurrentActivity = null;
     private SharedPreferences mPref;
     private InstallZipUtil.XposedProp mXposedProp;
 
@@ -147,22 +144,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         }
     }
 
-    public void updateProgressIndicator(final SwipeRefreshLayout refreshLayout) {
-        final boolean isLoading = RepoLoader.getInstance().isLoading();
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                synchronized (XposedApp.this) {
-                    if (mCurrentActivity != null) {
-                        mCurrentActivity.setProgressBarIndeterminateVisibility(isLoading);
-                        if (refreshLayout != null)
-                            refreshLayout.setRefreshing(isLoading);
-                    }
-                }
-            }
-        });
-    }
-
+    // TODO find a better way to trigger actions only when any UI is shown for the first time
     @Override
     public synchronized void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         if (mIsUiLoaded)
@@ -174,14 +156,10 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
 
     @Override
     public synchronized void onActivityResumed(Activity activity) {
-        mCurrentActivity = activity;
-        updateProgressIndicator(null);
     }
 
     @Override
     public synchronized void onActivityPaused(Activity activity) {
-        activity.setProgressBarIndeterminateVisibility(false);
-        mCurrentActivity = null;
     }
 
     @Override
@@ -193,8 +171,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     @Override
-    public void onActivitySaveInstanceState(Activity activity,
-                                            Bundle outState) {
+    public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
     }
 
     @Override

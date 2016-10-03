@@ -11,7 +11,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import de.robv.android.xposed.installer.XposedApp;
 
-public abstract class Loader<T> {
+public abstract class Loader<T> implements SwipeRefreshLayout.OnRefreshListener {
     protected final String CLASS_NAME;
     protected SharedPreferences mPref = XposedApp.getPreferences();
     protected String mPrefKeyLastUpdateCheck;
@@ -53,8 +53,8 @@ public abstract class Loader<T> {
                 return;
             }
             mIsLoading = true;
+            updateProgressIndicator();
         }
-        mApp.updateProgressIndicator(mSwipeRefreshLayout);
 
         new Thread("Reload" + CLASS_NAME) {
             public void run() {
@@ -67,8 +67,8 @@ public abstract class Loader<T> {
 
                 synchronized (this) {
                     mIsLoading = false;
+                    updateProgressIndicator();
                 }
-                mApp.updateProgressIndicator(mSwipeRefreshLayout);
             }
         }.start();
     }
@@ -132,7 +132,35 @@ public abstract class Loader<T> {
         }
     }
 
-    public void setSwipeRefreshLayout(SwipeRefreshLayout mSwipeRefreshLayout) {
-        this.mSwipeRefreshLayout = mSwipeRefreshLayout;
+    public synchronized void setSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout) {
+        this.mSwipeRefreshLayout = swipeRefreshLayout;
+        if (swipeRefreshLayout == null) {
+            return;
+        }
+
+        swipeRefreshLayout.setRefreshing(mIsLoading);
+        swipeRefreshLayout.setOnRefreshListener(this);
+    }
+
+    @Override
+    public void onRefresh() {
+        triggerReload(true);
+    }
+
+    private synchronized void updateProgressIndicator() {
+        if (mSwipeRefreshLayout == null) {
+            return;
+        }
+
+        XposedApp.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                synchronized (Loader.this) {
+                    if (mSwipeRefreshLayout != null) {
+                        mSwipeRefreshLayout.setRefreshing(mIsLoading);
+                    }
+                }
+            }
+        });
     }
 }
