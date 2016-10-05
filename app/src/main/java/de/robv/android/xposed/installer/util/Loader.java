@@ -1,9 +1,5 @@
 package de.robv.android.xposed.installer.util;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.v4.widget.SwipeRefreshLayout;
 
 import java.util.List;
@@ -12,24 +8,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import de.robv.android.xposed.installer.XposedApp;
 
 public abstract class Loader<T> implements SwipeRefreshLayout.OnRefreshListener {
-    protected final String CLASS_NAME;
-    protected SharedPreferences mPref = XposedApp.getPreferences();
-    protected String mPrefKeyLastUpdateCheck;
-    protected int mUpdateFrequency = 24 * 60 * 60 * 1000;
-
-    private final List<Listener<T>> mListeners = new CopyOnWriteArrayList<>();
+    protected final String CLASS_NAME = getClass().getSimpleName();
     private boolean mIsLoading = false;
     private boolean mReloadTriggeredOnce = false;
-
-    protected XposedApp mApp = XposedApp.getInstance();
-    private ConnectivityManager mConMgr;
+    private final List<Listener<T>> mListeners = new CopyOnWriteArrayList<>();
     private SwipeRefreshLayout mSwipeRefreshLayout;
-
-    public Loader() {
-        CLASS_NAME = getClass().getSimpleName();
-        mPrefKeyLastUpdateCheck = CLASS_NAME + "_last_update_check";
-        mConMgr = (ConnectivityManager) mApp.getSystemService(Context.CONNECTIVITY_SERVICE);
-    }
 
     public void triggerReload(final boolean force) {
         synchronized (this) {
@@ -39,17 +22,7 @@ public abstract class Loader<T> implements SwipeRefreshLayout.OnRefreshListener 
             }
         }
 
-        if (force) {
-            resetLastUpdateCheck();
-        } else {
-            long lastUpdateCheck = mPref.getLong(mPrefKeyLastUpdateCheck, 0);
-            if (System.currentTimeMillis() < lastUpdateCheck + mUpdateFrequency) {
-                return;
-            }
-        }
-
-        NetworkInfo netInfo = mConMgr.getActiveNetworkInfo();
-        if (netInfo == null || !netInfo.isConnected()) {
+        if (!force && !shouldUpdate()) {
             return;
         }
 
@@ -63,8 +36,6 @@ public abstract class Loader<T> implements SwipeRefreshLayout.OnRefreshListener 
 
         new Thread("Reload" + CLASS_NAME) {
             public void run() {
-                mPref.edit().putLong(mPrefKeyLastUpdateCheck, System.currentTimeMillis()).apply();
-
                 boolean hasChanged = onReload();
                 if (hasChanged) {
                     notifyListeners();
@@ -82,6 +53,10 @@ public abstract class Loader<T> implements SwipeRefreshLayout.OnRefreshListener 
         // Empty by default.
     }
 
+    protected boolean shouldUpdate() {
+        return true;
+    }
+
     protected abstract boolean onReload();
 
     public void clear(boolean notify) {
@@ -91,7 +66,6 @@ public abstract class Loader<T> implements SwipeRefreshLayout.OnRefreshListener 
                 return;
             }
             onClear();
-            resetLastUpdateCheck();
         }
 
         if (notify) {
@@ -108,10 +82,6 @@ public abstract class Loader<T> implements SwipeRefreshLayout.OnRefreshListener 
             }
         }
         triggerReload(false);
-    }
-
-    public void resetLastUpdateCheck() {
-        mPref.edit().remove(mPrefKeyLastUpdateCheck).apply();
     }
 
     public synchronized boolean isLoading() {

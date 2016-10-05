@@ -41,9 +41,10 @@ import de.robv.android.xposed.installer.repo.RepoParser.RepoParserCallback;
 import de.robv.android.xposed.installer.repo.Repository;
 import de.robv.android.xposed.installer.util.DownloadsUtil.SyncDownloadInfo;
 
-public class RepoLoader extends Loader<RepoLoader> {
+public class RepoLoader extends OnlineLoader<RepoLoader> {
     private static final String DEFAULT_REPOSITORIES = "http://dl.xposed.info/repo/full.xml.gz";
     private static RepoLoader mInstance = null;
+    private static final XposedApp sApp = XposedApp.getInstance();
     private final Map<String, ReleaseType> mLocalReleaseTypesCache = new HashMap<>();
     private SharedPreferences mModulePref;
     private Map<Long, Repository> mRepositories = null;
@@ -51,12 +52,12 @@ public class RepoLoader extends Loader<RepoLoader> {
 
     private RepoLoader() {
         mInstance = this;
-        mPref = mApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
+        mPref = sApp.getSharedPreferences("repo", Context.MODE_PRIVATE);
         mPrefKeyLastUpdateCheck = "last_update_check";
-        mModulePref = mApp.getSharedPreferences("module_settings", Context.MODE_PRIVATE);
+        mModulePref = sApp.getSharedPreferences("module_settings", Context.MODE_PRIVATE);
         mGlobalReleaseType = ReleaseType.fromString(XposedApp.getPreferences().getString("release_type_global", "stable"));
 
-        RepoDb.init(mApp, this);
+        RepoDb.init(sApp, this);
         refreshRepositories();
     }
 
@@ -203,7 +204,7 @@ public class RepoLoader extends Loader<RepoLoader> {
         String filename = "repo_" + HashUtil.md5(repo) + ".xml";
         if (repo.endsWith(".gz"))
             filename += ".gz";
-        return new File(mApp.getCacheDir(), filename);
+        return new File(sApp.getCacheDir(), filename);
     }
 
     @Override
@@ -215,7 +216,7 @@ public class RepoLoader extends Loader<RepoLoader> {
             XposedApp.runOnUiThread(new Runnable() {
                 public void run() {
                     for (String message : messages) {
-                        Toast.makeText(mApp, message, Toast.LENGTH_LONG).show();
+                        Toast.makeText(sApp, message, Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -315,7 +316,7 @@ public class RepoLoader extends Loader<RepoLoader> {
 
                                         PendingIntent pi = PendingIntent.getActivity(DownloadFragment.sActivity, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
 
-                                        AlarmManager mgr = (AlarmManager) mApp.getSystemService(Context.ALARM_SERVICE);
+                                        AlarmManager mgr = (AlarmManager) sApp.getSystemService(Context.ALARM_SERVICE);
                                         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pi);
                                         System.exit(0);
                                     }
@@ -329,7 +330,7 @@ public class RepoLoader extends Loader<RepoLoader> {
                 DownloadsUtil.clearCache(url);
             } catch (Throwable t) {
                 Log.e(XposedApp.TAG, "RepoLoader -> Cannot load repository from " + url, t);
-                messages.add(mApp.getString(R.string.repo_load_failed, url, t.getMessage()));
+                messages.add(sApp.getString(R.string.repo_load_failed, url, t.getMessage()));
                 DownloadsUtil.clearCache(url);
             } finally {
                 if (in != null)
