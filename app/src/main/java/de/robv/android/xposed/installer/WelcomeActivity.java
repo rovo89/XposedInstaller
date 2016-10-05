@@ -102,7 +102,7 @@ public class WelcomeActivity extends XposedBaseActivity implements NavigationVie
 
         mRepoLoader = RepoLoader.getInstance();
         ModuleUtil.getInstance().addListener(this);
-        mRepoLoader.addListener(this, false);
+        mRepoLoader.addListener(this);
 
         mProgress = toolbar.findViewById(R.id.toolbar_progress_bar);
 

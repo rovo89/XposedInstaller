@@ -55,7 +55,7 @@ public class DownloadDetailsActivity extends XposedBaseActivity implements Loade
         mInstalledModule = ModuleUtil.getInstance().getModule(mPackageName);
 
         super.onCreate(savedInstanceState);
-        sRepoLoader.addListener(this, false);
+        sRepoLoader.addListener(this);
         sModuleUtil.addListener(this);
 
         if (mModule != null) {

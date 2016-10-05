@@ -32,7 +32,12 @@ public abstract class Loader<T> implements SwipeRefreshLayout.OnRefreshListener 
     }
 
     public void triggerReload(final boolean force) {
-        mReloadTriggeredOnce = true;
+        synchronized (this) {
+            if (!mReloadTriggeredOnce) {
+                onFirstLoad();
+                mReloadTriggeredOnce = true;
+            }
+        }
 
         if (force) {
             resetLastUpdateCheck();
@@ -73,6 +78,10 @@ public abstract class Loader<T> implements SwipeRefreshLayout.OnRefreshListener 
         }.start();
     }
 
+    protected synchronized void onFirstLoad() {
+        // Empty by default.
+    }
+
     protected abstract boolean onReload();
 
     public void clear(boolean notify) {
@@ -93,9 +102,12 @@ public abstract class Loader<T> implements SwipeRefreshLayout.OnRefreshListener 
     protected abstract void onClear();
 
     public void triggerFirstLoadIfNecessary() {
-        if (!mReloadTriggeredOnce) {
-            triggerReload(false);
+        synchronized (this) {
+            if (mReloadTriggeredOnce) {
+                return;
+            }
         }
+        triggerReload(false);
     }
 
     public void resetLastUpdateCheck() {
@@ -110,14 +122,9 @@ public abstract class Loader<T> implements SwipeRefreshLayout.OnRefreshListener 
         void onReloadDone(T loader);
     }
 
-    public void addListener(Listener<T> listener, boolean triggerImmediately) {
+    public void addListener(Listener<T> listener) {
         if (!mListeners.contains(listener)) {
             mListeners.add(listener);
-        }
-
-        if (triggerImmediately) {
-            //noinspection unchecked
-            listener.onReloadDone((T) this);
         }
     }
 

@@ -88,12 +88,13 @@ public class DownloadFragment extends Fragment implements Loader.Listener<RepoLo
 
         final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swiperefreshlayout);
         refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
-        mRepoLoader.addListener(this, true);
+        mRepoLoader.addListener(this);
         mRepoLoader.setSwipeRefreshLayout(refreshLayout);
         mModuleUtil.addListener(this);
 
         mListView = (StickyListHeadersListView) v.findViewById(R.id.listModules);
         mListView.setAdapter(mAdapter);
+        reloadItems();
 
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
