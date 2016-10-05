@@ -498,8 +498,7 @@ public class DownloadsUtil {
     }
 
     public static SyncDownloadInfo downloadSynchronously(String url, File target) {
-        // TODO Potential parameter?
-        final boolean useNotModifiedTags = true;
+        final boolean useNotModifiedTags = target.exists();
 
         URLConnection connection = null;
         InputStream in = null;
@@ -512,16 +511,21 @@ public class DownloadsUtil {
 
             if (connection instanceof HttpURLConnection) {
                 // Disable transparent gzip encoding for gzipped files
-                if (url.endsWith(".gz"))
+                if (url.endsWith(".gz")) {
                     connection.addRequestProperty("Accept-Encoding", "identity");
+                }
 
-                String modified = mPref.getString("download_" + url + "_modified", null);
-                String etag = mPref.getString("download_" + url + "_etag", null);
+                if (useNotModifiedTags) {
+                    String modified = mPref.getString("download_" + url + "_modified", null);
+                    String etag = mPref.getString("download_" + url + "_etag", null);
 
-                if (modified != null)
-                    connection.addRequestProperty("If-Modified-Since", modified);
-                if (etag != null)
-                    connection.addRequestProperty("If-None-Match", etag);
+                    if (modified != null) {
+                        connection.addRequestProperty("If-Modified-Since", modified);
+                    }
+                    if (etag != null) {
+                        connection.addRequestProperty("If-None-Match", etag);
+                    }
+                }
             }
 
             connection.connect();
