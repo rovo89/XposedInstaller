@@ -56,8 +56,6 @@ public class RepoLoader extends OnlineLoader<RepoLoader> {
         mPrefKeyLastUpdateCheck = "last_update_check";
         mModulePref = sApp.getSharedPreferences("module_settings", Context.MODE_PRIVATE);
         mGlobalReleaseType = ReleaseType.fromString(XposedApp.getPreferences().getString("release_type_global", "stable"));
-
-        RepoDb.init(sApp, this);
         refreshRepositories();
     }
 
