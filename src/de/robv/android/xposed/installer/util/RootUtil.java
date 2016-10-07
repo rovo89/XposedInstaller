@@ -8,6 +8,7 @@ import eu.chainfire.libsuperuser.Shell;
 import eu.chainfire.libsuperuser.Shell.OnCommandResultListener;
 
 public class RootUtil {
+	private static boolean hasBusybox = false;
 	private Shell.Interactive mShell = null;
 	private HandlerThread mCallbackThread = null;
 
@@ -113,6 +114,12 @@ public class RootUtil {
 	 * Executes a single command via the bundled BusyBox executable
 	 */
 	public int executeWithBusybox(String command, List<String> output) {
+		if (!hasBusybox) {
+			hasBusybox = execute("type busybox", null) == 0;
+		}
+		if (hasBusybox) {
+			return execute("busybox " + command, output);
+		}
 		AssetUtil.extractBusybox();
 		return execute(AssetUtil.BUSYBOX_FILE.getAbsolutePath() + " " + command, output);
 	}
