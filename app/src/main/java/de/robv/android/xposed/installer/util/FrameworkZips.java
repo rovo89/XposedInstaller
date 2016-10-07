@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -92,7 +93,7 @@ public final class FrameworkZips {
     }
 
     @WorkerThread
-    public static void refreshOnline() {
+    private static void refreshOnline() {
         Map<String, OnlineFrameworkZip>[] zips = getOnline();
         synchronized (FrameworkZips.class) {
             sOnline = zips;
@@ -101,14 +102,11 @@ public final class FrameworkZips {
 
     // TODO provide user feedback in case of errors
     private static Map<String, OnlineFrameworkZip>[] getOnline() {
-        SyncDownloadInfo info = DownloadsUtil.downloadSynchronously(ONLINE_URL, ONLINE_FILE);
-        if (info.status == SyncDownloadInfo.STATUS_FAILED) {
-            return emptyMapArray();
-        }
-
         String text;
         try {
             text = fileToString(ONLINE_FILE);
+        } catch (FileNotFoundException e) {
+            return emptyMapArray();
         } catch (IOException e) {
             Log.e(XposedApp.TAG, "Could not read " + ONLINE_FILE, e);
             return emptyMapArray();
@@ -273,7 +271,7 @@ public final class FrameworkZips {
     }
 
     @WorkerThread
-    public static void refreshLocal() {
+    private static void refreshLocal() {
         //noinspection unchecked
         Map<String, List<LocalFrameworkZip>>[] zipsArray = new Map[TYPE_COUNT];
         for (int i = 0; i < TYPE_COUNT; i++) {
@@ -406,5 +404,74 @@ public final class FrameworkZips {
     }
 
     private FrameworkZips() {
+    }
+
+    public static class OnlineZipLoader extends OnlineLoader<OnlineZipLoader> {
+        private static OnlineZipLoader sInstance = new OnlineZipLoader();
+
+        public static OnlineZipLoader getInstance() {
+            return sInstance;
+        }
+
+        @Override
+        protected synchronized void onFirstLoad() {
+            new Thread("OnlineZipInit") {
+                @Override
+                public void run() {
+                    refreshOnline();
+                    notifyListeners();
+                }
+            }.start();
+        }
+
+        @Override
+        protected boolean onReload() {
+            SyncDownloadInfo info = DownloadsUtil.downloadSynchronously(ONLINE_URL, ONLINE_FILE);
+            switch (info.status) {
+                case SyncDownloadInfo.STATUS_NOT_MODIFIED:
+                    return false;
+
+                case SyncDownloadInfo.STATUS_FAILED:
+                    onClear();
+                    return true;
+
+                case SyncDownloadInfo.STATUS_SUCCESS:
+                default:
+                    refreshOnline();
+                    return true;
+            }
+        }
+
+        @Override
+        protected void onClear() {
+            super.onClear();
+            synchronized (this) {
+                ONLINE_FILE.delete();
+            }
+            synchronized (FrameworkZips.class) {
+                sOnline = emptyMapArray();
+            }
+        }
+    }
+
+    public static class LocalZipLoader extends Loader<LocalZipLoader> {
+        private static LocalZipLoader sInstance = new LocalZipLoader();
+
+        public static LocalZipLoader getInstance() {
+            return sInstance;
+        }
+
+        @Override
+        protected boolean onReload() {
+            refreshLocal();
+            return true;
+        }
+
+        @Override
+        protected void onClear() {
+            synchronized (FrameworkZips.class) {
+                sLocal = emptyMapArray();
+            }
+        }
     }
 }

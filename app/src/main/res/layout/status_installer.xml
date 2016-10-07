@@ -1,267 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="?attr/actionBarSize">
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/swiperefreshlayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="?attr/actionBarSize">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/disableView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="2dp"
-            app:cardCornerRadius="0dp">
-
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/disableSwitch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_margin="12dp"
-                android:checked="true"
-                android:text="@string/status"
-                android:textSize="16sp"/>
-
-        </android.support.v7.widget.CardView>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dip"
-            android:layout_marginRight="5dip"
-            android:layout_marginTop="6dp"
             android:orientation="vertical">
 
             <android.support.v7.widget.CardView
+                android:id="@+id/disableView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                app:cardBackgroundColor="?attr/list_download_item_color"
-                app:cardUseCompatPadding="true">
+                android:elevation="2dp"
+                app:cardCornerRadius="0dp">
 
-                <LinearLayout
+                <android.support.v7.widget.SwitchCompat
+                    android:id="@+id/disableSwitch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <FrameLayout
-                        android:id="@+id/status_container"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:foregroundGravity="center"
-                        tools:background="@color/darker_green"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/status_icon"
-                            android:layout_width="84dp"
-                            android:layout_height="84dp"
-                            tools:src="@drawable/ic_check_circle"
-                            android:layout_gravity="center"/>
-
-                    </FrameLayout>
-
-                    <TextView
-                        android:id="@+id/framework_install_errors"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:padding="6dp"
-                        android:textColor="@color/warning"
-                        tools:textColor="@color/darker_green"
-                        tools:text="@string/installed_lollipop"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/framework_known_issue"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/warning"
-                        android:visibility="gone"/>
-
-                </LinearLayout>
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="12dp"
+                    android:checked="true"
+                    android:text="@string/status"
+                    android:textSize="16sp"/>
 
             </android.support.v7.widget.CardView>
 
             <LinearLayout
-                android:id="@+id/zips"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_marginTop="6dp"
                 android:orientation="vertical">
-            </LinearLayout>
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                app:cardBackgroundColor="?attr/list_download_item_color"
-                app:cardElevation="2dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    app:cardBackgroundColor="?attr/list_download_item_color"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/errorIcon"
-                            android:layout_width="72dp"
-                            android:layout_height="72dp"
-                            android:layout_gravity="center"
-                            android:padding="6dp"
-                            android:src="@drawable/ic_no_connection"
-                            android:visibility="gone"/>
+                        <FrameLayout
+                            android:id="@+id/status_container"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:foregroundGravity="center"
+                            android:orientation="vertical"
+                            tools:background="@color/darker_green">
+
+                            <ImageView
+                                android:id="@+id/status_icon"
+                                android:layout_width="84dp"
+                                android:layout_height="84dp"
+                                android:layout_gravity="center"
+                                tools:src="@drawable/ic_check_circle"/>
+
+                        </FrameLayout>
 
                         <TextView
-                            android:id="@+id/errorTv"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/framework_install_errors"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:padding="6dp"
-                            android:text="@string/loadingError"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/warning"
+                            android:textStyle="bold"
+                            tools:text="@string/installed_lollipop"
+                            tools:textColor="@color/darker_green"/>
+
+                        <TextView
+                            android:id="@+id/framework_known_issue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/warning"
                             android:visibility="gone"/>
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="6dp"
-                        android:text="ROM"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"/>
+                </android.support.v7.widget.CardView>
 
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_android"/>
-
-                        <LinearLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginStart="32dp"
-                            android:orientation="vertical"
-                            android:paddingBottom="8dp"
-                            android:paddingTop="8dp">
-
-                            <TextView
-                                android:id="@+id/android_version"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                tools:text="Android Marshmallow 6.0.1 (API 23)"/>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_manufacturer"/>
-
-                        <LinearLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginStart="32dp"
-                            android:orientation="vertical"
-                            android:paddingBottom="8dp"
-                            android:paddingTop="8dp">
-
-                            <TextView
-                                android:id="@+id/ic_manufacturer"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                tools:text="LGE Google Nexus 5"/>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:background="?android:attr/selectableItemBackground"
-                        android:clickable="true"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingRight="16dp">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_chip"/>
-
-                        <LinearLayout
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginStart="32dp"
-                            android:orientation="vertical"
-                            android:paddingBottom="8dp"
-                            android:paddingTop="8dp">
-
-                            <TextView
-                                android:id="@+id/cpu"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                                tools:text="arm"/>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
+                <LinearLayout
+                    android:id="@+id/zips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
                 </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    app:cardBackgroundColor="?attr/list_download_item_color"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/errorIcon"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
+                                android:layout_gravity="center"
+                                android:padding="6dp"
+                                android:src="@drawable/ic_no_connection"
+                                android:visibility="gone"/>
+
+                            <TextView
+                                android:id="@+id/errorTv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:padding="6dp"
+                                android:text="@string/loadingError"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:visibility="gone"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="6dp"
+                            android:text="ROM"
+                            android:textAllCaps="true"
+                            android:textStyle="bold"/>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_android"/>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="32dp"
+                                android:layout_marginStart="32dp"
+                                android:orientation="vertical"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/android_version"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                    tools:text="Android Marshmallow 6.0.1 (API 23)"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_manufacturer"/>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="32dp"
+                                android:layout_marginStart="32dp"
+                                android:orientation="vertical"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/ic_manufacturer"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                    tools:text="LGE Google Nexus 5"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_chip"/>
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="32dp"
+                                android:layout_marginStart="32dp"
+                                android:orientation="vertical"
+                                android:paddingBottom="8dp"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:id="@+id/cpu"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                                    tools:text="arm"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
-</ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>

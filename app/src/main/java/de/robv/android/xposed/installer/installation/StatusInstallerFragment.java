@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.SwitchCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,7 +45,10 @@ import de.robv.android.xposed.installer.util.DownloadsUtil.DownloadInfo;
 import de.robv.android.xposed.installer.util.FrameworkZips;
 import de.robv.android.xposed.installer.util.FrameworkZips.FrameworkZip;
 import de.robv.android.xposed.installer.util.FrameworkZips.LocalFrameworkZip;
+import de.robv.android.xposed.installer.util.FrameworkZips.LocalZipLoader;
 import de.robv.android.xposed.installer.util.FrameworkZips.OnlineFrameworkZip;
+import de.robv.android.xposed.installer.util.FrameworkZips.OnlineZipLoader;
+import de.robv.android.xposed.installer.util.Loader;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.RunnableWithParam;
@@ -57,7 +61,6 @@ public class StatusInstallerFragment extends Fragment {
     private static TextView txtKnownIssue;
     private static SwitchCompat xposedDisable;
     private boolean mShowOutdated = false;
-    private RootUtil mRootUtil = new RootUtil();
 
     public void setError(boolean connectionFailed, boolean noSdks) {
         if (!connectionFailed && !noSdks) return;
@@ -99,7 +102,17 @@ public class StatusInstallerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.status_installer, container, false);
 
-        triggerRefresh(true, true);
+        final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swiperefreshlayout);
+        refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
+
+        ONLINE_ZIP_LOADER.setSwipeRefreshLayout(refreshLayout);
+        ONLINE_ZIP_LOADER.addListener(mOnlineZipListener);
+        ONLINE_ZIP_LOADER.triggerFirstLoadIfNecessary();
+
+        LOCAL_ZIP_LOADER.addListener(mLocalZipListener);
+        LOCAL_ZIP_LOADER.triggerFirstLoadIfNecessary();
+
+        refreshZipViews(v);
 
         mErrorIcon = (ImageView) v.findViewById(R.id.errorIcon);
         mErrorTv = (TextView) v.findViewById(R.id.errorTv);
@@ -209,6 +222,14 @@ public class StatusInstallerFragment extends Fragment {
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ONLINE_ZIP_LOADER.removeListener(mOnlineZipListener);
+        ONLINE_ZIP_LOADER.setSwipeRefreshLayout(null);
+        LOCAL_ZIP_LOADER.removeListener(mLocalZipListener);
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -241,7 +262,7 @@ public class StatusInstallerFragment extends Fragment {
                 mShowOutdated = !item.isChecked();
                 XposedApp.getPreferences().edit().putBoolean("framework_download_show_outdated", mShowOutdated).apply();
                 item.setChecked(mShowOutdated);
-                refreshZipViews();
+                refreshZipViews(getView());
                 return true;
         }
 
@@ -324,50 +345,9 @@ public class StatusInstallerFragment extends Fragment {
         return manufacturer;
     }
 
-
-    private void triggerRefresh(final boolean online, final boolean local) {
-        new Thread("FrameworkZipsRefresh") {
-            @Override
-            public void run() {
-                if (online) {
-                    XposedApp.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            showLoading();
-                        }
-                    });
-                    FrameworkZips.refreshOnline();
-                }
-                if (local) {
-                    FrameworkZips.refreshLocal();
-                }
-                XposedApp.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        refreshZipViews();
-                    }
-                });
-            }
-        }.start();
-    }
-
     @UiThread
-    private void showLoading() {
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        LinearLayout zips = (LinearLayout) getView().findViewById(R.id.zips);
-
-        // TODO add a proper layout, spinner or something like that
-        TextView tv = new TextView(getActivity());
-        tv.setText("loading...");
-        tv.setTextSize(20);
-
-        zips.removeAllViews();
-        zips.addView(tv);
-    }
-
-    @UiThread
-    private void refreshZipViews() {
-        LinearLayout zips = (LinearLayout) getView().findViewById(R.id.zips);
+    private void refreshZipViews(View view) {
+        LinearLayout zips = (LinearLayout) view.findViewById(R.id.zips);
         zips.removeAllViews();
         synchronized (FrameworkZip.class) {
             // TODO handle "no ZIPs" case
@@ -453,7 +433,7 @@ public class StatusInstallerFragment extends Fragment {
                 // Handle delete simple actions.
                 if (action == ACTION_DELETE) {
                     FrameworkZips.delete(context, title, type);
-                    triggerRefresh(false, true);
+                    LOCAL_ZIP_LOADER.triggerReload(true);
                     return;
                 }
 
@@ -535,7 +515,7 @@ public class StatusInstallerFragment extends Fragment {
                 .setCallback(new DownloadFinishedCallback() {
                     @Override
                     public void onDownloadFinished(Context context, DownloadInfo info) {
-                        triggerRefresh(false, true);
+                        LOCAL_ZIP_LOADER.triggerReload(true);
                         callback.run(new File(info.localFilename));
                     }
                 })
@@ -553,4 +533,29 @@ public class StatusInstallerFragment extends Fragment {
     private static void saveTo(Context context, File file) {
         Toast.makeText(context, "Not implemented yet", Toast.LENGTH_SHORT).show();
     }
+
+    private void refreshZipViewsOnUiThread() {
+        XposedApp.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                refreshZipViews(getView());
+            }
+        });
+    }
+
+    private static final OnlineZipLoader ONLINE_ZIP_LOADER = OnlineZipLoader.getInstance();
+    private final Loader.Listener<OnlineZipLoader> mOnlineZipListener = new Loader.Listener<OnlineZipLoader>() {
+        @Override
+        public void onReloadDone(OnlineZipLoader loader) {
+            refreshZipViewsOnUiThread();
+        }
+    };
+
+    private static final LocalZipLoader LOCAL_ZIP_LOADER = LocalZipLoader.getInstance();
+    private final Loader.Listener<LocalZipLoader> mLocalZipListener = new Loader.Listener<LocalZipLoader>() {
+        @Override
+        public void onReloadDone(LocalZipLoader loader) {
+            refreshZipViewsOnUiThread();
+        }
+    };
 }
