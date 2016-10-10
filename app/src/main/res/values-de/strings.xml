@@ -7,23 +7,8 @@
     <string name="xposed_not_active">Die aktuellste Xposed-Version ist derzeit nicht aktiv. Hast du das Framework installiert und das Gerät neugestartet?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Willkommen beim <b>Xposed Installer</b>!\nWas möchtest du tun?</string>
-    <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Hier kannst du das Xposed-Framework verwalten, welches von allen Modulen benötigt wird.</string>
-    <string name="tabModules">Module</string>
-    <string name="tabModulesDescription">Das Framework selbst bringt keinerlei Funktionalität mit, dafür sind sogenannte Module zuständig. In diesem Bereich kannst du installierte Module aktivieren.</string>
     <string name="tabDownload">Download</string>
-    <string name="tabDownloadDescription">Dieser Bereich gibt dir Zugriff auf eine Sammlung von Modulen, aus der du gewünschte Module herunterladen und immer aktuell halten kannst.</string>
     <string name="welcome_framework_update_available">Es ist eine Aktualisierung für das Xposed-Framework verfügbar (%s).</string>
-    <string name="welcome_update_available">Es sind Aktualisierungen für Module verfügbar.</string>
-    <string name="tabSettings">Einstellungen</string>
-    <string name="tabSettingsDescription">In diesem Bereich kannst du den Xposed Installer und das Xposed-Framework anpassen.</string>
-    <string name="tabSupport">Support</string>
-    <string name="tabSupportDescription">Erhalte Unterstützung bei Problemen. Außerdem kannst du dich mit einer Spende für Xposed bedanken.</string>
-    <string name="tabLogs">Logs</string>
-    <string name="tabLogsDescription">Logs des Xposed-Frameworks ansehen, speichern und senden.</string>
-    <string name="tabAbout">Über</string>
-    <string name="tabAboutDescription">Erfahre mehr darüber, wer hinter Xposed steckt.</string>
 
     <!-- navigation view items -->
     <string name="nav_item_install">Framework</string>
@@ -39,51 +24,24 @@
     <!-- Installer tab -->
     <string name="install">Installieren/Aktualisieren</string>
     <string name="uninstall">Deinstallieren</string>
-    <string name="installedVersion">Aktiv</string>
-    <string name="latestVersion">Mitgeliefert</string>
-    <string name="versions">Versionen:</string>
-    <string name="install_header_reboot">Neustart</string>
     <string name="soft_reboot">Software-Neustart</string>
     <string name="reboot">Geräte-Neustart</string>
-    <string name="areyousure">Bist du sicher?</string>
     <string name="phone_not_compatible">Xposed ist (noch) nicht mit der Android-SDK-Version %1$d oder deiner Prozessor-Architektur (%2$s) kompatibel.</string>
-    <string name="not_tested_but_compatible">Xposed wurde noch nicht mit der Android-SDK-Version %d getestet, aber es scheint kompatibel damit zu sein. Wenn du abenteuerlustig bist, kannst die Installation versuchen.</string>
     <string name="reboot_failed">Neustart fehlgeschlagen. Bitte verwende die normale Neustartfunktion des Geräts.</string>
     <string name="auto_flash_note">%s sollte automatisch installiert werden, sobald du "OK" drückst.</string>
-    <string name="manual_flash_note">Bitte installiere %s von der SD-Karte, um den Vorgang abzuschließen.</string>
     <string name="reboot_confirmation">Möchtest du jetzt neustarten?</string>
-    <string name="reboot_recovery_confirmation">Möchtest du jetzt in den Recovery-Modus booten?</string>
     <string name="install_warning_title">Vorsicht!</string>
     <string name="install_warning">In manchen Fällen wird das Gerät nicht mehr korrekt starten, nachdem du Xposed installiert hast.\n\nFalls dir \"Soft Brick\" und \"Bootloop\" nichts sagen oder du nicht weißt, wie du dich aus einer solchen Situation befreien kannst, solltest du Xposed <b>NICHT</b> installieren!\n\nIn jedem Fall ist es sehr empfehlenswert, ein aktuelles Backup zu haben.</string>
     <string name="dont_show_again">Nicht wieder anzeigen</string>
     <string name="install_known_issue">Es scheint eine bekannte Inkompatibilität (\"%s\") mit deinem ROM zu geben. Du solltest Xposed wahrscheinlich nicht installieren. Klicke hier für mehr Informationen.</string>
-    <string name="install_reverted">Version \"%1$s\" von app_process war zuvor installiert, aber jetzt wurde Version \"%2$s\" gefunden. Wenn du nicht erwartet hast, dass eine alte Datei wiederhergestellt wird, könntest du die Installation per Recovery (automatisch oder manuell) versuchen.</string>
-    <string name="uninstall_reverted">app_process wurde zuvor deinstalliert, aber jetzt wurde Version \"%s\" gefunden. Wenn du nicht erwartet hast, dass eine alte Datei wiederhergestellt wird, könntest du die Deinstallation per Recovery (automatisch oder manuell) versuchen.</string>
-    <string name="tap_to_dismiss">Antippen zum Ausblenden</string>
-    <string name="sdcard_location">SD-Karte: %s</string>
-    <string name="installation_lollipop">Das Xposed-Framework ist nicht installiert. Bitte lade die aktuellste ZIP-Datei im XDA-Forum and flashe sie im Recovery.</string>
     <string name="installed_lollipop">Xposed-Framework Version %s ist aktiv.</string>
     <string name="installed_lollipop_inactive">Xposed-Framework Version %s ist installiert, aber nicht aktiv. Bitte schaue in den Logs nach Details.</string>
     <string name="modules_updates_available">Aktualisierungen für Module sind verfügbar</string>
 
     <!-- File operations -->
     <string name="root_failed">Root-Zugriff fehlgeschlagen\n\nStelle sicher, dass das Gerät korrekt gerootet ist und Shell-Kommandos nicht blockiert werden.</string>
-    <string name="file_extract_failed">%s konnte nicht entpackt werden</string>
-    <string name="file_mounting_writable">Mounte %s beschreibbar&#8230;</string>
-    <string name="file_mount_writable_failed">%s konnte nicht beschreibbar gemacht werden</string>
-    <string name="file_trying_to_continue">Versuche dennoch fortzusetzen&#8230;</string>
-    <string name="file_backup_already_exists">Backup existiert bereits unter %s</string>
-    <string name="file_backup_not_found">Kein Backup unter %s gefunden</string>
-    <string name="file_backup_failed">Backup von %s konnte nicht erstellt werden</string>
-    <string name="file_backup_successful">Backup wurde unter %s erstellt</string>
-    <string name="file_backup_restoring">Stelle Backup von %s wieder her&#8230;</string>
     <string name="file_copying">Kopiere %s&#8230;</string>
     <string name="file_copy_failed">Konnte %1$s nicht nach %2$s kopieren</string>
-    <string name="file_move_failed">Konnte %1$s nicht nach %2$s verschieben</string>
-    <string name="file_set_perms_failed">Berechtigungen für %s konnten nicht gesetzt werden</string>
-    <string name="file_set_owner_failed">Besitzer für %s konnte nicht gesetzt werden</string>
-    <string name="file_removing">Entferne %s&#8230;</string>
-    <string name="file_remove_failed">%s konnte nicht entfernt werden</string>
     <string name="file_creating_directory">Erstelle Verzeichnis %s&#8230;</string>
     <string name="file_create_directory_failed">Konnte Verzeichnis %s nicht anlegen</string>
     <string name="file_writing_recovery_command">Schreibe Recovery-Kommando&#8230;</string>
@@ -146,14 +104,7 @@
     <string name="download_test_version_not_shown">Es gibt eine Testversion, aber sie wird aufgrund deiner globalen oder modul-spezifischen Einstellungen nicht angezeigt.</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">Installation</string>
-    <string name="settings_install_mode">Installationsmodus</string>
-    <string name="install_mode_normal">Klassisch (/system direkt beschreiben)</string>
-    <string name="install_mode_recovery_auto">Recovery (ZIP automatisch installieren)</string>
-    <string name="install_mode_recovery_manual">Recovery (ZIP auf SD-Karte schreiben, selbst installieren)</string>
     <string name="settings_group_download">Download</string>
-    <string name="settings_enable_downloads">Downloads aktivieren</string>
-    <string name="settings_enable_downloads_summary">Xposed Installer die Suche nach Aktualisierungen und neuen Modulen erlauben</string>
     <string name="settings_release_type">Anzuzeigende Versionen</string>
     <string name="settings_group_experimental">Experimentell</string>
     <string name="settings_disable_resources">Ressourcen-APIs deaktivieren</string>
@@ -176,10 +127,8 @@
     <string name="support_donate_description">Wenn du dich für Xposed bedanken möchtest, kannst du hier an rovo89 spenden:</string>
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Log konnte nicht gelesen werden:</string>
     <string name="logs_save_failed">Log konnte nicht auf der SD-Karte gespeichert werden:</string>
     <string name="sdcard_not_writable">SD-Karte wurde nicht gefunden oder ist nicht beschreibbar</string>
-    <string name="log_too_large">Log ist größer als %1$,d kB, die ersten %2$,d kB wurden übersprungen</string>
     <string name="menuClearLog">Log jetzt leeren</string>
     <string name="logs_cleared">Log wurde geleert</string>
     <string name="logs_clear_failed">Konnte Log nicht leeren:</string>
@@ -188,12 +137,10 @@
     <!-- About tab -->
     <string name="about_developers_label">Hauptentwickler</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> und <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Bitte kontaktiere uns <b>nicht</b> direkt für Support. Verwende stattdessen die folgenden Links.</string>
     <string name="about_translator_label">Übersetzer:</string>
     <string name="translator">Nils Wasser (BobQuentok), rovo89, Philipp Ihling (ximmox)</string>
     <string name="about_version_label">Version dieser App:</string>
     <string name="about_source_label">Quellcode</string>
-    <string name="about_support_label">Support:</string>
     <string name="about_libraries_label">Verwendete Bibliotheken</string>
 
     <!-- DownloadView -->
@@ -219,9 +166,6 @@
 
 
     <string name="warning_installed_on_external_storage">Dieses Modul kann nicht geladen werden, da es auf der SD-Karte installiert ist. Bitte verschiebe es auf den Internen Speicher.</string>
-    <string name="warning_forward_locked">Dieses Modul kann nicht geladen werden, weil es "forward-locked" ist. Bitte kontaktiere den Entwickler des Moduls.</string>
-    <string name="export_modules">Exportiere Liste aktiver Module</string>
-    <string name="import_modules">Importiere Liste aktiver Module</string>
     <string name="view">Ansicht</string>
     <string name="export_">Export…</string>
     <string name="import_">Import…</string>
@@ -235,35 +179,10 @@
     <string name="no_backup_found">Keine Sicherung gefunden</string>
     <string name="no_enabled_modules">Es ist kein Modul aktiviert!</string>
 
-    <string name="download_view_size">Größe: %s KB</string>
     <string name="share">Teilen</string>
-    <string name="back">Zurück</string>
     <string name="loadingError">Fehler beim Laden der Xposed-Framework ZIP</string>
-    <string name="info">Info</string>
-    <string name="infoInstaller">
-        Name: %1$s
-        \nSDK: %2$s
-        \nArchitektur: %3$s
-        \nVersion: %4$s
-    </string>
-    <string name="infoUninstaller">
-        Name: %1$s
-        \nArchitektur: %2$s
-        \nDatum: %3$s
-    </string>
-    <string name="downloadZipOk">%1$s wurde korrekt heruntergeladen</string>
-    <string name="permissionGranted">Berechtigung erteilt</string>
     <string name="permissionNotGranted">Diese Funktion funktioniert nur mit der Zugriffs-Berechtigung auf den Speicher.</string>
-    <string name="downloadUninstaller">Uninstaller herunterladen</string>
-    <string name="selectFile">Heruntergeladene Datei auswählen</string>
-    <string name="xposedZipNotFound">Zip nicht gefunden, vielleicht wurde eine neue Version veröffentlicht.</string>
-    <string name="warningArchitecture">WURDE DIE KORREKTE ARCHITEKTUR DER XPOSED ZIP GEWÄHLT?\nEine falsche ZIP-Datei kann dein Handy beschädigen!</string>
-    <string name="help">Hilfe</string>
 
-    <string name="update">Aktualisieren</string>
-
-    <string name="installationForbidden">Installation ist auf diesem Gerät nicht möglich. Um Xposed mit dieser App installieren zu können muss Android Lollipop oder höher installiert sein.</string>
-    <string name="installed_no_lollipop">Xposed-Framework ist installiert.</string>
     <string name="not_installed_no_lollipop">Xposed-Framework ist nicht installiert.</string>
     <string name="notify_module_update">Bei Modul-Aktualisierungen benachrichtigen</string>
 
@@ -275,7 +194,6 @@
     <string name="md_storage_perm_error">Der App wurde die READ_EXTERNAL_STORAGE Berechtigung nicht gewährt.</string>
     <string name="md_custom_label">Eigene</string>
     <string name="md_presets_label">Voreinstellung</string>
-    <string name="changelog">Changelog</string>
     <string name="scroll_top">Scrolle zum Anfang</string>
     <string name="add_bookmark">Zu Favoriten</string>
     <string name="remove_bookmark">Entferne Favorit</string>
@@ -300,9 +218,6 @@
     <string name="scroll_bottom">Scrolle zum Ende</string>
     <string name="open_drawer_summ">Beim Start automatisch das Navigations-Menü öffnen</string>
     <string name="open_drawer">Öffne Navigations-Menü</string>
-    <string name="share_app">Teile App</string>
-    <string name="share_app_text">Schau dir das an: Xposed Installer im Material Design! %s</string>
-    <string name="disable_xposed">Deaktiviere Xposed-Framework</string>
     <string name="status">Xposed Status</string>
     <string name="xposed_on_next_reboot">Xposed-Framework wird aktiviert beim nächsten Neustart</string>
     <string name="xposed_off_next_reboot">Xposed-Framework wird deaktiviert beim nächsten Neustart</string>

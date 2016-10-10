@@ -7,66 +7,27 @@
     <string name="xposed_not_active">Cea mai recenta versiune de Xposed nu este inca activa. Ati instalat Framework-ul si ati repornit ?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Bine ati venit la <b>Xposed Installer</b>!\nAlegeti ce vreti sa faceti:</string>
-    <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Aici puteti modifica Framework-ul Xposed, necesar pentru functionarea altor module.</string>
-    <string name="tabModules">Module</string>
-    <string name="tabModulesDescription">Acest Framework nu adauga nici o functionalitate. Sunt necesare module pentru acest lucru. In acesta sectiune poti activa module dupa ce au fost in prealabil instalate.</string>
     <string name="tabDownload">Descarca</string>
-    <string name="tabDownloadDescription">Acesta sectiune permite accesul la o baza de module, astfel le puteti cauta si descarca pe cele care va plac si le puteti actualiza.</string>
     <string name="welcome_framework_update_available">Un update pentru Framework-ul Xposed este disponibil (%s).</string>
-    <string name="welcome_update_available">Una sau mai multe actualizari sunt disponibile pentru module.</string>
-    <string name="tabSettings">Setari</string>
-    <string name="tabSettingsDescription">Mergeti la aceasta sectiune pentru a configura installer-ul Xposed si Framework-ul.</string>
-    <string name="tabLogs">Loguri</string>
-    <string name="tabLogsDescription">Afiseaza si salveaza/trimite log-uri ale Framework-ului Xposed.</string>
-    <string name="tabAbout">Despre</string>
-    <string name="tabAboutDescription">Afla detalii despre cei care au creat Xposed, unde poti oferi suport pentru Xposed etc.</string>
 
     <!-- Installer tab -->
     <string name="install">Instalare/Actualizare</string>
     <string name="uninstall">Dezinstalare</string>
-    <string name="installedVersion">activ</string>
-    <string name="latestVersion">Grupate</string>
-    <string name="versions">Versiuni:</string>
-    <string name="install_header_reboot">Repornire</string>
     <string name="soft_reboot">Repornire soft:</string>
     <string name="reboot">Repornire</string>
-    <string name="areyousure">Sunteti sigur ?</string>
     <string name="phone_not_compatible">Xposed nu este compatibil (inca) cu versiunea de Android SDK %1$d sau cu arhitectura procesorului (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed nu a fost testat cu versiunea de Android SDK %d, dar pare a fi compatibil. Puteti incerca sa-l instalati daca vreti sa experimentati ceva nou.</string>
     <string name="reboot_failed">Repornirea a esuat. Va rugam utilizati functia nativa a dispozitivului.</string>
     <string name="auto_flash_note">%s ar trebui sa se instaleze automat dupa ce apasati "OK".</string>
-    <string name="manual_flash_note">Va rugam instalati %s de pe cartela SD pentru a finaliza operatiunea.</string>
     <string name="reboot_confirmation">Confirmati repornirea ?</string>
-    <string name="reboot_recovery_confirmation">Reporniti acum ?</string>
     <string name="install_warning_title">Procedati cu grija !</string>
     <string name="install_warning">In anumite cazuri dispozitivul nu va porni dupa instalarea Xposed. \n\nIf daca nu ati auzit despre \"soft brick\" si \"bootloop\" pana acum si nu stiti cum sa remediati o astfel de problema,  <b>NU</b> instalati Xposed!\n\nin nici un caz. A avea un backup recent este de preferat.</string>
     <string name="dont_show_again">Nu mai afisati.</string>
     <string name="install_known_issue">Se pare ca exista o problema cunoscuta (\"%s\") cu acest ROM. Instalarea Xposed ar putea esua sau duce la probleme serioase. Apasati aici pentru detalii despre aceasta problema.</string>
-    <string name="install_reverted">Versiunea de app_process \"%1$s\" a fost instalata anterior dar versiunea \"%2$s\" nu a fost gasita acum. Daca nu v-ati asteptat ca fisierul vechi sa fie restaurat, ati putea incerca instalarea din recovery(auto sau manual).</string>
-    <string name="uninstall_reverted">App_process a fost dezinstalat anterior dar versiunea \"%s\" a fost gasita acum. Daca nu v-ati asteptat ca un fisier vechi sa fie restaurat, ati putea incerca dezinstalarea din recovery (auto sau manual).</string>
-    <string name="tap_to_dismiss">Apasati pentru a ascunde</string>
-    <string name="sdcard_location">Cardul SD: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Accesul la root a esuat.\n\nAsigurati-va ca dispozitivul este rootat corespunzator iar comenzile de tip shell nu sunt blocate.</string>
-    <string name="file_extract_failed">Nu a putut extrage %s</string>
-    <string name="file_mounting_writable">Montez %s ca inscriptibil&#8230;</string>
-    <string name="file_mount_writable_failed">Nu a putut fi montat %s ca inscriptibil</string>
-    <string name="file_trying_to_continue">Continuati oricum&#8230;</string>
-    <string name="file_backup_already_exists">Backup-ul exista deja in %s</string>
-    <string name="file_backup_not_found">Nici un backup gasit in %s</string>
-    <string name="file_backup_failed">Crearea backup-ului in %s a esuat.</string>
-    <string name="file_backup_successful">Backup creat in %s</string>
-    <string name="file_backup_restoring">Restaurare backup din %s</string>
     <string name="file_copying">Copiez %s&#8230;</string>
     <string name="file_copy_failed">Nu a putut fi copiat %1$s in %2$s</string>
-    <string name="file_move_failed">Nu a putut fi mutat %1$s in %2$s</string>
-    <string name="file_set_perms_failed">Permisiunile nu pot fi setate pentru %s</string>
-    <string name="file_set_owner_failed">Nu a putut fi setat proprietarul pentru %s</string>
-    <string name="file_removing">Se sterge %s&#8230;</string>
-    <string name="file_remove_failed">Nu a putut fi sters %s</string>
     <string name="file_creating_directory">Se creaza folderul %s&#8230;</string>
     <string name="file_create_directory_failed">Folderul nu a putut fi creat %s</string>
     <string name="file_writing_recovery_command">Se scrie comanda de recovery&#8230;</string>
@@ -129,14 +90,7 @@
     <string name="download_test_version_not_shown">O versiune de test este disponibila, insa nu este afisata din cauza setarile globale sau per modul.</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">Instalare</string>
-    <string name="settings_install_mode">Modul instalarii</string>
-    <string name="install_mode_normal">Clasic (scriere direct in /system)</string>
-    <string name="install_mode_recovery_auto">Recovery (instalare .zip automat)</string>
-    <string name="install_mode_recovery_manual">Recovery (scriere pe cardul SD, instalare manuala)</string>
     <string name="settings_group_download">Descarca</string>
-    <string name="settings_enable_downloads">Activeaza descarcari</string>
-    <string name="settings_enable_downloads_summary">Permiteti Xposed Installer sa verifice daca exista actualizari sau module noi</string>
     <string name="settings_release_type">Versiune de afisat</string>
     <string name="settings_group_experimental">Experimental</string>
     <string name="settings_disable_resources">Dezactivare resource hooks</string>
@@ -152,10 +106,8 @@
     <!-- Support tab -->
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Log-ul nu a putut fi citit:</string>
     <string name="logs_save_failed">Log-ul nu a putut fi scris pe cardul SD :</string>
     <string name="sdcard_not_writable">Cardul SD nu a fost gasit sau nu poate fi scris</string>
-    <string name="log_too_large">Fisierul de log mai mare de %1$,d kB, sariti primii %2$,d kB</string>
     <string name="menuClearLog">Curata log-ul acum</string>
     <string name="logs_cleared">Log curatat</string>
     <string name="logs_clear_failed">Log-ul nu a putut fi curatat:</string>
@@ -164,12 +116,10 @@
     <!-- About tab -->
     <string name="about_developers_label">Dezvoltatori:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> si <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Va rugam <b>nu</b> ne contactati in mod direct pentru suport, folositi link-ul de mai jos.</string>
     <string name="about_translator_label">Traducator:</string>
     <string name="translator">razorsbk</string>
     <string name="about_version_label">Versiunea acestei aplicatii:</string>
     <string name="about_source_label">Cod sursa:</string>
-    <string name="about_support_label">Primiti suport la:</string>
     <string name="about_libraries_label">Librarii utilizate:</string>
 
     <!-- DownloadView -->

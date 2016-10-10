@@ -7,66 +7,27 @@
     <string name="xposed_not_active">एक्सोसड का सबसे नया वऱजन चालू नही है | क्या आपने एक्सोसड को चालू किया है ?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome"> <b>एक्सोसड ईन्टालर</b> मे आपक स्वागत है!\nक्रिपया निरणय लिजिए की आपको क्या करना है|</string>
-    <string name="tabInstall">फ्रेमवऱक</string>
-    <string name="tabInstallDescription">यहा आप एक्सोसड को समभाल सकते है| यह मौडूल्स के सिये जरूरी है|</string>
-    <string name="tabModules">मौडूल्स</string>
-    <string name="tabModulesDescription">फ्रेमवऱक खुड कुछ नही करता. आपको उसकेलिए मौडूल्स की जरुरत है । इस सेक्शन मे आप मोदुल्स को अच्तिवाते कर सकते है जब आपने उन्हें इनस्टॉल किया हो।</string>
     <string name="tabDownload">डाउनलोड</string>
-    <string name="tabDownloadDescription">ये सेक्शन आपको मोदुलेस के रिपॉजिटरी को एक्सेस देता है, ताकि आप  जो चाहे ढूँढकर इनस्टॉल कर सकते है।</string>
     <string name="welcome_framework_update_available">क्स्पोसेद फ्रेमवर्क का अपडेट अवेलेबल है (%s)।</string>
-    <string name="welcome_update_available">एक या अधिक मोदुलेस के लिए अपडेट उपलब्ध है।</string>
-    <string name="tabSettings">सेटिंग्स</string>
-    <string name="tabSettingsDescription">इस सेक्शन में जा कर एक्सपोज्ड इंस्टालर और फ्रेमवर्क को कॉन्फ़िगर कीजिए।</string>
-    <string name="tabLogs">लॉग्स</string>
-    <string name="tabLogsDescription">क्स्पोसेद फ्रेमवर्क के लॉग्स देकिये अथवा भेजिए।</string>
-    <string name="tabAbout">और जानकारी</string>
-    <string name="tabAboutDescription">जनेये एक्स्पोसड किसने बनाया और ग्राहक सुविधा आपको कहा मिल सकती है।</string>
 
     <!-- Installer tab -->
     <string name="install">इनस्टॉल/अपडेट</string>
     <string name="uninstall">उनिन्स्तल</string>
-    <string name="installedVersion">चालू</string>
-    <string name="latestVersion">बंडल</string>
-    <string name="versions">वेर्जन:</string>
-    <string name="install_header_reboot">रिबूट</string>
     <string name="soft_reboot">नरम रिबूट</string>
     <string name="reboot">रिबूट</string>
-    <string name="areyousure">क्या आपने इरादा पक्का कर लिया है?</string>
     <string name="phone_not_compatible">एक्स्पोसड (अभी तक) आपके एंड्राइड सडक  %1$d या आपके प्रोसेसर आर्किटेक्चर (%2$s) के साथ चलता नहीं है।</string>
-    <string name="not_tested_but_compatible">एक्स्पोसड आपके अम्द्रोइद सडके वरजन %d के साथ चला के देखा नहीं गया है, पर लगता है शायद चल जाये. अप्प इनस्टॉल करके देख सकते है अगर आपको साहसई है।</string>
     <string name="reboot_failed">रिबूट फ़ैल होगया है। किरपिया आपके डिवाइस के सामान्य रिबूट प्रक्रिया चलकर देखे।</string>
     <string name="auto_flash_note">%s फ़्लैश होना चाहिए जब आप  "ठीक है" दबाए.</string>
-    <string name="manual_flash_note">किरपिया  %s SD कार्ड से फ़्लैश करे ऑपरेशन पूरा करने के लिए।</string>
     <string name="reboot_confirmation">क्या आप रिबूट करने की अनुमति देंगे?</string>
-    <string name="reboot_recovery_confirmation">क्या आप रिकवरी तक रिबूट करने की अनुमाती देंगे?</string>
     <string name="install_warning_title">ध्यान से!</string>
     <string name="install_warning">कभी कब्बर आबका डिवाइस बूट नहीं होगा, अगर आपने कभी\n\nIf  \"सॉफ्ट  ब्रिक\" और \"बूटलूप\" एन शब्दओ के बारे में कभी नहीं सुना जाओ या आप को पता नहीं की ऐसी स्थिति से रिकवर कैसे हिते है, एक्स्पोसड <b>कभी इनस्टॉल ना करे</b>!\n\nकिसी भी स्थिथि में बैकप होना यदेमंद है।</string>
     <string name="dont_show_again">वापिस मत दिखाओ</string>
     <string name="install_known_issue">अप्पके रोम के साथ इशू(\"%s\") है। एक्स्पोसड इनस्टॉल करके आपको तकलीफ हो सकती है या बहुत गंभीर समस्या हो सकती है। इस विषय पर और जानकारी के लिए यहाँ क्लिक करे।</string>
-    <string name="install_reverted">आप_प्रोसेस वर्जन \"%1$s\" पहलेसे हे इन्सटाल्ड है पर वर्जन \"%2$s\" अभी मिला है. अगर आपने जुना फाइल नहीं चाहा है तो आप बैकउप के लाइट कोशिश कर सकते है(ऑटोमैटिक या मैन्युअल).</string>
-    <string name="uninstall_reverted">आप_प्रोसेस पहले निकल दिया गया था पर अभी वर्जन  \"%s\" अभी मिला है. अगर आपने जुना फाइल नहीं चाहा है तो आप अनइंस्टॉल करने की कोशिश  कर सकते है(ऑटोमैटिक या मैन्युअल).</string>
-    <string name="tap_to_dismiss">बंद करने के लिए यहाँ दबाए</string>
-    <string name="sdcard_location">असडी कार्ड: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">रूट असेस नहीं मिल पाया गई।\n\nएक बार जाच करके जरुर देखे के अपने रूट किया है और जरुरी परमिशन दिए है।</string>
-    <string name="file_extract_failed">%s को एक्सट्रेक्ट न कर सके।</string>
-    <string name="file_mounting_writable">मौन्तिंग %s लिख्नेलायक&#8230;</string>
-    <string name="file_mount_writable_failed">ना कर पाए माउंट %s लिख्नेलायक</string>
-    <string name="file_trying_to_continue">फिर भी कोशिश कर रहे है&#8230;</string>
-    <string name="file_backup_already_exists">बैकप यहाँ पहले से है %s</string>
-    <string name="file_backup_not_found">कोई बैकप ना मिला %s</string>
-    <string name="file_backup_failed">बैकुप ना निकल पाए %s</string>
-    <string name="file_backup_successful">बैकप बना लिया %s</string>
-    <string name="file_backup_restoring">बैकपसे रेस्टोरे कर रहे है %s</string>
     <string name="file_copying">कॉपी कर रहे है %s&#8230;</string>
     <string name="file_copy_failed">कॉपी न कट पाए %1$s से %2$s यहाँ तक</string>
-    <string name="file_move_failed">यहा  %1$s से %2$s कॉपी ना कर पाए</string>
-    <string name="file_set_perms_failed">अनुमति ना दे पाए  %s के लिए</string>
-    <string name="file_set_owner_failed">इसका मालिक ना सेट कर सके %s</string>
-    <string name="file_removing">हटा रहे है %s&#8230;</string>
-    <string name="file_remove_failed">ईसे हटा न पाए %s</string>
     <string name="file_creating_directory">डायरेक्टरी बना रहे है %s&#8230;</string>
     <string name="file_create_directory_failed">डायरेक्टरी ना बना पाए%s</string>
     <string name="file_writing_recovery_command">रिकवरी कमांड लिख रहे है&#8230;</string>
@@ -129,14 +90,7 @@
     <string name="download_test_version_not_shown">टेस्ट वर्शन अवेलेबल है पर आपके सेटिंग्स के वजह से वह दिखाया नहीं जा रहा।</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">इंस्टालेशन</string>
-    <string name="settings_install_mode">इंस्टालेशन मोड</string>
-    <string name="install_mode_normal">क्लासिकल (राइट /सिस्टम दुरेक्ट्ली)</string>
-    <string name="install_mode_recovery_auto">रिकवरी (फ़्लैश ज़िप ऑटोमेटिकली)</string>
-    <string name="install_mode_recovery_manual">रेकोवेय (इप असडी कार्ड पर लिखो, मैन्युअली फ़्लैश करो)</string>
     <string name="settings_group_download">डाउनलोड</string>
-    <string name="settings_enable_downloads">इनेबल डोव्न्लॉद्स</string>
-    <string name="settings_enable_downloads_summary">एक्स्पोसड इंस्टालर को दोव्न्लॉद्स चालू करने के लिए अनुमति दे</string>
     <string name="settings_release_type">वेर्सिओंस दिखने</string>
     <string name="settings_group_experimental">प्रायोगिक</string>
     <string name="settings_disable_resources">रिसोर्स हुक्स दिअब्ले करे</string>
@@ -152,10 +106,8 @@
     <!-- Support tab -->
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">लोग पढ़ न पाए</string>
     <string name="logs_save_failed">लोग सद कार्ड पे लिख न पाए</string>
     <string name="sdcard_not_writable">सड़ कार्ड मिला नहीं अथवा उसपर लिख न पाए</string>
-    <string name="log_too_large">लोग फाइल %1$,d kB, से बड़ा है पहले  %2$,d kB छोड़ दिया</string>
     <string name="menuClearLog">लोग च्लेअत करो</string>
     <string name="logs_cleared">लॉग्स क्लियर कर दिए</string>
     <string name="logs_clear_failed">लोग क्लियर ना कर पाए</string>
@@ -164,12 +116,10 @@
     <!-- About tab -->
     <string name="about_developers_label">मुख्य प्रोग्राम लेखक:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">कृपया हमें मदद के लिए  <b>ना</b> संपर्क कटे। नीचे के लिंक का इस्तमाल करे हमसे संपर्क करने के लिए।</string>
     <string name="about_translator_label">ट्रांसलेटर</string>
     <string name="translator"><a href="http://forum.xda-developers.com/member.php?u=4396418">Boggartfly</a></string>
     <string name="about_version_label">वर्जन इस अप्प का:</string>
     <string name="about_source_label">सोर्से कोड:</string>
-    <string name="about_support_label">सपोर्ट पाए इस लिंक पर:</string>
     <string name="about_libraries_label">इस्तमाल किये हुआ कोड संघ्रह:</string>
 
     <!-- DownloadView -->

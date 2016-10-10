@@ -7,66 +7,27 @@
     <string name="xposed_not_active">Az Xposed legfrissebb verziója jelenleg nem aktív. Telepítetted a keretrendszert és újraindítottad az eszközt?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Üdvözöl az <b>Xposed Telepítő</b>!\nKérlek válaszd ki mit szeretnél tenni:</string>
-    <string name="tabInstall">Keretrendszer</string>
-    <string name="tabInstallDescription">Itt kezelheted az Xposed keretrendszert, ami szükséges minden modul működéséhez.</string>
-    <string name="tabModules">Modulok</string>
-    <string name="tabModulesDescription">A keretrendszer önmagában semmilyen funkciót nem biztosít. Ahhoz modulok kellenek. Ebben a szekcióban aktiválhatod a modulokat miután telepítetted őket.</string>
     <string name="tabDownload">Letöltések</string>
-    <string name="tabDownloadDescription">Ez a szekció hozzáférést biztosít egy modulgyűjteményhez, ahol keresheted és letöltheted amelyeket szeretnéd és frissen is tarthatod őket.</string>
     <string name="welcome_framework_update_available">Frissítés elérhető az Xposed keretrendszerhez (%s).</string>
-    <string name="welcome_update_available">Egy vagy több frissítés elérhető.</string>
-    <string name="tabSettings">Beállítások</string>
-    <string name="tabSettingsDescription">Látogasd meg ezt a szekciót, hogy beállítsd az Xposed Telepítőt és a keretrendszert.</string>
-    <string name="tabLogs">Napló</string>
-    <string name="tabLogsDescription">Tekintsd meg és mentsd/küldd el az Xposed keretrendszer naplóját.</string>
-    <string name="tabAbout">Rólunk</string>
-    <string name="tabAboutDescription">Tudj meg többet az Xposed készítőiről, hol találsz támogatást az alkalmazáshoz, stb.</string>
 
     <!-- Installer tab -->
     <string name="install">Telepítés/Frissítés</string>
     <string name="uninstall">Eltávolítás</string>
-    <string name="installedVersion">aktív</string>
-    <string name="latestVersion">a csomagban</string>
-    <string name="versions">Verziók:</string>
-    <string name="install_header_reboot">Újraindítás</string>
     <string name="soft_reboot">Gyors újraindítás</string>
     <string name="reboot">Újraindítás</string>
-    <string name="areyousure">Biztos vagy benne?</string>
     <string name="phone_not_compatible">Az Xposed (még) nem kompatibilis a %1$d verziójú Android SDK-val vagy a processzor architektúráddal (%2$s).</string>
-    <string name="not_tested_but_compatible">Az Xposed nem volt tesztelve a %d verziójú Android SDK-val, de úgy tűnik, kompatibilis. Megpróbálhatod telepíteni ha elég kalandvágyó vagy.</string>
     <string name="reboot_failed">Újraindítás sikertelen. Kérlek használd az eszköz rendes újraindítási funkcióját.</string>
     <string name="auto_flash_note">%s automatikusan flashelve lesz amint megnyomod az "OK"-ot.</string>
-    <string name="manual_flash_note">Kérlek flasheld %s-t az SD kártyáról a művelet befejezéséhez.</string>
     <string name="reboot_confirmation">Újra akarsz indítani most?</string>
-    <string name="reboot_recovery_confirmation">Újra akarsz indítani recoverybe most?</string>
     <string name="install_warning_title">Légy óvatos!</string>
     <string name="install_warning">Néhány esetben az eszközöd talán nem fog bootolni az Xposed telepítése után. Ha sosem hallottál a \"soft brick\"-ről vagy a \"bootloop\"-ról vagy ha nem tudod, hogyan térj vissza egy ilyen helyzetből, <b>NE</b> telepítsd az Xposed-ot. Egy friss mentés megléte erősen ajánlott minden esetben.</string>
     <string name="dont_show_again">Ne mutasd még egyszer</string>
     <string name="install_known_issue">Úgy tűnik ismert probléma (\"%s\") van a telepített ROM-mal. Az Xposed telepítése nem működhet vagy súlyos problémákhoz vezethet. Kattints ide a probléma részleteiért.</string>
-    <string name="install_reverted">A \"%1$s\" verziójú app_process lett telepítve korábban, de a \"%2$s\" verziójú található meg most. Ha nem akartad, hogy a régi fájl legyen visszállítva, megpróbálhatod a telepítést recovery-n keresztül (automatikus vagy kézi).</string>
-    <string name="uninstall_reverted">Az app_process el lett korábban távolítva, de a \"%s\" verziójú található meg most. Ha nem akartad, hogy a régi fájl legyen visszaállítva, megpróbálhatod a telepítést recovery-n keresztül (automatikus vagy kézi).</string>
-    <string name="tap_to_dismiss">Érints meg az eltüntetéshez</string>
-    <string name="sdcard_location">SD kártya: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Rendszergazda jogok kérése sikertelen.\n\nEllenőrizd, hogy az eszközöd megfelelően van-e rootolva és nincsenek-e blokkolva a shell parancsok.</string>
-    <string name="file_extract_failed">Nem lehetett kicsomagolni: %s</string>
-    <string name="file_mounting_writable">%s csatolása írhatóként&#8230;</string>
-    <string name="file_mount_writable_failed">Nem sikerült %s-t írhatóként csatolni</string>
-    <string name="file_trying_to_continue">Tovább próbálkozunk ennek ellenére&#8230;</string>
-    <string name="file_backup_already_exists">Már létezik mentés: %s</string>
-    <string name="file_backup_not_found">Nem található mentés: %s</string>
-    <string name="file_backup_failed">Mentés készítése sikertelen: %s</string>
-    <string name="file_backup_successful">Mentés elkészítve: %s</string>
-    <string name="file_backup_restoring">Visszállítás mentésből: %s</string>
     <string name="file_copying">Másolás %s&#8230;</string>
     <string name="file_copy_failed">Nem sikerült a másolás: %1$s -> %2$s</string>
-    <string name="file_move_failed">Nem sikerült a mozgatás: %1$s -> %2$s</string>
-    <string name="file_set_perms_failed">Engedélyek beállítása sikertelen: %s</string>
-    <string name="file_set_owner_failed">Tulajdonos beállítása sikertelen: %s</string>
-    <string name="file_removing">Eltávolítás %s&#8230;</string>
-    <string name="file_remove_failed">Nem sikerült eltávolítani a %s-t</string>
     <string name="file_creating_directory">Könyvtár készítése %s&#8230;</string>
     <string name="file_create_directory_failed">Nem sikerült elkészíteni a %s könyvtárat</string>
     <string name="file_writing_recovery_command">Recovery parancs írása&#8230;</string>
@@ -129,14 +90,7 @@
     <string name="download_test_version_not_shown">Egy teszt verzió elérhető, de nincs megjelenítve a globális vagy modul-specifikus beállításaid miatt.</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">Telepítés</string>
-    <string name="settings_install_mode">Telepítés módja</string>
-    <string name="install_mode_normal">Klasszikus (/system-re írás közvetlenül)</string>
-    <string name="install_mode_recovery_auto">Recovery (automatikus zip flashelés)</string>
-    <string name="install_mode_recovery_manual">Recovery (zip kiírása az SD kártyára, manuális flashelés)</string>
     <string name="settings_group_download">Letöltések</string>
-    <string name="settings_enable_downloads">Letöltések engedélyezése</string>
-    <string name="settings_enable_downloads_summary">Engedélyezd az Xposed Telepítőnek, hogy frissítéseket és új modulokat keressen</string>
     <string name="settings_release_type">Megjelenítendő verziók</string>
     <string name="settings_group_experimental">Kísérlet</string>
     <string name="settings_disable_resources">"Resource hook"-ok letiltva</string>
@@ -152,10 +106,8 @@
     <!-- Support tab -->
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Nem lehetett olvasni a naplót:</string>
     <string name="logs_save_failed">Nem lehetett a naplót az SD kártyára írni:</string>
     <string name="sdcard_not_writable">SD kártya nem található vagy nem írható</string>
-    <string name="log_too_large">A napló nagyobb, mint %1$,d kB, első %2$,d kB kihagyva</string>
     <string name="menuClearLog">Napló ürítése most</string>
     <string name="logs_cleared">Napló sikeresen ürítve</string>
     <string name="logs_clear_failed">Nem lehetett üríteni a naplót:</string>
@@ -164,12 +116,10 @@
     <!-- About tab -->
     <string name="about_developers_label">Fő fejlesztők:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> és <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Kérlek <b>ne</b> lépj közvetlen kapcsolatba velünk támogatásért, használd az alábbi linket.</string>
     <string name="about_translator_label">Fordító:</string>
     <string name="translator"><a href="http://forum.xda-developers.com/member.php?u=4719724">Adam77Root</a></string>
     <string name="about_version_label">Alkalmazás verziója:</string>
     <string name="about_source_label">Forráskód:</string>
-    <string name="about_support_label">Támogatás:</string>
     <string name="about_libraries_label">Használt könyvtárak:</string>
 
     <!-- DownloadView -->

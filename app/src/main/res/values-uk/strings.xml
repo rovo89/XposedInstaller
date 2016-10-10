@@ -7,66 +7,27 @@
     <string name="xposed_not_active">Найсвіжіша версія Xposed наразі не активована. Ви впевнені, що встановили Фреймворк та перезавантажили пристрій?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Ласкаво просимо до <b>Xposed Installer</b>!\nОберіть, будь-ласка, що Ви хочете зробити:</string>
-    <string name="tabInstall">Фреймворк</string>
-    <string name="tabInstallDescription">Тут ви можете керувати налаштуваннями Xposed Framework, необхідними для роботи модулів.</string>
-    <string name="tabModules">Модулі</string>
-    <string name="tabModulesDescription">Сам Фреймворк не додає ніяких функцій - він лише надає таку можливість окремим модулям, які Ви можете встановити. В цьому розділі Ви можете активувати встановлені модулі.</string>
     <string name="tabDownload">Звантаження</string>
-    <string name="tabDownloadDescription">В цьому розділі Ви маєте доступ до репозитарію модулів, тож тепер Ви можете шукати та звантажувати саме необхідні Вам модулі та підтримувати їх в оновленому стані.</string>
     <string name="welcome_framework_update_available">Є оновлення для Xposed Framework (%s).</string>
-    <string name="welcome_update_available">Є оновлення для модулів.</string>
-    <string name="tabSettings">Налаштування</string>
-    <string name="tabSettingsDescription">Заходьте у цей розділ для налаштування Xposed Installer та Фреймворку.</string>
-    <string name="tabLogs">Журнал</string>
-    <string name="tabLogsDescription">Перегляд, збереження та відправка журналу Xposed Framework.</string>
-    <string name="tabAbout">Про додаток</string>
-    <string name="tabAboutDescription">Дізнайтеся про людей, що створили Xposed, де отримати підтримку щодо цього додатку та інше.</string>
 
     <!-- Installer tab -->
     <string name="install">Встановити/Оновити</string>
     <string name="uninstall">Видалити</string>
-    <string name="installedVersion">встановлена</string>
-    <string name="latestVersion">найновіша</string>
-    <string name="versions">Версії:</string>
-    <string name="install_header_reboot">Перезавантаження</string>
     <string name="soft_reboot">Швидке перезавантаження</string>
     <string name="reboot">Перезавантаження</string>
-    <string name="areyousure">Чи Ви впевнені?</string>
     <string name="phone_not_compatible">Xposed наразі (ще) не сумісний з Android SDK версії %1$d або архітектурою Вашого процесору (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed не тестувався з Android SDK версії %d, але схоже має сумісність. Якщо шукаєте пригод, Ви можете спробувати його встановити.</string>
     <string name="reboot_failed">Помилка перезавантаження. Скористуйтеся, будь-ласка, звичайною функцією перезавантаження.</string>
     <string name="auto_flash_note">%s буде прошито автоматично після натискання на "OK".</string>
-    <string name="manual_flash_note">Для завершення операції прошийте, будь-ласка, %s з картки SD.</string>
     <string name="reboot_confirmation">Чи Ви бажаєте зараз перезавантажитися?</string>
-    <string name="reboot_recovery_confirmation">Чи Ви бажаєте зараз перезавантажитися в режим відновлення (рекавері)?</string>
     <string name="install_warning_title">Обережно!</string>
     <string name="install_warning">В деяких випадках, після встановлення Xposed, Ваш пристрій може більше не запуститися.\n\nЯкщо Ви нічого не чули про \"soft brick\" та \"bootloop\" або якщо Ви не знаєте як відновитися з такого стану, будь-ласка, <b>НЕ</b> встановлюйте Xposed!\n\nВ будь-якому разі, наявність свіжої резервної копії є необхідністю.</string>
     <string name="dont_show_again">Більше не показувати</string>
     <string name="install_known_issue">Схоже, що у Вашій прощивці є відома проблема (\"%s\"). Встановлений Xposed може не працювати або навіть призвести до проблем. Для більш детальної інформації натисніть тут.</string>
-    <string name="install_reverted">Раніше було встановлено app_process версії \"%1$s\", але зараз знайдено версію \"%2$s\". Якщо Ви не хотіли відновлювати стару версію, можливо Ви бажаєте встановити за допомоги режиму відновлення (авто або вручну).</string>
-    <string name="uninstall_reverted">Раніше app_process було видалено, але зараз знайдено версію \"%s\". Якщо Ви не хотіли відновлювати стару версію, можливо Ви бажаєте спробувати видалення за допомоги режиму відновлення (авто або вручну).</string>
-    <string name="tap_to_dismiss">Натисніть, щоб пропустити</string>
-    <string name="sdcard_location">SD картка: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Помилка отримання прав суперкористувача.\n\nПереконайтеся, що Ваш пристрій рутований (має бути доступний суперкористувач) і що Ви не заблокували виконання shell-команд.</string>
-    <string name="file_extract_failed">Помилка розпакування %s</string>
-    <string name="file_mounting_writable">Підключення %s для запису&#8230;</string>
-    <string name="file_mount_writable_failed">Помилка підключення %s для запису</string>
-    <string name="file_trying_to_continue">Все одно спробуємо продовжити&#8230;</string>
-    <string name="file_backup_already_exists">Резервна копія вже є в %s</string>
-    <string name="file_backup_not_found">В %s резервної копії не знайдено</string>
-    <string name="file_backup_failed">Помилка створення резервної копії %s</string>
-    <string name="file_backup_successful">Створено резервну копію в %s</string>
-    <string name="file_backup_restoring">Відновлення резервної копії з %s</string>
     <string name="file_copying">Копіювання %s&#8230;</string>
     <string name="file_copy_failed">Помилка копіювання %1$s до %2$s</string>
-    <string name="file_move_failed">Помилка переносу %1$s до %2$s</string>
-    <string name="file_set_perms_failed">Помилка встановлення дозволів для %s</string>
-    <string name="file_set_owner_failed">Помилка встановлення власника для %s</string>
-    <string name="file_removing">Видалення %s&#8230;</string>
-    <string name="file_remove_failed">Помилка видалення %s</string>
     <string name="file_creating_directory">Створення каталогу %s&#8230;</string>
     <string name="file_create_directory_failed">Помилка створення каталогу %s</string>
     <string name="file_writing_recovery_command">Запис команди відновлення&#8230;</string>
@@ -129,14 +90,7 @@
     <string name="download_test_version_not_shown">Є тестова версія, щоправда вона не відображається через Ваші глобальні або модульні налаштування.</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">Встановлення</string>
-    <string name="settings_install_mode">Режим встановлення</string>
-    <string name="install_mode_normal">Класичний (прямий запис до /system)</string>
-    <string name="install_mode_recovery_auto">За допомоги режиму Відновлення (автоматичне встановлення zip)</string>
-    <string name="install_mode_recovery_manual">За допомоги режиму Відновлення (запис zip на картку SD, встановлення вручну)</string>
     <string name="settings_group_download">Звантаження</string>
-    <string name="settings_enable_downloads">Дозволити звантаження</string>
-    <string name="settings_enable_downloads_summary">Дозволити Xposed Installer перевіряти наявність оновлень та нових модулів</string>
     <string name="settings_release_type">Відображення версій</string>
     <string name="settings_group_experimental">Експериментальні</string>
     <string name="settings_disable_resources">Відключено зміну ресурсів</string>
@@ -152,10 +106,8 @@
     <!-- Support tab -->
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Помилка читання журналу:</string>
     <string name="logs_save_failed">Помилка запису журналу на картку SD:</string>
     <string name="sdcard_not_writable">Картка SD відсутня або лише для читання</string>
-    <string name="log_too_large">Файл журналу більш як %1$,d кБ, пропущено перші %2$,d кБ</string>
     <string name="menuClearLog">Очистити журнал</string>
     <string name="logs_cleared">Журнал очищено</string>
     <string name="logs_clear_failed">Помилка очищення журналу:</string>
@@ -164,12 +116,10 @@
     <!-- About tab -->
     <string name="about_developers_label">Головні розробники:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> та <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Будь-ласка, для підтримки <b>НЕ</b> контактуйте з нами напряму, а користуйтеся посиланням, що розташовано нижче.</string>
     <string name="about_translator_label">Перекладач:</string>
     <string name="translator">Сергій Горіченко (sgg/sggua)</string>
     <string name="about_version_label">Версія цього додатку:</string>
     <string name="about_source_label">Вихідний код:</string>
-    <string name="about_support_label">Підтримка:</string>
     <string name="about_libraries_label">Використані бібліотеки:</string>
 
     <!-- DownloadView -->

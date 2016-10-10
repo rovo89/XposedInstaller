@@ -7,66 +7,27 @@
     <string name="xposed_not_active">הגרסה האחרונה של Xposed לא פעילה כרגע. התקנת את הסביבה והפעלת מחדש?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">ברוכים הבאים ל <b>התקנת Xposed</b>!\nאנא בחרו מה ברצונכם לעשות:</string>
-    <string name="tabInstall">סביבה</string>
-    <string name="tabInstallDescription">פה אתה יכול לנהל את סביבת Xposed, שדרושה לכל המודולים.</string>
-    <string name="tabModules">מודולים</string>
-    <string name="tabModulesDescription">הסביבה עצמה אינה מוסיפה שום פונקציה. יש צורך במודולים בשביל זה. בחלק זה תוכל להפעיל מודולים שהתקנת.</string>
     <string name="tabDownload">הורדה</string>
-    <string name="tabDownloadDescription">חלק זה נותן לך גישה למאגר של מודולים, כדי שתוכל לחפש ולהתקין אותם, ולשמור עליהם מעודכנים.</string>
     <string name="welcome_framework_update_available">עדכון לסביבת Xposed זמין.</string>
-    <string name="welcome_update_available">קיים עדכון למודול אחד או יותר.</string>
-    <string name="tabSettings">הגדרות</string>
-    <string name="tabSettingsDescription">עבור לחלק זה כדי להגיד את סביבת Xposed ואת אפליקציה זו.</string>
-    <string name="tabLogs">לוג</string>
-    <string name="tabLogsDescription">הצגה, שמירה ושליחה של הלוג של Xposed.</string>
-    <string name="tabAbout">אודות</string>
-    <string name="tabAboutDescription">למד על האנשים אשר יצרו את Xposed, איפה לקבל תמיכה על אפליקציה זו ועוד.</string>
 
     <!-- Installer tab -->
     <string name="install">התקנה/עדכון</string>
     <string name="uninstall">הסרה</string>
-    <string name="installedVersion">פעיל</string>
-    <string name="latestVersion">כלול</string>
-    <string name="versions">גרסאות:</string>
-    <string name="install_header_reboot">הפעל מחדש</string>
     <string name="soft_reboot">הפעלה מחדש מהירה</string>
     <string name="reboot">הפעלה מחדש</string>
-    <string name="areyousure">האם אתה בטוח?</string>
     <string name="phone_not_compatible">Xposed לא תומכת (עדיין) באנדרואיד SDK גרסה %1$d או ארכיטקטורת המעבד שלך (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed לא נוסה עם אנדרואיד SDK גרסה %d, אבל נראה שהיא נתמכת. ניתן להתקין אם אתה מרגיש הרפתקן.</string>
     <string name="reboot_failed">הפעלה מחדש נכשלה. בבקשה הפעילו מחדש את המכשיר בעצמכם.</string>
     <string name="auto_flash_note">%s יצרב באופן אוטומטי לאחר לחיצה על "אישור".</string>
-    <string name="manual_flash_note">בבקשה צרבו את %s מכרטיס הזיכרון בכדי לסיים את הפעולה.</string>
     <string name="reboot_confirmation">האם להפעיל מחדש כעת?</string>
-    <string name="reboot_recovery_confirmation">להפעיל מחדש לרקוברי כעת?</string>
     <string name="install_warning_title">היו זהירים!</string>
     <string name="install_warning">במקרים מסויימים, המכשיר שלך עלול לא לעבוד לאחר התקנה של Xposed.\n\nאם מעולם לא שמעת על \"soft brick\" ו \"bootloop\" או שאתה לא יודע איך לצאת ממצב כזה, <b>אל</b> תתקין את Xposed!\n\nבכל מקרה, מומלץ שיהיה גיבוי עדכני.</string>
     <string name="dont_show_again">אל תציג זאת שוב</string>
     <string name="install_known_issue">נראה שיש בעיה ידועה (\"%s\") עם הרום שלך. התקנה של Xposed עלולה לא לעבוד או לגרום לבעיות. לחץ כאן לפרטים אודות הבעיה.</string>
-    <string name="install_reverted">app_process גרסה \"%1$s\" הותקנה בעבר אך גרסה \"%2$s\" נמצאה. אם לא התכוונת שגרסה ישנה יותר תשוחזר, נסה להתקין דרך הרקוברי (ידנית או אוטומטית).</string>
-    <string name="uninstall_reverted">app_process  הוסר בעבר אך גרסה חדשה יותר \"%s\" נמצאה. אם לא התכוונת שקובץ ישן יותר ישוחזר, נסה להסיר דרך הרקוברי (אוטומטית או ידנית).</string>
-    <string name="tap_to_dismiss">לחץ להתעלמות</string>
-    <string name="sdcard_location">כרטיס SD: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">לא ניתן להשיג הרשאות רוט.\n\nבדקו שהמכשיר שלכם עבר תהליך רוט כראוי ושהוא לא חסום לפקודות shell.</string>
-    <string name="file_extract_failed">לא ניתן לחלץ את %s</string>
-    <string name="file_mounting_writable">הופך את %s לניתן לכתיבה&#8230;</string>
-    <string name="file_mount_writable_failed">לא ניתן להגדיר את %s כניתן לכתיבה</string>
-    <string name="file_trying_to_continue">מנסה להמשיך בכל מקרה&#8230;</string>
-    <string name="file_backup_already_exists">כבר קיים גיבוי ב %s</string>
-    <string name="file_backup_not_found">לא נמצא גיבוי ב %s</string>
-    <string name="file_backup_failed">יצירת גיבוי של %s נכשלה</string>
-    <string name="file_backup_successful">נוצר גיבוי ב %s</string>
-    <string name="file_backup_restoring">משחזר גיבוי מתוך %s</string>
     <string name="file_copying">מעתיק %s&#8230;</string>
     <string name="file_copy_failed">Tלא ניתן להעתיק את %1$s ל %2$s</string>
-    <string name="file_move_failed">לא ניתן להעביר את %1$s ל %2$s</string>
-    <string name="file_set_perms_failed">לא ניתן לקבוע הרשאות ל %s</string>
-    <string name="file_set_owner_failed">לא ניתן לקבוע בעלים ל %s</string>
-    <string name="file_removing">מסיר את %s&#8230;</string>
-    <string name="file_remove_failed">לא ניתן להסיר את %s</string>
     <string name="file_creating_directory">יוצר תיקייה %s&#8230;</string>
     <string name="file_create_directory_failed">לא ניתן ליצור תיקיה בשם %s</string>
     <string name="file_writing_recovery_command">כותב לרקוברי פקודה &#8230;</string>
@@ -129,14 +90,7 @@
     <string name="download_test_version_not_shown">גרסה ניסיונית זמינה, אך היא לא מופיעה בעקבות ההגדרות הגלובליות או של מודול ספציפי.</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">התקנה</string>
-    <string name="settings_install_mode">מצב התקנה</string>
-    <string name="install_mode_normal">קלאסית (כתיבה ישירה ל/system)</string>
-    <string name="install_mode_recovery_auto">רקוברי (צריבה אוטומטית)</string>
-    <string name="install_mode_recovery_manual">רקוברי (העתקת הזיפ לכרטיס זיכרון, צריבה ידנית)</string>
     <string name="settings_group_download">הורדות</string>
-    <string name="settings_enable_downloads">אפשר הורדות</string>
-    <string name="settings_enable_downloads_summary">מאפשר לאפליקצייה לבדוק ולעדכן מודולים</string>
     <string name="settings_release_type">הגרסה מוצגת</string>
     <string name="settings_group_experimental">ניסיוני</string>
     <string name="settings_disable_resources">מבטל את חיבור המשאבים (resources)</string>
@@ -152,10 +106,8 @@
     <!-- Support tab -->
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">לא ניתן לקרוא את הלוג:</string>
     <string name="logs_save_failed">לא ניתן לשמור את הלוג לכרטיס הזיכרון:</string>
     <string name="sdcard_not_writable">כרטיס זיכרון לא נמצא, או לא ניתן לכתיבה</string>
-    <string name="log_too_large">קובץ הלוג גדול מ %1$,d kB, ה %2$,d kB הראשונים דולגו</string>
     <string name="menuClearLog">נקה את הלוג כעת</string>
     <string name="logs_cleared">הלוג נוקה בהצלחה!</string>
     <string name="logs_clear_failed">לא ניתן לנקות את הלוג:</string>
@@ -164,12 +116,10 @@
     <!-- About tab -->
     <string name="about_developers_label">מפתחים ראשיים:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> ו <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">בבקשה <b>לא</b> לפנות אלינו ישירות בשביל תמיכה, השתמשו בלינק מתחת.</string>
     <string name="about_translator_label">מתרגם:</string>
     <string name="translator">DubelBoom</string>
     <string name="about_version_label">גרסה של אפליקצייה זו:</string>
     <string name="about_source_label">קוד מקור:</string>
-    <string name="about_support_label">קבל תמיכה ב:</string>
     <string name="about_libraries_label">סיפריות בשימוש:</string>
 
     <!-- DownloadView -->

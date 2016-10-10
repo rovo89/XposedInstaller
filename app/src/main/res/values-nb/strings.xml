@@ -7,66 +7,27 @@
     <string name="xposed_not_active">Den siste versjonen av Xposed er ikke aktiv. Installerte du og restartet enheten?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Velkommen til  <b>Xposed Installer</b>!\nVennligst velg hva du ønsker å gjøre:</string>
-    <string name="tabInstall">Rammeverk</string>
-    <string name="tabInstallDescription">Her kan du behandle Xposed Framework, som er nødvendig for at moduler skal fungere.</string>
-    <string name="tabModules">Moduler</string>
-    <string name="tabModulesDescription">Rammeverket i seg selv legger ikke til funksjoner, men du trenger moduler for det. I denne seksjonen så kan du aktivere moduler etter at du har installert dem.</string>
     <string name="tabDownload">Last ned</string>
-    <string name="tabDownloadDescription">Denne seksjonen gir deg tilgang til en pakkebrønn som inneholder moduler, slik at du kan søke etter og laste ned de modulene du ønsker og for å holde dem oppdaterte.</string>
     <string name="welcome_framework_update_available">En oppdatering for Xposed Framework er tilgjengelig (%s).</string>
-    <string name="welcome_update_available">En eller flere oppdatering(er) for moduler er tilgjengelig.</string>
-    <string name="tabSettings">Innstillinger</string>
-    <string name="tabSettingsDescription">Gå til denne seksjonen for å konfigurere Xposed Installeren og rammeverk.</string>
-    <string name="tabLogs">Logger</string>
-    <string name="tabLogsDescription">Vis og lagre/send logger av Xposed rammeverket.</string>
-    <string name="tabAbout">Om</string>
-    <string name="tabAboutDescription">Lær mer om menneskene som har utviklet Xposed, hvor du kan få støtte for denne appen etc.</string>
 
     <!-- Installer tab -->
     <string name="install">Installer/Oppdater</string>
     <string name="uninstall">Avinstaller</string>
-    <string name="installedVersion">aktive</string>
-    <string name="latestVersion">buntet</string>
-    <string name="versions">Versjoner:</string>
-    <string name="install_header_reboot">Restart</string>
     <string name="soft_reboot">Soft restart</string>
     <string name="reboot">Restart</string>
-    <string name="areyousure">Er du sikker?</string>
     <string name="phone_not_compatible">Xposed er ikke (enda) kompitabel med Android SDK-versjon %1$d eller din prosessorarkitektur (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed har ikke blitt testet med Android SDK versjon %d, men den ser ut til å være kompitabel. Du kan prøve å installere hvis du føler deg tøff.</string>
     <string name="reboot_failed">Restart failet. Vennligst bruk enhetens normale restartfunksjon.</string>
     <string name="auto_flash_note">%s skal normalt flashes automatisk når du trykker "OK".</string>
-    <string name="manual_flash_note">Vennligst flash %s fra SD-kortet for å fullføre operasjonen.</string>
     <string name="reboot_confirmation">Ønsker du å restarte nå?</string>
-    <string name="reboot_recovery_confirmation">Ønsker du å restarte inn til recovery nå?</string>
     <string name="install_warning_title">Vær forsiktig!</string>
     <string name="install_warning">I noen tilfeller så vil ikke enheten din starte etter at du har installert Xposed..\n\nHvis du aldri har hørt om \"soft brick\" og \"bootloop\" før, eller om du ikke vet hvordan du kommer deg ut fra en slik situasjon, <b>IKKE</b> installer Xposed!\n\nI de fleste tilfeller så er en backup høyt anbefalt å ha liggende.</string>
     <string name="dont_show_again">Ikke vis dette igjen</string>
     <string name="install_known_issue">Det ser ut til at det er et kjent problem (\"%s\") med ROMen din. Installering av Xposed vil muligens ikke virke, eller føre til alvorlige problemer. Klikk her for flere detaljer om problemet.</string>
-    <string name="install_reverted">app_process versjon \"%1$s\" har blitt installert tidligere, men versjon \"%2$s\" ble funnet nå. Hvis du ikke forventet at en eldre fil ble gjenopprettet så kan du prøve å installere via recovery (auto eller manuelt).</string>
-    <string name="uninstall_reverted">app_process var avinstallert tildligere, men versjon \"%s\" ble funnet nå. Hvis du ikke forventet at en eldre fil ble gjenopprettet så kan du prøve å installere via recovery (auto eller manuelt).</string>
-    <string name="tap_to_dismiss">Trykk for å lukke</string>
-    <string name="sdcard_location">SD-kort: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Klarte ikke å få root-tilgang.\n\nSørg for at enheten din er rootet riktig og at du ikke har blokkert shell-kommandoer.</string>
-    <string name="file_extract_failed">Kunne ikke pakke ut %s</string>
-    <string name="file_mounting_writable">Monterer %s skrivbar&#8230;</string>
-    <string name="file_mount_writable_failed">Kunne ikke montere %s skrivbar</string>
-    <string name="file_trying_to_continue">Prøver å fortsette fordi om&#8230;</string>
-    <string name="file_backup_already_exists">Backup eksisterer allerede i %s</string>
-    <string name="file_backup_not_found">Ingen backup funnet i %s</string>
-    <string name="file_backup_failed">Kunne ikke opprette backup av %s</string>
-    <string name="file_backup_successful">Opprettet backup i %s</string>
-    <string name="file_backup_restoring">Gjenoppretter backup fra %s</string>
     <string name="file_copying">Kopierer %s&#8230;</string>
     <string name="file_copy_failed">Kunne ikke kopiere %1$s til %2$s</string>
-    <string name="file_move_failed">Kunne ikke flytte  %1$s til %2$s</string>
-    <string name="file_set_perms_failed">Kunne ikke sette tillatelse for %s</string>
-    <string name="file_set_owner_failed">Kunne ikke sette eier for %s</string>
-    <string name="file_removing">Fjerner %s&#8230;</string>
-    <string name="file_remove_failed">Kunne ikke fjerne %s</string>
     <string name="file_creating_directory">Oppretter filbane %s&#8230;</string>
     <string name="file_create_directory_failed">Kunne ikke opprette filbane %s</string>
     <string name="file_writing_recovery_command">Skriver recovery-kommando&#8230;</string>
@@ -129,14 +90,7 @@
     <string name="download_test_version_not_shown">En testversjon er tilgjengelig, men den blir ikke vist på grunn av dine globale eller modul-spesifikke innstillinger.</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">Installasjon</string>
-    <string name="settings_install_mode">Installasjonsmodus</string>
-    <string name="install_mode_normal">Klassisk (skriv direkte til /system)</string>
-    <string name="install_mode_recovery_auto">Recovery (flash zip automatisk)</string>
-    <string name="install_mode_recovery_manual">Recovery (skriv zip til SD-kort, flash manuelt)</string>
     <string name="settings_group_download">Last ned</string>
-    <string name="settings_enable_downloads">Aktiver nedlastinger</string>
-    <string name="settings_enable_downloads_summary">Tillat Xposed Installer å sjekke etter oppdateringer og nye moduler</string>
     <string name="settings_release_type">Versjoner som skal vises</string>
     <string name="settings_group_experimental">Eksperimentell</string>
     <string name="settings_disable_resources">Deaktiver ressurshooks</string>
@@ -152,10 +106,8 @@
     <!-- Support tab -->
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Kunne ikke lese logg:</string>
     <string name="logs_save_failed">Kunne ikke skrive logg til SD-kort:</string>
     <string name="sdcard_not_writable">SD-kort ikke funnet eller ikke skrivbar</string>
-    <string name="log_too_large">Loggfil er større enn %1$,d kB, hoppet over første %2$,d kB</string>
     <string name="menuClearLog">Fjern logg nå</string>
     <string name="logs_cleared">Logg fjernet suksessfult</string>
     <string name="logs_clear_failed">Kunne ikke fjerne loggen:</string>
@@ -164,12 +116,10 @@
     <!-- About tab -->
     <string name="about_developers_label">Hovedutvikler:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Vennligst <b>ikke</b> kontakt oss direkte for støtte. Bruk linken nedenfor.</string>
     <string name="about_translator_label">Oversetter:</string>
     <string name="translator">LordManhattan, rosaage</string>
     <string name="about_version_label">Versjon av appen:</string>
     <string name="about_source_label">Kildekode:</string>
-    <string name="about_support_label">Få hjelp hos:</string>
     <string name="about_libraries_label">Brukte bibliotek:</string>
 
     <!-- DownloadView -->

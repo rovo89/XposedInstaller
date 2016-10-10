@@ -56,26 +56,9 @@ import de.robv.android.xposed.installer.util.RunnableWithParam;
 public class StatusInstallerFragment extends Fragment {
     public static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
 
-    private static ImageView mErrorIcon;
-    private static TextView mErrorTv;
     private static TextView txtKnownIssue;
     private static SwitchCompat xposedDisable;
     private boolean mShowOutdated = false;
-
-    public void setError(boolean connectionFailed, boolean noSdks) {
-        if (!connectionFailed && !noSdks) return;
-
-        mErrorTv.setVisibility(View.VISIBLE);
-        mErrorIcon.setVisibility(View.VISIBLE);
-        if (noSdks) {
-            mErrorIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_warning_grey));
-            mErrorTv.setText(String.format(getString(R.string.phone_not_compatible), Build.VERSION.SDK_INT, Build.CPU_ABI));
-        }
-        if (connectionFailed) {
-            mErrorIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_no_connection));
-            mErrorTv.setText(getString(R.string.loadingError));
-        }
-    }
 
     private static boolean checkClassExists(String className) {
         try {
@@ -113,9 +96,6 @@ public class StatusInstallerFragment extends Fragment {
         LOCAL_ZIP_LOADER.triggerFirstLoadIfNecessary();
 
         refreshZipViews(v);
-
-        mErrorIcon = (ImageView) v.findViewById(R.id.errorIcon);
-        mErrorTv = (TextView) v.findViewById(R.id.errorTv);
 
         txtKnownIssue = (TextView) v.findViewById(R.id.framework_known_issue);
 

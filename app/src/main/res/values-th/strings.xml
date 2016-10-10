@@ -7,23 +7,8 @@
     <string name="xposed_not_active">เวอร์ชั่นล่าสุด Xposed ยังไม่ได้เปิดใช้งาน ต้องการติดตั้งเฟรมเวิร์คและรีบูต?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">ยินดีต้อนรับสู่ <b>Xposed Installer</b>\nกรุณาเลือกสิ่งที่ต้องการจะทำ:</string>
-    <string name="tabInstall">เฟรมเวิร์ค</string>
-    <string name="tabInstallDescription">สามารถจัดการเฟรมเวิร์คที่คุณต้องการได้</string>
-    <string name="tabModules">โมดูล</string>
-    <string name="tabModulesDescription">เฟรมเวิร์คจะไม่เพิ่มฟังก์ชั่นใดๆ คุณจำเป็นต้องเพิ่มโมดูลและเปิดใช้งานโมดูล หลังจากคุณติดตั้งเฟรมเวิร์คเท่านั้น</string>
     <string name="tabDownload">ดาวน์โหลด</string>
-    <string name="tabDownloadDescription">การเข้าถึงที่จัดเก็บโมดูล คุณสามารถค้นหา ดาวน์โหลดและอัพเดทโมดูลได้</string>
     <string name="welcome_framework_update_available">สามารถอัพเดทเฟรมเวิร์ค (%s)</string>
-    <string name="welcome_update_available">สามารถอัพเดทโมดูล</string>
-    <string name="tabSettings">การตั้งค่า</string>
-    <string name="tabSettingsDescription">ไปยังการตั้งค่าตัวติดตั้งและเฟรมเวิร์ค</string>
-    <string name="tabSupport">สนับสนุน</string>
-    <string name="tabSupportDescription">ช่วยเราค้นหาปัญหาเกี่ยวกับเฟรมเวิร์ค คุณสามารถบริจาคเพื่อสนับสนุนเราได้</string>
-    <string name="tabLogs">บันทึกการใช้งาน</string>
-    <string name="tabLogsDescription">แสดงและบันทึกหรือส่งบันทึกการใช้งานเฟรมเวิร์ค</string>
-    <string name="tabAbout">เกี่ยวกับ</string>
-    <string name="tabAboutDescription">เรียนรู้เกี่ยวกับผู้สร้างเฟรมเวิร์คเพื่อรับการสนับสนุนจากแอปพลิเคชั่น</string>
 
     <!-- navigation view items -->
     <string name="nav_item_install">เฟรมเวิร์ค</string>
@@ -39,51 +24,24 @@
     <!-- Installer tab -->
     <string name="install">ติดตั้ง/อัพเดท</string>
     <string name="uninstall">ถอนการติดตั้ง</string>
-    <string name="installedVersion">ใช้งาน</string>
-    <string name="latestVersion">ค่าเริ่มต้น</string>
-    <string name="versions">เวอร์ชั่น:</string>
-    <string name="install_header_reboot">รีบูต</string>
     <string name="soft_reboot">ซอฟท์รีบูต</string>
     <string name="reboot">รีบูต</string>
-    <string name="areyousure">แน่ใจหรือไม่?</string>
     <string name="phone_not_compatible">Xposed ไม่สามารถเข้ากันได้กับเวอร์ชั่น Android SDK %1$d หรือสถาปัตยกรรมประมวลผล (%2$s) ของคุณ</string>
-    <string name="not_tested_but_compatible">Xposed ยังไม่ได้ทดสอบกับเวอร์ชั่น Android SDK version %d แต่อาจจะเข้ากันได้ คุณสามารถทดลองติดตั้งเฟรมเวิร์คเพื่อทดลองใช้งาน</string>
     <string name="reboot_failed">รีบูตล้มเหลว กรุณาใช้ฟังก์ชั่นรีบูตโทรศัพท์</string>
     <string name="auto_flash_note">%s จะแฟลชอัตโนมัติเมื่อคุณกด "ตกลง"</string>
-    <string name="manual_flash_note">กรุณาแฟลช %s จากการ์ดความจำเพื่อดำเนินการให้เสร็จสิ้น</string>
     <string name="reboot_confirmation">ต้องการรีบูตเดี๋ยวนี้?</string>
-    <string name="reboot_recovery_confirmation">ต้องการรีบูตไปยังโหมดกู้คืนเดี๋ยวนี้?</string>
     <string name="install_warning_title">โปรดระวัง!</string>
     <string name="install_warning">ในกรณีที่โทรศัพท์ของคุณอาจจะไม่รีบูตหลังจากการติดตั้ง\n\nหากคุณไม่เคยได้ยินเกี่ยวกับ \"Soft Brick\" และ \"Bootloop\" มาก่อน <b>ห้าม</b>ติดตั้ง Xposed!\n\nโดยทั่วไปแล้ว แนะนำให้กู้คืนไฟล์สำรองของคุณ</string>
     <string name="dont_show_again">ไม่ต้องแสดงอีกครั้ง</string>
     <string name="install_known_issue">ดูเหมือนจะเกิดปัญหา (\"%s\") กับรอมของคุณ การติดตั้ง Xposed อาจจะไม่เวิร์คหรือทำให้เกิดปัญหาร้ายแรง คลิกที่นี่สำหรับรายละเอียดเกี่ยวกับปัญหา</string>
-    <string name="install_reverted">app_process เวอร์ชั่น \"%1$s\" ถูกติดตั้งก่อนหน้านี้แต่เวอร์ชั่น \"%2$s\" ถูกพบในขณะนี้ หากคุณไม่ต้องการเรียกคืนไฟล์เก่า คุณอาจจะต้องการลองติดตั้งด้วยโหมดกู้คืน (อัตโนมัติหรือด้วยตัวเอง)</string>
-    <string name="uninstall_reverted">app_process ถูกถอนการติดตั้งก่อนหน้านี้แต่เวอร์ชั่น \"%s\" ถูกพบในขณะนี้ หากคุณไม่ต้องการเรียกคืนไฟล์เก่า คุณอาจจะต้องการลองถอนการติดตั้งด้วยโหมดกู้คืน (อัตโนมัติหรือด้วยตัวเอง)</string>
-    <string name="tap_to_dismiss">แตะเพื่อปิด</string>
-    <string name="sdcard_location">การ์ดความจำ: %s</string>
-    <string name="installation_lollipop">เฟรมเวิร์คยังไม่ได้ถูกติดตั้ง กรุณาดาวน์โหลดไฟล์ ZIP ล่าสุดจาก XDA และแฟลชด้วยตัวเองในโหมดกู้คืน</string>
     <string name="installed_lollipop">เฟรมเวิร์คเวอร์ชั่น %s เปิดใช้งานแล้ว</string>
     <string name="installed_lollipop_inactive">เฟรมเวิร์คเวอร์ชั่น %s ถูกติดตั้งแล้วแต่ยังไม่ได้ใช้งาน กรุณาตรวจสอบบันทึกการใช้งานสำหรับรายละเอียด</string>
     <string name="modules_updates_available">สามารถอัพเดทโมดูลได้</string>
 
     <!-- File operations -->
     <string name="root_failed">การเข้าถึงรูทล้มเหลว\n\nแน่ใจว่าโทรศัพท์ของคุณได้รับการรูทเรียบร้อยแล้วและไม่ได้บล็อคคำสั่ง Shell</string>
-    <string name="file_extract_failed">ไม่สามารถแตกไฟล์ %s</string>
-    <string name="file_mounting_writable">กำลังเม้าท์ %s สามารถเขียนได้&#8230;</string>
-    <string name="file_mount_writable_failed">ไม่สามารถเม้าท์ %s สามารถเขียนได้</string>
-    <string name="file_trying_to_continue">ลองทางเลือกอื่น&#8230;</string>
-    <string name="file_backup_already_exists">สำรองข้อมูลอยู่แล้วที่ %s</string>
-    <string name="file_backup_not_found">ไม่พบสำรองข้อมูลที่ %s</string>
-    <string name="file_backup_failed">สร้างสำรองข้อมูลล้มเหลวที่ %s</string>
-    <string name="file_backup_successful">สร้างสำรองข้อมูลที่ %s</string>
-    <string name="file_backup_restoring">กำลังคืนค่าสำรองข้อมูลจาก %s</string>
     <string name="file_copying">กำลังคัดลอก %s&#8230;</string>
     <string name="file_copy_failed">ไม่สามารถคัดลอก %1$s ไปยัง %2$s</string>
-    <string name="file_move_failed">ไม่สามารถย้าย %1$s ไปยัง %2$s</string>
-    <string name="file_set_perms_failed">ไม่สามารถตั้งการอนุญาตสำหรับ %s</string>
-    <string name="file_set_owner_failed">ไม่สามารถตั้งเจ้าของสำหรับ %s</string>
-    <string name="file_removing">กำลังลบ %s&#8230;</string>
-    <string name="file_remove_failed">ไม่สามารถลบ %s</string>
     <string name="file_creating_directory">กำลังสร้างไดเรกเทอรี่ %s&#8230;</string>
     <string name="file_create_directory_failed">ไม่สามารถสร้างไดเรกเทอรี่ %s</string>
     <string name="file_writing_recovery_command">กำลังเขียนคำสั่งกู้คืน&#8230;</string>
@@ -146,14 +104,7 @@
     <string name="download_test_version_not_shown">เวอร์ชั่นทดสอบสามารถใช้งานได้ อย่างไรก็ตามมันจะไม่แสดงเนื่องจากการตั้งค่าส่วนกลางและเป็นโมดูลเฉพาะ</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">การติดตั้ง</string>
-    <string name="settings_install_mode">โหมดการติดตั้ง</string>
-    <string name="install_mode_normal">คลาสสิค (เขียนไปยัง /system โดยตรง)</string>
-    <string name="install_mode_recovery_auto">กู้คืน (แฟลช zip อันโนมัติ)</string>
-    <string name="install_mode_recovery_manual">กู้คืน (เขียน zip ไปยังการ์ดความจำและแฟลชด้วยตัวเอง)</string>
     <string name="settings_group_download">ดาวน์โหลด</string>
-    <string name="settings_enable_downloads">เปิดใช้งานการดาวน์โหลด</string>
-    <string name="settings_enable_downloads_summary">อนุญาตเฟรมเวิร์คเพื่อตรวจสอบการอัพเดทและโมดูลใหม่</string>
     <string name="settings_release_type">เวอร์ชั่นที่แสดง</string>
     <string name="settings_group_experimental">ทดลอง</string>
     <string name="settings_disable_resources">ปิดใช้งานการขอทรัพยากร</string>
@@ -176,10 +127,8 @@
     <string name="support_donate_description">หากคูรต้องการขอบคุณ Xposed คุณสามารถบริจาค rovo89 ที่นี่</string>
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">ไม่สามารถอ่านบันทึกการใช้งาน:</string>
     <string name="logs_save_failed">ไม่สามารถเขียนบันทึกการใช้งานไปยังการ์ดความจำ:</string>
     <string name="sdcard_not_writable">ไม่พบการ์ดความจำหรือไม่สามารถเขียนได้</string>
-    <string name="log_too_large">ขนาดไฟล์บันทึกการใช้งานมากกว่า %1$,d kB ข้ามก่อน %2$,d kB</string>
     <string name="menuClearLog">ล้างบันทึกการใช้งาน</string>
     <string name="logs_cleared">ล้างบันทึกการใช้งานเสร็จสิ้น</string>
     <string name="logs_clear_failed">ไม่สามารถล้างบันทึกการใช้งาน:</string>
@@ -188,12 +137,10 @@
     <!-- About tab -->
     <string name="about_developers_label">ผู้พัฒนาหลัก</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> และ <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> และ <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> สำหรับแก้ไขบัคและ Material Design</string>
-    <string name="about_developers_warning">กรุณาอย่าติดต่อพวกเราสำหรับการสนับสนุน โปรดใช้ลิงค์ด้านล่าง</string>
     <string name="about_translator_label">ผู้แปล</string>
     <string name="translator"></string>
     <string name="about_version_label">เวอร์ชั่น</string>
     <string name="about_source_label">ที่มารหัส</string>
-    <string name="about_support_label">ช่วยเหลือ:</string>
     <string name="about_libraries_label">ใช้ไลบารี่แล้ว</string>
 
     <!-- DownloadView -->
@@ -219,9 +166,6 @@
 
 
     <string name="warning_installed_on_external_storage">ไม่สามารถโหลดโมดูลนี้เพราะติดตั้งบนการ์ดความจำ กรุณาย้ายไปยังหน่วยความจำภายใน</string>
-    <string name="warning_forward_locked">ไม่สามารถโหลดโมดูลนี้เพราะถูกล็อค กรุณาติดตั้งผู้พัฒนาโมดูล</string>
-    <string name="export_modules">ส่งออกรายการโมดูลที่เปิดใช้งาน</string>
-    <string name="import_modules">นำเข้ารายการโมดูลที่เปิดใช้งาน</string>
     <string name="view">แสดง</string>
     <string name="export_">ส่งออก…</string>
     <string name="import_">นำเข้า…</string>
@@ -235,36 +179,11 @@
     <string name="no_backup_found">ไม่พบสำรองข้อมูล</string>
     <string name="no_enabled_modules">ยังไม่มีโมดูลเปิดใช้งาน</string>
 
-    <string name="download_view_size">ขนาด: %s KB</string>
     <string name="share">แบ่งปันด้วย…</string>
-    <string name="back">ย้อนกลับ</string>
     <string name="loadingError">ข้อผิดพลาดการโหลดเฟรมเวิร์ค Xposed</string>
-    <string name="info">ข้อมูล</string>
-    <string name="infoInstaller">
-        ชื่อ: %1$s
-        \nSDK: %2$s
-        \nสถาปัตยกรรม: %3$s
-        \nเวอร์ชั่น: %4$s
-    </string>
-    <string name="infoUninstaller">
-        ชื่อ: %1$s
-        \nสถาปัตยกรรม: %2$s
-        \nวันที่: %3$s
-    </string>
-    <string name="downloadZipOk">%1$s ดาวน์โหลดถูกต้อง</string>
-    <string name="permissionGranted">ร้องขอการอนุญาตแล้ว</string>
     <string name="permissionNotGranted">คุณสมบัตินี้จะไม่ทำงาน หากไม่ได้รับการอนุญาตเพื่อเขียนข้อมูลไปยังที่เก็บข้อมูลภายนอก</string>
-    <string name="downloadUninstaller">ถอนการติดตั้งดาวน์โหลด</string>
-    <string name="selectFile">เลือกไฟล์ดาวน์โหลด</string>
-    <string name="xposedZipNotFound">ไม่พบ Zip หรืออาจจะมีเวอร์ชั่นใหม่แล้ว</string>
-    <string name="warningArchitecture">เลือกไฟล์ Zip ให้ถูกต้องการกับสถาปัตยกรรม?\nหากตดตั้งผิดอาจจะทำให้โทรศัพท์เสียได้!</string>
-    <string name="help">ช่วยเหลือ</string>
-
-    <string name="update">อัพเดท</string>
 
 
-    <string name="installationForbidden">ไม่สามารถติดตั้งบนโทรศัพท์นี้ได้ เพื่อติดตั้งเฟรมเวิร์คโทรศัพท์จำเป็นต้องใช้งานแอนดรอยเวอร์ชั่น Lollipop หรือสูงกว่า</string>
-    <string name="installed_no_lollipop">ติดตั้งเฟรมเวิร์ค Xposed แล้ว</string>
     <string name="not_installed_no_lollipop">ยังไม่ได้ติดตั้งเฟรมเวิร์ค Xposed</string>
     <string name="notify_module_update">เปิดใช้งานการแจ้งเตือนอัพเดทโมดูล</string>
 
@@ -276,7 +195,6 @@
     <string name="md_storage_perm_error">แอปพลิเคชั่นของคุณยังไม่ได้รับการอนุญาต READ_EXTERNAL_STORAGE</string>
     <string name="md_custom_label">ปรับแต่ง</string>
     <string name="md_presets_label">พรีเช็ท</string>
-    <string name="changelog">บันทึกการใช้งาน</string>
     <string name="scroll_top">เลื่อนขึ้นบน</string>
     <string name="add_bookmark">เพิ่มบุ๊คมาร์ค</string>
     <string name="remove_bookmark">ลบบุ๊คมาร์ค</string>

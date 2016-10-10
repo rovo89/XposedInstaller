@@ -4,31 +4,15 @@
     <!-- General/various strings -->
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">مرحبا بكم <b>المثبت إكسبوسيد</b>!\nالرجاء اختيار ما تريد القيام به:</string>
-    <string name="tabInstall">الإطار</string>
-    <string name="tabInstallDescription">هنا يمكنك إدارة إطار إكسبوسيد، والمطلوب لأي وحدات العمل.</string>
-    <string name="tabModules">الوحدات النمطية</string>
-    <string name="tabModulesDescription">الإطار نفسه لا تضيف أي وظيفة. تحتاج الوحدات النمطية لذلك. في هذا القسم يمكنك تنشيط وحدات بعد أن قمت بتثبيت لهم.</string>
     <string name="tabDownload">تحميل</string>
-    <string name="tabDownloadDescription">هذا القسم يتيح لك الوصول إلى مستودع للوحدات النمطية، حيث يمكنك البحث وتحميل تلك التي تريد والاحتفاظ بها حتى الآن.</string>
     <string name="welcome_framework_update_available">يتوفر تحديث لإطار إكسبوسيد.</string>
-    <string name="welcome_update_available">تحديث واحد أو أكثر من الوحدات النمطية المتوفرة.</string>
-    <string name="tabSettings">إعدادات</string>
-    <string name="tabSettingsDescription">اذهب إلى هذا القسم لتكوين المثبت إكسبوسيد والإطار.</string>
-    <string name="tabAbout">حول</string>
-    <string name="tabAboutDescription">التعرف على الأشخاص الذين تم إنشاؤها إكسبوسيد، حيث للحصول على دعم لهذا التطبيق إلخ.</string>
 
     <!-- Installer tab -->
     <string name="install">تثبيت/تحديث</string>
     <string name="uninstall">إلغاء تثبيت</string>
-    <string name="installedVersion">تنشيط</string>
-    <string name="latestVersion">تجميع</string>
-    <string name="versions">إصدارات:</string>
     <string name="soft_reboot">اعادة تشغيل سريعة</string>
     <string name="reboot">اعادة التشغيل</string>
-    <string name="areyousure">هل أنت متأكد؟</string>
     <string name="phone_not_compatible">اكسبود ليس (حتى الآن) متوافق مع الإصدار الروبوت SDK %1$d أو هندسة المعالج (%2$s).</string>
-    <string name="not_tested_but_compatible">لم يتم اختباره اكسبود مع الروبوت الإصدار SDK %d, ولكن يبدو أن تكون متوافقة. يمكنك محاولة تثبيته إذا كنت تشعر المغامرة.</string>
 
     <!-- File operations -->
 
@@ -71,8 +55,6 @@
 
     <!-- Settings tab -->
     <string name="settings_group_download">تحميل</string>
-    <string name="settings_enable_downloads">تمكين التحميل</string>
-    <string name="settings_enable_downloads_summary">السماح إكسبوسيد المثبت للتحقق من وجود تحديثات ووحدات جديدة</string>
     <string name="settings_group_experimental">التجريبية</string>
     <string name="settings_performance_experiment">تجربة الأداء</string>
     <string name="settings_performance_experiment_summary">إذا قمت بتمكين هذا، أداء النظام الخاص بك قد أما زيادة أو إنقاص أو البقاء نفس. لا تتردد في جربة وتقريراً عن تأثير الذي تراه (أو إذا كان هناك لا شيء على الإطلاق). كنت بحاجة إلى تثبيت الإطار وإعادة تشغيل الكمبيوتر بعد تغيير هذا.</string>
@@ -84,12 +66,10 @@
     <!-- About tab -->
     <string name="about_developers_label">مطوري الرئيسية:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> و <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">الرجاء القيام <b>لا</b> اتصل بنا مباشرة للدعم، واستخدام الارتباط الموجود أدناه.</string>
     <string name="about_translator_label">ترجمات:</string>
     <string name="translator">aljohanei</string>
     <string name="about_version_label">إصدار من هذا التطبيق:</string>
     <string name="about_source_label">التعليمات البرمجية المصدر:</string>
-    <string name="about_support_label">الحصول على الدعم في:</string>
     <string name="about_libraries_label">المكتبات المستخدمة:</string>
 
     <!-- DownloadView -->

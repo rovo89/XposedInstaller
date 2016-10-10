@@ -7,60 +7,26 @@
     <string name="xposed_not_active">Poslednja verzija Xposed programa trenutno nije aktivna. Da li ste instalirali Framework i restartovali uređaj?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Dobrodošli u <b>Xposed Installer</b>!\Molim, izaberite šta želite:</string>
-    <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Ovde imate izbor podešavanja Xposed Framework-a, za rad sa vašim modulima.</string>
-    <string name="tabModules">Moduli</string>
-    <string name="tabModulesDescription">Framework sam po sebi ne dodaje funkcionalnosti. Potrebni su vam moduli. U ovom delu možete dodati module nakon što ste ih prethodno instalirali.</string>
     <string name="tabDownload">Učitavanje</string>
-    <string name="tabDownloadDescription">Ovaj deo daje vam pristup respzitoriju modula tako da možete pretraživati i učitavati one koje želite.</string>
     <string name="welcome_framework_update_available">Nova verzija Xposed Framework-a je dostupna (%s).</string>
-    <string name="welcome_update_available">Jedna ili više novih verzija za module je dostupna.</string>
-    <string name="tabSettings">Podešavanja</string>
-    <string name="tabSettingsDescription">U ovom delu možete izvršiti podešavanja Xposed Installer-a i Framework-a.</string>
-    <string name="tabLogs">Logovi</string>
-    <string name="tabLogsDescription">Prikaži i snimi/pošalji log Xposed Framework-a.</string>
-    <string name="tabAbout">O</string>
-    <string name="tabAboutDescription">Saznajte ko su ljudi koji su kreirali Xposed, gde možete naći podršku za ovu aplikaciju i sl&#8230;</string>
 
     <!-- Installer tab -->
     <string name="install">Instalacija/Nadogradnja</string>
     <string name="uninstall">Deinstalacija</string>
-    <string name="installedVersion">Aktivna</string>
-    <string name="latestVersion">Paket</string>
-    <string name="versions">Verzija:</string>
     <string name="soft_reboot">Softverski restart</string>
     <string name="reboot">Restart</string>
-    <string name="areyousure">Da li ste sigurni?</string>
     <string name="phone_not_compatible">Xposed (trenutno) nije kompatibilan sa Android SDK versijom %1$d ili vašom arhitekturom procesora(%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed još nije testiran sa Android SDK versijom %d, ali je izgleda kompatibilan. Možete pokušati sa instalacijom ako ste dovoljno radoznali.</string>
     <string name="reboot_failed">Restartovanje je neuspešno. Milim, restartujte urđaj normalnom procedurom.</string>
     <string name="auto_flash_note">%s instaliraće se automatski nakon što izaberete "OK".</string>
-    <string name="manual_flash_note">Instalirajte %s sa SD karte da bi ste završili proces.</string>
     <string name="reboot_confirmation">Da li želite da restartujete uređaj sada?</string>
-    <string name="reboot_recovery_confirmation">Da li želite da restartujete uređaj u recovery mod?</string>
     <string name="install_warning_title">Budite oprezni!</string>
     <string name="install_warning">U nekim slučajevima, može se desiti da vaš uređaj ne podigne sistem nakon instalacije Xposed-a.\n\Ako nikada niste čuli o terminima \"soft brick\" i \"bootloop\" do sada ili ako ne znate kako da nađete rešenje ako se nađete u toj situaciji, <b>NE</b> instalirajte Xposed!\n\nU svakom slučaju, imati rezervnu kopiju sistema je preporučljivo.</string>
     <string name="dont_show_again">Ne prikazuj ponovo</string>
 
     <!-- File operations -->
     <string name="root_failed">Neuspešan pristup root direktorijumu.\n\nProverite još jednom da li je vaš uređaj root-ovan pravilno i da niste blokirali shell komande.</string>
-    <string name="file_extract_failed">Nemoguće otpakivanje %s</string>
-    <string name="file_mounting_writable">Izbor mogućnosti zapisa…</string>
-    <string name="file_mount_writable_failed">Nema mogućnosti zapisa %s </string>
-    <string name="file_trying_to_continue">Pokušaj nastavka bez obzira …</string>
-    <string name="file_backup_already_exists">Rezervna kopija već postoji u %s</string>
-    <string name="file_backup_not_found">Rezervna kopija nije pronađena u %s</string>
-    <string name="file_backup_failed">Neuspešno kreiranje rezervne kopije %s</string>
-    <string name="file_backup_successful">Kreirana rezervna kopija u %s</string>
-    <string name="file_backup_restoring">Vraćanje rezervne kopije iz %s</string>
     <string name="file_copying">Kopiranje %s…</string>
     <string name="file_copy_failed">Nemoguće kopiranje %1$s u %2$s</string>
-    <string name="file_move_failed">Nemoguće premeštanje %1$s u %2$s</string>
-    <string name="file_set_perms_failed">Nemoguće dodeliti dozvole za %s</string>
-    <string name="file_set_owner_failed">Nemoguće odrediti vlasnika za %s</string>
-    <string name="file_removing">Uklanjanje %s…</string>
-    <string name="file_remove_failed">Nemoguće uklanjanje %s</string>
     <string name="file_creating_directory">Kreiranje dirktorijuma %s…</string>
     <string name="file_create_directory_failed">Nemoguće kreiranje direktorijuma %s</string>
     <string name="file_writing_recovery_command">Zaspisivanje recovery komande…</string>
@@ -105,14 +71,7 @@
     <string name="download_section_older">Pre više od 30 dana</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">Instalacija</string>
-    <string name="settings_install_mode">Vrsta instalacije</string>
-    <string name="install_mode_normal">Klasična (upis u /sistem direktno)</string>
-    <string name="install_mode_recovery_auto">Recovery (instalacija zip-a automatski)</string>
-    <string name="install_mode_recovery_manual">Recovery (upis zip-a na SD kartu, manuelna instalacija)</string>
     <string name="settings_group_download">Učitaj</string>
-    <string name="settings_enable_downloads">Dozvoli učitavanje</string>
-    <string name="settings_enable_downloads_summary">Dozvoli Xposed Instaleru proveru novih verzija i modula</string>
     <string name="settings_group_experimental">Eksperimentalno </string>
     <string name="settings_disable_resources">Onemogući resource hooks</string>
     <string name="settings_disable_resources_summary">Radi na konfliktima sa theming endžinom\n<b>UPOZORENJE:</b> Moduli koji pokušavaju da izmene resurse neće raditi ako je ova opcija omogućena.</string>
@@ -120,10 +79,8 @@
     <!-- Support tab -->
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Nemoguće pročitati log:</string>
     <string name="logs_save_failed">Nemoguće zapisati log na SD cartu:</string>
     <string name="sdcard_not_writable">SD karta nije pronađena ili je nemoguće zapisati podatke na njoj</string>
-    <string name="log_too_large">Log je veći od %1$,d kB, propušteno prvih %2$,d kB</string>
     <string name="menuClearLog">Izbrisati log sada</string>
     <string name="logs_cleared">Log uspešno izbrisan</string>
     <string name="logs_clear_failed">Nemoguće izbrisati log:</string>
@@ -132,12 +89,10 @@
     <!-- About tab -->
     <string name="about_developers_label">Glavni developeri/programeri:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> i <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Molim Vas <b>ne</b> kontaktirajte nas direktno za podršku, koristite link ispod.</string>
     <string name="about_translator_label">Prevodilac:</string>
     <string name="translator">maleksa</string>
     <string name="about_version_label">Verzija ove aplikacije:</string>
     <string name="about_source_label">Izvor koda:</string>
-    <string name="about_support_label">Podrška:</string>
     <string name="about_libraries_label">Korišćene biblioteke:</string>
 
     <!-- DownloadView -->

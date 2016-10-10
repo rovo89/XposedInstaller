@@ -4,31 +4,15 @@
     <!-- General/various strings -->
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Selamat datang di <b>Installer Xposed</b>!\nPilih pilihan Anda:</string>
-    <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Anda dapat mengatur Framework Xposed, yang harus diinstall agar Xposed bekerja.</string>
-    <string name="tabModules">Modul</string>
-    <string name="tabModulesDescription">Framework sendiri tidak menambah fungsi apapun. Anda butuh modul. Anda dapat mengaktifkan modul di sini setelah Anda menginstallnya.</string>
     <string name="tabDownload">Unduh</string>
-    <string name="tabDownloadDescription">Tempat ini memberikan daftar modul-modul, Anda dapat mencari dan mengunduh modul dan menginstallnya.</string>
     <string name="welcome_framework_update_available">Update tersedia.</string>
-    <string name="welcome_update_available">Update tersedia untuk modul.</string>
-    <string name="tabSettings">Pengaturan</string>
-    <string name="tabSettingsDescription">Tempat ini mengatur Xposed dan Framework.</string>
-    <string name="tabAbout">Tentang</string>
-    <string name="tabAboutDescription">Ketahui siapa yang membuat Xposed, dan di mana Anda bisa mendapat bantuan, dll.</string>
 
     <!-- Installer tab -->
     <string name="install">Install/Update</string>
     <string name="uninstall">Hapus</string>
-    <string name="installedVersion">aktif</string>
-    <string name="latestVersion">tergabung</string>
-    <string name="versions">Versi:</string>
     <string name="soft_reboot">Reboot cepat</string>
     <string name="reboot">Reboot</string>
-    <string name="areyousure">Anda yakin?</string>
     <string name="phone_not_compatible">Xposed masih belum tersedia untuk versi Android SDK %1$d atau arsitektur CPU Anda (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed belum dicoba di versi Android SDK %d, tetapi mungkin bekerja. Anda dapat mencobanya jika Anda berani.</string>
 
     <!-- File operations -->
 
@@ -71,8 +55,6 @@
 
     <!-- Settings tab -->
     <string name="settings_group_download">Unduh</string>
-    <string name="settings_enable_downloads">Aktifkan unduhan</string>
-    <string name="settings_enable_downloads_summary">Perbolehkan Xposed untuk mengecek update dan unduhan</string>
     <string name="settings_group_experimental">Uji coba</string>
     <string name="settings_performance_experiment">Uji coba performa</string>
     <string name="settings_performance_experiment_summary">Jika diaktifkan, performa sistem akan naik, turun, atau tetap. Cobalah dan laporkan mana yang cocok (atau tiada). Anda perlu menginstall ulang Xposed dan reboot setelah ini.</string>
@@ -84,12 +66,10 @@
     <!-- About tab -->
     <string name="about_developers_label">Pengembang utama:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Tolong <b>jangan</b> menghubungi kami secara langsung, gunakan link dibawah.</string>
     <string name="about_translator_label">Penerjemah:</string>
     <string name="translator">AngSanley</string>
     <string name="about_version_label">Versi aplikasi:</string>
     <string name="about_source_label">Source code:</string>
-    <string name="about_support_label">Dapatkan bantuan di:</string>
     <string name="about_libraries_label">Library yang digunakan:</string>
 
     <!-- DownloadView -->

@@ -7,23 +7,8 @@
     <string name="xposed_not_active">Последняя версия Xposed в настоящее время не активна. Уверены, что Вы установили Framework и перезагрузили устройство?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Добро пожаловать в <b>Xposed Installer</b>!\nПожалуйста, выберите, что Вам нужно:</string>
-    <string name="tabInstall">Выберите Framework</string>
-    <string name="tabInstallDescription">Здесь Вы можете настроить Xposed Framework, необходимый для работы модулей.</string>
-    <string name="tabModules">Модули</string>
-    <string name="tabModulesDescription">Framework сам по себе не добавляет никакого фунционала. Для этого необходимо установить модули. В этом разделе Вы можете активировать модули после их установки.</string>
     <string name="tabDownload">Загрузка</string>
-    <string name="tabDownloadDescription">Этот раздел дает Вам доступ к репозиторию, в котором можно найти и загрузить нужный модуль, а также проверить обновления.</string>
     <string name="welcome_framework_update_available">Доступно обновление для Xposed Framework (%s).</string>
-    <string name="welcome_update_available">Доступны обновления для модулей.</string>
-    <string name="tabSettings">Настройки</string>
-    <string name="tabSettingsDescription">Выберите этот раздел для настройки Xposed Installer и Framework.</string>
-    <string name="tabSupport">Поддержка</string>
-    <string name="tabSupportDescription">Найти помощь связанные с Xposed. Вы также отблагодарить и пожертвовать на Xposed.</string>
-    <string name="tabLogs">Логи</string>
-    <string name="tabLogsDescription">Отображение, сохранение и отправка логов Xposed Framework.</string>
-    <string name="tabAbout">О программе!</string>
-    <string name="tabAboutDescription">Узнайте о людях, которые создали Xposed, о том, где можно получить поддержку и т.д.</string>
 
     <!-- navigation view items -->
     <string name="nav_item_install">Xposed Framework</string>
@@ -39,51 +24,24 @@
     <!-- Installer tab -->
     <string name="install">Установить или Обновить</string>
     <string name="uninstall">Удалить</string>
-    <string name="installedVersion">Текущая</string>
-    <string name="latestVersion">Доступная</string>
-    <string name="versions">Версии:</string>
-    <string name="install_header_reboot">Перезагрузить устройство</string>
     <string name="soft_reboot">Быстрая перезагрузка</string>
     <string name="reboot">Полная перезагрузка</string>
-    <string name="areyousure">Вы уверены?</string>
     <string name="phone_not_compatible">Xposed (пока) не совместим с версией Android SDK %1$d или архитектурой процессора (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed не был протестирован с Android SDK версии %d, но может быть совместим. Вы можете попробовать его установить, если хотите приключений.</string>
     <string name="reboot_failed">Сбой перезагрузки. Пожалуйста, используйте встроенную функцию перезагрузки на устройстве.</string>
     <string name="auto_flash_note">%s будет прошита автоматически при нажатии "OK".</string>
-    <string name="manual_flash_note">Пожалуйста, прошейте %s с SD-карты для завершения операции.</string>
     <string name="reboot_confirmation">Хотите перезагрузить устройство сейчас?</string>
-    <string name="reboot_recovery_confirmation">Хотите перезагрузить в режим восстановления?</string>
     <string name="install_warning_title">Будьте осторожны!</string>
     <string name="install_warning">В некоторых случаях, устройство может не загрузиться после установки Xposed.\n\nЕсли вы не знаете что такое \"soft brick\" и \"bootloop\". И не знаете как восстановить систему, <b>НЕ</b> устанавливайте Xposed!\n\nВ любом случае, делайте резервную копию системы."</string>
     <string name="dont_show_again">Больше не показывать сообщение</string>
     <string name="install_known_issue">Похоже, присутствует известная несовместимость (\"%s\") с Вашей прошивкой. Пожалуй, Вам не стоит устанавливать Xposed. Нажмите здесь для дополнительной информации.</string>
-    <string name="install_reverted">Ранее была установлена версия app_process \"%1$s\", но сейчас обнаружена версия \"%2$s\". Если Вы не хотели, чтобы был восстановлен старый файл, можете попробовать установку через режим восстановления (автоматически или вручную).</string>
-    <string name="uninstall_reverted">Ранее app_process был удалён, но сейчас обнаружена версия \"%s\". Если Вы не хотели, чтобы был восстановлен старый файл, можете попробовать удаление через режим восстановления (автоматически или вручную).</string>
-    <string name="tap_to_dismiss">Нажмите для пропуска</string>
-    <string name="sdcard_location">SD-карта: %s</string>
-    <string name="installation_lollipop">Xposed Framework не установлен. Пожалуйста скачайте последнюю версию на XDA и прошейте вручную через Рекавери.</string>
     <string name="installed_lollipop">Xposed Framework версии %s активирован!</string>
     <string name="installed_lollipop_inactive">Xposed Framework версия %s установлена, но не активирована. Пожалуйста проверьте логи.</string>
     <string name="modules_updates_available">Доступны обновления модуля</string>
 
     <!-- File operations -->
     <string name="root_failed">"Сбой получения прав рут-доступа.\n\nУбедитесь, что на устройстве есть рут и команды оболочки не блокируются."</string>
-    <string name="file_extract_failed">Невозможно извлечь %s</string>
-    <string name="file_mounting_writable">Установка %s для записи&#8230;</string>
-    <string name="file_mount_writable_failed">Невозможно установить %s для записи</string>
-    <string name="file_trying_to_continue">Попытка продолжить&#8230;</string>
-    <string name="file_backup_already_exists">Резервная копия уже существует в %s</string>
-    <string name="file_backup_not_found">Не найдено резервной копии в %s</string>
-    <string name="file_backup_failed">Невозможно создать резервную копию %s</string>
-    <string name="file_backup_successful">Резервная копия создана в %s</string>
-    <string name="file_backup_restoring">Восстановление резервной копии из %s</string>
     <string name="file_copying">Копирование %s&#8230;</string>
     <string name="file_copy_failed">Невозможно копировать %1$s в %2$s</string>
-    <string name="file_move_failed">Невозможно переместить %1$s в %2$s</string>
-    <string name="file_set_perms_failed">Невозможно установить разрешения для %s</string>
-    <string name="file_set_owner_failed">Невозможно установить владельца для %s</string>
-    <string name="file_removing">Удаление %s&#8230;</string>
-    <string name="file_remove_failed">Невозможно удалить %s</string>
     <string name="file_creating_directory">Создание каталога %s&#8230;</string>
     <string name="file_create_directory_failed">Невозможно создать каталог %s</string>
     <string name="file_writing_recovery_command">Запись команды восстановления&#8230;</string>
@@ -146,14 +104,7 @@
     <string name="download_test_version_not_shown">Доступны тестовые версии. Но они скрыты в настройках \"Отображение версий модуля\".</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">Установка</string>
-    <string name="settings_install_mode">Способ установки</string>
-    <string name="install_mode_normal">Классический (запись в /system директорию)</string>
-    <string name="install_mode_recovery_auto">Рекавери (прошивка архива автоматически)</string>
-    <string name="install_mode_recovery_manual">Рекавери (запись архива на SD-карту, ручная прошивка)</string>
     <string name="settings_group_download">Загрузка</string>
-    <string name="settings_enable_downloads">Включить скачивание</string>
-    <string name="settings_enable_downloads_summary">Разрешить Xposed Installer проверять и обновлять модули</string>
     <string name="settings_release_type">Отображение версий модуля</string>
     <string name="settings_group_experimental">Экспериментальное</string>
     <string name="settings_disable_resources">Не изменять ресурсы</string>
@@ -176,10 +127,8 @@
     <string name="support_donate_description">Если вы хотите отблагодарить за Xposed, вы можете сделать пожертвование для rovo89 здесь:</string>
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Невозможно прочитать логи:</string>
     <string name="logs_save_failed">Невозможно записать логи на SD-карту:</string>
     <string name="sdcard_not_writable">SD-карта не найдена или запись на неё невозможна</string>
-    <string name="log_too_large">Файл лога больше %1$,d кБ, пропущены первые %2$,d кБ</string>
     <string name="menuClearLog">Очистить логи</string>
     <string name="logs_cleared">Логи успешно очищены</string>
     <string name="logs_clear_failed">Невозможно очистить логи:</string>
@@ -188,12 +137,10 @@
     <!-- About tab -->
     <string name="about_developers_label">Главные разработчики</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> и <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> и <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> Для исправления багов и Material Дизайна</string>
-    <string name="about_developers_warning">Пожалуйста, <b>не</b> пишите нам для решения вопросов напрямую, используйте ссылку ниже.</string>
     <string name="about_translator_label">Переводчик:</string>
     <string name="translator">Alexey711</string>
     <string name="about_version_label">Версия приложения:</string>
     <string name="about_source_label">Исходный код</string>
-    <string name="about_support_label">Получить поддержку на:</string>
     <string name="about_libraries_label">Используемые библиотеки</string>
 
     <!-- DownloadView -->
@@ -219,9 +166,6 @@
 
 
     <string name="warning_installed_on_external_storage">Этот модуль не может быть загружен, потому что он установлен на SD-карту, переместите его во внутреннюю память.</string>
-    <string name="warning_forward_locked">Этот модуль не может быть загружен, потому что он заблокирован, пожалуйста свяжитесь с разработчиком.</string>
-    <string name="export_modules">Экспорт списка включенных модулей</string>
-    <string name="import_modules">Импорт списка включенных модулей</string>
     <string name="view">Смотреть</string>
     <string name="export_">Экспорт модулей</string>
     <string name="import_">Импорт модулей</string>
@@ -235,36 +179,11 @@
     <string name="no_backup_found">Резервные копии не найдены</string>
     <string name="no_enabled_modules">Нет включенных модулей</string>
 
-    <string name="download_view_size">Размер: %s КБ</string>
     <string name="share">Поделиться</string>
-    <string name="back">Назад</string>
     <string name="loadingError">Ошибка загрузки Zip Xposed Frameworks</string>
-    <string name="info">Информация</string>
-    <string name="infoInstaller">
-        Имя: %1$s
-        \nSDK: %2$s
-        \nАрхитектура: %3$s
-        \nВерсия: %4$s
-    </string>
-    <string name="infoUninstaller">
-        Имя: %1$s
-        \nАрхитектура: %2$s
-        \nДата: %3$s
-    </string>
-    <string name="downloadZipOk">%1$s загрузка завершена</string>
-    <string name="permissionGranted">Доступ к памяти</string>
     <string name="permissionNotGranted">Эта функция не будет работать без разрешения на запись для накопителя.</string>
-    <string name="downloadUninstaller">Скачать деинсталятор</string>
-    <string name="selectFile">Выберите загруженный файл</string>
-    <string name="xposedZipNotFound">Не найден Zip, вероятно есть новая версия.</string>
-    <string name="warningArchitecture">ВЫ ВЫБРАЛИ ПАРВИЛЬНУЮ АРХИТЕКТУРУ ZIP XPOSED?\nНе правильный zip установщик может навредить вашему устройству!</string>
-    <string name="help">Справка</string>
-
-    <string name="update">Установить обновление</string>
 
 
-    <string name="installationForbidden">Установка не возможна! Чтобы установить Xposed Framework через это приложение, необходим Android 5 и выше.</string>
-    <string name="installed_no_lollipop">Xposed Framework установлен.</string>
     <string name="not_installed_no_lollipop">Xposed Framework не установлен.</string>
     <string name="notify_module_update">Включить уведомления об обновлении модулей</string>
 
@@ -276,7 +195,6 @@
 	<string name="md_storage_perm_error">Для вашего приложения не предоставлены права на чтение READ_EXTERNAL_STORAGE.</string>
     <string name="md_custom_label">Пользовательские</string>
     <string name="md_presets_label">Пресеты</string>
-    <string name="changelog">Список изменений</string>
     <string name="scroll_top">Прокрутка вверх</string>
     <string name="add_bookmark">Добавить закладку</string>
     <string name="remove_bookmark">Удалить закладку</string>
@@ -301,9 +219,6 @@
     <string name="scroll_bottom">Прокрутка вниз</string>
     <string name="open_drawer_summ">Автоматически открывать боковое меню при запуске</string>
     <string name="open_drawer">Автоматически открыть боковое меню</string>
-    <string name="share_app">Поделиться</string>
-    <string name="share_app_text">Попробуйте: Xposed Installer в Material Дизайн! %s</string>
-    <string name="disable_xposed">Отключить Xposed</string>
     <string name="status">Состояние Xposed</string>
     <string name="xposed_on_next_reboot">Xposed Framework будет включен после перезагрузки</string>
     <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>

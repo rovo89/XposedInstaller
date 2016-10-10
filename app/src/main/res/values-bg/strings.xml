@@ -7,66 +7,27 @@
     <string name="xposed_not_active">Последната версия на Xposed не е активна. Инсталирахте ли Framework и рестартирахте ли?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Добре дошли в <b>Xposed Installer</b>!\nМоля, изберете какво желаете да направите:</string>
-    <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">От тук можете да управлявате Xposed Framework, който е необходим за да работят модулите.</string>
-    <string name="tabModules">Модули</string>
-    <string name="tabModulesDescription">Самият Framework не добавя никаква функционалност. За тази цел се нуждаете от модули. В тази секция можете да активирате модулите, след като ги изтеглите.</string>
     <string name="tabDownload">Изтегляне</string>
-    <string name="tabDownloadDescription">Този раздел Ви дава достъп до хранилището с модули, където можете да ги търсите и изтегляте, а също така да ги държите обновени.</string>
     <string name="welcome_framework_update_available">Налично е обновление за Xposed Framework (%s).</string>
-    <string name="welcome_update_available">Налични са едно или повече обновления за модулите.</string>
-    <string name="tabSettings">Настройки</string>
-    <string name="tabSettingsDescription">Отидете в този раздел за да настроите Xposed Installer и Framework.</string>
-    <string name="tabLogs">Дневници</string>
-    <string name="tabLogsDescription">Показва и записва/изпраща дневници за Xposed Framework.</string>
-    <string name="tabAbout">Относно</string>
-    <string name="tabAboutDescription">Научете за хората създали Xposed, къде да намерите поддръжка и т.н.</string>
 
     <!-- Installer tab -->
     <string name="install">Инсталирай/Обнови</string>
     <string name="uninstall">Премахни</string>
-    <string name="installedVersion">активна</string>
-    <string name="latestVersion">последна</string>
-    <string name="versions">Версии:</string>
-    <string name="install_header_reboot">Рестартиране</string>
     <string name="soft_reboot">Софт рестарт</string>
     <string name="reboot">Рестарт</string>
-    <string name="areyousure">Сигурни ли сте?</string>
     <string name="phone_not_compatible">Xposed не е съвместим с Android SDK версия %1$d или с архитектурата на вашия процесор (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed не е изпробван с SDK версия %d, но изглежда е съвместим. Може да го инсталирате, ако се смятате за подготвени.</string>
     <string name="reboot_failed">Рестартирането не е възможно. Моля използвайте нормалната функция за рестартиране на устройството.</string>
     <string name="auto_flash_note">%s ще бъде flash-нат автоматично след като натиснете "OK".</string>
-    <string name="manual_flash_note">Моля flash-нете %s от SD картата за да завършите операцията.</string>
     <string name="reboot_confirmation">Да рестартирам ли сега?</string>
-    <string name="reboot_recovery_confirmation">Да рестартирам ли в recovery?</string>
     <string name="install_warning_title">Бъдете внимателни!</string>
     <string name="install_warning">В някои случаи е възможно, след инсталиране на Xposed вашето устройство да не стартира.\n\nАко никога не сте чували за \"soft brick\" и \"bootloop\" или ако незнаете как да възстановите устройството в такава ситуация, <b>НЕ</b> инсталирайте Xposed!\n\nВъв всеки случай се препоръчва да имате скорошно резервно копие.</string>
     <string name="dont_show_again">Не показвай отново</string>
     <string name="install_known_issue">Изглежда, че съществува известен проблем (\"%s\") с Вашия ROM. Инсталирането на Xposed може да не работи или да доведе до някои проблеми. Натиснете тук за повече информация относно този проблем.</string>
-    <string name="install_reverted">app_process версия \"%1$s\" е инсталиран, но е открита версия \"%2$s\". Ако не очаквате да се възстанови стария файл, може да опитате инсталиране през recovery (автоматично или ръчно).</string>
-    <string name="uninstall_reverted">app_process беше деинсталиран, но е открита версия \"%s\". Ако не очаквате да се възстанови стария файл, може да опитате деинсталиране през recovery (автоматично или ръчно).</string>
-    <string name="tap_to_dismiss">Докоснете за отказ</string>
-    <string name="sdcard_location">SD карта: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Няма root достъп.\n\nУбедете се, че устройството Ви е root-нато и не сте блокирали shell командите.</string>
-    <string name="file_extract_failed">Не може да се извлече %s</string>
-    <string name="file_mounting_writable">Монтиране на %s за запис&#8230;</string>
-    <string name="file_mount_writable_failed">Не може да се монтира %s за запис</string>
-    <string name="file_trying_to_continue">Опит за продължение въпреки това&#8230;</string>
-    <string name="file_backup_already_exists">Резервно копие съществува в %s</string>
-    <string name="file_backup_not_found">Не е намерено резервно копие в %s</string>
-    <string name="file_backup_failed">Не може да се създаде резервно копие на %s</string>
-    <string name="file_backup_successful">Създадено е резервно копие в %s</string>
-    <string name="file_backup_restoring">Възстановяване на резервно копие от %s</string>
     <string name="file_copying">Копиране %s&#8230;</string>
     <string name="file_copy_failed">Не може да се копира %1$s в %2$s</string>
-    <string name="file_move_failed">Не може да се премести %1$s в %2$s</string>
-    <string name="file_set_perms_failed">Не може да се зададът позволения за %s</string>
-    <string name="file_set_owner_failed">Не може да се зададе собственика за %s</string>
-    <string name="file_removing">Премахване %s&#8230;</string>
-    <string name="file_remove_failed">Не може да се премахне %s</string>
     <string name="file_creating_directory">Създаване на папка %s&#8230;</string>
     <string name="file_create_directory_failed">Не може да се създаде папка %s</string>
     <string name="file_writing_recovery_command">Запис на команда за възстановяване&#8230;</string>
@@ -129,14 +90,7 @@
     <string name="download_test_version_not_shown">Налична е тестова версия, но тя не се показва поради Вашите специфични настройки.</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">Инсталиране</string>
-    <string name="settings_install_mode">Режим на инсталиране</string>
-    <string name="install_mode_normal">Класически (запис в папка /system)</string>
-    <string name="install_mode_recovery_auto">Recovery (flash zip автоматично)</string>
-    <string name="install_mode_recovery_manual">Recovery (запис на zip в SD картата, flash ръчно)</string>
     <string name="settings_group_download">Изтегляне</string>
-    <string name="settings_enable_downloads">Позволи изтегляния</string>
-    <string name="settings_enable_downloads_summary">Позволи на Xposed Installer да проверява за обновления и нови модули</string>
     <string name="settings_release_type">Показвай версии</string>
     <string name="settings_group_experimental">Експериментално</string>
     <string name="settings_disable_resources">Изключевно прихващане на ресурси</string>
@@ -152,10 +106,8 @@
     <!-- Support tab -->
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Не може да се прочете дневника:</string>
     <string name="logs_save_failed">Дневника не може да се запише на SD картата:</string>
     <string name="sdcard_not_writable">SD картата не съществува, или не е за запис</string>
-    <string name="log_too_large">Дневника е по-голям от %1$,d kB, пропуснати са първите %2$,d kB</string>
     <string name="menuClearLog">Изчисти дневника</string>
     <string name="logs_cleared">Дневника е изчистен успешно</string>
     <string name="logs_clear_failed">Дневника неможе да се изчисти:</string>
@@ -164,12 +116,10 @@
     <!-- About tab -->
     <string name="about_developers_label">Разработчици:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> и <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Моля <b>не</b> се свързвайте с нас директно, използвайте долния линк.</string>
     <string name="about_translator_label">Преводач:</string>
     <string name="translator">mamutcho</string>
     <string name="about_version_label">Версия:</string>
     <string name="about_source_label">Изходен код:</string>
-    <string name="about_support_label">Поддръжка на:</string>
     <string name="about_libraries_label">Използвани библиотеки:</string>
 
     <!-- DownloadView -->

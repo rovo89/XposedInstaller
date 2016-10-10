@@ -46,7 +46,7 @@ public class AboutActivity extends XposedBaseActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
-        setFloating(toolbar, R.string.details);
+        setFloating(toolbar, R.string.nav_item_about);
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new AboutFragment()).commit();

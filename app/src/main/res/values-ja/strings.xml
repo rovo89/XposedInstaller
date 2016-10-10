@@ -7,23 +7,8 @@
     <string name="xposed_not_active">最新版のXposedが動作していません。フレームワークをインストールして再起動しましたか？</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome"><b>Xposed Installer</b>へようこそ。\n操作を選択してください:</string>
-    <string name="tabInstall">フレームワーク</string>
-    <string name="tabInstallDescription">モジュールの動作に必要なXposedフレームワークの管理をします。</string>
-    <string name="tabModules">モジュール</string>
-    <string name="tabModulesDescription">フレームワーク単体では何もできないのでモジュールが別途必要です。モジュールをインストールして、ここで有効化してください。</string>
     <string name="tabDownload">ダウンロード</string>
-    <string name="tabDownloadDescription">モジュールのレポジトリにアクセスして検索、ダウンロードや更新をします。</string>
     <string name="welcome_framework_update_available">Xposedフレームワークの更新があります。 （%s）</string>
-    <string name="welcome_update_available">モジュールの更新があります。</string>
-    <string name="tabSupport">サポート</string>
-    <string name="tabSupportDescription">Xposed関係の問題を解決するためのサポートを紹介します。Xposedに対するお礼として寄付をすることもできます。</string>
-    <string name="tabSettings">設定</string>
-    <string name="tabSettingsDescription">Xposed Installerとフレームワークの設定をします。</string>
-    <string name="tabLogs">ログ</string>
-    <string name="tabLogsDescription">Xposedフレームワークのログの表示、保存や送信をします。</string>
-    <string name="tabAbout">情報</string>
-    <string name="tabAboutDescription">Xposedの開発に携わった人たちやサポートの情報を表示します。</string>
 
     <!-- navigation view items -->
     <string name="nav_item_install">フレームワーク</string>
@@ -39,51 +24,24 @@
     <!-- Installer tab -->
     <string name="install">インストール/更新</string>
     <string name="uninstall">アンインストール</string>
-    <string name="installedVersion">動作中</string>
-    <string name="latestVersion">内蔵</string>
-    <string name="versions">バージョン:</string>
-    <string name="install_header_reboot">再起動</string>
     <string name="soft_reboot">ソフトリブート</string>
     <string name="reboot">再起動</string>
-    <string name="areyousure">再起動してもよろしいですか？</string>
     <string name="phone_not_compatible">Xposedは（今のところ）Android SDKバージョン%1$dやプロセッサ （%2$s）とは互換性がありません。</string>
-    <string name="not_tested_but_compatible">XposedはAndroid SDKバージョン%dでテストされていませんが、対応しているか試したい場合はインストールしてみてください。</string>
     <string name="reboot_failed">再起動できませんでした。端末の通常の再起動の機能を使用してください。</string>
     <string name="auto_flash_note">%sは「OK」を押すと自動的にインストールされます。</string>
-    <string name="manual_flash_note">操作を完了するにはSDカードから%sをインストールしてください。</string>
     <string name="reboot_confirmation">今すぐ再起動しますか？</string>
-    <string name="reboot_recovery_confirmation">リカバリーで再起動しますか？</string>
     <string name="install_warning_title">注意！</string>
     <string name="install_warning">Xposedをインストールした後、場合によっては起動しなくなることがあります。\n\n 「仮文鎮」や「ブートループ」を知らない場合やその状態からの復旧方法を理解していないのであれば、Xposedをインストール<b>しないでください</b>。\n\nいずれにせよ、現在のバックアップを取ることを強く推奨します。</string>
     <string name="dont_show_again">次回から表示しない</string>
     <string name="install_known_issue">お使いのROMには既知の問題（%s）があるようです。Xposedをインストールしても動作しなかったり、重大な問題が起こる可能性があります。ここをタップすると、その問題についての詳細を表示します。</string>
-    <string name="install_reverted">app_processバージョン「%1$s」がインストールされていましたが、バージョン「%2$s」が見つかりました。リカバリー（手動または自動）からインストールしようとしたために、古いファイルが予期せずに復元された可能性があります。</string>
-    <string name="uninstall_reverted">app_processをアンインストールしましたが、バージョン「%s」が見つかりました。リカバリー（手動または自動）からインストールしようとしたために、古いファイルが予期せずに復元された可能性があります。</string>
-    <string name="tap_to_dismiss">タップして閉じる</string>
-    <string name="sdcard_location">SDカード: %s</string>
-    <string name="installation_lollipop">Xposedフレームワークがインストールされていません。XDAから最新のzipファイルをダウンロードして、リカバリーから手動で書き込んでください。</string>
     <string name="installed_lollipop">Xposedフレームワークバージョン%sが有効になっています。</string>
     <string name="installed_lollipop_inactive">バージョン%sのXposedフレームワークがインストールされていますが、有効になっていません。ログで詳細を確認してください。</string>
     <string name="modules_updates_available">モジュールの更新があります</string>
 
     <!-- File operations -->
     <string name="root_failed">ルートアクセスを取得できませんでした。\n\n端末が正しくルート化されているか、シェルコマンドをブロックしていないかを確認してください。</string>
-    <string name="file_extract_failed">%sを展開できませんでした</string>
-    <string name="file_mounting_writable">%sを書き込み可能でマウント中&#8230;</string>
-    <string name="file_mount_writable_failed">%sを書き込み可能でマウントできませんでした</string>
-    <string name="file_trying_to_continue">とにかく続けます&#8230;</string>
-    <string name="file_backup_already_exists">%sにバックアップが既に存在しています</string>
-    <string name="file_backup_not_found">%sにバックアップはありません</string>
-    <string name="file_backup_failed">%sのバックアップを作成できませんでした</string>
-    <string name="file_backup_successful">%sにバックアップを作成しました</string>
-    <string name="file_backup_restoring">%sからバックアップを復元中</string>
     <string name="file_copying">%sをコピー中&#8230;</string>
     <string name="file_copy_failed">%1$sを%2$sにコピーできませんでした</string>
-    <string name="file_move_failed">%1$sを%2$sに移動できませんでした</string>
-    <string name="file_set_perms_failed">%sの権限を設定できませんでした</string>
-    <string name="file_set_owner_failed">%sの所有者を設定できませんでした</string>
-    <string name="file_removing">%sを削除中&#8230;</string>
-    <string name="file_remove_failed">%sを削除できませんでした</string>
     <string name="file_creating_directory">ディレクトリ%sを作成中&#8230;</string>
     <string name="file_create_directory_failed">ディレクトリ%sを作成できませんでした</string>
     <string name="file_writing_recovery_command">リカバリーコマンドを書き込み中&#8230;</string>
@@ -146,14 +104,7 @@
     <string name="download_test_version_not_shown">テストバージョンがありますが、グローバル設定やモジュールごとの設定によって表示されていません。</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">インストール</string>
-    <string name="settings_install_mode">インストールモード</string>
-    <string name="install_mode_normal">クラシック（/systemに直接書き込む）</string>
-    <string name="install_mode_recovery_auto">リカバリー（zipを自動的にインストール）</string>
-    <string name="install_mode_recovery_manual">リカバリー（zipをSDカードに書き込んで手動でインストール)</string>
     <string name="settings_group_download">ダウンロード</string>
-    <string name="settings_enable_downloads">ダウンロードを有効化</string>
-    <string name="settings_enable_downloads_summary">Xposed Installerに更新や新しいモジュールの確認を許可します。</string>
     <string name="settings_release_type">表示するバージョン</string>
     <string name="settings_group_experimental">実験的</string>
     <string name="settings_disable_resources">リソースフックを無効化</string>
@@ -176,10 +127,8 @@
     <string name="support_donate_description">Xposedに対してお礼をしたければ、ここからrovo89に寄付ができます</string>
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">ログを読み込めませんでした:</string>
     <string name="logs_save_failed">SDカードにログを書き込めませんでした:</string>
     <string name="sdcard_not_writable">SDカードが無いか、書き込み可能ではありません</string>
-    <string name="log_too_large">ログファイルが%1$,dkB以上であるため、先頭の%2$,dkBをスキップしました。</string>
     <string name="menuClearLog">ログを消去</string>
     <string name="logs_cleared">ログを消去しました。</string>
     <string name="logs_clear_failed">ログを消去できませんでした:</string>
@@ -188,12 +137,10 @@
     <!-- About tab -->
     <string name="about_developers_label">メイン開発者</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a>、<a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>、<a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a>（バグ修正、マテリアルデザイン）</string>
-    <string name="about_developers_warning">サポートは直接<b>連絡せずに</b>以下のリンクを使用してください。</string>
     <string name="about_translator_label">翻訳</string>
     <string name="translator"><a href="https://androplus.org/">WedyDQ10</a>、<a href="https://plus.google.com/117105706198436527101">BLACK</a></string>
     <string name="about_version_label">アプリバージョン</string>
     <string name="about_source_label">ソースコード</string>
-    <string name="about_support_label">サポート:</string>
     <string name="about_libraries_label">使用ライブラリ</string>
 
     <!-- DownloadView -->
@@ -219,9 +166,6 @@
 
 
     <string name="warning_installed_on_external_storage">このモジュールはSDカードにインストールされているため、読み込めませんでした。内部ストレージに移動してください。</string>
-    <string name="warning_forward_locked">このモジュールは転送禁止に設定されているため、読み込めませんでした。モジュールの開発者に問い合わせてください。</string>
-    <string name="export_modules">有効になっているモジュールのリストをエクスポート</string>
-    <string name="import_modules">有効になっていたモジュールのリストをインポート</string>
     <string name="view">表示</string>
     <string name="export_">エクスポート</string>
     <string name="import_">インポート</string>
@@ -235,36 +179,11 @@
     <string name="no_backup_found">バックアップが見つかりません</string>
     <string name="no_enabled_modules">有効になっているモジュールがありません</string>
 
-    <string name="download_view_size">サイズ: %s KB</string>
     <string name="share">共有方法</string>
-    <string name="back">戻る</string>
     <string name="loadingError">Xposedフレームワークのzipの読み込み中にエラーが発生しました</string>
-    <string name="info">情報</string>
-    <string name="infoInstaller">
-        名前: %1$s
-        \nSDK: %2$s
-        \nアーキテクチャ: %3$s
-        \nバージョン: %4$s
-    </string>
-    <string name="infoUninstaller">
-        名前: %1$s
-        \nアーキテクチャ: %2$s
-        \n日付: %3$s
-    </string>
-    <string name="downloadZipOk">%1$sのダウンロードが完了しました</string>
-    <string name="permissionGranted">権限が許可されました</string>
     <string name="permissionNotGranted">この機能は外部ストレージへの書き込み権限がないと動作しません。</string>
-    <string name="downloadUninstaller">アンインストーラ</string>
-    <string name="selectFile">ダウンロードしたファイルを選択</string>
-    <string name="xposedZipNotFound">zipが見つかりません、おそらく新しいバージョンがリリースされています。</string>
-    <string name="warningArchitecture">正しいXposedのzipのアーキテクチャを選択しましたか？\n異なるインストーラzipは携帯電話に損害を与える可能性があります。</string>
-    <string name="help">ヘルプ</string>
-
-    <string name="update">更新</string>
 
 
-    <string name="installationForbidden">この端末ではインストールができません。このアプリでインストールをするには、Lollipop以上のAndroidが動作している必要があります。</string>
-    <string name="installed_no_lollipop">Xposedフレームワークはインストールされています。</string>
     <string name="not_installed_no_lollipop">Xposedフレームワークはインストールされていません。</string>
     <string name="notify_module_update">モジュールの更新通知を有効化</string>
 
@@ -276,7 +195,6 @@
     <string name="md_storage_perm_error">アプリにREAD_EXTERNAL_STORAGE権限が許可されていません。</string>
     <string name="md_custom_label">カスタム</string>
     <string name="md_presets_label">プリセット</string>
-    <string name="changelog">更新履歴</string>
     <string name="scroll_top">トップにスクロール</string>
     <string name="add_bookmark">ブックマークを追加</string>
     <string name="remove_bookmark">ブックマークを削除</string>

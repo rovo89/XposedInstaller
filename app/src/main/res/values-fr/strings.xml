@@ -7,66 +7,27 @@
     <string name="xposed_not_active">"La dernière version d'Xposed est inactive. Avez-vous installé le Framework et redémarré ?"</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Bienvenue dans <b>l\'installateur Xposed</b> !\nVeuillez choisir ce que vous voulez faire:</string>
-    <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Ici vous pouvez gérer le Framework Xposed, qui est nécessaire au fonctionnement de n\'importe quel module.</string>
-    <string name="tabModules">Modules</string>
-    <string name="tabModulesDescription">Le Framework en lui-même n\'apporte aucune fonctionnalité, vous avez besoin de modules pour ça. Dans cette section vous pouvez activer les modules après les avoir installé.</string>
     <string name="tabDownload">Téléchargements</string>
-    <string name="tabDownloadDescription">Cette section vous donne accès à un dépôt de modules, vous pouvez donc chercher et télécharger ceux qui vous intéressent et les garder à jour.</string>
     <string name="welcome_framework_update_available">Une mise à jour du Framework Xposed est disponible.</string>
-    <string name="welcome_update_available">Des mises à jour pour vos modules sont disponibles.</string>
-    <string name="tabSettings">Paramètres</string>
-    <string name="tabSettingsDescription">Allez dans cette section pour configurer l\'installateur Xposed et le Framework.</string>
-    <string name="tabLogs">Journaux</string>
-    <string name="tabLogsDescription">Affiche et permet d\'enregistrer/envoyer les journaux du Framework Xposed.</string>
-    <string name="tabAbout">À propos</string>
-    <string name="tabAboutDescription">Apprenez-en à propos des créateurs de Xposed, où vous pouvez obtenir du support pour cette application, etc&#8230;</string>
 
     <!-- Installer tab -->
     <string name="install">Installer/Mettre à jour</string>
     <string name="uninstall">Désinstaller</string>
-    <string name="installedVersion">courante</string>
-    <string name="latestVersion">dernière</string>
-    <string name="versions">Versions:</string>
-    <string name="install_header_reboot">Redémarrage</string>
     <string name="soft_reboot">Redémarrage doux</string>
     <string name="reboot">Redémarrer</string>
-    <string name="areyousure">Êtes-vous sûr ?</string>
     <string name="phone_not_compatible">Xposed n\'est pas (encore) compatible avec Android SDK version %1$d ou l\'architecture de votre processeur (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed n\'a pas été testé avec Android SDK version %d, mais il semble compatible. Vous pouvez tenter de l\'installer si vous vous sentez l\'âme d\'un aventurier.</string>
     <string name="reboot_failed">Le redémarrage a échoué. Veuillez utiliser la fonction redémarrage de l\'appareil.</string>
     <string name="auto_flash_note">%s sera automatiquement flashé dès que vous aurez appuyé sur "OK".</string>
-    <string name="manual_flash_note">Veuillez flasher %s depuis la carte SD pour terminer l\'opération.</string>
     <string name="reboot_confirmation">Voulez-vous redémarrer maintenant ?</string>
-    <string name="reboot_recovery_confirmation">Voulez-vous redémarrer en recovery maintenant ?</string>
     <string name="install_warning_title">Soyez prudent !</string>
     <string name="install_warning">Dans certains cas, votre appareil pourrait ne plus démarrer après avoir installé le Framework Xposed.\n\nSi vous n\'avez jamais entendu parler de \"soft brick\" et de \"bootloop\" avant ou si vous ne savez pas comment récupérer d\'une telle situation, n\'installez <b>PAS</b> le Framework Xposed !\n\nDans tous les cas, il est fortement recommandé d\'avoir une sauvegarde récente.</string>
     <string name="dont_show_again">Ne plus afficher</string>
     <string name="install_known_issue">Il semble y avoir un problème connu (\"%s\") avec votre ROM. Installer le Framework Xposed pourrait ne pas fonctionner ou provoquer des problèmes. Appuyez ici pour plus de détails.</string>
-    <string name="install_reverted">La version \"%1$s\" de app_process a été installée dernièrement, mais la version \"%2$s\" vient d\'être détectée. Si vous ne vous attendiez pas à voir l\'ancienne version restaurée, vous devriez tenter l\'installation via recovery (auto ou manuel).</string>
-    <string name="uninstall_reverted">app_process a été désinstallé dernièrement, mais la version \"%s\" vient d\'être détectée. Si vous ne vous attendiez pas à voir l\'ancienne version restaurée, vous devriez tenter la désinstallation via recovery (auto ou manuel).</string>
-    <string name="tap_to_dismiss">Appuyez pour masquer</string>
-    <string name="sdcard_location">Carte SD : %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Échec accès root.\n\nAssurez-vous que votre appareil soit correctement rooté et que vous n\'ayez pas bloqué les commandes shell.</string>
-    <string name="file_extract_failed">Impossible d\'extraire %s</string>
-    <string name="file_mounting_writable">Montage de %s en écriture&#8230;</string>
-    <string name="file_mount_writable_failed">Impossible de monter %s en écriture</string>
-    <string name="file_trying_to_continue">Continuer quand même&#8230;</string>
-    <string name="file_backup_already_exists">Sauvegarde déjà existante à %s</string>
-    <string name="file_backup_not_found">Aucune sauvegarde trouvée à %s</string>
-    <string name="file_backup_failed">Échec de la création d\'une sauvegarde de %s</string>
-    <string name="file_backup_successful">Sauvegarde créée à %s</string>
-    <string name="file_backup_restoring">Restauration de la sauvegarde depuis %s</string>
     <string name="file_copying">Copie de %s&#8230;</string>
     <string name="file_copy_failed">Impossible de copier de %1$s à %2$s</string>
-    <string name="file_move_failed">Impossible de déplacer de %1$s à %2$s</string>
-    <string name="file_set_perms_failed">Impossible de définir les autorisations pour %s</string>
-    <string name="file_set_owner_failed">Impossible de définir le propriétaire pour %s</string>
-    <string name="file_removing">Suppression de %s&#8230;</string>
-    <string name="file_remove_failed">Impossible de supprimer %s</string>
     <string name="file_creating_directory">Création du répertoire %s&#8230;</string>
     <string name="file_create_directory_failed">Impossible de créer le répertoire %s</string>
     <string name="file_writing_recovery_command">Écriture de la commande recovery&#8230;</string>
@@ -129,14 +90,7 @@
     <string name="download_test_version_not_shown">Une version d\'essai est disponible, mais elle n\'apparaît pas en raison de vos paramètres (généraux ou du module).</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">Installation</string>
-    <string name="settings_install_mode">Mode d\'installation</string>
-    <string name="install_mode_normal">Classique (installer directement dans /system)</string>
-    <string name="install_mode_recovery_auto">Recovery (zip flashé automatiquement)</string>
-    <string name="install_mode_recovery_manual">Recovery (zip sur la carte SD, à flasher manuellement)</string>
     <string name="settings_group_download">Téléchargements</string>
-    <string name="settings_enable_downloads">Activer les téléchargements</string>
-    <string name="settings_enable_downloads_summary">Autoriser l\'installateur Xposed à chercher des mises à jour et de nouveaux modules</string>
     <string name="settings_release_type">Versions à afficher</string>
     <string name="settings_group_experimental">Expérimental</string>
     <string name="settings_disable_resources">Désactiver \"resource hooks\"</string>
@@ -152,10 +106,8 @@
     <!-- Support tab -->
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Impossible de lire le journal:</string>
     <string name="logs_save_failed">Impossible d\'écrire le journal:</string>
     <string name="sdcard_not_writable">Carte SD non trouvée ou en lecture seule</string>
-    <string name="log_too_large">Le fichier du journal est plus grand que %1$,d kB, les premiers %2$,d kB ont été ignorés</string>
     <string name="menuClearLog">Effacer le journal</string>
     <string name="logs_cleared">Journal effacé</string>
     <string name="logs_clear_failed">Impossible d\'effacer le journal:</string>
@@ -164,12 +116,10 @@
     <!-- About tab -->
     <string name="about_developers_label">Développeurs principaux:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> et <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Nous vous prions de ne <b>pas</b> nous contacter directement pour demander du support, utilisez le lien ci-dessous.</string>
     <string name="about_translator_label">Traducteur:</string>
     <string name="translator">tonymanou</string>
     <string name="about_version_label">Version de l\'application:</string>
     <string name="about_source_label">Code source:</string>
-    <string name="about_support_label">Obtenez du support ici:</string>
     <string name="about_libraries_label">Librairies utilisées:</string>
 
     <!-- DownloadView -->

@@ -7,66 +7,27 @@
     <string name="xposed_not_active">Versi terkini Xposed masih tidak aktif. Adakah anda memasang Framework dan hidupkan semula?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Selamat Datang <b>Xposed Installer</b>!\nSila pilih apa yang anda mahukan:</string>
-    <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Disini anda boleh mengurus Xposed Framework, yang mana memerlukan moduls untuk berfungsi.</string>
-    <string name="tabModules">Modul</string>
-    <string name="tabModulesDescription">Framework tidak bekerja sendiri\'anda perlu tambahkan lain2 fungsi. Jika anda memerlukan modul utk itu. Dibahagian ini anda boleh aktifkan module selepas anda memasang semuanya.</string>
     <string name="tabDownload">Muat turun</string>
-    <string name="tabDownloadDescription">Bahagian ini memberikan anda kebenaran utk akses module repositori, jadi anda boleh mencari dan muat turun salah satu yang anda suka dan terkini.</string>
     <string name="welcome_framework_update_available">Terdapat kemaskini terbaru Xposed Framework tersedia (%s).</string>
-    <string name="welcome_update_available">Satu atau lebih kemaskini(s) untuk module tersedia.</string>
-    <string name="tabSettings">Tetapan</string>
-    <string name="tabSettingsDescription">Pergi kebahagian ini untuk mengenal pasti Xposed Installer dan Framework.</string>
-    <string name="tabLogs">Logs</string>
-    <string name="tabLogsDescription">Papar dan simpan/hantar log daripada Xposed Framework.</string>
-    <string name="tabAbout">Mengenai</string>
-    <string name="tabAboutDescription">Mengenali mengenai siapa orang yang mencipta Xposed, dan dimana untuk mendapat bantuan untuk aplikasi ini dan lain².</string>
 
     <!-- Installer tab -->
     <string name="install">Memasang/Kemaskini</string>
     <string name="uninstall">Nyah Pasang</string>
-    <string name="installedVersion">Aktif</string>
-    <string name="latestVersion">bundled</string>
-    <string name="versions">Versi:</string>
-    <string name="install_header_reboot">Hidupkan Semula</string>
     <string name="soft_reboot">Hidup smula secara perlahan</string>
     <string name="reboot">Hidupkan semula</string>
-    <string name="areyousure">Anda Pasti?</string>
     <string name="phone_not_compatible">Xposed tidak lagi (sesuai) menyokong dengan Android SDK versi %1$d atau kerangka prosessor anda (%2$s).</string>
-    <string name="not_tested_but_compatible">Xposed belum pernah diuji dengan Android SDK versi %d, tetapi kelihatan bersesuaian. Anda boleh mencuba memasang jika anda ingin melalui sesuatu yang mencabar.</string>
     <string name="reboot_failed">Hidupkan semula gagal. Sila gunakan peranti\'s hidupkan smula secara biasa.</string>
     <string name="auto_flash_note">%s Akan flash secara automatik jika anda menekan "OK".</string>
-    <string name="manual_flash_note">Sila flash %s daripada SD Kad untuk fungsi sepenunhya.</string>
     <string name="reboot_confirmation">Adakah anda mahu menghidupkan semula sekarang?</string>
-    <string name="reboot_recovery_confirmation">Adakah anda mahu hidupkan semala secara mod pemulihan sekarang?</string>
     <string name="install_warning_title">Berhati²!</string>
     <string name="install_warning">Ada sesetengah kes, peranti anda mungkin tidak dapat hidupkan semula selepas memasang Xposed.\n\nJika anda tidak peduli mengenainya \"soft brick\" and \"bootloop\" sebelum anda lakukan dan\'tidak tahu bagaimana untuk pemulihan dari sebarang situasi, Jangan <b>Tidak</b> Memasang Xposed!\n\nada sesetengah kes, digalakkan anda membuat sandaran.</string>
     <string name="dont_show_again">Jangan\' tunjukkan ini lagi</string>
     <string name="install_known_issue">Dimana kelihatan sebarang isu(\"%s\") dengan ROM anda. Pemasangan Xposed mungkin tidak berfungsi atau mengalami masalah atau sedikit gangguan. Klik disini untuk penjelasan mengenai isu.</string>
-    <string name="install_reverted">app_proses versi \"%1$s\" telah dipasang dengan versi yang lepas \"%2$s\" ditemui. Jika anda tidak\' merasakan file lama dikembalikan, anda mungkin mahu mencuba untuk memasang secara mod pemulihan (auto or manual).</string>
-    <string name="uninstall_reverted">app_proses telah dinyah pasang versi sebelumnya \"%s\" telah ditemui. Jika anda tidak\'merasakan file lama boleh dikembalikan, mungkin anda mahu mencuba untuk mennyah pasang secara mod pemulihan (auto or manual).</string>
-    <string name="tap_to_dismiss">Sentuh untuk abaikan</string>
-    <string name="sdcard_location">SD Kad: %s</string>
 
     <!-- File operations -->
     <string name="root_failed">Gagal untuk mendapat kebenaran root.\n\nPastikan peranti anda telah di\'root secara sempurna dan anda tidak menghalang shell commands.</string>
-    <string name="file_extract_failed">Tidak boleh diektrak %s</string>
-    <string name="file_mounting_writable">Memasukkan %s ditulis&#8230;</string>
-    <string name="file_mount_writable_failed">Tidak boleh dimasukkan %s ditulis</string>
-    <string name="file_trying_to_continue">Cuba untuk teruskan&#8230;</string>
-    <string name="file_backup_already_exists">Sandaran telah ada di %s</string>
-    <string name="file_backup_not_found">Sandaran tidak ditemui di %s</string>
-    <string name="file_backup_failed">Gagal untuk membuat sandaran %s</string>
-    <string name="file_backup_successful">Membuat sandaran di %s</string>
-    <string name="file_backup_restoring">Mengembalikan sandaran daripada %s</string>
     <string name="file_copying">Menyalin %s&#8230;</string>
     <string name="file_copy_failed">Tidak boleh menyalin %1$s ke %2$s</string>
-    <string name="file_move_failed">Tidak boleh pindah %1$s ke %2$s</string>
-    <string name="file_set_perms_failed">Tidak boleh set kebenaran untuk %s</string>
-    <string name="file_set_owner_failed">Tidak boleh set pemilik untuk %s</string>
-    <string name="file_removing">Membuang %s&#8230;</string>
-    <string name="file_remove_failed">Tidak boleh buang %s</string>
     <string name="file_creating_directory">Mencipta direktori %s&#8230;</string>
     <string name="file_create_directory_failed">Tidak boleh mencipta direktori %s</string>
     <string name="file_writing_recovery_command">Menulis command pemulihan&#8230;</string>
@@ -129,14 +90,7 @@
     <string name="download_test_version_not_shown">Terdapat versi percubaan, walau bagaimana itu tidak\' ditunjukkan memandangkan masalah global atau tetapan modul-specific.</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_installation">Memasang</string>
-    <string name="settings_install_mode">Mod Pemasangan</string>
-    <string name="install_mode_normal">Secra klasik (Tulis kepada /sistem terus)</string>
-    <string name="install_mode_recovery_auto">Pemulihan(flash zip secara automatik)</string>
-    <string name="install_mode_recovery_manual">Pemulihan (tulis zip ke SD Kad, flash secara manual)</string>
     <string name="settings_group_download">Muat turun</string>
-    <string name="settings_enable_downloads">Boleh dimuat turun</string>
-    <string name="settings_enable_downloads_summary">Benarkan Xposed Installer untuk memeriksa kemaskini dan modul terbaru</string>
     <string name="settings_release_type">Versi akan dipaparkan</string>
     <string name="settings_group_experimental">Pengujian</string>
     <string name="settings_disable_resources">Matikan resource hooks</string>
@@ -152,10 +106,8 @@
     <!-- Support tab -->
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Log tidak boleh baca:</string>
     <string name="logs_save_failed">Log tidak boleh tulis ke SD kad:</string>
     <string name="sdcard_not_writable">SD Kad tak ditemui atau tidak boleh ditulis</string>
-    <string name="log_too_large">Log file Terlalu besar  %1$,d kB, abaikan shj %2$,d kB</string>
     <string name="menuClearLog">Bersihkan log sekarang</string>
     <string name="logs_cleared">Log berjaya dibersihkan</string>
     <string name="logs_clear_failed">Log tidak boleh bersihkan:</string>
@@ -164,12 +116,10 @@
     <!-- About tab -->
     <string name="about_developers_label">Main developers:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Jangan <b>Tidak</b> menghubungi kami secara langsung untuk sokongan, gunakan link dibawah.</string>
     <string name="about_translator_label">Penterjemah:</string>
     <string name="translator"></string>
     <string name="about_version_label">Versi aplikasi ini:</string>
     <string name="about_source_label">Source Kod:</string>
-    <string name="about_support_label">Dapatkan bantuan di:</string>
     <string name="about_libraries_label">Pustaka digunakan:</string>
 
     <!-- DownloadView -->

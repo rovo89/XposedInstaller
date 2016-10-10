@@ -8,12 +8,7 @@
     <color name="list_header">#777</color>
     <color name="red_500">#F44336</color>
     <color name="warning">@color/red_500</color>
-    <color name="warning_box">@color/red_500</color>
-    <color name="pager_tab_strip">#fff</color>
-    <color name="download_details_title">#777</color>
     <color name="download_status_update_available">@color/darker_green</color>
-    <color name="welcome_framework_update_available">@color/download_status_update_available</color>
-    <color name="welcome_update_available">@color/download_status_update_available</color>
     <color name="darker_green">#4CAF50</color>
     <color name="amber_500">#FFC107</color>
 

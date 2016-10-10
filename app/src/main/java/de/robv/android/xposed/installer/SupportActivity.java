@@ -61,7 +61,7 @@ public class SupportActivity extends XposedBaseActivity {
             txtModuleSupport.setText(getString(R.string.support_modules_description,
                     getString(R.string.module_support)));
 
-            setupView(installerSupportView, R.string.support_material_xda);
+            setupView(installerSupportView, R.string.about_support);
             setupView(faqView, R.string.support_faq_url);
             setupView(donateView, R.string.support_donate_url);
 

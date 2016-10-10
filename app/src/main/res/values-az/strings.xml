@@ -7,33 +7,15 @@
     <string name="xposed_not_active">Xposed\'in son versiyası aktiv deyil. Framework\'i yükləmisiz? vəya cihazı yenidən başlatmısız?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome">Xoş Gəlmişsiniz <b>Xposed Yükləyici</b>!\nZəhmət olmasa sizə uyğun olanı seçin:</string>
-    <string name="tabInstall">Framework</string>
-    <string name="tabInstallDescription">Burada siz Xposed Framework\'ünü idarə edə bilərsiniz, hansı ki modulların istifadəsi üçün lazımdır.</string>
-    <string name="tabModules">Modullar</string>
-    <string name="tabModulesDescription">Framework hərhansı funksionallıq əlavə etmir. Bunun üçün o modullara ehtiyacınız var. Bu şöbədə modulları yüklədiktən sonra aktivləşdirə bilərsiniz.</string>
     <string name="tabDownload">Yüklə</string>
-    <string name="tabDownloadDescription">Bu şöbə sizə modulların deposuna girmək üçün icazə verir, belə ki siz istədiyinizi axtara,yükləyə və güncəl saxlaya bilərsiniz.</string>
     <string name="welcome_framework_update_available">Xposed Framework üçün yeniləmə mövcuddur.</string>
-    <string name="welcome_update_available">Bir və ya bir neçə yeniləmə mövcuddur.</string>
-    <string name="tabSettings">Parametrlər</string>
-    <string name="tabSettingsDescription">Xposed Yükləyici və Framework\'ü konfiqurasiya eləmək üçün bu şöbəyə gedin.</string>
-    <string name="tabLogs">Loqlar</string>
-    <string name="tabLogsDescription">Xposed Framework loqlarını göstər və yadda saxla/göndər.</string>
-    <string name="tabAbout">Haqqında</string>
-    <string name="tabAboutDescription">Xposed\'i hazırlayanlar haqqında məlumat əldə edin, haradan ki əlavə kömək əldə edə bilərsiniz və s.</string>
 
     <!-- Installer tab -->
     <string name="install">Quraşdır/Yenilə</string>
     <string name="uninstall">Sil</string>
-    <string name="installedVersion">aktiv</string>
-    <string name="latestVersion">paketlənmiş</string>
-    <string name="versions">Versiyalar:</string>
     <string name="soft_reboot">Cəld yenidən başlat</string>
     <string name="reboot">Yenidən başlat</string>
-    <string name="areyousure">Əminsiniz?</string>
     <string name="phone_not_compatible">Xposed Android SDK versiyası %1$d ya da sizin prosessor arxitektura(%2$s)\'sı ilə uyğun deyil.</string>
-    <string name="not_tested_but_compatible">Xposed Android SDK versiya %d ilə test edilməyib, ancaq uyğun olduğu görünür. Əgər macəra sevirsinizsə,yükləyə bilərsiz :).</string>
 
     <!-- File operations -->
 
@@ -76,8 +58,6 @@
 
     <!-- Settings tab -->
     <string name="settings_group_download">Yüklə</string>
-    <string name="settings_enable_downloads">Yükləmələri aktiv edin</string>
-    <string name="settings_enable_downloads_summary">Xposed Yükləyiciyə yeni modullara və yeniləmələrin olub-olmadığına yoxlamağa icazə ver.</string>
     <string name="settings_group_experimental">Təcrübi</string>
     <string name="settings_performance_experiment">İcra təcrübəsi</string>
     <string name="settings_performance_experiment_summary">Əgər bunu aktiv etsəniz,sistem istifadəsi zəifləyə,arta və ya olduğu kimi qala bilər. Cəhd etməkdən çəkinməyin və bu barədə məruzə verin. Bunu dəyişdiktən sonra Framework\'ü yenidən quraşdırmalı və cihazı yenidən başlatmalısınız.</string>
@@ -85,19 +65,16 @@
     <!-- Support tab -->
 
     <!-- Logs tab  -->
-    <string name="logs_load_failed">Loqu oxuya bilmədi:</string>
     <string name="logs_save_failed">Loqu yaddaş kartına yaza bilmədi:</string>
     <string name="sdcard_not_writable">Yaddaş kartı tapılmadı və ya yazmaq üçün icazə yoxdur</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Əsas geliştiricilər:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> və <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_developers_warning">Zəhmət olmasa yardım üçün bizimlə birbaşa əlaqə saxlamayın, aşağıdaki linkdən istifadə edin.</string>
     <string name="about_translator_label">Azeri Translator:</string>
     <string name="translator">hero355</string>
     <string name="about_version_label">Proqramın versiyası:</string>
     <string name="about_source_label">Qaynaq kod:</string>
-    <string name="about_support_label">Buradan yardım al:</string>
     <string name="about_libraries_label">İstifadə olunmuş kitabxanalar:</string>
 
     <!-- DownloadView -->
