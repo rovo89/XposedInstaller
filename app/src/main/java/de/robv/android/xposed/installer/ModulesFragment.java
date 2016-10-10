@@ -38,8 +38,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.MaterialDialog;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -71,7 +69,6 @@ import de.robv.android.xposed.installer.util.ModuleUtil.InstalledModule;
 import de.robv.android.xposed.installer.util.ModuleUtil.ModuleListener;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
-import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.ThemeUtil;
 
 import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
@@ -103,7 +100,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
             mAdapter.notifyDataSetChanged();
         }
     };
-    private RootUtil mRootUtil;
     private MenuItem mClickedMenuItem = null;
 
     @Override
@@ -135,7 +131,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
                 addHeader();
             }
         }
-        mRootUtil = new RootUtil();
         mAdapter = new ModuleAdapter(getActivity());
         reloadModules.run();
         setListAdapter(mAdapter);
@@ -359,26 +354,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
         }
 
         return true;
-    }
-
-    private boolean startShell() {
-        if (mRootUtil.startShell())
-            return true;
-
-        showAlert(getString(R.string.root_failed));
-        return false;
-    }
-
-    private void showAlert(final String result) {
-        MaterialDialog dialog = new MaterialDialog.Builder(getActivity()).content(result).positiveText(android.R.string.ok).build();
-        dialog.show();
-
-        TextView txtMessage = (TextView) dialog
-                .findViewById(android.R.id.message);
-        try {
-            txtMessage.setTextSize(14);
-        } catch (NullPointerException ignored) {
-        }
     }
 
     @Override

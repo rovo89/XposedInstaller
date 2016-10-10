@@ -151,10 +151,6 @@ public final class ModuleUtil {
         }
     }
 
-    public synchronized boolean isLoading() {
-        return mIsReloading;
-    }
-
     public InstalledModule getFramework() {
         return mFramework;
     }
@@ -165,10 +161,6 @@ public final class ModuleUtil {
 
     public boolean isFramework(String packageName) {
         return mFrameworkPackageName.equals(packageName);
-    }
-
-    public boolean isInstalled(String packageName) {
-        return mInstalledModules.containsKey(packageName) || isFramework(packageName);
     }
 
     public InstalledModule getModule(String packageName) {

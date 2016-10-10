@@ -26,19 +26,6 @@ public final class InstallZipUtil {
         }
     }
 
-    public static ZipCheckResult checkZip(String zipPath) {
-        ZipFile zip;
-        try {
-            zip = new ZipFile(zipPath);
-        } catch (IOException e) {
-            return new ZipCheckResult();
-        }
-
-        ZipCheckResult result = checkZip(zip);
-        closeSilently(zip);
-        return result;
-    }
-
     public static ZipCheckResult checkZip(ZipFile zip) {
         ZipCheckResult result = new ZipCheckResult();
 

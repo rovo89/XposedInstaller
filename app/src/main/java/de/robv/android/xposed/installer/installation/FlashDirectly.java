@@ -76,7 +76,7 @@ public class FlashDirectly extends Flashable {
         }
 
         int result = rootUtil.execute(getShellPath(updateBinaryFile) + " 2 1 " + getShellPath(mZipPath), callback);
-        if (result != 0) {
+        if (result != FlashCallback.OK) {
             triggerError(callback, result);
             return;
         }

@@ -56,10 +56,6 @@ public class RootUtil {
             mLines.add(line);
         }
 
-        public List<String> getLines() {
-            return mLines;
-        }
-
         @Override
         public String toString() {
             return TextUtils.join("\n", mLines);
@@ -216,44 +212,9 @@ public class RootUtil {
         return mLastExitCode;
     }
 
-    /**
-     * Executes a single command, waits for its termination and returns the
-     * result
-     */
-    public synchronized int execute(String command, final List<String> output) {
-        return execute(command, new LineCallback() {
-            @Override
-            public void onLine(String line) {
-                output.add(line);
-            }
-
-            @Override
-            public void onErrorLine(String line) {
-                output.add(line);
-            }
-        });
-    }
-
-    public synchronized int execute(String command) {
-        return execute(command, (LineCallback) null);
-    }
-
     public int executeWithBusybox(String command, LineCallback callback) {
         AssetUtil.extractBusybox();
         return execute(AssetUtil.BUSYBOX_FILE.getAbsolutePath() + " " + command, callback);
-    }
-
-    /**
-     * Executes a single command via the bundled BusyBox executable
-     */
-    public int executeWithBusybox(String command, List<String> output) {
-        AssetUtil.extractBusybox();
-        return execute(AssetUtil.BUSYBOX_FILE.getAbsolutePath() + " " + command, output);
-    }
-
-    public int executeWithBusybox(String command) {
-        AssetUtil.extractBusybox();
-        return execute(AssetUtil.BUSYBOX_FILE.getAbsolutePath() + " " + command);
     }
 
     private static String getCanonicalPath(File file) {
@@ -351,7 +312,7 @@ public class RootUtil {
 
     private boolean rebootToRecovery(LineCallback callback) {
         // Create a flag used by some kernels to boot into recovery.
-        if (execute("ls /cache/recovery") != 0) {
+        if (execute("ls /cache/recovery", null) != 0) {
             executeWithBusybox("mkdir /cache/recovery", callback);
         }
         executeWithBusybox("touch /cache/recovery/boot", callback);

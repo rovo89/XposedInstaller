@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -18,7 +17,6 @@ import de.robv.android.xposed.installer.XposedApp;
 public final class NotificationUtil {
     public static final int NOTIFICATION_MODULE_NOT_ACTIVATED_YET = 0;
     public static final int NOTIFICATION_MODULES_UPDATED = 1;
-    public static final int NOTIFICATION_INSTALLER_UPDATE = 2;
     private static final int PENDING_INTENT_OPEN_MODULES = 0;
     private static final int PENDING_INTENT_OPEN_INSTALL = 1;
     private static final int PENDING_INTENT_SOFT_REBOOT = 2;
@@ -26,7 +24,6 @@ public final class NotificationUtil {
     private static final int PENDING_INTENT_ACTIVATE_MODULE_AND_REBOOT = 4;
     private static Context sContext = null;
     private static NotificationManager sNotificationManager;
-    private static SharedPreferences prefs;
 
     public static void init() {
         if (sContext != null)
@@ -34,7 +31,6 @@ public final class NotificationUtil {
                     "NotificationUtil has already been initialized");
 
         sContext = XposedApp.getInstance();
-        prefs = XposedApp.getPreferences();
         sNotificationManager = (NotificationManager) sContext.getSystemService(Context.NOTIFICATION_SERVICE);
     }
 

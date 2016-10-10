@@ -26,27 +26,6 @@ public class AssetUtil {
         }
     }
 
-    public static File writeAssetToCacheFile(String name, int mode) {
-        return writeAssetToCacheFile(name, name, mode);
-    }
-
-    public static File writeAssetToCacheFile(String assetName, String fileName, int mode) {
-        return writeAssetToFile(assetName, new File(XposedApp.getInstance().getCacheDir(), fileName), mode);
-    }
-
-    public static File writeAssetToSdcardFile(String name, int mode) {
-        return writeAssetToSdcardFile(name, name, mode);
-    }
-
-    public static File writeAssetToSdcardFile(String assetName, String fileName, int mode) {
-        File dir = XposedApp.getInstance().getExternalFilesDir(null);
-        return writeAssetToFile(assetName, new File(dir, fileName), mode);
-    }
-
-    public static File writeAssetToFile(String assetName, File targetFile, int mode) {
-        return writeAssetToFile(null, assetName, targetFile, mode);
-    }
-
     public static File writeAssetToFile(AssetManager assets, String assetName, File targetFile, int mode) {
         try {
             if (assets == null)
@@ -55,7 +34,7 @@ public class AssetUtil {
             writeStreamToFile(in, targetFile, mode);;
             return targetFile;
         } catch (IOException e) {
-            Log.e(XposedApp.TAG, "AssetUtil -> could not extract asset", e);
+            Log.e(XposedApp.TAG, "could not extract asset", e);
             if (targetFile != null)
                 targetFile.delete();
 

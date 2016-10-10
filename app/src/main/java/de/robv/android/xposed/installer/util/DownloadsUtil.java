@@ -144,11 +144,6 @@ public class DownloadsUtil {
     }
 
     @Deprecated
-    public static DownloadInfo add(Context context, String title, String url, DownloadFinishedCallback callback, MIME_TYPES mimeType, boolean save) {
-        return add(context, title, url, callback, mimeType, save, false);
-    }
-
-    @Deprecated
     public static DownloadInfo add(Context context, String title, String url, DownloadFinishedCallback callback, MIME_TYPES mimeType, boolean save, boolean module) {
         return new Builder(context)
                 .setTitle(title)
@@ -623,20 +618,15 @@ public class DownloadsUtil {
     }
 
     public static class DownloadInfo implements Comparable<DownloadInfo> {
-        public long id;
-        public String url;
-        public String title;
-        public long lastModification;
-        public String localFilename;
-        public int status;
-        public int totalSize;
-        public int bytesDownloaded;
-        public int reason;
-
-        public DownloadInfo(File file) {
-            this.title = file.getName().replace(".zip", "");
-            this.localFilename = file.getAbsolutePath();
-        }
+        public final long id;
+        public final String url;
+        public final String title;
+        public final long lastModification;
+        public final String localFilename;
+        public final int status;
+        public final int totalSize;
+        public final int bytesDownloaded;
+        public final int reason;
 
         private DownloadInfo(long id, String url, String title, long lastModification, String localFilename, int status, int totalSize, int bytesDownloaded, int reason) {
             this.id = id;

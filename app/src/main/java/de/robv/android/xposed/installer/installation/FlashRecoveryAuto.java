@@ -28,7 +28,7 @@ public class FlashRecoveryAuto extends Flashable {
         callback.onStarted();
 
         // Make sure /cache/recovery/ exists.
-        if (rootUtil.execute("ls /cache/recovery") != 0) {
+        if (rootUtil.execute("ls /cache/recovery", null) != 0) {
             callback.onLine(context.getString(R.string.file_creating_directory, "/cache/recovery"));
             if (rootUtil.executeWithBusybox("mkdir /cache/recovery", callback) != 0) {
                 callback.onError(FlashCallback.ERROR_GENERIC,
