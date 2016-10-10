@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -33,7 +34,15 @@ public final class RepoDb extends SQLiteOpenHelper {
     private static SQLiteDatabase sDb;
 
     private RepoDb(Context context) {
-        super(context, new File(context.getCacheDir(), RepoDbDefinitions.DATABASE_NAME).getPath(), null, RepoDbDefinitions.DATABASE_VERSION);
+        super(context, getDbPath(context), null, RepoDbDefinitions.DATABASE_VERSION);
+    }
+
+    private static String getDbPath(Context context) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            return new File(context.getNoBackupFilesDir(), RepoDbDefinitions.DATABASE_NAME).getPath();
+        } else {
+            return RepoDbDefinitions.DATABASE_NAME;
+        }
     }
 
     static {
