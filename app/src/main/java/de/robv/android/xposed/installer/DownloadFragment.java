@@ -1,6 +1,5 @@
 package de.robv.android.xposed.installer;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -42,7 +41,6 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public class DownloadFragment extends Fragment implements Loader.Listener<RepoLoader>, ModuleListener {
-    public static Activity sActivity;
     private SharedPreferences mPref;
     private DownloadsAdapter mAdapter;
     private String mFilterText;
@@ -78,8 +76,6 @@ public class DownloadFragment extends Fragment implements Loader.Listener<RepoLo
         if (mAdapter != null && mListView != null) {
             mListView.setAdapter(mAdapter);
         }
-
-        sActivity = getActivity();
     }
 
     @Override
