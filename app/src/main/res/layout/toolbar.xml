@@ -11,16 +11,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/Theme.XposedInstaller.Toolbar">
-
-        <ProgressBar
-            android:id="@+id/toolbar_progress_bar"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="end"
-            android:visibility="gone"/>
-
-    </android.support.v7.widget.Toolbar>
+        app:theme="@style/Theme.XposedInstaller.Toolbar"/>
 
     <View
         android:id="@+id/elevation"

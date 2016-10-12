@@ -32,7 +32,6 @@ public class WelcomeActivity extends XposedBaseActivity implements NavigationVie
         ModuleListener, Loader.Listener<RepoLoader> {
 
     private static final String SELECTED_ITEM_ID = "SELECTED_ITEM_ID";
-    public static View mProgress;
     private final Handler mDrawerHandler = new Handler();
     private RepoLoader mRepoLoader;
     private DrawerLayout mDrawerLayout;
@@ -104,8 +103,6 @@ public class WelcomeActivity extends XposedBaseActivity implements NavigationVie
         ModuleUtil.getInstance().addListener(this);
         mRepoLoader.addListener(this);
 
-        mProgress = toolbar.findViewById(R.id.toolbar_progress_bar);
-
         notifyDataSetChanged();
     }
 
@@ -166,7 +163,6 @@ public class WelcomeActivity extends XposedBaseActivity implements NavigationVie
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.setCustomAnimations(R.animator.fade_in, R.animator.fade_out);
             try {
-                mProgress.setVisibility(View.GONE);
                 transaction.replace(R.id.content_frame, navFragment).commit();
 
                 if (elevation != null) {
