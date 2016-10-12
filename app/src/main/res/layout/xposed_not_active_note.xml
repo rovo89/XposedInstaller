@@ -5,51 +5,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
     android:layout_marginBottom="8dp"
-    android:elevation="2dip"
-    android:foreground="?selectableItemBackground"
-    android:gravity="center_vertical"
-    android:minHeight="48dp"
-    android:padding="8dp"
-    app:cardBackgroundColor="?attr/list_download_item_color"
-    app:cardCornerRadius="2dip"
-    app:cardUseCompatPadding="true">
+    app:cardBackgroundColor="@color/amber_500"
+    app:cardCornerRadius="2dp"
+    app:cardElevation="4dp">
 
     <LinearLayout
-        android:id="@+id/installerSupportView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
-        android:clickable="true"
         android:gravity="center_vertical"
         android:minHeight="48dp"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
+        android:padding="8dp">
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_info"/>
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/ic_warning_grey"/>
 
-        <LinearLayout
-            android:layout_width="fill_parent"
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:layout_marginStart="32dp"
-            android:orientation="vertical"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/xposed_not_active"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textColor="?android:textColorSecondary"/>
-
-        </LinearLayout>
+            android:layout_weight="1"
+            android:text="@string/xposed_not_active"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="?android:textColorSecondary"/>
 
     </LinearLayout>
 
