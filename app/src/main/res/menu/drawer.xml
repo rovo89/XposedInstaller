@@ -4,19 +4,19 @@
         android:id="@+id/main_items"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/drawer_item_1"
+            android:id="@+id/nav_item_framework"
             android:icon="@drawable/ic_nav_install"
             android:title="@string/nav_item_install"/>
         <item
-            android:id="@+id/drawer_item_2"
+            android:id="@+id/nav_item_modules"
             android:icon="@drawable/ic_nav_modules"
             android:title="@string/nav_item_modules"/>
         <item
-            android:id="@+id/drawer_item_3"
+            android:id="@+id/nav_item_downloads"
             android:icon="@drawable/ic_nav_downloads"
             android:title="@string/nav_item_download"/>
         <item
-            android:id="@+id/drawer_item_4"
+            android:id="@+id/nav_item_logs"
             android:icon="@drawable/ic_nav_logs"
             android:title="@string/nav_item_logs"/>
     </group>
@@ -24,15 +24,15 @@
         android:id="@+id/option_items"
         android:checkableBehavior="all">
         <item
-            android:id="@+id/drawer_item_5"
+            android:id="@+id/nav_item_settings"
             android:icon="@drawable/ic_nav_settings"
             android:title="@string/nav_item_settings"/>
         <item
-            android:id="@+id/drawer_item_6"
+            android:id="@+id/nav_item_support"
             android:icon="@drawable/ic_nav_support"
             android:title="@string/nav_item_support"/>
         <item
-            android:id="@+id/drawer_item_7"
+            android:id="@+id/nav_item_about"
             android:icon="@drawable/ic_nav_about"
             android:title="@string/nav_item_about"/>
     </group>

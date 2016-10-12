@@ -123,35 +123,35 @@ public class WelcomeActivity extends XposedBaseActivity implements NavigationVie
         final View elevation = findViewById(R.id.elevation);
         Fragment navFragment = null;
         switch (itemId) {
-            case R.id.drawer_item_1:
+            case R.id.nav_item_framework:
                 mPrevSelectedId = itemId;
                 setTitle(R.string.app_name);
                 navFragment = new StatusInstallerFragment();
                 break;
-            case R.id.drawer_item_2:
+            case R.id.nav_item_modules:
                 mPrevSelectedId = itemId;
                 setTitle(R.string.nav_item_modules);
                 navFragment = new ModulesFragment();
                 break;
-            case R.id.drawer_item_3:
+            case R.id.nav_item_downloads:
                 mPrevSelectedId = itemId;
                 setTitle(R.string.nav_item_download);
                 navFragment = new DownloadFragment();
                 break;
-            case R.id.drawer_item_4:
+            case R.id.nav_item_logs:
                 mPrevSelectedId = itemId;
                 setTitle(R.string.nav_item_logs);
                 navFragment = new LogsFragment();
                 break;
-            case R.id.drawer_item_5:
+            case R.id.nav_item_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
                 return;
-            case R.id.drawer_item_6:
+            case R.id.nav_item_support:
                 startActivity(new Intent(this, SupportActivity.class));
                 mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
                 return;
-            case R.id.drawer_item_7:
+            case R.id.nav_item_about:
                 startActivity(new Intent(this, AboutActivity.class));
                 mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
                 return;
