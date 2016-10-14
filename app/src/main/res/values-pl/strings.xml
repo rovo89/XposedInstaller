@@ -41,9 +41,9 @@
 
 
     <string name="install_known_issue">Wydaje się, że to znany problem z ROM. Instalacja Xposed może nie działać lub prowadzić do poważnych problemów. Kliknij tutaj, aby uzyskać szczegółowe informacje na temat tej kwestii.</string>
-    <string name="installed_lollipop">Wersja %s Xposed framework jest aktywna.</string>
+    <string name="framework_active">Wersja %s Xposed framework jest aktywna.</string>
 
-    <string name="installed_lollipop_inactive">Wersja %s Xposed framework jest zainstalowana, ale nie jest aktywna. Proszę sprawdzić logi, aby poznać szczegóły.</string>
+    <string name="framework_not_active">Wersja %s Xposed framework jest zainstalowana, ale nie jest aktywna. Proszę sprawdzić logi, aby poznać szczegóły.</string>
     <string name="modules_updates_available">Dostępna aktualizacja modułów</string>
 
     <!-- File operations -->
@@ -192,7 +192,7 @@
     <string name="loadingError">Błąd ładowania Xposed Zip frameworks</string>
     <string name="permissionNotGranted">Ta funkcja nie zadziała bez uprawnienia zapisu zewnętrznej pamięci masowej.</string>
 
-    <string name="not_installed_no_lollipop">Xposed framework jest niezainstalowany.</string>
+    <string name="framework_not_installed">Xposed framework jest niezainstalowany.</string>
     <string name="notify_module_update">Włącz powiadomienia o aktualizacji modułów</string>
 
     <string name="md_back_label">Wstecz</string>

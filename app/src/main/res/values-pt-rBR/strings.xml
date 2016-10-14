@@ -34,8 +34,8 @@
     <string name="install_warning">Em alguns casos, seu dispositivo pode não ligar depois de instalar o Xposed.\n\nSe você nunca ouviu falar sobre \"soft brick\" e \"bootloop\" antes ou se você não sabe como se recuperar dessa situação, <b>NÃO</b> instale o Xposed!\n\nEm qualquer caso, ter um backup recente é altamente recomendado.</string>
     <string name="dont_show_again">Não mostre isso novamente</string>
     <string name="install_known_issue">Este parece ser um erro conhecido (\"%s\") com sua ROM. Instalar o Xposed pode não funcionar ou causar sérios problemas. Clique aqui para detalhes sobre esse erro.</string>
-    <string name="installed_lollipop">Xposed Framework versão %s está ativa.</string>
-    <string name="installed_lollipop_inactive">O Xposed Framework versão %s está instalado, mas não está ativo. Por favor, veja registros para detalhes.</string>
+    <string name="framework_active">Xposed Framework versão %s está ativa.</string>
+    <string name="framework_not_active">O Xposed Framework versão %s está instalado, mas não está ativo. Por favor, veja registros para detalhes.</string>
     <string name="modules_updates_available">Atualização(ões) de módulos disponíveis</string>
 
     <!-- File operations -->
@@ -184,7 +184,7 @@
     <string name="permissionNotGranted">Esta função não vai funcionar sem permissão para escrever no cartão SD.</string>
 
 
-    <string name="not_installed_no_lollipop">O Xposed Framework não está instalado.</string>
+    <string name="framework_not_installed">O Xposed Framework não está instalado.</string>
     <string name="notify_module_update">Habilitar notificação de atualização de módulo</string>
 
     <string name="md_back_label">Voltar</string>

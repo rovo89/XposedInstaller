@@ -34,8 +34,8 @@
     <string name="install_warning">V některých případech nemusí po instalaci Xposed vaše zařízení již naběhnout.\n\nPokud nejste obeznámeni s pojmy \"soft brick\" nebo \"bootloop\" a pokud nevíte, jak se v podobné situaci zachovat, <b>NEINSTALUJTE</b> Xposed!\n\nV každém případě je vřele doporučeno mít aktuální zálohu.</string>
     <string name="dont_show_again">Již nezobrazovat</string>
     <string name="install_known_issue">Zdá se, že existuje známý problém (\"%s\") s vaší ROM. Instalace Xposed nemusí fungovat, nebo může vést k závažným problémům. Pro podrobnosti o tomto problému stiskněte zde.</string>
-    <string name="installed_lollipop">Xposed Framework verze %s je aktivní.</string>
-    <string name="installed_lollipop_inactive">Xposed Framework verze %s je nainstalován, ale není aktivní. Prosím zkontrolujte log pro podrobnosti.</string>
+    <string name="framework_active">Xposed Framework verze %s je aktivní.</string>
+    <string name="framework_not_active">Xposed Framework verze %s je nainstalován, ale není aktivní. Prosím zkontrolujte log pro podrobnosti.</string>
     <string name="modules_updates_available">Aktualizace modulu k dispozici</string>
 
     <!-- File operations -->
@@ -184,7 +184,7 @@
     <string name="permissionNotGranted">Tato funkce nebude fungovat bez udělení oprávnění k zápisu na externí úložiště.</string>
 
 
-    <string name="not_installed_no_lollipop">Xposed Framework není nainstalován.</string>
+    <string name="framework_not_installed">Xposed Framework není nainstalován.</string>
     <string name="notify_module_update">Povolit oznámení o aktualizaci modulu</string>
 
 </resources>

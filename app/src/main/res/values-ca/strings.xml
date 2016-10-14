@@ -34,8 +34,8 @@
     <string name="install_warning">Alguna vegada pot ser que el dispositiu no s\'iniciï després d\'instal·lar l\'Xposed.\n\nSi no heu sentit mai els termes \"soft brick\" i \"bootloop\" o no sabeu com recuperar-vos d\'aquestes situacions, <b>NO</b> instal·leu l\'Xposed!\n\nEn tot cas, és altament recomanable tenir una còpia de seguretat recent.</string>
     <string name="dont_show_again">No ho tornis a mostrar</string>
     <string name="install_known_issue">Sembla que hi ha un problema conegut (\"%s\") amb la vostra ROM. Potser que la intal·lació de l\'Xposed no funcioni o causar problemes greus. Feu clic aquí per a més detalls del problema.</string>
-    <string name="installed_lollipop">El marc Xposed versió %s està actiu.</string>
-    <string name="installed_lollipop_inactive">El marc Xposed versió %s està instal·lat però inactiu. Reviseu els registres per als detalls.</string>
+    <string name="framework_active">El marc Xposed versió %s està actiu.</string>
+    <string name="framework_not_active">El marc Xposed versió %s està instal·lat però inactiu. Reviseu els registres per als detalls.</string>
     <string name="modules_updates_available">Hi ha actualitzacions disponibles d\'algun mòdul(s)</string>
 
     <!-- File operations -->
@@ -184,7 +184,7 @@
     <string name="permissionNotGranted">Aquesta característica no funcionarà sense permís per escriure a l\'emmagatzematge extern.</string>
 
 
-    <string name="not_installed_no_lollipop">El marc Xposed no està instal·lat.</string>
+    <string name="framework_not_installed">El marc Xposed no està instal·lat.</string>
     <string name="notify_module_update">Habilita la notificació d\'actualització de mòduls</string>
 
     <string name="md_back_label">Enrere</string>

@@ -34,8 +34,8 @@
     <string name="install_warning">In manchen Fällen wird das Gerät nicht mehr korrekt starten, nachdem du Xposed installiert hast.\n\nFalls dir \"Soft Brick\" und \"Bootloop\" nichts sagen oder du nicht weißt, wie du dich aus einer solchen Situation befreien kannst, solltest du Xposed <b>NICHT</b> installieren!\n\nIn jedem Fall ist es sehr empfehlenswert, ein aktuelles Backup zu haben.</string>
     <string name="dont_show_again">Nicht wieder anzeigen</string>
     <string name="install_known_issue">Es scheint eine bekannte Inkompatibilität (\"%s\") mit deinem ROM zu geben. Du solltest Xposed wahrscheinlich nicht installieren. Klicke hier für mehr Informationen.</string>
-    <string name="installed_lollipop">Xposed-Framework Version %s ist aktiv.</string>
-    <string name="installed_lollipop_inactive">Xposed-Framework Version %s ist installiert, aber nicht aktiv. Bitte schaue in den Logs nach Details.</string>
+    <string name="framework_active">Xposed-Framework Version %s ist aktiv.</string>
+    <string name="framework_not_active">Xposed-Framework Version %s ist installiert, aber nicht aktiv. Bitte schaue in den Logs nach Details.</string>
     <string name="modules_updates_available">Aktualisierungen für Module sind verfügbar</string>
 
     <!-- File operations -->
@@ -183,7 +183,7 @@
     <string name="loadingError">Fehler beim Laden der Xposed-Framework ZIP</string>
     <string name="permissionNotGranted">Diese Funktion funktioniert nur mit der Zugriffs-Berechtigung auf den Speicher.</string>
 
-    <string name="not_installed_no_lollipop">Xposed-Framework ist nicht installiert.</string>
+    <string name="framework_not_installed">Xposed-Framework ist nicht installiert.</string>
     <string name="notify_module_update">Bei Modul-Aktualisierungen benachrichtigen</string>
 
     <string name="md_back_label">Zurück</string>

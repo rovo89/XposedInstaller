@@ -86,7 +86,7 @@
                             android:padding="6dp"
                             android:textColor="@color/warning"
                             android:textStyle="bold"
-                            tools:text="@string/installed_lollipop"
+                            tools:text="@string/framework_active"
                             tools:textColor="@color/darker_green"/>
 
                         <TextView

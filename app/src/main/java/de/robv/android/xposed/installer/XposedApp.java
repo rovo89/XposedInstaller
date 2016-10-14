@@ -22,6 +22,7 @@ import java.io.IOException;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
+import de.robv.android.xposed.installer.util.InstallZipUtil.XposedProp;
 import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
@@ -43,7 +44,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     private static Handler mMainHandler;
     private boolean mIsUiLoaded = false;
     private SharedPreferences mPref;
-    private InstallZipUtil.XposedProp mXposedProp;
+    private XposedProp mXposedProp;
 
     public static XposedApp getInstance() {
         return mInstance;
@@ -62,11 +63,16 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     // This method is hooked by XposedBridge to return the current version
-    public static Integer getActiveXposedVersion() {
+    public static int getActiveXposedVersion() {
         return -1;
     }
 
-    public static InstallZipUtil.XposedProp getXposedProp() {
+    public static int getInstalledXposedVersion() {
+        XposedProp prop = getXposedProp();
+        return prop != null ? prop.getVersionInt() : -1;
+    }
+
+    public static XposedProp getXposedProp() {
         synchronized (mInstance) {
             return mInstance.mXposedProp;
         }
@@ -116,7 +122,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     private void reloadXposedProp() {
-        InstallZipUtil.XposedProp prop = null;
+        XposedProp prop = null;
 
         for (String path : XPOSED_PROP_FILES) {
             File file = new File(path);

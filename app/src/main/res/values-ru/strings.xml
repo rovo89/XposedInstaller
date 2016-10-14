@@ -34,8 +34,8 @@
     <string name="install_warning">В некоторых случаях, устройство может не загрузиться после установки Xposed.\n\nЕсли вы не знаете что такое \"soft brick\" и \"bootloop\". И не знаете как восстановить систему, <b>НЕ</b> устанавливайте Xposed!\n\nВ любом случае, делайте резервную копию системы."</string>
     <string name="dont_show_again">Больше не показывать сообщение</string>
     <string name="install_known_issue">Похоже, присутствует известная несовместимость (\"%s\") с Вашей прошивкой. Пожалуй, Вам не стоит устанавливать Xposed. Нажмите здесь для дополнительной информации.</string>
-    <string name="installed_lollipop">Xposed Framework версии %s активирован!</string>
-    <string name="installed_lollipop_inactive">Xposed Framework версия %s установлена, но не активирована. Пожалуйста проверьте логи.</string>
+    <string name="framework_active">Xposed Framework версии %s активирован!</string>
+    <string name="framework_not_active">Xposed Framework версия %s установлена, но не активирована. Пожалуйста проверьте логи.</string>
     <string name="modules_updates_available">Доступны обновления модуля</string>
 
     <!-- File operations -->
@@ -184,7 +184,7 @@
     <string name="permissionNotGranted">Эта функция не будет работать без разрешения на запись для накопителя.</string>
 
 
-    <string name="not_installed_no_lollipop">Xposed Framework не установлен.</string>
+    <string name="framework_not_installed">Xposed Framework не установлен.</string>
     <string name="notify_module_update">Включить уведомления об обновлении модулей</string>
 
     <string name="md_back_label">Назад</string>

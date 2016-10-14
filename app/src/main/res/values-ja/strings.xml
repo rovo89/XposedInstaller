@@ -34,8 +34,8 @@
     <string name="install_warning">Xposedをインストールした後、場合によっては起動しなくなることがあります。\n\n 「仮文鎮」や「ブートループ」を知らない場合やその状態からの復旧方法を理解していないのであれば、Xposedをインストール<b>しないでください</b>。\n\nいずれにせよ、現在のバックアップを取ることを強く推奨します。</string>
     <string name="dont_show_again">次回から表示しない</string>
     <string name="install_known_issue">お使いのROMには既知の問題（%s）があるようです。Xposedをインストールしても動作しなかったり、重大な問題が起こる可能性があります。ここをタップすると、その問題についての詳細を表示します。</string>
-    <string name="installed_lollipop">Xposedフレームワークバージョン%sが有効になっています。</string>
-    <string name="installed_lollipop_inactive">バージョン%sのXposedフレームワークがインストールされていますが、有効になっていません。ログで詳細を確認してください。</string>
+    <string name="framework_active">Xposedフレームワークバージョン%sが有効になっています。</string>
+    <string name="framework_not_active">バージョン%sのXposedフレームワークがインストールされていますが、有効になっていません。ログで詳細を確認してください。</string>
     <string name="modules_updates_available">モジュールの更新があります</string>
 
     <!-- File operations -->
@@ -184,7 +184,7 @@
     <string name="permissionNotGranted">この機能は外部ストレージへの書き込み権限がないと動作しません。</string>
 
 
-    <string name="not_installed_no_lollipop">Xposedフレームワークはインストールされていません。</string>
+    <string name="framework_not_installed">Xposedフレームワークはインストールされていません。</string>
     <string name="notify_module_update">モジュールの更新通知を有効化</string>
 
     <string name="md_back_label">戻る</string>

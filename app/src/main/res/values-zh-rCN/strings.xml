@@ -145,8 +145,8 @@
     <string name="install_remove">安装和移除</string>
 
 
-    <string name="installed_lollipop">Xposed 框架 %s 版已激活。</string>
-    <string name="installed_lollipop_inactive">Xposed 框架 %s 版已安装，但未激活。请检查日志的详细信息。</string>
+    <string name="framework_active">Xposed 框架 %s 版已激活。</string>
+    <string name="framework_not_active">Xposed 框架 %s 版已安装，但未激活。请检查日志的详细信息。</string>
     <string name="loadingError">载入 Xposed zip 框架错误</string>
     <string name="md_back_label">返回</string>
     <string name="md_cancel_label">取消</string>
@@ -173,7 +173,7 @@
     <string name="no_bookmark_added">未添加书签</string>
     <string name="no_enabled_modules">未启用任何模块</string>
     <string name="no_installed_modules">未安装任何模块</string>
-    <string name="not_installed_no_lollipop">Xposed 框架未安装。</string>
+    <string name="framework_not_installed">Xposed 框架未安装。</string>
 
     <string name="notify_module_update">启用模块更新通知</string>
     <string name="permissionNotGranted">没有写入外部存储权限该功能将不能工作。</string>

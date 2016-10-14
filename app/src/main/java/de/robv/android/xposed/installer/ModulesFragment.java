@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -120,17 +119,17 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        installedXposedVersion = XposedApp.getActiveXposedVersion();
-        if (Build.VERSION.SDK_INT >= 21) {
-            if (installedXposedVersion <= 0) {
-                addHeader();
+
+        installedXposedVersion = XposedApp.getInstalledXposedVersion();
+        if (installedXposedVersion < 0 || XposedApp.getActiveXposedVersion() < 0 || StatusInstallerFragment.DISABLE_FILE.exists()) {
+            View notActiveNote = getActivity().getLayoutInflater().inflate(R.layout.xposed_not_active_note, getListView(), false);
+            if (installedXposedVersion < 0) {
+                ((TextView) notActiveNote.findViewById(android.R.id.title)).setText(R.string.framework_not_installed);
             }
-        } else {
-            if (StatusInstallerFragment.DISABLE_FILE.exists()) installedXposedVersion = -1;
-            if (installedXposedVersion <= 0) {
-                addHeader();
-            }
+            notActiveNote.setTag(NOT_ACTIVE_NOTE_TAG);
+            getListView().addHeaderView(notActiveNote);
         }
+
         mAdapter = new ModuleAdapter(getActivity());
         reloadModules.run();
         setListAdapter(mAdapter);
@@ -152,12 +151,6 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
         getListView().setClipToPadding(false);
 
         setHasOptionsMenu(true);
-    }
-
-    private void addHeader() {
-        View notActiveNote = getActivity().getLayoutInflater().inflate(R.layout.xposed_not_active_note, getListView(), false);
-        notActiveNote.setTag(NOT_ACTIVE_NOTE_TAG);
-        getListView().addHeaderView(notActiveNote);
     }
 
     @Override
@@ -303,12 +296,11 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
         try {
             ips = new FileInputStream(path);
         } catch (FileNotFoundException e) {
-            Log.e(XposedApp.TAG, "ModulesFragment -> " + e.getMessage());
+            Log.e(XposedApp.TAG, "Could not open " + path, e);
         }
 
         if (path.length() == 0) {
-            Toast.makeText(getActivity(), R.string.file_is_empty,
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), R.string.file_is_empty, Toast.LENGTH_LONG).show();
             return false;
         }
 
@@ -564,7 +556,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
                 warningText.setVisibility(View.VISIBLE);
             } else if (installedXposedVersion == 0) {
                 checkbox.setEnabled(false);
-                warningText.setText(getString(R.string.not_installed_no_lollipop));
+                warningText.setText(getString(R.string.framework_not_installed));
                 warningText.setVisibility(View.VISIBLE);
             } else {
                 checkbox.setEnabled(true);

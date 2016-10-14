@@ -63,6 +63,10 @@ public final class InstallZipUtil {
             return mVersion;
         }
 
+        public int getVersionInt() {
+            return mVersionInt;
+        }
+
         public boolean isArchCompatible() {
             return FrameworkZips.ARCH.equals(mArch);
         }

@@ -34,8 +34,8 @@
     <string name="install_warning">ในกรณีที่โทรศัพท์ของคุณอาจจะไม่รีบูตหลังจากการติดตั้ง\n\nหากคุณไม่เคยได้ยินเกี่ยวกับ \"Soft Brick\" และ \"Bootloop\" มาก่อน <b>ห้าม</b>ติดตั้ง Xposed!\n\nโดยทั่วไปแล้ว แนะนำให้กู้คืนไฟล์สำรองของคุณ</string>
     <string name="dont_show_again">ไม่ต้องแสดงอีกครั้ง</string>
     <string name="install_known_issue">ดูเหมือนจะเกิดปัญหา (\"%s\") กับรอมของคุณ การติดตั้ง Xposed อาจจะไม่เวิร์คหรือทำให้เกิดปัญหาร้ายแรง คลิกที่นี่สำหรับรายละเอียดเกี่ยวกับปัญหา</string>
-    <string name="installed_lollipop">เฟรมเวิร์คเวอร์ชั่น %s เปิดใช้งานแล้ว</string>
-    <string name="installed_lollipop_inactive">เฟรมเวิร์คเวอร์ชั่น %s ถูกติดตั้งแล้วแต่ยังไม่ได้ใช้งาน กรุณาตรวจสอบบันทึกการใช้งานสำหรับรายละเอียด</string>
+    <string name="framework_active">เฟรมเวิร์คเวอร์ชั่น %s เปิดใช้งานแล้ว</string>
+    <string name="framework_not_active">เฟรมเวิร์คเวอร์ชั่น %s ถูกติดตั้งแล้วแต่ยังไม่ได้ใช้งาน กรุณาตรวจสอบบันทึกการใช้งานสำหรับรายละเอียด</string>
     <string name="modules_updates_available">สามารถอัพเดทโมดูลได้</string>
 
     <!-- File operations -->
@@ -184,7 +184,7 @@
     <string name="permissionNotGranted">คุณสมบัตินี้จะไม่ทำงาน หากไม่ได้รับการอนุญาตเพื่อเขียนข้อมูลไปยังที่เก็บข้อมูลภายนอก</string>
 
 
-    <string name="not_installed_no_lollipop">ยังไม่ได้ติดตั้งเฟรมเวิร์ค Xposed</string>
+    <string name="framework_not_installed">ยังไม่ได้ติดตั้งเฟรมเวิร์ค Xposed</string>
     <string name="notify_module_update">เปิดใช้งานการแจ้งเตือนอัพเดทโมดูล</string>
 
     <string name="md_back_label">กลับ</string>

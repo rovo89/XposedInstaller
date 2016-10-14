@@ -162,7 +162,7 @@ public final class NotificationUtil {
 
             RootUtil rootUtil = new RootUtil();
             if (!rootUtil.startShell()) {
-                Log.e(XposedApp.TAG, "NotificationUtil -> Could not start root shell");
+                Log.e(XposedApp.TAG, "Could not start root shell");
                 return;
             }
 

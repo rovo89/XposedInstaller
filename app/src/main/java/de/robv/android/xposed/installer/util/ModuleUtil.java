@@ -198,16 +198,12 @@ public final class ModuleUtil {
 
     public synchronized void updateModulesList(boolean showToast) {
         try {
-            Log.i(XposedApp.TAG, "ModuleUtil -> updating modules.list");
-            int installedXposedVersion = XposedApp.getActiveXposedVersion();
-            if (installedXposedVersion <= 0) {
-                Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
-                return;
-            }
+            Log.i(XposedApp.TAG, "updating modules.list");
+            int installedXposedVersion = XposedApp.getInstalledXposedVersion();
 
             PrintWriter modulesList = new PrintWriter(MODULES_LIST_FILE);
-            PrintWriter enabledModulesList = new PrintWriter(
-                    XposedApp.ENABLED_MODULES_LIST_FILE);
+            PrintWriter enabledModulesList = new PrintWriter(XposedApp.ENABLED_MODULES_LIST_FILE);
+
             List<InstalledModule> enabledModules = getEnabledModules();
             for (InstalledModule module : enabledModules) {
                 if (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)
@@ -222,13 +218,12 @@ public final class ModuleUtil {
             enabledModulesList.close();
 
             FileUtils.setPermissions(MODULES_LIST_FILE, 00664, -1, -1);
-            FileUtils.setPermissions(XposedApp.ENABLED_MODULES_LIST_FILE, 00664,
-                    -1, -1);
+            FileUtils.setPermissions(XposedApp.ENABLED_MODULES_LIST_FILE, 00664, -1, -1);
 
             if (showToast)
                 showToast(R.string.xposed_module_list_updated);
         } catch (IOException e) {
-            Log.e(XposedApp.TAG, "ModuleUtil -> cannot write " + MODULES_LIST_FILE, e);
+            Log.e(XposedApp.TAG, "cannot write " + MODULES_LIST_FILE, e);
             Toast.makeText(mApp, "cannot write " + MODULES_LIST_FILE + e, Toast.LENGTH_SHORT).show();
         }
     }
@@ -288,17 +283,13 @@ public final class ModuleUtil {
                 this.minVersion = 0;
                 this.description = "";
             } else {
-                if (XposedApp.getPreferences().getBoolean("skip_xposedminversion_check", false)) {
-                    this.minVersion = XposedApp.getActiveXposedVersion();
+                Object minVersionRaw = app.metaData.get("xposedminversion");
+                if (minVersionRaw instanceof Integer) {
+                    this.minVersion = (Integer) minVersionRaw;
+                } else if (minVersionRaw instanceof String) {
+                    this.minVersion = extractIntPart((String) minVersionRaw);
                 } else {
-                    Object minVersionRaw = app.metaData.get("xposedminversion");
-                    if (minVersionRaw instanceof Integer) {
-                        this.minVersion = (Integer) minVersionRaw;
-                    } else if (minVersionRaw instanceof String) {
-                        this.minVersion = extractIntPart((String) minVersionRaw);
-                    } else {
-                        this.minVersion = 0;
-                    }
+                    this.minVersion = 0;
                 }
             }
         }

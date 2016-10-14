@@ -159,8 +159,8 @@
     <string name="install_remove">Instalar e remover</string>
 
 
-    <string name="installed_lollipop">A versão %s da \"Xposed Framework\" está ativa.</string>
-    <string name="installed_lollipop_inactive">A versão %s da \"Xposed Framework\" está instalada mas não está ativa. Por favor verifique os registos para mais detalhes.</string>
+    <string name="framework_active">A versão %s da \"Xposed Framework\" está ativa.</string>
+    <string name="framework_not_active">A versão %s da \"Xposed Framework\" está instalada mas não está ativa. Por favor verifique os registos para mais detalhes.</string>
     <string name="loadingError">Erro a carregar os ZIP da \"Xposed Framework\"</string>
     <string name="md_back_label">Voltar</string>
     <string name="md_cancel_label">Cancelar</string>
@@ -187,7 +187,7 @@
     <string name="no_bookmark_added">Não foi adicionado nenhum marcador</string>
     <string name="no_enabled_modules">Não existem módulos ativos</string>
     <string name="no_installed_modules">Não existem módulos instalados!</string>
-    <string name="not_installed_no_lollipop">A \"Xposed Framework\" não está instalada.</string>
+    <string name="framework_not_installed">A \"Xposed Framework\" não está instalada.</string>
 
     <string name="notify_module_update">Ativar a notificação de atualização de módulo</string>
     <string name="permissionNotGranted">Esta funcionalidade não funcionará sem a permissão de escrita para o cartão SD.</string>

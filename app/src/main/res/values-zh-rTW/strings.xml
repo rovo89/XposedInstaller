@@ -34,8 +34,8 @@
     <string name="install_warning">某些情況下，您的裝置可能會在安裝 Xposed 後無法啓動。\n\n如果您從未聽說「軟變磚」或「無限重新啟動」，或者您不知道如何從這種情況恢復，請"<b>不要</b>"安裝 Xposed ！\n\n無論如何，強烈建議準備好最近的備份。</string>
     <string name="dont_show_again">不要再顯示這個</string>
     <string name="install_known_issue">Xposed 與您的 ROM 似乎存在已知的問題 (\"%s\")。安裝 Xposed 可能無法正常工作或是導致更嚴重的問題。點擊這裡了解詳情。</string>
-    <string name="installed_lollipop">Xposed 框架 %s 版已啟用。</string>
-    <string name="installed_lollipop_inactive">Xposed 框架 %s 版已安裝，但尚未啟用。 請查看日誌以了解細節。</string>
+    <string name="framework_active">Xposed 框架 %s 版已啟用。</string>
+    <string name="framework_not_active">Xposed 框架 %s 版已安裝，但尚未啟用。 請查看日誌以了解細節。</string>
     <string name="modules_updates_available">模組可供更新</string>
 
     <!-- File operations -->
@@ -184,7 +184,7 @@
     <string name="permissionNotGranted">未取得寫入外部存儲空間權限，此功能將無法正常運作。</string>
 
 
-    <string name="not_installed_no_lollipop">Xposed 框架未安裝。</string>
+    <string name="framework_not_installed">Xposed 框架未安裝。</string>
     <string name="notify_module_update">啟用模組更新通知</string>
 
     <string name="md_back_label">返回</string>
