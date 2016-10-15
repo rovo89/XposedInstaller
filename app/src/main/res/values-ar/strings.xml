@@ -91,13 +91,6 @@
     <string name="repo_download_failed">تحميل %1$s فشل: %2$s</string>
     <string name="repo_load_failed">لايمكن التحميل من المستودع %1$s:\n%2$s</string>
 
-
-
-
-
-
-
-
-
+    <!-- Most of these belong to currently hidden features -->
 
 </resources>

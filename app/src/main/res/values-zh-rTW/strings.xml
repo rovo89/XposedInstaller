@@ -26,6 +26,7 @@
     <string name="uninstall">移除</string>
     <string name="soft_reboot">快速重啟</string>
     <string name="reboot">重新啟動</string>
+    <string name="reboot_recovery">重新啟動至 Recovery 模式</string>
     <string name="reboot_failed">重新啟動失敗。請使用裝置的標準的重新啟動功能。</string>
     <string name="auto_flash_note">當您按下 OK 後，%s 將會自動被刷入裝置。</string>
     <string name="reboot_confirmation">您要現在重新啟動嗎？</string>
@@ -36,6 +37,9 @@
     <string name="framework_active">Xposed 框架 %s 版已啟用。</string>
     <string name="framework_not_active">Xposed 框架 %s 版已安裝，但尚未啟用。 請查看日誌以了解細節。</string>
     <string name="framework_not_installed">Xposed 框架未安裝。</string>
+    <string name="status">Xposed 狀態</string>
+    <string name="xposed_on_next_reboot">Xposed 框架將在下次重新啟動裝置後啟用</string>
+    <string name="xposed_off_next_reboot">Xposed 框架將在下次重新啟動裝置後停用</string>
 
     <!-- File operations -->
     <string name="root_failed">無法取得 root 權限。\n\n請確認您的裝置已正確的 root 以及您沒有阻擋 shell 指令。</string>
@@ -114,6 +118,13 @@
     <string name="settings_theme_dark">暗色</string>
     <string name="settings_theme_black">黑色 (對 AMOLED 螢幕有幫助)</string>
     <string name="settings_default_view">預設瀏覽</string>
+    <string name="open_drawer_summ">啟動時自動開啟抽屜式導航欄</string>
+    <string name="open_drawer">自動開啟抽屜式導航欄</string>
+    <string name="skip_xposedminversion_check">略過 \'Xposed 最低版本\' 檢查</string>
+    <string name="skip_xposedminversion_check_summ">略過模組 \'Xposed 最低版本\' 檢查</string>
+    <string name="chrome_custom_tabs">Chrome 式自訂分頁</string>
+    <string name="chrome_custom_tabs_summ">於內置瀏覽器開啟連結</string>
+    <string name="notify_module_update">啟用模組更新通知</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">模組支援</string>
@@ -130,6 +141,8 @@
     <string name="logs_cleared">清理日誌成功</string>
     <string name="logs_clear_failed">無法清理日誌：</string>
     <string name="log_is_empty">日誌爲空</string>
+    <string name="scroll_top">捲動回到頂端</string>
+    <string name="scroll_bottom">捲動至到底端</string>
 
     <!-- About tab -->
     <string name="about_developers_label">主要開發者</string>
@@ -161,6 +174,7 @@
     <string name="repo_download_failed">下載 %1$s 時出錯：%2$s</string>
     <string name="repo_load_failed">無法載入倉庫 %1$s:\n%2$s</string>
 
+    <!-- Most of these belong to currently hidden features -->
     <string name="warning_installed_on_external_storage">此模組安裝在SD卡中導致無法載入，請將此模組移回內部儲存空間。</string>
     <string name="view">查看</string>
     <string name="export_">匯出…</string>
@@ -172,13 +186,8 @@
     <string name="no_installed_modules">無任何已安裝的模組！</string>
     <string name="no_backup_found">找不到備份</string>
     <string name="no_enabled_modules">沒有任何啟用的模組</string>
-
     <string name="share">分享至…</string>
     <string name="permissionNotGranted">未取得寫入外部存儲空間權限，此功能將無法正常運作。</string>
-
-    <string name="notify_module_update">啟用模組更新通知</string>
-
-    <string name="scroll_top">捲動回到頂端</string>
     <string name="add_bookmark">新增書籤</string>
     <string name="remove_bookmark">移除書籤</string>
     <string name="bookmarks">書籤</string>
@@ -186,26 +195,10 @@
     <string name="bookmark_added">已加入書籤</string>
     <string name="bookmark_removed">已移除書籤</string>
     <string name="undo">還原</string>
-
     <string name="file_is_empty">檔案為空</string>
-
     <string name="install_remove">安裝和移除</string>
     <string name="download_remove">下載和移除</string>
     <string name="module_saved">儲存模組於 %1$s</string>
-
-    <string name="reboot_recovery">重新啟動至 Recovery 模式</string>
     <string name="loading">載入中…</string>
-    <string name="chrome_custom_tabs">Chrome 式自訂分頁</string>
-    <string name="chrome_custom_tabs_summ">於內置瀏覽器開啟連結</string>
-    <string name="scroll_bottom">捲動至到底端</string>
-    <string name="open_drawer_summ">啟動時自動開啟抽屜式導航欄</string>
-    <string name="open_drawer">自動開啟抽屜式導航欄</string>
-    <string name="status">Xposed 狀態</string>
-    <string name="xposed_on_next_reboot">Xposed 框架將在下次重新啟動裝置後啟用</string>
-    <string name="xposed_off_next_reboot">Xposed 框架將在下次重新啟動裝置後停用</string>
-
-    <string name="skip_xposedminversion_check">略過 \'Xposed 最低版本\' 檢查</string>
-    <string name="skip_xposedminversion_check_summ">略過模組 \'Xposed 最低版本\' 檢查</string>
-
 
 </resources>

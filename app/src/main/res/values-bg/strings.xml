@@ -141,13 +141,6 @@
     <string name="repo_download_failed">Изтеглянето на %1$s е неуспешно: %2$s</string>
     <string name="repo_load_failed">Не може да се зареди хранилището от %1$s:\n%2$s</string>
 
-
-
-
-
-
-
-
-
+    <!-- Most of these belong to currently hidden features -->
 
 </resources>

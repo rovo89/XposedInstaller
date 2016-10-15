@@ -26,6 +26,7 @@
     <string name="uninstall">Desinstalar</string>
     <string name="soft_reboot">Reinicio suave</string>
     <string name="reboot">Reiniciar</string>
+    <string name="reboot_recovery">Reiniciar en modo recovery</string>
     <string name="reboot_failed">El Reinicio falló. Por favor use la función normal de reinicio del dispositivo.</string>
     <string name="auto_flash_note">%s debería ser flasheado automaticamente una vez presione "OK".</string>
     <string name="reboot_confirmation">Quiere reiniciar ahora?</string>
@@ -36,6 +37,9 @@
     <string name="framework_active">La versión  %s del Xposed Framework está activa.</string>
     <string name="framework_not_active">La versión  %s del Xposed Framework está instalada, pero no está activa. Por favor revise los registros para más detalles.</string>
     <string name="framework_not_installed">El Xposed Framework no está instalado.</string>
+    <string name="status">Estado del Xposed</string>
+    <string name="xposed_on_next_reboot">El Xposed Framework se activará en el próximo reinicio</string>
+    <string name="xposed_off_next_reboot">El Xposed Framework se desactivará en el próximo reinicio</string>
 
     <!-- File operations -->
     <string name="root_failed">Fallo al obtener acceso root.\n\nAsegúrese de que su dispositivo tiene acceso root y que no tiene bloqueado los comandos shell.</string>
@@ -114,6 +118,11 @@
     <string name="settings_theme_dark">Oscuro</string>
     <string name="settings_theme_black">Negro (especialmente útil en pantallas AMOLED)</string>
     <string name="settings_default_view">Vista por defecto</string>
+    <string name="open_drawer_summ">Abrir el menú lateral automáticamente al iniciar</string>
+    <string name="open_drawer">Abrir el menú lateral automáticamente</string>
+    <string name="chrome_custom_tabs">Etiquetas personalizadas de Chrome</string>
+    <string name="chrome_custom_tabs_summ">Abrir enlaces en el navegador interno</string>
+    <string name="notify_module_update">Activar notificaciones de actualización de módulos</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Soporte para módulos</string>
@@ -130,6 +139,8 @@
     <string name="logs_cleared">Los registros fueron borrados satisfactoriamente</string>
     <string name="logs_clear_failed">No fue posible borrar los registros:</string>
     <string name="log_is_empty">Los registros están vacíos</string>
+    <string name="scroll_top">Deslizar hacia el inicio</string>
+    <string name="scroll_bottom">Deslizar hacia el final</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Desarrolladores principales</string>
@@ -161,6 +172,7 @@
     <string name="repo_download_failed">Descargando %1$s ha fallado: %2$s</string>
     <string name="repo_load_failed">No se puede cargar el repositorio desde %1$s:\n%2$s</string>
 
+    <!-- Most of these belong to currently hidden features -->
     <string name="warning_installed_on_external_storage">Éste módulo no puede ser cargado porque está instalado en la tarjeta SD, por favor muévala hacia el almacenamiento interno.</string>
     <string name="view">VISTA</string>
     <string name="export_">Exportar…</string>
@@ -172,13 +184,8 @@
     <string name="no_installed_modules">No hay ningún módulo instalado!</string>
     <string name="no_backup_found">No se encontró copia de seguridad</string>
     <string name="no_enabled_modules">No hay ningún módulo activado</string>
-
     <string name="share">Compartir con…</string>
     <string name="permissionNotGranted">Éstas características no funcionarán sin permisos para escribir en el almacenamiento externo.</string>
-
-    <string name="notify_module_update">Activar notificaciones de actualización de módulos</string>
-
-    <string name="scroll_top">Deslizar hacia el inicio</string>
     <string name="add_bookmark">Agregar marcador</string>
     <string name="remove_bookmark">Remover marcador</string>
     <string name="bookmarks">Marcadores</string>
@@ -186,24 +193,10 @@
     <string name="bookmark_added">Marcador agregado</string>
     <string name="bookmark_removed">Marcador removido</string>
     <string name="undo">Deshacer</string>
-
     <string name="file_is_empty">El archivo está vacío</string>
-
     <string name="install_remove">Instalar y remover</string>
     <string name="download_remove">Descargar y remover</string>
     <string name="module_saved">Módulo guardado en %1$s</string>
-
-    <string name="reboot_recovery">Reiniciar en modo recovery</string>
     <string name="loading">Cargando…</string>
-    <string name="chrome_custom_tabs">Etiquetas personalizadas de Chrome</string>
-    <string name="chrome_custom_tabs_summ">Abrir enlaces en el navegador interno</string>
-    <string name="scroll_bottom">Deslizar hacia el final</string>
-    <string name="open_drawer_summ">Abrir el menú lateral automáticamente al iniciar</string>
-    <string name="open_drawer">Abrir el menú lateral automáticamente</string>
-    <string name="status">Estado del Xposed</string>
-    <string name="xposed_on_next_reboot">El Xposed Framework se activará en el próximo reinicio</string>
-    <string name="xposed_off_next_reboot">El Xposed Framework se desactivará en el próximo reinicio</string>
-
-
 
 </resources>

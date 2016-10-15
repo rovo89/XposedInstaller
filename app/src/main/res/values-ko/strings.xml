@@ -96,13 +96,6 @@
     <string name="repo_download_failed">%1$s의 내려받기가 실패했습니다 : %2$s</string>
     <string name="repo_load_failed">%1$s로부터 정보를 읽어들이지 못했습니다 : \n%2$s</string>
 
-
-
-
-
-
-
-
-
+    <!-- Most of these belong to currently hidden features -->
 
 </resources>

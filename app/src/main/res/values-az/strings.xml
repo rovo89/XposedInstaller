@@ -96,13 +96,6 @@
     <string name="repo_download_failed">Yükləmə %1$s uğursuz oldu: %2$s</string>
     <string name="repo_load_failed">Depoya çata bilmədi %1$s:\n%2$s</string>
 
-
-
-
-
-
-
-
-
+    <!-- Most of these belong to currently hidden features -->
 
 </resources>

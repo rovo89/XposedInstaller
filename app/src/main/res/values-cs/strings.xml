@@ -114,6 +114,7 @@
     <string name="settings_theme_dark">Tmavé</string>
     <string name="settings_theme_black">Černé (užitečné pro AMOLED displeje)</string>
     <string name="settings_default_view">Výchozí zobrazení</string>
+    <string name="notify_module_update">Povolit oznámení o aktualizaci modulu</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Podpora pro jednotlivé moduly</string>
@@ -161,6 +162,7 @@
     <string name="repo_download_failed">Stahování %1$s selhalo: %2$s</string>
     <string name="repo_load_failed">Nemohu načíst repozitář z %1$s:\n%2$s</string>
 
+    <!-- Most of these belong to currently hidden features -->
     <string name="warning_installed_on_external_storage">Tento modul nemohl být načten protože je nainstalován na kartě SD, přesuňte jej prosím do interní paměti.</string>
     <string name="view">VIEW</string>
     <string name="export_">Export…</string>
@@ -172,16 +174,7 @@
     <string name="no_installed_modules">Žádné Xposed moduly nebyly nalezeny!</string>
     <string name="no_backup_found">Nenalezena žádná záloha</string>
     <string name="no_enabled_modules">Nejsou povoleny žádné moduly</string>
-
     <string name="share">Sdílet…</string>
     <string name="permissionNotGranted">Tato funkce nebude fungovat bez udělení oprávnění k zápisu na externí úložiště.</string>
-
-    <string name="notify_module_update">Povolit oznámení o aktualizaci modulu</string>
-
-
-
-
-
-
 
 </resources>

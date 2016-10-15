@@ -26,6 +26,7 @@
     <string name="uninstall">ถอนการติดตั้ง</string>
     <string name="soft_reboot">ซอฟท์รีบูต</string>
     <string name="reboot">รีบูต</string>
+    <string name="reboot_recovery">รีบูตไปยังโหมดกู้คืน</string>
     <string name="reboot_failed">รีบูตล้มเหลว กรุณาใช้ฟังก์ชั่นรีบูตโทรศัพท์</string>
     <string name="auto_flash_note">%s จะแฟลชอัตโนมัติเมื่อคุณกด "ตกลง"</string>
     <string name="reboot_confirmation">ต้องการรีบูตเดี๋ยวนี้?</string>
@@ -114,6 +115,11 @@
     <string name="settings_theme_dark">มืด</string>
     <string name="settings_theme_black">มืด (เหมาะสำหรับหน้าจอ AMOLED)</string>
     <string name="settings_default_view">ค่าเริ่มต้น</string>
+    <string name="open_drawer_summ">เปิด Navigation Drawer อัตโนมัติเมื่อเปิดใช้งานแอปพลิเคชั่น</string>
+    <string name="open_drawer">เปิด Navigation Drawer อัตโนมัติ</string>
+    <string name="chrome_custom_tabs">แท็บปรับแต่ง Chrome</string>
+    <string name="chrome_custom_tabs_summ">เปิดลิงค์โดยเบราเซอร์ภายใน</string>
+    <string name="notify_module_update">เปิดใช้งานการแจ้งเตือนอัพเดทโมดูล</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">สนับสนุนโมดูล</string>
@@ -130,6 +136,8 @@
     <string name="logs_cleared">ล้างบันทึกการใช้งานเสร็จสิ้น</string>
     <string name="logs_clear_failed">ไม่สามารถล้างบันทึกการใช้งาน:</string>
     <string name="log_is_empty">ว่างเปล่า</string>
+    <string name="scroll_top">เลื่อนขึ้นบน</string>
+    <string name="scroll_bottom">เลื่อนไปข้างล่าง</string>
 
     <!-- About tab -->
     <string name="about_developers_label">ผู้พัฒนาหลัก</string>
@@ -161,6 +169,7 @@
     <string name="repo_download_failed">กำลังดาวน์โหลด %1$s ล้มเหลว: %2$s</string>
     <string name="repo_load_failed">ไม่สามารถโหลดที่จัดเก็บจาก %1$s:\n%2$s</string>
 
+    <!-- Most of these belong to currently hidden features -->
     <string name="warning_installed_on_external_storage">ไม่สามารถโหลดโมดูลนี้เพราะติดตั้งบนการ์ดความจำ กรุณาย้ายไปยังหน่วยความจำภายใน</string>
     <string name="view">แสดง</string>
     <string name="export_">ส่งออก…</string>
@@ -172,13 +181,8 @@
     <string name="no_installed_modules">ยังไม่ได้ติดตั้งโมดูล</string>
     <string name="no_backup_found">ไม่พบสำรองข้อมูล</string>
     <string name="no_enabled_modules">ยังไม่มีโมดูลเปิดใช้งาน</string>
-
     <string name="share">แบ่งปันด้วย…</string>
     <string name="permissionNotGranted">คุณสมบัตินี้จะไม่ทำงาน หากไม่ได้รับการอนุญาตเพื่อเขียนข้อมูลไปยังที่เก็บข้อมูลภายนอก</string>
-
-    <string name="notify_module_update">เปิดใช้งานการแจ้งเตือนอัพเดทโมดูล</string>
-
-    <string name="scroll_top">เลื่อนขึ้นบน</string>
     <string name="add_bookmark">เพิ่มบุ๊คมาร์ค</string>
     <string name="remove_bookmark">ลบบุ๊คมาร์ค</string>
     <string name="bookmarks">บุ๊คมาร์ค</string>
@@ -186,21 +190,10 @@
     <string name="bookmark_added">เพิ่มบุ๊คมาร์คแล้ว</string>
     <string name="bookmark_removed">ลบบุ๊คมาร์คแล้ว</string>
     <string name="undo">ย้อนกลับ</string>
-
     <string name="file_is_empty">ไฟล์ว่างเปล่า</string>
-
     <string name="install_remove">ติดตั้งและลบ</string>
     <string name="download_remove">ดาวน์โหลดและลบ</string>
     <string name="module_saved">โมดูลบันทึกที่ %1$s</string>
-
-    <string name="reboot_recovery">รีบูตไปยังโหมดกู้คืน</string>
     <string name="loading">กำลังโหลด…</string>
-    <string name="chrome_custom_tabs">แท็บปรับแต่ง Chrome</string>
-    <string name="chrome_custom_tabs_summ">เปิดลิงค์โดยเบราเซอร์ภายใน</string>
-    <string name="scroll_bottom">เลื่อนไปข้างล่าง</string>
-    <string name="open_drawer_summ">เปิด Navigation Drawer อัตโนมัติเมื่อเปิดใช้งานแอปพลิเคชั่น</string>
-    <string name="open_drawer">เปิด Navigation Drawer อัตโนมัติ</string>
-
-
 
 </resources>

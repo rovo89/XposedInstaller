@@ -26,6 +26,7 @@
     <string name="uninstall">Desinstal·la</string>
     <string name="soft_reboot">Reinici ràpid</string>
     <string name="reboot">Reinici</string>
+    <string name="reboot_recovery">Reinici a recuperació</string>
     <string name="reboot_failed">Ha fallat el reinici. Utilitzeu la funció normal de reinici del dispositiu.</string>
     <string name="auto_flash_note">S\'hauria d\'instal·lar automàticament %s quan premeu \"D\'acord\".</string>
     <string name="reboot_confirmation">Voleu reiniciar ara?</string>
@@ -114,6 +115,9 @@
     <string name="settings_theme_dark">Fosc</string>
     <string name="settings_theme_black">Negre (útil per a pantalles AMOLED)</string>
     <string name="settings_default_view">Vista per defecte</string>
+    <string name="chrome_custom_tabs">Pestanyes personalitzades del Chrome</string>
+    <string name="chrome_custom_tabs_summ">Obre els enllaços al navegador intern</string>
+    <string name="notify_module_update">Habilita la notificació d\'actualització de mòduls</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Ajuda per als mòduls</string>
@@ -130,6 +134,7 @@
     <string name="logs_cleared">S\'ha netejat el registre amb èxit</string>
     <string name="logs_clear_failed">No s\'ha pogut netejar el registre:</string>
     <string name="log_is_empty">El registre està buit</string>
+    <string name="scroll_top">Torna a dalt</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Desenvolupadors principals</string>
@@ -161,6 +166,7 @@
     <string name="repo_download_failed">S\'està baixant %1$s ha fallat: %2$s</string>
     <string name="repo_load_failed">No s\'ha pogut carregar el dipòsit des de %1$s:\n%2$s</string>
 
+    <!-- Most of these belong to currently hidden features -->
     <string name="warning_installed_on_external_storage">No es pot carregar aquest mòdul perquè s\'ha instal·lat a la targeta SD, moveu-lo a l\'emmagatzematge intern.</string>
     <string name="view">VISUALITZA</string>
     <string name="export_">Exporta…</string>
@@ -172,13 +178,8 @@
     <string name="no_installed_modules">No hi ha cap mòdul instal·lat!</string>
     <string name="no_backup_found">No s\'ha trobat cap còpia de seguretat</string>
     <string name="no_enabled_modules">No hi ha cap mòdul habilitat</string>
-
     <string name="share">Comparteix amb…</string>
     <string name="permissionNotGranted">Aquesta característica no funcionarà sense permís per escriure a l\'emmagatzematge extern.</string>
-
-    <string name="notify_module_update">Habilita la notificació d\'actualització de mòduls</string>
-
-    <string name="scroll_top">Torna a dalt</string>
     <string name="add_bookmark">Afegeix un marcador</string>
     <string name="remove_bookmark">Suprimeix el marcador</string>
     <string name="bookmarks">Marcadors</string>
@@ -186,18 +187,10 @@
     <string name="bookmark_added">S\'ha afegit un marcador</string>
     <string name="bookmark_removed">S\'ha suprimit un marcador</string>
     <string name="undo">Desfés</string>
-
     <string name="file_is_empty">El fitxer està buit</string>
-
     <string name="install_remove">Instal·la i suprimeix</string>
     <string name="download_remove">Baixa i suprimeix</string>
     <string name="module_saved">S\'ha desat el mòdul a %1$s</string>
-
-    <string name="reboot_recovery">Reinici a recuperació</string>
     <string name="loading">S\'està carregant…</string>
-    <string name="chrome_custom_tabs">Pestanyes personalitzades del Chrome</string>
-    <string name="chrome_custom_tabs_summ">Obre els enllaços al navegador intern</string>
-
-
 
 </resources>

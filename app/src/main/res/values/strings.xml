@@ -26,6 +26,7 @@
     <string name="uninstall">Uninstall</string>
     <string name="soft_reboot">Soft reboot</string>
     <string name="reboot">Reboot</string>
+    <string name="reboot_recovery">Reboot to recovery</string>
     <string name="not_now">Not now</string>
     <string name="reboot_failed">Reboot failed. Please use the device\'s normal reboot function.</string>
     <string name="auto_flash_note">%s should be flashed automatically once you press "OK".</string>
@@ -43,6 +44,9 @@
     <string name="flash_error_invalid_zip">Not a flashable ZIP file</string>
     <string name="flash_error_not_flashable_in_app">This file can only be flashed via recovery</string>
     <string name="flash_error_default">Error %d occurred</string>
+    <string name="status">Xposed Status</string>
+    <string name="xposed_on_next_reboot">Xposed Framework will be enabled on next reboot</string>
+    <string name="xposed_off_next_reboot">Xposed Framework will be disabled on next reboot</string>
     <string name="show_outdated">Show outdated</string>
     <string name="framework_device_info">Your device</string>
 
@@ -126,6 +130,15 @@
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_theme_black">Black (useful for AMOLED screens)</string>
     <string name="settings_default_view">Default view</string>
+    <string name="open_drawer_summ">Open automatically the navigation drawer at startup</string>
+    <string name="open_drawer">Open automatically navigation drawer</string>
+    <string name="skip_xposedminversion_check">Skip \'xposedminversion\' check</string>
+    <string name="skip_xposedminversion_check_summ">Skip \'xposedminversion\' check for modules</string>
+    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs_summ">Open links in internal browser</string>
+    <string name="download_location">Download location</string>
+    <string name="download_location_summ">Download location for APK files (modules only)</string>
+    <string name="notify_module_update">Enable module update notification</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Support for modules</string>
@@ -144,6 +157,8 @@
     <string name="logs_cleared">Log successfully cleared</string>
     <string name="logs_clear_failed">Could not clear the log:</string>
     <string name="log_is_empty">Log is empty</string>
+    <string name="scroll_top">Scroll to top</string>
+    <string name="scroll_bottom">Scroll to bottom</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Main developers</string>
@@ -163,6 +178,7 @@
     <string name="download_view_waiting">Download is waiting</string>
     <string name="download_view_successful">Download successful</string>
     <string name="download_view_failed">Download failed (error %d)</string>
+    <string name="download_view_size">Size: %s KB</string>
 
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">MD5 sum is incorrect (downloaded: %1$s, expected: %2$s)</string>
@@ -177,6 +193,7 @@
     <string name="repo_download_failed">Downloading %1$s failed: %2$s</string>
     <string name="repo_load_failed">Cannot load repository from %1$s:\n%2$s</string>
 
+    <!-- Most of these belong to currently hidden features -->
     <string name="warning_installed_on_external_storage">This module cannot be loaded because it\'s installed on the SD card, please move it to internal storage.</string>
     <string name="warning_forward_locked">This module cannot be loaded because it\'s is forward-locked, please contact the module\'s developer.</string>
     <string name="export_modules">Export enabled modules list</string>
@@ -191,14 +208,8 @@
     <string name="no_installed_modules">There isn\'t any installed module!</string>
     <string name="no_backup_found">No backup found</string>
     <string name="no_enabled_modules">There is any modules enabled</string>
-
-    <string name="download_view_size">Size: %s KB</string>
     <string name="share">Share with…</string>
     <string name="permissionNotGranted">This feature will not work without permission to write external storage.</string>
-
-    <string name="notify_module_update">Enable module update notification</string>
-
-    <string name="scroll_top">Scroll to top</string>
     <string name="add_bookmark">Add bookmark</string>
     <string name="remove_bookmark">Remove bookmark</string>
     <string name="bookmarks">Bookmarks</string>
@@ -206,31 +217,12 @@
     <string name="bookmark_added">Bookmark added</string>
     <string name="bookmark_removed">Bookmark removed</string>
     <string name="undo">Undo</string>
-
     <string name="file_is_empty">File is empty</string>
-
     <string name="install_remove">Install and remove</string>
     <string name="download_remove">Download and remove</string>
     <string name="module_saved">Module saved at %1$s</string>
-
-    <string name="reboot_recovery">Reboot to recovery</string>
     <string name="loading">Loading…</string>
-    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
-    <string name="chrome_custom_tabs_summ">Open links in internal browser</string>
-    <string name="scroll_bottom">Scroll to bottom</string>
-    <string name="open_drawer_summ">Open automatically the navigation drawer at startup</string>
-    <string name="open_drawer">Open automatically navigation drawer</string>
-    <string name="status">Xposed Status</string>
-    <string name="xposed_on_next_reboot">Xposed Framework will be enabled on next reboot</string>
-    <string name="xposed_off_next_reboot">Xposed Framework will be disabled on next reboot</string>
-
-    <string name="skip_xposedminversion_check">Skip \'xposedminversion\' check</string>
-    <string name="skip_xposedminversion_check_summ">Skip \'xposedminversion\' check for modules</string>
-
-    <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="save">Save</string>
     <string name="update_download_list">Pulldown to refresh download\'s module list</string>
-    <string name="download_location">Download location</string>
-    <string name="download_location_summ">Download location for APK files (modules only)</string>
 
 </resources>

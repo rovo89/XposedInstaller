@@ -141,13 +141,6 @@
     <string name="repo_download_failed">डोव्न्लॉदिङ्ग फ़ैल %1$s फ़ैल %2$s</string>
     <string name="repo_load_failed">इस रिपॉजिटरी से रिसोर्सेज लोड ना कर पाए %1$s:\n%2$s</string>
 
-
-
-
-
-
-
-
-
+    <!-- Most of these belong to currently hidden features -->
 
 </resources>

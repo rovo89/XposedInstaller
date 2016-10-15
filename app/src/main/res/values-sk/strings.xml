@@ -26,6 +26,7 @@
     <string name="uninstall">Odinštalovať</string>
     <string name="soft_reboot">Softvérový reštart</string>
     <string name="reboot">Reštart</string>
+    <string name="reboot_recovery">Reštartovať do recovery</string>
     <string name="reboot_failed">Reštart zlyhal. Prosím, použite normálnu funkciu zariadenia pre reštart.</string>
     <string name="auto_flash_note">%s by mal byť automaticky flashnutý hneď, ako stlačíte tlačidlo \"OK\".</string>
     <string name="reboot_confirmation">Chcete reštartovať zariadenie teraz?</string>
@@ -36,6 +37,9 @@
     <string name="framework_active">Xposed Framework verzia %s je aktívny.</string>
     <string name="framework_not_active">Xposed Framework verzia %s je nainštalovaný, ale nie je aktívny. Prosím, skontrolujte záznamy pre viac informácií.</string>
     <string name="framework_not_installed">Xposed Framework nie je nainštalovaný.</string>
+    <string name="status">Stav Xposed</string>
+    <string name="xposed_on_next_reboot">Xposed Framework bude povolený pri nasledujúcom reštarte</string>
+    <string name="xposed_off_next_reboot">Xposed Framework bude zakázaný pri nasledujúcom reštarte</string>
 
     <!-- File operations -->
     <string name="root_failed">Nepodarilo sa získať root prístup.\n\nUistite sa, že je zariadenie správne rootnuté a príkazy konzoly nie sú blokované.</string>
@@ -114,6 +118,13 @@
     <string name="settings_theme_dark">Tmavá</string>
     <string name="settings_theme_black">Čierna (vhodná pre AMOLED displeje)</string>
     <string name="settings_default_view">Predvolené zobrazenie</string>
+    <string name="open_drawer_summ">Otvoriť navigačné menu po spustení aplikácie</string>
+    <string name="open_drawer">Automaticky otvoriť navigačné menu</string>
+    <string name="skip_xposedminversion_check">Preskočiť \'xposedminversion\' kontrolu</string>
+    <string name="skip_xposedminversion_check_summ">Preskočiť \'xposedminversion\' kontrolu pre moduly</string>
+    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs_summ">Otvoriť odkazy v internom prehliadači</string>
+    <string name="notify_module_update">Povoliť upozornenie na aktualizáciu modulu</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Podpora pre moduly</string>
@@ -130,6 +141,8 @@
     <string name="logs_cleared">Záznam bol úspešne vymazaný</string>
     <string name="logs_clear_failed">Nemožno vymazať záznam:</string>
     <string name="log_is_empty">Záznam je prázdny</string>
+    <string name="scroll_top">Prejsť hore</string>
+    <string name="scroll_bottom">Prejsť dole</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Hlavní vývojári</string>
@@ -161,6 +174,7 @@
     <string name="repo_download_failed">Sťahovanie %1$s zlyhalo: %2$s</string>
     <string name="repo_load_failed">Nemožno načítať z repozitára %1$s:\n%2$s</string>
 
+    <!-- Most of these belong to currently hidden features -->
     <string name="warning_installed_on_external_storage">Tento modul nemôže byť načítaný, pretože je nainštalovaný na karte SD, prosím, presuňte ho do interného úložiska.</string>
     <string name="view">ZOBRAZIŤ</string>
     <string name="export_">Export…</string>
@@ -172,13 +186,8 @@
     <string name="no_installed_modules">Nie je nainštalovaný žiadny modul!</string>
     <string name="no_backup_found">Záloha nenájdená</string>
     <string name="no_enabled_modules">Nie sú povolené žiadne moduly</string>
-
     <string name="share">Zdieľať…</string>
     <string name="permissionNotGranted">Táto funkcia nebude fungovať bez povolenia zapisovať na externé úložisko.</string>
-
-    <string name="notify_module_update">Povoliť upozornenie na aktualizáciu modulu</string>
-
-    <string name="scroll_top">Prejsť hore</string>
     <string name="add_bookmark">Pridať záložku</string>
     <string name="remove_bookmark">Odstrániť záložku</string>
     <string name="bookmarks">Záložky</string>
@@ -186,26 +195,10 @@
     <string name="bookmark_added">Záložka pridaná</string>
     <string name="bookmark_removed">Záložka odstránená</string>
     <string name="undo">Späť</string>
-
     <string name="file_is_empty">Súbor je prázdny</string>
-
     <string name="install_remove">Nainštalovať a odstrániť</string>
     <string name="download_remove">Stiahnuť a odstrániť</string>
     <string name="module_saved">Modul uložený %1$s</string>
-
-    <string name="reboot_recovery">Reštartovať do recovery</string>
     <string name="loading">Načítavanie…</string>
-    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
-    <string name="chrome_custom_tabs_summ">Otvoriť odkazy v internom prehliadači</string>
-    <string name="scroll_bottom">Prejsť dole</string>
-    <string name="open_drawer_summ">Otvoriť navigačné menu po spustení aplikácie</string>
-    <string name="open_drawer">Automaticky otvoriť navigačné menu</string>
-    <string name="status">Stav Xposed</string>
-    <string name="xposed_on_next_reboot">Xposed Framework bude povolený pri nasledujúcom reštarte</string>
-    <string name="xposed_off_next_reboot">Xposed Framework bude zakázaný pri nasledujúcom reštarte</string>
-
-    <string name="skip_xposedminversion_check">Preskočiť \'xposedminversion\' kontrolu</string>
-    <string name="skip_xposedminversion_check_summ">Preskočiť \'xposedminversion\' kontrolu pre moduly</string>
-
 
 </resources>

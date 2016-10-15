@@ -6,5 +6,6 @@
     <string name="support_donate_url" translatable="false">http://repo.xposed.info/donate</string>
     <string name="about_source" translatable="false">https://github.com/rovo89</string>
     <string name="about_support" translatable="false">http://forum.xda-developers.com/xposed</string>
+    <string name="android_sdk" translatable="false">Android %1$s %2$s (API %3$d)</string>
 
 </resources>

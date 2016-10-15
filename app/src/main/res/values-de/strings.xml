@@ -26,6 +26,7 @@
     <string name="uninstall">Deinstallieren</string>
     <string name="soft_reboot">Software-Neustart</string>
     <string name="reboot">Geräte-Neustart</string>
+    <string name="reboot_recovery">Neustart ins Recovery</string>
     <string name="reboot_failed">Neustart fehlgeschlagen. Bitte verwende die normale Neustartfunktion des Geräts.</string>
     <string name="auto_flash_note">%s sollte automatisch installiert werden, sobald du "OK" drückst.</string>
     <string name="reboot_confirmation">Möchtest du jetzt neustarten?</string>
@@ -36,6 +37,9 @@
     <string name="framework_active">Xposed-Framework Version %s ist aktiv.</string>
     <string name="framework_not_active">Xposed-Framework Version %s ist installiert, aber nicht aktiv. Bitte schaue in den Logs nach Details.</string>
     <string name="framework_not_installed">Xposed-Framework ist nicht installiert.</string>
+    <string name="status">Xposed Status</string>
+    <string name="xposed_on_next_reboot">Xposed-Framework wird aktiviert beim nächsten Neustart</string>
+    <string name="xposed_off_next_reboot">Xposed-Framework wird deaktiviert beim nächsten Neustart</string>
 
     <!-- File operations -->
     <string name="root_failed">Root-Zugriff fehlgeschlagen\n\nStelle sicher, dass das Gerät korrekt gerootet ist und Shell-Kommandos nicht blockiert werden.</string>
@@ -114,6 +118,11 @@
     <string name="settings_theme_dark">Dunkel</string>
     <string name="settings_theme_black">Schwarz (nützlich für AMOLED-Bildschirme)</string>
     <string name="settings_default_view">Ansicht beim Start</string>
+    <string name="open_drawer_summ">Beim Start automatisch das Navigations-Menü öffnen</string>
+    <string name="open_drawer">Öffne Navigations-Menü</string>
+    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs_summ">Öffne Links im internen Browser</string>
+    <string name="notify_module_update">Bei Modul-Aktualisierungen benachrichtigen</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Support für Module</string>
@@ -130,6 +139,8 @@
     <string name="logs_cleared">Log wurde geleert</string>
     <string name="logs_clear_failed">Konnte Log nicht leeren:</string>
     <string name="log_is_empty">Log ist leer</string>
+    <string name="scroll_top">Scrolle zum Anfang</string>
+    <string name="scroll_bottom">Scrolle zum Ende</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Hauptentwickler</string>
@@ -161,6 +172,7 @@
     <string name="repo_download_failed">Herunterladen von %1$s fehlgeschlagen: %2$s</string>
     <string name="repo_load_failed">Verzeichnis konnte nicht geladen werden von %1$s:\n%2$s</string>
 
+    <!-- Most of these belong to currently hidden features -->
     <string name="warning_installed_on_external_storage">Dieses Modul kann nicht geladen werden, da es auf der SD-Karte installiert ist. Bitte verschiebe es auf den Internen Speicher.</string>
     <string name="view">Ansicht</string>
     <string name="export_">Export…</string>
@@ -172,13 +184,8 @@
     <string name="no_installed_modules">Es ist kein Modul installiert!</string>
     <string name="no_backup_found">Keine Sicherung gefunden</string>
     <string name="no_enabled_modules">Es ist kein Modul aktiviert!</string>
-
     <string name="share">Teilen</string>
     <string name="permissionNotGranted">Diese Funktion funktioniert nur mit der Zugriffs-Berechtigung auf den Speicher.</string>
-
-    <string name="notify_module_update">Bei Modul-Aktualisierungen benachrichtigen</string>
-
-    <string name="scroll_top">Scrolle zum Anfang</string>
     <string name="add_bookmark">Zu Favoriten</string>
     <string name="remove_bookmark">Entferne Favorit</string>
     <string name="bookmarks">Favoriten</string>
@@ -186,24 +193,10 @@
     <string name="bookmark_added">Als Favorit hinzugefügt</string>
     <string name="bookmark_removed">Von Favoriten entfernt</string>
     <string name="undo">Rückgängig</string>
-
     <string name="file_is_empty">Datei ist leer</string>
-
     <string name="install_remove">Installieren und entfernen</string>
     <string name="download_remove">Laden und entfernen</string>
     <string name="module_saved">Modul gespeichert unter %1$s</string>
-
-    <string name="reboot_recovery">Neustart ins Recovery</string>
     <string name="loading">Lädt…</string>
-    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
-    <string name="chrome_custom_tabs_summ">Öffne Links im internen Browser</string>
-    <string name="scroll_bottom">Scrolle zum Ende</string>
-    <string name="open_drawer_summ">Beim Start automatisch das Navigations-Menü öffnen</string>
-    <string name="open_drawer">Öffne Navigations-Menü</string>
-    <string name="status">Xposed Status</string>
-    <string name="xposed_on_next_reboot">Xposed-Framework wird aktiviert beim nächsten Neustart</string>
-    <string name="xposed_off_next_reboot">Xposed-Framework wird deaktiviert beim nächsten Neustart</string>
-
-
 
 </resources>

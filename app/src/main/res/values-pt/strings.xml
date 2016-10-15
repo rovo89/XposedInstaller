@@ -26,6 +26,7 @@
     <string name="uninstall">Desinstalar</string>
     <string name="soft_reboot">Reinício suave</string>
     <string name="reboot">Reiniciar</string>
+    <string name="reboot_recovery">Reiniciar para a \"Recovery\"</string>
     <string name="reboot_failed">Falha ao reiniciar. Por favor reinicie o seu aparelho utilizando o menu nativo do sistema.</string>
     <string name="auto_flash_note">%s será \"flashado\" assim que pressionar \"OK\".</string>
     <string name="reboot_confirmation">Pretende reiniciar?</string>
@@ -114,6 +115,9 @@
     <string name="settings_theme_dark">Escuro</string>
     <string name="settings_theme_black">Preto (recomendado para ecrãs AMOLED)</string>
     <string name="settings_default_view">Vista padrão</string>
+    <string name="chrome_custom_tabs">Separadores do Chrome Personalizados</string>
+    <string name="chrome_custom_tabs_summ">Abrir links pelo navegador interno</string>
+    <string name="notify_module_update">Ativar a notificação de atualização de módulo</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Suporte para módulos</string>
@@ -130,6 +134,7 @@
     <string name="logs_cleared">Limpeza efetuada com sucesso</string>
     <string name="logs_clear_failed">Não foi possível limpar o registo:</string>
     <string name="log_is_empty">O registo está vazio</string>
+    <string name="scroll_top">Voltar ao topo</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Programadores principais:</string>
@@ -161,6 +166,7 @@
     <string name="repo_download_failed">Falha ao descarregar %1$s: %2$s</string>
     <string name="repo_load_failed">Não foi possível carregar o repositório a partir de %1$s:\n%2$s</string>
 
+    <!-- Most of these belong to currently hidden features -->
     <string name="warning_installed_on_external_storage">Este módulo não pode ser carregado pois está instalado no cartão SD. Mova-o para a memória interna, por favor.</string>
     <string name="view">VER</string>
     <string name="export_">Exportar…</string>
@@ -172,13 +178,8 @@
     <string name="no_installed_modules">Não existem módulos instalados!</string>
     <string name="no_backup_found">Não foi encontrado nenhum \"backup\"</string>
     <string name="no_enabled_modules">Não existem módulos ativos</string>
-
     <string name="share">Partilhar com…</string>
     <string name="permissionNotGranted">Esta funcionalidade não funcionará sem a permissão de escrita para o cartão SD.</string>
-
-    <string name="notify_module_update">Ativar a notificação de atualização de módulo</string>
-
-    <string name="scroll_top">Voltar ao topo</string>
     <string name="add_bookmark">Adicionar marcador</string>
     <string name="remove_bookmark">Remover marcador</string>
     <string name="bookmarks">Marcadores</string>
@@ -186,18 +187,10 @@
     <string name="bookmark_added">Marcador adicionado</string>
     <string name="bookmark_removed">Marcador removido</string>
     <string name="undo">Reverter</string>
-
     <string name="file_is_empty">O ficheiro está vazio</string>
-
     <string name="install_remove">Instalar e remover</string>
     <string name="download_remove">Descarregar e remover</string>
     <string name="module_saved">Módulo guardado em %1$s</string>
-
-    <string name="reboot_recovery">Reiniciar para a \"Recovery\"</string>
     <string name="loading">A carregar…</string>
-    <string name="chrome_custom_tabs">Separadores do Chrome Personalizados</string>
-    <string name="chrome_custom_tabs_summ">Abrir links pelo navegador interno</string>
-
-
 
 </resources>

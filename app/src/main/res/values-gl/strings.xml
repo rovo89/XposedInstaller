@@ -86,13 +86,6 @@
     <string name="repo_download_failed">Descargando %1$s fallido: %2$s</string>
     <string name="repo_load_failed">Non se puido cargar o repositorio do %1$s:\n%2$s</string>
 
-
-
-
-
-
-
-
-
+    <!-- Most of these belong to currently hidden features -->
 
 </resources>

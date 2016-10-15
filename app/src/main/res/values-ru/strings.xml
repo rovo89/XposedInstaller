@@ -26,6 +26,7 @@
     <string name="uninstall">Удалить</string>
     <string name="soft_reboot">Быстрая перезагрузка</string>
     <string name="reboot">Полная перезагрузка</string>
+    <string name="reboot_recovery">Перезагрузить в Recovery</string>
     <string name="reboot_failed">Сбой перезагрузки. Пожалуйста, используйте встроенную функцию перезагрузки на устройстве.</string>
     <string name="auto_flash_note">%s будет прошита автоматически при нажатии "OK".</string>
     <string name="reboot_confirmation">Хотите перезагрузить устройство сейчас?</string>
@@ -36,6 +37,9 @@
     <string name="framework_active">Xposed Framework версии %s активирован!</string>
     <string name="framework_not_active">Xposed Framework версия %s установлена, но не активирована. Пожалуйста проверьте логи.</string>
     <string name="framework_not_installed">Xposed Framework не установлен.</string>
+    <string name="status">Состояние Xposed</string>
+    <string name="xposed_on_next_reboot">Xposed Framework будет включен после перезагрузки</string>
+    <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>
 
     <!-- File operations -->
     <string name="root_failed">"Сбой получения прав рут-доступа.\n\nУбедитесь, что на устройстве есть рут и команды оболочки не блокируются."</string>
@@ -114,6 +118,13 @@
     <string name="settings_theme_dark">Material темная</string>
     <string name="settings_theme_black">Material черная (полезно для AMOLED экранов)</string>
     <string name="settings_default_view">Вид по умолчанию при запуске</string>
+    <string name="open_drawer_summ">Автоматически открывать боковое меню при запуске</string>
+    <string name="open_drawer">Автоматически открыть боковое меню</string>
+    <string name="skip_xposedminversion_check">Пропускать проверку \'Xposed мин. версии\'</string>
+    <string name="skip_xposedminversion_check_summ">Пропустить \'Xposed мин. версии\' проверку модулей</string>
+    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs_summ">Открытие ссылок внутри приложения</string>
+    <string name="notify_module_update">Включить уведомления об обновлении модулей</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Поддержка модулей</string>
@@ -130,6 +141,8 @@
     <string name="logs_cleared">Логи успешно очищены</string>
     <string name="logs_clear_failed">Невозможно очистить логи:</string>
     <string name="log_is_empty">Список логов пуст</string>
+    <string name="scroll_top">Прокрутка вверх</string>
+    <string name="scroll_bottom">Прокрутка вниз</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Главные разработчики</string>
@@ -161,6 +174,7 @@
     <string name="repo_download_failed">Загрузка %1$s прервана: %2$s</string>
     <string name="repo_load_failed">Не могу загрузить репозиторий %1$s:\n%2$s</string>
 
+    <!-- Most of these belong to currently hidden features -->
     <string name="warning_installed_on_external_storage">Этот модуль не может быть загружен, потому что он установлен на SD-карту, переместите его во внутреннюю память.</string>
     <string name="view">Смотреть</string>
     <string name="export_">Экспорт модулей</string>
@@ -172,13 +186,8 @@
     <string name="no_installed_modules">Установленных модулей нет!</string>
     <string name="no_backup_found">Резервные копии не найдены</string>
     <string name="no_enabled_modules">Нет включенных модулей</string>
-
     <string name="share">Поделиться</string>
     <string name="permissionNotGranted">Эта функция не будет работать без разрешения на запись для накопителя.</string>
-
-    <string name="notify_module_update">Включить уведомления об обновлении модулей</string>
-
-    <string name="scroll_top">Прокрутка вверх</string>
     <string name="add_bookmark">Добавить закладку</string>
     <string name="remove_bookmark">Удалить закладку</string>
     <string name="bookmarks">Закладки</string>
@@ -186,26 +195,10 @@
     <string name="bookmark_added">Закладка добавлена</string>
     <string name="bookmark_removed">Закладка удалена</string>
     <string name="undo">Отменить</string>
-
     <string name="file_is_empty">Файлов нет</string>
-
     <string name="install_remove">Установить и удалить</string>
     <string name="download_remove">Скачать и удалить</string>
     <string name="module_saved">Модуль сохранен в %1$s</string>
-
-    <string name="reboot_recovery">Перезагрузить в Recovery</string>
     <string name="loading">Загрузка…</string>
-    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
-    <string name="chrome_custom_tabs_summ">Открытие ссылок внутри приложения</string>
-    <string name="scroll_bottom">Прокрутка вниз</string>
-    <string name="open_drawer_summ">Автоматически открывать боковое меню при запуске</string>
-    <string name="open_drawer">Автоматически открыть боковое меню</string>
-    <string name="status">Состояние Xposed</string>
-    <string name="xposed_on_next_reboot">Xposed Framework будет включен после перезагрузки</string>
-    <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>
-
-    <string name="skip_xposedminversion_check">Пропускать проверку \'Xposed мин. версии\'</string>
-    <string name="skip_xposedminversion_check_summ">Пропустить \'Xposed мин. версии\' проверку модулей</string>
-
 
 </resources>

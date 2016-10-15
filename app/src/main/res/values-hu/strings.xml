@@ -141,13 +141,6 @@
     <string name="repo_download_failed">%1$s letöltése sikertelen: %2$s</string>
     <string name="repo_load_failed">Nem lehet betölteni a gyűjteményt %1$s-ról:\n%2$s</string>
 
-
-
-
-
-
-
-
-
+    <!-- Most of these belong to currently hidden features -->
 
 </resources>
