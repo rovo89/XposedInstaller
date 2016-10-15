@@ -26,6 +26,7 @@
     <string name="uninstall">Uninstall</string>
     <string name="soft_reboot">Soft reboot</string>
     <string name="reboot">Reboot</string>
+    <string name="not_now">Not now</string>
     <string name="reboot_failed">Reboot failed. Please use the device\'s normal reboot function.</string>
     <string name="auto_flash_note">%s should be flashed automatically once you press "OK".</string>
     <string name="reboot_confirmation">Do you want to reboot now?</string>
@@ -36,6 +37,14 @@
     <string name="framework_active">Xposed Framework version %s is active.</string>
     <string name="framework_not_active">Xposed Framework version %s is installed, but not active. Please check the logs for details.</string>
     <string name="framework_not_installed">Xposed Framework is not installed.</string>
+    <string name="countdown">%1$s (%2$d)</string>
+    <string name="flash_error_timeout">Timeout occurred</string>
+    <string name="flash_error_shell_died">Execution aborted unexpectedly</string>
+    <string name="flash_error_invalid_zip">Not a flashable ZIP file</string>
+    <string name="flash_error_not_flashable_in_app">This file can only be flashed via recovery</string>
+    <string name="flash_error_default">Error %d occurred</string>
+    <string name="show_outdated">Show outdated</string>
+    <string name="framework_device_info">Your device</string>
 
     <!-- File operations -->
     <string name="root_failed">Failed to get root access.\n\nMake sure your device is rooted properly and you have not blocked shell commands.</string>

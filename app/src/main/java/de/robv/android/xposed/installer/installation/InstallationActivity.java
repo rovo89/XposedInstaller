@@ -11,6 +11,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
@@ -247,8 +248,7 @@ public class InstallationActivity extends XposedBaseActivity {
                     countdownButton.setDuration(REBOOT_COUNTDOWN);
                     countdownButton.setInterpolator(new LinearInterpolator());
 
-                    // TODO extract to string resources
-                    final String format = "%1$s (%2$d)";
+                    final String format = getString(R.string.countdown);
                     final RootUtil.RebootMode rebootMode = mFlashable.getRebootMode();
                     final String action = getString(rebootMode.titleRes);
                     mBtnReboot.setText(String.format(format, action, REBOOT_COUNTDOWN / 1000));
@@ -345,14 +345,13 @@ public class InstallationActivity extends XposedBaseActivity {
 
         @SuppressLint("SetTextI18n")
         private void appendText(String text, int type) {
-            // TODO colors should probably be defined in resources
             int color;
             switch (type) {
                 case TYPE_ERROR:
-                    color = 0xFFF44336;
+                    color = ContextCompat.getColor(getActivity(), R.color.red_500);
                     break;
                 case TYPE_OK:
-                    color = 0xFF4CAF50;
+                    color = ContextCompat.getColor(getActivity(), R.color.darker_green);
                     break;
                 default:
                     mLogText.append(text);

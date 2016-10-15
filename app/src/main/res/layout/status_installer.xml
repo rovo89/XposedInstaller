@@ -126,7 +126,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="6dp"
-                            android:text="ROM"
+                            android:text="@string/framework_device_info"
                             android:textAllCaps="true"
                             android:textStyle="bold"/>
 

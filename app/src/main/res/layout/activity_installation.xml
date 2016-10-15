@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/progressBar"
             android:layout_toLeftOf="@+id/reboot"
-            android:text="Not now"
+            android:text="@string/not_now"
             android:textColor="?android:attr/textColorSecondary"
             android:visibility="gone"
             tools:visibility="visible"/>

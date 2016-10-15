@@ -1,5 +1,6 @@
 package de.robv.android.xposed.installer.util;
 
+import android.content.Context;
 import android.os.Build;
 
 import java.io.BufferedReader;
@@ -113,29 +114,29 @@ public final class InstallZipUtil {
     }
 
     public static String messageForError(int code, Object... args) {
-        // TODO make translatable
+        Context context = XposedApp.getInstance();
         switch (code) {
             case FlashCallback.ERROR_TIMEOUT:
-                return "Timeout occured";
+                return context.getString(R.string.flash_error_timeout);
 
             case FlashCallback.ERROR_SHELL_DIED:
-                return "Execution aborted unexpectedly";
+                return context.getString(R.string.flash_error_shell_died);
 
             case FlashCallback.ERROR_NO_ROOT_ACCESS:
-                return XposedApp.getInstance().getString(R.string.root_failed);
+                return context.getString(R.string.root_failed);
 
             case FlashCallback.ERROR_INVALID_ZIP:
+                String message = context.getString(R.string.flash_error_invalid_zip);
                 if (args.length > 0) {
-                    return "Not a flashable ZIP file" + "\n" + args[0];
-                } else {
-                    return "Not a flashable ZIP file";
+                    message += "\n" + args[0];
                 }
+                return message;
 
             case FlashCallback.ERROR_NOT_FLASHABLE_IN_APP:
-                return "This file can only be flashed via recovery";
+                return context.getString(R.string.flash_error_not_flashable_in_app);
 
             default:
-                return "Error " + code + " occurred";
+                return context.getString(R.string.flash_error_default, code);
         }
     }
 
