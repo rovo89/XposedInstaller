@@ -22,9 +22,9 @@
     <string name="module_no_ui">هذه الوحدة النمطية لا توفر واجهة المستخدم</string>
     <string name="no_xposed_modules_found">لم يتم العثور على أية وحدات إكسبوسيد!</string>
     <string name="xposed_module_list_updated">"تم تحديث قائمة الوحدة النمطية إكسبوسيد التغييرات سوف تصبح نشطة على إعادة التشغيل"</string>
-    <string name="warning_xposed_min_version">هذه الوحدة يتطلب إصدار أحدث XposedBridge (%d) وبالتالي لا يمكن تفعيلها.</string>
+    <string name="warning_xposed_min_version">هذه الوحدة يتطلب إصدار أحدث Xposed (%d) وبالتالي لا يمكن تفعيلها.</string>
     <string name="no_min_version_specified">لا تحدد هذه الوحدة النمطية إصدار إكسبوسيدبريدجي يحتاج إليها.</string>
-    <string name="warning_min_version_too_low">تم إنشاء هذه الوحدة لإصدار XposedBridge %1$d, ولكن نظرا للتغيرات غير متوافقة في الإصدار %2$d, فقد تم تعطيله.</string>
+    <string name="warning_min_version_too_low">تم إنشاء هذه الوحدة لإصدار Xposed %1$d, ولكن نظرا للتغيرات غير متوافقة في الإصدار %2$d, فقد تم تعطيله.</string>
     <string name="module_launch">بدء تشغيل واجهة المستخدم</string>
     <string name="module_download_updates">تحميل/تحديث</string>
     <string name="module_support">الدعم</string>

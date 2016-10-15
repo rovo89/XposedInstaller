@@ -46,8 +46,8 @@
     <string name="xposed_module_updated_notification_title">Xposed modülü güncellendi</string>
     <string name="xposed_module_updated_notification">Değişiklikleri etkinleştirmek için yeniden başlatın</string>
     <string name="warning_xposed_min_version">Bu modül yeni bir Xposed sürümü (%d) gerektirir ve aktive edilemez..</string>
-    <string name="no_min_version_specified">Bu modül ihtiyacı olan XposedBridge sürümünü belirtmez.</string>
-    <string name="warning_min_version_too_low">Bu modül XposedBridge sürüm %1$d, için oluşturuldu, ancak bu sürüm ile uyumsuz değişiklikler var, %2$d, Bu yüzden evre dışı bırakıldı..</string>
+    <string name="no_min_version_specified">Bu modül ihtiyacı olan Xposed sürümünü belirtmez.</string>
+    <string name="warning_min_version_too_low">Bu modül Xposed sürüm %1$d, için oluşturuldu, ancak bu sürüm ile uyumsuz değişiklikler var, %2$d, Bu yüzden evre dışı bırakıldı..</string>
     <string name="module_launch">UI Başlat</string>
     <string name="module_download_updates">ındir/Güncelle</string>
     <string name="module_support">Destek</string>

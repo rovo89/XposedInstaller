@@ -55,9 +55,9 @@
     <string name="no_xposed_modules_found">未找到 Xposed 模块！</string>
     <string name="xposed_module_updated_notification_title">Xposed 模块已更新</string>
     <string name="xposed_module_updated_notification">重启设备以激活更新。</string>
-    <string name="warning_xposed_min_version">该模块需要 XposedBridge 新版（%d），因此无法激活。</string>
-    <string name="no_min_version_specified">该模块未指定需要的 XposedBridge 版本。</string>
-    <string name="warning_min_version_too_low">该模块在 XposedBridge %1$d 版下创建，但因为不兼容 %2$d 版中的更改，它已被禁用。</string>
+    <string name="warning_xposed_min_version">该模块需要 Xposed 新版（%d），因此无法激活。</string>
+    <string name="no_min_version_specified">该模块未指定需要的 Xposed 版本。</string>
+    <string name="warning_min_version_too_low">该模块在 Xposed %1$d 版下创建，但因为不兼容 %2$d 版中的更改，它已被禁用。</string>
     <string name="module_launch">开启用户界面</string>
     <string name="module_download_updates">下载/更新</string>
     <string name="module_support">支持</string>

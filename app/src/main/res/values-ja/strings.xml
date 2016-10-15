@@ -58,9 +58,9 @@
     <string name="xposed_module_list_updated">Xposedモジュールが更新されました。\n変更は再起動後に反映されます。</string>
     <string name="xposed_module_updated_notification_title">Xposedモジュールが更新されました</string>
     <string name="xposed_module_updated_notification">変更を有効化するには再起動してください。</string>
-    <string name="warning_xposed_min_version">このモジュールは新しいバージョンのXposedBridge （%d）が必要なので有効化できません。</string>
-    <string name="no_min_version_specified">このモジュールは必要なXposedBridgeバージョンを指定していません。</string>
-    <string name="warning_min_version_too_low">このモジュールはXposedBridgeバージョン%1$d向けに作成されましたが、 バージョン%2$dとは互換性がないので無効化されました。</string>
+    <string name="warning_xposed_min_version">このモジュールは新しいバージョンのXposed （%d）が必要なので有効化できません。</string>
+    <string name="no_min_version_specified">このモジュールは必要なXposedバージョンを指定していません。</string>
+    <string name="warning_min_version_too_low">このモジュールはXposedバージョン%1$d向けに作成されましたが、 バージョン%2$dとは互換性がないので無効化されました。</string>
     <string name="module_launch">UIを起動</string>
     <string name="module_download_updates">ダウンロード/更新</string>
     <string name="module_support">サポート</string>

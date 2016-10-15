@@ -45,9 +45,9 @@
     <string name="xposed_module_list_updated">רשימת המודולים עודכנה\nהשינויים יחולו לאחר הפעלה מחדש</string>
     <string name="xposed_module_updated_notification_title">מודול Xposed עודכן</string>
     <string name="xposed_module_updated_notification">הפעל מחדש בכדי לאפשר את השינויים</string>
-    <string name="warning_xposed_min_version">מודול זה דורש גרסה עדכנית יותר של סביבת XposedBridge (%d) ולכן לא ניתן להפעילו.</string>
-    <string name="no_min_version_specified">מודול זה אינו מספק את הגרסה של סביבת XposedBridge שהוא צריך.</string>
-    <string name="warning_min_version_too_low">מודול זה פותח עבור XposedBridge בגרסה %1$d, אבל בעקרבות שינויים בגרסה %2$d, הוא בוטל.</string>
+    <string name="warning_xposed_min_version">מודול זה דורש גרסה עדכנית יותר של סביבת Xposed (%d) ולכן לא ניתן להפעילו.</string>
+    <string name="no_min_version_specified">מודול זה אינו מספק את הגרסה של סביבת Xposed שהוא צריך.</string>
+    <string name="warning_min_version_too_low">מודול זה פותח עבור Xposed בגרסה %1$d, אבל בעקרבות שינויים בגרסה %2$d, הוא בוטל.</string>
     <string name="module_launch">פתח ממשק</string>
     <string name="module_download_updates">הורד/התקן</string>
     <string name="module_support">תמיכה</string>

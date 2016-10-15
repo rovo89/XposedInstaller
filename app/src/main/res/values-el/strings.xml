@@ -45,9 +45,9 @@
     <string name="xposed_module_list_updated">Η λίστα των Xposed modules ανανεώθηκε\nΟι αλλαγές θα γίνουν ενεργές στο reboot</string>
     <string name="xposed_module_updated_notification_title">Αναβάθμιση Xposed module</string>
     <string name="xposed_module_updated_notification">Reboot για ενεργοποίηση ρυθμίσεων</string>
-    <string name="warning_xposed_min_version">Αυτό το module απαιτεί μία νεότερη έκδοση του XposedBridge (%d) και γι\' αυτό δεν μπορεί να ενεργοποιηθεί.</string>
-    <string name="no_min_version_specified">Αυτό το module δεν καθορίζει την έκδοση του XposedBridge που χρειάζεται.</string>
-    <string name="warning_min_version_too_low">Αυτό το module δημιουργήθηκε για την έκδοση %1$d του XposedBridge, αλλά λόγω ασύμβατων αλλαγών στην έκδοση %2$d, έχει απενεργοποιηθεί.</string>
+    <string name="warning_xposed_min_version">Αυτό το module απαιτεί μία νεότερη έκδοση του Xposed (%d) και γι\' αυτό δεν μπορεί να ενεργοποιηθεί.</string>
+    <string name="no_min_version_specified">Αυτό το module δεν καθορίζει την έκδοση του Xposed που χρειάζεται.</string>
+    <string name="warning_min_version_too_low">Αυτό το module δημιουργήθηκε για την έκδοση %1$d του Xposed, αλλά λόγω ασύμβατων αλλαγών στην έκδοση %2$d, έχει απενεργοποιηθεί.</string>
     <string name="module_launch">Launch UI</string>
     <string name="module_download_updates">Κατέβασμα/Αναβαθμίσεις</string>
     <string name="module_support">Υποστήριξη</string>

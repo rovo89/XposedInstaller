@@ -25,9 +25,9 @@
     <string name="module_no_ui">이 모듈은 UI(사용자 환경)를 제공하지 않습니다.\n따라서 이 모듈은 활성화 하더라도 어플리케이션의 형태로 실행되어 화면에 출력되는 바는 없습니다.</string>
     <string name="no_xposed_modules_found">그 어떠한 Xposed 모듈도 찾을 수 없습니다.</string>
     <string name="xposed_module_list_updated">Xposed 모듈이 업데이트 되었습니다.\n변경 사항은 시스템을 <b>재시작</b> 해야 반영됩니다.</string>
-    <string name="warning_xposed_min_version">이 모듈은 새로운 XposedBridge이 요구되며 (%d) 이러한 이유로 활성화 될 수 없습니다.</string>
-    <string name="no_min_version_specified">이 모듈은 요구되는 최소한의 XposedBridge의 버전이 설정되지 않았습니다.</string>
-    <string name="warning_min_version_too_low">이 모듈은 XposedBridge 버전 %1$d에 맞춰 제작되었으나 XposedBridge 버전 %2$d에선 호환되지 않으므로 비활성화 됩니다.</string>
+    <string name="warning_xposed_min_version">이 모듈은 새로운 Xposed이 요구되며 (%d) 이러한 이유로 활성화 될 수 없습니다.</string>
+    <string name="no_min_version_specified">이 모듈은 요구되는 최소한의 Xposed의 버전이 설정되지 않았습니다.</string>
+    <string name="warning_min_version_too_low">이 모듈은 Xposed 버전 %1$d에 맞춰 제작되었으나 Xposed 버전 %2$d에선 호환되지 않으므로 비활성화 됩니다.</string>
     <string name="module_launch">모듈 실행</string>
     <string name="module_download_updates">내려받기 / 업데이트</string>
     <string name="module_support">지원</string>

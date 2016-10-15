@@ -25,9 +25,9 @@
     <string name="module_no_ui">Bu modul istifadəçi interfeysini təmin eləmir</string>
     <string name="no_xposed_modules_found">Xposed modulları tapılmadı!</string>
     <string name="xposed_module_list_updated">Xposed modul siyahısı yeniləndi\nDəyişikliklər yenidən başlamadan sonra aktiv olacaq</string>
-    <string name="warning_xposed_min_version">Bu modul ən axırıncı XposedBridge versiya (%d)\'sını tələb edir və bu aktiv oluna bilməz.</string>
-    <string name="no_min_version_specified">Bu modul lazım olan XposedBridge versiyasını təyin edə bilmir.</string>
-    <string name="warning_min_version_too_low">Bu modul XposedBridge versiya %1$d üçün yaradılıb, ancaq versiya %2$d\'ə uyğun gəlməyən dəyişiklikərə görə aradan qaldırıldı.</string>
+    <string name="warning_xposed_min_version">Bu modul ən axırıncı Xposed versiya (%d)\'sını tələb edir və bu aktiv oluna bilməz.</string>
+    <string name="no_min_version_specified">Bu modul lazım olan Xposed versiyasını təyin edə bilmir.</string>
+    <string name="warning_min_version_too_low">Bu modul Xposed versiya %1$d üçün yaradılıb, ancaq versiya %2$d\'ə uyğun gəlməyən dəyişiklikərə görə aradan qaldırıldı.</string>
     <string name="module_launch">Uİ\'ni başlat</string>
     <string name="module_download_updates">Yüklə/Yeniləmələr</string>
     <string name="module_support">Dəstək</string>

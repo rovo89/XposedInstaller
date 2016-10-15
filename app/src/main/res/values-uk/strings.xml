@@ -45,9 +45,9 @@
     <string name="xposed_module_list_updated">Перелік модулів Xposed було оновлено\nЗміни активуються після перезавантаження</string>
     <string name="xposed_module_updated_notification_title">Модуль Xposed оновлено</string>
     <string name="xposed_module_updated_notification">Для активації змін перезавантажтеся</string>
-    <string name="warning_xposed_min_version">Для цього модулю необхідно мати новішу версію XposedBridge (%d), тож його не можна активувати.</string>
-    <string name="no_min_version_specified">В цьому модулі не вказано необхідну для нього версію XposedBridge.</string>
-    <string name="warning_min_version_too_low">Цей модуль створений для XposedBridge версії %1$d, але через несумісні зміни у версії %2$d, його було деактивовано.</string>
+    <string name="warning_xposed_min_version">Для цього модулю необхідно мати новішу версію Xposed (%d), тож його не можна активувати.</string>
+    <string name="no_min_version_specified">В цьому модулі не вказано необхідну для нього версію Xposed.</string>
+    <string name="warning_min_version_too_low">Цей модуль створений для Xposed версії %1$d, але через несумісні зміни у версії %2$d, його було деактивовано.</string>
     <string name="module_launch">Запуск користувацького інтерфейсу</string>
     <string name="module_download_updates">Звантаження/Оновлення</string>
     <string name="module_support">Підтримка</string>

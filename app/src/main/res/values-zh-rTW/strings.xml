@@ -58,9 +58,9 @@
     <string name="xposed_module_list_updated">Xposed 模組清單已更新\n更改將於重新啟動後生效</string>
     <string name="xposed_module_updated_notification_title">Xposed 模組已更新</string>
     <string name="xposed_module_updated_notification">重新啟動以套用變更。</string>
-    <string name="warning_xposed_min_version">該模組需要較新版本的 XposedBridge (%d)，因此無法啟用。</string>
+    <string name="warning_xposed_min_version">該模組需要較新版本的 Xposed (%d)，因此無法啟用。</string>
     <string name="no_min_version_specified">該模組未指定 Xposed 版本需求。</string>
-    <string name="warning_min_version_too_low">該模組在 XposedBridge %1$d 版本下建立，但因為不相容 %2$d 版本中的變化內容，它已被停用。</string>
+    <string name="warning_min_version_too_low">該模組在 Xposed %1$d 版本下建立，但因為不相容 %2$d 版本中的變化內容，它已被停用。</string>
     <string name="module_launch">執行界面</string>
     <string name="module_download_updates">下載/更新</string>
     <string name="module_support">支援</string>

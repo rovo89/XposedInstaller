@@ -45,9 +45,9 @@
     <string name="xposed_module_list_updated">Xposed modul-liste var oppdatert\nEndringer vil bli aktivert etter restart</string>
     <string name="xposed_module_updated_notification_title">Xposed-modul er blitt oppdatert</string>
     <string name="xposed_module_updated_notification">Restart for å aktivere endringene</string>
-    <string name="warning_xposed_min_version">Denne modulen krever en nyere versjon av XposedBridge (%d) og kan dermed ikke aktiveres.</string>
-    <string name="no_min_version_specified">Denne modulen spesifiserer ikke hvilken versjon av XposedBridge den krever.</string>
-    <string name="warning_min_version_too_low">Denne modulen var laget for XposedBridge versjon %1$d, men grunnet uforenlige endringer i versjon %2$d, er den blitt deaktivert.</string>
+    <string name="warning_xposed_min_version">Denne modulen krever en nyere versjon av Xposed (%d) og kan dermed ikke aktiveres.</string>
+    <string name="no_min_version_specified">Denne modulen spesifiserer ikke hvilken versjon av Xposed den krever.</string>
+    <string name="warning_min_version_too_low">Denne modulen var laget for Xposed versjon %1$d, men grunnet uforenlige endringer i versjon %2$d, er den blitt deaktivert.</string>
     <string name="module_launch">Kjør UI</string>
     <string name="module_download_updates">Last ned/Oppdateringer</string>
     <string name="module_support">Støtte</string>

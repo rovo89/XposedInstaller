@@ -45,9 +45,9 @@
     <string name="xposed_module_list_updated">Списъка с Xposed модули е обновен\nПромените ще бъдат активни след рестарт</string>
     <string name="xposed_module_updated_notification_title">Обновен е Xposed модул</string>
     <string name="xposed_module_updated_notification">Рестартирай за прилагана на промените</string>
-    <string name="warning_xposed_min_version">Този модул изисква най-новият XposedBridge версия (%d) и не може да се активира.</string>
-    <string name="no_min_version_specified">Този модул не указва нужната версия на XposedBridge.</string>
-    <string name="warning_min_version_too_low">Този модул е създаден за XposedBridge версия %1$d, но поради несъвместимост с версия %2$d, е изключен.</string>
+    <string name="warning_xposed_min_version">Този модул изисква най-новият Xposed версия (%d) и не може да се активира.</string>
+    <string name="no_min_version_specified">Този модул не указва нужната версия на Xposed.</string>
+    <string name="warning_min_version_too_low">Този модул е създаден за Xposed версия %1$d, но поради несъвместимост с версия %2$d, е изключен.</string>
     <string name="module_launch">Стартирай UI</string>
     <string name="module_download_updates">Изтегляне/Обновяване</string>
     <string name="module_support">Поддръжка</string>

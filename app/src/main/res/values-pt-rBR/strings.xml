@@ -58,9 +58,9 @@
     <string name="xposed_module_list_updated">A lista de módulos foi atualizada\nAs alterações terão efeito ao reiniciar</string>
     <string name="xposed_module_updated_notification_title">Módulo atualizado</string>
     <string name="xposed_module_updated_notification">Reinicie para efetivar as mudanças</string>
-    <string name="warning_xposed_min_version">Este módulo requer uma nova versão do XposedBridge (%d) e não pode ser ativado.</string>
-    <string name="no_min_version_specified">Este módulo não especificou qual versão do XposedBridge precisa.</string>
-    <string name="warning_min_version_too_low">Este módulo foi criado para a versão %1$d do XposedBridge, mas devido à alterações incompatíveis na versão %2$d, foi desabilitado.</string>
+    <string name="warning_xposed_min_version">Este módulo requer uma nova versão do Xposed (%d) e não pode ser ativado.</string>
+    <string name="no_min_version_specified">Este módulo não especificou qual versão do Xposed precisa.</string>
+    <string name="warning_min_version_too_low">Este módulo foi criado para a versão %1$d do Xposed, mas devido à alterações incompatíveis na versão %2$d, foi desabilitado.</string>
     <string name="module_launch">Abrir interface de usuário</string>
     <string name="module_download_updates">Baixar/Atualizar</string>
     <string name="module_support">Ajuda</string>

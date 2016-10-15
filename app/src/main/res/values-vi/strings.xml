@@ -45,9 +45,9 @@
     <string name="xposed_module_list_updated">Danh sách module đã được cập nhật\nCác thay đổi sẽ có hiệu lực sau khi khởi động lại</string>
     <string name="xposed_module_updated_notification_title">Module của Xposed đã được cập nhật</string>
     <string name="xposed_module_updated_notification">Khởi động lại để áp dụng ác thay đổi</string>
-    <string name="warning_xposed_min_version">Module này cần bản XposedBridge mới (%d) nên hiện tại không thể bật.</string>
-    <string name="no_min_version_specified">Module này không yêu cầu cụ thể phiên bản XposedBridge nào.</string>
-    <string name="warning_min_version_too_low">Module này được viết cho XposedBridge bản %1$d, nhưng do không tương thích với các thay đổi trong bản %2$d, nên đã bị tắt.</string>
+    <string name="warning_xposed_min_version">Module này cần bản Xposed mới (%d) nên hiện tại không thể bật.</string>
+    <string name="no_min_version_specified">Module này không yêu cầu cụ thể phiên bản Xposed nào.</string>
+    <string name="warning_min_version_too_low">Module này được viết cho Xposed bản %1$d, nhưng do không tương thích với các thay đổi trong bản %2$d, nên đã bị tắt.</string>
     <string name="module_launch">Mở giao diện</string>
     <string name="module_download_updates">Tải xuống/Cập nhật</string>
     <string name="module_support">Hỗ trợ</string>

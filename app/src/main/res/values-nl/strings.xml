@@ -45,9 +45,9 @@
     <string name="xposed_module_list_updated">De module-lijst van Xposed is bijgewerkt\nVeranderingen worden actief bij herstart</string>
     <string name="xposed_module_updated_notification_title">Xposed module bijgewerkt</string>
     <string name="xposed_module_updated_notification">Herstart om de veranderingen te activeren</string>
-    <string name="warning_xposed_min_version">Deze module heeft een nieuwere versie van XposedBridge nodig (%d) en kan dus niet geactiveerd worden.</string>
-    <string name="no_min_version_specified">Deze module heeft geen benodigde versie van XposedBridge opgegeven.</string>
-    <string name="warning_min_version_too_low">Deze module werd gecreëerd voor XposedBridge versie %1$d, maar door veranderingen in versie %2$d, is het uitgeschakeld.</string>
+    <string name="warning_xposed_min_version">Deze module heeft een nieuwere versie van Xposed nodig (%d) en kan dus niet geactiveerd worden.</string>
+    <string name="no_min_version_specified">Deze module heeft geen benodigde versie van Xposed opgegeven.</string>
+    <string name="warning_min_version_too_low">Deze module werd gecreëerd voor Xposed versie %1$d, maar door veranderingen in versie %2$d, is het uitgeschakeld.</string>
     <string name="module_launch">Open App</string>
     <string name="module_download_updates">Download / update</string>
     <string name="module_support">Help</string>

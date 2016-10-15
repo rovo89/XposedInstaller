@@ -39,9 +39,9 @@
     <string name="module_no_ui">Ovaj modul ne daje korisnički interfejs</string>
     <string name="no_xposed_modules_found">Ni jedan Xposed modul nije pronađen!</string>
     <string name="xposed_module_list_updated">Xposed modul lista je osvežena\nPromene će biti aktivne nakon ponovnog pokretanja sistema </string>
-    <string name="warning_xposed_min_version">Ovaj modul zahteva noviju verziju XposedBridge-a (%d) i zato ne može biti aktiviran.</string>
-    <string name="no_min_version_specified">Ovaj modul nije precizirao XposedBridge verziju koja je potrebna.</string>
-    <string name="warning_min_version_too_low">Ovaj modul je kreiran za XposedBridge verziju %1$d, ali zbog nekompaktibilnosti u verziji %2$d, je onemogućen.</string>
+    <string name="warning_xposed_min_version">Ovaj modul zahteva noviju verziju Xposed-a (%d) i zato ne može biti aktiviran.</string>
+    <string name="no_min_version_specified">Ovaj modul nije precizirao Xposed verziju koja je potrebna.</string>
+    <string name="warning_min_version_too_low">Ovaj modul je kreiran za Xposed verziju %1$d, ali zbog nekompaktibilnosti u verziji %2$d, je onemogućen.</string>
     <string name="module_launch">Startovanje UI</string>
     <string name="module_download_updates">Učitaj/Nadogradi</string>
     <string name="module_support">Podrška</string>

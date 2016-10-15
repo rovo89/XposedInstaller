@@ -25,9 +25,9 @@
     <string name="module_no_ui">Denna modul tillhandahåller inte ett användargränssnitt</string>
     <string name="no_xposed_modules_found">Inga Xposed moduler hittades!</string>
     <string name="xposed_module_list_updated">Xposed modullistan uppdaterades\nFörändringar kommer att bli aktiv vid omstart</string>
-    <string name="warning_xposed_min_version">Denna modul kräver en nyare XposedBridge version (%d) och sålunda inte kan aktiveras.</string>
-    <string name="no_min_version_specified">Denna modul specificerar inte den XposedBridge version som behövs.</string>
-    <string name="warning_min_version_too_low">Denna modul skapades för XposedBridge version %1$d, men på grund av oförenliga förändringar i version %2$d, har den avaktiverats.</string>
+    <string name="warning_xposed_min_version">Denna modul kräver en nyare Xposed version (%d) och sålunda inte kan aktiveras.</string>
+    <string name="no_min_version_specified">Denna modul specificerar inte den Xposed version som behövs.</string>
+    <string name="warning_min_version_too_low">Denna modul skapades för Xposed version %1$d, men på grund av oförenliga förändringar i version %2$d, har den avaktiverats.</string>
     <string name="module_launch">Start UI</string>
     <string name="module_download_updates">Ladda ner/Uppdateringar</string>
     <string name="module_support">Support</string>

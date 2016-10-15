@@ -58,9 +58,9 @@
     <string name="xposed_module_list_updated">Seznam Xposed modulů byl aktualizován.\nZměny se projeví po restartu zařízení.</string>
     <string name="xposed_module_updated_notification_title">Xposed modul byl aktualizován</string>
     <string name="xposed_module_updated_notification">Restartovat pro aktivaci změn</string>
-    <string name="warning_xposed_min_version">Tento modul vyžaduje novější XposedBridge verze (%d), nemůže být proto aktivován.</string>
-    <string name="no_min_version_specified">Tento modul nespecifikuje požadovanou verzi XposedBridge.</string>
-    <string name="warning_min_version_too_low">Tento modul byl vytvořen pro XposedBridge verze %1$d, ale kvůli nekompatibilním změnám ve verzi %2$d byl zakázán.</string>
+    <string name="warning_xposed_min_version">Tento modul vyžaduje novější Xposed verze (%d), nemůže být proto aktivován.</string>
+    <string name="no_min_version_specified">Tento modul nespecifikuje požadovanou verzi Xposed.</string>
+    <string name="warning_min_version_too_low">Tento modul byl vytvořen pro Xposed verze %1$d, ale kvůli nekompatibilním změnám ve verzi %2$d byl zakázán.</string>
     <string name="module_launch">Spustit UI</string>
     <string name="module_download_updates">Stažení/Aktualizace</string>
     <string name="module_support">Podpora</string>

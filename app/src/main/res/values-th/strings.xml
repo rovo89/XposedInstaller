@@ -58,9 +58,9 @@
     <string name="xposed_module_list_updated">รายการโมดูลอัพเดทแล้ว\nการเปลี่ยนแปลงจะมีผลหลังจากรีบูตโทรศัพท์</string>
     <string name="xposed_module_updated_notification_title">อัพเดทโมดูลแล้ว</string>
     <string name="xposed_module_updated_notification">รีบูตเพื่อให้การเปลี่ยงแปลงมีผล</string>
-    <string name="warning_xposed_min_version">โมดุลนี้จำเป็นต้องใช้เวอร์ชั่น XposedBridge ที่ใหม่กว่า (%d) และไม่สามารถเปิดใช้งานได้</string>
-    <string name="no_min_version_specified">โมดูลนี้ไม่ได้ระบุเวอร์ชั่น XposedBridge ที่ต้องการ</string>
-    <string name="warning_min_version_too_low">โมดูลนี้ถูกสร้างสำหรับเวอร์ชั่น XposedBridge %1$d แต่มีการเปลี่ยนแปลงทำให้เข้ากันไม่ได้ในเวอร์ชั่น %2$d จะถูกปิดใช้งาน</string>
+    <string name="warning_xposed_min_version">โมดุลนี้จำเป็นต้องใช้เวอร์ชั่น Xposed ที่ใหม่กว่า (%d) และไม่สามารถเปิดใช้งานได้</string>
+    <string name="no_min_version_specified">โมดูลนี้ไม่ได้ระบุเวอร์ชั่น Xposed ที่ต้องการ</string>
+    <string name="warning_min_version_too_low">โมดูลนี้ถูกสร้างสำหรับเวอร์ชั่น Xposed %1$d แต่มีการเปลี่ยนแปลงทำให้เข้ากันไม่ได้ในเวอร์ชั่น %2$d จะถูกปิดใช้งาน</string>
     <string name="module_launch">เรียกใช้งาน UI</string>
     <string name="module_download_updates">ดาวน์โหลด/อัพเดท</string>
     <string name="module_support">สนับสนุน</string>

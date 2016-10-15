@@ -58,9 +58,9 @@
     <string name="xposed_module_list_updated">S\'ha actualitzat la llista de mòduls Xposed\nS\'activaran els canvis en reiniciar</string>
     <string name="xposed_module_updated_notification_title">S\'ha actualitzat el mòdul Xposed</string>
     <string name="xposed_module_updated_notification">Reinicieu per activar els canvis</string>
-    <string name="warning_xposed_min_version">Aquest mòdul requereix una versió de l\'XposedBridge més nova (%d) i no es pot activar.</string>
-    <string name="no_min_version_specified">Aquest mòdul no especifica la versió de l\'XposedBridge que necessita.</string>
-    <string name="warning_min_version_too_low">Aquest mòdul es va crear per a l\'XposedBridge versió %1$d, però degut als canvis incompatibles a la versió %2$d, s\'ha inhabilitat.</string>
+    <string name="warning_xposed_min_version">Aquest mòdul requereix una versió de l\'Xposed més nova (%d) i no es pot activar.</string>
+    <string name="no_min_version_specified">Aquest mòdul no especifica la versió de l\'Xposed que necessita.</string>
+    <string name="warning_min_version_too_low">Aquest mòdul es va crear per a l\'Xposed versió %1$d, però degut als canvis incompatibles a la versió %2$d, s\'ha inhabilitat.</string>
     <string name="module_launch">Executa la IU</string>
     <string name="module_download_updates">Baixa/Actualitzacions</string>
     <string name="module_support">Ajuda</string>

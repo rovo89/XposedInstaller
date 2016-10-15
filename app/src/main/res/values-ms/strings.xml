@@ -45,9 +45,9 @@
     <string name="xposed_module_list_updated">Senarai Xposed modul telah dikemaskini\nPenukaran akan aktif selepas dihidupkan semula</string>
     <string name="xposed_module_updated_notification_title">Xposed modul dikemaskini</string>
     <string name="xposed_module_updated_notification">Hidupkan semula untuk diaktifkan perubahan</string>
-    <string name="warning_xposed_min_version">Modul ini memerlukan XposedBridge versi terbaru (%d) sebab itu tidak dapat diaktifkan.</string>
-    <string name="no_min_version_specified">Modul seperti tidak sesuai dengan XposedBridge versi yg dikehendaki.</string>
-    <string name="warning_min_version_too_low">Modul ini dibuat untuk XposedBridge versi %1$d, tetapi disebabkan tidak sesuai kepada perubahan mengikut versi %2$d, maka telah dimatikan.</string>
+    <string name="warning_xposed_min_version">Modul ini memerlukan Xposed versi terbaru (%d) sebab itu tidak dapat diaktifkan.</string>
+    <string name="no_min_version_specified">Modul seperti tidak sesuai dengan Xposed versi yg dikehendaki.</string>
+    <string name="warning_min_version_too_low">Modul ini dibuat untuk Xposed versi %1$d, tetapi disebabkan tidak sesuai kepada perubahan mengikut versi %2$d, maka telah dimatikan.</string>
     <string name="module_launch">Lancarkan UI</string>
     <string name="module_download_updates">Muat Turun/Kemaskini</string>
     <string name="module_support">Bantuan</string>
