@@ -99,6 +99,8 @@ public class DownloadView extends LinearLayout {
                         break;
                 }
             }
+            // TODO maybe enable again after checking the implementation
+            btnSave.setVisibility(View.GONE);
         }
     };
     private String mTitle = null;

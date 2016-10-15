@@ -155,7 +155,8 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_modules, menu);
+        // TODO maybe enable again after checking the implementation
+        //inflater.inflate(R.menu.menu_modules, menu);
     }
 
     @Override

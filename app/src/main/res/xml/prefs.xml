@@ -30,6 +30,8 @@
             android:title="@string/settings_theme"
             app:useStockLayout="true"/>
 
+        <!--
+          TODO maybe enable again after checking the implementation
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="skip_xposedminversion_check"
@@ -51,6 +53,7 @@
             android:key="download_location"
             android:summary="@string/download_location_summ"
             android:title="@string/download_location"/>
+        -->
 
         <de.robv.android.xposed.installer.widget.IntegerListPreference
             android:defaultValue="0"
@@ -61,10 +64,13 @@
             android:title="@string/settings_default_view"
             app:useStockLayout="true"/>
 
+        <!--
+          TODO maybe enable again after checking the implementation
         <CheckBoxPreference
             android:key="open_drawer"
             android:summary="@string/open_drawer_summ"
             android:title="@string/open_drawer"/>
+        -->
 
     </PreferenceCategory>
 
