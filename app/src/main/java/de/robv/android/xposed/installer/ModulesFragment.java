@@ -9,6 +9,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -518,6 +519,8 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
             InstalledModule item = getItem(position);
 
             TextView version = (TextView) view.findViewById(R.id.version_name);
+            version.setSelected(true);
+            version.setTextColor(Color.parseColor("#808080"));
             version.setText(item.versionName);
 
             // Store the package name in some views' tag for later access

@@ -56,7 +56,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dip"
-                    android:gravity="right"
+                    android:layout_marginStart="4dip"
+                    android:ellipsize="marquee"
+                    android:gravity="end"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:maxWidth="100dp"
+                    android:singleLine="true"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@android:color/tertiary_text_dark"
                     android:textIsSelectable="false"/>
