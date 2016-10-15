@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CursorAdapter;
@@ -49,6 +51,7 @@ public class DownloadFragment extends Fragment implements Loader.Listener<RepoLo
     private int mSortingOrder;
     private SearchView mSearchView;
     private StickyListHeadersListView mListView;
+    private View mRefreshHint;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -82,6 +85,7 @@ public class DownloadFragment extends Fragment implements Loader.Listener<RepoLo
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_downloader, container, false);
 
+        mRefreshHint = v.findViewById(R.id.refresh_hint);
         final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swiperefreshlayout);
         refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
         mRepoLoader.addListener(this);
@@ -90,6 +94,18 @@ public class DownloadFragment extends Fragment implements Loader.Listener<RepoLo
 
         mListView = (StickyListHeadersListView) v.findViewById(R.id.listModules);
         mListView.setAdapter(mAdapter);
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (view.getChildAt(0) != null) {
+                    refreshLayout.setEnabled(view.getFirstVisiblePosition() == 0 && view.getChildAt(0).getTop() == 0);
+                }
+            }
+        });
         reloadItems();
 
         mListView.setOnItemClickListener(new OnItemClickListener() {
@@ -168,6 +184,7 @@ public class DownloadFragment extends Fragment implements Loader.Listener<RepoLo
     private void setFilter(String filterText) {
         mFilterText = filterText;
         reloadItems();
+        mRefreshHint.setVisibility(TextUtils.isEmpty(filterText) ? View.VISIBLE : View.GONE);
     }
 
     private void reloadItems() {
