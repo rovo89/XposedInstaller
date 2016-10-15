@@ -121,7 +121,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         FileUtils.setPermissions(dir, permissions, -1, -1);
     }
 
-    private void reloadXposedProp() {
+    public void reloadXposedProp() {
         XposedProp prop = null;
 
         for (String path : XPOSED_PROP_FILES) {

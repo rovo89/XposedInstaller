@@ -205,6 +205,7 @@ public class InstallationActivity extends XposedBaseActivity {
 
         @Override
         public void onDone() {
+            XposedApp.getInstance().reloadXposedProp();
             try {
                 Thread.sleep(LONG_ANIM_TIME);
             } catch (InterruptedException ignored) {

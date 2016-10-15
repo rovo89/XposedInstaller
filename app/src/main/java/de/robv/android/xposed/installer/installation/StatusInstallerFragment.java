@@ -55,9 +55,6 @@ import de.robv.android.xposed.installer.util.RunnableWithParam;
 
 public class StatusInstallerFragment extends Fragment {
     public static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
-
-    private static TextView txtKnownIssue;
-    private static SwitchCompat xposedDisable;
     private boolean mShowOutdated = false;
 
     private static boolean checkClassExists(String className) {
@@ -69,22 +66,11 @@ public class StatusInstallerFragment extends Fragment {
         }
     }
 
-    private static int extractIntPart(String str) {
-        int result = 0, length = str.length();
-        for (int offset = 0; offset < length; offset++) {
-            char c = str.charAt(offset);
-            if ('0' <= c && c <= '9')
-                result = result * 10 + (c - '0');
-            else
-                break;
-        }
-        return result;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.status_installer, container, false);
 
+        // Available ZIPs
         final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swiperefreshlayout);
         refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
 
@@ -97,53 +83,19 @@ public class StatusInstallerFragment extends Fragment {
 
         refreshZipViews(v);
 
-        txtKnownIssue = (TextView) v.findViewById(R.id.framework_known_issue);
-
-        TextView txtInstallError = (TextView) v.findViewById(R.id.framework_install_errors);
-        View txtInstallContainer = v.findViewById(R.id.status_container);
-        ImageView txtInstallIcon = (ImageView) v.findViewById(R.id.status_icon);
-
-        View disableView = v.findViewById(R.id.disableView);
-        xposedDisable = (SwitchCompat) v.findViewById(R.id.disableSwitch);
-
-        TextView androidSdk = (TextView) v.findViewById(R.id.android_version);
-        TextView manufacturer = (TextView) v.findViewById(R.id.ic_manufacturer);
-        TextView cpu = (TextView) v.findViewById(R.id.cpu);
-
-        // TODO This should probably compare the full version string, not just the number part.
-        int active = XposedApp.getActiveXposedVersion();
-        int installed = XposedApp.getInstalledXposedVersion();
-        if (installed < 0) {
-            txtInstallError.setText(R.string.framework_not_installed);
-            txtInstallError.setTextColor(getResources().getColor(R.color.warning));
-            txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.warning));
-            txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_error));
-            xposedDisable.setVisibility(View.GONE);
-            disableView.setVisibility(View.GONE);
-        } else if (installed != active) {
-            txtInstallError.setText(getString(R.string.framework_not_active, XposedApp.getXposedProp().getVersion()));
-            txtInstallError.setTextColor(getResources().getColor(R.color.amber_500));
-            txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.amber_500));
-            txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_warning));
-        } else {
-            txtInstallError.setText(getString(R.string.framework_active, XposedApp.getXposedProp().getVersion()));
-            txtInstallError.setTextColor(getResources().getColor(R.color.darker_green));
-            txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.darker_green));
-            txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle));
-        }
-
-        xposedDisable.setChecked(!DISABLE_FILE.exists());
-
-        xposedDisable.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        // Disable switch
+        final SwitchCompat disableSwitch = (SwitchCompat) v.findViewById(R.id.disableSwitch);
+        disableSwitch.setChecked(!DISABLE_FILE.exists());
+        disableSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (DISABLE_FILE.exists()) {
                     DISABLE_FILE.delete();
-                    Snackbar.make(xposedDisable, R.string.xposed_on_next_reboot, Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(disableSwitch, R.string.xposed_on_next_reboot, Snackbar.LENGTH_LONG).show();
                 } else {
                     try {
                         DISABLE_FILE.createNewFile();
-                        Snackbar.make(xposedDisable, R.string.xposed_off_next_reboot, Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(disableSwitch, R.string.xposed_off_next_reboot, Snackbar.LENGTH_LONG).show();
                     } catch (IOException e) {
                         Log.e(XposedApp.TAG, "Could not create " + DISABLE_FILE, e);
                     }
@@ -151,12 +103,19 @@ public class StatusInstallerFragment extends Fragment {
             }
         });
 
+        // Device info
+        TextView androidSdk = (TextView) v.findViewById(R.id.android_version);
+        TextView manufacturer = (TextView) v.findViewById(R.id.ic_manufacturer);
+        TextView cpu = (TextView) v.findViewById(R.id.cpu);
+
         androidSdk.setText(getString(R.string.android_sdk, getAndroidVersion(), Build.VERSION.RELEASE, Build.VERSION.SDK_INT));
         manufacturer.setText(getUIFramework());
         cpu.setText(FrameworkZips.ARCH);
 
-        refreshKnownIssue();
+        // Known issues
+        refreshKnownIssue(v);
 
+        // Display warning dialog to new users
         if (!XposedApp.getPreferences().getBoolean("hide_install_warning", false)) {
             final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
 
@@ -175,6 +134,41 @@ public class StatusInstallerFragment extends Fragment {
         }
 
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refreshInstallStatus();
+    }
+
+    private void refreshInstallStatus() {
+        View v = getView();
+        TextView txtInstallError = (TextView) v.findViewById(R.id.framework_install_errors);
+        View txtInstallContainer = v.findViewById(R.id.status_container);
+        ImageView txtInstallIcon = (ImageView) v.findViewById(R.id.status_icon);
+        View disableWrapper = v.findViewById(R.id.disableView);
+
+        // TODO This should probably compare the full version string, not just the number part.
+        int active = XposedApp.getActiveXposedVersion();
+        int installed = XposedApp.getInstalledXposedVersion();
+        if (installed < 0) {
+            txtInstallError.setText(R.string.framework_not_installed);
+            txtInstallError.setTextColor(getResources().getColor(R.color.warning));
+            txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.warning));
+            txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_error));
+            disableWrapper.setVisibility(View.GONE);
+        } else if (installed != active) {
+            txtInstallError.setText(getString(R.string.framework_not_active, XposedApp.getXposedProp().getVersion()));
+            txtInstallError.setTextColor(getResources().getColor(R.color.amber_500));
+            txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.amber_500));
+            txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_warning));
+        } else {
+            txtInstallError.setText(getString(R.string.framework_active, XposedApp.getXposedProp().getVersion()));
+            txtInstallError.setTextColor(getResources().getColor(R.color.darker_green));
+            txtInstallContainer.setBackgroundColor(getResources().getColor(R.color.darker_green));
+            txtInstallIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_check_circle));
+        }
     }
 
     @Override
@@ -235,7 +229,7 @@ public class StatusInstallerFragment extends Fragment {
     }
 
     @SuppressLint("StringFormatInvalid")
-    private void refreshKnownIssue() {
+    private void refreshKnownIssue(View v) {
         String issueName = null;
         String issueLink = null;
 
@@ -253,6 +247,7 @@ public class StatusInstallerFragment extends Fragment {
             issueLink = "http://forum.xda-developers.com/showpost.php?p=52801382&postcount=8";
         }
 
+        TextView txtKnownIssue = (TextView) v.findViewById(R.id.framework_known_issue);
         if (issueName != null) {
             final String issueLinkFinal = issueLink;
             txtKnownIssue.setText(getString(R.string.install_known_issue, issueName));
