@@ -7,15 +7,15 @@
     <string name="xposed_not_active">Cea mai recenta versiune de Xposed nu este inca activa. Ati instalat Framework-ul si ati repornit ?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Descarca</string>
     <string name="welcome_framework_update_available">Un update pentru Framework-ul Xposed este disponibil (%s).</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Instalare/Actualizare</string>
     <string name="uninstall">Dezinstalare</string>
     <string name="soft_reboot">Repornire soft:</string>
     <string name="reboot">Repornire</string>
-    <string name="phone_not_compatible">Xposed nu este compatibil (inca) cu versiunea de Android SDK %1$d sau cu arhitectura procesorului (%2$s).</string>
     <string name="reboot_failed">Repornirea a esuat. Va rugam utilizati functia nativa a dispozitivului.</string>
     <string name="auto_flash_note">%s ar trebui sa se instaleze automat dupa ce apasati "OK".</string>
     <string name="reboot_confirmation">Confirmati repornirea ?</string>
@@ -95,8 +95,6 @@
     <string name="settings_group_experimental">Experimental</string>
     <string name="settings_disable_resources">Dezactivare resource hooks</string>
     <string name="settings_disable_resources_summary">Solutie pentru conflictele cu teme\n<b>ATENTIE:</b> Modulele care vor incerca sa modifice resursele nu vor functiona cand aceasta este activata.</string>
-    <string name="settings_performance_experiment">Experiment de performanta</string>
-    <string name="settings_performance_experiment_summary">Daca activati , performanta sistemului poate creste, descreste sau ramane la fel. Sunteti liber sa-l incercati si sa raportati ce efect ati simtit (sau daca nu a existat unul). Este necesar sa reinstalati Framework-ul si sa reporniti dupa aceasta modificare.</string>
     <string name="settings_group_app">Aplicatie</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Aprins</string>
@@ -142,5 +140,14 @@
     <string name="repo_download_failed_http">Descarcare %1$s esuata: %2$d (%3$s)</string>
     <string name="repo_download_failed">Descarcare %1$s esuata: %2$s</string>
     <string name="repo_load_failed">Nu se poate incarca repository-ul de la %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

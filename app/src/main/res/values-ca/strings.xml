@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<resources>
 
     <!-- General/various strings -->
     <string name="menuSend">Envia</string>
@@ -7,10 +7,10 @@
     <string name="xposed_not_active">La darrera versió de l\'Xposed no està activa. Heu instal·lat el marc i reiniciat?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Baixades</string>
     <string name="welcome_framework_update_available">Hi ha una actualització per al marc Xposed (%s).</string>
+    <string name="modules_updates_available">Hi ha actualitzacions disponibles d\'algun mòdul(s)</string>
 
-    <!-- navigation view items -->
+    <!-- Navigation drawer items -->
     <string name="nav_item_install">Marc</string>
     <string name="nav_item_modules">Mòduls</string>
     <string name="nav_item_download">Baixades</string>
@@ -26,7 +26,6 @@
     <string name="uninstall">Desinstal·la</string>
     <string name="soft_reboot">Reinici ràpid</string>
     <string name="reboot">Reinici</string>
-    <string name="phone_not_compatible">L\'Xposed (encara) no és compatible amb Android SDK versió %1$d o l\'arquitectura del processador (%2$s).</string>
     <string name="reboot_failed">Ha fallat el reinici. Utilitzeu la funció normal de reinici del dispositiu.</string>
     <string name="auto_flash_note">S\'hauria d\'instal·lar automàticament %s quan premeu \"D\'acord\".</string>
     <string name="reboot_confirmation">Voleu reiniciar ara?</string>
@@ -36,7 +35,7 @@
     <string name="install_known_issue">Sembla que hi ha un problema conegut (\"%s\") amb la vostra ROM. Potser que la intal·lació de l\'Xposed no funcioni o causar problemes greus. Feu clic aquí per a més detalls del problema.</string>
     <string name="framework_active">El marc Xposed versió %s està actiu.</string>
     <string name="framework_not_active">El marc Xposed versió %s està instal·lat però inactiu. Reviseu els registres per als detalls.</string>
-    <string name="modules_updates_available">Hi ha actualitzacions disponibles d\'algun mòdul(s)</string>
+    <string name="framework_not_installed">El marc Xposed no està instal·lat.</string>
 
     <!-- File operations -->
     <string name="root_failed">No s\'ha aconseguit accés d\'usuari primari.\n\nAssegureu-vos que el dispositiu té activat l\'usuari primari (root) i que no s\'han bloquejat les ordres de línia de comandaments.</string>
@@ -109,8 +108,6 @@
     <string name="settings_group_experimental">Experimental</string>
     <string name="settings_disable_resources">Ganxos d\'orígens inhabilitats</string>
     <string name="settings_disable_resources_summary">Solució per a conflictes amb motors de tematització\n<b>AVÍS:</b> Els mòduls que intenten canviar recursos no funcionaran si s\'habilita.</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Experiment de rendiment</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Si ho habiliteu, el rendiment del sistema pot augmentar, disminuir o restar igual. No dubteu a provar-ho i comunicar l\'efecte que veieu (o si no n\'hi ha cap). Si ho canvieu, haureu de tornar a instal·lar el marc i reiniciar.</string>
     <string name="settings_group_app">Aplicació</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Clar</string>
@@ -164,7 +161,6 @@
     <string name="repo_download_failed">S\'està baixant %1$s ha fallat: %2$s</string>
     <string name="repo_load_failed">No s\'ha pogut carregar el dipòsit des de %1$s:\n%2$s</string>
 
-
     <string name="warning_installed_on_external_storage">No es pot carregar aquest mòdul perquè s\'ha instal·lat a la targeta SD, moveu-lo a l\'emmagatzematge intern.</string>
     <string name="view">VISUALITZA</string>
     <string name="export_">Exporta…</string>
@@ -174,27 +170,14 @@
     <string name="export_installed_modules">Exporta la llista de mòduls instal·lats</string>
     <string name="import_installed_modules">Importa la llista de mòduls instal·lats</string>
     <string name="no_installed_modules">No hi ha cap mòdul instal·lat!</string>
-
-
     <string name="no_backup_found">No s\'ha trobat cap còpia de seguretat</string>
     <string name="no_enabled_modules">No hi ha cap mòdul habilitat</string>
 
     <string name="share">Comparteix amb…</string>
-    <string name="loadingError">Error en carregar els marcs del Zip Xposed</string>
     <string name="permissionNotGranted">Aquesta característica no funcionarà sense permís per escriure a l\'emmagatzematge extern.</string>
 
-
-    <string name="framework_not_installed">El marc Xposed no està instal·lat.</string>
     <string name="notify_module_update">Habilita la notificació d\'actualització de mòduls</string>
 
-    <string name="md_back_label">Enrere</string>
-    <string name="md_done_label">Fet</string>
-    <string name="md_cancel_label">Cancel·la</string>
-    <string name="md_choose_label">Trieu</string>
-    <string name="md_error_label">Error</string>
-    <string name="md_storage_perm_error">No s\'ha concedit el permís READ_EXTERNAL_STORAGE a l\'app.</string>
-    <string name="md_custom_label">Personalització</string>
-    <string name="md_presets_label">Preestablerts</string>
     <string name="scroll_top">Torna a dalt</string>
     <string name="add_bookmark">Afegeix un marcador</string>
     <string name="remove_bookmark">Suprimeix el marcador</string>
@@ -206,15 +189,15 @@
 
     <string name="file_is_empty">El fitxer està buit</string>
 
-
     <string name="install_remove">Instal·la i suprimeix</string>
     <string name="download_remove">Baixa i suprimeix</string>
     <string name="module_saved">S\'ha desat el mòdul a %1$s</string>
-
 
     <string name="reboot_recovery">Reinici a recuperació</string>
     <string name="loading">S\'està carregant…</string>
     <string name="chrome_custom_tabs">Pestanyes personalitzades del Chrome</string>
     <string name="chrome_custom_tabs_summ">Obre els enllaços al navegador intern</string>
+
+
 
 </resources>

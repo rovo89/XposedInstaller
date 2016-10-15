@@ -8,8 +8,9 @@
 
     <!-- Welcome screen / main sections -->
     <string name="welcome_framework_update_available">An update for the Xposed Framework is available (%s).</string>
+    <string name="modules_updates_available">Module update(s) are available</string>
 
-    <!-- navigation view items -->
+    <!-- Navigation drawer items -->
     <string name="nav_item_install">Framework</string>
     <string name="nav_item_modules">Modules</string>
     <string name="nav_item_download">Download</string>
@@ -25,7 +26,6 @@
     <string name="uninstall">Uninstall</string>
     <string name="soft_reboot">Soft reboot</string>
     <string name="reboot">Reboot</string>
-    <string name="phone_not_compatible">Xposed is not (yet) compatible with Android SDK version %1$d or your processor architecture (%2$s).</string>
     <string name="reboot_failed">Reboot failed. Please use the device\'s normal reboot function.</string>
     <string name="auto_flash_note">%s should be flashed automatically once you press "OK".</string>
     <string name="reboot_confirmation">Do you want to reboot now?</string>
@@ -35,7 +35,7 @@
     <string name="install_known_issue">There seems to be a known issue (\"%s\") with your ROM. Installing Xposed might not work or lead to severe problems. Click here for details about the issue.</string>
     <string name="framework_active">Xposed Framework version %s is active.</string>
     <string name="framework_not_active">Xposed Framework version %s is installed, but not active. Please check the logs for details.</string>
-    <string name="modules_updates_available">Module update(s) are available</string>
+    <string name="framework_not_installed">Xposed Framework is not installed.</string>
 
     <!-- File operations -->
     <string name="root_failed">Failed to get root access.\n\nMake sure your device is rooted properly and you have not blocked shell commands.</string>
@@ -187,7 +187,6 @@
     <string name="share">Share with…</string>
     <string name="permissionNotGranted">This feature will not work without permission to write external storage.</string>
 
-    <string name="framework_not_installed">Xposed Framework is not installed.</string>
     <string name="notify_module_update">Enable module update notification</string>
 
     <string name="scroll_top">Scroll to top</string>

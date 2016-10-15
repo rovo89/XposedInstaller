@@ -7,15 +7,15 @@
     <string name="xposed_not_active">Den siste versjonen av Xposed er ikke aktiv. Installerte du og restartet enheten?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Last ned</string>
     <string name="welcome_framework_update_available">En oppdatering for Xposed Framework er tilgjengelig (%s).</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Installer/Oppdater</string>
     <string name="uninstall">Avinstaller</string>
     <string name="soft_reboot">Soft restart</string>
     <string name="reboot">Restart</string>
-    <string name="phone_not_compatible">Xposed er ikke (enda) kompitabel med Android SDK-versjon %1$d eller din prosessorarkitektur (%2$s).</string>
     <string name="reboot_failed">Restart failet. Vennligst bruk enhetens normale restartfunksjon.</string>
     <string name="auto_flash_note">%s skal normalt flashes automatisk når du trykker "OK".</string>
     <string name="reboot_confirmation">Ønsker du å restarte nå?</string>
@@ -95,8 +95,6 @@
     <string name="settings_group_experimental">Eksperimentell</string>
     <string name="settings_disable_resources">Deaktiver ressurshooks</string>
     <string name="settings_disable_resources_summary">Løsning på konflikter med temamotorer\n<b>ADVARSEL:</b> Moduler som prøver å endre ressurser vil ikke fungere når dette er deaktivert.</string>
-    <string name="settings_performance_experiment">Ytelseseksperiment</string>
-    <string name="settings_performance_experiment_summary">Hvis du aktiverer dette så kan systemytelsen din enten øke, senkes eller forbli det samme. Prøv det gjerne ut og rapporter tilbake med resultatene dine (hvis det i det hele tatt er noen). Du vil trenger å reinstallere rammeverket og restarte enheten din etter å ha endret dette valget.</string>
     <string name="settings_group_app">Applikasjon</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Lys</string>
@@ -142,5 +140,14 @@
     <string name="repo_download_failed_http">Laster ned %1$s feilet: %2$d (%3$s)</string>
     <string name="repo_download_failed">Laster ned %1$s feilet: %2$s</string>
     <string name="repo_load_failed">Kan ikke laste inn pakkebrønn fra %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

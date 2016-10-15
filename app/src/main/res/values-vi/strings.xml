@@ -7,15 +7,15 @@
     <string name="xposed_not_active">Phiên bản mới nhất của Xposed chưa hoạt động. Bạn đã cài Framework và khởi động lại chưa?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Tải xuống</string>
     <string name="welcome_framework_update_available">Đã có bản mới cho Framework của Xposed (%s).</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Cài đặt/Cập nhật</string>
     <string name="uninstall">Gỡ cài đặt</string>
     <string name="soft_reboot">Khởi động lại mềm</string>
     <string name="reboot">Khởi động lại</string>
-    <string name="phone_not_compatible">Xposed chưa tương thích với Android SDK bản %1$d hoặc kiến trúc bộ xử lý của bạn (%2$s).</string>
     <string name="reboot_failed">Không thể khởi động lại. Vui lòng sử dụng chức năng khởi động lại của thiết bị.</string>
     <string name="auto_flash_note">%s sẽ được cài đặt tự động khi bạn bấm "OK".</string>
     <string name="reboot_confirmation">Bạn có muốn khởi động lại không?</string>
@@ -95,8 +95,6 @@
     <string name="settings_group_experimental">Thử nghiệm</string>
     <string name="settings_disable_resources">Ngắt các kết nối tài nguyên</string>
     <string name="settings_disable_resources_summary">Tránh xung đột với các máy giao diện\n<b>CẢNH BÁO:</b> Các module cần thay đổi tài nguyên sẽ không hoạt động khi bật tính năng này.</string>
-    <string name="settings_performance_experiment">Thử nghiệm hiệu năng</string>
-    <string name="settings_performance_experiment_summary">Nếu bật tính năng này, hiệu năng hệ thống của bạn có thể tăng, giảm, hoặc giữ nguyên như cũ.  Nếu muốn, hãy thử và cho chúng tôi biết kết quả (ngay cả khi không thấy có thay đổi gì). Bạn phải cài lại Framework và khởi động lại sau khi thay đổi tuỳ chọn này.</string>
     <string name="settings_group_app">Ứng dụng</string>
     <string name="settings_theme">Kiểu giao diện</string>
     <string name="settings_theme_light">Sáng</string>
@@ -142,5 +140,14 @@
     <string name="repo_download_failed_http">Tải xuống %1$s không thành công: %2$d (%3$s)</string>
     <string name="repo_download_failed">Tải xuống %1$s không thành công: %2$s</string>
     <string name="repo_load_failed">Không thể tải kho module từ %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

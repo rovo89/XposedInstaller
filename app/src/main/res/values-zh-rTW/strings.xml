@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<resources>
 
     <!-- General/various strings -->
     <string name="menuSend">傳送</string>
@@ -7,10 +7,10 @@
     <string name="xposed_not_active">最新版本的 Xposed 目前尚未啟用。您是否已安裝框架並重新啟動？</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">下載</string>
     <string name="welcome_framework_update_available">Xposed 框架有更新可用。</string>
+    <string name="modules_updates_available">模組可供更新</string>
 
-    <!-- navigation view items -->
+    <!-- Navigation drawer items -->
     <string name="nav_item_install">框架</string>
     <string name="nav_item_modules">模組</string>
     <string name="nav_item_download">下載</string>
@@ -26,7 +26,6 @@
     <string name="uninstall">移除</string>
     <string name="soft_reboot">快速重啟</string>
     <string name="reboot">重新啟動</string>
-    <string name="phone_not_compatible">Xposed 不相容目前的 Android SDK %1$d 版本或者您的處理器架構 (%2$s)。</string>
     <string name="reboot_failed">重新啟動失敗。請使用裝置的標準的重新啟動功能。</string>
     <string name="auto_flash_note">當您按下 OK 後，%s 將會自動被刷入裝置。</string>
     <string name="reboot_confirmation">您要現在重新啟動嗎？</string>
@@ -36,7 +35,7 @@
     <string name="install_known_issue">Xposed 與您的 ROM 似乎存在已知的問題 (\"%s\")。安裝 Xposed 可能無法正常工作或是導致更嚴重的問題。點擊這裡了解詳情。</string>
     <string name="framework_active">Xposed 框架 %s 版已啟用。</string>
     <string name="framework_not_active">Xposed 框架 %s 版已安裝，但尚未啟用。 請查看日誌以了解細節。</string>
-    <string name="modules_updates_available">模組可供更新</string>
+    <string name="framework_not_installed">Xposed 框架未安裝。</string>
 
     <!-- File operations -->
     <string name="root_failed">無法取得 root 權限。\n\n請確認您的裝置已正確的 root 以及您沒有阻擋 shell 指令。</string>
@@ -109,8 +108,6 @@
     <string name="settings_group_experimental">實驗性</string>
     <string name="settings_disable_resources">停用資源鉤子</string>
     <string name="settings_disable_resources_summary">解決與主題引擎的衝突。\n<b>警告：</b> 啓用此選項將導致修改資源的模組停止運作。</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">性能試驗</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">若您啟用此選項，您的系統性能可能更好、更差或沒有變化。請隨意試用並回報您觀察到的效果(或者根本沒變化)。修改選項後您需要重新安裝框架並重新啟動。</string>
     <string name="settings_group_app">應用程式</string>
     <string name="settings_theme">主題</string>
     <string name="settings_theme_light">淺色</string>
@@ -164,7 +161,6 @@
     <string name="repo_download_failed">下載 %1$s 時出錯：%2$s</string>
     <string name="repo_load_failed">無法載入倉庫 %1$s:\n%2$s</string>
 
-
     <string name="warning_installed_on_external_storage">此模組安裝在SD卡中導致無法載入，請將此模組移回內部儲存空間。</string>
     <string name="view">查看</string>
     <string name="export_">匯出…</string>
@@ -174,27 +170,14 @@
     <string name="export_installed_modules">匯出安裝模組清單</string>
     <string name="import_installed_modules">匯入安裝模組清單</string>
     <string name="no_installed_modules">無任何已安裝的模組！</string>
-
-
     <string name="no_backup_found">找不到備份</string>
     <string name="no_enabled_modules">沒有任何啟用的模組</string>
 
     <string name="share">分享至…</string>
-    <string name="loadingError">取得安裝/移除清單錯誤。\n無法連線網際網路或是伺服器錯誤。</string>
     <string name="permissionNotGranted">未取得寫入外部存儲空間權限，此功能將無法正常運作。</string>
 
-
-    <string name="framework_not_installed">Xposed 框架未安裝。</string>
     <string name="notify_module_update">啟用模組更新通知</string>
 
-    <string name="md_back_label">返回</string>
-    <string name="md_done_label">完成</string>
-    <string name="md_cancel_label">取消</string>
-    <string name="md_choose_label">選取</string>
-    <string name="md_error_label">錯誤</string>
-    <string name="md_storage_perm_error">您的應用程式未被授予\'外部儲存空間\'權限。</string>
-    <string name="md_custom_label">自訂</string>
-    <string name="md_presets_label">預設</string>
     <string name="scroll_top">捲動回到頂端</string>
     <string name="add_bookmark">新增書籤</string>
     <string name="remove_bookmark">移除書籤</string>
@@ -206,11 +189,9 @@
 
     <string name="file_is_empty">檔案為空</string>
 
-
     <string name="install_remove">安裝和移除</string>
     <string name="download_remove">下載和移除</string>
     <string name="module_saved">儲存模組於 %1$s</string>
-
 
     <string name="reboot_recovery">重新啟動至 Recovery 模式</string>
     <string name="loading">載入中…</string>
@@ -222,7 +203,6 @@
     <string name="status">Xposed 狀態</string>
     <string name="xposed_on_next_reboot">Xposed 框架將在下次重新啟動裝置後啟用</string>
     <string name="xposed_off_next_reboot">Xposed 框架將在下次重新啟動裝置後停用</string>
-
 
     <string name="skip_xposedminversion_check">略過 \'Xposed 最低版本\' 檢查</string>
     <string name="skip_xposedminversion_check_summ">略過模組 \'Xposed 最低版本\' 檢查</string>

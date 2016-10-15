@@ -7,15 +7,15 @@
     <string name="xposed_not_active">Xposed\'in son versiyası aktiv deyil. Framework\'i yükləmisiz? vəya cihazı yenidən başlatmısız?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Yüklə</string>
     <string name="welcome_framework_update_available">Xposed Framework üçün yeniləmə mövcuddur.</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Quraşdır/Yenilə</string>
     <string name="uninstall">Sil</string>
     <string name="soft_reboot">Cəld yenidən başlat</string>
     <string name="reboot">Yenidən başlat</string>
-    <string name="phone_not_compatible">Xposed Android SDK versiyası %1$d ya da sizin prosessor arxitektura(%2$s)\'sı ilə uyğun deyil.</string>
 
     <!-- File operations -->
 
@@ -59,8 +59,6 @@
     <!-- Settings tab -->
     <string name="settings_group_download">Yüklə</string>
     <string name="settings_group_experimental">Təcrübi</string>
-    <string name="settings_performance_experiment">İcra təcrübəsi</string>
-    <string name="settings_performance_experiment_summary">Əgər bunu aktiv etsəniz,sistem istifadəsi zəifləyə,arta və ya olduğu kimi qala bilər. Cəhd etməkdən çəkinməyin və bu barədə məruzə verin. Bunu dəyişdiktən sonra Framework\'ü yenidən quraşdırmalı və cihazı yenidən başlatmalısınız.</string>
 
     <!-- Support tab -->
 
@@ -97,5 +95,14 @@
     <string name="repo_download_failed_http">Yükləmə %1$s uğursuz oldu: %2$d (%3$s)</string>
     <string name="repo_download_failed">Yükləmə %1$s uğursuz oldu: %2$s</string>
     <string name="repo_load_failed">Depoya çata bilmədi %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

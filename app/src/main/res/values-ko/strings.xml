@@ -7,15 +7,15 @@
     <string name="xposed_not_active">현재 최신 버전의 Xposed 프레임워크가 활성화되지 않고 있습니다. 프레임워크 설치 후 시스템을 재시작하세요.</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">내려받기</string>
     <string name="welcome_framework_update_available">새로운 버전의 Xposed 프레임워크를 설치할 수 있습니다.</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Xposed 프레임워크 설치 및 업데이트</string>
     <string name="uninstall">Xposed 프레임워크 제거</string>
     <string name="soft_reboot">빠른 재시작</string>
     <string name="reboot">기본 재시작(권장)</string>
-    <string name="phone_not_compatible">지금 이 시스템의 안드로이드 ADK 버전%1$d이나 프로세서 아키텍쳐와 호환되지 않습니다. (%2$s).</string>
 
     <!-- File operations -->
 
@@ -59,8 +59,6 @@
     <!-- Settings tab -->
     <string name="settings_group_download">내려받기</string>
     <string name="settings_group_experimental">실험적인 기능 들</string>
-    <string name="settings_performance_experiment">성능에 대한 실험적인 기능 들</string>
-    <string name="settings_performance_experiment_summary">이를 활성화하면 Xposed 모듈의 속도가 빨라질 수도, 나빠질 수도, 별 변화가 없을 수 있습니다.\n시도해 보고 생긴 달라진 점이나 문제점을 개발자에게 전달해 완성도를 높여줄 수 있습니다.\n이를 활성화하거나 비활성화 한 뒤엔 Xposed 프레임워크를 재설치 해야 적용이 됩니다.</string>
 
     <!-- Support tab -->
 
@@ -97,5 +95,14 @@
     <string name="repo_download_failed_http">%1$s의 내려받기가 실패했습니다 : %2$d (%3$s)</string>
     <string name="repo_download_failed">%1$s의 내려받기가 실패했습니다 : %2$s</string>
     <string name="repo_load_failed">%1$s로부터 정보를 읽어들이지 못했습니다 : \n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

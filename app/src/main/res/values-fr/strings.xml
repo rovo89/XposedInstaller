@@ -7,15 +7,15 @@
     <string name="xposed_not_active">"La dernière version d'Xposed est inactive. Avez-vous installé le Framework et redémarré ?"</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Téléchargements</string>
     <string name="welcome_framework_update_available">Une mise à jour du Framework Xposed est disponible.</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Installer/Mettre à jour</string>
     <string name="uninstall">Désinstaller</string>
     <string name="soft_reboot">Redémarrage doux</string>
     <string name="reboot">Redémarrer</string>
-    <string name="phone_not_compatible">Xposed n\'est pas (encore) compatible avec Android SDK version %1$d ou l\'architecture de votre processeur (%2$s).</string>
     <string name="reboot_failed">Le redémarrage a échoué. Veuillez utiliser la fonction redémarrage de l\'appareil.</string>
     <string name="auto_flash_note">%s sera automatiquement flashé dès que vous aurez appuyé sur "OK".</string>
     <string name="reboot_confirmation">Voulez-vous redémarrer maintenant ?</string>
@@ -95,8 +95,6 @@
     <string name="settings_group_experimental">Expérimental</string>
     <string name="settings_disable_resources">Désactiver \"resource hooks\"</string>
     <string name="settings_disable_resources_summary">Solution pour éviter les conflits avec les moteurs de thème\n<b>ATTENTION:</b> Les modules qui essaient de modifier les ressources ne fonctionneront pas si vous activez ceci.</string>
-    <string name="settings_performance_experiment">Expérimentation pour les performances</string>
-    <string name="settings_performance_experiment_summary">Si vous activez ceci, les performances de votre système peuvent être améliorées, diminuées ou rester identiques. N`hésitez pas à essayer et à nous rapporter les effets obtenus (ou s\'il n\'y en a pas eu). Vous devez réinstaller le Framework et redémarrer après avoir changé ce paramètre.</string>
     <string name="settings_group_app">Application</string>
     <string name="settings_theme">Thème</string>
     <string name="settings_theme_light">Clair</string>
@@ -142,5 +140,14 @@
     <string name="repo_download_failed_http">Téléchargement %1$s échoué: %2$d (%3$s)</string>
     <string name="repo_download_failed">Téléchargement %1$s échoué: %2$s</string>
     <string name="repo_load_failed">Impossible de charger le dépôt depuis %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

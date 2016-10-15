@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<resources>
 
     <!-- General/various strings -->
     <string name="menuSend">送信</string>
@@ -7,10 +7,10 @@
     <string name="xposed_not_active">最新版のXposedが動作していません。フレームワークをインストールして再起動しましたか？</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">ダウンロード</string>
     <string name="welcome_framework_update_available">Xposedフレームワークの更新があります。 （%s）</string>
+    <string name="modules_updates_available">モジュールの更新があります</string>
 
-    <!-- navigation view items -->
+    <!-- Navigation drawer items -->
     <string name="nav_item_install">フレームワーク</string>
     <string name="nav_item_modules">モジュール</string>
     <string name="nav_item_download">ダウンロード</string>
@@ -26,7 +26,6 @@
     <string name="uninstall">アンインストール</string>
     <string name="soft_reboot">ソフトリブート</string>
     <string name="reboot">再起動</string>
-    <string name="phone_not_compatible">Xposedは（今のところ）Android SDKバージョン%1$dやプロセッサ （%2$s）とは互換性がありません。</string>
     <string name="reboot_failed">再起動できませんでした。端末の通常の再起動の機能を使用してください。</string>
     <string name="auto_flash_note">%sは「OK」を押すと自動的にインストールされます。</string>
     <string name="reboot_confirmation">今すぐ再起動しますか？</string>
@@ -36,7 +35,7 @@
     <string name="install_known_issue">お使いのROMには既知の問題（%s）があるようです。Xposedをインストールしても動作しなかったり、重大な問題が起こる可能性があります。ここをタップすると、その問題についての詳細を表示します。</string>
     <string name="framework_active">Xposedフレームワークバージョン%sが有効になっています。</string>
     <string name="framework_not_active">バージョン%sのXposedフレームワークがインストールされていますが、有効になっていません。ログで詳細を確認してください。</string>
-    <string name="modules_updates_available">モジュールの更新があります</string>
+    <string name="framework_not_installed">Xposedフレームワークはインストールされていません。</string>
 
     <!-- File operations -->
     <string name="root_failed">ルートアクセスを取得できませんでした。\n\n端末が正しくルート化されているか、シェルコマンドをブロックしていないかを確認してください。</string>
@@ -109,8 +108,6 @@
     <string name="settings_group_experimental">実験的</string>
     <string name="settings_disable_resources">リソースフックを無効化</string>
     <string name="settings_disable_resources_summary">テーマエンジンとの競合を回避します。\n<b>警告:</b> このオプションを有効化すると、リソースをフックするモジュールが動作しなくなります。</string>
-    <string name="settings_performance_experiment">パフォーマンスの実験</string>
-    <string name="settings_performance_experiment_summary">これを有効にすると、パフォーマンスが向上また低下するかまったく変化しないかもしれません。試してみて効果があるかどうかを報告してください。ここを変更した後は、フレームワークを再インストールして再起動してください。</string>
     <string name="settings_group_app">アプリ</string>
     <string name="settings_theme">テーマ</string>
     <string name="settings_theme_light">ライト</string>
@@ -164,7 +161,6 @@
     <string name="repo_download_failed">%1$sがダウンロードできませんでした: %2$s</string>
     <string name="repo_load_failed">%1$sからレポジトリをロードできませんでした\n%2$s</string>
 
-
     <string name="warning_installed_on_external_storage">このモジュールはSDカードにインストールされているため、読み込めませんでした。内部ストレージに移動してください。</string>
     <string name="view">表示</string>
     <string name="export_">エクスポート</string>
@@ -174,27 +170,14 @@
     <string name="export_installed_modules">インストールされているモジュールのリストをエクスポート</string>
     <string name="import_installed_modules">インストールされていたモジュールのリストをインポート</string>
     <string name="no_installed_modules">インストールされているモジュールがありません</string>
-
-
     <string name="no_backup_found">バックアップが見つかりません</string>
     <string name="no_enabled_modules">有効になっているモジュールがありません</string>
 
     <string name="share">共有方法</string>
-    <string name="loadingError">Xposedフレームワークのzipの読み込み中にエラーが発生しました</string>
     <string name="permissionNotGranted">この機能は外部ストレージへの書き込み権限がないと動作しません。</string>
 
-
-    <string name="framework_not_installed">Xposedフレームワークはインストールされていません。</string>
     <string name="notify_module_update">モジュールの更新通知を有効化</string>
 
-    <string name="md_back_label">戻る</string>
-    <string name="md_done_label">完了</string>
-    <string name="md_cancel_label">キャンセル</string>
-    <string name="md_choose_label">選択</string>
-    <string name="md_error_label">エラー</string>
-    <string name="md_storage_perm_error">アプリにREAD_EXTERNAL_STORAGE権限が許可されていません。</string>
-    <string name="md_custom_label">カスタム</string>
-    <string name="md_presets_label">プリセット</string>
     <string name="scroll_top">トップにスクロール</string>
     <string name="add_bookmark">ブックマークを追加</string>
     <string name="remove_bookmark">ブックマークを削除</string>
@@ -206,15 +189,15 @@
 
     <string name="file_is_empty">ファイルは空です</string>
 
-
     <string name="install_remove">インストールして削除</string>
     <string name="download_remove">ダウンロードして削除</string>
     <string name="module_saved">モジュールを%1$sに保存しました</string>
-
 
     <string name="reboot_recovery">リカバリーで再起動</string>
     <string name="loading">読み込み中…</string>
     <string name="chrome_custom_tabs">Chromeカスタムタブ</string>
     <string name="chrome_custom_tabs_summ">リンクを内蔵ブラウザで開きます</string>
+
+
 
 </resources>

@@ -7,15 +7,15 @@
     <string name="xposed_not_active">Az Xposed legfrissebb verziója jelenleg nem aktív. Telepítetted a keretrendszert és újraindítottad az eszközt?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Letöltések</string>
     <string name="welcome_framework_update_available">Frissítés elérhető az Xposed keretrendszerhez (%s).</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Telepítés/Frissítés</string>
     <string name="uninstall">Eltávolítás</string>
     <string name="soft_reboot">Gyors újraindítás</string>
     <string name="reboot">Újraindítás</string>
-    <string name="phone_not_compatible">Az Xposed (még) nem kompatibilis a %1$d verziójú Android SDK-val vagy a processzor architektúráddal (%2$s).</string>
     <string name="reboot_failed">Újraindítás sikertelen. Kérlek használd az eszköz rendes újraindítási funkcióját.</string>
     <string name="auto_flash_note">%s automatikusan flashelve lesz amint megnyomod az "OK"-ot.</string>
     <string name="reboot_confirmation">Újra akarsz indítani most?</string>
@@ -95,8 +95,6 @@
     <string name="settings_group_experimental">Kísérlet</string>
     <string name="settings_disable_resources">"Resource hook"-ok letiltva</string>
     <string name="settings_disable_resources_summary">Megoldás a témamotorokkal való konfliktusokra.\n<b>FIGYELEM:</b> A resource-okat módosítani próbáló modulok nem fognak működni, ha ez engedélyezve van.</string>
-    <string name="settings_performance_experiment">Teljesítménykísérlet</string>
-    <string name="settings_performance_experiment_summary">Ha ezt engedélyezed, a rendszer teljesítménye lehet, hogy növekszik, csökken vagy nem változik. Nyugodtan próbáld ki és jelezz vissza, hogy melyik hatást látod (vagy hogy nincs semmilyen). Újra kell telepítened a keretrendszert és újraindítanod az eszközt, miután ezt megváltoztatod.</string>
     <string name="settings_group_app">Alkalmazás</string>
     <string name="settings_theme">Téma</string>
     <string name="settings_theme_light">Világos</string>
@@ -142,5 +140,14 @@
     <string name="repo_download_failed_http">%1$s letöltése sikertelen: %2$d (%3$s)</string>
     <string name="repo_download_failed">%1$s letöltése sikertelen: %2$s</string>
     <string name="repo_load_failed">Nem lehet betölteni a gyűjteményt %1$s-ról:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

@@ -4,15 +4,15 @@
     <!-- General/various strings -->
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Unduh</string>
     <string name="welcome_framework_update_available">Update tersedia.</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Install/Update</string>
     <string name="uninstall">Hapus</string>
     <string name="soft_reboot">Reboot cepat</string>
     <string name="reboot">Reboot</string>
-    <string name="phone_not_compatible">Xposed masih belum tersedia untuk versi Android SDK %1$d atau arsitektur CPU Anda (%2$s).</string>
 
     <!-- File operations -->
 
@@ -56,8 +56,6 @@
     <!-- Settings tab -->
     <string name="settings_group_download">Unduh</string>
     <string name="settings_group_experimental">Uji coba</string>
-    <string name="settings_performance_experiment">Uji coba performa</string>
-    <string name="settings_performance_experiment_summary">Jika diaktifkan, performa sistem akan naik, turun, atau tetap. Cobalah dan laporkan mana yang cocok (atau tiada). Anda perlu menginstall ulang Xposed dan reboot setelah ini.</string>
 
     <!-- Support tab -->
 
@@ -92,5 +90,14 @@
     <string name="repo_download_failed_http">Mengunduh %1$s gagal: %2$d (%3$s)</string>
     <string name="repo_download_failed">Mengunduh %1$s gagal: %2$s</string>
     <string name="repo_load_failed">Tidak dapat menambil daftar dari %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

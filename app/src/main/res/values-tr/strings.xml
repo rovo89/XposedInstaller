@@ -7,15 +7,15 @@
     <string name="xposed_not_active">Xposed en son sürümü şu anda aktif değildir. Şimdi Frameworku kurmak ve yeniden başlatmak istermisiniz?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Modül İndir</string>
     <string name="welcome_framework_update_available">Xposed için kullanılabilir bir güncelleştirme var.</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Yükle/Güncelle</string>
     <string name="uninstall">Kaldır</string>
     <string name="soft_reboot">Hızlı yeniden başlat</string>
     <string name="reboot">Yeniden Başlat</string>
-    <string name="phone_not_compatible">Xposed şu an (yet)bu Android SDK versiyonu %1$d ve işlemci mimarisi (%2$s) ile uyumlu değil.</string>
     <string name="reboot_failed">Y.Başlatma hatası. Lütfen telefonu normal olarak yeniden başlatın.</string>
     <string name="auto_flash_note">%s işlemi otomatik olarak yapmak istiyorsanız "TAMAM" tuşuna basın.</string>
     <string name="reboot_confirmation">Telefonu yeniden başlatmak istiyormusunuz?</string>
@@ -95,8 +95,6 @@
     <string name="settings_group_experimental">Deneysel</string>
     <string name="settings_disable_resources">Kaynak bilgiler engelli</string>
     <string name="settings_disable_resources_summary">Tema motoru ile çakışmalar için çözüm\n<b>UYARI:</b> Bu etkinleştirildiğinde kaynaklarını değiştirmeye çalışmayın modüller çalışmaz.</string>
-    <string name="settings_performance_experiment">Performans deneyleri</string>
-    <string name="settings_performance_experiment_summary">Bunu etkinleştirirseni sistemde performans artışı veya azalma olabilir.. Bunu deneyin ve gördüğünüz herhangi bir etki raporunu bize bildirmekten çekinmeyin. Bunu değiştirdikten sonra Framework ve modülleri yeniden yüklemeniz gerekir.</string>
     <string name="settings_group_app">Uygulama</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Hafif</string>
@@ -142,5 +140,14 @@
     <string name="repo_download_failed_http">İndirme %1$s başarısız: %2$d (%3$s)</string>
     <string name="repo_download_failed">İndirme %1$s başarısız: %2$s</string>
     <string name="repo_load_failed">Depodan yüklenemiyor %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

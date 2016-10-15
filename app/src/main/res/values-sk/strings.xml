@@ -7,10 +7,10 @@
     <string name="xposed_not_active">Najnovšia verzia Xposed nie je aktuálne aktívna. Nainštalovali ste Framework a reštartovali zariadenie?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Sťahovanie</string>
     <string name="welcome_framework_update_available">Je dostupná aktualizácia pre Xposed Framework (%s).</string>
+    <string name="modules_updates_available">Aktualizácia modulu(ov) je dostupná</string>
 
-    <!-- navigation view items -->
+    <!-- Navigation drawer items -->
     <string name="nav_item_install">Framework</string>
     <string name="nav_item_modules">Moduly</string>
     <string name="nav_item_download">Sťahovanie</string>
@@ -26,7 +26,6 @@
     <string name="uninstall">Odinštalovať</string>
     <string name="soft_reboot">Softvérový reštart</string>
     <string name="reboot">Reštart</string>
-    <string name="phone_not_compatible">Xposed nie je (zatiaľ) kompatibilný s verziou Android SDK %1$d alebo s architektúrou procesora (%2$s).</string>
     <string name="reboot_failed">Reštart zlyhal. Prosím, použite normálnu funkciu zariadenia pre reštart.</string>
     <string name="auto_flash_note">%s by mal byť automaticky flashnutý hneď, ako stlačíte tlačidlo \"OK\".</string>
     <string name="reboot_confirmation">Chcete reštartovať zariadenie teraz?</string>
@@ -36,7 +35,7 @@
     <string name="install_known_issue">Vyskytol sa známy problém (\"%s\") s vašou ROM. Inštalácia Xposed nemusí fungovať alebo môže viesť k závažným problémom. Kliknite sem pre podrobnosti o probléme.</string>
     <string name="framework_active">Xposed Framework verzia %s je aktívny.</string>
     <string name="framework_not_active">Xposed Framework verzia %s je nainštalovaný, ale nie je aktívny. Prosím, skontrolujte záznamy pre viac informácií.</string>
-    <string name="modules_updates_available">Aktualizácia modulu(ov) je dostupná</string>
+    <string name="framework_not_installed">Xposed Framework nie je nainštalovaný.</string>
 
     <!-- File operations -->
     <string name="root_failed">Nepodarilo sa získať root prístup.\n\nUistite sa, že je zariadenie správne rootnuté a príkazy konzoly nie sú blokované.</string>
@@ -109,8 +108,6 @@
     <string name="settings_group_experimental">Experimentálne</string>
     <string name="settings_disable_resources">Zakázať zmenu zdrojov</string>
     <string name="settings_disable_resources_summary">Riešenie konfliktov s témami\n<b>VAROVANIE:</b> Ak je táto možnosť povolená, moduly, ktoré sa snažia zmeniť zdroje, nebudú fungovať.</string>
-    <string name="settings_performance_experiment">Experiment s výkonom</string>
-    <string name="settings_performance_experiment_summary">Ak povolíte túto možnosť, výkon systému sa môže buď zvýšiť, znížiť, alebo zostať rovnaký. Nebojte sa vyskúšať experiment s výkonom a podajte správu o efekte, ktorý vidíte (nemusí byť však vôbec žiadny). Po zmene tejto možnosti je nutné znovu nainštalovať Framework a vykonať reštart zariadenia.</string>
     <string name="settings_group_app">Aplikácia</string>
     <string name="settings_theme">Téma</string>
     <string name="settings_theme_light">Svetlá</string>
@@ -164,7 +161,6 @@
     <string name="repo_download_failed">Sťahovanie %1$s zlyhalo: %2$s</string>
     <string name="repo_load_failed">Nemožno načítať z repozitára %1$s:\n%2$s</string>
 
-
     <string name="warning_installed_on_external_storage">Tento modul nemôže byť načítaný, pretože je nainštalovaný na karte SD, prosím, presuňte ho do interného úložiska.</string>
     <string name="view">ZOBRAZIŤ</string>
     <string name="export_">Export…</string>
@@ -174,27 +170,14 @@
     <string name="export_installed_modules">Exportovať zoznam inštalovaných modulov</string>
     <string name="import_installed_modules">Importovať zoznam inštalovaných modulov</string>
     <string name="no_installed_modules">Nie je nainštalovaný žiadny modul!</string>
-
-
     <string name="no_backup_found">Záloha nenájdená</string>
     <string name="no_enabled_modules">Nie sú povolené žiadne moduly</string>
 
     <string name="share">Zdieľať…</string>
-    <string name="loadingError">Chyba pri načítaní Xposed Zip súboru</string>
     <string name="permissionNotGranted">Táto funkcia nebude fungovať bez povolenia zapisovať na externé úložisko.</string>
 
-
-    <string name="framework_not_installed">Xposed Framework nie je nainštalovaný.</string>
     <string name="notify_module_update">Povoliť upozornenie na aktualizáciu modulu</string>
 
-    <string name="md_back_label">Späť</string>
-    <string name="md_done_label">Hotovo</string>
-    <string name="md_cancel_label">Zrušiť</string>
-    <string name="md_choose_label">Zvoliť</string>
-    <string name="md_error_label">Chyba</string>
-    <string name="md_storage_perm_error">Vaša aplikácia nemá povolenie pre READ_EXTERNAL_STORAGE.</string>
-    <string name="md_custom_label">Vlastné</string>
-    <string name="md_presets_label">Predvoľby</string>
     <string name="scroll_top">Prejsť hore</string>
     <string name="add_bookmark">Pridať záložku</string>
     <string name="remove_bookmark">Odstrániť záložku</string>
@@ -206,11 +189,9 @@
 
     <string name="file_is_empty">Súbor je prázdny</string>
 
-
     <string name="install_remove">Nainštalovať a odstrániť</string>
     <string name="download_remove">Stiahnuť a odstrániť</string>
     <string name="module_saved">Modul uložený %1$s</string>
-
 
     <string name="reboot_recovery">Reštartovať do recovery</string>
     <string name="loading">Načítavanie…</string>
@@ -223,10 +204,8 @@
     <string name="xposed_on_next_reboot">Xposed Framework bude povolený pri nasledujúcom reštarte</string>
     <string name="xposed_off_next_reboot">Xposed Framework bude zakázaný pri nasledujúcom reštarte</string>
 
-
     <string name="skip_xposedminversion_check">Preskočiť \'xposedminversion\' kontrolu</string>
     <string name="skip_xposedminversion_check_summ">Preskočiť \'xposedminversion\' kontrolu pre moduly</string>
 
-    <string name="details">Detaily</string>
 
 </resources>

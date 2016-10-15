@@ -7,15 +7,15 @@
     <string name="xposed_not_active">הגרסה האחרונה של Xposed לא פעילה כרגע. התקנת את הסביבה והפעלת מחדש?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">הורדה</string>
     <string name="welcome_framework_update_available">עדכון לסביבת Xposed זמין.</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">התקנה/עדכון</string>
     <string name="uninstall">הסרה</string>
     <string name="soft_reboot">הפעלה מחדש מהירה</string>
     <string name="reboot">הפעלה מחדש</string>
-    <string name="phone_not_compatible">Xposed לא תומכת (עדיין) באנדרואיד SDK גרסה %1$d או ארכיטקטורת המעבד שלך (%2$s).</string>
     <string name="reboot_failed">הפעלה מחדש נכשלה. בבקשה הפעילו מחדש את המכשיר בעצמכם.</string>
     <string name="auto_flash_note">%s יצרב באופן אוטומטי לאחר לחיצה על "אישור".</string>
     <string name="reboot_confirmation">האם להפעיל מחדש כעת?</string>
@@ -95,8 +95,6 @@
     <string name="settings_group_experimental">ניסיוני</string>
     <string name="settings_disable_resources">מבטל את חיבור המשאבים (resources)</string>
     <string name="settings_disable_resources_summary">פתרון לבעיות עם ערכות נושא <b>אזהרה:</b> מודולים שמנסים לשנות את המשאבים (resources) לא יעבדו!.</string>
-    <string name="settings_performance_experiment">ניסוי ביצועים</string>
-    <string name="settings_performance_experiment_summary">אם הינך מאפשר זאת, הביצועים של המערכת שלך יכולים להשתפר, לגרוע או להישאר זהים. הרגישו חופשי לנסות ולדווח לי את התוצאות (אם יש). אתה צריך להתקין מחדש את הסביבה ולהפעיל מחדש את המכשיר כדי להחיל את השינויים.</string>
     <string name="settings_group_app">אפליקציה</string>
     <string name="settings_theme">ערכת נושא</string>
     <string name="settings_theme_light">בהיר</string>
@@ -142,5 +140,14 @@
     <string name="repo_download_failed_http">ההורדה של %1$s נכשלה: %2$d (%3$s)</string>
     <string name="repo_download_failed">ההורדה של %1$s נכשלה: %2$s</string>
     <string name="repo_load_failed">לא ניתן לטעון מאגר מיתוך %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

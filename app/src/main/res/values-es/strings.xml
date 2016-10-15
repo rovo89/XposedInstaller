@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<resources>
 
     <!-- General/various strings -->
     <string name="menuSend">Enviar</string>
@@ -7,10 +7,10 @@
     <string name="xposed_not_active">La última version del Xposed no está activa. ¿Ya instaló el Framework y reinició?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Descargar</string>
     <string name="welcome_framework_update_available">Hay una actualización para el Xposed Framework disponible (%s).</string>
+    <string name="modules_updates_available">Hay una actualización disponible para el Módulo </string>
 
-    <!-- navigation view items -->
+    <!-- Navigation drawer items -->
     <string name="nav_item_install">Framework</string>
     <string name="nav_item_modules">Módulos</string>
     <string name="nav_item_download">Descargar</string>
@@ -26,7 +26,6 @@
     <string name="uninstall">Desinstalar</string>
     <string name="soft_reboot">Reinicio suave</string>
     <string name="reboot">Reiniciar</string>
-    <string name="phone_not_compatible">El Xposed no es (todavía) compatible con la version SDK de Android  %1$d o tu arquitectura de procesador (%2$s).</string>
     <string name="reboot_failed">El Reinicio falló. Por favor use la función normal de reinicio del dispositivo.</string>
     <string name="auto_flash_note">%s debería ser flasheado automaticamente una vez presione "OK".</string>
     <string name="reboot_confirmation">Quiere reiniciar ahora?</string>
@@ -36,7 +35,7 @@
     <string name="install_known_issue">Al parecer hay un inconveniente conocido (\"%s\") con su ROM. Instalar el Xposed puede no funcionar o conducir a severos problemas. Click aquí para más detalles acerca del inconveniente.</string>
     <string name="framework_active">La versión  %s del Xposed Framework está activa.</string>
     <string name="framework_not_active">La versión  %s del Xposed Framework está instalada, pero no está activa. Por favor revise los registros para más detalles.</string>
-    <string name="modules_updates_available">Hay una actualización disponible para el Módulo </string>
+    <string name="framework_not_installed">El Xposed Framework no está instalado.</string>
 
     <!-- File operations -->
     <string name="root_failed">Fallo al obtener acceso root.\n\nAsegúrese de que su dispositivo tiene acceso root y que no tiene bloqueado los comandos shell.</string>
@@ -109,8 +108,6 @@
     <string name="settings_group_experimental">Experimental</string>
     <string name="settings_disable_resources">Deshabilitar resource hooks</string>
     <string name="settings_disable_resources_summary">Solución para conflictos con motores de temas\n<b>PRECAUCIÓN:</b> Los módulos que intentan cambiar los recursos no funcionarán mientras ésto esté habilitado.</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Experimentos de rendimiento</string>
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Si habilita esto, el rendimiento de su sistema podría incrementarse, reducirse o permanecer igual. Siéntase en libertad de probarlo y reportarnos cual efecto observa (o si no hay efecto alguno). Necesita reinstalar el Framework y reiniicar después de haber cambiado ésto.</string>
     <string name="settings_group_app">Aplicación</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Claro</string>
@@ -164,7 +161,6 @@
     <string name="repo_download_failed">Descargando %1$s ha fallado: %2$s</string>
     <string name="repo_load_failed">No se puede cargar el repositorio desde %1$s:\n%2$s</string>
 
-
     <string name="warning_installed_on_external_storage">Éste módulo no puede ser cargado porque está instalado en la tarjeta SD, por favor muévala hacia el almacenamiento interno.</string>
     <string name="view">VISTA</string>
     <string name="export_">Exportar…</string>
@@ -174,27 +170,14 @@
     <string name="export_installed_modules">Exportar lista de módulos instalados</string>
     <string name="import_installed_modules">Importar lista de módulos instalados</string>
     <string name="no_installed_modules">No hay ningún módulo instalado!</string>
-
-
     <string name="no_backup_found">No se encontró copia de seguridad</string>
     <string name="no_enabled_modules">No hay ningún módulo activado</string>
 
     <string name="share">Compartir con…</string>
-    <string name="loadingError">Error al cargar el archivo .Zip del Xposed Framework</string>
     <string name="permissionNotGranted">Éstas características no funcionarán sin permisos para escribir en el almacenamiento externo.</string>
 
-
-    <string name="framework_not_installed">El Xposed Framework no está instalado.</string>
     <string name="notify_module_update">Activar notificaciones de actualización de módulos</string>
 
-    <string name="md_back_label">Volver</string>
-    <string name="md_done_label">Hecho</string>
-    <string name="md_cancel_label">Cancelar</string>
-    <string name="md_choose_label">Elegir</string>
-    <string name="md_error_label">Error</string>
-    <string name="md_storage_perm_error">Tu aplicación no ha garantizado el permiso de LEER__ALMACENAMIENTO_EXTERNO.</string>
-    <string name="md_custom_label">Personalizar</string>
-    <string name="md_presets_label">Pre-establecidos</string>
     <string name="scroll_top">Deslizar hacia el inicio</string>
     <string name="add_bookmark">Agregar marcador</string>
     <string name="remove_bookmark">Remover marcador</string>
@@ -206,11 +189,9 @@
 
     <string name="file_is_empty">El archivo está vacío</string>
 
-
     <string name="install_remove">Instalar y remover</string>
     <string name="download_remove">Descargar y remover</string>
     <string name="module_saved">Módulo guardado en %1$s</string>
-
 
     <string name="reboot_recovery">Reiniciar en modo recovery</string>
     <string name="loading">Cargando…</string>
@@ -222,6 +203,7 @@
     <string name="status">Estado del Xposed</string>
     <string name="xposed_on_next_reboot">El Xposed Framework se activará en el próximo reinicio</string>
     <string name="xposed_off_next_reboot">El Xposed Framework se desactivará en el próximo reinicio</string>
+
 
 
 </resources>

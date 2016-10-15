@@ -7,15 +7,25 @@
     <string name="xposed_not_active">A versão mais recente da \"Xposed\" ainda não foi ativada. Instalou a \"Framework\" e reiniciou o dispositivo?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Descarregar</string>
     <string name="welcome_framework_update_available">Está disponível uma atualização da \"Xposed Framework\".</string>
+    <string name="modules_updates_available">Estão disponíveis atualizações para alguns Módulos</string>
+
+    <!-- Navigation drawer items -->
+    <string name="nav_item_install">\"Framework\"</string>
+    <string name="nav_item_modules">Módulos</string>
+    <string name="nav_item_download">Descarregar</string>
+    <string name="nav_item_settings">Definições</string>
+    <string name="nav_item_support">Suporte</string>
+    <string name="nav_item_logs">Registos</string>
+    <string name="nav_item_about">Acerca</string>
+    <string name="navigation_drawer_open">Abrir a gaveta de navegação</string>
+    <string name="navigation_drawer_close">Fechar a gaveta de navegação</string>
 
     <!-- Installer tab -->
     <string name="install">Instalar/Atualizar</string>
     <string name="uninstall">Desinstalar</string>
     <string name="soft_reboot">Reinício suave</string>
     <string name="reboot">Reiniciar</string>
-    <string name="phone_not_compatible">A \"Xposed\" (ainda) não é compatível com a versão SDK %1$d do Android ou com a arquitetura (%2$s) do seu processador.</string>
     <string name="reboot_failed">Falha ao reiniciar. Por favor reinicie o seu aparelho utilizando o menu nativo do sistema.</string>
     <string name="auto_flash_note">%s será \"flashado\" assim que pressionar \"OK\".</string>
     <string name="reboot_confirmation">Pretende reiniciar?</string>
@@ -23,6 +33,9 @@
     <string name="install_warning">Em certos casos, após a instalação da \"Xposed\", o dispositivo deixa de arrancar.\n\nAssim, se nunca ouviu falar em \"soft brick\" ou \"bootloop\", ou caso não saiba como recuperar de uma situação dessas, <b>NÃO</b> instale a \"Xposed\"!\n\nIndependentemente disso, ter um \"backup\" recente é sempre, altamente, recomendado.</string>
     <string name="dont_show_again">Não mostrar novamente</string>
     <string name="install_known_issue">Parece existir um problema conhecido (\"%s\") com a sua ROM. É provável que instalação da Xposed falhe ou que surjam falhas graves. Toque aqui para obter mais detalhes sobre o problema.</string>
+    <string name="framework_active">A versão %s da \"Xposed Framework\" está ativa.</string>
+    <string name="framework_not_active">A versão %s da \"Xposed Framework\" está instalada mas não está ativa. Por favor verifique os registos para mais detalhes.</string>
+    <string name="framework_not_installed">A \"Xposed Framework\" não está instalada.</string>
 
     <!-- File operations -->
     <string name="root_failed">Falha ao obter o acesso \"root\".\n\nCertifique-se que o seu aparelho dispõe de acesso \"root\" e/ou que foi dada permissão à app para correr como tal.</string>
@@ -95,13 +108,20 @@
     <string name="settings_group_experimental">Experimental</string>
     <string name="settings_disable_resources">Desativar a substituição de recursos</string>
     <string name="settings_disable_resources_summary">Solução para conflitos com gestores de temas \n<b>AVISO:</b> Os módulos que dependam da alteração de recursos não irão funcionar se ativar esta opção.</string>
-    <string name="settings_performance_experiment">Experiência de desempenho</string>
-    <string name="settings_performance_experiment_summary">Quando ativa, o desempenho do seu dispositivo poderá melhorar, piorar ou ficar na mesma. É livre para experimentar e reportar-me os seus efeitos (ou a ausência deles).  Após ativar esta opção, é necessário reinstalar a \"Framework\" e reiniciar.</string>
     <string name="settings_group_app">Aplicação</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Claro</string>
     <string name="settings_theme_dark">Escuro</string>
     <string name="settings_theme_black">Preto (recomendado para ecrãs AMOLED)</string>
+    <string name="settings_default_view">Vista padrão</string>
+
+    <!-- Support tab -->
+    <string name="support_modules_label">Suporte para módulos</string>
+    <string name="support_modules_description">Mantenha premido qualquer módulo da lista e selecione \"%1$s\".</string>
+    <string name="support_framework_label">Suporte à \"Framework\"/\"Installer\"</string>
+    <string name="support_faq_label">FAQ/Problemas conhecidos</string>
+    <string name="support_donate_label">Doar</string>
+    <string name="support_donate_description">Se quiser agradecer pela \"Xposed\", pode fazer um donativo ao rovo89 aqui</string>
 
     <!-- Logs tab  -->
     <string name="logs_save_failed">Não foi possível gravar o registo no cartão SD:</string>
@@ -140,76 +160,44 @@
     <string name="repo_download_failed_http">A descarga de %1$s falhou: %2$d (%3$s)</string>
     <string name="repo_download_failed">Falha ao descarregar %1$s: %2$s</string>
     <string name="repo_load_failed">Não foi possível carregar o repositório a partir de %1$s:\n%2$s</string>
-    <string name="add_bookmark">Adicionar marcador</string>
-    <string name="bookmark_added">Marcador adicionado</string>
-    <string name="bookmark_removed">Marcador removido</string>
-    <string name="bookmarks">Marcadores</string>
 
-
-    <string name="download_remove">Descarregar e remover</string>
-
-
+    <string name="warning_installed_on_external_storage">Este módulo não pode ser carregado pois está instalado no cartão SD. Mova-o para a memória interna, por favor.</string>
+    <string name="view">VER</string>
     <string name="export_">Exportar…</string>
-    <string name="export_enabled_modules">Exportar lista de módulos ativos</string>
-    <string name="export_installed_modules">Exportar lista de módulos instalados</string>
-    <string name="file_is_empty">O ficheiro está vazio</string>
     <string name="import_">Importar…</string>
+    <string name="export_enabled_modules">Exportar lista de módulos ativos</string>
     <string name="import_enabled_modules">Importar lista de módulos ativos</string>
+    <string name="export_installed_modules">Exportar lista de módulos instalados</string>
     <string name="import_installed_modules">Importar lista de módulos instalados</string>
-    <string name="install_remove">Instalar e remover</string>
-
-
-    <string name="framework_active">A versão %s da \"Xposed Framework\" está ativa.</string>
-    <string name="framework_not_active">A versão %s da \"Xposed Framework\" está instalada mas não está ativa. Por favor verifique os registos para mais detalhes.</string>
-    <string name="loadingError">Erro a carregar os ZIP da \"Xposed Framework\"</string>
-    <string name="md_back_label">Voltar</string>
-    <string name="md_cancel_label">Cancelar</string>
-    <string name="md_choose_label">Escolher</string>
-    <string name="md_custom_label">Personalizado</string>
-    <string name="md_done_label">Feito</string>
-    <string name="md_error_label">Erro</string>
-    <string name="md_presets_label">Predefinições</string>
-    <string name="md_storage_perm_error">Não foi dada permissão à app para ler o conteúdo do cartão SD.</string>
-    <string name="module_saved">Módulo guardado em %1$s</string>
-    <string name="modules_updates_available">Estão disponíveis atualizações para alguns Módulos</string>
-
-    <string name="nav_item_about">Acerca</string>
-    <string name="nav_item_download">Descarregar</string>
-    <string name="nav_item_install">\"Framework\"</string>
-    <string name="nav_item_logs">Registos</string>
-    <string name="nav_item_modules">Módulos</string>
-    <string name="nav_item_settings">Definições</string>
-    <string name="nav_item_support">Suporte</string>
-    <string name="navigation_drawer_close">Fechar a gaveta de navegação</string>
-    <string name="navigation_drawer_open">Abrir a gaveta de navegação</string>
-
-    <string name="no_backup_found">Não foi encontrado nenhum \"backup\"</string>
-    <string name="no_bookmark_added">Não foi adicionado nenhum marcador</string>
-    <string name="no_enabled_modules">Não existem módulos ativos</string>
     <string name="no_installed_modules">Não existem módulos instalados!</string>
-    <string name="framework_not_installed">A \"Xposed Framework\" não está instalada.</string>
+    <string name="no_backup_found">Não foi encontrado nenhum \"backup\"</string>
+    <string name="no_enabled_modules">Não existem módulos ativos</string>
+
+    <string name="share">Partilhar com…</string>
+    <string name="permissionNotGranted">Esta funcionalidade não funcionará sem a permissão de escrita para o cartão SD.</string>
 
     <string name="notify_module_update">Ativar a notificação de atualização de módulo</string>
-    <string name="permissionNotGranted">Esta funcionalidade não funcionará sem a permissão de escrita para o cartão SD.</string>
-    <string name="remove_bookmark">Remover marcador</string>
-    <string name="scroll_top">Voltar ao topo</string>
-    <string name="settings_default_view">Vista padrão</string>
-    <string name="share">Partilhar com…</string>
-    <string name="support_donate_description">Se quiser agradecer pela \"Xposed\", pode fazer um donativo ao rovo89 aqui</string>
-    <string name="support_donate_label">Doar</string>
-    <string name="support_faq_label">FAQ/Problemas conhecidos</string>
-    <string name="support_framework_label">Suporte à \"Framework\"/\"Installer\"</string>
-    <string name="support_modules_description">Mantenha premido qualquer módulo da lista e selecione \"%1$s\".</string>
-    <string name="support_modules_label">Suporte para módulos</string>
-    <string name="undo">Reverter</string>
-    <string name="view">VER</string>
-    <string name="warning_installed_on_external_storage">Este módulo não pode ser carregado pois está instalado no cartão SD. Mova-o para a memória interna, por favor.</string>
 
+    <string name="scroll_top">Voltar ao topo</string>
+    <string name="add_bookmark">Adicionar marcador</string>
+    <string name="remove_bookmark">Remover marcador</string>
+    <string name="bookmarks">Marcadores</string>
+    <string name="no_bookmark_added">Não foi adicionado nenhum marcador</string>
+    <string name="bookmark_added">Marcador adicionado</string>
+    <string name="bookmark_removed">Marcador removido</string>
+    <string name="undo">Reverter</string>
+
+    <string name="file_is_empty">O ficheiro está vazio</string>
+
+    <string name="install_remove">Instalar e remover</string>
+    <string name="download_remove">Descarregar e remover</string>
+    <string name="module_saved">Módulo guardado em %1$s</string>
 
     <string name="reboot_recovery">Reiniciar para a \"Recovery\"</string>
-	<string name="loading">A carregar…</string>
+    <string name="loading">A carregar…</string>
     <string name="chrome_custom_tabs">Separadores do Chrome Personalizados</string>
     <string name="chrome_custom_tabs_summ">Abrir links pelo navegador interno</string>
 
-</resources>
 
+
+</resources>

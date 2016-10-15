@@ -7,15 +7,15 @@
     <string name="xposed_not_active">Найсвіжіша версія Xposed наразі не активована. Ви впевнені, що встановили Фреймворк та перезавантажили пристрій?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Звантаження</string>
     <string name="welcome_framework_update_available">Є оновлення для Xposed Framework (%s).</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Встановити/Оновити</string>
     <string name="uninstall">Видалити</string>
     <string name="soft_reboot">Швидке перезавантаження</string>
     <string name="reboot">Перезавантаження</string>
-    <string name="phone_not_compatible">Xposed наразі (ще) не сумісний з Android SDK версії %1$d або архітектурою Вашого процесору (%2$s).</string>
     <string name="reboot_failed">Помилка перезавантаження. Скористуйтеся, будь-ласка, звичайною функцією перезавантаження.</string>
     <string name="auto_flash_note">%s буде прошито автоматично після натискання на "OK".</string>
     <string name="reboot_confirmation">Чи Ви бажаєте зараз перезавантажитися?</string>
@@ -95,8 +95,6 @@
     <string name="settings_group_experimental">Експериментальні</string>
     <string name="settings_disable_resources">Відключено зміну ресурсів</string>
     <string name="settings_disable_resources_summary">Виправлення конфліктів з темами оформлення\n<b>УВАГА:</b> Модулі, що намагаються змінювати ресурси працювати не будуть доки цей пункт активний.</string>
-    <string name="settings_performance_experiment">Експериментальна продуктивність</string>
-    <string name="settings_performance_experiment_summary">При активації продуктивність Вашої системи може як збільшитися так і зменшитися або лишитися без змін. Не бійтеся спробувати та розповісти про свій досвід, щоб про це могли дізнатися інші. Після цих змін Вам потрібно буде перевстановити Фреймворк та перезавантажитися.</string>
     <string name="settings_group_app">Додаток</string>
     <string name="settings_theme">Тема</string>
     <string name="settings_theme_light">Світла</string>
@@ -142,5 +140,14 @@
     <string name="repo_download_failed_http">Звантаження %1$s скасовано: %2$d (%3$s)</string>
     <string name="repo_download_failed">Звантаження %1$s скаовано: %2$s</string>
     <string name="repo_load_failed">Помилка завантаження репозиторію з %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

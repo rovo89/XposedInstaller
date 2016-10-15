@@ -7,15 +7,15 @@
     <string name="xposed_not_active">Versi terkini Xposed masih tidak aktif. Adakah anda memasang Framework dan hidupkan semula?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Muat turun</string>
     <string name="welcome_framework_update_available">Terdapat kemaskini terbaru Xposed Framework tersedia (%s).</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Memasang/Kemaskini</string>
     <string name="uninstall">Nyah Pasang</string>
     <string name="soft_reboot">Hidup smula secara perlahan</string>
     <string name="reboot">Hidupkan semula</string>
-    <string name="phone_not_compatible">Xposed tidak lagi (sesuai) menyokong dengan Android SDK versi %1$d atau kerangka prosessor anda (%2$s).</string>
     <string name="reboot_failed">Hidupkan semula gagal. Sila gunakan peranti\'s hidupkan smula secara biasa.</string>
     <string name="auto_flash_note">%s Akan flash secara automatik jika anda menekan "OK".</string>
     <string name="reboot_confirmation">Adakah anda mahu menghidupkan semula sekarang?</string>
@@ -95,8 +95,6 @@
     <string name="settings_group_experimental">Pengujian</string>
     <string name="settings_disable_resources">Matikan resource hooks</string>
     <string name="settings_disable_resources_summary">Melihat sekeliling untuk konflik dengan enjin tema\n<b>AMARAN:</b> Yang mana Modul yg cuba ditukar resources tidak akan berfungsi jika ini dihidupkan.</string>
-    <string name="settings_performance_experiment">Kemajuan Pengujian</string>
-    <string name="settings_performance_experiment_summary">Jika anda hidupkan ini, sistem anda mungkin akan meningkat atau sebaliknya, atau masih kekal pada tahap asal. Luangkan masa untuk mencuba dan laporkan sekiranya anda melihat atau merasai kesannya (atau langsung tiada apa²). Anda perlu memasang semula Framework dan hidupkan semula selepas menukar ini.</string>
     <string name="settings_group_app">Aplikasi</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_theme_light">Cerah</string>
@@ -142,5 +140,14 @@
     <string name="repo_download_failed_http">Muat turun %1$s gagal: %2$d (%3$s)</string>
     <string name="repo_download_failed">Muat turun %1$s gagal: %2$s</string>
     <string name="repo_load_failed">Tidak boleh mengisi repositor daripada %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

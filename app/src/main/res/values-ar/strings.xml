@@ -4,15 +4,15 @@
     <!-- General/various strings -->
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">تحميل</string>
     <string name="welcome_framework_update_available">يتوفر تحديث لإطار إكسبوسيد.</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">تثبيت/تحديث</string>
     <string name="uninstall">إلغاء تثبيت</string>
     <string name="soft_reboot">اعادة تشغيل سريعة</string>
     <string name="reboot">اعادة التشغيل</string>
-    <string name="phone_not_compatible">اكسبود ليس (حتى الآن) متوافق مع الإصدار الروبوت SDK %1$d أو هندسة المعالج (%2$s).</string>
 
     <!-- File operations -->
 
@@ -56,8 +56,6 @@
     <!-- Settings tab -->
     <string name="settings_group_download">تحميل</string>
     <string name="settings_group_experimental">التجريبية</string>
-    <string name="settings_performance_experiment">تجربة الأداء</string>
-    <string name="settings_performance_experiment_summary">إذا قمت بتمكين هذا، أداء النظام الخاص بك قد أما زيادة أو إنقاص أو البقاء نفس. لا تتردد في جربة وتقريراً عن تأثير الذي تراه (أو إذا كان هناك لا شيء على الإطلاق). كنت بحاجة إلى تثبيت الإطار وإعادة تشغيل الكمبيوتر بعد تغيير هذا.</string>
 
     <!-- Support tab -->
 
@@ -92,5 +90,14 @@
     <string name="repo_download_failed_http">تحميل %1$s فشل: %2$d (%3$s)</string>
     <string name="repo_download_failed">تحميل %1$s فشل: %2$s</string>
     <string name="repo_load_failed">لايمكن التحميل من المستودع %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

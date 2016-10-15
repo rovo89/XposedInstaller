@@ -7,15 +7,15 @@
     <string name="xposed_not_active">De laatste versie van Xposed is momenteel niet actief. Heeft u het Framework geïnstalleerd en het systeem herstart?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Download</string>
     <string name="welcome_framework_update_available">Een update voor het Xposed Framework is beschikbaar.</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Installeren/Bijwerken</string>
     <string name="uninstall">Verwijderen</string>
     <string name="soft_reboot">Herstart systeem</string>
     <string name="reboot">Herstart apparaat</string>
-    <string name="phone_not_compatible">Xposed is (nog) niet compatibel met Android SDK-versie %1$d van uw processor architectuur (%2$s).</string>
     <string name="reboot_failed">Herstart mislukt. Herstart het apparaat handmatig.</string>
     <string name="auto_flash_note">%s wordt automatisch geflasht wanneer u op "Oke" drukt.</string>
     <string name="reboot_confirmation">Wilt u nu herstarten?</string>
@@ -95,8 +95,6 @@
     <string name="settings_group_experimental">Experimenteel</string>
     <string name="settings_disable_resources">Resource-hooks uitschakelen</string>
     <string name="settings_disable_resources_summary">Tijdelijke oplossing voor conflicten met thema-applicaties\n<b>WAARSCHUWING:</b> Modules die resources proberen te veranderen werken niet wanneer deze optie geactiveerd is.</string>
-    <string name="settings_performance_experiment">Prestatie-experiment</string>
-    <string name="settings_performance_experiment_summary">Als u dit inschakelt, kunnen uw systeemprestaties verhogen, verminderen of hetzelfde blijven. Het is gratis te proberen, laat ons weten welk effect u ziet (ook als er helemaal geen effect is). U moet het Framework herinstalleren en herstarten nadat u dit veranderd hebt.</string>
     <string name="settings_group_app">Applicaties</string>
     <string name="settings_theme">Thema</string>
     <string name="settings_theme_light">Licht</string>
@@ -142,5 +140,14 @@
     <string name="repo_download_failed_http">Downloaden %1$s mislukt: %2$d (%3$s)</string>
     <string name="repo_download_failed">Downloaden %1$s mislukt: %2$s</string>
     <string name="repo_load_failed">Kan de repository niet laden van %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

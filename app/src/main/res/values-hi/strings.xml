@@ -7,15 +7,15 @@
     <string name="xposed_not_active">एक्सोसड का सबसे नया वऱजन चालू नही है | क्या आपने एक्सोसड को चालू किया है ?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">डाउनलोड</string>
     <string name="welcome_framework_update_available">क्स्पोसेद फ्रेमवर्क का अपडेट अवेलेबल है (%s)।</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">इनस्टॉल/अपडेट</string>
     <string name="uninstall">उनिन्स्तल</string>
     <string name="soft_reboot">नरम रिबूट</string>
     <string name="reboot">रिबूट</string>
-    <string name="phone_not_compatible">एक्स्पोसड (अभी तक) आपके एंड्राइड सडक  %1$d या आपके प्रोसेसर आर्किटेक्चर (%2$s) के साथ चलता नहीं है।</string>
     <string name="reboot_failed">रिबूट फ़ैल होगया है। किरपिया आपके डिवाइस के सामान्य रिबूट प्रक्रिया चलकर देखे।</string>
     <string name="auto_flash_note">%s फ़्लैश होना चाहिए जब आप  "ठीक है" दबाए.</string>
     <string name="reboot_confirmation">क्या आप रिबूट करने की अनुमति देंगे?</string>
@@ -95,8 +95,6 @@
     <string name="settings_group_experimental">प्रायोगिक</string>
     <string name="settings_disable_resources">रिसोर्स हुक्स दिअब्ले करे</string>
     <string name="settings_disable_resources_summary">वोर्कारौंड्स फॉर कोम्फ्लिक्ट्स इन टी\n<b>चेतान्वनी:</b> मोदुलेस जो रिसोर्सेज बदलने की कोशिश करते है वो काम नहीं करेंगे जब यह चालू है।</string>
-    <string name="settings_performance_experiment">परफॉरमेंस प्रयोग</string>
-    <string name="settings_performance_experiment_summary">Iअगर आप यह चालू करेंगे तो आपके सिस्टम का प्र्फोर्मनस बढ़ ,घट अथवा उतना ही रह सकता है। इसे इस्तमाल करने के लिए आप आजाद है और बाद में जरुर बताए की यह आपके लिए कैसे काम करता है। आपको फमेवरक वापिस डालना होगा और रिबूट भी करना होगा।</string>
     <string name="settings_group_app">एप्लीकेशन</string>
     <string name="settings_theme">थीम</string>
     <string name="settings_theme_light">लाइट्स</string>
@@ -142,5 +140,14 @@
     <string name="repo_download_failed_http">डाउनलोड %1$s फ़ैल : %2$d (%3$s)</string>
     <string name="repo_download_failed">डोव्न्लॉदिङ्ग फ़ैल %1$s फ़ैल %2$s</string>
     <string name="repo_load_failed">इस रिपॉजिटरी से रिसोर्सेज लोड ना कर पाए %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

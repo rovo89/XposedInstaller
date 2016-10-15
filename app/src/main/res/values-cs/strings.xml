@@ -7,10 +7,10 @@
     <string name="xposed_not_active">Poslední verze Xposed frameworku není aktivní. Byl Framework nainstalován a zařízení restartováno?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Stáhnout</string>
     <string name="welcome_framework_update_available">Aktualizace Xposed frameworku je k dispozici (%s).</string>
+    <string name="modules_updates_available">Aktualizace modulu k dispozici</string>
 
-    <!-- navigation view items -->
+    <!-- Navigation drawer items -->
     <string name="nav_item_install">Framework</string>
     <string name="nav_item_modules">Moduly</string>
     <string name="nav_item_download">Stáhnout</string>
@@ -26,7 +26,6 @@
     <string name="uninstall">Odinstalovat</string>
     <string name="soft_reboot">Lehký restart</string>
     <string name="reboot">Restart</string>
-    <string name="phone_not_compatible">Xposed (zatím) není kompatibilní s Android SDK verze %1$d nebo architekturou vašeho procesoru (%2$s).</string>
     <string name="reboot_failed">Nepodařilo se restartovat zařízení. Prosím, restartujte jej běžným způsobem.</string>
     <string name="auto_flash_note">Stisknutím \"OK\" bude %s automaticky nainstalován v recovery.</string>
     <string name="reboot_confirmation">Chcete zařízení restartovat nyní?</string>
@@ -36,7 +35,7 @@
     <string name="install_known_issue">Zdá se, že existuje známý problém (\"%s\") s vaší ROM. Instalace Xposed nemusí fungovat, nebo může vést k závažným problémům. Pro podrobnosti o tomto problému stiskněte zde.</string>
     <string name="framework_active">Xposed Framework verze %s je aktivní.</string>
     <string name="framework_not_active">Xposed Framework verze %s je nainstalován, ale není aktivní. Prosím zkontrolujte log pro podrobnosti.</string>
-    <string name="modules_updates_available">Aktualizace modulu k dispozici</string>
+    <string name="framework_not_installed">Xposed Framework není nainstalován.</string>
 
     <!-- File operations -->
     <string name="root_failed">Nepodařilo se získat oprávnění root.\n\nUjistěte se, že je vaše zařízení správně rootnuté a nejsou blokované přikazy shellu.</string>
@@ -109,8 +108,6 @@
     <string name="settings_group_experimental">Experimentální</string>
     <string name="settings_disable_resources">Zakázat ovlivňování prostředků</string>
     <string name="settings_disable_resources_summary">(Resource hooks)\nŘeší konflikty s tématy (theme engines).\n<b>VAROVÁNÍ:</b> Je-li aktivní, moduly měnící prostředky nebudou správně pracovat.</string>
-    <string name="settings_performance_experiment">Výkonový experiment</string>
-    <string name="settings_performance_experiment_summary">Zapnutím této volby se rychlost systému může zvýšit, snížit, nebo zůstat stejná. Neváhejte ji vyzkoušet a dát vědět, který z efektů pozorujete (pokud se vůbec nějaký dostaví). Po změně této hodnoty je nutné přeinstalovat Framework a restartovat.</string>
     <string name="settings_group_app">Aplikace</string>
     <string name="settings_theme">Téma</string>
     <string name="settings_theme_light">Světlé</string>
@@ -164,7 +161,6 @@
     <string name="repo_download_failed">Stahování %1$s selhalo: %2$s</string>
     <string name="repo_load_failed">Nemohu načíst repozitář z %1$s:\n%2$s</string>
 
-
     <string name="warning_installed_on_external_storage">Tento modul nemohl být načten protože je nainstalován na kartě SD, přesuňte jej prosím do interní paměti.</string>
     <string name="view">VIEW</string>
     <string name="export_">Export…</string>
@@ -174,17 +170,18 @@
     <string name="export_installed_modules">Exportovat seznam nainstalovaných modulů</string>
     <string name="import_installed_modules">Importovat seznam nainstalovaných modulů</string>
     <string name="no_installed_modules">Žádné Xposed moduly nebyly nalezeny!</string>
-
-
     <string name="no_backup_found">Nenalezena žádná záloha</string>
     <string name="no_enabled_modules">Nejsou povoleny žádné moduly</string>
 
     <string name="share">Sdílet…</string>
-    <string name="loadingError">Chyba při získávání seznamu souborů zip s Xposed frameworkem</string>
     <string name="permissionNotGranted">Tato funkce nebude fungovat bez udělení oprávnění k zápisu na externí úložiště.</string>
 
-
-    <string name="framework_not_installed">Xposed Framework není nainstalován.</string>
     <string name="notify_module_update">Povolit oznámení o aktualizaci modulu</string>
+
+
+
+
+
+
 
 </resources>

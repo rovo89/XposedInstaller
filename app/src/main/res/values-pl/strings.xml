@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<resources>
 
     <!-- General/various strings -->
     <string name="menuSend">Wyślij</string>
     <string name="menuSaveToSd">Zapisz na karcie SD</string>
-
     <string name="xposed_not_active">Ostatnia wersja Xposed jest aktualnie nieaktywna. Czy zainstalowałeś proces framework i uruchomiłeś ponownie telefon??</string>
+
     <!-- Welcome screen / main sections -->
-
-
-    <string name="tabDownload">Pobierz</string>
-
-
     <string name="welcome_framework_update_available">Aktualizacja procesu framework dostarczanego przez aplikację Xposed jest dostępna (%s).</string>
+    <string name="modules_updates_available">Dostępna aktualizacja modułów</string>
 
-    <!-- navigation view items -->
+    <!-- Navigation drawer items -->
     <string name="nav_item_install">Framework</string>
     <string name="nav_item_modules">Moduły</string>
     <string name="nav_item_download">Pobierz</string>
@@ -30,24 +26,18 @@
     <string name="uninstall">Odinstaluj i przywróć systemowe procesy</string>
     <string name="soft_reboot">Tryb szybki</string>
     <string name="reboot">Tryb normalny</string>
-    <string name="phone_not_compatible">Aplikacja Xposed nie jest jeszcze kompatybilna z Android SDK wersją %1$d lub z twoją architekturą procesora (%2$s).</string>
     <string name="reboot_failed">Restartnie powiódł się. Proszę użyć normalnego trybu restartu.</string>
     <string name="auto_flash_note">%s należy załadować automatycznie po naciśnięciu OK.</string>
     <string name="reboot_confirmation">Chcesz teraz zrestartować telefon?</string>
     <string name="install_warning_title">Bądź ostrożny!</string>
-
     <string name="install_warning">W niektórych przypadkach urządzenie może nie uruchomić się po instalacji Xposed. Jeśli nigdy nie słyszałeś o miękkiej cegle, bootloopie i nie wiesz jak odzyskać w takiej sytuacji system, nie instaluj Xposed! W każdym bądź razie, zrobienie kopii  zapasowej jest bardzo zalecane.</string>
     <string name="dont_show_again">Nie pokazuj ponownie</string>
-
-
     <string name="install_known_issue">Wydaje się, że to znany problem z ROM. Instalacja Xposed może nie działać lub prowadzić do poważnych problemów. Kliknij tutaj, aby uzyskać szczegółowe informacje na temat tej kwestii.</string>
     <string name="framework_active">Wersja %s Xposed framework jest aktywna.</string>
-
     <string name="framework_not_active">Wersja %s Xposed framework jest zainstalowana, ale nie jest aktywna. Proszę sprawdzić logi, aby poznać szczegóły.</string>
-    <string name="modules_updates_available">Dostępna aktualizacja modułów</string>
+    <string name="framework_not_installed">Xposed framework jest niezainstalowany.</string>
 
     <!-- File operations -->
-
     <string name="root_failed">Nie udało się uzyskać dostępu do konta roota. Upewnij się, że urządzenie jest zrootowane prawidłowo i nie zostały zablokowane polecenia powłoki.</string>
     <string name="file_copying">Kopiowanie %s&#8230;</string>
     <string name="file_copy_failed">Nie można skopiować %1$s do %2$s</string>
@@ -110,17 +100,14 @@
     <string name="download_section_older">Więcej niż 30 dni temu</string>
     <string name="download_details_not_found">Nie ma modułu z nazwą pakietu \"%s\" w repozytorium.</string>
     <string name="download_no_versions">Autor nie przekazał jeszcze niczego.</string>
-
     <string name="download_test_version_not_shown">Wersja testowa jest dostępna, jednak nie jest ona widoczna z powodu globalnych lub specyficznych ustawień modułu.</string>
+
     <!-- Settings tab -->
     <string name="settings_group_download">Pobierz</string>
     <string name="settings_release_type">Pokazywana wersja</string>
     <string name="settings_group_experimental">Eksperymentalne</string>
     <string name="settings_disable_resources">Wyłącz zasoby konfliktów</string>
     <string name="settings_disable_resources_summary">Rozwiązanie konfliktów z silnikiem\n<b>OSTRZEŻENIE:</b> Moduły, które próbują zmienić zasoby nie będą pracowały, kiedy to jest włączone.</string>
-    <string name="settings_performance_experiment" tools:ignore="UnusedResources">Wyniki eksperymentu</string>
-
-    <string name="settings_performance_experiment_summary" tools:ignore="UnusedResources">Jeśli to włączysz, wydajność systemu może albo się zwiększyć, zmniejszyć lub pozostać taka sama. Prosimy spróbować i zaraportować nam, który efekt widzisz. Musisz zainstalować ponownie framework i zresetować telefon po zmianie tego.</string>
     <string name="settings_group_app">Aplikacja</string>
     <string name="settings_theme">Motyw</string>
     <string name="settings_theme_light">Jasny</string>
@@ -175,7 +162,6 @@
     <string name="repo_load_failed">Nie można załadować repozytorium z %1$s:\n%2$s</string>
 
     <string name="warning_installed_on_external_storage">Ten moduł nie może zostać załadowany, ponieważ jest zainstalowany na karcie SD, przenieś go do pamięci wewnętrznej.</string>
-
     <string name="view">PODGLĄD</string>
     <string name="export_">Eksport…</string>
     <string name="import_">Import…</string>
@@ -184,25 +170,14 @@
     <string name="export_installed_modules">Eksport listy zainstalowanych modułów</string>
     <string name="import_installed_modules">Import listy zainstalowanych modułów</string>
     <string name="no_installed_modules">Brak zainstalowanych modułów!</string>
-
     <string name="no_backup_found">Nie znaleziono kopii zapasowej</string>
     <string name="no_enabled_modules">Brak aktywnych modułów</string>
 
     <string name="share">Udostępnij przez…</string>
-    <string name="loadingError">Błąd ładowania Xposed Zip frameworks</string>
     <string name="permissionNotGranted">Ta funkcja nie zadziała bez uprawnienia zapisu zewnętrznej pamięci masowej.</string>
 
-    <string name="framework_not_installed">Xposed framework jest niezainstalowany.</string>
     <string name="notify_module_update">Włącz powiadomienia o aktualizacji modułów</string>
 
-    <string name="md_back_label">Wstecz</string>
-    <string name="md_done_label">Gotowe</string>
-    <string name="md_cancel_label">Anuluj</string>
-    <string name="md_choose_label">Wybierz</string>
-    <string name="md_error_label">Błąd</string>
-    <string name="md_storage_perm_error">Twoja aplikacja nie dostała uprawnienia READ_EXTERNAL_STORAGE.</string>
-    <string name="md_custom_label">Niestandardowy</string>
-    <string name="md_presets_label">Zdefiniowane</string>
     <string name="scroll_top">Przewiń do góry</string>
     <string name="add_bookmark">Dodaj zakładkę</string>
     <string name="remove_bookmark">Usuń zakładkę</string>
@@ -211,10 +186,13 @@
     <string name="bookmark_added">Dodano zakładkę</string>
     <string name="bookmark_removed">Usunięto zakładkę</string>
     <string name="undo">Cofnij</string>
+
     <string name="file_is_empty">Plik jest pusty</string>
+
     <string name="install_remove">Zainstaluj i usuń</string>
     <string name="download_remove">Pobierz i usuń</string>
     <string name="module_saved">Moduł zapisany %1$s</string>
+
     <string name="reboot_recovery">Restart do trybu recovery</string>
     <string name="loading">Ładowanie…</string>
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
@@ -228,5 +206,6 @@
 
     <string name="skip_xposedminversion_check">Pomiń sprawdzanie \'xposedminversion\'</string>
     <string name="skip_xposedminversion_check_summ">Pomiń sprawdzanie modułów \'xposedminversion\'</string>
-    <string name="details">Szczegóły</string>
+
+
 </resources>

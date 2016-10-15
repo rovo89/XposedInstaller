@@ -7,15 +7,15 @@
     <string name="xposed_not_active">Poslednja verzija Xposed programa trenutno nije aktivna. Da li ste instalirali Framework i restartovali uređaj?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Učitavanje</string>
     <string name="welcome_framework_update_available">Nova verzija Xposed Framework-a je dostupna (%s).</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Instalacija/Nadogradnja</string>
     <string name="uninstall">Deinstalacija</string>
     <string name="soft_reboot">Softverski restart</string>
     <string name="reboot">Restart</string>
-    <string name="phone_not_compatible">Xposed (trenutno) nije kompatibilan sa Android SDK versijom %1$d ili vašom arhitekturom procesora(%2$s).</string>
     <string name="reboot_failed">Restartovanje je neuspešno. Milim, restartujte urđaj normalnom procedurom.</string>
     <string name="auto_flash_note">%s instaliraće se automatski nakon što izaberete "OK".</string>
     <string name="reboot_confirmation">Da li želite da restartujete uređaj sada?</string>
@@ -115,5 +115,14 @@
     <string name="repo_download_failed_http">Učitano %1$s neuspešno: %2$d (%3$s)</string>
     <string name="repo_download_failed">Učitano %1$s neuspešno: %2$s</string>
     <string name="repo_load_failed">Nemoguće učitati repozitorij iz %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>

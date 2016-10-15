@@ -7,10 +7,10 @@
     <string name="xposed_not_active">Die aktuellste Xposed-Version ist derzeit nicht aktiv. Hast du das Framework installiert und das Gerät neugestartet?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Download</string>
     <string name="welcome_framework_update_available">Es ist eine Aktualisierung für das Xposed-Framework verfügbar (%s).</string>
+    <string name="modules_updates_available">Aktualisierungen für Module sind verfügbar</string>
 
-    <!-- navigation view items -->
+    <!-- Navigation drawer items -->
     <string name="nav_item_install">Framework</string>
     <string name="nav_item_modules">Module</string>
     <string name="nav_item_download">Download</string>
@@ -26,7 +26,6 @@
     <string name="uninstall">Deinstallieren</string>
     <string name="soft_reboot">Software-Neustart</string>
     <string name="reboot">Geräte-Neustart</string>
-    <string name="phone_not_compatible">Xposed ist (noch) nicht mit der Android-SDK-Version %1$d oder deiner Prozessor-Architektur (%2$s) kompatibel.</string>
     <string name="reboot_failed">Neustart fehlgeschlagen. Bitte verwende die normale Neustartfunktion des Geräts.</string>
     <string name="auto_flash_note">%s sollte automatisch installiert werden, sobald du "OK" drückst.</string>
     <string name="reboot_confirmation">Möchtest du jetzt neustarten?</string>
@@ -36,7 +35,7 @@
     <string name="install_known_issue">Es scheint eine bekannte Inkompatibilität (\"%s\") mit deinem ROM zu geben. Du solltest Xposed wahrscheinlich nicht installieren. Klicke hier für mehr Informationen.</string>
     <string name="framework_active">Xposed-Framework Version %s ist aktiv.</string>
     <string name="framework_not_active">Xposed-Framework Version %s ist installiert, aber nicht aktiv. Bitte schaue in den Logs nach Details.</string>
-    <string name="modules_updates_available">Aktualisierungen für Module sind verfügbar</string>
+    <string name="framework_not_installed">Xposed-Framework ist nicht installiert.</string>
 
     <!-- File operations -->
     <string name="root_failed">Root-Zugriff fehlgeschlagen\n\nStelle sicher, dass das Gerät korrekt gerootet ist und Shell-Kommandos nicht blockiert werden.</string>
@@ -109,8 +108,6 @@
     <string name="settings_group_experimental">Experimentell</string>
     <string name="settings_disable_resources">Ressourcen-APIs deaktivieren</string>
     <string name="settings_disable_resources_summary">Workaround für Konflikte mit \"Theming Engines\"\n<b>VORSICHT:</b> Module, die Ressourcen verändern, werden mit dieser Einstellung nicht funktionieren.</string>
-    <string name="settings_performance_experiment">Performance-Experiment</string>
-    <string name="settings_performance_experiment_summary">Falls du diese Einstellung aktivierst, wird sich die Leistung deines Systems entweder verschlechtern, verbessern oder gar nicht verändern. Teste sie und berichte, welches Verhalten du beobachten kannst. Nachdem du diese Einstellung geändert hast, musst du das Framework neu installieren und das Gerät neustarten.</string>
     <string name="settings_group_app">Applikation</string>
     <string name="settings_theme">Aussehen</string>
     <string name="settings_theme_light">Hell</string>
@@ -164,7 +161,6 @@
     <string name="repo_download_failed">Herunterladen von %1$s fehlgeschlagen: %2$s</string>
     <string name="repo_load_failed">Verzeichnis konnte nicht geladen werden von %1$s:\n%2$s</string>
 
-
     <string name="warning_installed_on_external_storage">Dieses Modul kann nicht geladen werden, da es auf der SD-Karte installiert ist. Bitte verschiebe es auf den Internen Speicher.</string>
     <string name="view">Ansicht</string>
     <string name="export_">Export…</string>
@@ -174,26 +170,14 @@
     <string name="export_installed_modules">Exportiere Liste installierter Module</string>
     <string name="import_installed_modules">Importiere Liste installierter Module</string>
     <string name="no_installed_modules">Es ist kein Modul installiert!</string>
-
-
     <string name="no_backup_found">Keine Sicherung gefunden</string>
     <string name="no_enabled_modules">Es ist kein Modul aktiviert!</string>
 
     <string name="share">Teilen</string>
-    <string name="loadingError">Fehler beim Laden der Xposed-Framework ZIP</string>
     <string name="permissionNotGranted">Diese Funktion funktioniert nur mit der Zugriffs-Berechtigung auf den Speicher.</string>
 
-    <string name="framework_not_installed">Xposed-Framework ist nicht installiert.</string>
     <string name="notify_module_update">Bei Modul-Aktualisierungen benachrichtigen</string>
 
-    <string name="md_back_label">Zurück</string>
-    <string name="md_done_label">OK</string>
-    <string name="md_cancel_label">Abbrechen</string>
-    <string name="md_choose_label">Auswählen</string>
-    <string name="md_error_label">Fehler</string>
-    <string name="md_storage_perm_error">Der App wurde die READ_EXTERNAL_STORAGE Berechtigung nicht gewährt.</string>
-    <string name="md_custom_label">Eigene</string>
-    <string name="md_presets_label">Voreinstellung</string>
     <string name="scroll_top">Scrolle zum Anfang</string>
     <string name="add_bookmark">Zu Favoriten</string>
     <string name="remove_bookmark">Entferne Favorit</string>
@@ -205,11 +189,9 @@
 
     <string name="file_is_empty">Datei ist leer</string>
 
-
     <string name="install_remove">Installieren und entfernen</string>
     <string name="download_remove">Laden und entfernen</string>
     <string name="module_saved">Modul gespeichert unter %1$s</string>
-
 
     <string name="reboot_recovery">Neustart ins Recovery</string>
     <string name="loading">Lädt…</string>
@@ -221,5 +203,7 @@
     <string name="status">Xposed Status</string>
     <string name="xposed_on_next_reboot">Xposed-Framework wird aktiviert beim nächsten Neustart</string>
     <string name="xposed_off_next_reboot">Xposed-Framework wird deaktiviert beim nächsten Neustart</string>
+
+
 
 </resources>

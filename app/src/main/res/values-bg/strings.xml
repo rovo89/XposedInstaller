@@ -7,15 +7,15 @@
     <string name="xposed_not_active">Последната версия на Xposed не е активна. Инсталирахте ли Framework и рестартирахте ли?</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="tabDownload">Изтегляне</string>
     <string name="welcome_framework_update_available">Налично е обновление за Xposed Framework (%s).</string>
+
+    <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
     <string name="install">Инсталирай/Обнови</string>
     <string name="uninstall">Премахни</string>
     <string name="soft_reboot">Софт рестарт</string>
     <string name="reboot">Рестарт</string>
-    <string name="phone_not_compatible">Xposed не е съвместим с Android SDK версия %1$d или с архитектурата на вашия процесор (%2$s).</string>
     <string name="reboot_failed">Рестартирането не е възможно. Моля използвайте нормалната функция за рестартиране на устройството.</string>
     <string name="auto_flash_note">%s ще бъде flash-нат автоматично след като натиснете "OK".</string>
     <string name="reboot_confirmation">Да рестартирам ли сега?</string>
@@ -95,8 +95,6 @@
     <string name="settings_group_experimental">Експериментално</string>
     <string name="settings_disable_resources">Изключевно прихващане на ресурси</string>
     <string name="settings_disable_resources_summary">Решаване на конфликти с темите\n<b>ВНИМАНИЕ:</b> Модули които се опитват да променят ресурсите няма да работят.</string>
-    <string name="settings_performance_experiment">Експеримент за производителност</string>
-    <string name="settings_performance_experiment_summary">Ако позволите това, производителността на системата може да се увеличи, да се намали или да се запази. Чувствайте се свободни да пробвате и да дадете отзиви. Необходимо е да преинсталирате Framework и да рестартирате след промяна на тази настройка.</string>
     <string name="settings_group_app">Приложение</string>
     <string name="settings_theme">Тема</string>
     <string name="settings_theme_light">Светла</string>
@@ -142,5 +140,14 @@
     <string name="repo_download_failed_http">Изтеглянето на %1$s е неуспешно: %2$d (%3$s)</string>
     <string name="repo_download_failed">Изтеглянето на %1$s е неуспешно: %2$s</string>
     <string name="repo_load_failed">Не може да се зареди хранилището от %1$s:\n%2$s</string>
+
+
+
+
+
+
+
+
+
 
 </resources>
