@@ -20,7 +20,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -117,20 +116,21 @@ public class StatusInstallerFragment extends Fragment {
 
         // Display warning dialog to new users
         if (!XposedApp.getPreferences().getBoolean("hide_install_warning", false)) {
-            final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
-
             new MaterialDialog.Builder(getActivity())
                     .title(R.string.install_warning_title)
-                    .customView(dontShowAgainView, false)
+                    .content(R.string.install_warning)
                     .positiveText(android.R.string.ok)
                     .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            CheckBox checkBox = (CheckBox) dontShowAgainView.findViewById(android.R.id.checkbox);
-                            if (checkBox.isChecked())
+                            if (dialog.isPromptCheckBoxChecked()) {
                                 XposedApp.getPreferences().edit().putBoolean("hide_install_warning", true).apply();
+                            }
                         }
-                    }).cancelable(false).show();
+                    })
+                    .checkBoxPromptRes(R.string.dont_show_again, false, null)
+                    .cancelable(false)
+                    .show();
         }
 
         return v;
