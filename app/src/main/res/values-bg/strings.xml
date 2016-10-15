@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Инсталирай/Обнови</string>
+    <string name="install_update">Инсталирай/Обнови</string>
     <string name="uninstall">Премахни</string>
     <string name="soft_reboot">Софт рестарт</string>
     <string name="reboot">Рестарт</string>

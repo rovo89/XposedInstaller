@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Installer/Mettre à jour</string>
+    <string name="install_update">Installer/Mettre à jour</string>
     <string name="uninstall">Désinstaller</string>
     <string name="soft_reboot">Redémarrage doux</string>
     <string name="reboot">Redémarrer</string>

@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">ปิด Navigation Drawer</string>
 
     <!-- Installer tab -->
-    <string name="install">ติดตั้ง/อัพเดท</string>
+    <string name="install_update">ติดตั้ง/อัพเดท</string>
     <string name="uninstall">ถอนการติดตั้ง</string>
     <string name="soft_reboot">ซอฟท์รีบูต</string>
     <string name="reboot">รีบูต</string>

@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Εγκατάσταση/Αναβάθμιση</string>
+    <string name="install_update">Εγκατάσταση/Αναβάθμιση</string>
     <string name="uninstall">Απεγκατάσταση</string>
     <string name="soft_reboot">Soft reboot</string>
     <string name="reboot">Reboot</string>

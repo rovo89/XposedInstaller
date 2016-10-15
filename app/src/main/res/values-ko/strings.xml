@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Xposed 프레임워크 설치 및 업데이트</string>
+    <string name="install_update">Xposed 프레임워크 설치 및 업데이트</string>
     <string name="uninstall">Xposed 프레임워크 제거</string>
     <string name="soft_reboot">빠른 재시작</string>
     <string name="reboot">기본 재시작(권장)</string>

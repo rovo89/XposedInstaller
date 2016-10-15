@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">Schließe Navigations-Menü</string>
 
     <!-- Installer tab -->
-    <string name="install">Installieren/Aktualisieren</string>
+    <string name="install_update">Installieren/Aktualisieren</string>
     <string name="uninstall">Deinstallieren</string>
     <string name="soft_reboot">Software-Neustart</string>
     <string name="reboot">Geräte-Neustart</string>

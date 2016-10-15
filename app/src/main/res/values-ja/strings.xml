@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">ナビゲーションドロワーを閉じる</string>
 
     <!-- Installer tab -->
-    <string name="install">インストール/更新</string>
+    <string name="install_update">インストール/更新</string>
     <string name="uninstall">アンインストール</string>
     <string name="soft_reboot">ソフトリブート</string>
     <string name="reboot">再起動</string>

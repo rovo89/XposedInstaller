@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Встановити/Оновити</string>
+    <string name="install_update">Встановити/Оновити</string>
     <string name="uninstall">Видалити</string>
     <string name="soft_reboot">Швидке перезавантаження</string>
     <string name="reboot">Перезавантаження</string>

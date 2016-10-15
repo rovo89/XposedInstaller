@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">關閉抽屜式導航欄</string>
 
     <!-- Installer tab -->
-    <string name="install">安裝/更新</string>
+    <string name="install_update">安裝/更新</string>
     <string name="uninstall">移除</string>
     <string name="soft_reboot">快速重啟</string>
     <string name="reboot">重新啟動</string>

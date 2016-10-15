@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Installer/Oppdater</string>
+    <string name="install_update">Installer/Oppdater</string>
     <string name="uninstall">Avinstaller</string>
     <string name="soft_reboot">Soft restart</string>
     <string name="reboot">Restart</string>

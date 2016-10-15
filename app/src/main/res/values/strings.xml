@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- Installer tab -->
-    <string name="install">Install/Update</string>
+    <string name="install_update">Install/Update</string>
     <string name="uninstall">Uninstall</string>
     <string name="soft_reboot">Soft reboot</string>
     <string name="reboot">Reboot</string>
@@ -80,6 +80,11 @@
     <string name="module_support">Support</string>
     <string name="module_app_info">App info</string>
     <string name="module_uninstall">Uninstall</string>
+    <string name="framework_install">Install</string>
+    <string name="framework_uninstall">Uninstall</string>
+    <string name="framework_install_recovery">Install via recovery</string>
+    <string name="framework_uninstall_recovery">Uninstall via recovery</string>
+    <string name="framework_delete">Delete downloaded file</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Search</string>

@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">Tanca el calaix de navegació</string>
 
     <!-- Installer tab -->
-    <string name="install">Instal·la/Actualitza</string>
+    <string name="install_update">Instal·la/Actualitza</string>
     <string name="uninstall">Desinstal·la</string>
     <string name="soft_reboot">Reinici ràpid</string>
     <string name="reboot">Reinici</string>

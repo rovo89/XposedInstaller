@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Yükle/Güncelle</string>
+    <string name="install_update">Yükle/Güncelle</string>
     <string name="uninstall">Kaldır</string>
     <string name="soft_reboot">Hızlı yeniden başlat</string>
     <string name="reboot">Yeniden Başlat</string>

@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">इनस्टॉल/अपडेट</string>
+    <string name="install_update">इनस्टॉल/अपडेट</string>
     <string name="uninstall">उनिन्स्तल</string>
     <string name="soft_reboot">नरम रिबूट</string>
     <string name="reboot">रिबूट</string>

@@ -9,7 +9,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">تثبيت/تحديث</string>
+    <string name="install_update">تثبيت/تحديث</string>
     <string name="uninstall">إلغاء تثبيت</string>
     <string name="soft_reboot">اعادة تشغيل سريعة</string>
     <string name="reboot">اعادة التشغيل</string>

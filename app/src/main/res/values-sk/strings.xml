@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- Installer tab -->
-    <string name="install">Inštalovať/Aktualizovať</string>
+    <string name="install_update">Inštalovať/Aktualizovať</string>
     <string name="uninstall">Odinštalovať</string>
     <string name="soft_reboot">Softvérový reštart</string>
     <string name="reboot">Reštart</string>

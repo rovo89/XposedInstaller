@@ -12,6 +12,7 @@ import java.util.zip.ZipFile;
 
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
+import de.robv.android.xposed.installer.util.FrameworkZips;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 
@@ -22,8 +23,8 @@ import static de.robv.android.xposed.installer.util.RootUtil.getShellPath;
 public class FlashDirectly extends Flashable {
     private final boolean mSystemless;
 
-    public FlashDirectly(File zipPath, boolean systemless) {
-        super(zipPath);
+    public FlashDirectly(File zipPath, FrameworkZips.Type type, String title, boolean systemless) {
+        super(zipPath, type, title);
         mSystemless = systemless;
     }
 

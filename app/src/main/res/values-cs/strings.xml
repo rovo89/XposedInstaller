@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">Zavřít panel navigace</string>
 
     <!-- Installer tab -->
-    <string name="install">Instalovat/Aktualizovat</string>
+    <string name="install_update">Instalovat/Aktualizovat</string>
     <string name="uninstall">Odinstalovat</string>
     <string name="soft_reboot">Lehký restart</string>
     <string name="reboot">Restart</string>

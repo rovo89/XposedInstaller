@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Memasang/Kemaskini</string>
+    <string name="install_update">Memasang/Kemaskini</string>
     <string name="uninstall">Nyah Pasang</string>
     <string name="soft_reboot">Hidup smula secara perlahan</string>
     <string name="reboot">Hidupkan semula</string>

@@ -9,7 +9,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Install/Update</string>
+    <string name="install_update">Install/Update</string>
     <string name="uninstall">Hapus</string>
     <string name="soft_reboot">Reboot cepat</string>
     <string name="reboot">Reboot</string>

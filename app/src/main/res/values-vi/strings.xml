@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Cài đặt/Cập nhật</string>
+    <string name="install_update">Cài đặt/Cập nhật</string>
     <string name="uninstall">Gỡ cài đặt</string>
     <string name="soft_reboot">Khởi động lại mềm</string>
     <string name="reboot">Khởi động lại</string>

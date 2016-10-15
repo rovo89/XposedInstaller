@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">Zamknij szufladę naiwigacji</string>
 
     <!-- Installer tab -->
-    <string name="install">Zainstaluj lub uaktualnij</string>
+    <string name="install_update">Zainstaluj lub uaktualnij</string>
     <string name="uninstall">Odinstaluj i przywróć systemowe procesy</string>
     <string name="soft_reboot">Tryb szybki</string>
     <string name="reboot">Tryb normalny</string>

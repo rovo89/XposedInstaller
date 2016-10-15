@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">关闭导航抽屉</string>
 
     <!-- Installer tab -->
-    <string name="install">安装/更新</string>
+    <string name="install_update">安装/更新</string>
     <string name="uninstall">卸载</string>
     <string name="soft_reboot">软重启</string>
     <string name="reboot">重启设备</string>

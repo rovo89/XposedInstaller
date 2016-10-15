@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Quraşdır/Yenilə</string>
+    <string name="install_update">Quraşdır/Yenilə</string>
     <string name="uninstall">Sil</string>
     <string name="soft_reboot">Cəld yenidən başlat</string>
     <string name="reboot">Yenidən başlat</string>

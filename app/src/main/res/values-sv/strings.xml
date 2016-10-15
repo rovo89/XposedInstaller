@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Installera/Uppdatera</string>
+    <string name="install_update">Installera/Uppdatera</string>
     <string name="uninstall">Avinstallera</string>
     <string name="soft_reboot">Mjuk omstart</string>
     <string name="reboot">Omstart</string>

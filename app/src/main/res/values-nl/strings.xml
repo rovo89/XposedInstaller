@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Installeren/Bijwerken</string>
+    <string name="install_update">Installeren/Bijwerken</string>
     <string name="uninstall">Verwijderen</string>
     <string name="soft_reboot">Herstart systeem</string>
     <string name="reboot">Herstart apparaat</string>

@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Telepítés/Frissítés</string>
+    <string name="install_update">Telepítés/Frissítés</string>
     <string name="uninstall">Eltávolítás</string>
     <string name="soft_reboot">Gyors újraindítás</string>
     <string name="reboot">Újraindítás</string>

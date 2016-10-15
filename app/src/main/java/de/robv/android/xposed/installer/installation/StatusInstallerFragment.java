@@ -399,14 +399,14 @@ public class StatusInstallerFragment extends Fragment {
                     runAfterDownload = new RunnableWithParam<File>() {
                         @Override
                         public void run(File file) {
-                            flash(context, new FlashDirectly(file, false));
+                            flash(context, new FlashDirectly(file, type, title, false));
                         }
                     };
                 } else if (action == ACTION_INSTALL_RECOVERY) {
                     runAfterDownload = new RunnableWithParam<File>() {
                         @Override
                         public void run(File file) {
-                            flash(context, new FlashRecoveryAuto(file));
+                            flash(context, new FlashRecoveryAuto(file, type, title));
                         }
                     };
                 } else if (action == ACTION_SAVE) {
@@ -427,28 +427,29 @@ public class StatusInstallerFragment extends Fragment {
             }
         });
 
-        // TODO Adjust texts for uninstaller (e.g. "execute")
         adapter.add(new MaterialSimpleListItem.Builder(context)
-                .content("Install")
+                .content(type.text_flash)
                 .id(ACTION_INSTALL)
                 .icon(R.drawable.ic_check_circle)
                 .build());
 
         adapter.add(new MaterialSimpleListItem.Builder(context)
-                .content("Install via recovery")
+                .content(type.text_flash_recovery)
                 .id(ACTION_INSTALL_RECOVERY)
                 .icon(R.drawable.ic_check_circle)
                 .build());
 
+        /*
         adapter.add(new MaterialSimpleListItem.Builder(context)
                 .content("Save to...")
                 .id(ACTION_SAVE)
                 .icon(R.drawable.ic_save)
                 .build());
+        */
 
         if (FrameworkZips.hasLocal(title, type)) {
             adapter.add(new MaterialSimpleListItem.Builder(context)
-                    .content("Delete downloaded file")
+                    .content(R.string.framework_delete)
                     .id(ACTION_DELETE)
                     .icon(R.drawable.ic_delete)
                     .build());

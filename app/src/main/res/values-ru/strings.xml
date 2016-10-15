@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">Закрыть меню приложений</string>
 
     <!-- Installer tab -->
-    <string name="install">Установить или Обновить</string>
+    <string name="install_update">Установить или Обновить</string>
     <string name="uninstall">Удалить</string>
     <string name="soft_reboot">Быстрая перезагрузка</string>
     <string name="reboot">Полная перезагрузка</string>

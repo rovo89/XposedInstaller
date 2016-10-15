@@ -45,13 +45,17 @@ public final class FrameworkZips {
     private static final String ONLINE_URL = "http://dl-xda.xposed.info/framework.json";
 
     public enum Type {
-        INSTALLER(R.string.install),
-        UNINSTALLER(R.string.uninstall);
+        INSTALLER(R.string.install_update, R.string.framework_install, R.string.framework_install_recovery),
+        UNINSTALLER(R.string.uninstall, R.string.uninstall, R.string.framework_uninstall_recovery);
 
         public final int title;
+        public final int text_flash;
+        public final int text_flash_recovery;
 
-        Type(@StringRes int title) {
+        Type(@StringRes int title, @StringRes int text_flash, @StringRes int text_flash_recovery) {
             this.title = title;
+            this.text_flash = text_flash;
+            this.text_flash_recovery = text_flash_recovery;
         }
     }
     private static final int TYPE_COUNT = Type.values().length;

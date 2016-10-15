@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">Chiudi navigation drawer</string>
 
     <!-- Installer tab -->
-    <string name="install">Installa/Aggiorna</string>
+    <string name="install_update">Installa/Aggiorna</string>
     <string name="uninstall">Rimuovi</string>
     <string name="soft_reboot">Riavvio soft</string>
     <string name="reboot">Riavvio</string>

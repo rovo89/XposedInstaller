@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">התקנה/עדכון</string>
+    <string name="install_update">התקנה/עדכון</string>
     <string name="uninstall">הסרה</string>
     <string name="soft_reboot">הפעלה מחדש מהירה</string>
     <string name="reboot">הפעלה מחדש</string>

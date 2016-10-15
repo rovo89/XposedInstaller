@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Instalare/Actualizare</string>
+    <string name="install_update">Instalare/Actualizare</string>
     <string name="uninstall">Dezinstalare</string>
     <string name="soft_reboot">Repornire soft:</string>
     <string name="reboot">Repornire</string>

@@ -22,7 +22,7 @@
     <string name="navigation_drawer_close">Fechar gaveta de navegação</string>
 
     <!-- Installer tab -->
-    <string name="install">Instalar/Atualizar</string>
+    <string name="install_update">Instalar/Atualizar</string>
     <string name="uninstall">Desinstalar</string>
     <string name="soft_reboot">Reinício rápido</string>
     <string name="reboot">Reiniciar</string>

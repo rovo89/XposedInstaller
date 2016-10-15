@@ -66,11 +66,12 @@ public class InstallationActivity extends XposedBaseActivity {
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
-            ab.setTitle(R.string.install);
+            ab.setTitle(flashable.getType().title);
+            ab.setSubtitle(flashable.getTitle());
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
-        setFloating(toolbar, R.string.install);
+        setFloating(toolbar, flashable.getType().title);
 
         if (savedInstanceState == null) {
             InstallationFragment logFragment = new InstallationFragment();

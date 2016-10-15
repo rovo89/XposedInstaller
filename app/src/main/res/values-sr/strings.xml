@@ -12,7 +12,7 @@
     <!-- Navigation drawer items -->
 
     <!-- Installer tab -->
-    <string name="install">Instalacija/Nadogradnja</string>
+    <string name="install_update">Instalacija/Nadogradnja</string>
     <string name="uninstall">Deinstalacija</string>
     <string name="soft_reboot">Softverski restart</string>
     <string name="reboot">Restart</string>

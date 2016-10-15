@@ -7,11 +7,12 @@ import android.os.Parcelable;
 import java.io.File;
 
 import de.robv.android.xposed.installer.R;
+import de.robv.android.xposed.installer.util.FrameworkZips;
 import de.robv.android.xposed.installer.util.RootUtil;
 
 public class FlashRecoveryAuto extends Flashable {
-    public FlashRecoveryAuto(File zipPath) {
-        super(zipPath);
+    public FlashRecoveryAuto(File zipPath, FrameworkZips.Type type, String title) {
+        super(zipPath, type, title);
     }
 
     @Override
