@@ -28,9 +28,6 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.MaterialDialog.Builder;
-import com.afollestad.materialdialogs.simplelist.MaterialSimpleListAdapter;
-import com.afollestad.materialdialogs.simplelist.MaterialSimpleListItem;
 
 import java.io.File;
 import java.io.IOException;
@@ -368,94 +365,84 @@ public class StatusInstallerFragment extends Fragment {
         container.addView(view);
     }
 
-
     private void showActionDialog(final Context context, final String title, final FrameworkZips.Type type) {
-        final long ACTION_INSTALL = 0;
-        final long ACTION_INSTALL_RECOVERY = 1;
-        final long ACTION_SAVE = 2;
-        final long ACTION_DELETE = 3;
+        final int ACTION_FLASH = 0;
+        final int ACTION_FLASH_RECOVERY = 1;
+        final int ACTION_SAVE = 2;
+        final int ACTION_DELETE = 3;
 
-        final MaterialSimpleListAdapter adapter = new MaterialSimpleListAdapter(new MaterialSimpleListAdapter.Callback() {
-            @Override
-            public void onMaterialListItemSelected(MaterialDialog dialog, int index, MaterialSimpleListItem item) {
-                dialog.dismiss();
-                long action = item.getId();
+        boolean isDownloaded = FrameworkZips.hasLocal(title, type);
+        int itemCount = isDownloaded ? 3 : 2;
+        String[] texts = new String[itemCount];
+        int[] ids = new int[itemCount];
+        int i = 0;
 
-                // Handle delete simple actions.
-                if (action == ACTION_DELETE) {
-                    FrameworkZips.delete(context, title, type);
-                    LOCAL_ZIP_LOADER.triggerReload(true);
-                    return;
-                }
+        texts[i] = context.getString(type.text_flash);
+        ids[i++] = ACTION_FLASH;
 
-                // Handle actions that need a download first.
-                RunnableWithParam<File> runAfterDownload = null;
-                if (action == ACTION_INSTALL) {
-                    runAfterDownload = new RunnableWithParam<File>() {
-                        @Override
-                        public void run(File file) {
-                            flash(context, new FlashDirectly(file, type, title, false));
-                        }
-                    };
-                } else if (action == ACTION_INSTALL_RECOVERY) {
-                    runAfterDownload = new RunnableWithParam<File>() {
-                        @Override
-                        public void run(File file) {
-                            flash(context, new FlashRecoveryAuto(file, type, title));
-                        }
-                    };
-                } else if (action == ACTION_SAVE) {
-                    runAfterDownload = new RunnableWithParam<File>() {
-                        @Override
-                        public void run(File file) {
-                            saveTo(context, file);
-                        }
-                    };
-                }
-
-                LocalFrameworkZip local = FrameworkZips.getLocal(title, type);
-                if (local != null) {
-                    runAfterDownload.run(local.path);
-                } else {
-                    download(context, title, type, runAfterDownload);
-                }
-            }
-        });
-
-        adapter.add(new MaterialSimpleListItem.Builder(context)
-                .content(type.text_flash)
-                .id(ACTION_INSTALL)
-                .icon(R.drawable.ic_check_circle)
-                .build());
-
-        adapter.add(new MaterialSimpleListItem.Builder(context)
-                .content(type.text_flash_recovery)
-                .id(ACTION_INSTALL_RECOVERY)
-                .icon(R.drawable.ic_check_circle)
-                .build());
+        texts[i] = context.getString(type.text_flash_recovery);
+        ids[i++] = ACTION_FLASH_RECOVERY;
 
         /*
-        adapter.add(new MaterialSimpleListItem.Builder(context)
-                .content("Save to...")
-                .id(ACTION_SAVE)
-                .icon(R.drawable.ic_save)
-                .build());
+        texts[i] = "Save to...";
+        ids[i++] = ACTION_SAVE;
         */
 
         if (FrameworkZips.hasLocal(title, type)) {
-            adapter.add(new MaterialSimpleListItem.Builder(context)
-                    .content(R.string.framework_delete)
-                    .id(ACTION_DELETE)
-                    .icon(R.drawable.ic_delete)
-                    .build());
+            texts[i] = context.getString(R.string.framework_delete);
+            ids[i++] = ACTION_DELETE;
         }
 
-        MaterialDialog dialog = new Builder(context)
+        new MaterialDialog.Builder(context)
                 .title(title)
-                .adapter(adapter, null)
-                .build();
+                .items(texts)
+                .itemsIds(ids)
+                .itemsCallback(new MaterialDialog.ListCallback() {
+                    @Override
+                    public void onSelection(MaterialDialog dialog, View itemView, int position, CharSequence text) {
+                        final int action = itemView.getId();
 
-        dialog.show();
+                        // Handle delete simple actions.
+                        if (action == ACTION_DELETE) {
+                            FrameworkZips.delete(context, title, type);
+                            LOCAL_ZIP_LOADER.triggerReload(true);
+                            return;
+                        }
+
+                        // Handle actions that need a download first.
+                        RunnableWithParam<File> runAfterDownload = null;
+                        if (action == ACTION_FLASH) {
+                            runAfterDownload = new RunnableWithParam<File>() {
+                                @Override
+                                public void run(File file) {
+                                    flash(context, new FlashDirectly(file, type, title, false));
+                                }
+                            };
+                        } else if (action == ACTION_FLASH_RECOVERY) {
+                            runAfterDownload = new RunnableWithParam<File>() {
+                                @Override
+                                public void run(File file) {
+                                    flash(context, new FlashRecoveryAuto(file, type, title));
+                                }
+                            };
+                        } else if (action == ACTION_SAVE) {
+                            runAfterDownload = new RunnableWithParam<File>() {
+                                @Override
+                                public void run(File file) {
+                                    saveTo(context, file);
+                                }
+                            };
+                        }
+
+                        LocalFrameworkZip local = FrameworkZips.getLocal(title, type);
+                        if (local != null) {
+                            runAfterDownload.run(local.path);
+                        } else {
+                            download(context, title, type, runAfterDownload);
+                        }
+                    }
+                })
+                .show();
     }
 
     private void download(Context context, String title, FrameworkZips.Type type, final RunnableWithParam<File> callback) {
