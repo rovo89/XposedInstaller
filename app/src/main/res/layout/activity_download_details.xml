@@ -13,9 +13,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:theme="@style/Theme.XposedInstaller.Toolbar"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/Theme.XposedInstaller.Toolbar"/>
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/sliding_tabs"
