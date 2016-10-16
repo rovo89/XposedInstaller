@@ -50,7 +50,7 @@ public class DownloadFragment extends Fragment implements Loader.Listener<RepoLo
     private int mSortingOrder;
     private SearchView mSearchView;
     private StickyListHeadersListView mListView;
-    private View refreshHint;
+    private View mRefreshHint;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,7 +84,7 @@ public class DownloadFragment extends Fragment implements Loader.Listener<RepoLo
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.tab_downloader, container, false);
 
-        refreshHint = v.findViewById(R.id.refresh_hint);
+        mRefreshHint = v.findViewById(R.id.refresh_hint);
         final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swiperefreshlayout);
         refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
         mRepoLoader.addListener(this);
@@ -184,7 +184,7 @@ public class DownloadFragment extends Fragment implements Loader.Listener<RepoLo
     private void setFilter(String filterText) {
         mFilterText = filterText;
         reloadItems();
-        refreshHint.setVisibility(View.GONE);
+        mRefreshHint.setVisibility(View.GONE);
     }
 
     private void reloadItems() {
