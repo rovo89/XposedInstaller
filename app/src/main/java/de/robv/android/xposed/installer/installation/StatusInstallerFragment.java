@@ -301,15 +301,26 @@ public class StatusInstallerFragment extends Fragment {
     private void refreshZipViews(View view) {
         LinearLayout zips = (LinearLayout) view.findViewById(R.id.zips);
         zips.removeAllViews();
-        synchronized (FrameworkZip.class) {
-            // TODO handle "no ZIPs" case
+        TextView tvError = (TextView) view.findViewById(R.id.zips_load_error);
+        synchronized (FrameworkZips.class) {
+            boolean hasZips = false;
             for (FrameworkZips.Type type : FrameworkZips.Type.values()) {
-                addZipViews(getActivity().getLayoutInflater(), zips, type);
+                hasZips |= addZipViews(getActivity().getLayoutInflater(), zips, type);
+            }
+
+            if (!FrameworkZips.hasLoadedOnlineZips()) {
+                tvError.setText(R.string.framework_zip_load_failed);
+                tvError.setVisibility(View.VISIBLE);
+            } else if (!hasZips) {
+                tvError.setText(R.string.framework_no_zips);
+                tvError.setVisibility(View.VISIBLE);
+            } else {
+                tvError.setVisibility(View.GONE);
             }
         }
     }
 
-    private void addZipViews(LayoutInflater inflater, ViewGroup root, FrameworkZips.Type type) {
+    private boolean addZipViews(LayoutInflater inflater, ViewGroup root, FrameworkZips.Type type) {
         ViewGroup container = null;
         Set<String> allTitles = FrameworkZips.getAllTitles(type);
         for (String title : allTitles) {
@@ -335,6 +346,8 @@ public class StatusInstallerFragment extends Fragment {
 
             addZipView(inflater, container, zip, hasOnline, hasLocal, isOutdated);
         }
+
+        return !allTitles.isEmpty();
     }
 
     public void addZipView(LayoutInflater inflater, ViewGroup container, final FrameworkZip zip,

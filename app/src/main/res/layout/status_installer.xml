@@ -100,6 +100,20 @@
 
                 </android.support.v7.widget.CardView>
 
+                <TextView
+                    android:id="@+id/zips_load_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingStart="8dp"
+                    android:textColor="@color/red_500"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    tools:text="@string/framework_no_zips"
+                    tools:visibility="visible"/>
+
                 <LinearLayout
                     android:id="@+id/zips"
                     android:layout_width="match_parent"

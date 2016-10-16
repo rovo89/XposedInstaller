@@ -307,6 +307,11 @@ public final class FrameworkZips {
         }
     }
 
+    // TODO Replace this with a proper way to report loading failures to the users.
+    public static boolean hasLoadedOnlineZips() {
+        return sOnline != EMPTY_MAP_ARRAY;
+    }
+
     public static Set<String> getAllTitles(Type type) {
         Set<String> result = new LinkedHashSet<>(sOnline[type.ordinal()].keySet());
         result.addAll(sLocal[type.ordinal()].keySet());
