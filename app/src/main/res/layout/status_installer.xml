@@ -89,16 +89,24 @@
                             tools:text="@string/framework_active"
                             tools:textColor="@color/darker_green"/>
 
-                        <TextView
-                            android:id="@+id/framework_known_issue"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/warning"
-                            android:visibility="gone"/>
-
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:id="@+id/framework_known_issue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:paddingStart="8dp"
+                    android:textColor="@color/warning"
+                    android:textSize="15sp"
+                    android:visibility="gone"
+                    android:layout_marginBottom="4dp"
+                    tools:text="@string/install_known_issue"
+                    tools:visibility="visible"/>
 
                 <TextView
                     android:id="@+id/zips_load_error"
@@ -108,7 +116,7 @@
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     android:paddingStart="8dp"
-                    android:textColor="@color/red_500"
+                    android:textColor="@color/warning"
                     android:textSize="15sp"
                     android:visibility="gone"
                     tools:text="@string/framework_no_zips"

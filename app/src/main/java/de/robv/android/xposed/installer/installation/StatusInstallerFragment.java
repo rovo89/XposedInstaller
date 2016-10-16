@@ -227,8 +227,8 @@ public class StatusInstallerFragment extends Fragment {
 
     @SuppressLint("StringFormatInvalid")
     private void refreshKnownIssue(View v) {
-        String issueName = null;
-        String issueLink = null;
+        final String issueName;
+        final String issueLink;
 
         if (new File("/system/framework/core.jar.jex").exists()) {
             issueName = "Aliyun OS";
@@ -238,21 +238,22 @@ public class StatusInstallerFragment extends Fragment {
             issueName = "MIUI/Dexspy";
             issueLink = "http://forum.xda-developers.com/showpost.php?p=52291098&postcount=6";
 
-        } else if (checkClassExists("com.huawei.android.content.res.ResourcesEx")
-                || checkClassExists("android.content.res.NubiaResources")) {
-            issueName = "Resources subclass";
-            issueLink = "http://forum.xda-developers.com/showpost.php?p=52801382&postcount=8";
+        } else if (new File("/system/framework/twframework.jar").exists()) {
+            issueName = "Samsung TouchWiz ROM";
+            issueLink = "forum.xda-developers.com/showthread.php?t=3034811";
+        } else {
+            issueName = null;
+            issueLink = null;
         }
 
         TextView txtKnownIssue = (TextView) v.findViewById(R.id.framework_known_issue);
         if (issueName != null) {
-            final String issueLinkFinal = issueLink;
             txtKnownIssue.setText(getString(R.string.install_known_issue, issueName));
             txtKnownIssue.setVisibility(View.VISIBLE);
             txtKnownIssue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    NavUtil.startURL(getActivity(), issueLinkFinal);
+                    NavUtil.startURL(getActivity(), issueLink);
                 }
             });
         } else {
