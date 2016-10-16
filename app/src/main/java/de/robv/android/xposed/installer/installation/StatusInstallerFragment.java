@@ -104,7 +104,7 @@ public class StatusInstallerFragment extends Fragment {
         TextView manufacturer = (TextView) v.findViewById(R.id.ic_manufacturer);
         TextView cpu = (TextView) v.findViewById(R.id.cpu);
 
-        androidSdk.setText(getString(R.string.android_sdk, getAndroidVersion(), Build.VERSION.RELEASE, Build.VERSION.SDK_INT));
+        androidSdk.setText(getString(R.string.android_sdk, Build.VERSION.RELEASE, getAndroidVersion(), Build.VERSION.SDK_INT));
         manufacturer.setText(getUIFramework());
         cpu.setText(FrameworkZips.ARCH);
 
@@ -262,6 +262,8 @@ public class StatusInstallerFragment extends Fragment {
 
     private String getAndroidVersion() {
         switch (Build.VERSION.SDK_INT) {
+            case 15:
+                return "Ice Cream Sandwich";
             case 16:
             case 17:
             case 18:
@@ -276,8 +278,9 @@ public class StatusInstallerFragment extends Fragment {
             case 24:
             case 25:
                 return "Nougat";
+            default:
+                return "unknown";
         }
-        return "";
     }
 
     private String getUIFramework() {
