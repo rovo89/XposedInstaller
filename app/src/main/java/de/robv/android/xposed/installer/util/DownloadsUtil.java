@@ -122,7 +122,7 @@ public class DownloadsUtil {
         Context context = XposedApp.getInstance();
         ArrayList<File> dirs = new ArrayList<>(2);
         for (File dir :  ContextCompat.getExternalCacheDirs(context)) {
-            if (Environment.MEDIA_MOUNTED.equals(EnvironmentCompat.getStorageState(dir))) {
+            if (dir != null && EnvironmentCompat.getStorageState(dir).equals(Environment.MEDIA_MOUNTED)) {
                 dirs.add(new File(new File(dir, "downloads"), subDir));
             }
         }
