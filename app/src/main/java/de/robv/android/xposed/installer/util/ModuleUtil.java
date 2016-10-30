@@ -210,9 +210,14 @@ public final class ModuleUtil {
                     continue;
 
                 modulesList.println(module.app.sourceDir);
-                String installer = mPm.getInstallerPackageName(module.app.packageName);
-                if (!PLAY_STORE_PACKAGE.equals(installer))
-                    enabledModulesList.println(module.app.packageName);
+
+                try {
+                    String installer = mPm.getInstallerPackageName(module.app.packageName);
+                    if (!PLAY_STORE_PACKAGE.equals(installer))
+                        enabledModulesList.println(module.app.packageName);
+                } catch (Exception ignored) {
+                    // Shouldn't happen
+                }
             }
             modulesList.close();
             enabledModulesList.close();

@@ -24,7 +24,13 @@ public final class NavUtil {
             return null;
 
         Spannable spannable = new SpannableString(str);
-        Linkify.addLinks(spannable, Linkify.ALL);
+        try {
+            Linkify.addLinks(spannable, Linkify.ALL);
+        } catch (Exception e) {
+            // Throws MissingWebViewPackageException if com.google.android.webview not found
+            return null;
+        }
+
         URLSpan spans[] = spannable.getSpans(0, spannable.length(), URLSpan.class);
         return (spans.length > 0) ? Uri.parse(spans[0].getURL()) : null;
     }
