@@ -22,6 +22,7 @@ public final class NotificationUtil {
     private static final int PENDING_INTENT_SOFT_REBOOT = 2;
     private static final int PENDING_INTENT_REBOOT = 3;
     private static final int PENDING_INTENT_ACTIVATE_MODULE_AND_REBOOT = 4;
+    private static final int PENDING_INTENT_ACTIVATE_MODULE = 5;
     private static Context sContext = null;
     private static NotificationManager sNotificationManager;
 
@@ -70,7 +71,7 @@ public final class NotificationUtil {
         iActivate.putExtra(RebootReceiver.EXTRA_ACTIVATE_MODULE, packageName);
         iActivate.putExtra(RebootReceiver.EXTRA_ACTIVATE_MODULE_AND_RETURN, true);
         PendingIntent pActivate = PendingIntent.getBroadcast(sContext,
-                PENDING_INTENT_ACTIVATE_MODULE_AND_REBOOT, iActivate,
+                PENDING_INTENT_ACTIVATE_MODULE, iActivate,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.BigTextStyle notiStyle = new NotificationCompat.BigTextStyle();
