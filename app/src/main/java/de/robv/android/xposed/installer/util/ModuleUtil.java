@@ -210,9 +210,15 @@ public final class ModuleUtil {
                     continue;
 
                 modulesList.println(module.app.sourceDir);
-                String installer = mPm.getInstallerPackageName(module.app.packageName);
-                if (!PLAY_STORE_PACKAGE.equals(installer))
-                    enabledModulesList.println(module.app.packageName);
+                try {
+                    String installer = mPm.getInstallerPackageName(module.app.packageName);
+                    if (!PLAY_STORE_PACKAGE.equals(installer)) {
+                        enabledModulesList.println(module.app.packageName);
+                    }
+                } catch (IllegalArgumentException ignored) {
+                    // In rare cases, the package might not be installed anymore at this point,
+                    // so the PackageManager can't return its installer package name.
+                }
             }
             modulesList.close();
             enabledModulesList.close();
