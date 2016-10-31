@@ -24,7 +24,7 @@ public final class NavUtil {
             return null;
 
         Spannable spannable = new SpannableString(str);
-        Linkify.addLinks(spannable, Linkify.ALL);
+        Linkify.addLinks(spannable, Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES);
         URLSpan spans[] = spannable.getSpans(0, spannable.length(), URLSpan.class);
         return (spans.length > 0) ? Uri.parse(spans[0].getURL()) : null;
     }
