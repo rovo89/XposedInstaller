@@ -60,8 +60,8 @@ Lütfen cihazınının root erişiminin açık olduğuna ve komut alabildiğine 
     <string name="file_backup_successful">Oluşturulan yedekleme %s</string>
     <string name="file_backup_restoring">Yedeği geri yükleme %s</string>
     <string name="file_copying">Kopyalanıyor %s…</string>
-    <string name="file_copy_failed">Kopyalanamdı %1$s to %2$s</string>
-    <string name="file_move_failed">Taşınamadı %1$s to %2$s</string>
+    <string name="file_copy_failed">Kopyalanamadı %1$s - %2$s</string>
+    <string name="file_move_failed">Taşınamadı %1$s - %2$s</string>
     <string name="file_set_perms_failed">İzinleri alınamadı %s</string>
     <string name="file_set_owner_failed">İzinler belirlenemedi %s</string>
     <string name="file_removing">Siliniyor %s…</string>
@@ -72,7 +72,7 @@ Lütfen cihazınının root erişiminin açık olduğuna ve komut alabildiğine 
     <string name="file_writing_recovery_command_failed">Recovery komutu yazma başarısız oldu. Farklı bir kurulum yöntemini kullanın.</string>
     <string name="file_done">Bitti! Değişiklikler telefon yeniden başlatılınca aktif hale gelecektir.</string>
     <string name="module_is_not_activated_yet">Xposed modülü henüz aktif değil</string>
-    <string name="module_is_not_activated_yet_detailed">%s yüklendi,ama şu an aktif değil.</string>
+    <string name="module_is_not_activated_yet_detailed">%s yüklendi, ama şu an aktif değil.</string>
     <string name="activate_and_reboot">Aktifleştir ve yeniden başlat</string>
     <string name="module_activated">Xposed modülü aktifleştirildi.</string>
     <string name="module_empty_description">(hiçbir açıklama yok)</string>
@@ -81,9 +81,9 @@ Lütfen cihazınının root erişiminin açık olduğuna ve komut alabildiğine 
     <string name="xposed_module_list_updated">Xposed modül listesi güncellendi.Değişikliklerin aktif olması için telefonunuzu yeniden başlatın.</string>
     <string name="xposed_module_updated_notification_title">Xposed modülü güncellendi</string>
     <string name="xposed_module_updated_notification">Değişiklikleri etkinleştirmek için yeniden başlatın</string>
-    <string name="warning_xposed_min_version">Bu modül yeni bir Xposed sürümü (%d) gerektirir ve aktive edilemez..</string>
+    <string name="warning_xposed_min_version">Bu modül yeni bir Xposed sürümü (%d) gerektirir ve aktive edilemez.</string>
     <string name="no_min_version_specified">Bu modül ihtiyacı olan XposedBridge sürümünü belirtmez.</string>
-    <string name="warning_min_version_too_low">Bu modül XposedBridge sürüm %1$d, için oluşturuldu, ancak bu sürüm ile uyumsuz değişiklikler var, %2$d, Bu yüzden devre dışı bırakıldı..</string>
+    <string name="warning_min_version_too_low">Bu modül XposedBridge sürüm %1$d, için oluşturuldu, ancak bu sürüm ile uyumsuz değişiklikler var, %2$d, Bu yüzden devre dışı bırakıldı.</string>
     <string name="module_launch">UI Başlat</string>
     <string name="module_download_updates">İndir/Güncelle</string>
     <string name="module_support">Destek</string>
