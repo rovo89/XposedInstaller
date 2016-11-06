@@ -35,17 +35,21 @@ public class XposedInstallerActivity extends XposedDropdownNavActivity {
 	private void selectInitialTab(Intent intent, Bundle savedInstanceState) {
 		int selectTabIndex = -1;
 
-		Object section = intent.getExtras().get(EXTRA_SECTION);
-		if (section == null)
-			section = intent.getExtras().get(EXTRA_SECTION_LEGACY);
+		Bundle extras = intent.getExtras();
+		if (extras != null) {
+			Object section = extras.get(EXTRA_SECTION);
+			if (section == null)
+				section = extras.get(EXTRA_SECTION_LEGACY);
 
-		if (section instanceof Integer) {
-			selectTabIndex = (Integer) section;
-		} else if (section instanceof String && TABS.containsKey(section)) {
-			selectTabIndex = TABS.get(section);
-		} else if (savedInstanceState != null) {
-			selectTabIndex = savedInstanceState.getInt("section", -1);
+			if (section instanceof Integer) {
+				selectTabIndex = (Integer) section;
+			} else if (section instanceof String && TABS.containsKey(section)) {
+				selectTabIndex = TABS.get(section);
+			}
 		}
+
+		if (selectTabIndex == -1  && savedInstanceState != null)
+			selectTabIndex = savedInstanceState.getInt("section", -1);
 
 		if (selectTabIndex >= 0 && selectTabIndex < TAB_COUNT)
 			getActionBar().setSelectedNavigationItem(selectTabIndex);

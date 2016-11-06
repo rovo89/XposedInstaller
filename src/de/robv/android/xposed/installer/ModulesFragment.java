@@ -1,7 +1,9 @@
 package de.robv.android.xposed.installer;
 
+import java.text.Collator;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.app.ListFragment;
@@ -115,10 +117,11 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
 			mAdapter.setNotifyOnChange(false);
 			mAdapter.clear();
 			mAdapter.addAll(mModuleUtil.getModules().values());
+			final Collator col = Collator.getInstance(Locale.getDefault());
 			mAdapter.sort(new Comparator<InstalledModule>() {
 				@Override
 				public int compare(InstalledModule lhs, InstalledModule rhs) {
-					return lhs.getAppName().compareTo(rhs.getAppName());
+					return col.compare(lhs.getAppName(), rhs.getAppName());
 				}
 			});
 			mAdapter.notifyDataSetChanged();

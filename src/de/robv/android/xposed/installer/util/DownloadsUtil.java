@@ -314,8 +314,8 @@ public class DownloadsUtil {
 	public static void clearCache(String url) {
 		if (url != null) {
 			mPref.edit()
-				.remove("repo_" + url + "_modified")
-				.remove("repo_" + url + "_etag")
+				.remove("download_" + url + "_modified")
+				.remove("download_" + url + "_etag")
 				.apply();
 		} else {
 			mPref.edit().clear().apply();

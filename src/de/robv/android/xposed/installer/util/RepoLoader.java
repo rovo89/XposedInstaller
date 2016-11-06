@@ -5,12 +5,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.GZIPInputStream;
 
 import android.content.Context;
@@ -18,6 +20,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.XposedApp;
@@ -41,6 +44,7 @@ public class RepoLoader {
 	private boolean mReloadTriggeredOnce = false;
 	private final List<RepoListener> mListeners = new CopyOnWriteArrayList<RepoListener>();
 
+	private static final int UPDATE_FREQUENCY = 24 * 60 * 60 * 1000;
 	private static final String DEFAULT_REPOSITORIES = "http://dl.xposed.info/repo/full.xml.gz";
 	private Map<Long,Repository> mRepositories = null;
 
@@ -66,7 +70,7 @@ public class RepoLoader {
 		return mInstance;
 	}
 
-	private boolean refreshRepositories() {
+	public boolean refreshRepositories() {
 		mRepositories = RepoDb.getRepositories();
 
 		// Unlikely case (usually only during initial load): DB state doesn't fit to configuration
@@ -173,10 +177,19 @@ public class RepoLoader {
 	public void triggerReload(final boolean force) {
 		mReloadTriggeredOnce = true;
 
-		if (force)
-			resetLastUpdateCheck();
-
 		if (!mApp.areDownloadsEnabled())
+			return;
+
+		if (force) {
+			resetLastUpdateCheck();
+		} else {
+			long lastUpdateCheck = mPref.getLong("last_update_check", 0);
+			if (System.currentTimeMillis() < lastUpdateCheck + UPDATE_FREQUENCY)
+				return;
+		}
+
+		NetworkInfo netInfo = mConMgr.getActiveNetworkInfo();
+		if (netInfo == null || !netInfo.isConnected())
 			return;
 
 		synchronized (this) {
@@ -190,6 +203,8 @@ public class RepoLoader {
 			public void run() {
 				final List<String> messages = new LinkedList<String>();
 				boolean hasChanged = downloadAndParseFiles(messages);
+
+				mPref.edit().putLong("last_update_check", System.currentTimeMillis()).commit();
 
 				if (!messages.isEmpty()) {
 					XposedApp.runOnUiThread(new Runnable() {
@@ -232,6 +247,7 @@ public class RepoLoader {
 				return;
 
 			RepoDb.deleteRepositories();
+			mRepositories = new LinkedHashMap<Long, Repository>(0);
 			DownloadsUtil.clearCache(null);
 			resetLastUpdateCheck();
 		}
@@ -274,16 +290,11 @@ public class RepoLoader {
 	}
 
 	private boolean downloadAndParseFiles(List<String> messages) {
-		long lastUpdateCheck = mPref.getLong("last_update_check", 0);
-		int UPDATE_FREQUENCY = 24 * 60 * 60 * 1000; // TODO make this configurable
-		if (System.currentTimeMillis() < lastUpdateCheck + UPDATE_FREQUENCY)
-			return false;
-
-		NetworkInfo netInfo = mConMgr.getActiveNetworkInfo();
-		if (netInfo == null || !netInfo.isConnected())
-			return false;
-
+		// These variables don't need to be atomic, just mutable
 		final AtomicBoolean hasChanged = new AtomicBoolean(false);
+		final AtomicInteger insertCounter = new AtomicInteger();
+		final AtomicInteger deleteCounter = new AtomicInteger();
+
 		for (Entry<Long, Repository> repoEntry : mRepositories.entrySet()) {
 			final long repoId = repoEntry.getKey();
 			final Repository repo = repoEntry.getValue();
@@ -293,6 +304,9 @@ public class RepoLoader {
 
 			File cacheFile = getRepoCacheFile(url);
 			SyncDownloadInfo info = DownloadsUtil.downloadSynchronously(url, cacheFile);
+
+			Log.i(XposedApp.TAG, String.format("Downloaded %s with status %d (error: %s), size %d bytes",
+					url, info.status, info.errorMessage, cacheFile.length()));
 
 			if (info.status != SyncDownloadInfo.STATUS_SUCCESS) {
 				if (info.errorMessage != null)
@@ -320,12 +334,14 @@ public class RepoLoader {
 					public void onNewModule(Module module) {
 						RepoDb.insertModule(repoId, module);
 						hasChanged.set(true);
+						insertCounter.incrementAndGet();
 					}
 
 					@Override
 					public void onRemoveModule(String packageName) {
 						RepoDb.deleteModule(repoId, packageName);
 						hasChanged.set(true);
+						deleteCounter.decrementAndGet();
 					}
 
 					@Override
@@ -339,12 +355,16 @@ public class RepoLoader {
 							RepoDb.updateRepositoryVersion(repoId, repository.version);
 							repo.version = repository.version;
 						}
+
+						Log.i(XposedApp.TAG, String.format("Updated repository %s to version %s (%d new / %d removed modules)",
+								repo.url, repo.version, insertCounter.get(), deleteCounter.get()));
 					}
 				});
 
 				RepoDb.setTransactionSuccessful();
 
 			} catch (Throwable t) {
+				Log.e(XposedApp.TAG, "Cannot load repository from " + url, t);
 				messages.add(mApp.getString(R.string.repo_load_failed, url, t.getMessage()));
 				DownloadsUtil.clearCache(url);
 
@@ -355,8 +375,6 @@ public class RepoLoader {
 				RepoDb.endTransation();
 			}
 		}
-
-		mPref.edit().putLong("last_update_check", System.currentTimeMillis()).commit();
 
 		// TODO Set ModuleColumns.PREFERRED for modules which appear in multiple repositories
 		return hasChanged.get();
