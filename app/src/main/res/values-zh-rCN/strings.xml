@@ -7,7 +7,7 @@
     <string name="xposed_not_active">最新版本的 Xposed 框架当前未激活。您是否已安装框架并重启？</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome_framework_update_available">Xposed 框架模块可更新。</string>
+    <string name="welcome_framework_update_available">Xposed 框架模块有更新可用 (%s)。</string>
     <string name="modules_updates_available">有模块可更新</string>
 
     <!-- Navigation drawer items -->
@@ -54,7 +54,7 @@
     <string name="framework_install_recovery">通过 Recovery 安装</string>
     <string name="framework_uninstall_recovery">通过 Recovery 卸载</string>
     <string name="framework_delete">删除已下载的文件</string>
-    <string name="framework_zip_load_failed">无法载入可用的 ZIP 文件。请下拉刷新重试。</string>
+    <string name="framework_zip_load_failed">无法载入可用的 ZIP 文件。请下滑刷新重试。</string>
     <string name="framework_no_zips">未找到匹配的 ZIP 文件，目前似乎不支持您的设备。</string>
 
     <!-- File operations -->
@@ -171,7 +171,7 @@
     <string name="about_developers_label">主要开发者</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 与 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> 与 <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> 提供错误修正与 Material 设计</string>
     <string name="about_translator_label">翻译</string>
-    <string name="translator">Alphaeva</string>
+    <string name="translator">Phantom,Alphaeva</string>
     <string name="about_version_label">版本</string>
     <string name="about_source_label">源码</string>
     <string name="about_libraries_label">使用的源码</string>
