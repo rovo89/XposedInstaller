@@ -230,6 +230,6 @@
     <string name="module_saved">模块保存于 %1$s</string>
     <string name="loading">正在载入…</string>
     <string name="save">保存</string>
-    <string name="update_download_list">下拉刷新模块下载列表</string>
+    <string name="update_download_list">下滑刷新模块下载列表</string>
 
 </resources>
