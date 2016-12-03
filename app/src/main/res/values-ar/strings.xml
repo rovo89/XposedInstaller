@@ -2,95 +2,234 @@
 <resources>
 
     <!-- General/various strings -->
+    <string name="menuSend">إرسال</string>
+    <string name="menuSaveToSd">حفظ في بطاقة الذاكرة</string>
+    <string name="xposed_not_active">أحدث نسخة من Xposed غير نشط حالياً. هل تم تثبيت الإطار وأعدت التشغيل؟</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome_framework_update_available">يتوفر تحديث لإطار إكسبوسيد.</string>
+    <string name="welcome_framework_update_available"> (%s).يتوفر تحديث للإطار</string>
+    <string name="modules_updates_available">يتوفر تحديث للإضافات</string>
 
     <!-- Navigation drawer items -->
+    <string name="nav_item_install">الإطار</string>
+    <string name="nav_item_modules">الأضافات</string>
+    <string name="nav_item_download">التحميل</string>
+    <string name="nav_item_settings">الإعدادات</string>
+    <string name="nav_item_support">الدعم</string>
+    <string name="nav_item_logs">السجلات</string>
+    <string name="nav_item_about">حول</string>
+    <string name="navigation_drawer_open">فتح درج التنقل</string>
+    <string name="navigation_drawer_close">إغلاق درج التنقل</string>
 
     <!-- Installer tab -->
     <string name="install_update">تثبيت/تحديث</string>
-    <string name="uninstall">إلغاء تثبيت</string>
-    <string name="soft_reboot">اعادة تشغيل سريعة</string>
-    <string name="reboot">اعادة التشغيل</string>
+    <string name="uninstall">الغاء التثبيت</string>
+    <string name="soft_reboot">إعادة تشغيل سريعة</string>
+    <string name="reboot">إعادة التشغيل</string>
+    <string name="reboot_recovery">إعادة تشغيل للإسترداد</string>
+    <string name="not_now">ليس الآن</string>
+    <string name="reboot_failed">أخفقت إعادة التشغيل. الرجاء إستخدام وظيفة إعادة التشغيل العادية للجهاز.</string>
+    <string name="auto_flash_note">%s يجب أن تثبت تلقائيا بمجرد الضغط على زر "موافق".</string>
+    <string name="reboot_confirmation">هل تريد إعادة التشغيل الآن؟</string>
+    <string name="install_warning_title">كن حذراً!</string>
+    <string name="install_warning">في بعض الحالات، ربما جهازك لايعيد الإقلاع بعد تثبيت Xposed.\n\nإذا لم تسمع عن \"soft brick\" و \"bootloop\" سابقاً أو إذا كنت لا تعرف كيفية القيام بعملية استرداد من مثل هذا الوضع, لا <b>تقوم</b> بتثبيت Xposed!\n\nعلى أية حالة، من المستحسن بشدة وجود نسخة احتياطية حديثة.</string>
+    <string name="dont_show_again">لا تظهر هذا مرة أخرى</string>
+    <string name="install_known_issue">يبدو أن هناك مشكلة معروفة (\"%s\") مع نظامك. تركيب Xposed قد لا تعمل أو يؤدي إلى مشاكل خطيرة. أنقر هنا لمعرفة التفاصيل حول هذه المشكلة.</string>
+    <string name="framework_active">إطار Xposed نسخة %s نشطة.</string>
+    <string name="framework_not_active">إطار Xposed الإصدار %s مثبت، ولكن غير نشط. يرجى التأكد من السجلات لمزيد من التفاصيل.</string>
+    <string name="framework_not_installed">لم يتم تثبيت إطار Xposed.</string>
+    <string name="countdown">%1$s (%2$d)</string>
+    <string name="flash_error_timeout">انقضت المهلة المحددة</string>
+    <string name="flash_error_shell_died">الإجراء أوقف بشكل غير متوقع</string>
+    <string name="flash_error_invalid_zip">ليس ملف مضغوط قابل للتثبيت</string>
+    <string name="flash_error_not_flashable_in_app">هذا الملف لا يمكن تثبيته إلا بواسطة الإسترداد.</string>
+    <string name="flash_error_default">خطأ %d حدث</string>
+    <string name="status">Xposed حالة</string>
+    <string name="xposed_on_next_reboot">سيتم تمكين الإطار Xposed في إعادة التشغيل التالية</string>
+    <string name="xposed_off_next_reboot">سيتم تعطيل الإطار Xposed في إعادة التشغيل التالية</string>
+    <string name="show_outdated">عرض الإصدارات القديمة</string>
+    <string name="framework_device_info">جهازك</string>
+    <string name="framework_install">تثبيت</string>
+    <string name="framework_uninstall">إلغاء التثبيت</string>
+    <string name="framework_install_recovery">تثبيت عن طريق الإسترداد</string>
+    <string name="framework_uninstall_recovery">إلغاء التثبيت عن طريق الإسترداد</string>
+    <string name="framework_delete">حذف ملف التنزيل</string>
+    <string name="framework_zip_load_failed">لا يمكن تحميل ملفات ZIP المتاحة.إسحب لأسفل لإعادة المحاولة.</string>
+    <string name="framework_no_zips">لم يتم العثور على ملفات ZIP مطابقة، يبدو أن جهازك غير معتمد حاليا.</string>
 
     <!-- File operations -->
+    <string name="root_failed">فشل الحصول على أذن الروت.\n\nتأكد من أن جهازك يحتوي على الروت ولم تقم بحظر الأوامر الدفعية.</string>
+    <string name="file_copying">النسخ %s&#8230;</string>
+    <string name="file_copy_failed">لا يمكن نسخ %1$s إلى %2$s</string>
+    <string name="file_creating_directory">إنشاء الدليل %s&#8230;</string>
+    <string name="file_create_directory_failed">لا يمكن إنشاء الدليل %s</string>
+    <string name="file_writing_recovery_command">كتابة أمر إسترداد&#8230;</string>
+    <string name="file_writing_recovery_command_failed">فشل كتابة أمر استرداد. الرجاء استخدام طريقة تثبيت مختلفة.</string>
+    <string name="file_done">أنتهى! ستصبح التغييرات نشطة بعد إعادة التشغيل.</string>
 
     <!-- Modules tab -->
-    <string name="module_is_not_activated_yet">لم يتم تنشيط الوحدة النمطية إكسبوسيد بعد</string>
-    <string name="module_empty_description">(لا يوجد وصف المقدمة)</string>
-    <string name="module_no_ui">هذه الوحدة النمطية لا توفر واجهة المستخدم</string>
-    <string name="no_xposed_modules_found">لم يتم العثور على أية وحدات إكسبوسيد!</string>
-    <string name="xposed_module_list_updated">"تم تحديث قائمة الوحدة النمطية إكسبوسيد التغييرات سوف تصبح نشطة على إعادة التشغيل"</string>
-    <string name="warning_xposed_min_version">هذه الوحدة يتطلب إصدار أحدث Xposed (%d) وبالتالي لا يمكن تفعيلها.</string>
-    <string name="no_min_version_specified">لا تحدد هذه الوحدة النمطية إصدار إكسبوسيدبريدجي يحتاج إليها.</string>
-    <string name="warning_min_version_too_low">تم إنشاء هذه الوحدة لإصدار Xposed %1$d, ولكن نظرا للتغيرات غير متوافقة في الإصدار %2$d, فقد تم تعطيله.</string>
-    <string name="module_launch">بدء تشغيل واجهة المستخدم</string>
-    <string name="module_download_updates">تحميل/تحديث</string>
+    <string name="module_is_not_activated_yet">لم يتم تنشيط إضافة Xposed حتى الآن</string>
+    <string name="module_is_not_activated_yet_detailed">%s تم التثبيت، ولكن لم يتم تنشيطها حتى الآن.</string>
+    <string name="activate_and_reboot">تنشيط وإعادة التشغيل</string>
+    <string name="activate_only">تنشيط فقط</string>
+    <string name="module_activated">تم تنشيط إضافة Xposed</string>
+    <string name="module_empty_description">(لايوجد وصف مدرج)</string>
+    <string name="module_no_ui">هذه الإضافة لا تقدم واجهة مستخدم</string>
+    <string name="no_xposed_modules_found">لم يعثر على إضافات Xposed!</string>
+    <string name="xposed_module_list_updated">تم تحديث قائمة إضافات Xposed\nالتغييرات سوف تصبح نشطة عند إعادة الشغيل</string>
+    <string name="xposed_module_updated_notification_title">إضافة Xposed محدثه</string>
+    <string name="xposed_module_updated_notification">إعادة التشغيل لتنشيط التغيرات</string>
+    <string name="warning_xposed_min_version">هذه الإضافة تتطلب الإصدار الأحدث من Xposed (%d) وبالتالي لا يمكن تنشيطها.</string>
+    <string name="no_min_version_specified">هذه الإضافة لا تحدد إصدار Xposed التي تحتاجها.</string>
+    <string name="warning_min_version_too_low">تم إنشاء هذه الإضافة لإصدار Xposed %1$d، ولكن نظرا للتغيرات غير المتوافقة في الإصدار %2$d، تم تعطيلها.</string>
+    <string name="module_launch">تشغيل الواجهة</string>
+    <string name="module_download_updates">تنزيل/تحديث</string>
     <string name="module_support">الدعم</string>
     <string name="module_app_info">معلومات التطبيق</string>
-    <string name="module_uninstall">إلغاء تثبيت</string>
+    <string name="module_uninstall">إلغاء التثبيت</string>
 
     <!-- Download tab -->
     <string name="menuSearch">بحث</string>
     <string name="menuReload">إعادة تحميل</string>
     <string name="changes">التغييرات:</string>
-    <string name="download_author">من قبل %s</string>
-    <string name="download_unknown_author">مؤلف غير معروف</string>
-    <string name="download_status_installed">تثبيت (version %s)</string>
-    <string name="download_status_update_available">تحديث متوفر (version %1$s \u2190 %2$s)</string>
-    <string name="download_timestamps">تشغيل الاضافة %1$s \u00b7 تشغيل التحديث %2$s</string>
-    <string name="download_sorting_title">ترتيب الفرز</string>
-    <string name="download_sorting_status">فرز حسب الحالة</string>
-    <string name="download_sorting_updated">فرز حسب آخر تحديث</string>
-    <string name="download_sorting_created">فرز حسب تاريخ الإنشاء</string>
+    <string name="download_details_page_description">الوصف</string>
+    <string name="download_details_page_versions">الإصدار</string>
+    <string name="download_details_page_settings">الإعدادات</string>
+    <string name="reltype_stable">مستقر</string>
+    <string name="reltype_stable_summary">المستقر (مخاطر منخفضة من الأخطاء)</string>
+    <string name="reltype_beta">تجريبي</string>
+    <string name="reltype_beta_summary">التجريبي (بعض الأخطاء المتوقعة)</string>
+    <string name="reltype_experimental">إختباري</string>
+    <string name="reltype_experimental_summary">إختباري (مخاطر عالية من الأخطاء)</string>
+    <string name="reltype_use_global_summary">إستخدام الإعداد العام</string>
+    <string name="download_author">بواسطة %s</string>
+    <string name="download_unknown_author">مؤلف مجهول</string>
+    <string name="download_status_installed">المثبت (الإصدار %s)</string>
+    <string name="download_status_update_available">يتوفر تحديث (الإصدار %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">أضيفت في %1$s \u00b7 تم التحديث في %2$s</string>
+    <string name="download_sorting_title">تنسيق الترتيب</string>
+    <string name="download_sorting_status">الترتيب حسب الحالة</string>
+    <string name="download_sorting_updated">الترتيب حسب آخر تحديث</string>
+    <string name="download_sorting_created">الترتيب حسب تاريخ الإنشاء</string>
     <string name="download_section_framework">الإطار</string>
-    <string name="download_section_update_available">تحديث متوفر</string>
-    <string name="download_section_installed">تثبيت</string>
-    <string name="download_section_not_installed">لم يتم تثبيت</string>
-    <string name="download_section_24h">ال 24 ساعة الماضية</string>
+    <string name="download_section_update_available">يتوفر تحديث</string>
+    <string name="download_section_installed">مثبت</string>
+    <string name="download_section_not_installed">غير مثبت</string>
+    <string name="download_section_24h">آخر 24 ساعة</string>
     <string name="download_section_7d">آخر 7 أيام</string>
-    <string name="download_section_30d">آخر 30 يوما</string>
-    <string name="download_section_older">منذ أكثر من 30 يوما</string>
+    <string name="download_section_30d">آخر 30 يوم</string>
+    <string name="download_section_older">منذ أكثر من 30 يوم</string>
+    <string name="download_details_not_found">ليس هناك إضافات باسم الحزمة \"%s\" في المستودع.</string>
+    <string name="download_no_versions">المؤلف لم يرفع أي شيء حتى الآن.</string>
+    <string name="download_test_version_not_shown">الإصدار الإختباري متوفر، ولكن لا يظهر ذلك بسبب الإعدادات العمومية أو نوعية الإضافة.</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_download">تحميل</string>
-    <string name="settings_group_experimental">التجريبية</string>
+    <string name="settings_group_download">تنزيل</string>
+    <string name="settings_enable_downloads">تمكين التنزيلات</string>
+    <string name="settings_enable_downloads_summary">السماح لبرنامج Xposed للتأكد من التحديثات والإضافات الجديدة</string>
+    <string name="settings_release_type">الإصدارات التى ستعرض</string>
+    <string name="settings_group_experimental">تجريبي</string>
+    <string name="settings_disable_resources">تعطيل ربط الموارد</string>
+    <string name="settings_disable_resources_summary">حل بديل للتعارض مع محركات السمات\n<b>تحذير:</b> الإضافات التي تحاول تغيير الموارد لن تعمل في حالة تنشيط هذا.</string>
+    <string name="settings_group_app">التطبيق</string>
+    <string name="settings_theme">السمة</string>
+    <string name="settings_theme_light">أبيض</string>
+    <string name="settings_theme_dark">غامق</string>
+    <string name="settings_theme_black">أسود (مفيدة لشاشات AMOLED)</string>
+    <string name="settings_default_view">العرض الافتراضي</string>
+    <string name="open_drawer_summ">تلقائيا فتح درج التنقل عند بدء التشغيل</string>
+    <string name="open_drawer">فتح درج التنقل تلقائيا</string>
+    <string name="skip_xposedminversion_check">تخطي \'xposedminversion\' تحقق</string>
+    <string name="skip_xposedminversion_check_summ">تخطي \'xposedminversion\' التحقق من الإضافات</string>
+    <string name="chrome_custom_tabs">تبويبات مخصصة لمتصفح كروم </string>
+    <string name="chrome_custom_tabs_summ">فتح الروابط في المتصفح الداخلي</string>
+    <string name="download_location">موقع التنزيل</string>
+    <string name="download_location_summ">موقع التحميل لملفات APK (إضافات فقط)</string>
+    <string name="notify_module_update">تمكين إشعار التحديث للإضافه</string>
 
     <!-- Support tab -->
+    <string name="support_modules_label">الدعم للإضافات</string>
+    <string name="support_modules_description">أنقر طويلاً على أي إضافة في قائمة الإضافات وحدد \"%1$s\".</string>
+    <string name="support_framework_label">الإطار/دعم المثبت</string>
+    <string name="support_faq_label">أسئلة وأجوبة/المشكلات المعروفة</string>
+    <string name="support_donate_label">تبرع</string>
+    <string name="support_donate_description">إذا كنت ترغب في الشكر عن Xposed, يمكنك التبرع إلى rovo89 هنا</string>
 
     <!-- Logs tab  -->
+    <string name="logs_load_failed">لا يمكن قراءة السجل:</string>
+    <string name="logs_save_failed">لا يمكن كتابة السجل إلى بطاقة الذاكرة:</string>
+    <string name="sdcard_not_writable">بطاقة الذاكرة غير موجودة أو غير قابلة للكتابة</string>
+    <string name="log_too_large">ملف السجل أكبر من %1$,d ك ب, تخطى أول %2$,d ك ب</string>
+    <string name="menuClearLog">مسح السجل الآن</string>
+    <string name="logs_cleared">السجل مسح بنجاح</string>
+    <string name="logs_clear_failed">لا يمكن مسح السجل:</string>
+    <string name="log_is_empty">السجل فارغ</string>
+    <string name="scroll_top">انتقل إلى أعلى</string>
+    <string name="scroll_bottom">انتقل إلى أسفل</string>
 
     <!-- About tab -->
-    <string name="about_developers_label">مطوري الرئيسية:</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> و <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_translator_label">ترجمات:</string>
-    <string name="translator">aljohanei</string>
-    <string name="about_version_label">إصدار من هذا التطبيق:</string>
-    <string name="about_source_label">التعليمات البرمجية المصدر:</string>
-    <string name="about_libraries_label">المكتبات المستخدمة:</string>
+    <string name="about_developers_label">المطورين الرئيسيين</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> و <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> و <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> لإصلاح الأخطاء وتصميم المواد</string>
+    <string name="about_translator_label">المترجم</string>
+    <string name="translator"><a href="https://twitter.com/silent_6600">aljohanei ,silent_6600 ,xx6600xx</a> </string>
+    <string name="about_version_label">الإصدار</string>
+    <string name="about_source_label">الشفرة المصدرية</string>
+    <string name="about_libraries_label">المكتبات المستخدمة</string>
 
     <!-- DownloadView -->
-    <string name="download_view_download">تحميل</string>
+    <string name="download_view_download">تنزيل</string>
     <string name="download_view_install">تثبيت</string>
-    <string name="download_view_cancel">الغاء</string>
-    <string name="download_view_no_url">الصفحة غير متوفرة</string>
-    <string name="download_view_running">تحميل قيد التشغيل (%1$,d of %2$,d kB)</string>
-    <string name="download_view_waiting">في انتظار التحميل</string>
-    <string name="download_view_successful">تم التحميل</string>
-    <string name="download_view_failed">فشل التحميل (error %d)</string>
+    <string name="download_view_cancel">إلغاء</string>
+    <string name="download_view_no_url">لايوجد رابط تنزيل متوفر</string>
+    <string name="download_view_running">التنزيل يعمل (%1$,d من %2$,d ك ب)</string>
+    <string name="download_view_waiting">التنزيل قيد الإنتظار</string>
+    <string name="download_view_successful">التنزيل ناجح</string>
+    <string name="download_view_failed">فشل التنزيل (الخطأ %d)</string>
+    <string name="download_view_size">الحجم: %s ك ب</string>
 
     <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">مجموع MD5 غير صحيحة (downloaded: %1$s, expected: %2$s)</string>
+    <string name="download_md5sum_incorrect">MD5 sum غير صحيحة (تنزيل: %1$s, متوقع: %2$s)</string>
     <string name="download_could_not_read_file">لا يمكن قراءة الملف الذي تم تنزيله: %s</string>
-    <string name="download_no_valid_apk">الملف الذي تم تنزيله ليس APK صالح (or incompatible)</string>
-    <string name="download_incorrect_package_name">اسم الحزمة غير صحيح (downloaded: %1$s, expected: %2$s)</string>
+    <string name="download_no_valid_apk">الملف الذي تم تنزيله ليس APK صالح (أو غير متوافق)</string>
+    <string name="download_incorrect_package_name">اسم الحزمة هو غير صحيح (تنزيل: %1$s, متوقع: %2$s)</string>
+    <string name="download_running">التنزيل يعمل</string>
+    <string name="download_progress">%1$,d / %2$,d ك ب</string>
 
     <!-- RepoLoader -->
-    <string name="repo_download_failed_http">تحميل %1$s فشل: %2$d (%3$s)</string>
-    <string name="repo_download_failed">تحميل %1$s فشل: %2$s</string>
-    <string name="repo_load_failed">لايمكن التحميل من المستودع %1$s:\n%2$s</string>
+    <string name="repo_download_failed_http">التنزيل %1$s أخفق: %2$d (%3$s)</string>
+    <string name="repo_download_failed">التنزيل %1$s أخفق: %2$s</string>
+    <string name="repo_load_failed">لا يمكن تحميل مستودع من %1$s:\n%2$s</string>
 
     <!-- Most of these belong to currently hidden features -->
+    <string name="warning_installed_on_external_storage">هذه الإضافة لا يمكن تحميلها لانها مثبتة على بطاقة الذاكرة، الرجاء نقلها إلى التخزين الداخلي.</string>
+    <string name="warning_forward_locked">هذه الإضافة لا يمكن تحميلها لانها مؤمنة مسبقاً، الرجاء التواصل مع مطور الإضافة.</string>
+    <string name="export_modules">تصدير قائمة الإضافات النشطة</string>
+    <string name="import_modules">إستيراد قائمة الإضافات النشطة</string>
+    <string name="view">عرض</string>
+    <string name="export_">تصدير…</string>
+    <string name="import_">إستيراد…</string>
+    <string name="export_enabled_modules">تصدير قائمة الإضافات النشطة</string>
+    <string name="import_enabled_modules">إستيراد قائمة الإضافات النشطة</string>
+    <string name="export_installed_modules">تصدير قائمة الإضافات المثبته</string>
+    <string name="import_installed_modules">إستيراد قائمة الإضافات المثبته</string>
+    <string name="no_installed_modules">ليس هناك أي إضافة مثبتة!</string>
+    <string name="no_backup_found">لم يعثر على النسخة الاحتياطية</string>
+    <string name="no_enabled_modules">لا يوجد أي إضافة نشطة</string>
+    <string name="share">مشاركة مع...</string>
+    <string name="permissionNotGranted">هذه الميزة لا تعمل دون الحصول على إذن الكتابة على وحدة التخزين الخارجية.</string>
+    <string name="add_bookmark">إضافة علامة</string>
+    <string name="remove_bookmark">إزالة العلامة</string>
+    <string name="bookmarks">العلامة</string>
+    <string name="no_bookmark_added">لايوجد علامة مضافة</string>
+    <string name="bookmark_added">العلامة أضيفت</string>
+    <string name="bookmark_removed">العلامة أزيلت</string>
+    <string name="undo">تراجع</string>
+    <string name="file_is_empty">الملف فارغ</string>
+    <string name="install_remove">تثبيت وإزالة</string>
+    <string name="download_remove">تنزيل و إزالة</string>
+    <string name="module_saved">الإضافة حفظت في %1$s</string>
+    <string name="loading">تحميل…</string>
+    <string name="save">حفظ</string>
+    <string name="update_download_list">إسحب لأسفل لتحديث قائمة التحميل للإضافات</string>
 
 </resources>
