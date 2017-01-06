@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "de.robv.android.xposed.installer"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 39
         versionName "3.1.1"
