@@ -7,15 +7,27 @@
     <string name="xposed_not_active">"La dernière version d'Xposed est inactive. Avez-vous installé le Framework et redémarré ?"</string>
 
     <!-- Welcome screen / main sections -->
-    <string name="welcome_framework_update_available">Une mise à jour du Framework Xposed est disponible.</string>
+    <string name="welcome_framework_update_available">Mise à jour du Framework Xposed disponible.</string>
+    <string name="modules_updates_available">Mise(s) à jour de module(s) disponible(s).</string>
 
     <!-- Navigation drawer items -->
+    <string name="nav_item_install">Framework</string>
+    <string name="nav_item_modules">Modules</string>
+    <string name="nav_item_download">Téléchargements</string>
+    <string name="nav_item_settings">Paramètres</string>
+    <string name="nav_item_support">Support</string>
+    <string name="nav_item_logs">Journal</string>
+    <string name="nav_item_about">À propos</string>
+    <string name="navigation_drawer_open">Ouvrir le tiroir de navigation</string>
+    <string name="navigation_drawer_close">Fermer le tiroir de navigation</string>
 
     <!-- Installer tab -->
     <string name="install_update">Installer/Mettre à jour</string>
     <string name="uninstall">Désinstaller</string>
     <string name="soft_reboot">Redémarrage doux</string>
     <string name="reboot">Redémarrer</string>
+    <string name="reboot_recovery">Redémarrer en recovery</string>
+    <string name="not_now">Plus tard</string>
     <string name="reboot_failed">Le redémarrage a échoué. Veuillez utiliser la fonction redémarrage de l\'appareil.</string>
     <string name="auto_flash_note">%s sera automatiquement flashé dès que vous aurez appuyé sur "OK".</string>
     <string name="reboot_confirmation">Voulez-vous redémarrer maintenant ?</string>
@@ -23,6 +35,27 @@
     <string name="install_warning">Dans certains cas, votre appareil pourrait ne plus démarrer après avoir installé le Framework Xposed.\n\nSi vous n\'avez jamais entendu parler de \"soft brick\" et de \"bootloop\" avant ou si vous ne savez pas comment récupérer d\'une telle situation, n\'installez <b>PAS</b> le Framework Xposed !\n\nDans tous les cas, il est fortement recommandé d\'avoir une sauvegarde récente.</string>
     <string name="dont_show_again">Ne plus afficher</string>
     <string name="install_known_issue">Il semble y avoir un problème connu (\"%s\") avec votre ROM. Installer le Framework Xposed pourrait ne pas fonctionner ou provoquer des problèmes. Appuyez ici pour plus de détails.</string>
+    <string name="framework_active">Framework Xposed version %s actif.</string>
+    <string name="framework_not_active">Le Framework Xposed version %s est installé, mais inactif. Veuillez consulter le journal pour plus de détails.</string>
+    <string name="framework_not_installed">Le Framework Xposed n\'est pas installé.</string>
+    <string name="countdown">%1$s (%2$d)</string>
+    <string name="flash_error_timeout">Délai dépassé</string>
+    <string name="flash_error_shell_died">Exécution interrompue de façon inattendue</string>
+    <string name="flash_error_invalid_zip">Pas un fichier ZIP flashable</string>
+    <string name="flash_error_not_flashable_in_app">Ce fichier ne peut être flashé via le recovery.</string>
+    <string name="flash_error_default">Erreur %d s\'est produite</string>
+    <string name="status">État de Xposed</string>
+    <string name="xposed_on_next_reboot">Le Framework Xposed sera activé au prochain redémarrage</string>
+    <string name="xposed_off_next_reboot">Le Framework Xposed sera désactivé au prochain redémarrage</string>
+    <string name="show_outdated">Afficher les versions obsolètes</string>
+    <string name="framework_device_info">Votre appareil</string>
+    <string name="framework_install">Installer</string>
+    <string name="framework_uninstall">Désinstaller</string>
+    <string name="framework_install_recovery">Installer via recovery</string>
+    <string name="framework_uninstall_recovery">Désinstaller via recovery</string>
+    <string name="framework_delete">Supprimer le ficher téléchargé</string>
+    <string name="framework_zip_load_failed">Impossible de charger les fichiers ZIP disponibles. Tirer vers le bas pour réessayer.</string>
+    <string name="framework_no_zips">Aucun ZIP correspondant n\'a été trouvé, il semble que votre appareil n\'est actuellement pas pris en charge.</string>
 
     <!-- File operations -->
     <string name="root_failed">Échec accès root.\n\nAssurez-vous que votre appareil soit correctement rooté et que vous n\'ayez pas bloqué les commandes shell.</string>
@@ -38,6 +71,7 @@
     <string name="module_is_not_activated_yet">Le module Xposed n\'est pas encore activé</string>
     <string name="module_is_not_activated_yet_detailed">%s a été installé mais n\'est pas encore activé.</string>
     <string name="activate_and_reboot">Activer et redémarrer</string>
+    <string name="activate_only">Activer uniquement</string>
     <string name="module_activated">Module Xposed activé</string>
     <string name="module_empty_description">(aucune description)</string>
     <string name="module_no_ui">Ce module ne fournit pas d\'interface utilisateur</string>
@@ -57,7 +91,7 @@
     <!-- Download tab -->
     <string name="menuSearch">Chercher</string>
     <string name="menuReload">Recharger</string>
-    <string name="changes">Modifications:</string>
+    <string name="changes">Modifications :</string>
     <string name="download_details_page_description">Description</string>
     <string name="download_details_page_versions">Versions</string>
     <string name="download_details_page_settings">Paramètres</string>
@@ -91,34 +125,56 @@
 
     <!-- Settings tab -->
     <string name="settings_group_download">Téléchargements</string>
+    <string name="settings_enable_downloads">Activer les téléchargements</string>
+    <string name="settings_enable_downloads_summary">Autoriser Xposed Installer à vérifier si des mises à jour ou nouveaux modules sont disponibles</string>
     <string name="settings_release_type">Versions à afficher</string>
     <string name="settings_group_experimental">Expérimental</string>
     <string name="settings_disable_resources">Désactiver \"resource hooks\"</string>
-    <string name="settings_disable_resources_summary">Solution pour éviter les conflits avec les moteurs de thème\n<b>ATTENTION:</b> Les modules qui essaient de modifier les ressources ne fonctionneront pas si vous activez ceci.</string>
+    <string name="settings_disable_resources_summary">Solution pour éviter les conflits avec les moteurs de thème\n<b>ATTENTION :</b> Les modules qui essaient de modifier les ressources ne fonctionneront pas si vous activez ceci.</string>
     <string name="settings_group_app">Application</string>
     <string name="settings_theme">Thème</string>
     <string name="settings_theme_light">Clair</string>
     <string name="settings_theme_dark">Sombre</string>
     <string name="settings_theme_black">Noir (approprié pour les écrans AMOLED)</string>
+    <string name="settings_default_view">Vue par défaut</string>
+    <string name="open_drawer_summ">Ouvre automatiquement le tiroir de navigation au démarrage</string>
+    <string name="open_drawer">Ouvrir automatiquement le tiroir de navigation</string>
+    <string name="skip_xposedminversion_check">Ignorer \'xposedminversion\'</string>
+    <string name="skip_xposedminversion_check_summ">Ignore la vérification \'xposedminversion\' pour les modules</string>
+    <string name="chrome_custom_tabs">Onglets Chrome personnalisés </string>
+    <string name="chrome_custom_tabs_summ">Ouvre les liens dans le navigateur interne</string>
+    <string name="download_location">Emplacement des téléchargements</string>
+    <string name="download_location_summ">Emplacement de téléchargement des fichiers APK (modules seul.)</string>
+    <string name="notify_module_update">Notification de mise à jour de module</string>
 
     <!-- Support tab -->
+    <string name="support_modules_label">Support pour les modules</string>
+      <string name="support_modules_description">Appui-long sur un module et sélectionner \"%1$s\".</string>
+    <string name="support_framework_label">Support pour le Framework/Installer</string>
+    <string name="support_faq_label">FAQ/Problèmes connus</string>
+    <string name="support_donate_label">Donation</string>
+    <string name="support_donate_description">Si vous souhaitez dire merci pour Xposed, vous pouvez faire une donation à rovo89 ici</string>
 
     <!-- Logs tab  -->
-    <string name="logs_save_failed">Impossible d\'écrire le journal:</string>
+    <string name="logs_load_failed">Impossible de lire le journal :</string>
+    <string name="logs_save_failed">Impossible d\'écrire le journal :</string>
     <string name="sdcard_not_writable">Carte SD non trouvée ou en lecture seule</string>
+    <string name="log_too_large">Poids du journal supérieur à %1$,d Ko, les premiers %2$,d Ko sont ignorés</string>
     <string name="menuClearLog">Effacer le journal</string>
     <string name="logs_cleared">Journal effacé</string>
-    <string name="logs_clear_failed">Impossible d\'effacer le journal:</string>
+    <string name="logs_clear_failed">Impossible d\'effacer le journal :</string>
     <string name="log_is_empty">Journal vide</string>
+    <string name="scroll_top">Défiler vers le haut</string>
+    <string name="scroll_bottom">Défiler vers le bas</string>
 
     <!-- About tab -->
-    <string name="about_developers_label">Développeurs principaux:</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> et <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_translator_label">Traducteur:</string>
+    <string name="about_developers_label">Développeurs principaux</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> et <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> et <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> pour les corrections de bugs et le Material Design</string>
+    <string name="about_translator_label">Traducteur</string>
     <string name="translator">tonymanou</string>
-    <string name="about_version_label">Version de l\'application:</string>
-    <string name="about_source_label">Code source:</string>
-    <string name="about_libraries_label">Librairies utilisées:</string>
+    <string name="about_version_label">Version</string>
+    <string name="about_source_label">Code source</string>
+    <string name="about_libraries_label">Librairies utilisées</string>
 
     <!-- DownloadView -->
     <string name="download_view_download">Télécharger</string>
@@ -129,12 +185,15 @@
     <string name="download_view_waiting">Téléchargement en attente</string>
     <string name="download_view_successful">Téléchargement réussi</string>
     <string name="download_view_failed">Téléchargement échoué (erreur %d)</string>
+    <string name="download_view_size">Taille : %s Ko</string>
 
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">Somme de contrôle MD5 incorrecte (téléchargée: %1$s, attendue: %2$s)</string>
     <string name="download_could_not_read_file">Impossible de lire le fichier téléchargé: %s</string>
     <string name="download_no_valid_apk">Le fichier téléchargé n\'est pas un APK valide (ou est incompatible)</string>
     <string name="download_incorrect_package_name">Nom de paquet incorrect (téléchargé: %1$s, attendu: %2$s)</string>
+    <string name="download_running">Téléchargement en cours</string>
+    <string name="download_progress">%1$,d / %2$,d Ko</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Téléchargement %1$s échoué: %2$d (%3$s)</string>
