@@ -8,11 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 
 import java.io.File;
@@ -85,7 +87,14 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     public static void installApk(Context context, DownloadsUtil.DownloadInfo info) {
         Intent installIntent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
         installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        installIntent.setDataAndType(Uri.fromFile(new File(info.localFilename)), DownloadsUtil.MIME_TYPE_APK);
+        Uri uri;
+        if (Build.VERSION.SDK_INT >= 24) {
+            uri = FileProvider.getUriForFile(context, "de.robv.android.xposed.installer.fileprovider", new File(info.localFilename));
+            installIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        } else {
+            uri = Uri.fromFile(new File(info.localFilename));
+        }
+        installIntent.setDataAndType(uri, DownloadsUtil.MIME_TYPE_APK);
         installIntent.putExtra(Intent.EXTRA_INSTALLER_PACKAGE_NAME, context.getApplicationInfo().packageName);
         context.startActivity(installIntent);
     }

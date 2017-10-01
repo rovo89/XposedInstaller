@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
     <application
         android:name=".XposedApp"
@@ -65,6 +66,7 @@
             android:name=".installation.InstallationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.XposedInstaller.Transparent"/>
+
         <receiver
             android:name=".receivers.PackageChangeReceiver"
             android:exported="false">
@@ -87,6 +89,16 @@
         <receiver
             android:name=".util.NotificationUtil$RebootReceiver"
             android:exported="false"/>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="de.robv.android.xposed.installer.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
 
     </application>
 
