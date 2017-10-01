@@ -282,14 +282,14 @@ public class DownloadsUtil {
         int columnTitle = c.getColumnIndexOrThrow(DownloadManager.COLUMN_TITLE);
         int columnLastMod = c.getColumnIndexOrThrow(
                 DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
-        int columnFilename = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_FILENAME);
+        int columnLocalUri = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_URI);
         int columnStatus = c.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
         int columnTotalSize = c.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES);
         int columnBytesDownloaded = c.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR);
         int columnReason = c.getColumnIndexOrThrow(DownloadManager.COLUMN_REASON);
 
         int status = c.getInt(columnStatus);
-        String localFilename = c.getString(columnFilename);
+        String localFilename = getFilenameFromUri(c.getString(columnLocalUri));
         if (status == DownloadManager.STATUS_SUCCESSFUL && !new File(localFilename).isFile()) {
             dm.remove(id);
             c.close();
@@ -319,7 +319,7 @@ public class DownloadsUtil {
         int columnTitle = c.getColumnIndexOrThrow(DownloadManager.COLUMN_TITLE);
         int columnLastMod = c.getColumnIndexOrThrow(
                 DownloadManager.COLUMN_LAST_MODIFIED_TIMESTAMP);
-        int columnFilename = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_FILENAME);
+        int columnLocalUri = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_URI);
         int columnStatus = c.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
         int columnTotalSize = c.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES);
         int columnBytesDownloaded = c.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR);
@@ -331,7 +331,7 @@ public class DownloadsUtil {
                 continue;
 
             int status = c.getInt(columnStatus);
-            String localFilename = c.getString(columnFilename);
+            String localFilename = getFilenameFromUri(c.getString(columnLocalUri));
             if (status == DownloadManager.STATUS_SUCCESSFUL && !new File(localFilename).isFile()) {
                 dm.remove(c.getLong(columnId));
                 continue;
@@ -391,11 +391,11 @@ public class DownloadsUtil {
         DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         Cursor c = dm.query(new Query());
         int columnId = c.getColumnIndexOrThrow(DownloadManager.COLUMN_ID);
-        int columnFilename = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_FILENAME);
+        int columnLocalUri = c.getColumnIndexOrThrow(DownloadManager.COLUMN_LOCAL_URI);
 
         List<Long> idsList = new ArrayList<>(1);
         while (c.moveToNext()) {
-            String itemFilename = c.getString(columnFilename);
+            String itemFilename = getFilenameFromUri(c.getString(columnLocalUri));
             if (itemFilename != null) {
                 if (filename.equals(itemFilename)) {
                     idsList.add(c.getLong(columnId));
@@ -461,6 +461,17 @@ public class DownloadsUtil {
         // Hack to reset stat information.
         new File(info.localFilename).setExecutable(false);
         callback.onDownloadFinished(context, info);
+    }
+
+    private static String getFilenameFromUri(String uriString) {
+        if (uriString == null) {
+            return null;
+        }
+        Uri uri = Uri.parse(uriString);
+        if (!uri.getScheme().equals("file")) {
+            throw new UnsupportedOperationException("Not a file URI: " + uriString);
+        }
+        return uri.getPath();
     }
 
     public static SyncDownloadInfo downloadSynchronously(String url, File target) {
