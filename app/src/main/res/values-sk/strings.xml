@@ -197,8 +197,6 @@
     <string name="undo">Späť</string>
     <string name="file_is_empty">Súbor je prázdny</string>
     <string name="install_remove">Nainštalovať a odstrániť</string>
-    <string name="download_remove">Stiahnuť a odstrániť</string>
-    <string name="module_saved">Modul uložený %1$s</string>
     <string name="loading">Načítavanie…</string>
 
 </resources>

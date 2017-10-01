@@ -1,19 +1,13 @@
 package de.robv.android.xposed.installer;
 
-import android.Manifest;
 import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v13.app.FragmentCompat;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -25,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,8 +30,6 @@ import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 import de.robv.android.xposed.installer.util.ThemeUtil;
-
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 
 public class ModulesBookmark extends XposedBaseActivity {
 
@@ -193,45 +184,16 @@ public class ModulesBookmark extends XposedBaseActivity {
 
             switch (item.getItemId()) {
                 case R.id.install_bookmark:
-                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
-                        @Override
-                        public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                            XposedApp.installApk(context, info);
-                        }
-                    }, DownloadsUtil.MIME_TYPES.APK);
+                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadDetailsVersionsFragment.DownloadModuleCallback(mv), DownloadsUtil.MIME_TYPES.APK);
                     break;
                 case R.id.install_remove_bookmark:
-                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
+                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadDetailsVersionsFragment.DownloadModuleCallback(mv) {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                            XposedApp.installApk(context, info);
+                            super.onDownloadFinished(context, info);
                             remove(pkg);
                         }
                     }, DownloadsUtil.MIME_TYPES.APK);
-                    break;
-                case R.id.download_bookmark:
-                    if (checkPermissions())
-                        return false;
-
-                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
-                        @Override
-                        public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                            Toast.makeText(context, getString(R.string.module_saved,
-                                    info.localFilename), Toast.LENGTH_SHORT).show();
-                        }
-                    }, DownloadsUtil.MIME_TYPES.APK, true, true);
-                    break;
-                case R.id.download_remove_bookmark:
-                    if (checkPermissions())
-                        return false;
-
-                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
-                        @Override
-                        public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                            remove(pkg);
-                            Toast.makeText(context, getString(R.string.module_saved, info.localFilename), Toast.LENGTH_SHORT).show();
-                        }
-                    }, DownloadsUtil.MIME_TYPES.APK, true, true);
                     break;
                 case R.id.remove:
                     remove(pkg);
@@ -239,33 +201,6 @@ public class ModulesBookmark extends XposedBaseActivity {
             }
 
             return false;
-        }
-
-        private boolean checkPermissions() {
-            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                FragmentCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_EXTERNAL_PERMISSION);
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-            if (requestCode == WRITE_EXTERNAL_PERMISSION) {
-                if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (mClickedMenuItem != null) {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                onContextItemSelected(mClickedMenuItem);
-                            }
-                        }, 500);
-                    }
-                } else {
-                    Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
-                }
-            }
         }
 
         private void remove(final String pkg) {

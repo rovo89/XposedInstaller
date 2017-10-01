@@ -32,8 +32,6 @@ import de.robv.android.xposed.installer.util.ThemeUtil;
 import de.robv.android.xposed.installer.util.chrome.LinkTransformationMethod;
 import de.robv.android.xposed.installer.widget.DownloadView;
 
-import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
-
 public class DownloadDetailsVersionsFragment extends ListFragment {
     private static VersionsAdapter sAdapter;
     private DownloadDetailsActivity mActivity;
@@ -92,27 +90,6 @@ public class DownloadDetailsVersionsFragment extends ListFragment {
     public void onDestroyView() {
         super.onDestroyView();
         setListAdapter(null);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == WRITE_EXTERNAL_PERMISSION) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                DownloadsUtil.add(getActivity(), module.name,
-                        DownloadView.mClickedUrl,
-                        new DownloadsUtil.DownloadFinishedCallback() {
-                            @Override
-                            public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                                Toast.makeText(context, context.getString(R.string.module_saved, info.localFilename), Toast.LENGTH_SHORT).show();
-                            }
-                        }, DownloadsUtil.MIME_TYPES.APK, true, true);
-
-            } else {
-                Toast.makeText(getActivity(), R.string.permissionNotGranted, Toast.LENGTH_LONG).show();
-            }
-        }
     }
 
     static class ViewHolder {

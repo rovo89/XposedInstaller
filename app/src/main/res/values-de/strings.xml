@@ -216,8 +216,6 @@
     <string name="undo">Rückgängig</string>
     <string name="file_is_empty">Datei ist leer</string>
     <string name="install_remove">Installieren und entfernen</string>
-    <string name="download_remove">Laden und entfernen</string>
-    <string name="module_saved">Modul gespeichert unter %1$s</string>
     <string name="loading">Lädt…</string>
     <string name="update_download_list">Ziehe nach unten, um die Liste zu aktualieren</string>
 

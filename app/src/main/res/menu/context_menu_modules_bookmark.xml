@@ -10,14 +10,6 @@
         android:title="@string/install_remove"/>
 
     <item
-        android:id="@+id/download_bookmark"
-        android:title="@string/download_view_download"/>
-
-    <item
-        android:id="@+id/download_remove_bookmark"
-        android:title="@string/download_remove"/>
-
-    <item
         android:id="@+id/remove"
         android:title="@string/remove_bookmark"/>
 

@@ -192,8 +192,6 @@
     <string name="undo">ย้อนกลับ</string>
     <string name="file_is_empty">ไฟล์ว่างเปล่า</string>
     <string name="install_remove">ติดตั้งและลบ</string>
-    <string name="download_remove">ดาวน์โหลดและลบ</string>
-    <string name="module_saved">โมดูลบันทึกที่ %1$s</string>
     <string name="loading">กำลังโหลด…</string>
 
 </resources>

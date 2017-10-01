@@ -189,8 +189,6 @@
     <string name="undo">元に戻す</string>
     <string name="file_is_empty">ファイルは空です</string>
     <string name="install_remove">インストールして削除</string>
-    <string name="download_remove">ダウンロードして削除</string>
-    <string name="module_saved">モジュールを%1$sに保存しました</string>
     <string name="loading">読み込み中…</string>
 
 </resources>

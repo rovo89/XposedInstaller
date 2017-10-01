@@ -195,8 +195,6 @@
     <string name="undo">Desfazer</string>
     <string name="file_is_empty">O arquivo está vazio</string>
     <string name="install_remove">Instalar e remover</string>
-    <string name="download_remove">Baixar e remover</string>
-    <string name="module_saved">Módulo salvo em %1$s</string>
     <string name="loading">Carregando…</string>
 
 </resources>

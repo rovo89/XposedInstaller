@@ -189,8 +189,6 @@
     <string name="undo">Reverter</string>
     <string name="file_is_empty">O ficheiro está vazio</string>
     <string name="install_remove">Instalar e remover</string>
-    <string name="download_remove">Descarregar e remover</string>
-    <string name="module_saved">Módulo guardado em %1$s</string>
     <string name="loading">A carregar…</string>
 
 </resources>

@@ -198,9 +198,6 @@
     <string name="undo">Annulla</string>
     <string name="file_is_empty">Il file è vuoto</string>
     <string name="install_remove">Installa e rimuovi</string>
-    <string name="download_remove">Scarica e rimuovi </string>
-    <string name="module_saved">Modulo salvato in %1$s</string>
     <string name="loading">Caricamento…</string>
-    <string name="save">Salva</string>
 
 </resources>

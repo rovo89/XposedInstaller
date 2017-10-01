@@ -337,12 +337,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
             }
 
             if (mv != null) {
-                DownloadsUtil.add(getActivity(), m.name, mv.downloadLink, new DownloadsUtil.DownloadFinishedCallback() {
-                    @Override
-                    public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
-                        XposedApp.installApk(context, info);
-                    }
-                }, DownloadsUtil.MIME_TYPES.APK);
+                DownloadsUtil.add(getActivity(), m.name, mv.downloadLink, new DownloadDetailsVersionsFragment.DownloadModuleCallback(mv), DownloadsUtil.MIME_TYPES.APK);
             }
         }
 

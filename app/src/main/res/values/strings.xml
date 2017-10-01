@@ -143,8 +143,6 @@
     <string name="skip_xposedminversion_check_summ">Skip \'xposedminversion\' check for modules</string>
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Open links in internal browser</string>
-    <string name="download_location">Download location</string>
-    <string name="download_location_summ">Download location for APK files (modules only)</string>
     <string name="notify_module_update">Enable module update notification</string>
 
     <!-- Support tab -->
@@ -226,10 +224,7 @@
     <string name="undo">Undo</string>
     <string name="file_is_empty">File is empty</string>
     <string name="install_remove">Install and remove</string>
-    <string name="download_remove">Download and remove</string>
-    <string name="module_saved">Module saved at %1$s</string>
     <string name="loading">Loading…</string>
-    <string name="save">Save</string>
     <string name="update_download_list">Pulldown to refresh download\'s module list</string>
 
 </resources>

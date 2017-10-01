@@ -197,8 +197,6 @@
     <string name="undo">還原</string>
     <string name="file_is_empty">檔案為空</string>
     <string name="install_remove">安裝和移除</string>
-    <string name="download_remove">下載和移除</string>
-    <string name="module_saved">儲存模組於 %1$s</string>
     <string name="loading">載入中…</string>
 
 </resources>

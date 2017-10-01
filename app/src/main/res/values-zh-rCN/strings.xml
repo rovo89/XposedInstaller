@@ -183,8 +183,6 @@
     <string name="undo">撤销</string>
     <string name="file_is_empty">文件为空</string>
     <string name="install_remove">安装和移除</string>
-    <string name="download_remove">下载和移除</string>
-    <string name="module_saved">模块保存于 %1$s</string>
     <string name="loading">载入中…</string>
 
 </resources>
