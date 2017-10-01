@@ -106,7 +106,7 @@ public class DownloadView extends LinearLayout {
         btnDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mInfo = DownloadsUtil.add(getContext(), mTitle, mUrl, mCallback, DownloadsUtil.MIME_TYPES.APK);
+                mInfo = DownloadsUtil.addModule(getContext(), mTitle, mUrl, mCallback);
                 refreshViewFromUiThread();
 
                 if (mInfo != null)

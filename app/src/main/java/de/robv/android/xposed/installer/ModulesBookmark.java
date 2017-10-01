@@ -184,16 +184,16 @@ public class ModulesBookmark extends XposedBaseActivity {
 
             switch (item.getItemId()) {
                 case R.id.install_bookmark:
-                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadDetailsVersionsFragment.DownloadModuleCallback(mv), DownloadsUtil.MIME_TYPES.APK);
+                    DownloadsUtil.addModule(getActivity(), module.name, mv.downloadLink, new DownloadDetailsVersionsFragment.DownloadModuleCallback(mv));
                     break;
                 case R.id.install_remove_bookmark:
-                    DownloadsUtil.add(getActivity(), module.name, mv.downloadLink, new DownloadDetailsVersionsFragment.DownloadModuleCallback(mv) {
+                    DownloadsUtil.addModule(getActivity(), module.name, mv.downloadLink, new DownloadDetailsVersionsFragment.DownloadModuleCallback(mv) {
                         @Override
                         public void onDownloadFinished(Context context, DownloadsUtil.DownloadInfo info) {
                             super.onDownloadFinished(context, info);
                             remove(pkg);
                         }
-                    }, DownloadsUtil.MIME_TYPES.APK);
+                    });
                     break;
                 case R.id.remove:
                     remove(pkg);

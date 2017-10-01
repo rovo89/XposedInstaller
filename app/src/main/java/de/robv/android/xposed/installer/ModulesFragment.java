@@ -337,7 +337,7 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
             }
 
             if (mv != null) {
-                DownloadsUtil.add(getActivity(), m.name, mv.downloadLink, new DownloadDetailsVersionsFragment.DownloadModuleCallback(mv), DownloadsUtil.MIME_TYPES.APK);
+                DownloadsUtil.addModule(getActivity(), m.name, mv.downloadLink, new DownloadDetailsVersionsFragment.DownloadModuleCallback(mv));
             }
         }
 

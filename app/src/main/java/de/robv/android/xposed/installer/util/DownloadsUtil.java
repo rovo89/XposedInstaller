@@ -126,13 +126,13 @@ public class DownloadsUtil {
         return getDownloadTarget(subDir, Uri.parse(url).getLastPathSegment());
     }
 
-    @Deprecated
-    public static DownloadInfo add(Context context, String title, String url, DownloadFinishedCallback callback, MIME_TYPES mimeType) {
+    public static DownloadInfo addModule(Context context, String title, String url, DownloadFinishedCallback callback) {
         return new Builder(context)
                 .setTitle(title)
                 .setUrl(url)
+                .setDestinationFromUrl(DownloadsUtil.DOWNLOAD_MODULES)
                 .setCallback(callback)
-                .setMimeType(mimeType)
+                .setMimeType(MIME_TYPES.APK)
                 .download();
     }
 
