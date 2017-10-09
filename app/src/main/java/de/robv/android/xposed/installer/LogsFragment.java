@@ -222,7 +222,7 @@ public class LogsFragment extends Fragment {
                 now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY),
                 now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
 
-        File dir =  getActivity().getExternalFilesDir(null);
+        File dir = getActivity().getExternalFilesDir(null);
 
         if (!dir.exists()) dir.mkdir();
 
@@ -313,7 +313,7 @@ public class LogsFragment extends Fragment {
         @Override
         protected void onPostExecute(String llog) {
             mProgressDialog.dismiss();
-            mTxtLog.append(llog);
+            mTxtLog.setText(llog);
 
             if (llog.length() == 0)
                 mTxtLog.setText(R.string.log_is_empty);
