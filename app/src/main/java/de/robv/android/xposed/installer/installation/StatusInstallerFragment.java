@@ -364,11 +364,11 @@ public class StatusInstallerFragment extends Fragment {
         int selectedTheme = ThemeUtil.getSelectTheme();
 
         if (!hasLocal) {
-            ivStatus.setImageResource(selectedTheme == R.style.Theme_XposedInstaller_Light ? R.drawable.ic_cloud : R.drawable.ic_cloud_white);
+            ivStatus.setImageResource(selectedTheme == 0 ? R.drawable.ic_cloud : R.drawable.ic_cloud_white);
         } else if (hasOnline) {
-            ivStatus.setImageResource(selectedTheme == R.style.Theme_XposedInstaller_Light ? R.drawable.ic_cloud_download : R.drawable.ic_cloud_download_white);
+            ivStatus.setImageResource(selectedTheme == 0 ? R.drawable.ic_cloud_download : R.drawable.ic_cloud_download_white);
         } else {
-            ivStatus.setImageResource(selectedTheme == R.style.Theme_XposedInstaller_Light ? R.drawable.ic_cloud_off : R.drawable.ic_cloud_off_white);
+            ivStatus.setImageResource(selectedTheme == 0 ? R.drawable.ic_cloud_off : R.drawable.ic_cloud_off_white);
         }
 
         if (isOutdated) {
