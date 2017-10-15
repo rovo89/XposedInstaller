@@ -33,5 +33,4 @@ dependencies {
     implementation 'eu.chainfire:libsuperuser:1.0.0.201608240809'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'de.psdev.licensesdialog:licensesdialog:1.8.1'
-    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
 }
