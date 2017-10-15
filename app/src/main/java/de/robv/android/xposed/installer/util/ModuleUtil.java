@@ -9,7 +9,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
-import android.os.FileUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -223,8 +222,8 @@ public final class ModuleUtil {
             modulesList.close();
             enabledModulesList.close();
 
-            FileUtils.setPermissions(MODULES_LIST_FILE, 00664, -1, -1);
-            FileUtils.setPermissions(XposedApp.ENABLED_MODULES_LIST_FILE, 00664, -1, -1);
+            FileUtil.setPermissions(MODULES_LIST_FILE, 00664, -1, -1);
+            FileUtil.setPermissions(XposedApp.ENABLED_MODULES_LIST_FILE, 00664, -1, -1);
 
             if (showToast)
                 showToast(R.string.xposed_module_list_updated);
