@@ -34,5 +34,4 @@ dependencies {
     compile 'eu.chainfire:libsuperuser:1.0.0.201608240809'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'de.psdev.licensesdialog:licensesdialog:1.8.1'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
 }
