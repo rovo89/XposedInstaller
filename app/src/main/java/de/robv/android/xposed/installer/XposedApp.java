@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.content.FileProvider;
@@ -24,6 +23,7 @@ import java.lang.reflect.Method;
 
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.DownloadsUtil;
+import de.robv.android.xposed.installer.util.FileUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.InstallZipUtil.XposedProp;
 import de.robv.android.xposed.installer.util.NotificationUtil;
@@ -124,26 +124,21 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     private void createDirectories() {
-        FileUtils.setPermissions(BASE_DIR, 00711, -1, -1);
+        FileUtil.setPermissions(BASE_DIR, 00711, -1, -1);
         mkdirAndChmod("conf", 00771);
         mkdirAndChmod("log", 00777);
 
         if (Build.VERSION.SDK_INT >= 24) {
-            try {
-                Method deleteDir = FileUtils.class.getDeclaredMethod("deleteContentsAndDir", File.class);
-                deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "bin"));
-                deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "conf"));
-                deleteDir.invoke(null, new File(BASE_DIR_LEGACY, "log"));
-            } catch (ReflectiveOperationException e) {
-                Log.w(XposedApp.TAG, "Failed to delete obsolete directories", e);
-            }
+            FileUtil.deleteContentsAndDir(new File(BASE_DIR_LEGACY, "bin"));
+            FileUtil.deleteContentsAndDir(new File(BASE_DIR_LEGACY, "conf"));
+            FileUtil.deleteContentsAndDir(new File(BASE_DIR_LEGACY, "log"));
         }
     }
 
     private void mkdirAndChmod(String dir, int permissions) {
         dir = BASE_DIR + dir;
         new File(dir).mkdir();
-        FileUtils.setPermissions(dir, permissions, -1, -1);
+        FileUtil.setPermissions(dir, permissions, -1, -1);
     }
 
     public void reloadXposedProp() {

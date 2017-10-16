@@ -2,7 +2,6 @@ package de.robv.android.xposed.installer.util;
 
 import android.content.res.AssetManager;
 import android.os.Build;
-import android.os.FileUtils;
 import android.util.Log;
 
 import java.io.File;
@@ -53,7 +52,7 @@ public class AssetUtil {
         in.close();
         out.close();
 
-        FileUtils.setPermissions(targetFile.getAbsolutePath(), mode, -1, -1);
+        FileUtil.setPermissions(targetFile.getAbsolutePath(), mode, -1, -1);
     }
 
     public synchronized static void extractBusybox() {
