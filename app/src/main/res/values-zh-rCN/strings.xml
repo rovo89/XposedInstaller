@@ -27,17 +27,37 @@
     <string name="soft_reboot">软重启</string>
     <string name="reboot">重启设备</string>
     <string name="reboot_recovery">重启设备至恢复模式</string>
+    <string name="not_now">稍后</string>
     <string name="reboot_failed">重启设备失败。请使用设备的标准重启功能。</string>
-    <string name="auto_flash_note">当你按下 OK 后，%s 将会被自动刷入设备。</string>
+    <string name="auto_flash_note">当您按下 OK 后，%s 将会被自动刷入设备。</string>
     <string name="reboot_confirmation">您现在要重启设备吗？</string>
     <string name="install_warning_title">小心！</string>
+    <string name="install_warning">在某些情况下，您的设备在 Xposed 安装后可能不能正常启动。\n\n如果您之前从未听说过\"软转\"和\"循环重启\"或者您不知道如何从这种情况下恢复，请不要安装 Xposed！\n\n在任何情况下，强烈建议在刷入 Xposed 前备份系统。</string>
     <string name="dont_show_again">不要再显示这个</string>
     <string name="install_known_issue">Xposed 与您的 ROM 似乎存在已知的问题（“%s”）。安装 Xposed 可能无法工作或引发严重问题。点击此处获知问题详情。</string>
     <string name="framework_active">Xposed 框架 %s 版已激活。</string>
     <string name="framework_not_active">Xposed 框架 %s 版已安装，但未激活。请检查日志的详细信息。</string>
     <string name="framework_not_installed">Xposed 框架未安装。</string>
+    <string name="flash_error_timeout">超时</string>
+    <string name="flash_error_shell_died">执行意外终止</string>
+    <string name="flash_error_invalid_zip">不是一个可刷入的 ZIP 文件</string>
+    <string name="flash_error_not_flashable_in_app">该文件仅可通过恢复模式刷入。</string>
+    <string name="flash_error_default">错误 %d 发生</string>
+    <string name="status">Xposed 状态</string>
+    <string name="xposed_on_next_reboot">Xposed 框架将在下次重启后生效</string>
+    <string name="xposed_off_next_reboot">Xposed 框架将在下次重启后被禁用</string>
+    <string name="show_outdated">显示过时的版本</string>
+    <string name="framework_device_info">您的设备</string>
+    <string name="framework_install">安装</string>
+    <string name="framework_uninstall">卸载</string>
+    <string name="framework_install_recovery">通过恢复模式安装</string>
+    <string name="framework_uninstall_recovery">通过恢复模式卸载</string>
+    <string name="framework_delete">删除已下载的文件</string>
+    <string name="framework_zip_load_failed">不能加载可用的 ZIP 文件，请下拉再试一次。</string>
+    <string name="framework_no_zips">没有找到匹配的 ZIP 文件，可能您的设备目前暂不被支持。</string>
 
     <!-- File operations -->
+    <string name="root_failed">未能获取 root 权限，\n\n请确保您的设备已获取 root 权限并且您没有阻止 shell 命令。</string>
     <string name="file_copying">正在复制 %s…</string>
     <string name="file_copy_failed">无法将 %1$s 复制到 %2$s</string>
     <string name="file_creating_directory">正在创建目录 %s…</string>
@@ -49,11 +69,13 @@
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Xposed 模块未激活</string>
     <string name="module_is_not_activated_yet_detailed">%s 已安装，但尚未激活。</string>
-    <string name="activate_and_reboot">激活并重启设备</string>
+    <string name="activate_and_reboot">激活并重启</string>
+    <string name="activate_only">仅激活</string>
     <string name="module_activated">Xposed 模块已激活</string>
     <string name="module_empty_description">（未提供描述）</string>
     <string name="module_no_ui">该模块未提供用户界面</string>
     <string name="no_xposed_modules_found">未找到 Xposed 模块！</string>
+    <string name="xposed_module_list_updated">Xposed 模块列表已更新\n更改将在重启后生效</string>
     <string name="xposed_module_updated_notification_title">Xposed 模块已更新</string>
     <string name="xposed_module_updated_notification">重启设备以激活更新。</string>
     <string name="warning_xposed_min_version">该模块需要 Xposed 新版（%d），因此无法激活。</string>
@@ -105,6 +127,7 @@
     <string name="settings_release_type">将显示的版本</string>
     <string name="settings_group_experimental">实验性</string>
     <string name="settings_disable_resources">禁用资源钩子</string>
+    <string name="settings_disable_resources_summary">与主题引擎冲突的解决方法\n<b>警告：</b>当此选项启用时，尝试更改资源的模块将不能正常工作。</string>
     <string name="settings_group_app">应用</string>
     <string name="settings_theme">主题</string>
     <string name="settings_theme_light">亮色</string>
@@ -126,16 +149,19 @@
     <!-- Logs tab  -->
     <string name="logs_save_failed">无法将日志写入 SD 卡：</string>
     <string name="sdcard_not_writable">SD 卡未找到或不可写入</string>
+    <string name="log_too_large">日志文件大于 %1$,d kB，跳过 %2$,d kB</string>
     <string name="menuClearLog">立刻清理日志</string>
     <string name="logs_cleared">日志清理成功</string>
     <string name="logs_clear_failed">无法清理日志：</string>
     <string name="log_is_empty">日志为空</string>
     <string name="scroll_top">滚动页面至顶部</string>
+    <string name="scroll_bottom">滚动页面至底部</string>
 
     <!-- About tab -->
     <string name="about_developers_label">主要开发者</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 和 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> 及 <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> bug 修复和质感化</string>
     <string name="about_translator_label">翻译</string>
-    <string name="translator">Phantom</string>
+    <string name="translator">YiTry</string>
     <string name="about_version_label">版本</string>
     <string name="about_source_label">源码</string>
     <string name="about_libraries_label">使用的库文件</string>
@@ -149,19 +175,23 @@
     <string name="download_view_waiting">下载等待中</string>
     <string name="download_view_successful">下载成功</string>
     <string name="download_view_failed">下载失败（错误 %d）</string>
+    <string name="download_view_size">大小：%s KB</string>
 
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">MD5 校验码错误（下载项：%1$s，预期：%2$s）</string>
     <string name="download_could_not_read_file">无法读取下载文件：%s</string>
     <string name="download_no_valid_apk">下载的文件不是有效的 APK（或不兼容）</string>
     <string name="download_incorrect_package_name">包名错误（下载项：%1$s，预期：%2$s）</string>
+    <string name="download_running">正在下载</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">下载 %1$s 失败：%2$d（%3$s）</string>
     <string name="repo_download_failed">下载 %1$s 失败：%2$s</string>
+    <string name="repo_load_failed">不能从 %1$s:\n%2$s 加载库</string>
 
     <!-- Most of these belong to currently hidden features -->
-    <string name="warning_installed_on_external_storage">该模块不能载入，因为它安装在 SD 卡上，请将它移至内部存储。</string>
+    <string name="warning_installed_on_external_storage">该模块无法加载，因为它安装在 SD 卡上，请将它移至内部存储。</string>
+    <string name="warning_forward_locked">该模块无法加载，因为它是受限应用，请联系模块的开发人员。</string>
     <string name="view">视图</string>
     <string name="export_">导出…</string>
     <string name="import_">导入…</string>
@@ -184,5 +214,6 @@
     <string name="file_is_empty">文件为空</string>
     <string name="install_remove">安装和移除</string>
     <string name="loading">载入中…</string>
+    <string name="update_download_list">下拉刷新已下载的模块列表</string>
 
 </resources>
