@@ -11,7 +11,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,22 +53,12 @@ public class WelcomeActivity extends XposedBaseActivity implements NavigationVie
         assert mNavigationView != null;
         mNavigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,
-                mDrawerLayout, toolbar, R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close) {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                super.onDrawerSlide(drawerView, 0); // this disables the arrow @ completed state
-            }
-
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                super.onDrawerSlide(drawerView, 0); // this disables the animation
-            }
-        };
-        mDrawerLayout.addDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+            ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        }
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         mSelectedId = mNavigationView.getMenu().getItem(prefs.getInt("default_view", 0)).getItemId();
@@ -216,6 +206,19 @@ public class WelcomeActivity extends XposedBaseActivity implements NavigationVie
             mDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Open the navigation drawer if the hamburger button was clicked
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
