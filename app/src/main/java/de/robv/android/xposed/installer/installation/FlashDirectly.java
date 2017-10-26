@@ -7,6 +7,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -17,6 +18,7 @@ import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 
 import static de.robv.android.xposed.installer.util.InstallZipUtil.closeSilently;
+import static de.robv.android.xposed.installer.util.InstallZipUtil.reportMissingFeatures;
 import static de.robv.android.xposed.installer.util.InstallZipUtil.triggerError;
 import static de.robv.android.xposed.installer.util.RootUtil.getShellPath;
 
@@ -48,6 +50,16 @@ public class FlashDirectly extends Flashable {
             triggerError(callback, FlashCallback.ERROR_NOT_FLASHABLE_IN_APP);
             closeSilently(zip);
             return;
+        }
+
+        if (zipCheck.hasXposedProp()) {
+            Set<String> missingFeatures = zipCheck.getXposedProp().getMissingInstallerFeatures();
+            if (!missingFeatures.isEmpty()) {
+                reportMissingFeatures(missingFeatures);
+                triggerError(callback, FlashCallback.ERROR_INSTALLER_NEEDS_UPDATE);
+                closeSilently(zip);
+                return;
+            }
         }
 
         // Extract update-binary.
