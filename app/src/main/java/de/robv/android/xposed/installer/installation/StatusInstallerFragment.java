@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -229,6 +230,8 @@ public class StatusInstallerFragment extends Fragment {
     private void refreshKnownIssue(View v) {
         final String issueName;
         final String issueLink;
+        final File baseDir = new File(XposedApp.BASE_DIR);
+        final ApplicationInfo appInfo = getActivity().getApplicationInfo();
 
         if (new File("/system/framework/core.jar.jex").exists()) {
             issueName = "Aliyun OS";
@@ -239,6 +242,19 @@ public class StatusInstallerFragment extends Fragment {
         } else if (Build.VERSION.SDK_INT < 24 && new File("/system/framework/twframework.jar").exists()) {
             issueName = "Samsung TouchWiz ROM";
             issueLink = "https://forum.xda-developers.com/showthread.php?t=3034811";
+        } else if (Build.VERSION.SDK_INT < 24 && !baseDir.equals(new File(appInfo.dataDir))) {
+            Log.e(XposedApp.TAG, "Base directory: " + appInfo.dataDir);
+            Log.e(XposedApp.TAG, "Expected: " + XposedApp.BASE_DIR);
+            issueName = getString(R.string.known_issue_wrong_base_directory);
+            issueLink = "https://github.com/rovo89/XposedInstaller/issues/395";
+        } else if (Build.VERSION.SDK_INT >= 24 && !baseDir.equals(new File(appInfo.deviceProtectedDataDir))) {
+            Log.e(XposedApp.TAG, "Base directory: " + appInfo.deviceProtectedDataDir);
+            Log.e(XposedApp.TAG, "Expected: " + XposedApp.BASE_DIR);
+            issueName = getString(R.string.known_issue_wrong_base_directory);
+            issueLink = "https://github.com/rovo89/XposedInstaller/issues/395";
+        } else if (!baseDir.exists()) {
+            issueName = getString(R.string.known_issue_missing_base_directory);
+            issueLink = "https://github.com/rovo89/XposedInstaller/issues/393";
         } else {
             issueName = null;
             issueLink = null;
