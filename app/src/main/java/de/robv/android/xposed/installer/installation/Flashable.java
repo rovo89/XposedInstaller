@@ -5,9 +5,18 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Set;
+import java.util.zip.ZipFile;
 
 import de.robv.android.xposed.installer.util.FrameworkZips;
+import de.robv.android.xposed.installer.util.InstallZipUtil;
+import de.robv.android.xposed.installer.util.InstallZipUtil.ZipCheckResult;
 import de.robv.android.xposed.installer.util.RootUtil;
+
+import static de.robv.android.xposed.installer.util.InstallZipUtil.closeSilently;
+import static de.robv.android.xposed.installer.util.InstallZipUtil.reportMissingFeatures;
+import static de.robv.android.xposed.installer.util.InstallZipUtil.triggerError;
 
 public abstract class Flashable implements Parcelable {
     public static final String KEY = "flash";
@@ -29,6 +38,37 @@ public abstract class Flashable implements Parcelable {
     }
 
     public abstract void flash(Context context, FlashCallback callback);
+
+    protected ZipCheckResult openAndCheckZip(FlashCallback callback) {
+        // Open the ZIP file.
+        ZipFile zip;
+        try {
+            zip = new ZipFile(mZipPath);
+        } catch (IOException e) {
+            triggerError(callback, FlashCallback.ERROR_INVALID_ZIP, e.getLocalizedMessage());
+            return null;
+        }
+
+        // Do some checks.
+        ZipCheckResult zipCheck = InstallZipUtil.checkZip(zip);
+        if (!zipCheck.isValidZip()) {
+            triggerError(callback, FlashCallback.ERROR_INVALID_ZIP);
+            closeSilently(zip);
+            return null;
+        }
+
+        if (zipCheck.hasXposedProp()) {
+            Set<String> missingFeatures = zipCheck.getXposedProp().getMissingInstallerFeatures();
+            if (!missingFeatures.isEmpty()) {
+                reportMissingFeatures(missingFeatures);
+                triggerError(callback, FlashCallback.ERROR_INSTALLER_NEEDS_UPDATE);
+                closeSilently(zip);
+                return null;
+            }
+        }
+
+        return zipCheck;
+    }
 
     public FrameworkZips.Type getType() {
         return mType;

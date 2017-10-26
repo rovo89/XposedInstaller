@@ -8,7 +8,10 @@ import java.io.File;
 
 import de.robv.android.xposed.installer.R;
 import de.robv.android.xposed.installer.util.FrameworkZips;
+import de.robv.android.xposed.installer.util.InstallZipUtil.ZipCheckResult;
 import de.robv.android.xposed.installer.util.RootUtil;
+
+import static de.robv.android.xposed.installer.util.InstallZipUtil.closeSilently;
 
 public class FlashRecoveryAuto extends Flashable {
     public FlashRecoveryAuto(File zipPath, FrameworkZips.Type type, String title) {
@@ -17,6 +20,13 @@ public class FlashRecoveryAuto extends Flashable {
 
     @Override
     public void flash(Context context, FlashCallback callback) {
+        ZipCheckResult zipCheck = openAndCheckZip(callback);
+        if (zipCheck == null) {
+            return;
+        } else {
+            closeSilently(zipCheck.getZip());
+        }
+
         final String zipName = mZipPath.getName();
         String cmd;
 

@@ -27,9 +27,14 @@ public final class InstallZipUtil {
     }
 
     public static class ZipCheckResult {
+        private final ZipFile mZip;
         private boolean mValidZip = false;
         private boolean mFlashableInApp = false;
         private XposedProp mXposedProp = null;
+
+        public ZipFile getZip() {
+            return mZip;
+        }
 
         public boolean isValidZip() {
             return mValidZip;
@@ -46,10 +51,14 @@ public final class InstallZipUtil {
         public XposedProp getXposedProp() {
             return mXposedProp;
         }
+
+        private ZipCheckResult(ZipFile zip) {
+            mZip = zip;
+        }
     }
 
     public static ZipCheckResult checkZip(ZipFile zip) {
-        ZipCheckResult result = new ZipCheckResult();
+        ZipCheckResult result = new ZipCheckResult(zip);
 
         // Check for update-binary.
         if (zip.getEntry("META-INF/com/google/android/update-binary") == null) {
