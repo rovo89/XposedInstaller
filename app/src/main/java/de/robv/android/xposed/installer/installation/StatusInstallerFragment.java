@@ -45,6 +45,7 @@ import de.robv.android.xposed.installer.util.FrameworkZips.LocalFrameworkZip;
 import de.robv.android.xposed.installer.util.FrameworkZips.LocalZipLoader;
 import de.robv.android.xposed.installer.util.FrameworkZips.OnlineFrameworkZip;
 import de.robv.android.xposed.installer.util.FrameworkZips.OnlineZipLoader;
+import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.Loader;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
@@ -232,8 +233,13 @@ public class StatusInstallerFragment extends Fragment {
         final String issueLink;
         final File baseDir = new File(XposedApp.BASE_DIR);
         final ApplicationInfo appInfo = getActivity().getApplicationInfo();
+        final Set<String> missingFeatures = XposedApp.getXposedProp().getMissingInstallerFeatures();
 
-        if (new File("/system/framework/core.jar.jex").exists()) {
+        if (!missingFeatures.isEmpty()) {
+            InstallZipUtil.reportMissingFeatures(missingFeatures);
+            issueName = getString(R.string.installer_needs_update);
+            issueLink = getString(R.string.about_support);
+        } else if (new File("/system/framework/core.jar.jex").exists()) {
             issueName = "Aliyun OS";
             issueLink = "https://forum.xda-developers.com/showpost.php?p=52289793&postcount=5";
         } else if (Build.VERSION.SDK_INT < 24 && (new File("/data/miui/DexspyInstaller.jar").exists() || checkClassExists("miui.dexspy.DexspyInstaller"))) {
