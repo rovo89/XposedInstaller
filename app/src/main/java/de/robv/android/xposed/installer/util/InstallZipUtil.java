@@ -1,6 +1,7 @@
 package de.robv.android.xposed.installer.util;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
 import android.util.Log;
 
@@ -185,7 +186,8 @@ public final class InstallZipUtil {
                 return context.getString(R.string.flash_error_not_flashable_in_app);
 
             case FlashCallback.ERROR_INSTALLER_NEEDS_UPDATE:
-                return context.getString(R.string.installer_needs_update);
+                Resources res = context.getResources();
+                return res.getString(R.string.installer_needs_update, res.getString(R.string.app_name));
 
             default:
                 return context.getString(R.string.flash_error_default, code);

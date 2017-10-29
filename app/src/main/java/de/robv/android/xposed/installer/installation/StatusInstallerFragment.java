@@ -237,7 +237,7 @@ public class StatusInstallerFragment extends Fragment {
 
         if (!missingFeatures.isEmpty()) {
             InstallZipUtil.reportMissingFeatures(missingFeatures);
-            issueName = getString(R.string.installer_needs_update);
+            issueName = getString(R.string.installer_needs_update, getString(R.string.app_name));
             issueLink = getString(R.string.about_support);
         } else if (new File("/system/framework/core.jar.jex").exists()) {
             issueName = "Aliyun OS";

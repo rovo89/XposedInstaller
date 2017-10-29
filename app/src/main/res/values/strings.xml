@@ -35,7 +35,7 @@
     <string name="install_warning">In some cases, your device might no longer boot after installing Xposed.\n\nIf you never heard about \"soft brick\" and \"bootloop\" before or if you don\'t know how to recover from such a situation, do <b>NOT</b> install Xposed!\n\nIn any case, having a recent backup is highly recommended.</string>
     <string name="dont_show_again">Don\'t show this again</string>
     <string name="install_known_issue">There seems to be a known issue (\"%s\") with your ROM. Installing Xposed might not work or lead to severe problems. Click here for details about the issue.</string>
-    <string name="installer_needs_update">Xposed Installer needs to be updated</string>
+    <string name="installer_needs_update">%1$s needs to be updated</string>
     <string name="known_issue_wrong_base_directory">wrong base directory</string>
     <string name="known_issue_missing_base_directory">missing base directory</string>
     <string name="framework_active">Xposed Framework version %s is active.</string>
