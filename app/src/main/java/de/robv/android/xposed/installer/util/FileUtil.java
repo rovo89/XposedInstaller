@@ -23,6 +23,25 @@ import java.io.File;
 import de.robv.android.xposed.installer.XposedApp;
 
 public class FileUtil {
+    public static boolean setPermissions(String path, int owner, int other) {
+        return setPermissions(new File(path), owner, other);
+    }
+
+    public static boolean setPermissions(File path, int owner, int other) {
+        if (!setPermissions(path, other, false) || !setPermissions(path, owner, true)) {
+            Log.w(XposedApp.TAG, "Failed to set permissions " +
+                    owner + "/" + other + " for " + path.getPath());
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean setPermissions(File path, int perm, boolean ownerOnly) {
+        return path.setReadable((perm & 4) != 0, ownerOnly)
+            && path.setWritable((perm & 2) != 0, ownerOnly)
+            && path.setExecutable((perm & 1) != 0, ownerOnly);
+    }
+
     public static boolean deleteContentsAndDir(File dir) {
         if (deleteContents(dir)) {
             return dir.delete();
