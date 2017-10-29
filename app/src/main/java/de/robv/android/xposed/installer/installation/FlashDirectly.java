@@ -46,7 +46,7 @@ public class FlashDirectly extends Flashable {
         ZipEntry entry = zip.getEntry("META-INF/com/google/android/update-binary");
         File updateBinaryFile = new File(XposedApp.getInstance().getCacheDir(), "update-binary");
         try {
-            AssetUtil.writeStreamToFile(zip.getInputStream(entry), updateBinaryFile, 0700);
+            AssetUtil.writeStreamToFile(zip.getInputStream(entry), updateBinaryFile, 7, 0);
         } catch (IOException e) {
             Log.e(XposedApp.TAG, "Could not extract update-binary", e);
             triggerError(callback, FlashCallback.ERROR_INVALID_ZIP);

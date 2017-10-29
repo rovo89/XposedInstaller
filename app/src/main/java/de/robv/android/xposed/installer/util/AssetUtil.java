@@ -2,7 +2,6 @@ package de.robv.android.xposed.installer.util;
 
 import android.content.res.AssetManager;
 import android.os.Build;
-import android.os.FileUtils;
 import android.util.Log;
 
 import java.io.File;
@@ -26,12 +25,13 @@ public class AssetUtil {
         }
     }
 
-    public static File writeAssetToFile(AssetManager assets, String assetName, File targetFile, int mode) {
+    public static File writeAssetToFile(AssetManager assets, String assetName,
+            File targetFile, int owner, int other) {
         try {
             if (assets == null)
                 assets = XposedApp.getInstance().getAssets();
             InputStream in = assets.open(assetName);
-            writeStreamToFile(in, targetFile, mode);;
+            writeStreamToFile(in, targetFile, owner, other);
             return targetFile;
         } catch (IOException e) {
             Log.e(XposedApp.TAG, "could not extract asset", e);
@@ -42,7 +42,8 @@ public class AssetUtil {
         }
     }
 
-    public static void writeStreamToFile(InputStream in, File targetFile, int mode) throws IOException {
+    public static void writeStreamToFile(InputStream in, File targetFile,
+            int owner, int other) throws IOException {
         FileOutputStream out = new FileOutputStream(targetFile);
 
         byte[] buffer = new byte[1024];
@@ -53,7 +54,7 @@ public class AssetUtil {
         in.close();
         out.close();
 
-        FileUtils.setPermissions(targetFile.getAbsolutePath(), mode, -1, -1);
+        FileUtil.setPermissions(targetFile.getAbsolutePath(), owner, other);
     }
 
     public synchronized static void extractBusybox() {
@@ -61,7 +62,7 @@ public class AssetUtil {
             return;
 
         AssetManager assets = null;
-        writeAssetToFile(assets, getBinariesFolder() + "busybox-xposed", BUSYBOX_FILE, 00700);
+        writeAssetToFile(assets, getBinariesFolder() + "busybox-xposed", BUSYBOX_FILE, 7, 0);
     }
 
     public synchronized static void removeBusybox() {

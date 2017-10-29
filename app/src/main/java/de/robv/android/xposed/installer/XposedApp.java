@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.FileUtils;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.content.FileProvider;
@@ -124,9 +123,9 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     }
 
     private void createDirectories() {
-        FileUtils.setPermissions(BASE_DIR, 00711, -1, -1);
-        mkdirAndChmod("conf", 00771);
-        mkdirAndChmod("log", 00777);
+        FileUtil.setPermissions(BASE_DIR, 7, 1);
+        mkdirAndChmod("conf", 7, 1);
+        mkdirAndChmod("log", 7, 7);
 
         if (Build.VERSION.SDK_INT >= 24) {
             FileUtil.deleteContentsAndDir(new File(BASE_DIR_LEGACY, "bin"));
@@ -135,10 +134,10 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
         }
     }
 
-    private void mkdirAndChmod(String dir, int permissions) {
-        dir = BASE_DIR + dir;
-        new File(dir).mkdir();
-        FileUtils.setPermissions(dir, permissions, -1, -1);
+    private void mkdirAndChmod(String name, int owner, int other) {
+        File dir = new File(BASE_DIR + name);
+        dir.mkdir();
+        FileUtil.setPermissions(dir, owner, other);
     }
 
     public void reloadXposedProp() {
