@@ -299,6 +299,9 @@ public class StatusInstallerFragment extends Fragment {
             case 24:
             case 25:
                 return "Nougat";
+            case 26:
+            case 27:
+                return "Oreo";
             default:
                 return "unknown";
         }
