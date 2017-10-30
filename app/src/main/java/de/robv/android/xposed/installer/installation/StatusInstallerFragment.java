@@ -233,9 +233,10 @@ public class StatusInstallerFragment extends Fragment {
         final String issueLink;
         final File baseDir = new File(XposedApp.BASE_DIR);
         final ApplicationInfo appInfo = getActivity().getApplicationInfo();
-        final Set<String> missingFeatures = XposedApp.getXposedProp().getMissingInstallerFeatures();
+        final InstallZipUtil.XposedProp prop = XposedApp.getXposedProp();
+        final Set<String> missingFeatures = prop != null ? prop.getMissingInstallerFeatures() : null;
 
-        if (!missingFeatures.isEmpty()) {
+        if (missingFeatures != null && !missingFeatures.isEmpty()) {
             InstallZipUtil.reportMissingFeatures(missingFeatures);
             issueName = getString(R.string.installer_needs_update, getString(R.string.app_name));
             issueLink = getString(R.string.about_support);
