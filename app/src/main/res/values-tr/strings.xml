@@ -36,7 +36,7 @@
     <string name="dont_show_again">Bunu bir daha gösterme</string>
     <string name="install_known_issue">Kullandığınız rom sürümü ile (\"%s\") bilinen bir uyumsuzluk sorunu var gibi görünüyor. Xposed\'ı yüklemek işe yaramayabilir veya ağır problemlere neden olabilir. Konuyla ilgili ayrıntılar için burayı tıklayın.</string>
     <string name="installer_needs_update">%1$s güncellenmeli</string>
-    <string name="known_issue_wrong_base_directory">yanlış taban dizini</string>
+    <string name="known_issue_wrong_base_directory">yanlış taban dizini: %1$s</string>
     <string name="known_issue_missing_base_directory">eksik ana dizin</string>
     <string name="framework_active">Xposed Framework %s sürümü etkin.</string>
     <string name="framework_not_active">Xposed Framework %s sürümü yüklendi, ancak etkin değil. Ayrıntılar için lütfen kayıtları kontrol edin.</string>
