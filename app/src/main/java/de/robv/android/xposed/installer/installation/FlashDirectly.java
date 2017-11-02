@@ -13,7 +13,7 @@ import java.util.zip.ZipFile;
 import de.robv.android.xposed.installer.XposedApp;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.FrameworkZips;
-import de.robv.android.xposed.installer.util.InstallZipUtil;
+import de.robv.android.xposed.installer.util.InstallZipUtil.ZipCheckResult;
 import de.robv.android.xposed.installer.util.RootUtil;
 
 import static de.robv.android.xposed.installer.util.InstallZipUtil.closeSilently;
@@ -29,22 +29,14 @@ public class FlashDirectly extends Flashable {
     }
 
     public void flash(Context context, FlashCallback callback) {
-        // Open the ZIP file.
-        ZipFile zip;
-        try {
-            zip = new ZipFile(mZipPath);
-        } catch (IOException e) {
-            triggerError(callback, FlashCallback.ERROR_INVALID_ZIP, e.getLocalizedMessage());
+        ZipCheckResult zipCheck = openAndCheckZip(callback);
+        if (zipCheck == null) {
             return;
         }
 
-        // Do some checks.
-        InstallZipUtil.ZipCheckResult zipCheck = InstallZipUtil.checkZip(zip);
-        if (!zipCheck.isValidZip()) {
-            triggerError(callback, FlashCallback.ERROR_INVALID_ZIP);
-            closeSilently(zip);
-            return;
-        } else if (!zipCheck.isFlashableInApp()) {
+        // Do additional checks.
+        ZipFile zip = zipCheck.getZip();
+        if (!zipCheck.isFlashableInApp()) {
             triggerError(callback, FlashCallback.ERROR_NOT_FLASHABLE_IN_APP);
             closeSilently(zip);
             return;

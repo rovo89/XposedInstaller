@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ import de.robv.android.xposed.installer.util.FrameworkZips.LocalFrameworkZip;
 import de.robv.android.xposed.installer.util.FrameworkZips.LocalZipLoader;
 import de.robv.android.xposed.installer.util.FrameworkZips.OnlineFrameworkZip;
 import de.robv.android.xposed.installer.util.FrameworkZips.OnlineZipLoader;
+import de.robv.android.xposed.installer.util.InstallZipUtil;
 import de.robv.android.xposed.installer.util.Loader;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
@@ -226,22 +228,56 @@ public class StatusInstallerFragment extends Fragment {
                 .show();
     }
 
+    private File getCanonicalFile(File file) {
+        try {
+            return file.getCanonicalFile();
+        } catch (IOException e) {
+            Log.e(XposedApp.TAG, "Failed to get canonical file for " + file.getAbsolutePath(), e);
+            return file;
+        }
+    }
+
+    private String getPathWithCanonicalPath(File file, File canonical) {
+        if (file.equals(canonical)) {
+            return file.getAbsolutePath();
+        } else {
+            return file.getAbsolutePath() + " \u2192 " + canonical.getAbsolutePath();
+        }
+    }
+
     @SuppressLint("StringFormatInvalid")
     private void refreshKnownIssue(View v) {
         final String issueName;
         final String issueLink;
+        final ApplicationInfo appInfo = getActivity().getApplicationInfo();
+        final File baseDir = new File(XposedApp.BASE_DIR);
+        final File baseDirCanonical = getCanonicalFile(baseDir);
+        final File baseDirActual = new File(Build.VERSION.SDK_INT >= 24 ? appInfo.deviceProtectedDataDir : appInfo.dataDir);
+        final File baseDirActualCanonical = getCanonicalFile(baseDirActual);
+        final InstallZipUtil.XposedProp prop = XposedApp.getXposedProp();
+        final Set<String> missingFeatures = prop != null ? prop.getMissingInstallerFeatures() : null;
 
-        if (new File("/system/framework/core.jar.jex").exists()) {
+        if (missingFeatures != null && !missingFeatures.isEmpty()) {
+            InstallZipUtil.reportMissingFeatures(missingFeatures);
+            issueName = getString(R.string.installer_needs_update, getString(R.string.app_name));
+            issueLink = getString(R.string.about_support);
+        } else if (new File("/system/framework/core.jar.jex").exists()) {
             issueName = "Aliyun OS";
-            issueLink = "http://forum.xda-developers.com/showpost.php?p=52289793&postcount=5";
-
-        } else if (new File("/data/miui/DexspyInstaller.jar").exists() || checkClassExists("miui.dexspy.DexspyInstaller")) {
+            issueLink = "https://forum.xda-developers.com/showpost.php?p=52289793&postcount=5";
+        } else if (Build.VERSION.SDK_INT < 24 && (new File("/data/miui/DexspyInstaller.jar").exists() || checkClassExists("miui.dexspy.DexspyInstaller"))) {
             issueName = "MIUI/Dexspy";
-            issueLink = "http://forum.xda-developers.com/showpost.php?p=52291098&postcount=6";
-
-        } else if (new File("/system/framework/twframework.jar").exists()) {
+            issueLink = "https://forum.xda-developers.com/showpost.php?p=52291098&postcount=6";
+        } else if (Build.VERSION.SDK_INT < 24 && new File("/system/framework/twframework.jar").exists()) {
             issueName = "Samsung TouchWiz ROM";
-            issueLink = "forum.xda-developers.com/showthread.php?t=3034811";
+            issueLink = "https://forum.xda-developers.com/showthread.php?t=3034811";
+        } else if (!baseDirCanonical.equals(baseDirActualCanonical)) {
+            Log.e(XposedApp.TAG, "Base directory: " + getPathWithCanonicalPath(baseDir, baseDirCanonical));
+            Log.e(XposedApp.TAG, "Expected: " + getPathWithCanonicalPath(baseDirActual, baseDirActualCanonical));
+            issueName = getString(R.string.known_issue_wrong_base_directory, getPathWithCanonicalPath(baseDirActual, baseDirActualCanonical));
+            issueLink = "https://github.com/rovo89/XposedInstaller/issues/395";
+        } else if (!baseDir.exists()) {
+            issueName = getString(R.string.known_issue_missing_base_directory);
+            issueLink = "https://github.com/rovo89/XposedInstaller/issues/393";
         } else {
             issueName = null;
             issueLink = null;
@@ -280,6 +316,9 @@ public class StatusInstallerFragment extends Fragment {
             case 24:
             case 25:
                 return "Nougat";
+            case 26:
+            case 27:
+                return "Oreo";
             default:
                 return "unknown";
         }
