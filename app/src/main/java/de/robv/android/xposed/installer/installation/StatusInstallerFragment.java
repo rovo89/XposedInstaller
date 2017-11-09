@@ -50,6 +50,7 @@ import de.robv.android.xposed.installer.util.Loader;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
 import de.robv.android.xposed.installer.util.RunnableWithParam;
+import de.robv.android.xposed.installer.util.ThemeUtil;
 
 public class StatusInstallerFragment extends Fragment {
     public static final File DISABLE_FILE = new File(XposedApp.BASE_DIR + "conf/disabled");
@@ -398,12 +399,15 @@ public class StatusInstallerFragment extends Fragment {
         tvTitle.setText(zip.title);
 
         ImageView ivStatus = (ImageView) view.findViewById(R.id.framework_zip_status);
+
+        int selectedTheme = ThemeUtil.getSelectTheme();
+
         if (!hasLocal) {
-            ivStatus.setImageResource(R.drawable.ic_cloud);
+            ivStatus.setImageResource(selectedTheme == 0 ? R.drawable.ic_cloud : R.drawable.ic_cloud_white);
         } else if (hasOnline) {
-            ivStatus.setImageResource(R.drawable.ic_cloud_download);
+            ivStatus.setImageResource(selectedTheme == 0 ? R.drawable.ic_cloud_download : R.drawable.ic_cloud_download_white);
         } else {
-            ivStatus.setImageResource(R.drawable.ic_cloud_off);
+            ivStatus.setImageResource(selectedTheme == 0 ? R.drawable.ic_cloud_off : R.drawable.ic_cloud_off_white);
         }
 
         if (isOutdated) {
