@@ -129,7 +129,6 @@
     <string name="settings_group_download">下载</string>
 	<string name="settings_enable_downloads">启用下载</string>
 	<string name="settings_enable_downloads_summary">允许Xposed Installer检查更新和新的模块</string>
-    <string name="settings_enable_downloads_summary">Allow Xposed Installer to check for updates and new modules</string>
     <string name="settings_release_type">将显示的版本</string>
     <string name="settings_group_experimental">实验性</string>
     <string name="settings_disable_resources">禁用资源钩子</string>
@@ -140,10 +139,10 @@
     <string name="settings_theme_dark">暗色</string>
     <string name="settings_theme_black">黑色（对 AMOLED 屏幕有益）</string>
     <string name="settings_default_view">默认视图</string>
-	<string name="open_drawer_summ">Open automatically the navigation drawer at startup</string>
-    <string name="open_drawer">Open automatically navigation drawer</string>
-    <string name="skip_xposedminversion_check">Skip \'xposedminversion\' check</string>
-    <string name="skip_xposedminversion_check_summ">Skip \'xposedminversion\' check for modules</string>
+	<string name="open_drawer_summ">启动时自动打开导航抽屉</string>
+    <string name="open_drawer">自动打开抽屉</string>
+    <string name="skip_xposedminversion_check">跳过 \'xposedminversion\' 检查</string>
+    <string name="skip_xposedminversion_check_summ">跳过 \'xposedminversion\' 检查模块</string>
     <string name="chrome_custom_tabs">Chrome 自定义标签</string>
     <string name="chrome_custom_tabs_summ">在内置浏览器中打开链接</string>
     <string name="notify_module_update">启用模块更新通知</string>
@@ -161,7 +160,6 @@
     <string name="logs_save_failed">无法将日志写入 SD 卡：</string>
     <string name="sdcard_not_writable">SD 卡未找到或不可写入</string>
 	<string name="log_too_large">日志文件大于%1$,d kB，首先跳过%2$,d kB</string>
-	<string name="log_too_large">Log file is larger than %1$,d kB, skipped first %2$,d kB</string>
     <string name="menuClearLog">立刻清理日志</string>
     <string name="logs_cleared">日志清理成功</string>
     <string name="logs_clear_failed">无法清理日志：</string>
