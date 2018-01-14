@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -93,6 +94,9 @@ public class DownloadFragment extends Fragment implements Loader.Listener<RepoLo
         mModuleUtil.addListener(this);
 
         mListView = (StickyListHeadersListView) v.findViewById(R.id.listModules);
+        if (Build.VERSION.SDK_INT >= 26) {
+            mListView.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO_EXCLUDE_DESCENDANTS);
+        }
         mListView.setAdapter(mAdapter);
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
