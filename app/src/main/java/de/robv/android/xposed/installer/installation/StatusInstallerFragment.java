@@ -3,6 +3,7 @@ package de.robv.android.xposed.installer.installation;
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
@@ -190,6 +191,9 @@ public class StatusInstallerFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_installer, menu);
         menu.findItem(R.id.show_outdated).setChecked(mShowOutdated);
+        if (Build.VERSION.SDK_INT < 26) {
+            menu.findItem(R.id.dexopt_now).setVisible(false);
+        }
     }
 
     @Override
@@ -205,6 +209,40 @@ public class StatusInstallerFragment extends Fragment {
                         RootUtil.reboot(mode, getActivity());
                     }
                 });
+                return true;
+
+            case R.id.dexopt_now:
+                new MaterialDialog.Builder(getActivity())
+                        .title(R.string.dexopt_now)
+                        .content(R.string.this_may_take_a_while)
+                        .progress(true, 0)
+                        .cancelable(false)
+                        .showListener(new DialogInterface.OnShowListener() {
+                            @Override
+                            public void onShow(final DialogInterface dialog) {
+                                new Thread("dexopt") {
+                                    @Override
+                                    public void run() {
+                                        RootUtil rootUtil = new RootUtil();
+                                        if (!rootUtil.startShell()) {
+                                            dialog.dismiss();
+                                            NavUtil.showMessage(getActivity(), getString(R.string.root_failed));
+                                            return;
+                                        }
+
+                                        rootUtil.execute("cmd package bg-dexopt-job", null);
+
+                                        dialog.dismiss();
+                                        XposedApp.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Toast.makeText(getActivity(), R.string.done, Toast.LENGTH_LONG).show();
+                                            }
+                                        });
+                                    }
+                                }.start();
+                            }
+                        }).show();
                 return true;
 
             case R.id.show_outdated:

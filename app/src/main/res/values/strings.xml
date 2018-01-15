@@ -27,6 +27,9 @@
     <string name="soft_reboot">Soft reboot</string>
     <string name="reboot">Reboot</string>
     <string name="reboot_recovery">Reboot to recovery</string>
+    <string name="dexopt_now">Optimize apps now</string>
+    <string name="this_may_take_a_while">This may take a while.</string>
+    <string name="done">Done!</string>
     <string name="not_now">Not now</string>
     <string name="reboot_failed">Reboot failed. Please use the device\'s normal reboot function.</string>
     <string name="auto_flash_note">%s should be flashed automatically once you press "OK".</string>

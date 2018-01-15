@@ -27,6 +27,9 @@
     <string name="soft_reboot">Software-Neustart</string>
     <string name="reboot">Geräte-Neustart</string>
     <string name="reboot_recovery">Neustart ins Recovery</string>
+    <string name="dexopt_now">Apps jetzt optimieren</string>
+    <string name="this_may_take_a_while">Das kann eine Weile dauern.</string>
+    <string name="done">Fertig!</string>
     <string name="not_now">Nicht jetzt</string>
     <string name="reboot_failed">Neustart fehlgeschlagen. Bitte verwende die normale Neustartfunktion des Geräts.</string>
     <string name="auto_flash_note">%s sollte automatisch installiert werden, sobald du "OK" drückst.</string>
