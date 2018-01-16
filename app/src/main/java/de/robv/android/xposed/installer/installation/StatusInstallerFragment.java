@@ -33,6 +33,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.Set;
 
 import de.robv.android.xposed.installer.R;
@@ -110,6 +111,8 @@ public class StatusInstallerFragment extends Fragment {
         androidSdk.setText(getString(R.string.android_sdk, Build.VERSION.RELEASE, getAndroidVersion(), Build.VERSION.SDK_INT));
         manufacturer.setText(getUIFramework());
         cpu.setText(FrameworkZips.ARCH);
+
+        determineVerifiedBootState(v);
 
         // Known issues
         refreshKnownIssue(v);
@@ -373,6 +376,34 @@ public class StatusInstallerFragment extends Fragment {
             manufacturer += new File("/system/framework/framework-miui-res.apk").exists() ? "(MIUI)" : "(AOSP-based ROM)";
         }
         return manufacturer;
+    }
+
+    private void determineVerifiedBootState(View v) {
+        try {
+            Class<?> c = Class.forName("android.os.SystemProperties");
+            Method m = c.getDeclaredMethod("get", String.class, String.class);
+            m.setAccessible(true);
+
+            String propSystemVerified = (String) m.invoke(null, "partition.system.verified", "0");
+            String propState = (String) m.invoke(null, "ro.boot.verifiedbootstate", "");
+            File fileDmVerityModule = new File("/sys/module/dm_verity");
+
+            boolean verified = !propSystemVerified.equals("0");
+            boolean detected = !propState.isEmpty() || fileDmVerityModule.exists();
+
+            TextView tv = v.findViewById(R.id.dmverity);
+            if (verified) {
+                tv.setText(R.string.verified_boot_active);
+                tv.setTextColor(getResources().getColor(R.color.warning));
+            } else if (detected) {
+                tv.setText(R.string.verified_boot_deactivated);
+                v.findViewById(R.id.dmverity_explanation).setVisibility(View.GONE);
+            } else {
+                v.findViewById(R.id.dmverity_row).setVisibility(View.GONE);
+            }
+        } catch (Exception e) {
+            Log.e(XposedApp.TAG, "Could not detect Verified Boot state", e);
+        }
     }
 
     @UiThread

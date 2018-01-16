@@ -62,6 +62,9 @@
     <string name="framework_delete">Delete downloaded file</string>
     <string name="framework_zip_load_failed">Could not load available ZIP files. Pull down to try again.</string>
     <string name="framework_no_zips">No matching ZIPs were found, it seems like your device is currently not supported.</string>
+    <string name="verified_boot_deactivated">Verified Boot is deactivated</string>
+    <string name="verified_boot_active">Verified Boot is active</string>
+    <string name="verified_boot_explanation">Verified Boot (dm-verity) prevents the device from booting if the system partition is modified.\n<b>Installing Xposed is not recommended!</b></string>
 
     <!-- File operations -->
     <string name="root_failed">Failed to get root access.\n\nMake sure your device is rooted properly and you have not blocked shell commands.</string>

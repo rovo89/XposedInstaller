@@ -59,6 +59,9 @@
     <string name="framework_delete">Heruntergeladene Datei löschen</string>
     <string name="framework_zip_load_failed">Konnte die verfügbaren ZIPs nicht laden. Ziehe nach unten, um es erneut zu versuchen.</string>
     <string name="framework_no_zips">Keine passenden ZIPs gefunden, dein Gerät scheint derzeit nicht unterstützt zu sein.</string>
+    <string name="verified_boot_deactivated">Verified Boot ist deaktiviert</string>
+    <string name="verified_boot_active">Verified Boot ist aktiv</string>
+    <string name="verified_boot_explanation">Verified Boot (dm-verity) verhindert das Booten des Geräts, falls die System-Partition modifiziert ist.\n<b>Es wird nicht empfohlen, Xposed zu installieren!</b></string>
 
     <!-- File operations -->
     <string name="root_failed">Root-Zugriff fehlgeschlagen\n\nStelle sicher, dass das Gerät korrekt gerootet ist und Shell-Kommandos nicht blockiert werden.</string>
