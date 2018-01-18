@@ -7,8 +7,8 @@ android {
         applicationId "de.robv.android.xposed.installer"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 42
-        versionName "3.1.4"
+        versionCode 43
+        versionName "3.1.5"
         archivesBaseName = "XposedInstaller_${versionName}".replace(' ', '_')
     }
 
