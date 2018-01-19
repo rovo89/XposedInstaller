@@ -44,6 +44,10 @@
         <item name="background_card_pressed">@drawable/background_card_pressed_black</item>
     </style>
 
+    <style name="Theme.XposedInstaller.Splash" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/background_material_dark</item>
+    </style>
+
     <style name="Theme.XposedInstaller.Toolbar" parent="ThemeOverlay.AppCompat.Light">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@android:color/white</item>
@@ -51,7 +55,6 @@
         <item name="android:textColorSecondary">@android:color/white</item>
     </style>
 
-    <style name="Theme.XposedInstaller.Transparent" parent="Theme.AppCompat.NoActionBar">
-    </style>
+    <style name="Theme.XposedInstaller.Transparent" parent="Theme.AppCompat.NoActionBar" />
 
 </resources>
