@@ -27,6 +27,9 @@
     <string name="soft_reboot">Hızlı yeniden başlat</string>
     <string name="reboot">Yeniden başlat</string>
     <string name="reboot_recovery">Kurtarma modunda yeniden başlat</string>
+    <string name="dexopt_now">Uygulamaları şimdi optimize et</string>
+    <string name="this_may_take_a_while">Bu biraz zaman alabilir.</string>
+    <string name="done">Bitti!</string>
     <string name="not_now">Şimdi değil</string>
     <string name="reboot_failed">Yeniden başlatılamıyor. Lütfen cihazın normal yeniden başlatma işlevini kullanın.</string>
     <string name="auto_flash_note">Tamama bastığınızda %s otomatik olarak yüklenmelidir.</string>
@@ -34,7 +37,7 @@
     <string name="install_warning_title">Dikkatli olun!</string>
     <string name="install_warning">Bazı durumlarda, Xposed yüklendikten sonra cihazınız artık açılmayabilir.\n\nDaha önce \"soft brick\" ve \"bootloop\" gibi terimleri duymadıysanız veya bunlar hakkında bilginiz yoksa, Xposed\'ı <b>YÜKLEMEYİN!</b>\n\nHer durumda, yeni bir yedekleme yapılması şiddetle önerilir.</string>
     <string name="dont_show_again">Bunu bir daha gösterme</string>
-    <string name="install_known_issue">Kullandığınız rom sürümü ile (\"%s\") bilinen bir uyumsuzluk sorunu var gibi görünüyor. Xposed\'ı yüklemek işe yaramayabilir veya ağır problemlere neden olabilir. Konuyla ilgili ayrıntılar için burayı tıklayın.</string>
+    <string name="install_known_issue">Kullandığınız rom sürümü (\"%s\") ile bilinen bir uyumsuzluk sorunu var gibi görünüyor. Xposed\'ı yüklemek işe yaramayabilir veya ağır problemlere neden olabilir. Konuyla ilgili ayrıntılar için burayı tıklayın.</string>
     <string name="installer_needs_update">%1$s güncellenmeli</string>
     <string name="known_issue_wrong_base_directory">yanlış taban dizini: %1$s</string>
     <string name="known_issue_missing_base_directory">eksik ana dizin</string>
@@ -59,6 +62,9 @@
     <string name="framework_delete">İndirilen dosyayı sil</string>
     <string name="framework_zip_load_failed">Kullanılabilir ZIP dosyaları yüklenemedi. Tekrar denemek için aşağı doğru çekin.</string>
     <string name="framework_no_zips">Eşleşen hiçbir zip bulunamadı, cihazınız şu anda desteklenmiyor gibi görünüyor.</string>
+    <string name="verified_boot_deactivated">Doğrulanmış Önyükleme devre dışı</string>
+    <string name="verified_boot_active">Doğrulanmış Önyükleme etkin</string>
+    <string name="verified_boot_explanation">Doğrulanmış Önyükleme (dm-verity), sistem bölümü değiştirilirse aygıtın önyüklemesini engeller.\n<b>Xposed\'ı yüklemek önerilmez!</b></string>
 
     <!-- File operations -->
     <string name="root_failed">Root erişimi alınamadı.\n\nCihazınızın doğru şekilde rootlandığından ve komut alabildiğinden emin olun.</string>
@@ -170,7 +176,7 @@
 
     <!-- About tab -->
     <string name="about_developers_label">Ana geliştiriciler</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> ve <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> ve <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> hata düzeltmeleri ve Materyal Tasarım</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> ve <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\nHata düzeltmeleri ve Materyal Tasarım:\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> ve <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a></string>
     <string name="about_translator_label">Çevirmen:</string>
     <string name="translator">Fatih Fırıncı</string>
     <string name="about_version_label">Sürüm</string>
