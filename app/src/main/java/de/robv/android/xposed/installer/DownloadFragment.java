@@ -142,6 +142,12 @@ public class DownloadFragment extends Fragment implements Loader.Listener<RepoLo
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle(R.string.nav_item_download);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         mRepoLoader.removeListener(this);
