@@ -94,7 +94,7 @@
     <string name="download_sorting_status">Сортировать по статусу</string>
     <string name="download_sorting_updated">Сортировать по последнему обновлению</string>
     <string name="download_sorting_created">Сортировать по дате создания</string>
-    <string name="download_section_framework">Xposed Frameworkk</string>
+    <string name="download_section_framework">Xposed Framework</string>
     <string name="download_section_update_available">Доступно обновление</string>
     <string name="download_section_installed">Установлен</string>
     <string name="download_section_not_installed">Не установлен</string>
