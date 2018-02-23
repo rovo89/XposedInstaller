@@ -3,26 +3,68 @@
 
     <!-- General/various strings -->
     <string name="menuSend">Надіслати</string>
-    <string name="menuSaveToSd">Зберегти на SD-картку</string>
-    <string name="xposed_not_active">Найсвіжіша версія Xposed наразі не активована. Ви впевнені, що встановили Фреймворк та перезавантажили пристрій?</string>
+    <string name="menuSaveToSd">Зберегти на SD-карту</string>
+    <string name="xposed_not_active">Найновішу версію Xposed наразі не активовано. Ви впевнені, що правильно встановили Xposed та перезавантажили пристрій?</string>
 
     <!-- Welcome screen / main sections -->
     <string name="welcome_framework_update_available">Є оновлення для Xposed Framework (%s).</string>
+    <string name="modules_updates_available">Є оновлення для модуля(–ів)</string>
 
     <!-- Navigation drawer items -->
+    <string name="nav_item_install">Фреймворк</string>
+    <string name="nav_item_modules">Встановлені модулі</string>
+    <string name="nav_item_download">Завантажити модулі</string>
+    <string name="nav_item_settings">Налаштування</string>
+    <string name="nav_item_support">Підтримка</string>
+    <string name="nav_item_logs">Журнал</string>
+    <string name="nav_item_about">Про додаток</string>
+    <string name="navigation_drawer_open">Відкрити меню додатків</string>
+    <string name="navigation_drawer_close">Закрити меню додатків</string>
 
     <!-- Installer tab -->
     <string name="install_update">Встановити/Оновити</string>
     <string name="uninstall">Видалити</string>
     <string name="soft_reboot">Швидке перезавантаження</string>
     <string name="reboot">Перезавантаження</string>
-    <string name="reboot_failed">Помилка перезавантаження. Скористуйтеся, будь-ласка, звичайною функцією перезавантаження.</string>
-    <string name="auto_flash_note">%s буде прошито автоматично після натискання на "OK".</string>
-    <string name="reboot_confirmation">Чи Ви бажаєте зараз перезавантажитися?</string>
+    <string name="reboot_recovery">Перезавантажити в Recovery</string>
+    <string name="dexopt_now">Оптимізувати додатки</string>
+    <string name="this_may_take_a_while">Це може зайняти деякий час.</string>
+    <string name="done">Готово!</string>
+    <string name="not_now">Не зараз</string>
+    <string name="reboot_failed">Помилка перезавантаження. Будь ласка, перезавантажте пристрій за допомогою кнопки живлення.</string>
+    <string name="auto_flash_note">%s буде прошито автоматично після натискання "OK".</string>
+    <string name="reboot_confirmation">Хочете перезавантажити пристрій зараз?</string>
     <string name="install_warning_title">Обережно!</string>
-    <string name="install_warning">В деяких випадках, після встановлення Xposed, Ваш пристрій може більше не запуститися.\n\nЯкщо Ви нічого не чули про \"soft brick\" та \"bootloop\" або якщо Ви не знаєте як відновитися з такого стану, будь-ласка, <b>НЕ</b> встановлюйте Xposed!\n\nВ будь-якому разі, наявність свіжої резервної копії є необхідністю.</string>
+    <string name="install_warning">В деяких випадках, після встановлення Xposed, Ваш пристрій може більше не запуститися.\n\nЯкщо Ви нічого не чули про \"soft brick\" та \"bootloop\" або якщо Ви не знаєте як відновитися з такого стану, будь ласка, <b>НЕ</b> встановлюйте Xposed!\n\nВ будь-якому разі, обов\'язково робіть резервну копію.</string>
     <string name="dont_show_again">Більше не показувати</string>
     <string name="install_known_issue">Схоже, що у Вашій прощивці є відома проблема (\"%s\"). Встановлений Xposed може не працювати або навіть призвести до проблем. Для більш детальної інформації натисніть тут.</string>
+    <string name="installer_needs_update">%1$s потребує оновлення</string>
+    <string name="known_issue_wrong_base_directory">неправильний базовий каталог: %1$s</string>
+    <string name="known_issue_missing_base_directory">відсутній базовий каталог</string>
+    <string name="framework_active">Xposed Framework версії %s активовано.</string>
+    <string name="framework_not_active">Xposed Framework версії %s встановлено, але не активовано. Будь ласка, перевірте журнал.</string>
+    <string name="framework_not_installed">Xposed Framework не встановлено.</string>
+    <string name="countdown">%1$s (%2$d)</string>
+    <string name="flash_error_timeout">Час очікування вийшов</string>
+    <string name="flash_error_shell_died">Виконання несподівано перервалося</string>
+    <string name="flash_error_invalid_zip">Недійсний ZIP файл</string>
+    <string name="flash_error_not_flashable_in_app">Цей файл можна прошити тільки через Recovery.</string>
+    <string name="flash_error_default">Виникла помилка %d</string>
+    <string name="status">Статус Xposed</string>
+    <string name="xposed_on_next_reboot">Xposed Framework увімкнеться після перезавантаження</string>
+    <string name="xposed_off_next_reboot">Xposed Framework вимкнеться після перезавантаження</string>
+    <string name="show_outdated">Показувати старі версії</string>
+    <string name="framework_device_info">Ваш пристрій</string>
+    <string name="framework_install">Встановити</string>
+    <string name="framework_uninstall">Видалити</string>
+    <string name="framework_install_recovery">Встановити через Recovery</string>
+    <string name="framework_uninstall_recovery">Видалити через Recovery</string>
+    <string name="framework_delete">Видалити завантажений файл</string>
+    <string name="framework_zip_load_failed">Не вдалося завантажити ZIP файл. Повторіть спробу.</string>
+    <string name="framework_no_zips">Не знайдено підходящих ZIP файлів, схоже, що Ваш пристрій на даний момент не підтримується.</string>
+    <string name="verified_boot_deactivated">Перевірене завантаження вимкнено</string>
+    <string name="verified_boot_active">Перевірене завантаження увімкнено</string>
+    <string name="verified_boot_explanation">Перевірене завантаження (dm-verity) перешкоджає завантаженню пристрою, якщо системний розділ було змінено.\n<b>Встановлення Xposed не рекомендовано!</b></string>
 
     <!-- File operations -->
     <string name="root_failed">Помилка отримання прав суперкористувача.\n\nПереконайтеся, що Ваш пристрій рутований (має бути доступний суперкористувач) і що Ви не заблокували виконання shell-команд.</string>
@@ -31,28 +73,29 @@
     <string name="file_creating_directory">Створення каталогу %s&#8230;</string>
     <string name="file_create_directory_failed">Помилка створення каталогу %s</string>
     <string name="file_writing_recovery_command">Запис команди відновлення&#8230;</string>
-    <string name="file_writing_recovery_command_failed">Помилка запису команди відновлення. Скористайтеся, будь-ласка, іншим способом встановлення.</string>
+    <string name="file_writing_recovery_command_failed">Помилка запису команди відновлення. Скористайтеся, будь ласка, іншим способом встановлення.</string>
     <string name="file_done">Виконано! Зміни стануть активними після перезавантаження.</string>
 
     <!-- Modules tab -->
     <string name="module_is_not_activated_yet">Модуль Xposed ще не активовано</string>
     <string name="module_is_not_activated_yet_detailed">%s було встановлено, але ще не активовано.</string>
     <string name="activate_and_reboot">Активувати та перезавантажити</string>
+    <string name="activate_only">Тільки активувати</string>
     <string name="module_activated">Модуль Xposed було активовано</string>
     <string name="module_empty_description">(опис не надано)</string>
-    <string name="module_no_ui">Цей мдуль не має користувацького інтерфейсу</string>
+    <string name="module_no_ui">Цей модуль не має користувацького інтерфейсу</string>
     <string name="no_xposed_modules_found">Жодного модулю Xposed не знайдено!</string>
     <string name="xposed_module_list_updated">Перелік модулів Xposed було оновлено\nЗміни активуються після перезавантаження</string>
     <string name="xposed_module_updated_notification_title">Модуль Xposed оновлено</string>
-    <string name="xposed_module_updated_notification">Для активації змін перезавантажтеся</string>
+    <string name="xposed_module_updated_notification">Перезавантажте для активації змін</string>
     <string name="warning_xposed_min_version">Для цього модулю необхідно мати новішу версію Xposed (%d), тож його не можна активувати.</string>
     <string name="no_min_version_specified">В цьому модулі не вказано необхідну для нього версію Xposed.</string>
     <string name="warning_min_version_too_low">Цей модуль створений для Xposed версії %1$d, але через несумісні зміни у версії %2$d, його було деактивовано.</string>
     <string name="module_launch">Запуск користувацького інтерфейсу</string>
-    <string name="module_download_updates">Звантаження/Оновлення</string>
+    <string name="module_download_updates">Завантаження/Оновлення</string>
     <string name="module_support">Підтримка</string>
     <string name="module_app_info">Про додаток</string>
-    <string name="module_uninstall">Видалення</string>
+    <string name="module_uninstall">Видалити</string>
 
     <!-- Download tab -->
     <string name="menuSearch">Пошук</string>
@@ -85,12 +128,14 @@
     <string name="download_section_7d">Останні 7 днів</string>
     <string name="download_section_30d">Останні 30 днів</string>
     <string name="download_section_older">Більше 30 днів тому</string>
-    <string name="download_details_not_found">Модулю з назвою \"%s\" в репозиторії немає.</string>
+    <string name="download_details_not_found">Модуля з назвою \"%s\" в репозиторії немає.</string>
     <string name="download_no_versions">Автор ще нічого не завантажив.</string>
     <string name="download_test_version_not_shown">Є тестова версія, щоправда вона не відображається через Ваші глобальні або модульні налаштування.</string>
 
     <!-- Settings tab -->
-    <string name="settings_group_download">Звантаження</string>
+    <string name="settings_group_download">Завантаження</string>
+    <string name="settings_enable_downloads">Увімкнути завантаження</string>
+    <string name="settings_enable_downloads_summary">Дозволити Xposed Installer перевіряти оновлення для фреймворку і модулів</string>
     <string name="settings_release_type">Відображення версій</string>
     <string name="settings_group_experimental">Експериментальні</string>
     <string name="settings_disable_resources">Відключено зміну ресурсів</string>
@@ -100,47 +145,95 @@
     <string name="settings_theme_light">Світла</string>
     <string name="settings_theme_dark">Темна</string>
     <string name="settings_theme_black">Чорна (зручно для екранів AMOLED)</string>
+    <string name="settings_default_view">Типова вкладка</string>
+    <string name="open_drawer_summ">Автоматично відкривати бокове меню при запуску</string>
+    <string name="open_drawer">Автоматично відкривати бокове меню</string>
+    <string name="skip_xposedminversion_check">Пропускати перевірку \'мін. версії Xposed\'</string>
+    <string name="skip_xposedminversion_check_summ">Пропустити перевірку мінімальної версії Xposed для модулів</string>
+    <string name="chrome_custom_tabs">Chrome вкладки</string>
+    <string name="chrome_custom_tabs_summ">Відкривати посилання всередині додатку</string>
+    <string name="notify_module_update">Увімкнути сповіщення про оновлення модулів</string>
 
     <!-- Support tab -->
+    <string name="support_modules_label">Підтримка для модулів</string>
+    <string name="support_modules_description">Довго утримуйте палець на будь-якому модулі у вкладці \"Встановлені модулі\" і виберіть \"%1$s\".</string>
+    <string name="support_framework_label">Підтримка Xposed Framework/Installer</string>
+    <string name="support_faq_label">ЧаПи/відомі проблеми</string>
+    <string name="support_donate_label">Пожертвувати</string>
+    <string name="support_donate_description">Якщо Ви хочете подякувати за Xposed, Ви можете пожертвувати rovo89 тут</string>
 
     <!-- Logs tab  -->
-    <string name="logs_save_failed">Помилка запису журналу на картку SD:</string>
-    <string name="sdcard_not_writable">Картка SD відсутня або лише для читання</string>
+    <string name="logs_load_failed">Неможливо прочитати журнал:</string>
+    <string name="logs_save_failed">Неможливо записати журнал на SD-карту:</string>
+    <string name="sdcard_not_writable">SD-карту не знайдено, або на неї не можна записувати</string>
+    <string name="log_too_large">Журнал більший за %1$,d кБ, пропущено перші %2$,d кБ</string>
     <string name="menuClearLog">Очистити журнал</string>
     <string name="logs_cleared">Журнал очищено</string>
     <string name="logs_clear_failed">Помилка очищення журналу:</string>
     <string name="log_is_empty">Журнал порожній</string>
+    <string name="scroll_top">Прокрутити вгору</string>
+    <string name="scroll_bottom">Прокрутити вниз</string>
 
     <!-- About tab -->
-    <string name="about_developers_label">Головні розробники:</string>
-    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> та <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
-    <string name="about_translator_label">Перекладач:</string>
-    <string name="translator">Сергій Горіченко (sgg/sggua)</string>
-    <string name="about_version_label">Версія цього додатку:</string>
-    <string name="about_source_label">Вихідний код:</string>
-    <string name="about_libraries_label">Використані бібліотеки:</string>
+    <string name="about_developers_label">Головні розробники</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> та <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> та <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> за виправлення помилок і Material Design</string>
+    <string name="about_translator_label">Перекладачі</string>
+    <string name="translator">Тарас Коржак (https://goo.gl/Nus15A), Сергій Горіченко (sgg/sggua)</string>
+    <string name="about_version_label">Версія цього додатку</string>
+    <string name="about_source_label">Вихідний код</string>
+    <string name="about_libraries_label">Використані бібліотеки</string>
 
     <!-- DownloadView -->
-    <string name="download_view_download">Звантаження</string>
+    <string name="download_view_download">Завантажити</string>
     <string name="download_view_install">Встановити</string>
     <string name="download_view_cancel">Скасувати</string>
-    <string name="download_view_no_url">Немає доступних URL-посилань для звантаження</string>
-    <string name="download_view_running">Триває звантаження (%1$,d з %2$,d кБ)</string>
-    <string name="download_view_waiting">Очікування на звантаження</string>
-    <string name="download_view_successful">Звантаження виконано</string>
-    <string name="download_view_failed">Помилка звантаження (%d)</string>
+    <string name="download_view_no_url">Немає доступних URL посилань для завантаження</string>
+    <string name="download_view_running">Триває завантаження (%1$,d з %2$,d кБ)</string>
+    <string name="download_view_waiting">Очікування на завантаження</string>
+    <string name="download_view_successful">Завантаження виконано</string>
+    <string name="download_view_failed">Помилка завантаження (%d)</string>
+    <string name="download_view_size">Розмір: %s кБ</string>
 
     <!-- DownloadUtils -->
-    <string name="download_md5sum_incorrect">Сума MD5 - хибна (звантажено: %1$s, очікувалося: %2$s)</string>
-    <string name="download_could_not_read_file">Помилка читання звантаженного файлу: %s</string>
-    <string name="download_no_valid_apk">Звантажений файл не є коректним файлом APK (або він не сумісний)</string>
-    <string name="download_incorrect_package_name">Назва пакету - хибна (звантажено: %1$s, очікувалося: %2$s)</string>
+    <string name="download_md5sum_incorrect">Невірна сума MD5 (завантажено: %1$s, очікувалося: %2$s)</string>
+    <string name="download_could_not_read_file">Помилка читання завантаженного файлу: %s</string>
+    <string name="download_no_valid_apk">Завантажений файл не є коректним файлом APK (або він не сумісний)</string>
+    <string name="download_incorrect_package_name">Назва пакету - хибна (завантажено: %1$s, очікувалося: %2$s)</string>
+    <string name="download_running">Триває завантаження</string>
+    <string name="download_progress">%1$,d / %2$,d кБ</string>
 
     <!-- RepoLoader -->
-    <string name="repo_download_failed_http">Звантаження %1$s скасовано: %2$d (%3$s)</string>
-    <string name="repo_download_failed">Звантаження %1$s скаовано: %2$s</string>
+    <string name="repo_download_failed_http">Завантаження %1$s скасовано: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Завантаження %1$s скасовано: %2$s</string>
     <string name="repo_load_failed">Помилка завантаження репозиторію з %1$s:\n%2$s</string>
 
     <!-- Most of these belong to currently hidden features -->
+    <string name="warning_installed_on_external_storage">Цей модуль неможливо запустити, тому що він встановлений на SD-карту. Будь ласка, перенесіть його у Внутрішню пам\'ять.</string>
+    <string name="warning_forward_locked">Цей модуль неможливо запустити, тому що він заблокований. Зверніться до розробника модуля.</string>
+    <string name="export_modules">Експорт списку увімкнених модулів</string>
+    <string name="import_modules">Імпорт списку увімкнених модулів</string>
+    <string name="view">Дивитися</string>
+    <string name="export_">Експорт…</string>
+    <string name="import_">Імпорт…</string>
+    <string name="export_enabled_modules">Експорт списку увімкнених модулів</string>
+    <string name="import_enabled_modules">Імпорт списку увімкнених модулів</string>
+    <string name="export_installed_modules">Експорт списку встановлених модулів</string>
+    <string name="import_installed_modules">Імпорт списку встановлених модулів</string>
+    <string name="no_installed_modules">Немає встановлених модулів!</string>
+    <string name="no_backup_found">Не знайдено резервих копій</string>
+    <string name="no_enabled_modules">Немає увімкнених модулів</string>
+    <string name="share">Поділитися з…</string>
+    <string name="permissionNotGranted">Ця функція не буде працювати без дозволу на запис у Зовнішню пам\'ять.</string>
+    <string name="add_bookmark">Додати закладку</string>
+    <string name="remove_bookmark">Видалити закладку</string>
+    <string name="bookmarks">Закладки</string>
+    <string name="no_bookmark_added">Немає доданих закладок</string>
+    <string name="bookmark_added">Закладку додано</string>
+    <string name="bookmark_removed">Закладку видалено</string>
+    <string name="undo">Скасувати</string>
+    <string name="file_is_empty">Файл пустий</string>
+    <string name="install_remove">Встановити і видалити</string>
+    <string name="loading">Завантаження…</string>
+    <string name="update_download_list">Потягніть вниз для оновлення списку модулів</string>
 
 </resources>
