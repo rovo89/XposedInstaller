@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.UiThread;
 import android.support.v4.content.ContextCompat;
@@ -468,10 +469,23 @@ public class DownloadsUtil {
             return null;
         }
         Uri uri = Uri.parse(uriString);
-        if (!uri.getScheme().equals("file")) {
-            throw new UnsupportedOperationException("Not a file URI: " + uriString);
+        if (uri.getScheme().equals("file")) {
+            return uri.getPath();
+        } else if (uri.getScheme().equals("content")) {
+            Context context = XposedApp.getInstance();
+            Cursor c = null;
+            try {
+                c = context.getContentResolver().query(uri, new String[]{MediaStore.Files.FileColumns.DATA}, null, null, null);
+                c.moveToFirst();
+                return c.getString(c.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA));
+            } finally {
+                if (c != null) {
+                    c.close();
+                }
+            }
+        } else {
+            throw new UnsupportedOperationException("Unexpected URI: " + uriString);
         }
-        return uri.getPath();
     }
 
     public static SyncDownloadInfo downloadSynchronously(String url, File target) {

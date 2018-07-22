@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.Browser;
+import android.support.annotation.AnyThread;
 import android.support.annotation.NonNull;
 import android.support.customtabs.CustomTabsIntent;
 import android.text.Spannable;
@@ -47,10 +48,16 @@ public final class NavUtil {
         startURL(activity, parseURL(url));
     }
 
-    public static void showMessage(@NonNull Context context, CharSequence message) {
-        new MaterialDialog.Builder(context)
-                .content(message)
-                .positiveText(android.R.string.ok)
-                .show();
+    @AnyThread
+    public static void showMessage(final @NonNull Context context, final CharSequence message) {
+        XposedApp.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                new MaterialDialog.Builder(context)
+                        .content(message)
+                        .positiveText(android.R.string.ok)
+                        .show();
+            }
+        });
     }
 }

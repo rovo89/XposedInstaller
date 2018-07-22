@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v13.app.FragmentCompat;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -175,9 +176,11 @@ public class LogsFragment extends Fragment {
     }
 
     private void send() {
+        Uri uri = FileProvider.getUriForFile(getActivity(), "de.robv.android.xposed.installer.fileprovider", mFileErrorLog);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(save()));
+        sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        sendIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         sendIntent.setType("application/html");
         startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.menuSend)));
     }
