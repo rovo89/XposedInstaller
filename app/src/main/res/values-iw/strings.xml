@@ -115,7 +115,7 @@
   <string name="download_unknown_author">מפתח לא ידוע</string>
   <string name="download_status_installed">מותקן (גרסה %s)</string>
   <string name="download_status_update_available">עדכון זמין (גרסה %1$s \u2190 %2$s)</string>
-  <string name="download_timestamps">נוסף ב %1$s \u00b7 עדוכן ב %2$s</string>
+  <string name="download_timestamps">נוסף ב-%1$s \u00b7 עודכן ב-%2$s</string>
   <string name="download_sorting_title">מיין לפי</string>
   <string name="download_sorting_status">מיין לפי סטטוס</string>
   <string name="download_sorting_updated">מיין לפי עדכון אחרון</string>
@@ -178,7 +178,7 @@
   <string name="about_developers_label">מפתחים ראשיים:</string>
   <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> ו <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
   <string name="about_translator_label">מתרגם:</string>
-  <string name="translator"></string>
+  <string name="translator">Tzvika</string>
   <string name="about_version_label">גרסה של אפליקצייה זו:</string>
   <string name="about_source_label">קוד מקור:</string>
   <string name="about_libraries_label">סיפריות בשימוש:</string>
@@ -227,8 +227,8 @@
   <string name="add_bookmark">הוסף סימניה</string>
   <string name="remove_bookmark">הסר סימנייה</string>
   <string name="bookmarks">סימניות</string>
-  <string name="no_bookmark_added">אין סימניה שנוספה</string>
-  <string name="bookmark_added">סימניה שהוספה</string>
+  <string name="no_bookmark_added">סימניה לא נוספה</string>
+  <string name="bookmark_added">סימניה הוספה</string>
   <string name="bookmark_removed">סימניה הוסרה</string>
   <string name="undo">בטל</string>
   <string name="file_is_empty">הקובץ ריק</string>
