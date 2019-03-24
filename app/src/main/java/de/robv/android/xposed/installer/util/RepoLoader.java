@@ -32,7 +32,7 @@ import de.robv.android.xposed.installer.repo.Repository;
 import de.robv.android.xposed.installer.util.DownloadsUtil.SyncDownloadInfo;
 
 public class RepoLoader extends OnlineLoader<RepoLoader> {
-    private static final String DEFAULT_REPOSITORIES = "http://dl.xposed.info/repo/full.xml.gz";
+    private static final String DEFAULT_REPOSITORIES = "https://dl-xda.xposed.info/repo/full.xml.gz";
     private static RepoLoader mInstance = null;
     private static final XposedApp sApp = XposedApp.getInstance();
     private final Map<String, ReleaseType> mLocalReleaseTypesCache = new HashMap<>();
