@@ -8,14 +8,29 @@
 
     <!-- Welcome screen / main sections -->
     <string name="welcome_framework_update_available">Een update voor het Xposed Framework is beschikbaar.</string>
+    <string name="modules_updates_available">Er zijn module update(s) beschikbaar</string>
 
     <!-- Navigation drawer items -->
+    <string name="nav_item_install">Framework</string>
+    <string name="nav_item_modules">Modules</string>
+    <string name="nav_item_download">Download</string>
+    <string name="nav_item_settings">Instellingen</string>
+    <string name="nav_item_support">Help</string>
+    <string name="nav_item_logs">Logboek</string>
+    <string name="nav_item_about">Over</string>
+    <string name="navigation_drawer_open">Open de navigatie</string>
+    <string name="navigation_drawer_close">Sluit de navigatie</string>
 
     <!-- Installer tab -->
     <string name="install_update">Installeren/Bijwerken</string>
     <string name="uninstall">Verwijderen</string>
     <string name="soft_reboot">Herstart systeem</string>
     <string name="reboot">Herstart apparaat</string>
+    <string name="reboot_recovery">Herstart naar herstelmodus</string>
+    <string name="dexopt_now">Optimaliseer apps nu</string>
+    <string name="this_may_take_a_while">Dit kan even duren.</string>
+    <string name="done">Klaar!</string>
+    <string name="not_now">Niet nu</string>
     <string name="reboot_failed">Herstart mislukt. Herstart het apparaat handmatig.</string>
     <string name="auto_flash_note">%s wordt automatisch geflasht wanneer u op "Oke" drukt.</string>
     <string name="reboot_confirmation">Wilt u nu herstarten?</string>
@@ -23,6 +38,33 @@
     <string name="install_warning">In sommige gevallen kan het apparaat niet meer opstarten na het installeren van Xposed.\n\nAls u nog nooit gehoord heeft van \"soft brick\" of \"bootloop\" of als u niet weet hoe dit hersteld moet worden, installeer Xposed dan <b>NIET</b>!\n\nHet hebben van een recente back-up is in ieder geval sterk aanbevolen!</string>
     <string name="dont_show_again">Niet opnieuw tonen</string>
     <string name="install_known_issue">Er blijkt een bekend probleem te zijn(\"%s\") met uw ROM. Xposed installeren werkt mogelijk niet of kan tot ernstige problemen leiden. Klik hier voor details.</string>
+    <string name="installer_needs_update">%1$s moet worden geupdate</string>
+    <string name="known_issue_wrong_base_directory">Verkeerde basismap: %1$s</string>
+    <string name="known_issue_missing_base_directory">Ontbrekende basismap</string>
+    <string name="framework_active">Xposed Framework versie %s is actief.</string>
+    <string name="framework_not_active">Xposed Framework versie %s is geinstalleerd, maar niet actief. Bekijk het logboek voor meer informatie.</string>
+    <string name="framework_not_installed">Xposed Framework is niet geinstalleerd.</string>
+    <string name="countdown">%1$s (%2$d)</string>
+    <string name="flash_error_timeout">Time-out opgestreden</string>
+    <string name="flash_error_shell_died">Uitvoering is onverwacht afgebroken</string>
+    <string name="flash_error_invalid_zip">Geen flashbaar ZIP-bestand</string>
+    <string name="flash_error_not_flashable_in_app">Dit bestand kan alleen geflashed worden via herstelmodus.</string>
+    <string name="flash_error_default">Fout %d heeft plaatsgevonden</string>
+    <string name="status">Xposed Status</string>
+    <string name="xposed_on_next_reboot">Xposed Framework wordt geactiveerd tijdens volgende herstart</string>
+    <string name="xposed_off_next_reboot">Xposed Framework wordt gedeactiveerd tijdens volgende herstart</string>
+    <string name="show_outdated">Toon verouderde versies</string>
+    <string name="framework_device_info">Je toestel</string>
+    <string name="framework_install">Installeer</string>
+    <string name="framework_uninstall">Verwijder</string>
+    <string name="framework_install_recovery">Installeer via herstelmodus</string>
+    <string name="framework_uninstall_recovery">Verwijder via herstelmodus</string>
+    <string name="framework_delete">Verwijder gedownload bestand</string>
+    <string name="framework_zip_load_failed">Het beschikbare ZIP-bestanden niet laden. Trek naar beneden om opnieuw te proberen.</string>
+    <string name="framework_no_zips">Er zijn geen overeenkomende ZIP's gevonden, het lijkt erop dat uw apparaat momenteel niet wordt ondersteund.</string>
+    <string name="verified_boot_deactivated">Geverifieerd opstarten is inactief</string>
+    <string name="verified_boot_active">Geverifieerd opstarten is actief</string>
+    <string name="verified_boot_explanation">Geverifieerd opstarten (dm-verity) voorkomt dat het apparaat opstart wanneer de system-partitie is aangepast.\n<b>Het installeren van Xposed is niet aangeraden!</b></string>
 
     <!-- File operations -->
     <string name="root_failed">Het krijgen van root-toegang is mislukt.\n\nZorg ervoor dat uw apparaat goed geroot is en dat shell commando\'s niet geblokkeerd worden.</string>
@@ -38,6 +80,7 @@
     <string name="module_is_not_activated_yet">Xposed module is nog niet geactiveerd</string>
     <string name="module_is_not_activated_yet_detailed">%s werdt geinstalleerd, maar is nog niet geactiveerd.</string>
     <string name="activate_and_reboot">Activeer en herstart</string>
+    <string name="activate_only">Activeer alleen</string>
     <string name="module_activated">Xposed module is geactiveerd</string>
     <string name="module_empty_description">(geen beschrijving beschikbaar)</string>
     <string name="module_no_ui">Deze module heeft geen interface beschikbaar</string>
@@ -91,6 +134,8 @@
 
     <!-- Settings tab -->
     <string name="settings_group_download">Download</string>
+    <string name="settings_enable_downloads">Sta download toe</string>
+    <string name="settings_enable_downloads_summary">Sta Xposed Installer toe om voor updates te controleren en nieuwe modules</string>
     <string name="settings_release_type">Versies die worden getoond</string>
     <string name="settings_group_experimental">Experimenteel</string>
     <string name="settings_disable_resources">Resource-hooks uitschakelen</string>
@@ -100,22 +145,40 @@
     <string name="settings_theme_light">Licht</string>
     <string name="settings_theme_dark">Donker</string>
     <string name="settings_theme_black">Zwart (nuttig voor AMOLED schermen)</string>
+    <string name="settings_default_view">Standaard weergave</string>
+    <string name="open_drawer_summ">Open de navigatie automatisch bij het openen van de app</string>
+    <string name="open_drawer">Open de navigatie automatisch</string>
+    <string name="skip_xposedminversion_check">Sla \'xposedminversion\' controle over</string>
+    <string name="skip_xposedminversion_check_summ">Sla \'xposedminversion\' controle over voor modules</string>
+    <string name="chrome_custom_tabs">Aangepaste Chrome-tabbladen</string>
+    <string name="chrome_custom_tabs_summ">Open links in de interne browser</string>
+    <string name="notify_module_update">Activeer module update notificaties</string>
 
     <!-- Support tab -->
+    <string name="support_modules_label">Ondersteuning voor modules</string>
+    <string name="support_modules_description">Druk lang op een willekeurige module in de lijst met modules en selecteer \"%1$s\".</string>
+    <string name="support_framework_label">Ondersteuning voor Framework/Installer</string>
+    <string name="support_faq_label">FAQ/bekende problemen</string>
+    <string name="support_donate_label">Doneer</string>
+    <string name="support_donate_description">Als je graag Xposed bedankt, kun je hier doneren aan rovo89</string>
 
     <!-- Logs tab  -->
+    <string name="logs_load_failed">Kan logboek niet lezen:</string>
     <string name="logs_save_failed">Kan niet schrijven naar SD-kaart:</string>
     <string name="sdcard_not_writable">SD-kaart niet gevonden of niet schrijfbaar</string>
+    <string name="log_too_large">Logbestand is groter dan %1$,d kB, eerste %2$,d kB overgeslagen</string>
     <string name="menuClearLog">Maak logboek nu leeg</string>
     <string name="logs_cleared">Logboek succesvol geleegd</string>
     <string name="logs_clear_failed">Kan logboek niet legen:</string>
     <string name="log_is_empty">Logboek is leeg</string>
+    <string name="scroll_top">Scroll naar boven</string>
+    <string name="scroll_bottom">Scroll naar beneden</string>
 
     <!-- About tab -->
     <string name="about_developers_label">Hoofdontwikkelaars:</string>
     <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> en <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
     <string name="about_translator_label">Het Framework is naar het Nederlands vertaald door:</string>
-    <string name="translator"><a href="https://github.com/Martinusbe">Martin Coulon (Martinusbe)</a>, <a href="http://code.gertlily.com/">Gert-Jan Anema (GertlilyNL)</a> &amp; <a href="https://github.com/lionzeye">Leonard Simonse (lionzeye)</a></string>
+    <string name="translator"><a href="https://github.com/Martinusbe">Martin Coulon (Martinusbe)</a>, <a href="https://gertjan.frl/">Gert-Jan Anema (GertJanFRL)</a> &amp; <a href="https://github.com/lionzeye">Leonard Simonse (lionzeye)</a></string>
     <string name="about_version_label">Versie van deze app:</string>
     <string name="about_source_label">Broncode:</string>
     <string name="about_libraries_label">Gebruikte bibliotheken:</string>
@@ -129,12 +192,15 @@
     <string name="download_view_waiting">Wachten op download&#8230;</string>
     <string name="download_view_successful">De download is geslaagd</string>
     <string name="download_view_failed">De download is mislukt (fout %d)</string>
+    <string name="download_view_size">Grootte: %s KB</string>
 
     <!-- DownloadUtils -->
     <string name="download_md5sum_incorrect">MD5-som is niet correct (gedownload: %1$s, verwacht: %2$s)</string>
     <string name="download_could_not_read_file">Kan het gedownloade bestand niet lezen: %s</string>
     <string name="download_no_valid_apk">Het gedownloade bestand is geen geldige APK (of incompatibel)</string>
     <string name="download_incorrect_package_name">Pakketnaam is incorrect (gedownload: %1$s, verwacht: %2$s)</string>
+    <string name="download_running">Bezig met downloaden</string>
+    <string name="download_progress">%1$,d / %2$,d kB</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">Downloaden %1$s mislukt: %2$d (%3$s)</string>
@@ -142,5 +208,32 @@
     <string name="repo_load_failed">Kan de repository niet laden van %1$s:\n%2$s</string>
 
     <!-- Most of these belong to currently hidden features -->
+    <string name="warning_installed_on_external_storage">Deze module kan niet worden geladen omdat deze is geinstalleerd op de externe opslag, verplaats deze naar de interne opslag.</string>
+    <string name="warning_forward_locked">This module cannot be loaded because it\'s is forward-locked, please contact the module\'s developer.</string>
+    <string name="export_modules">Exporteer lijst met geactiveerde modules</string>
+    <string name="import_modules">Importeer lijst met geactiveerde modules</string>
+    <string name="view">BEKIJK</string>
+    <string name="export_">Exporteren…</string>
+    <string name="import_">Importeren…</string>
+    <string name="export_enabled_modules">Exporteer lijst met geactiveerde modules</string>
+    <string name="import_enabled_modules">Importeer lijst met geactiveerde modules</string>
+    <string name="export_installed_modules">Exporteer lijst met geïnstalleerde modules</string>
+    <string name="import_installed_modules">Importeer lijst met geïnstalleerde modules</string>
+    <string name="no_installed_modules">There isn\'t any installed module!</string>
+    <string name="no_backup_found">Geen backup gevonden</string>
+    <string name="no_enabled_modules">There is any modules enabled</string>
+    <string name="share">Deel met…</string>
+    <string name="permissionNotGranted">This feature will not work without permission to write external storage.</string>
+    <string name="add_bookmark">Voeg bladwijzer toe</string>
+    <string name="remove_bookmark">Verwijder bladwijzer</string>
+    <string name="bookmarks">Bladwijzers</string>
+    <string name="no_bookmark_added">Geen bladwijzers toegevoegd</string>
+    <string name="bookmark_added">Bladwijzer toegevoegd</string>
+    <string name="bookmark_removed">Bladwijzer verwijderd</string>
+    <string name="undo">Ongedaan maken</string>
+    <string name="file_is_empty">Bestand is leeg</string>
+    <string name="install_remove">Installeer en verwijder</string>
+    <string name="loading">Laden…</string>
+    <string name="update_download_list">Trek naar beneden om module lijst te vernieuwen</string>
 
 </resources>
