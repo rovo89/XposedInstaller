@@ -9,7 +9,7 @@ public interface FlashCallback extends RootUtil.LineCallback {
     void onError(int exitCode, String error);
 
     int OK = 0;
-    int ERROR_GENERIC = 1;
+    int ERROR_GENERIC = 0;
 
     // SU errors
     int ERROR_TIMEOUT = Shell.OnCommandResultListener.WATCHDOG_EXIT;
