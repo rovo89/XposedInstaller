@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Odoslať</string>
+    <string name="menuSaveToSd">Uložiť na kartu SD</string>
+    <string name="xposed_not_active">Najnovšia verzia Xposed nie je aktuálne aktívna. Nainštalovali ste Framework a reštartovali zariadenie?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Je dostupná aktualizácia pre Xposed Framework (%s).</string>
+    <string name="modules_updates_available">Aktualizácia modulu(ov) je dostupná</string>
+
+    <!-- Navigation drawer items -->
+    <string name="nav_item_install">Framework</string>
+    <string name="nav_item_modules">Moduly</string>
+    <string name="nav_item_download">Sťahovanie</string>
+    <string name="nav_item_settings">Nastavenia</string>
+    <string name="nav_item_support">Podpora</string>
+    <string name="nav_item_logs">Záznamy</string>
+    <string name="nav_item_about">O aplikácii</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Installer tab -->
+    <string name="install_update">Inštalovať/Aktualizovať</string>
+    <string name="uninstall">Odinštalovať</string>
+    <string name="soft_reboot">Softvérový reštart</string>
+    <string name="reboot">Reštart</string>
+    <string name="reboot_recovery">Reštartovať do recovery</string>
+    <string name="reboot_failed">Reštart zlyhal. Prosím, použite normálnu funkciu zariadenia pre reštart.</string>
+    <string name="auto_flash_note">%s by mal byť automaticky flashnutý hneď, ako stlačíte tlačidlo \"OK\".</string>
+    <string name="reboot_confirmation">Chcete reštartovať zariadenie teraz?</string>
+    <string name="install_warning_title">Buďte opatrný!</string>
+    <string name="install_warning">V niektorých prípadoch sa vaše zariadenie nemusí spustiť po inštalácii Xposedu.\n\nAk ste nikdy predtým nepočuli o problémoch, ako sú \"soft brick\" a \"bootloop\", alebo ak neviete, ako sa dostať z takejto situácie, <b>NEINŠTALUJTE</b> Xposed!\n\nV každom prípade je odporúčané si vytvoriť zálohu.</string>
+    <string name="dont_show_again">Nezobrazovať znova</string>
+    <string name="install_known_issue">Vyskytol sa známy problém (\"%s\") s vašou ROM. Inštalácia Xposed nemusí fungovať alebo môže viesť k závažným problémom. Kliknite sem pre podrobnosti o probléme.</string>
+    <string name="framework_active">Xposed Framework verzia %s je aktívny.</string>
+    <string name="framework_not_active">Xposed Framework verzia %s je nainštalovaný, ale nie je aktívny. Prosím, skontrolujte záznamy pre viac informácií.</string>
+    <string name="framework_not_installed">Xposed Framework nie je nainštalovaný.</string>
+    <string name="status">Stav Xposed</string>
+    <string name="xposed_on_next_reboot">Xposed Framework bude povolený pri nasledujúcom reštarte</string>
+    <string name="xposed_off_next_reboot">Xposed Framework bude zakázaný pri nasledujúcom reštarte</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Nepodarilo sa získať root prístup.\n\nUistite sa, že je zariadenie správne rootnuté a príkazy konzoly nie sú blokované.</string>
+    <string name="file_copying">Kopírovanie %s&#8230;</string>
+    <string name="file_copy_failed">Nemožno kopírovať %1$s do %2$s</string>
+    <string name="file_creating_directory">Vytváranie adresára %s&#8230;</string>
+    <string name="file_create_directory_failed">Nemožno vytvoriť adresár %s</string>
+    <string name="file_writing_recovery_command">Zápis Recovery príkazu&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Zápis Recovery príkazu zlyhal. Prosím, použite iný režim inštalácie.</string>
+    <string name="file_done">Hotovo! Zmeny sa stanú aktívnymi po reštarte.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed modul zatiaľ nie je aktivovaný</string>
+    <string name="module_is_not_activated_yet_detailed">Modul %s bol nainštalovaný, ale zatiaľ nie je aktivovaný.</string>
+    <string name="activate_and_reboot">Aktivovať a reštartovať</string>
+    <string name="module_activated">Xposed modul bol aktivovaný</string>
+    <string name="module_empty_description">(popis nie je k dispozícii)</string>
+    <string name="module_no_ui">Tento modul neposkytuje používateľské rozhranie</string>
+    <string name="no_xposed_modules_found">Neboli nájdené žiadne Xposed moduly!</string>
+    <string name="xposed_module_list_updated">Zoznam Xposed modulov bol aktualizovaný\nZmeny sa prejavia po reštarte</string>
+    <string name="xposed_module_updated_notification_title">Aktualizovaný Xposed modul</string>
+    <string name="xposed_module_updated_notification">Reštartujte pre aktiváciu zmien</string>
+    <string name="warning_xposed_min_version">Tento modul vyžaduje novšiu verziu Xposed (%d) a preto nemôže byť aktivovaný.</string>
+    <string name="no_min_version_specified">Tento modul nešpecifikuje verziu Xposed, ktorú potrebuje.</string>
+    <string name="warning_min_version_too_low">Tento modul bol vytvorený pre verziu Xposed %1$d, ale kvôli nekompatibilným zmenám vo verzii %2$d bol deaktivovaný.</string>
+    <string name="module_launch">Spustiť</string>
+    <string name="module_download_updates">Stiahnuť/Aktualizácie</string>
+    <string name="module_support">Podpora</string>
+    <string name="module_app_info">Informácie o aplikácii</string>
+    <string name="module_uninstall">Odinštalovať</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Hľadať</string>
+    <string name="menuReload">Obnoviť</string>
+    <string name="changes">Zmeny:</string>
+    <string name="download_details_page_description">Popis</string>
+    <string name="download_details_page_versions">Verzie</string>
+    <string name="download_details_page_settings">Nastavenia</string>
+    <string name="reltype_stable">Stabilná</string>
+    <string name="reltype_stable_summary">Stabilné (nízke riziko chýb)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (očakávané nejaké chyby)</string>
+    <string name="reltype_experimental">Experimentálna</string>
+    <string name="reltype_experimental_summary">Experimentálne (vysoké riziko chýb)</string>
+    <string name="reltype_use_global_summary">Použiť globálne nastavenie</string>
+    <string name="download_author">od %s</string>
+    <string name="download_unknown_author">neznámy autor</string>
+    <string name="download_status_installed">Nainštalované (verzia %s)</string>
+    <string name="download_status_update_available">Dostupná aktualizácia (verzia %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Pridané %1$s \u00b7 Aktualizované %2$s</string>
+    <string name="download_sorting_title">Zoradiť</string>
+    <string name="download_sorting_status">Podľa stavu</string>
+    <string name="download_sorting_updated">Podľa poslednej aktualizácie</string>
+    <string name="download_sorting_created">Podľa dátumu vytvorenia</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Dostupná aktualizácia</string>
+    <string name="download_section_installed">Nainštalované</string>
+    <string name="download_section_not_installed">Nenainštalované</string>
+    <string name="download_section_24h">Za posledných 24 hodín</string>
+    <string name="download_section_7d">Za posledných 7 dní</string>
+    <string name="download_section_30d">Za posledných 30 dní</string>
+    <string name="download_section_older">Pred viac ako 30 dňami</string>
+    <string name="download_details_not_found">Nebol nájdený žiadny modul s názvom balíka \"%s\" v repozitári.</string>
+    <string name="download_no_versions">Autor zatiaľ nič nenahral.</string>
+    <string name="download_test_version_not_shown">Skúšobná verzia je k dispozícii, ale nie je zobrazená z dôvodu vašich globálnych nastavení alebo z dôvodu špecifických nastavení modulu.</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Sťahovanie</string>
+    <string name="settings_release_type">Zobraziť verzie</string>
+    <string name="settings_group_experimental">Experimentálne</string>
+    <string name="settings_disable_resources">Zakázať zmenu zdrojov</string>
+    <string name="settings_disable_resources_summary">Riešenie konfliktov s témami\n<b>VAROVANIE:</b> Ak je táto možnosť povolená, moduly, ktoré sa snažia zmeniť zdroje, nebudú fungovať.</string>
+    <string name="settings_group_app">Aplikácia</string>
+    <string name="settings_theme">Téma</string>
+    <string name="settings_theme_light">Svetlá</string>
+    <string name="settings_theme_dark">Tmavá</string>
+    <string name="settings_theme_black">Čierna (vhodná pre AMOLED displeje)</string>
+    <string name="settings_default_view">Predvolené zobrazenie</string>
+    <string name="open_drawer_summ">Otvoriť navigačné menu po spustení aplikácie</string>
+    <string name="open_drawer">Automaticky otvoriť navigačné menu</string>
+    <string name="skip_xposedminversion_check">Preskočiť \'xposedminversion\' kontrolu</string>
+    <string name="skip_xposedminversion_check_summ">Preskočiť \'xposedminversion\' kontrolu pre moduly</string>
+    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs_summ">Otvoriť odkazy v internom prehliadači</string>
+    <string name="notify_module_update">Povoliť upozornenie na aktualizáciu modulu</string>
+
+    <!-- Support tab -->
+    <string name="support_modules_label">Podpora pre moduly</string>
+    <string name="support_modules_description">Podržte dlho na module v zozname modulov a zvoľte \"%1$s\".</string>
+    <string name="support_framework_label">Podpora pre Framework/Installer</string>
+    <string name="support_faq_label">FAQ/známe chyby</string>
+    <string name="support_donate_label">Podporiť</string>
+    <string name="support_donate_description">Ak chcete poďakovať za Xposed, môžete poslať dar pre rovo89 tu</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Nemožno zapísať záznam na kartu SD:</string>
+    <string name="sdcard_not_writable">Karta SD nebola nájdená alebo nie je zapisovateľná</string>
+    <string name="menuClearLog">Vymazať záznam</string>
+    <string name="logs_cleared">Záznam bol úspešne vymazaný</string>
+    <string name="logs_clear_failed">Nemožno vymazať záznam:</string>
+    <string name="log_is_empty">Záznam je prázdny</string>
+    <string name="scroll_top">Prejsť hore</string>
+    <string name="scroll_bottom">Prejsť dole</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Hlavní vývojári</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> a <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">Prekladatelia</string>
+    <string name="translator">pyler, ja_som</string>
+    <string name="about_version_label">Verzia aplikácie</string>
+    <string name="about_source_label">Zdrojový kód</string>
+    <string name="about_libraries_label">Použité knižnice</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Stiahnuť</string>
+    <string name="download_view_install">Inštalovať</string>
+    <string name="download_view_cancel">Zrušiť</string>
+    <string name="download_view_no_url">Nie je dostupná URL adresa na sťahovanie</string>
+    <string name="download_view_running">Sťahovanie beží (%1$,d z %2$,d kB)</string>
+    <string name="download_view_waiting">Čaká sa na sťahovanie</string>
+    <string name="download_view_successful">Sťahovanie bolo úspešné</string>
+    <string name="download_view_failed">Sťahovanie zlyhalo (chyba %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">Kontrolný súčet MD5 je nesprávny (stiahnuté: %1$s, očakávané: %2$s)</string>
+    <string name="download_could_not_read_file">Nemožno čítať stiahnutý súbor: %s</string>
+    <string name="download_no_valid_apk">Stiahnutý súbor nie je platný APK súbor (alebo nie je kompatibilný)</string>
+    <string name="download_incorrect_package_name">Názov balíka nie je správny (stiahnuté: %1$s, očakávané: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Sťahovanie %1$s zlyhalo: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Sťahovanie %1$s zlyhalo: %2$s</string>
+    <string name="repo_load_failed">Nemožno načítať z repozitára %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+    <string name="warning_installed_on_external_storage">Tento modul nemôže byť načítaný, pretože je nainštalovaný na karte SD, prosím, presuňte ho do interného úložiska.</string>
+    <string name="view">ZOBRAZIŤ</string>
+    <string name="export_">Export…</string>
+    <string name="import_">Import…</string>
+    <string name="export_enabled_modules">Exportovať zoznam povolených modulov</string>
+    <string name="import_enabled_modules">Importovať zoznam povolených modulov</string>
+    <string name="export_installed_modules">Exportovať zoznam inštalovaných modulov</string>
+    <string name="import_installed_modules">Importovať zoznam inštalovaných modulov</string>
+    <string name="no_installed_modules">Nie je nainštalovaný žiadny modul!</string>
+    <string name="no_backup_found">Záloha nenájdená</string>
+    <string name="no_enabled_modules">Nie sú povolené žiadne moduly</string>
+    <string name="share">Zdieľať…</string>
+    <string name="permissionNotGranted">Táto funkcia nebude fungovať bez povolenia zapisovať na externé úložisko.</string>
+    <string name="add_bookmark">Pridať záložku</string>
+    <string name="remove_bookmark">Odstrániť záložku</string>
+    <string name="bookmarks">Záložky</string>
+    <string name="no_bookmark_added">Žiadne záložky</string>
+    <string name="bookmark_added">Záložka pridaná</string>
+    <string name="bookmark_removed">Záložka odstránená</string>
+    <string name="undo">Späť</string>
+    <string name="file_is_empty">Súbor je prázdny</string>
+    <string name="install_remove">Nainštalovať a odstrániť</string>
+    <string name="loading">Načítavanie…</string>
+
+</resources>

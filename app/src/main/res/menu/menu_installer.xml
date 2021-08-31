@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/menu_reboot">
+
+        <item
+            android:id="@+id/reboot"
+            android:icon="@drawable/ic_menu_refresh"
+            android:title="@string/reboot"/>
+
+        <item
+            android:id="@+id/soft_reboot"
+            android:icon="@drawable/ic_menu_refresh"
+            android:title="@string/soft_reboot"/>
+
+        <item
+            android:id="@+id/reboot_recovery"
+            android:icon="@drawable/ic_menu_refresh"
+            android:title="@string/reboot_recovery"/>
+
+    </group>
+
+    <item
+        android:id="@+id/dexopt_now"
+        android:icon="@drawable/ic_flash"
+        android:title="@string/dexopt_now"/>
+
+    <group android:id="@+id/menu_framework_download">
+        <item
+            android:id="@+id/show_outdated"
+            android:checkable="true"
+            android:title="@string/show_outdated"/>
+    </group>
+
+</menu>

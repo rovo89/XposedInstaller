@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Unha actualización está dispoñible para Xposed Framework.</string>
+
+    <!-- Navigation drawer items -->
+
+    <!-- Installer tab -->
+    <string name="install_update">Instalar/Actualizar</string>
+    <string name="uninstall">Desinstalar</string>
+    <string name="soft_reboot">Reinicie Software</string>
+    <string name="reboot">Reinicie</string>
+
+    <!-- File operations -->
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed módulo aínda non está activo</string>
+    <string name="module_empty_description">(Sen descrición se forneceu)</string>
+    <string name="module_no_ui">Este módulo e non ofrece unha interface de usuario</string>
+    <string name="no_xposed_modules_found">Non hai módulos instalados!</string>
+    <string name="xposed_module_list_updated">Lista de modulos Xposed actualizada\nOs cambios serán activadas no reinicio</string>
+    <string name="warning_xposed_min_version">Este módulo require unha versión máis recente de Xposed (%d) e, polo tanto, non pode ser activado.</string>
+    <string name="no_min_version_specified">Este módulo non especifica a versión que precisa de Xposed.</string>
+    <string name="warning_min_version_too_low">Este módulo foi creado para a versión %1$d de Xposed, pero debido a un cambio incompatible na versión %2$d, foi desactivado.</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Buscar</string>
+    <string name="menuReload">Recargar</string>
+    <string name="changes">Mudanzas:</string>
+    <string name="download_author">Por %s</string>
+    <string name="download_unknown_author">Autor descoñecido</string>
+    <string name="download_status_installed">Instalada (versión %s)</string>
+    <string name="download_status_update_available">Actualización dispoñible (versión %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Engadido el %1$s \u00b7 Actualizado el %2$s</string>
+    <string name="download_sorting_title">Ordenar por</string>
+    <string name="download_sorting_status">Ordenar por estado</string>
+    <string name="download_sorting_updated">Ordenar por última actualización</string>
+    <string name="download_sorting_created">Ordenar por data de creación</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Actualización dispoñible</string>
+    <string name="download_section_installed">Instalado</string>
+    <string name="download_section_not_installed">Non instalado</string>
+    <string name="download_section_24h">Nas últimas 24 horas</string>
+    <string name="download_section_7d">Nas ultimos 7 días</string>
+    <string name="download_section_30d">Nas ultimos 30 días</string>
+    <string name="download_section_older">Máis de 30 días</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Descargar</string>
+    <string name="settings_group_experimental">Experimental</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+
+    <!-- About tab -->
+    <string name="about_developers_label">Desarrolladores principales:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> e <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">Traductor:</string>
+    <string name="translator">David_Vaz</string>
+    <string name="about_version_label">Versión deste aplicación:</string>
+    <string name="about_source_label">Código fonte:</string>
+    <string name="about_libraries_label">Librerias usadas:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Descarga</string>
+    <string name="download_view_install">Instalar</string>
+    <string name="download_view_cancel">Cancelar</string>
+    <string name="download_view_no_url">Ligazón a descarga non está dispoñible</string>
+    <string name="download_view_running">A descarga está en execución (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">Esperando para descargar&#8230;</string>
+    <string name="download_view_successful">Descarga rematou</string>
+    <string name="download_view_failed">Error de descarga (error %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">Suma MD5 incorrecta (descargada: %1$s, original: %2$s)</string>
+    <string name="download_could_not_read_file">Non se puido ler o arquivo descargado: %s</string>
+    <string name="download_no_valid_apk">O arquivo descargado non é un APK válido (ou compatible)</string>
+    <string name="download_incorrect_package_name">Nome do paquete incorrecto (descargado: %1$s, original: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Descargando %1$s fallido: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Descargando %1$s fallido: %2$s</string>
+    <string name="repo_load_failed">Non se puido cargar o repositorio do %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+
+</resources>

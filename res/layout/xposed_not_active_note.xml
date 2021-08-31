@@ -1,9 +1,0 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/warning_box"
-    android:padding="3dp"
-    android:text="@string/xposed_not_active"
-    android:textAppearance="?android:attr/textAppearanceMedium"
-    tools:ignore="Overdraw" />

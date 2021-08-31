@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Invia</string>
+    <string name="menuSaveToSd">Salva sulla scheda SD</string>
+    <string name="xposed_not_active">L\'ultima versione di Xposed al momento non è attiva. Hai installato il Framework e riavviato?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">È disponibile un aggiornamento per il Framework Xposed.</string>
+    <string name="modules_updates_available">Aggiornamenti dei moduli disponibili</string>
+
+    <!-- Navigation drawer items -->
+    <string name="nav_item_install">Framework</string>
+    <string name="nav_item_modules">Moduli</string>
+    <string name="nav_item_download">Download</string>
+    <string name="nav_item_settings">Impostazioni</string>
+    <string name="nav_item_support">Supporto</string>
+    <string name="nav_item_logs">Logs</string>
+    <string name="nav_item_about">Info su</string>
+    <string name="navigation_drawer_open">Apri navigation drawer</string>
+    <string name="navigation_drawer_close">Chiudi navigation drawer</string>
+
+    <!-- Installer tab -->
+    <string name="install_update">Installa/Aggiorna</string>
+    <string name="uninstall">Rimuovi</string>
+    <string name="soft_reboot">Riavvio soft</string>
+    <string name="reboot">Riavvio</string>
+    <string name="reboot_recovery">Riavvia in recovery</string>
+    <string name="reboot_failed">Riavvio fallito. Usa la funzione riavvia del dispositivo.</string>
+    <string name="auto_flash_note">%s sarà flashato automaticamente una volta premuto "OK".</string>
+    <string name="reboot_confirmation">Vuoi riavviare ora?</string>
+    <string name="install_warning_title">Sii prudente!</string>
+    <string name="install_warning">In alcuni casi, il dispositivo potrebbe non accendersi più dopo l\'installazione di Xposed.\n\nSe non hai mai sentito parlare di \"soft brick\" e \"bootloop\" prima d\'ora o se non si è capaci di ripristinare il dispositivo <b>NON</b> installare Xposed!\n\nIn molti casi. avere un backup recente è altamente raccomandato.</string>
+    <string name="dont_show_again">Non mostrare più</string>
+    <string name="install_known_issue">Sembra esserci un problema noto (\"%s\") con la tua ROM. Installando Xposed potrebbe non funzionare o causare gravi problemi. Clicca qui per dettagli sul problema.</string>
+    <string name="framework_active">La versione di Xposed Framework attiva è: %s.</string>
+    <string name="framework_not_active">La versione di Xposed Framework installata è %s, ma non è attiva. Perfavore controlla i log per dettagli.</string>
+    <string name="framework_not_installed">Xposed Framework non è installato.</string>
+    <string name="status">Stato Xposed</string>
+    <string name="xposed_on_next_reboot">Xposed Framework sarà abilitato al prossimo riavvio</string>
+    <string name="xposed_off_next_reboot">Xposed Framework sarà disabilitato al prossimo riavvio</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Impossibile ottenere l\'accesso root.\n\nAssicurati di avere correttamente i permessi e di non aver bloccato comandi shell.</string>
+    <string name="file_copying">Copia di %s&#8230;</string>
+    <string name="file_copy_failed">Impossibile copiare %1$s in %2$s</string>
+    <string name="file_creating_directory">Creazione della directory%s&#8230;</string>
+    <string name="file_create_directory_failed">Impossibile creare la directory %s</string>
+    <string name="file_writing_recovery_command">Scrittura comando recovery&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Scrittura comando recovery fallita. Usa un metodo di installazione differente.</string>
+    <string name="file_done">Fatto! I cambiamenti saranno attivi dopo il riavvio.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Il modulo Xposed non è stato ancora attivato</string>
+    <string name="module_is_not_activated_yet_detailed">%s è stato installato, ma non è ancora attivo.</string>
+    <string name="activate_and_reboot">Attiva e riavvia</string>
+    <string name="activate_only">Attiva solamente</string>
+    <string name="module_activated">Il modulo è stato attivato</string>
+    <string name="module_empty_description">(descrizione non disponibile)</string>
+    <string name="module_no_ui">Questo modulo non dispone di un\'interfaccia utente</string>
+    <string name="no_xposed_modules_found">Nessun modulo Xposed trovato!</string>
+    <string name="xposed_module_list_updated">La lista dei moduli Xposed è stata aggiornata\nI cambiamenti saranno attivi al riavvio</string>
+    <string name="xposed_module_updated_notification_title">Modulo Xposed aggiornato</string>
+    <string name="xposed_module_updated_notification">Riavvia per attivare i cambiamenti</string>
+    <string name="warning_xposed_min_version">Questo modulo richiede una nuova versione (%d) di Xposed, di conseguenza non può essere attivato.</string>
+    <string name="no_min_version_specified">Questo modulo non specifica la versione di Xposed di cui ha bisogno.</string>
+    <string name="warning_min_version_too_low">Questo modulo è stato creato per la versione %1$d di Xposed, ma a causa di incompatibilità con la versione %2$d è stato disattivato.</string>
+    <string name="module_launch">Apri interfaccia</string>
+    <string name="module_download_updates">Scarica/Aggiorna</string>
+    <string name="module_support">Supporto</string>
+    <string name="module_app_info">Info App</string>
+    <string name="module_uninstall">Disinstalla</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Cerca</string>
+    <string name="menuReload">Aggiorna</string>
+    <string name="changes">Cambia:</string>
+    <string name="download_details_page_description">Descrizione</string>
+    <string name="download_details_page_versions">Versioni</string>
+    <string name="download_details_page_settings">Impostazioni</string>
+    <string name="reltype_stable">Stabile</string>
+    <string name="reltype_stable_summary">Stabile (basso rischio di bug)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (è possibile incontrare bug)</string>
+    <string name="reltype_experimental">Sperimentale</string>
+    <string name="reltype_experimental_summary">Sperimentale (alto rischio di bug)</string>
+    <string name="reltype_use_global_summary">Usa impostazioni globali</string>
+    <string name="download_author">di %s</string>
+    <string name="download_unknown_author">autore sconosciuto</string>
+    <string name="download_status_installed">Installato (versione %s)</string>
+    <string name="download_status_update_available">Aggiornamento disponibile (versione %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Aggiunto il %1$s \u00b7 Aggiornato il %2$s</string>
+    <string name="download_sorting_title">Ordina per</string>
+    <string name="download_sorting_status">Disponi per stato</string>
+    <string name="download_sorting_updated">Disponi per ultimo aggiornamento</string>
+    <string name="download_sorting_created">Disponi per data creazione</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Aggiornamento disponibile</string>
+    <string name="download_section_installed">Installato</string>
+    <string name="download_section_not_installed">Non installato</string>
+    <string name="download_section_24h">Ultime 24 ore</string>
+    <string name="download_section_7d">Ultimi 7 giorni</string>
+    <string name="download_section_30d">Ultimi 30 giorni</string>
+    <string name="download_section_older">Oltre 30 giorni fa</string>
+    <string name="download_details_not_found">Nessun modulo con il nome \"%s\" trovato nei repository.</string>
+    <string name="download_no_versions">L\'autore non ha ancora caricato niente.</string>
+    <string name="download_test_version_not_shown">È diponibile una versione di test, tuttavia non è mostrata a causa delle tue impostazioni globali o specifiche del modulo.</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Download</string>
+    <string name="settings_release_type">Versioni da mostrare</string>
+    <string name="settings_group_experimental">Sperimentale</string>
+    <string name="settings_disable_resources">Disabilita agganci alle risorse</string>
+    <string name="settings_disable_resources_summary">Soluzioni di conflitti con i theme engine\n<b>ATTENZIONE:</b> I moduli che cambiano le risorse non funzioneranno attivando questa funzione.</string>
+    <string name="settings_group_app">Applicazione</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Chiaro</string>
+    <string name="settings_theme_dark">Scuro</string>
+    <string name="settings_theme_black">Nero (utile per schermi AMOLED)</string>
+    <string name="settings_default_view">Vista di default</string>
+    <string name="open_drawer_summ">Apri automaticamente il menù laterale all\'avvio</string>
+    <string name="open_drawer">Apri automaticamente il menù laterale</string>
+    <string name="skip_xposedminversion_check">Salta controllo \'xposedminversion\' </string>
+    <string name="skip_xposedminversion_check_summ">Salta controllo \'xposedminversion\' per i moduli</string>
+    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs_summ">Apri link nel browser interno</string>
+    <string name="notify_module_update">Abilita notifica aggiornamenti dei moduli</string>
+
+    <!-- Support tab -->
+    <string name="support_modules_label">Supporto per i moduli</string>
+    <string name="support_modules_description">Click lungo su qualsiasi modulo nella lista dei moduli e seleziona \"%1$s\".</string>
+    <string name="support_framework_label">Framework/Installer supporto</string>
+    <string name="support_faq_label">FAQ/Bug conosciuti</string>
+    <string name="support_donate_label">Dona</string>
+    <string name="support_donate_description">Se ti piacerebbe dire grazie per Xposed, puoi donare a rovo89 qui</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Impossibile scrivere il log sulla scheda SD:</string>
+    <string name="sdcard_not_writable">Scheda SD non trovata o non scrivibile</string>
+    <string name="menuClearLog">Svuota log ora</string>
+    <string name="logs_cleared">Log svuotato con successo</string>
+    <string name="logs_clear_failed">Impossibile svuotare il log:</string>
+    <string name="log_is_empty">Il Log è vuoto</string>
+    <string name="scroll_top">Scorri su</string>
+    <string name="scroll_bottom">Scorri giù</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Sviluppatori principali</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> e <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n <a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> e <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> per bug fix e Material Design</string>
+    <string name="about_translator_label">Tradotto da</string>
+    <string name="translator">Vincenzo Cerminara e dvdandroid</string>
+    <string name="about_version_label">Versione</string>
+    <string name="about_source_label">Codice sorgente</string>
+    <string name="about_libraries_label">Librerie utilizzate</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Download</string>
+    <string name="download_view_install">Installa</string>
+    <string name="download_view_cancel">Annulla</string>
+    <string name="download_view_no_url">Non sono disponibili URL per il download</string>
+    <string name="download_view_running">Download in corso (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">Download in attesa</string>
+    <string name="download_view_successful">Download completato con successo</string>
+    <string name="download_view_failed">Download fallito (errore %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 sum non è corretto (scaricato: %1$s, previsto: %2$s)</string>
+    <string name="download_could_not_read_file">Impossibile leggere il file scaricato: %s</string>
+    <string name="download_no_valid_apk">Il file scaricato non è un APK valido (o incompatibile)</string>
+    <string name="download_incorrect_package_name">Il nome del pacchetto non è corretto (scaricato: %1$s, previsto: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Download di %1$s fallito: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Download di %1$s fallito: %2$s</string>
+    <string name="repo_load_failed">Impossibile caricare repository da %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+    <string name="warning_installed_on_external_storage">Questo modulo non può essere caricato perché è installato nella memoria SD, per favore spostalo nella memoria interna</string>
+    <string name="view">VEDI</string>
+    <string name="export_">Esporta…</string>
+    <string name="import_">Importa…</string>
+    <string name="export_enabled_modules">Esporta lista moduli attivati</string>
+    <string name="import_enabled_modules">Importa lista moduli attivati</string>
+    <string name="export_installed_modules">Esporta lista moduli installati</string>
+    <string name="import_installed_modules">Importa lista moduli installati</string>
+    <string name="no_installed_modules">Non c\'è nessun modulo installato!</string>
+    <string name="no_backup_found">Nessun backup trovato!</string>
+    <string name="no_enabled_modules">Non c\'è nessun modulo abilitato!</string>
+    <string name="share">Condividi con…</string>
+    <string name="permissionNotGranted">Questa funzionalità non funzionerà senza il permesso di scrittura della memoria esterna.</string>
+    <string name="add_bookmark">Aggiungi segnalibro</string>
+    <string name="remove_bookmark">Rimuovi segnalibro</string>
+    <string name="bookmarks">Segnalibri</string>
+    <string name="no_bookmark_added">Nessun segnalibro aggiunto</string>
+    <string name="bookmark_added">Segnalibro aggiunto</string>
+    <string name="bookmark_removed">Segnalibro rimosso</string>
+    <string name="undo">Annulla</string>
+    <string name="file_is_empty">Il file è vuoto</string>
+    <string name="install_remove">Installa e rimuovi</string>
+    <string name="loading">Caricamento…</string>
+
+</resources>

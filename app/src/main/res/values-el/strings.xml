@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Αποστολή</string>
+    <string name="menuSaveToSd">Αποθήκευση στην κάρτα SD</string>
+    <string name="xposed_not_active">Η τελευταία έκδοση του Xposed δεν είναι ενεργή προς το παρόν. Εγκαταστήσατε το Framework και επανεκκινήσατε;</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Μία αναβάθμιση για το Xposed Framework είναι διαθέσιμη.</string>
+
+    <!-- Navigation drawer items -->
+
+    <!-- Installer tab -->
+    <string name="install_update">Εγκατάσταση/Αναβάθμιση</string>
+    <string name="uninstall">Απεγκατάσταση</string>
+    <string name="soft_reboot">Soft reboot</string>
+    <string name="reboot">Reboot</string>
+    <string name="reboot_failed">To reboot απέτυχε. Παρακαλώ χρησιμοποιήστε την κανονική λειτουργία reboot της συσκευής σας.</string>
+    <string name="auto_flash_note">Το %s πρέπει να γίνει flash αυτόματα μόλις πατήσετε "OK".</string>
+    <string name="reboot_confirmation">Θέλετε να κάνετε reboot τώρα;</string>
+    <string name="install_warning_title">Προσοχή!</string>
+    <string name="install_warning">Σε μερικές περιπτώσεις η συσκευή σας μπορεί να μην ξεκινάει μετά την εγκατάσταση του Xposed.\n\nΑν δεν έχετε ακούσει ποτέ πριν για \"soft brick\" και \"bootloop\" ή αν δεν ξέρετε πώς να επαναφέρετε μια τέτοια κατάσταση, <b>ΜΗΝ</b> εγκαταστήσετε το Xposed!\n\nΣε αυτήν την περίπτωση, προτείνεται να έχετε ένα πρόσφατο backup.</string>
+    <string name="dont_show_again">Να μην ξαναεμφανιστεί</string>
+    <string name="install_known_issue">Φαίνεται να υπάρχει ένα πρόβλημα (\"%s\") με την ROM σας. Η εγκατάσταση του Xposed μπορεί να μην δουλέψει ή να οδηγήσει σε σοβαρά προβλήματα. Κάντε κλικ εδώ για λεπτομέρειες σχετικά με το πρόβλημα.</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Αποτυχία απόκτησης root access.\n\nΣιγουρέψτε ότι η συσκευή σας είναι rooted σωστά και δεν έχετε μπλοκάρει το τις εντολές shell.</string>
+    <string name="file_copying">Αντιγραφή %s&#8230;</string>
+    <string name="file_copy_failed">Αδυναμία αντιγραφής %1$s σε %2$s</string>
+    <string name="file_creating_directory">Δημιουργία directory %s&#8230;</string>
+    <string name="file_create_directory_failed">Αδυναμία δημιουργίας directory %s</string>
+    <string name="file_writing_recovery_command">Εγγραφή εντολής recovery&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Η εγγραφή της εντολής recovery απέτυχε. Παρακαλώ να χρησιμοποιήσετε μια εναλλακτική μέθοδο εγκατάστασης.</string>
+    <string name="file_done">Έτοιμο! Οι αλλαγές θα ενεργοποιηθούν στο επόμενο reboot.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Το Xposed module δεν έχει ενεργοποιηθεί ακόμα</string>
+    <string name="module_is_not_activated_yet_detailed">Το %s εγκαταστάθηκε, αλλά δεν έχει ενεργοποιηθεί ακόμα.</string>
+    <string name="activate_and_reboot">Ενεργοποίηση και reboot</string>
+    <string name="module_activated">Το Xposed module ενεργοποιήθηκε</string>
+    <string name="module_empty_description">(δεν υπάρχει περιγραφεί)</string>
+    <string name="module_no_ui">Αυτό το module δεν διαθέτει γραφικό περιβάλλον</string>
+    <string name="no_xposed_modules_found">Δεν βρέθηκαν Xposed modules!</string>
+    <string name="xposed_module_list_updated">Η λίστα των Xposed modules ανανεώθηκε\nΟι αλλαγές θα γίνουν ενεργές στο reboot</string>
+    <string name="xposed_module_updated_notification_title">Αναβάθμιση Xposed module</string>
+    <string name="xposed_module_updated_notification">Reboot για ενεργοποίηση ρυθμίσεων</string>
+    <string name="warning_xposed_min_version">Αυτό το module απαιτεί μία νεότερη έκδοση του Xposed (%d) και γι\' αυτό δεν μπορεί να ενεργοποιηθεί.</string>
+    <string name="no_min_version_specified">Αυτό το module δεν καθορίζει την έκδοση του Xposed που χρειάζεται.</string>
+    <string name="warning_min_version_too_low">Αυτό το module δημιουργήθηκε για την έκδοση %1$d του Xposed, αλλά λόγω ασύμβατων αλλαγών στην έκδοση %2$d, έχει απενεργοποιηθεί.</string>
+    <string name="module_launch">Launch UI</string>
+    <string name="module_download_updates">Κατέβασμα/Αναβαθμίσεις</string>
+    <string name="module_support">Υποστήριξη</string>
+    <string name="module_app_info">Πληροφορίες Εφαρμογής</string>
+    <string name="module_uninstall">Απεγκατάσταση</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Αναζήτηση</string>
+    <string name="menuReload">Ανανέωση</string>
+    <string name="changes">Αλλαγές:</string>
+    <string name="download_details_page_description">Περιγραφή</string>
+    <string name="download_details_page_versions">Εκδόσεις</string>
+    <string name="download_details_page_settings">Ρυθμίσεις</string>
+    <string name="reltype_stable">Σταθερή έκδοση</string>
+    <string name="reltype_stable_summary">Σταθερή έκδοση(χαμηλή πιθανότητα bugs)</string>
+    <string name="reltype_beta">Beta έκδοση</string>
+    <string name="reltype_beta_summary">Beta έκδοση (κάποια bugs αναμένονται)</string>
+    <string name="reltype_experimental">Δοκιμαστική έκδοση</string>
+    <string name="reltype_experimental_summary">Δοκιμαστική έκδοση (μεγάλη πιθανότητα bugs)</string>
+    <string name="reltype_use_global_summary">Ενεργοποίηση global ρυθμίσεων</string>
+    <string name="download_author">από %s</string>
+    <string name="download_unknown_author">άγνωστος δημιουργός</string>
+    <string name="download_status_installed">Εγκατεστημένη (έκδοση %s)</string>
+    <string name="download_status_update_available">Αναβάθμιση διαθέσιμη (έκδοση %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Προστέθηκε στις %1$s \u00b7 Αναβαθμίστηκε στις %2$s</string>
+    <string name="download_sorting_title">Σειρά ταξινόμησης</string>
+    <string name="download_sorting_status">Ταξινόμηση κατά κατάστασης</string>
+    <string name="download_sorting_updated">Ταξινόμηση κατά την τελευταία αναβάθμιση</string>
+    <string name="download_sorting_created">Ταξινόμηση κατά την ημερομηνία δημιουργίας</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Διαθέσιμη αναβάθμιση</string>
+    <string name="download_section_installed">Εγκατεστημένα</string>
+    <string name="download_section_not_installed">Όχι εγκατεστημένα</string>
+    <string name="download_section_24h">Τελευταίες 24 ώρες</string>
+    <string name="download_section_7d">Τελευταίες 7 μέρες</string>
+    <string name="download_section_30d">Τελευταίες 30 μέρες</string>
+    <string name="download_section_older">Περισσότερο από 30 μέρες πριν</string>
+    <string name="download_details_not_found">Δεν υπάρχει module με το όνομα πακέτου \"%s\" στο repository.</string>
+    <string name="download_no_versions">Ο δημιουργός δεν έχει ανεβάσει τίποτα.</string>
+    <string name="download_test_version_not_shown">Μία δοκιμαστική έκδοση είναι διαθέσιμη, ωστόσο δεν φαίνεται λόγω των global ή module-specific ρυθμίσεων.</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Κατέβασμα</string>
+    <string name="settings_release_type">Εμφάνιση εκδόσεων</string>
+    <string name="settings_group_experimental">Πειραματικό</string>
+    <string name="settings_disable_resources">Απενεργοποίηση resource hooks</string>
+    <string name="settings_disable_resources_summary">Χακεριά για συγκρούσεις με theming engines\n<b>ΠΡΟΣΟΧΗ:</b>Τα modules που προσπαθούν να αλλάξουν resources δεν θα δουλέψουν όταν αυτό είναι ενεργοποιημένο.</string>
+    <string name="settings_group_app">Εφαρμογή</string>
+    <string name="settings_theme">Θέμα</string>
+    <string name="settings_theme_light">Φωτεινό</string>
+    <string name="settings_theme_dark">Σκοτεινό</string>
+    <string name="settings_theme_black">Μαύρο (χρήσιμο για οθόνες AMOLED)</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Αδυναμία αποθήκευσης του αρχείου καταγραφής στην κάρτα SD:</string>
+    <string name="sdcard_not_writable">Η κάρτα SD δεν βρέθηκε ή δεν είναι εγγράψιμη</string>
+    <string name="menuClearLog">Ύπαρξη καθαρού log</string>
+    <string name="logs_cleared"> Επιτυχία καθαρισμού του log</string>
+    <string name="logs_clear_failed">Αδυναμία καθαρισμού του log</string>
+    <string name="log_is_empty"> Το log είναι άδειο</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Κύριοι developers:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">Μεταφραστής:</string>
+    <string name="translator">sirodoht</string>
+    <string name="about_version_label">Έκδοση αυτής την εφαρμογής:</string>
+    <string name="about_source_label">Source code:</string>
+    <string name="about_libraries_label">Χρησιμοποιηθέντες βιβλιοθήκες:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Κατέβασμα</string>
+    <string name="download_view_install">Εγκατάσταση</string>
+    <string name="download_view_cancel">Ακύρωση</string>
+    <string name="download_view_no_url">Δεν υπάρχει διαθέσιμος σύνδεσμος για κατέβασμα</string>
+    <string name="download_view_running">Το κατέβασμα είναι ενεργό (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">Το κατέβασμα είναι σε αναμονή</string>
+    <string name="download_view_successful">Επιτυχία κατεβάσματος</string>
+    <string name="download_view_failed">Αποτυχία κατεβάσματος (σφάλμα %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">Το MD5 sum είναι λανθασμένο (κατέβηκαν: %1$s, αναμένονταν: %2$s)</string>
+    <string name="download_could_not_read_file">Αδυναμία διαβάσματος του κατεβασμένου αρχείου: %s</string>
+    <string name="download_no_valid_apk">Το κατεβασμένο αρχείο δεν είναι ένα έγκυρο APK (ή ασύμβατο)</string>
+    <string name="download_incorrect_package_name">Το όνομα του πακέτου είναι λανθασμένο (κατέβηκαν: %1$s, αναμένονταν: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Το κατέβασμα %1$s απέτυχε: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Το κατέβασμα %1$s απέτυχε: %2$s</string>
+    <string name="repo_load_failed">Αδυναμία φόρτωσης αποθετηρίου (repository) από %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+
+</resources>

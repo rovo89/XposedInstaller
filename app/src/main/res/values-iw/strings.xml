@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">שלח</string>
+    <string name="menuSaveToSd">שמור לכרטיס זיכרון</string>
+    <string name="xposed_not_active">הגרסה האחרונה של Xposed לא פעילה כרגע. התקנת את הסביבה והפעלת מחדש?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">עדכון לסביבת Xposed זמין.</string>
+
+    <!-- Navigation drawer items -->
+
+    <!-- Installer tab -->
+    <string name="install_update">התקנה/עדכון</string>
+    <string name="uninstall">הסרה</string>
+    <string name="soft_reboot">הפעלה מחדש מהירה</string>
+    <string name="reboot">הפעלה מחדש</string>
+    <string name="reboot_failed">הפעלה מחדש נכשלה. בבקשה הפעילו מחדש את המכשיר בעצמכם.</string>
+    <string name="auto_flash_note">%s יצרב באופן אוטומטי לאחר לחיצה על "אישור".</string>
+    <string name="reboot_confirmation">האם להפעיל מחדש כעת?</string>
+    <string name="install_warning_title">היו זהירים!</string>
+    <string name="install_warning">במקרים מסויימים, המכשיר שלך עלול לא לעבוד לאחר התקנה של Xposed.\n\nאם מעולם לא שמעת על \"soft brick\" ו \"bootloop\" או שאתה לא יודע איך לצאת ממצב כזה, <b>אל</b> תתקין את Xposed!\n\nבכל מקרה, מומלץ שיהיה גיבוי עדכני.</string>
+    <string name="dont_show_again">אל תציג זאת שוב</string>
+    <string name="install_known_issue">נראה שיש בעיה ידועה (\"%s\") עם הרום שלך. התקנה של Xposed עלולה לא לעבוד או לגרום לבעיות. לחץ כאן לפרטים אודות הבעיה.</string>
+
+    <!-- File operations -->
+    <string name="root_failed">לא ניתן להשיג הרשאות רוט.\n\nבדקו שהמכשיר שלכם עבר תהליך רוט כראוי ושהוא לא חסום לפקודות shell.</string>
+    <string name="file_copying">מעתיק %s&#8230;</string>
+    <string name="file_copy_failed">Tלא ניתן להעתיק את %1$s ל %2$s</string>
+    <string name="file_creating_directory">יוצר תיקייה %s&#8230;</string>
+    <string name="file_create_directory_failed">לא ניתן ליצור תיקיה בשם %s</string>
+    <string name="file_writing_recovery_command">כותב לרקוברי פקודה &#8230;</string>
+    <string name="file_writing_recovery_command_failed">כתיבה לרקוברי נכשלה. השתמש בצורת התקנה שונה.</string>
+    <string name="file_done">הסתיים! השינויים יאופשרו בהפעלה מחדש.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">מודול עוד לא מופעל</string>
+    <string name="module_is_not_activated_yet_detailed">%s הותקן, אך עוד לא הופעל.</string>
+    <string name="activate_and_reboot">אפשר והפעל מחדש</string>
+    <string name="module_activated">מודול Xposed אופשר</string>
+    <string name="module_empty_description">(הסבר לא קיים)</string>
+    <string name="module_no_ui">מודול זה לא מספק ממשק משתמש</string>
+    <string name="no_xposed_modules_found">לא נמצאו מודולים!</string>
+    <string name="xposed_module_list_updated">רשימת המודולים עודכנה\nהשינויים יחולו לאחר הפעלה מחדש</string>
+    <string name="xposed_module_updated_notification_title">מודול Xposed עודכן</string>
+    <string name="xposed_module_updated_notification">הפעל מחדש בכדי לאפשר את השינויים</string>
+    <string name="warning_xposed_min_version">מודול זה דורש גרסה עדכנית יותר של סביבת Xposed (%d) ולכן לא ניתן להפעילו.</string>
+    <string name="no_min_version_specified">מודול זה אינו מספק את הגרסה של סביבת Xposed שהוא צריך.</string>
+    <string name="warning_min_version_too_low">מודול זה פותח עבור Xposed בגרסה %1$d, אבל בעקרבות שינויים בגרסה %2$d, הוא בוטל.</string>
+    <string name="module_launch">פתח ממשק</string>
+    <string name="module_download_updates">הורד/התקן</string>
+    <string name="module_support">תמיכה</string>
+    <string name="module_app_info">מידע על האפליקציה</string>
+    <string name="module_uninstall">הסרת התקנה</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">חיפוש</string>
+    <string name="menuReload">רענן</string>
+    <string name="changes">שינויים:</string>
+    <string name="download_details_page_description">תיאור</string>
+    <string name="download_details_page_versions">גרסאות</string>
+    <string name="download_details_page_settings">הגדרות</string>
+    <string name="reltype_stable">יציב</string>
+    <string name="reltype_stable_summary">יציב (סיכוי נמוך לבאגים)</string>
+    <string name="reltype_beta">בטא</string>
+    <string name="reltype_beta_summary">בטא (עלולים להיות כמה באגים)</string>
+    <string name="reltype_experimental">נסיוני</string>
+    <string name="reltype_experimental_summary">ניסיוני (סיכוי גבוה לבאגים)</string>
+    <string name="reltype_use_global_summary">השתמש בהגדרות גלובאליות</string>
+    <string name="download_author">על ידי %s</string>
+    <string name="download_unknown_author">מפתח לא ידוע</string>
+    <string name="download_status_installed">מותקן (גרסה %s)</string>
+    <string name="download_status_update_available">עדכון זמין (גרסה %1$s \u2190 %2$s)</string>
+    <string name="download_timestamps">נוסף ב %1$s \u00b7 עדוכן ב %2$s</string>
+    <string name="download_sorting_title">מיין לפי</string>
+    <string name="download_sorting_status">מיין לפי סטטוס</string>
+    <string name="download_sorting_updated">מיין לפי עדכון אחרון</string>
+    <string name="download_sorting_created">מיין לפי תאריך יצירה</string>
+    <string name="download_section_framework">סביבת</string>
+    <string name="download_section_update_available">עדכון זמין</string>
+    <string name="download_section_installed">מותקן</string>
+    <string name="download_section_not_installed">לא מותקן</string>
+    <string name="download_section_24h">24 שעות אחרונות</string>
+    <string name="download_section_7d">7 ימים אחרונים</string>
+    <string name="download_section_30d">30 ימים אחרונים</string>
+    <string name="download_section_older">לפני יותר מ30 ימים</string>
+    <string name="download_details_not_found">אין מודול עם שם החבילה \"%s\" במאגר.</string>
+    <string name="download_no_versions">הכותב לא העלה דבר.</string>
+    <string name="download_test_version_not_shown">גרסה ניסיונית זמינה, אך היא לא מופיעה בעקבות ההגדרות הגלובליות או של מודול ספציפי.</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">הורדות</string>
+    <string name="settings_release_type">הגרסה מוצגת</string>
+    <string name="settings_group_experimental">ניסיוני</string>
+    <string name="settings_disable_resources">מבטל את חיבור המשאבים (resources)</string>
+    <string name="settings_disable_resources_summary">פתרון לבעיות עם ערכות נושא <b>אזהרה:</b> מודולים שמנסים לשנות את המשאבים (resources) לא יעבדו!.</string>
+    <string name="settings_group_app">אפליקציה</string>
+    <string name="settings_theme">ערכת נושא</string>
+    <string name="settings_theme_light">בהיר</string>
+    <string name="settings_theme_dark">כהה</string>
+    <string name="settings_theme_black">שחור (שימושי למסכי אמולד)</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">לא ניתן לשמור את הלוג לכרטיס הזיכרון:</string>
+    <string name="sdcard_not_writable">כרטיס זיכרון לא נמצא, או לא ניתן לכתיבה</string>
+    <string name="menuClearLog">נקה את הלוג כעת</string>
+    <string name="logs_cleared">הלוג נוקה בהצלחה!</string>
+    <string name="logs_clear_failed">לא ניתן לנקות את הלוג:</string>
+    <string name="log_is_empty">הלוג ריק</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">מפתחים ראשיים:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> ו <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">מתרגם:</string>
+    <string name="translator">DubelBoom</string>
+    <string name="about_version_label">גרסה של אפליקצייה זו:</string>
+    <string name="about_source_label">קוד מקור:</string>
+    <string name="about_libraries_label">סיפריות בשימוש:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">הורד</string>
+    <string name="download_view_install">התקן</string>
+    <string name="download_view_cancel">ביטול</string>
+    <string name="download_view_no_url">לינק להורדה אינו זמין</string>
+    <string name="download_view_running">ההורדה מתבצעת (%1$,d מתוך %2$,d kB)</string>
+    <string name="download_view_waiting">ההורדה ממתינה</string>
+    <string name="download_view_successful">ההורדה הושלמה</string>
+    <string name="download_view_failed">ההורדה נכשלה (שגיאה %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 sum אינו תקין (הורד: %1$s, צופה: %2$s)</string>
+    <string name="download_could_not_read_file">לא ניתן לקרוא את הקובץ המורד: %s</string>
+    <string name="download_no_valid_apk">הקובץ שהורד אינו קובץ APK חוקי (או לא נתמך)</string>
+    <string name="download_incorrect_package_name">שם חבילה שגוי (הורד: %1$s, צופה: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">ההורדה של %1$s נכשלה: %2$d (%3$s)</string>
+    <string name="repo_download_failed">ההורדה של %1$s נכשלה: %2$s</string>
+    <string name="repo_load_failed">לא ניתן לטעון מאגר מיתוך %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+
+</resources>

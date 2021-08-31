@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Menghantar</string>
+    <string name="menuSaveToSd">Simpan Ke SD Kad</string>
+    <string name="xposed_not_active">Versi terkini Xposed masih tidak aktif. Adakah anda memasang Framework dan hidupkan semula?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Terdapat kemaskini terbaru Xposed Framework tersedia (%s).</string>
+
+    <!-- Navigation drawer items -->
+
+    <!-- Installer tab -->
+    <string name="install_update">Memasang/Kemaskini</string>
+    <string name="uninstall">Nyah Pasang</string>
+    <string name="soft_reboot">Hidup smula secara perlahan</string>
+    <string name="reboot">Hidupkan semula</string>
+    <string name="reboot_failed">Hidupkan semula gagal. Sila gunakan peranti\'s hidupkan smula secara biasa.</string>
+    <string name="auto_flash_note">%s Akan flash secara automatik jika anda menekan "OK".</string>
+    <string name="reboot_confirmation">Adakah anda mahu menghidupkan semula sekarang?</string>
+    <string name="install_warning_title">Berhati²!</string>
+    <string name="install_warning">Ada sesetengah kes, peranti anda mungkin tidak dapat hidupkan semula selepas memasang Xposed.\n\nJika anda tidak peduli mengenainya \"soft brick\" and \"bootloop\" sebelum anda lakukan dan\'tidak tahu bagaimana untuk pemulihan dari sebarang situasi, Jangan <b>Tidak</b> Memasang Xposed!\n\nada sesetengah kes, digalakkan anda membuat sandaran.</string>
+    <string name="dont_show_again">Jangan\' tunjukkan ini lagi</string>
+    <string name="install_known_issue">Dimana kelihatan sebarang isu(\"%s\") dengan ROM anda. Pemasangan Xposed mungkin tidak berfungsi atau mengalami masalah atau sedikit gangguan. Klik disini untuk penjelasan mengenai isu.</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Gagal untuk mendapat kebenaran root.\n\nPastikan peranti anda telah di\'root secara sempurna dan anda tidak menghalang shell commands.</string>
+    <string name="file_copying">Menyalin %s&#8230;</string>
+    <string name="file_copy_failed">Tidak boleh menyalin %1$s ke %2$s</string>
+    <string name="file_creating_directory">Mencipta direktori %s&#8230;</string>
+    <string name="file_create_directory_failed">Tidak boleh mencipta direktori %s</string>
+    <string name="file_writing_recovery_command">Menulis command pemulihan&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Menulis command pemulihan gagal. Sila gunakan cara lain untuk memasang alat.</string>
+    <string name="file_done">Selesai! Perubahan akan aktif selepas dihidupkan semula.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed modul tidak diaktifkan lagi</string>
+    <string name="module_is_not_activated_yet_detailed">%s telah dipasang, tetapi tidak aktif lagi.</string>
+    <string name="activate_and_reboot">Aktif dan hidupkan semula</string>
+    <string name="module_activated">Xposed modul telah diaktifkan</string>
+    <string name="module_empty_description">(Tidak ada senarai disediakan)</string>
+    <string name="module_no_ui">Modul ini tidak menyediakan paparan pemuka pengguna</string>
+    <string name="no_xposed_modules_found">Xposed modul tidak ditemui!</string>
+    <string name="xposed_module_list_updated">Senarai Xposed modul telah dikemaskini\nPenukaran akan aktif selepas dihidupkan semula</string>
+    <string name="xposed_module_updated_notification_title">Xposed modul dikemaskini</string>
+    <string name="xposed_module_updated_notification">Hidupkan semula untuk diaktifkan perubahan</string>
+    <string name="warning_xposed_min_version">Modul ini memerlukan Xposed versi terbaru (%d) sebab itu tidak dapat diaktifkan.</string>
+    <string name="no_min_version_specified">Modul seperti tidak sesuai dengan Xposed versi yg dikehendaki.</string>
+    <string name="warning_min_version_too_low">Modul ini dibuat untuk Xposed versi %1$d, tetapi disebabkan tidak sesuai kepada perubahan mengikut versi %2$d, maka telah dimatikan.</string>
+    <string name="module_launch">Lancarkan UI</string>
+    <string name="module_download_updates">Muat Turun/Kemaskini</string>
+    <string name="module_support">Bantuan</string>
+    <string name="module_app_info">App info</string>
+    <string name="module_uninstall">Nyah Pasang</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Cari</string>
+    <string name="menuReload">Mengisi</string>
+    <string name="changes">Tukar:</string>
+    <string name="download_details_page_description">Senarai</string>
+    <string name="download_details_page_versions">Versi</string>
+    <string name="download_details_page_settings">Tetapan</string>
+    <string name="reltype_stable">Stabil</string>
+    <string name="reltype_stable_summary">Stabil(risiko bug rendah)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta(sesetengah bug dikesan)</string>
+    <string name="reltype_experimental">Pengujian</string>
+    <string name="reltype_experimental_summary">Pengujian(risiko bugs tinggi)</string>
+    <string name="reltype_use_global_summary">Gunakan tetapan global</string>
+    <string name="download_author">Oleh %s</string>
+    <string name="download_unknown_author">Tidak tahu pemilik</string>
+    <string name="download_status_installed">Telah Dipasang (versi %s)</string>
+    <string name="download_status_update_available">Terdapat kemaskini (versi %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Ditambah pada %1$s \u00b7 Kemaskini pada %2$s</string>
+    <string name="download_sorting_title">Susunan singkatanr</string>
+    <string name="download_sorting_status">Susun mengikut status</string>
+    <string name="download_sorting_updated">Susun mengikut kemaskini terakhir</string>
+    <string name="download_sorting_created">Susun mengikut tarikh cipta</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Terdapat kemaskini</string>
+    <string name="download_section_installed">Telah dipasang</string>
+    <string name="download_section_not_installed">Tidak dipasang</string>
+    <string name="download_section_24h">24 jam lepas</string>
+    <string name="download_section_7d">7 hari lepas</string>
+    <string name="download_section_30d">30 hari lepas</string>
+    <string name="download_section_older">Lebih daripada 30 hari lepas</string>
+    <string name="download_details_not_found">Tidak ada modul dengan nama package \"%s\" didalam repositori.</string>
+    <string name="download_no_versions">Pemilik tidak\' memuat naik apa² lagi.</string>
+    <string name="download_test_version_not_shown">Terdapat versi percubaan, walau bagaimana itu tidak\' ditunjukkan memandangkan masalah global atau tetapan modul-specific.</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Muat turun</string>
+    <string name="settings_release_type">Versi akan dipaparkan</string>
+    <string name="settings_group_experimental">Pengujian</string>
+    <string name="settings_disable_resources">Matikan resource hooks</string>
+    <string name="settings_disable_resources_summary">Melihat sekeliling untuk konflik dengan enjin tema\n<b>AMARAN:</b> Yang mana Modul yg cuba ditukar resources tidak akan berfungsi jika ini dihidupkan.</string>
+    <string name="settings_group_app">Aplikasi</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Cerah</string>
+    <string name="settings_theme_dark">Gelap</string>
+    <string name="settings_theme_black">Hitam (sesuai untuk AMOLED screens)</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Log tidak boleh tulis ke SD kad:</string>
+    <string name="sdcard_not_writable">SD Kad tak ditemui atau tidak boleh ditulis</string>
+    <string name="menuClearLog">Bersihkan log sekarang</string>
+    <string name="logs_cleared">Log berjaya dibersihkan</string>
+    <string name="logs_clear_failed">Log tidak boleh bersihkan:</string>
+    <string name="log_is_empty">Log kosong</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Main developers:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">Penterjemah:</string>
+    <string name="translator"></string>
+    <string name="about_version_label">Versi aplikasi ini:</string>
+    <string name="about_source_label">Source Kod:</string>
+    <string name="about_libraries_label">Pustaka digunakan:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Muat Turun</string>
+    <string name="download_view_install">Pasang</string>
+    <string name="download_view_cancel">Batal</string>
+    <string name="download_view_no_url">Tidak ada URL muat turun tersedia</string>
+    <string name="download_view_running">Muat turun sedang berjalan (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">Muat turun sedang menunggu</string>
+    <string name="download_view_successful">Muat turun berjaya</string>
+    <string name="download_view_failed">Muat turun gagal (error %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 sum ada betul (muat turun: %1$s, berbaki: %2$s)</string>
+    <string name="download_could_not_read_file">Tidak boleh baca file yg dimuat turun: %s</string>
+    <string name="download_no_valid_apk">File yg dimuat turun tidak sah APK (atau tidak sesuai)</string>
+    <string name="download_incorrect_package_name">Nama package tidak betul (muat turun: %1$s, berbaki: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Muat turun %1$s gagal: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Muat turun %1$s gagal: %2$s</string>
+    <string name="repo_load_failed">Tidak boleh mengisi repositor daripada %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+
+</resources>

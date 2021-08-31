@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bookmarks"
+        android:icon="@drawable/ic_bookmark"
+        android:title="@string/bookmarks"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/export"
+        android:title="@string/export_"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/export_enabled_modules"
+                android:title="@string/export_enabled_modules"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/export_installed_modules"
+                android:title="@string/export_installed_modules"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/import_"
+        android:title="@string/import_"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/import_enabled_modules"
+                android:title="@string/import_enabled_modules"
+                app:showAsAction="never"/>
+            <item
+                android:id="@+id/import_installed_modules"
+                android:title="@string/import_installed_modules"
+                app:showAsAction="never"/>
+        </menu>
+    </item>
+
+</menu>

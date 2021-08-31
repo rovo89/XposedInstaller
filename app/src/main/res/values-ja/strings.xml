@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">送信</string>
+    <string name="menuSaveToSd">SDカードに保存</string>
+    <string name="xposed_not_active">最新版のXposedが動作していません。フレームワークをインストールして再起動しましたか？</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Xposedフレームワークの更新があります。 （%s）</string>
+    <string name="modules_updates_available">モジュールの更新があります</string>
+
+    <!-- Navigation drawer items -->
+    <string name="nav_item_install">フレームワーク</string>
+    <string name="nav_item_modules">モジュール</string>
+    <string name="nav_item_download">ダウンロード</string>
+    <string name="nav_item_settings">設定</string>
+    <string name="nav_item_support">サポート</string>
+    <string name="nav_item_logs">ログ</string>
+    <string name="nav_item_about">情報</string>
+    <string name="navigation_drawer_open">ナビゲーションドロワーを開く</string>
+    <string name="navigation_drawer_close">ナビゲーションドロワーを閉じる</string>
+
+    <!-- Installer tab -->
+    <string name="install_update">インストール/更新</string>
+    <string name="uninstall">アンインストール</string>
+    <string name="soft_reboot">ソフトリブート</string>
+    <string name="reboot">再起動</string>
+    <string name="reboot_recovery">リカバリーで再起動</string>
+    <string name="reboot_failed">再起動できませんでした。端末の通常の再起動の機能を使用してください。</string>
+    <string name="auto_flash_note">%sは「OK」を押すと自動的にインストールされます。</string>
+    <string name="reboot_confirmation">今すぐ再起動しますか？</string>
+    <string name="install_warning_title">注意！</string>
+    <string name="install_warning">Xposedをインストールした後、場合によっては起動しなくなることがあります。\n\n 「仮文鎮」や「ブートループ」を知らない場合やその状態からの復旧方法を理解していないのであれば、Xposedをインストール<b>しないでください</b>。\n\nいずれにせよ、現在のバックアップを取ることを強く推奨します。</string>
+    <string name="dont_show_again">次回から表示しない</string>
+    <string name="install_known_issue">お使いのROMには既知の問題（%s）があるようです。Xposedをインストールしても動作しなかったり、重大な問題が起こる可能性があります。ここをタップすると、その問題についての詳細を表示します。</string>
+    <string name="framework_active">Xposedフレームワークバージョン%sが有効になっています。</string>
+    <string name="framework_not_active">バージョン%sのXposedフレームワークがインストールされていますが、有効になっていません。ログで詳細を確認してください。</string>
+    <string name="framework_not_installed">Xposedフレームワークはインストールされていません。</string>
+
+    <!-- File operations -->
+    <string name="root_failed">ルートアクセスを取得できませんでした。\n\n端末が正しくルート化されているか、シェルコマンドをブロックしていないかを確認してください。</string>
+    <string name="file_copying">%sをコピー中&#8230;</string>
+    <string name="file_copy_failed">%1$sを%2$sにコピーできませんでした</string>
+    <string name="file_creating_directory">ディレクトリ%sを作成中&#8230;</string>
+    <string name="file_create_directory_failed">ディレクトリ%sを作成できませんでした</string>
+    <string name="file_writing_recovery_command">リカバリーコマンドを書き込み中&#8230;</string>
+    <string name="file_writing_recovery_command_failed">リカバリーコマンドを書き込むことができませんでした。他のインストール方法を使用してください。</string>
+    <string name="file_done">完了しました。再起動してください。</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposedモジュールがまだ有効化されていません</string>
+    <string name="module_is_not_activated_yet_detailed">%sがインストールされましたが、まだ有効化されていません。</string>
+    <string name="activate_and_reboot">有効化して再起動</string>
+    <string name="module_activated">Xposedモジュールが有効化されました。</string>
+    <string name="module_empty_description">（説明はありません）</string>
+    <string name="module_no_ui">このモジュールにはUIがありません</string>
+    <string name="no_xposed_modules_found">Xposedモジュールがありません。</string>
+    <string name="xposed_module_list_updated">Xposedモジュールが更新されました。\n変更は再起動後に反映されます。</string>
+    <string name="xposed_module_updated_notification_title">Xposedモジュールが更新されました</string>
+    <string name="xposed_module_updated_notification">変更を有効化するには再起動してください。</string>
+    <string name="warning_xposed_min_version">このモジュールは新しいバージョンのXposed （%d）が必要なので有効化できません。</string>
+    <string name="no_min_version_specified">このモジュールは必要なXposedバージョンを指定していません。</string>
+    <string name="warning_min_version_too_low">このモジュールはXposedバージョン%1$d向けに作成されましたが、 バージョン%2$dとは互換性がないので無効化されました。</string>
+    <string name="module_launch">UIを起動</string>
+    <string name="module_download_updates">ダウンロード/更新</string>
+    <string name="module_support">サポート</string>
+    <string name="module_app_info">アプリ情報</string>
+    <string name="module_uninstall">アンインストール</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">検索</string>
+    <string name="menuReload">更新</string>
+    <string name="changes">変更点:</string>
+    <string name="download_details_page_description">説明</string>
+    <string name="download_details_page_versions">バージョン</string>
+    <string name="download_details_page_settings">設定</string>
+    <string name="reltype_stable">安定版</string>
+    <string name="reltype_stable_summary">安定版（バグのリスクが低い）</string>
+    <string name="reltype_beta">ベータ版</string>
+    <string name="reltype_beta_summary">ベータ版（多少のバグが予想される）</string>
+    <string name="reltype_experimental">実験的</string>
+    <string name="reltype_experimental_summary">実験的（バグのリスクが高い）</string>
+    <string name="reltype_use_global_summary">グローバル設定を使用</string>
+    <string name="download_author">開発者: %s</string>
+    <string name="download_unknown_author">開発者不明</string>
+    <string name="download_status_installed">インストール済み（バージョン%s）</string>
+    <string name="download_status_update_available">更新があります（バージョン%1$s \u2192 %2$s）</string>
+    <string name="download_timestamps">%1$sに追加 %2$sに更新</string>
+    <string name="download_sorting_title">並べ替え</string>
+    <string name="download_sorting_status">状態</string>
+    <string name="download_sorting_updated">最終更新日</string>
+    <string name="download_sorting_created">作成日</string>
+    <string name="download_section_framework">フレームワーク</string>
+    <string name="download_section_update_available">更新があります</string>
+    <string name="download_section_installed">インストール済み</string>
+    <string name="download_section_not_installed">未インストール</string>
+    <string name="download_section_24h">24時間以内</string>
+    <string name="download_section_7d">7日以内</string>
+    <string name="download_section_30d">30日以内</string>
+    <string name="download_section_older">30日以上前</string>
+    <string name="download_details_not_found">「%s」というパッケージ名のモジュールはレポジトリに存在しません。</string>
+    <string name="download_no_versions">開発者がまだモジュールを公開していません。</string>
+    <string name="download_test_version_not_shown">テストバージョンがありますが、グローバル設定やモジュールごとの設定によって表示されていません。</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">ダウンロード</string>
+    <string name="settings_release_type">表示するバージョン</string>
+    <string name="settings_group_experimental">実験的</string>
+    <string name="settings_disable_resources">リソースフックを無効化</string>
+    <string name="settings_disable_resources_summary">テーマエンジンとの競合を回避します。\n<b>警告:</b> このオプションを有効化すると、リソースをフックするモジュールが動作しなくなります。</string>
+    <string name="settings_group_app">アプリ</string>
+    <string name="settings_theme">テーマ</string>
+    <string name="settings_theme_light">ライト</string>
+    <string name="settings_theme_dark">ダーク</string>
+    <string name="settings_theme_black">ブラック（AMOLED向け）</string>
+    <string name="settings_default_view">デフォルトのビュー</string>
+    <string name="chrome_custom_tabs">Chromeカスタムタブ</string>
+    <string name="chrome_custom_tabs_summ">リンクを内蔵ブラウザで開きます</string>
+    <string name="notify_module_update">モジュールの更新通知を有効化</string>
+
+    <!-- Support tab -->
+    <string name="support_modules_label">モジュールのサポート</string>
+    <string name="support_modules_description">モジュールリストでモジュールを長押しして「%1$s」を選択してください。</string>
+    <string name="support_framework_label">フレームワーク/インストールのサポート</string>
+    <string name="support_faq_label">よくある質問/既知の問題</string>
+    <string name="support_donate_label">寄付</string>
+    <string name="support_donate_description">Xposedに対してお礼をしたければ、ここからrovo89に寄付ができます</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">SDカードにログを書き込めませんでした:</string>
+    <string name="sdcard_not_writable">SDカードが無いか、書き込み可能ではありません</string>
+    <string name="menuClearLog">ログを消去</string>
+    <string name="logs_cleared">ログを消去しました。</string>
+    <string name="logs_clear_failed">ログを消去できませんでした:</string>
+    <string name="log_is_empty">ログはありません</string>
+    <string name="scroll_top">トップにスクロール</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">メイン開発者</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a>、<a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>、<a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a>（バグ修正、マテリアルデザイン）</string>
+    <string name="about_translator_label">翻訳</string>
+    <string name="translator"><a href="https://androplus.org/">WedyDQ10</a>、<a href="https://plus.google.com/117105706198436527101">BLACK</a></string>
+    <string name="about_version_label">アプリバージョン</string>
+    <string name="about_source_label">ソースコード</string>
+    <string name="about_libraries_label">使用ライブラリ</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">ダウンロード</string>
+    <string name="download_view_install">インストール</string>
+    <string name="download_view_cancel">キャンセル</string>
+    <string name="download_view_no_url">利用可能なダウンロードURLがありません</string>
+    <string name="download_view_running">ダウンロード中（%1$,d/%2$,dkB）</string>
+    <string name="download_view_waiting">ダウンロード待機中</string>
+    <string name="download_view_successful">ダウンロードが完了しました</string>
+    <string name="download_view_failed">ダウンロードできませんでした（エラー%d）</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5チェックサムが一致しません（ダウンロード: %1$s、期待値: %2$s）</string>
+    <string name="download_could_not_read_file">ダウンロードしたファイルが読み込めませんでした: %s</string>
+    <string name="download_no_valid_apk">ダウンロードしたファイルが有効なAPKファイルでないか、互換性がありません</string>
+    <string name="download_incorrect_package_name">パッケージ名が一致しません（ダウンロード: %1$s、期待値: %2$s）</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">%1$sがダウンロードできませんでした: %2$d（%3$s）</string>
+    <string name="repo_download_failed">%1$sがダウンロードできませんでした: %2$s</string>
+    <string name="repo_load_failed">%1$sからレポジトリをロードできませんでした\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+    <string name="warning_installed_on_external_storage">このモジュールはSDカードにインストールされているため、読み込めませんでした。内部ストレージに移動してください。</string>
+    <string name="view">表示</string>
+    <string name="export_">エクスポート</string>
+    <string name="import_">インポート</string>
+    <string name="export_enabled_modules">有効になっているモジュールのリストをエクスポート</string>
+    <string name="import_enabled_modules">有効になっていたモジュールのリストをインポート</string>
+    <string name="export_installed_modules">インストールされているモジュールのリストをエクスポート</string>
+    <string name="import_installed_modules">インストールされていたモジュールのリストをインポート</string>
+    <string name="no_installed_modules">インストールされているモジュールがありません</string>
+    <string name="no_backup_found">バックアップが見つかりません</string>
+    <string name="no_enabled_modules">有効になっているモジュールがありません</string>
+    <string name="share">共有方法</string>
+    <string name="permissionNotGranted">この機能は外部ストレージへの書き込み権限がないと動作しません。</string>
+    <string name="add_bookmark">ブックマークを追加</string>
+    <string name="remove_bookmark">ブックマークを削除</string>
+    <string name="bookmarks">ブックマーク</string>
+    <string name="no_bookmark_added">ブックマークが追加されていません</string>
+    <string name="bookmark_added">ブックマークを追加しました</string>
+    <string name="bookmark_removed">ブックマークを削除しました</string>
+    <string name="undo">元に戻す</string>
+    <string name="file_is_empty">ファイルは空です</string>
+    <string name="install_remove">インストールして削除</string>
+    <string name="loading">読み込み中…</string>
+
+</resources>

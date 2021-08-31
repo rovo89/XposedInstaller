@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">发送</string>
+    <string name="menuSaveToSd">保存到 SD 卡</string>
+    <string name="xposed_not_active">最新版 Xposed 当前未激活。您是否已安装框架并重启？</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Xposed 框架有更新可用（%s）。</string>
+    <string name="modules_updates_available">有模块可更新</string>
+
+    <!-- Navigation drawer items -->
+    <string name="nav_item_install">框架</string>
+    <string name="nav_item_modules">模块</string>
+    <string name="nav_item_download">下载</string>
+    <string name="nav_item_settings">设置</string>
+    <string name="nav_item_support">支持</string>
+    <string name="nav_item_logs">日志</string>
+    <string name="nav_item_about">关于</string>
+    <string name="navigation_drawer_open">打开导航抽屉</string>
+    <string name="navigation_drawer_close">关闭导航抽屉</string>
+
+    <!-- Installer tab -->
+    <string name="install_update">安装/更新</string>
+    <string name="uninstall">卸载</string>
+    <string name="soft_reboot">软重启</string>
+    <string name="reboot">重启设备</string>
+    <string name="reboot_recovery">重启设备至恢复模式</string>
+    <string name="reboot_failed">重启设备失败。请使用设备的标准重启功能。</string>
+    <string name="auto_flash_note">当你按下 OK 后，%s 将会被自动刷入设备。</string>
+    <string name="reboot_confirmation">您现在要重启设备吗？</string>
+    <string name="install_warning_title">小心！</string>
+    <string name="dont_show_again">不要再显示这个</string>
+    <string name="install_known_issue">Xposed 与您的 ROM 似乎存在已知的问题（“%s”）。安装 Xposed 可能无法工作或引发严重问题。点击此处获知问题详情。</string>
+    <string name="framework_active">Xposed 框架 %s 版已激活。</string>
+    <string name="framework_not_active">Xposed 框架 %s 版已安装，但未激活。请检查日志的详细信息。</string>
+    <string name="framework_not_installed">Xposed 框架未安装。</string>
+
+    <!-- File operations -->
+    <string name="file_copying">正在复制 %s…</string>
+    <string name="file_copy_failed">无法将 %1$s 复制到 %2$s</string>
+    <string name="file_creating_directory">正在创建目录 %s…</string>
+    <string name="file_create_directory_failed">无法创建目录 %s</string>
+    <string name="file_writing_recovery_command">正在写入恢复模式命令…</string>
+    <string name="file_writing_recovery_command_failed">写入恢复模式命令失败。请换一种安装方式。</string>
+    <string name="file_done">完成！更改将于重启设备之后生效。</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed 模块未激活</string>
+    <string name="module_is_not_activated_yet_detailed">%s 已安装，但尚未激活。</string>
+    <string name="activate_and_reboot">激活并重启设备</string>
+    <string name="module_activated">Xposed 模块已激活</string>
+    <string name="module_empty_description">（未提供描述）</string>
+    <string name="module_no_ui">该模块未提供用户界面</string>
+    <string name="no_xposed_modules_found">未找到 Xposed 模块！</string>
+    <string name="xposed_module_updated_notification_title">Xposed 模块已更新</string>
+    <string name="xposed_module_updated_notification">重启设备以激活更新。</string>
+    <string name="warning_xposed_min_version">该模块需要 Xposed 新版（%d），因此无法激活。</string>
+    <string name="no_min_version_specified">该模块未指定需要的 Xposed 版本。</string>
+    <string name="warning_min_version_too_low">该模块在 Xposed %1$d 版下创建，但因为不兼容 %2$d 版中的更改，它已被禁用。</string>
+    <string name="module_launch">开启用户界面</string>
+    <string name="module_download_updates">下载/更新</string>
+    <string name="module_support">支持</string>
+    <string name="module_app_info">应用信息</string>
+    <string name="module_uninstall">卸载</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">搜索</string>
+    <string name="menuReload">重新载入</string>
+    <string name="changes">更改：</string>
+    <string name="download_details_page_description">描述</string>
+    <string name="download_details_page_versions">版本</string>
+    <string name="download_details_page_settings">设定</string>
+    <string name="reltype_stable">稳定版</string>
+    <string name="reltype_stable_summary">稳定版（低故障率）</string>
+    <string name="reltype_beta">测试版</string>
+    <string name="reltype_beta_summary">测试版（预计存在一些问题）</string>
+    <string name="reltype_experimental">实验版</string>
+    <string name="reltype_experimental_summary">实验版（高故障率）</string>
+    <string name="reltype_use_global_summary">使用全局设置</string>
+    <string name="download_author">作者：%s</string>
+    <string name="download_unknown_author">未知作者</string>
+    <string name="download_status_installed">已安装（版本 %s）</string>
+    <string name="download_status_update_available">有更新（版本 %1$s → %2$s）</string>
+    <string name="download_timestamps">添加于 %1$s · 更新于 %2$s</string>
+    <string name="download_sorting_title">排序方式</string>
+    <string name="download_sorting_status">按状态排序</string>
+    <string name="download_sorting_updated">按最后更新排序</string>
+    <string name="download_sorting_created">按创建日期排序</string>
+    <string name="download_section_framework">框架</string>
+    <string name="download_section_update_available">有更新</string>
+    <string name="download_section_installed">已安装</string>
+    <string name="download_section_not_installed">未安装</string>
+    <string name="download_section_24h">最近 24 小时</string>
+    <string name="download_section_7d">最近 7 天</string>
+    <string name="download_section_30d">最近 30 天</string>
+    <string name="download_section_older">超过 30 天前</string>
+    <string name="download_details_not_found">无法在仓库中找到包名为“%s”的模块。</string>
+    <string name="download_no_versions">作者还没有上传任何版本。</string>
+    <string name="download_test_version_not_shown">有新的测试版可用，但根据您的全局或模块特定设置，未显示。</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">下载</string>
+    <string name="settings_release_type">将显示的版本</string>
+    <string name="settings_group_experimental">实验性</string>
+    <string name="settings_disable_resources">禁用资源钩子</string>
+    <string name="settings_group_app">应用</string>
+    <string name="settings_theme">主题</string>
+    <string name="settings_theme_light">亮色</string>
+    <string name="settings_theme_dark">暗色</string>
+    <string name="settings_theme_black">黑色（对 AMOLED 屏幕有益）</string>
+    <string name="settings_default_view">默认视图</string>
+    <string name="chrome_custom_tabs">Chrome 自定义标签</string>
+    <string name="chrome_custom_tabs_summ">在内置浏览器中打开链接</string>
+    <string name="notify_module_update">启用模块更新通知</string>
+
+    <!-- Support tab -->
+    <string name="support_modules_label">模块支持</string>
+    <string name="support_modules_description">在模块列表中长按任何模块并选择“%1$s”</string>
+    <string name="support_framework_label">框架/安装器支持</string>
+    <string name="support_faq_label">常见问题/已知问题</string>
+    <string name="support_donate_label">捐赠</string>
+    <string name="support_donate_description">如果您想感谢 Xposed 作者，可以在此向 rovo89 捐赠</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">无法将日志写入 SD 卡：</string>
+    <string name="sdcard_not_writable">SD 卡未找到或不可写入</string>
+    <string name="menuClearLog">立刻清理日志</string>
+    <string name="logs_cleared">日志清理成功</string>
+    <string name="logs_clear_failed">无法清理日志：</string>
+    <string name="log_is_empty">日志为空</string>
+    <string name="scroll_top">滚动页面至顶部</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">主要开发者</string>
+    <string name="about_translator_label">翻译</string>
+    <string name="translator">Phantom</string>
+    <string name="about_version_label">版本</string>
+    <string name="about_source_label">源码</string>
+    <string name="about_libraries_label">使用的库文件</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">下载</string>
+    <string name="download_view_install">安装</string>
+    <string name="download_view_cancel">取消</string>
+    <string name="download_view_no_url">无下载地址可用</string>
+    <string name="download_view_running">正在下载（%1$,d / %2$,d kB）</string>
+    <string name="download_view_waiting">下载等待中</string>
+    <string name="download_view_successful">下载成功</string>
+    <string name="download_view_failed">下载失败（错误 %d）</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 校验码错误（下载项：%1$s，预期：%2$s）</string>
+    <string name="download_could_not_read_file">无法读取下载文件：%s</string>
+    <string name="download_no_valid_apk">下载的文件不是有效的 APK（或不兼容）</string>
+    <string name="download_incorrect_package_name">包名错误（下载项：%1$s，预期：%2$s）</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">下载 %1$s 失败：%2$d（%3$s）</string>
+    <string name="repo_download_failed">下载 %1$s 失败：%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+    <string name="warning_installed_on_external_storage">该模块不能载入，因为它安装在 SD 卡上，请将它移至内部存储。</string>
+    <string name="view">视图</string>
+    <string name="export_">导出…</string>
+    <string name="import_">导入…</string>
+    <string name="export_enabled_modules">导出已启用模块列表</string>
+    <string name="import_enabled_modules">导入已启用模块列表</string>
+    <string name="export_installed_modules">导出已安装模块列表</string>
+    <string name="import_installed_modules">导入已安装模块列表</string>
+    <string name="no_installed_modules">未安装任何模块</string>
+    <string name="no_backup_found">未找到备份</string>
+    <string name="no_enabled_modules">未启用任何模块</string>
+    <string name="share">分享</string>
+    <string name="permissionNotGranted">没有写入外部存储权限该功能将不能工作。</string>
+    <string name="add_bookmark">添加书签</string>
+    <string name="remove_bookmark">移除书签</string>
+    <string name="bookmarks">书签</string>
+    <string name="no_bookmark_added">未添加书签</string>
+    <string name="bookmark_added">书签已添加</string>
+    <string name="bookmark_removed">书签已移除</string>
+    <string name="undo">撤销</string>
+    <string name="file_is_empty">文件为空</string>
+    <string name="install_remove">安装和移除</string>
+    <string name="loading">载入中…</string>
+
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-cache-path name="downloads" path="downloads"/>
+    <root-path name="log_legacy" path="/data/data/de.robv.android.xposed.installer/log" />
+    <root-path name="log" path="/data/user_de/0/de.robv.android.xposed.installer/log" />
+</paths>

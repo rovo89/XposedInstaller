@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Изпрати</string>
+    <string name="menuSaveToSd">Запиши в SD картата</string>
+    <string name="xposed_not_active">Последната версия на Xposed не е активна. Инсталирахте ли Framework и рестартирахте ли?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Налично е обновление за Xposed Framework (%s).</string>
+
+    <!-- Navigation drawer items -->
+
+    <!-- Installer tab -->
+    <string name="install_update">Инсталирай/Обнови</string>
+    <string name="uninstall">Премахни</string>
+    <string name="soft_reboot">Софт рестарт</string>
+    <string name="reboot">Рестарт</string>
+    <string name="reboot_failed">Рестартирането не е възможно. Моля използвайте нормалната функция за рестартиране на устройството.</string>
+    <string name="auto_flash_note">%s ще бъде flash-нат автоматично след като натиснете "OK".</string>
+    <string name="reboot_confirmation">Да рестартирам ли сега?</string>
+    <string name="install_warning_title">Бъдете внимателни!</string>
+    <string name="install_warning">В някои случаи е възможно, след инсталиране на Xposed вашето устройство да не стартира.\n\nАко никога не сте чували за \"soft brick\" и \"bootloop\" или ако незнаете как да възстановите устройството в такава ситуация, <b>НЕ</b> инсталирайте Xposed!\n\nВъв всеки случай се препоръчва да имате скорошно резервно копие.</string>
+    <string name="dont_show_again">Не показвай отново</string>
+    <string name="install_known_issue">Изглежда, че съществува известен проблем (\"%s\") с Вашия ROM. Инсталирането на Xposed може да не работи или да доведе до някои проблеми. Натиснете тук за повече информация относно този проблем.</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Няма root достъп.\n\nУбедете се, че устройството Ви е root-нато и не сте блокирали shell командите.</string>
+    <string name="file_copying">Копиране %s&#8230;</string>
+    <string name="file_copy_failed">Не може да се копира %1$s в %2$s</string>
+    <string name="file_creating_directory">Създаване на папка %s&#8230;</string>
+    <string name="file_create_directory_failed">Не може да се създаде папка %s</string>
+    <string name="file_writing_recovery_command">Запис на команда за възстановяване&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Не може да се запише команда за възстановяване. Моля използвайте друг метод за инсталация.</string>
+    <string name="file_done">Готово! Промените ще се активират след рестарт.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Модула за Xposed не е активиран</string>
+    <string name="module_is_not_activated_yet_detailed">%s беше инсталиран, но все още не е активиран.</string>
+    <string name="activate_and_reboot">Активирай и рестартирай</string>
+    <string name="module_activated">Xposed модула е активиран</string>
+    <string name="module_empty_description">(няма описание)</string>
+    <string name="module_no_ui">Този модул няма потребителски интерфейс</string>
+    <string name="no_xposed_modules_found">Не са намерени модули за Xposed!</string>
+    <string name="xposed_module_list_updated">Списъка с Xposed модули е обновен\nПромените ще бъдат активни след рестарт</string>
+    <string name="xposed_module_updated_notification_title">Обновен е Xposed модул</string>
+    <string name="xposed_module_updated_notification">Рестартирай за прилагана на промените</string>
+    <string name="warning_xposed_min_version">Този модул изисква най-новият Xposed версия (%d) и не може да се активира.</string>
+    <string name="no_min_version_specified">Този модул не указва нужната версия на Xposed.</string>
+    <string name="warning_min_version_too_low">Този модул е създаден за Xposed версия %1$d, но поради несъвместимост с версия %2$d, е изключен.</string>
+    <string name="module_launch">Стартирай UI</string>
+    <string name="module_download_updates">Изтегляне/Обновяване</string>
+    <string name="module_support">Поддръжка</string>
+    <string name="module_app_info">Информация</string>
+    <string name="module_uninstall">Премахни</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Търси</string>
+    <string name="menuReload">Презареди</string>
+    <string name="changes">Промени:</string>
+    <string name="download_details_page_description">Описание</string>
+    <string name="download_details_page_versions">Версии</string>
+    <string name="download_details_page_settings">Настройки</string>
+    <string name="reltype_stable">Стабилна</string>
+    <string name="reltype_stable_summary">Стабилна (малък риск за грешки)</string>
+    <string name="reltype_beta">Бета</string>
+    <string name="reltype_beta_summary">Бета (очакват се някои грешки)</string>
+    <string name="reltype_experimental">Експериментална</string>
+    <string name="reltype_experimental_summary">Експериментална (висок риск за грешки)</string>
+    <string name="reltype_use_global_summary">Използвай глобална настройка</string>
+    <string name="download_author">от %s</string>
+    <string name="download_unknown_author">неизвестен автор</string>
+    <string name="download_status_installed">Инсталиран (версия %s)</string>
+    <string name="download_status_update_available">Налично обновление (версия %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Добавен на %1$s \u00b7 Обновен на %2$s</string>
+    <string name="download_sorting_title">Подреждане</string>
+    <string name="download_sorting_status">Подреди по статус</string>
+    <string name="download_sorting_updated">Подреди по последно обновление</string>
+    <string name="download_sorting_created">Подреди по дата на създаване</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Налично обновление</string>
+    <string name="download_section_installed">Инсталирани</string>
+    <string name="download_section_not_installed">Не са инсталирани</string>
+    <string name="download_section_24h">Преди 24 часа</string>
+    <string name="download_section_7d">Преди 7 дни</string>
+    <string name="download_section_30d">Преди 30 дни</string>
+    <string name="download_section_older">Преди повече от 30 дни</string>
+    <string name="download_details_not_found">В хранилището не съществува модул с име на пакета \"%s\".</string>
+    <string name="download_no_versions">Авторът все още не е качил нищо.</string>
+    <string name="download_test_version_not_shown">Налична е тестова версия, но тя не се показва поради Вашите специфични настройки.</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Изтегляне</string>
+    <string name="settings_release_type">Показвай версии</string>
+    <string name="settings_group_experimental">Експериментално</string>
+    <string name="settings_disable_resources">Изключевно прихващане на ресурси</string>
+    <string name="settings_disable_resources_summary">Решаване на конфликти с темите\n<b>ВНИМАНИЕ:</b> Модули които се опитват да променят ресурсите няма да работят.</string>
+    <string name="settings_group_app">Приложение</string>
+    <string name="settings_theme">Тема</string>
+    <string name="settings_theme_light">Светла</string>
+    <string name="settings_theme_dark">Тъмна</string>
+    <string name="settings_theme_black">Черна (за AMOLED екрани)</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Дневника не може да се запише на SD картата:</string>
+    <string name="sdcard_not_writable">SD картата не съществува, или не е за запис</string>
+    <string name="menuClearLog">Изчисти дневника</string>
+    <string name="logs_cleared">Дневника е изчистен успешно</string>
+    <string name="logs_clear_failed">Дневника неможе да се изчисти:</string>
+    <string name="log_is_empty">Дневника е празен</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Разработчици:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> и <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">Преводач:</string>
+    <string name="translator">mamutcho</string>
+    <string name="about_version_label">Версия:</string>
+    <string name="about_source_label">Изходен код:</string>
+    <string name="about_libraries_label">Използвани библиотеки:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Изтегли</string>
+    <string name="download_view_install">Инсталирай</string>
+    <string name="download_view_cancel">Отказ</string>
+    <string name="download_view_no_url">Няма наличен URL за изтегляне</string>
+    <string name="download_view_running">Изтегляне (%1$,d от %2$,d kB)</string>
+    <string name="download_view_waiting">Подготовка за изтегляне</string>
+    <string name="download_view_successful">Успешно изтегляне</string>
+    <string name="download_view_failed">Неуспешно изтеглен (грешка %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">Некоректна MD5 сума (изтеглени: %1$s, очаквани: %2$s)</string>
+    <string name="download_could_not_read_file">Не може да се зареди изтегления файл: %s</string>
+    <string name="download_no_valid_apk">Изтегления файл не е валидно приложение (или е несъвместино)</string>
+    <string name="download_incorrect_package_name">Името на пакета е грешно (изтеглени: %1$s, очаквани: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Изтеглянето на %1$s е неуспешно: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Изтеглянето на %1$s е неуспешно: %2$s</string>
+    <string name="repo_load_failed">Не може да се зареди хранилището от %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+
+</resources>

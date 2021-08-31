@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Gửi</string>
+    <string name="menuSaveToSd">Lưu vào thẻ SD</string>
+    <string name="xposed_not_active">Phiên bản mới nhất của Xposed chưa hoạt động. Bạn đã cài Framework và khởi động lại chưa?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Đã có bản mới cho Framework của Xposed (%s).</string>
+
+    <!-- Navigation drawer items -->
+
+    <!-- Installer tab -->
+    <string name="install_update">Cài đặt/Cập nhật</string>
+    <string name="uninstall">Gỡ cài đặt</string>
+    <string name="soft_reboot">Khởi động lại mềm</string>
+    <string name="reboot">Khởi động lại</string>
+    <string name="reboot_failed">Không thể khởi động lại. Vui lòng sử dụng chức năng khởi động lại của thiết bị.</string>
+    <string name="auto_flash_note">%s sẽ được cài đặt tự động khi bạn bấm "OK".</string>
+    <string name="reboot_confirmation">Bạn có muốn khởi động lại không?</string>
+    <string name="install_warning_title">Hãy cẩn thận!</string>
+    <string name="install_warning">Trong một số trường hợp, thiết bị của bạn có thể không khởi động được sau khi cài Xposed.\n\nNếu bạn chưa từng nghe nói về \"soft brick\" và \"bootloop\" hoặc nếu bạn không biết cách xử lý trong tình huống đó, thì <b>ĐỪNG</b> cài Xposed!\n\nDù thế nào, bạn cũng nên có một bản sao lưu mới.</string>
+    <string name="dont_show_again">Đừng hiện lại nữa</string>
+    <string name="install_known_issue">Bản ROM của bạn đã được thông báo là gặp truc trặc (\"%s\") với Xposed. Ứng dụng có thể không hoạt động hoặc gặp lỗi nghiêm trọng. Hãy bấm vào đây để xem chi tiết vấn đề.</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Không thể lấy quyền root.\n\nHãy đảm bảo rằng thiết bị của bạn đã root và bạn không chặn các lệnh shell.</string>
+    <string name="file_copying">Đang chép %s&#8230;</string>
+    <string name="file_copy_failed">Không thể chép %1$s vào %2$s</string>
+    <string name="file_creating_directory">Đang tạo thư mục %s&#8230;</string>
+    <string name="file_create_directory_failed">Không thể tạo thư mục %s</string>
+    <string name="file_writing_recovery_command">Đang viết lệnh cho recovery&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Không thể viết lệnh cho recovery. Hãy dùng cách khác để cài.</string>
+    <string name="file_done">Xong! Các thay đổi sẽ có hiệu lực khi khởi động lại thiết bị.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Module chưa bật</string>
+    <string name="module_is_not_activated_yet_detailed">%s đã được cài, nhưng chưa được kích hoạt.</string>
+    <string name="activate_and_reboot">Kích hoạt và khởi động lại</string>
+    <string name="module_activated">Module của Xposed đã được kích hoạt</string>
+    <string name="module_empty_description">(không có phần miêu tả)</string>
+    <string name="module_no_ui">Module này không có giao diện</string>
+    <string name="no_xposed_modules_found">Không tìm thấy module nào!</string>
+    <string name="xposed_module_list_updated">Danh sách module đã được cập nhật\nCác thay đổi sẽ có hiệu lực sau khi khởi động lại</string>
+    <string name="xposed_module_updated_notification_title">Module của Xposed đã được cập nhật</string>
+    <string name="xposed_module_updated_notification">Khởi động lại để áp dụng ác thay đổi</string>
+    <string name="warning_xposed_min_version">Module này cần bản Xposed mới (%d) nên hiện tại không thể bật.</string>
+    <string name="no_min_version_specified">Module này không yêu cầu cụ thể phiên bản Xposed nào.</string>
+    <string name="warning_min_version_too_low">Module này được viết cho Xposed bản %1$d, nhưng do không tương thích với các thay đổi trong bản %2$d, nên đã bị tắt.</string>
+    <string name="module_launch">Mở giao diện</string>
+    <string name="module_download_updates">Tải xuống/Cập nhật</string>
+    <string name="module_support">Hỗ trợ</string>
+    <string name="module_app_info">Thông tin ứng dụng</string>
+    <string name="module_uninstall">Gỡ cài đặt</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Tìm kiếm</string>
+    <string name="menuReload">Tải lại</string>
+    <string name="changes">Các thay đổi:</string>
+    <string name="download_details_page_description">Miêu tả</string>
+    <string name="download_details_page_versions">Phiên bản</string>
+    <string name="download_details_page_settings">Thiết lập</string>
+    <string name="reltype_stable">Ổn định</string>
+    <string name="reltype_stable_summary">Ổn định (ít khả năng lỗi)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (có thể chứa lỗi)</string>
+    <string name="reltype_experimental">Thử nghiệm</string>
+    <string name="reltype_experimental_summary">Thử nghiệm (nhiều khả năng lỗi)</string>
+    <string name="reltype_use_global_summary">Dùng thiết lập chung</string>
+    <string name="download_author">bởi %s</string>
+    <string name="download_unknown_author">không rõ tác giả</string>
+    <string name="download_status_installed">Đã cài (bản %s)</string>
+    <string name="download_status_update_available">Có bản mới (bản %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Đưa lên ngày %1$s \u00b7 Cập nhật ngày %2$s</string>
+    <string name="download_sorting_title">Thứ tự sắp xếp</string>
+    <string name="download_sorting_status">Theo trạng thái</string>
+    <string name="download_sorting_updated">Theo cập nhật mới nhất</string>
+    <string name="download_sorting_created">Theo ngày đưa lên</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Có bản mới</string>
+    <string name="download_section_installed">Đã cài</string>
+    <string name="download_section_not_installed">Chưa cài</string>
+    <string name="download_section_24h">24 giờ trước</string>
+    <string name="download_section_7d">7 ngày trước</string>
+    <string name="download_section_30d">30 ngày trước</string>
+    <string name="download_section_older">Hơn 30 ngày trước</string>
+    <string name="download_details_not_found">Không có module nào mang tên \"%s\" trong kho lưu trữ.</string>
+    <string name="download_no_versions">Tác giả chưa tải gì lên.</string>
+    <string name="download_test_version_not_shown">Có bản cập nhật beta, nhưng không được hiển thị do thiết lập chung hoặc riêng từng module của bạn..</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Tải xuống</string>
+    <string name="settings_release_type">Phiên bản được hiển thị</string>
+    <string name="settings_group_experimental">Thử nghiệm</string>
+    <string name="settings_disable_resources">Ngắt các kết nối tài nguyên</string>
+    <string name="settings_disable_resources_summary">Tránh xung đột với các máy giao diện\n<b>CẢNH BÁO:</b> Các module cần thay đổi tài nguyên sẽ không hoạt động khi bật tính năng này.</string>
+    <string name="settings_group_app">Ứng dụng</string>
+    <string name="settings_theme">Kiểu giao diện</string>
+    <string name="settings_theme_light">Sáng</string>
+    <string name="settings_theme_dark">Tối</string>
+    <string name="settings_theme_black">Đen (phù hợp với màn hình AMOLED)</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Không thể ghi nhật ký vào thẻ SD:</string>
+    <string name="sdcard_not_writable">Không tìm thấy thẻ SD hoặc thẻ không ghi lên được</string>
+    <string name="menuClearLog">Xoá nhật ký</string>
+    <string name="logs_cleared">Đã xoá nhật ký</string>
+    <string name="logs_clear_failed">Không thể xoá nhật ký:</string>
+    <string name="log_is_empty">Nhật ký trống</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Các tác giả chính:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> và <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">Người dịch:</string>
+    <string name="translator">Alienz</string>
+    <string name="about_version_label">Phiên bản của ứng dụng:</string>
+    <string name="about_source_label">Mã nguồn:</string>
+    <string name="about_libraries_label">Sử dụng các thư viện:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Tải xuống</string>
+    <string name="download_view_install">Cài đặt</string>
+    <string name="download_view_cancel">Bỏ</string>
+    <string name="download_view_no_url">Không có link tải xuống nào</string>
+    <string name="download_view_running">Đang tải xuống (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">Đang đợi tải xuống</string>
+    <string name="download_view_successful">Tải xuống thành công</string>
+    <string name="download_view_failed">Tải xuống không thành công (lỗi %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">Sai mã MD5 (đã tải: %1$s, cần tải: %2$s)</string>
+    <string name="download_could_not_read_file">Không thể đọc tập tin đã tải: %s</string>
+    <string name="download_no_valid_apk">Tập tin đã tải không phải là một APK hợp lệ (hoặc không tương thích)</string>
+    <string name="download_incorrect_package_name">Sai tên gói (đã tải: %1$s, cần tải: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Tải xuống %1$s không thành công: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Tải xuống %1$s không thành công: %2$s</string>
+    <string name="repo_load_failed">Không thể tải kho module từ %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+
+</resources>

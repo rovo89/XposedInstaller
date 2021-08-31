@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Küldés</string>
+    <string name="menuSaveToSd">SD kártyára mentés</string>
+    <string name="xposed_not_active">Az Xposed legfrissebb verziója jelenleg nem aktív. Telepítetted a keretrendszert és újraindítottad az eszközt?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Frissítés elérhető az Xposed keretrendszerhez (%s).</string>
+
+    <!-- Navigation drawer items -->
+
+    <!-- Installer tab -->
+    <string name="install_update">Telepítés/Frissítés</string>
+    <string name="uninstall">Eltávolítás</string>
+    <string name="soft_reboot">Gyors újraindítás</string>
+    <string name="reboot">Újraindítás</string>
+    <string name="reboot_failed">Újraindítás sikertelen. Kérlek használd az eszköz rendes újraindítási funkcióját.</string>
+    <string name="auto_flash_note">%s automatikusan flashelve lesz amint megnyomod az "OK"-ot.</string>
+    <string name="reboot_confirmation">Újra akarsz indítani most?</string>
+    <string name="install_warning_title">Légy óvatos!</string>
+    <string name="install_warning">Néhány esetben az eszközöd talán nem fog bootolni az Xposed telepítése után. Ha sosem hallottál a \"soft brick\"-ről vagy a \"bootloop\"-ról vagy ha nem tudod, hogyan térj vissza egy ilyen helyzetből, <b>NE</b> telepítsd az Xposed-ot. Egy friss mentés megléte erősen ajánlott minden esetben.</string>
+    <string name="dont_show_again">Ne mutasd még egyszer</string>
+    <string name="install_known_issue">Úgy tűnik ismert probléma (\"%s\") van a telepített ROM-mal. Az Xposed telepítése nem működhet vagy súlyos problémákhoz vezethet. Kattints ide a probléma részleteiért.</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Rendszergazda jogok kérése sikertelen.\n\nEllenőrizd, hogy az eszközöd megfelelően van-e rootolva és nincsenek-e blokkolva a shell parancsok.</string>
+    <string name="file_copying">Másolás %s&#8230;</string>
+    <string name="file_copy_failed">Nem sikerült a másolás: %1$s -> %2$s</string>
+    <string name="file_creating_directory">Könyvtár készítése %s&#8230;</string>
+    <string name="file_create_directory_failed">Nem sikerült elkészíteni a %s könyvtárat</string>
+    <string name="file_writing_recovery_command">Recovery parancs írása&#8230;</string>
+    <string name="file_writing_recovery_command_failed">A recovery parancs írása nem sikerült. Kérlek használj egy másik telepítési módszert.</string>
+    <string name="file_done">Kész! A változtatások újraindítás után fognak életbe lépni.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Az Xposed modul még nincs aktiválva</string>
+    <string name="module_is_not_activated_yet_detailed">%s telepítve lett, de még nincs aktiválva.</string>
+    <string name="activate_and_reboot">Aktiválás és újraindítás</string>
+    <string name="module_activated">Az Xposed modul aktiválva lett</string>
+    <string name="module_empty_description">(nincs leírás)</string>
+    <string name="module_no_ui">A modulnak nincs felhasználói felülete</string>
+    <string name="no_xposed_modules_found">Nem található Xposed modul!</string>
+    <string name="xposed_module_list_updated">Az Xposed modul lista frissült\nA változtatások újraindítás után lépnek életbe</string>
+    <string name="xposed_module_updated_notification_title">Xposed modul frissítve</string>
+    <string name="xposed_module_updated_notification">Újraindítás a változtatások aktiválásához</string>
+    <string name="warning_xposed_min_version">A modulhoz frissebb Xposed verzió (%d) szükséges, ezért nem aktiválható.</string>
+    <string name="no_min_version_specified">A modul nem tünteti fel a szükséges Xposed verziót.</string>
+    <string name="warning_min_version_too_low">Ez a modul a(z) %1$d verziójú Xposed-hoz lett készítve, de a(z) %2$d verzió összeférhetetlen változtatásai miatt le lett tiltva.</string>
+    <string name="module_launch">UI megnyitása</string>
+    <string name="module_download_updates">Letöltés/Frissítések</string>
+    <string name="module_support">Támogatás</string>
+    <string name="module_app_info">Alkalmazásinformáció</string>
+    <string name="module_uninstall">Eltávolítás</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Keresés</string>
+    <string name="menuReload">Újratöltés</string>
+    <string name="changes">Változások:</string>
+    <string name="download_details_page_description">Leírás</string>
+    <string name="download_details_page_versions">Verziók</string>
+    <string name="download_details_page_settings">Beállítások</string>
+    <string name="reltype_stable">Stabil</string>
+    <string name="reltype_stable_summary">Stabil (hibák kis eséllyel)</string>
+    <string name="reltype_beta">Béta</string>
+    <string name="reltype_beta_summary">Béta (néhány hiba várható)</string>
+    <string name="reltype_experimental">Kísérleti</string>
+    <string name="reltype_experimental_summary">Kísérleti (hibák nagy eséllyel)</string>
+    <string name="reltype_use_global_summary">Globális beállítások használata</string>
+    <string name="download_author">%s-tól</string>
+    <string name="download_unknown_author">ismeretlen készítő</string>
+    <string name="download_status_installed">Telepítve (verzió %s)</string>
+    <string name="download_status_update_available">Frissítés elérhető (verzió %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Hozzáadva: %1$s \u00b7 Frissítve: %2$s</string>
+    <string name="download_sorting_title">Rendezés</string>
+    <string name="download_sorting_status">Rendezés állapot szerint</string>
+    <string name="download_sorting_updated">Rendezés legutolsó frissítés szerint</string>
+    <string name="download_sorting_created">Rendezés készítés ideje szerint</string>
+    <string name="download_section_framework">Keretrendszer</string>
+    <string name="download_section_update_available">Frissítés elérhető</string>
+    <string name="download_section_installed">Telepítve</string>
+    <string name="download_section_not_installed">Nincs telepítve</string>
+    <string name="download_section_24h">Elmúlt 24 órában</string>
+    <string name="download_section_7d">Elmúlt 7 napban</string>
+    <string name="download_section_30d">Elmúlt 30 napban</string>
+    <string name="download_section_older">Több, mint 30 napja</string>
+    <string name="download_details_not_found">Nincs ilyen csomagnevű (\"%s\") modul a gyűjteményben.</string>
+    <string name="download_no_versions">A készítő nem tötött fel még semmit.</string>
+    <string name="download_test_version_not_shown">Egy teszt verzió elérhető, de nincs megjelenítve a globális vagy modul-specifikus beállításaid miatt.</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Letöltések</string>
+    <string name="settings_release_type">Megjelenítendő verziók</string>
+    <string name="settings_group_experimental">Kísérlet</string>
+    <string name="settings_disable_resources">"Resource hook"-ok letiltva</string>
+    <string name="settings_disable_resources_summary">Megoldás a témamotorokkal való konfliktusokra.\n<b>FIGYELEM:</b> A resource-okat módosítani próbáló modulok nem fognak működni, ha ez engedélyezve van.</string>
+    <string name="settings_group_app">Alkalmazás</string>
+    <string name="settings_theme">Téma</string>
+    <string name="settings_theme_light">Világos</string>
+    <string name="settings_theme_dark">Sötét</string>
+    <string name="settings_theme_black">Fekete (AMOLED képernyőkön hasznos)</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Nem lehetett a naplót az SD kártyára írni:</string>
+    <string name="sdcard_not_writable">SD kártya nem található vagy nem írható</string>
+    <string name="menuClearLog">Napló ürítése most</string>
+    <string name="logs_cleared">Napló sikeresen ürítve</string>
+    <string name="logs_clear_failed">Nem lehetett üríteni a naplót:</string>
+    <string name="log_is_empty">A napló üres</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Fő fejlesztők:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> és <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">Fordító:</string>
+    <string name="translator"><a href="http://forum.xda-developers.com/member.php?u=4719724">Adam77Root</a></string>
+    <string name="about_version_label">Alkalmazás verziója:</string>
+    <string name="about_source_label">Forráskód:</string>
+    <string name="about_libraries_label">Használt könyvtárak:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Letöltés</string>
+    <string name="download_view_install">Telepítés</string>
+    <string name="download_view_cancel">Mégse</string>
+    <string name="download_view_no_url">Nincs elérhető letöltési URL</string>
+    <string name="download_view_running">Letöltés folyamatban (%1$,d a %2$,d kB-ból)</string>
+    <string name="download_view_waiting">Letöltés várakozik</string>
+    <string name="download_view_successful">Sikeres letöltés</string>
+    <string name="download_view_failed">Sikertelen letöltés (hiba: %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">Hibás MD5 ellenőrzöösszeg (letöltött: %1$s, várt: %2$s)</string>
+    <string name="download_could_not_read_file">A letöltött fájlt nem lehetett olvasni: %s</string>
+    <string name="download_no_valid_apk">A letöltött fájl nem érvényes APK (vagy nem kompatibilis)</string>
+    <string name="download_incorrect_package_name">A csomag neve hibás: (letöltött: %1$s, várt: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">%1$s letöltése sikertelen: %2$d (%3$s)</string>
+    <string name="repo_download_failed">%1$s letöltése sikertelen: %2$s</string>
+    <string name="repo_load_failed">Nem lehet betölteni a gyűjteményt %1$s-ról:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+
+</resources>

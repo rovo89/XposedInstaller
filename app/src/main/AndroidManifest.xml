@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="de.robv.android.xposed.installer"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+
+    <application
+        android:name=".XposedApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.XposedInstaller.Light">
+        <activity
+            android:name=".WelcomeActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DownloadDetailsActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:theme="@style/Theme.XposedInstaller.Transparent">
+            <intent-filter>
+                <action android:name="de.robv.android.xposed.installer.DOWNLOAD_DETAILS"/>
+
+                <data android:scheme="package"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <data
+                    android:host="repo.xposed.info"
+                    android:pathPrefix="/module/"
+                    android:scheme="http"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:theme="@style/Theme.XposedInstaller.Transparent"/>
+        <activity
+            android:name=".SupportActivity"
+            android:theme="@style/Theme.XposedInstaller.Transparent"/>
+        <activity
+            android:name=".AboutActivity"
+            android:theme="@style/Theme.XposedInstaller.Transparent"/>
+        <activity
+            android:name=".ModulesBookmark"
+            android:theme="@style/Theme.XposedInstaller.Transparent"/>
+        <activity
+            android:name=".installation.InstallationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.XposedInstaller.Transparent"/>
+
+        <receiver
+            android:name=".receivers.PackageChangeReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+                <action android:name="android.intent.action.PACKAGE_CHANGED"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receivers.DownloadReceiver"
+            android:exported="true"
+            android:permission="android.permission.SEND_DOWNLOAD_COMPLETED_INTENTS">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".util.NotificationUtil$RebootReceiver"
+            android:exported="false"/>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="de.robv.android.xposed.installer.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+
+    </application>
+
+</manifest>

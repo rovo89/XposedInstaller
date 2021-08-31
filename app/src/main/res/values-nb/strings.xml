@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Send</string>
+    <string name="menuSaveToSd">Lagre på SD-kort</string>
+    <string name="xposed_not_active">Den siste versjonen av Xposed er ikke aktiv. Installerte du og restartet enheten?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">En oppdatering for Xposed Framework er tilgjengelig (%s).</string>
+
+    <!-- Navigation drawer items -->
+
+    <!-- Installer tab -->
+    <string name="install_update">Installer/Oppdater</string>
+    <string name="uninstall">Avinstaller</string>
+    <string name="soft_reboot">Soft restart</string>
+    <string name="reboot">Restart</string>
+    <string name="reboot_failed">Restart failet. Vennligst bruk enhetens normale restartfunksjon.</string>
+    <string name="auto_flash_note">%s skal normalt flashes automatisk når du trykker "OK".</string>
+    <string name="reboot_confirmation">Ønsker du å restarte nå?</string>
+    <string name="install_warning_title">Vær forsiktig!</string>
+    <string name="install_warning">I noen tilfeller så vil ikke enheten din starte etter at du har installert Xposed..\n\nHvis du aldri har hørt om \"soft brick\" og \"bootloop\" før, eller om du ikke vet hvordan du kommer deg ut fra en slik situasjon, <b>IKKE</b> installer Xposed!\n\nI de fleste tilfeller så er en backup høyt anbefalt å ha liggende.</string>
+    <string name="dont_show_again">Ikke vis dette igjen</string>
+    <string name="install_known_issue">Det ser ut til at det er et kjent problem (\"%s\") med ROMen din. Installering av Xposed vil muligens ikke virke, eller føre til alvorlige problemer. Klikk her for flere detaljer om problemet.</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Klarte ikke å få root-tilgang.\n\nSørg for at enheten din er rootet riktig og at du ikke har blokkert shell-kommandoer.</string>
+    <string name="file_copying">Kopierer %s&#8230;</string>
+    <string name="file_copy_failed">Kunne ikke kopiere %1$s til %2$s</string>
+    <string name="file_creating_directory">Oppretter filbane %s&#8230;</string>
+    <string name="file_create_directory_failed">Kunne ikke opprette filbane %s</string>
+    <string name="file_writing_recovery_command">Skriver recovery-kommando&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Skriving av recovery-kommando failet. Vennligst bruk en annen installasjonsmetode.</string>
+    <string name="file_done">Ferdig! Endringer vil bli aktive etter restart.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed modul er ikke aktivert enda</string>
+    <string name="module_is_not_activated_yet_detailed">%s har blitt installert, men er ikke aktivert enda.</string>
+    <string name="activate_and_reboot">Aktiver og restart</string>
+    <string name="module_activated">Xposed-modul har blitt aktivert</string>
+    <string name="module_empty_description">(ingen beskrivelse er gitt)</string>
+    <string name="module_no_ui">Denne modulen gir ikke et brukergrensesnitt</string>
+    <string name="no_xposed_modules_found">Ingen Xposed moduler ble funnet!</string>
+    <string name="xposed_module_list_updated">Xposed modul-liste var oppdatert\nEndringer vil bli aktivert etter restart</string>
+    <string name="xposed_module_updated_notification_title">Xposed-modul er blitt oppdatert</string>
+    <string name="xposed_module_updated_notification">Restart for å aktivere endringene</string>
+    <string name="warning_xposed_min_version">Denne modulen krever en nyere versjon av Xposed (%d) og kan dermed ikke aktiveres.</string>
+    <string name="no_min_version_specified">Denne modulen spesifiserer ikke hvilken versjon av Xposed den krever.</string>
+    <string name="warning_min_version_too_low">Denne modulen var laget for Xposed versjon %1$d, men grunnet uforenlige endringer i versjon %2$d, er den blitt deaktivert.</string>
+    <string name="module_launch">Kjør UI</string>
+    <string name="module_download_updates">Last ned/Oppdateringer</string>
+    <string name="module_support">Støtte</string>
+    <string name="module_app_info">App info</string>
+    <string name="module_uninstall">Avinstaller</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Søk</string>
+    <string name="menuReload">Oppdater</string>
+    <string name="changes">Endringer:</string>
+    <string name="download_details_page_description">Beskrivelse</string>
+    <string name="download_details_page_versions">Versjoner</string>
+    <string name="download_details_page_settings">Innstillinger</string>
+    <string name="reltype_stable">Stabil</string>
+    <string name="reltype_stable_summary">Stabil (lav risiko for feil)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (Noe feil er forventet)</string>
+    <string name="reltype_experimental">Eksperimentell</string>
+    <string name="reltype_experimental_summary">Eksperimentell (høy risiko for feil)</string>
+    <string name="reltype_use_global_summary">Bruk global innstilling</string>
+    <string name="download_author">av %s</string>
+    <string name="download_unknown_author">ukjent utvikler</string>
+    <string name="download_status_installed">Installert (versjon %s)</string>
+    <string name="download_status_update_available">Oppdatering tilgjengelig (versjon %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Lagt til %1$s \u00b7 Oppdatert %2$s</string>
+    <string name="download_sorting_title">Sorteringsrekkefølge</string>
+    <string name="download_sorting_status">Sorter etter status</string>
+    <string name="download_sorting_updated">Sorter etter siste oppdatering</string>
+    <string name="download_sorting_created">Sorter etter opprettelsesdato</string>
+    <string name="download_section_framework">Rammeverk</string>
+    <string name="download_section_update_available">Oppdatering tilgjengelig</string>
+    <string name="download_section_installed">Installert</string>
+    <string name="download_section_not_installed">Ikke installert</string>
+    <string name="download_section_24h">Siste 24 timene</string>
+    <string name="download_section_7d">Siste 7 dagene</string>
+    <string name="download_section_30d">Siste 30 dagene</string>
+    <string name="download_section_older">Mer enn 30 dager siden</string>
+    <string name="download_details_not_found">Det finnes ingen modul med dette pakkenavnet \"%s\" i pakkebrønnen.</string>
+    <string name="download_no_versions">Utvikleren har ikke lastet opp noe enda.</string>
+    <string name="download_test_version_not_shown">En testversjon er tilgjengelig, men den blir ikke vist på grunn av dine globale eller modul-spesifikke innstillinger.</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Last ned</string>
+    <string name="settings_release_type">Versjoner som skal vises</string>
+    <string name="settings_group_experimental">Eksperimentell</string>
+    <string name="settings_disable_resources">Deaktiver ressurshooks</string>
+    <string name="settings_disable_resources_summary">Løsning på konflikter med temamotorer\n<b>ADVARSEL:</b> Moduler som prøver å endre ressurser vil ikke fungere når dette er deaktivert.</string>
+    <string name="settings_group_app">Applikasjon</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Lys</string>
+    <string name="settings_theme_dark">Mørk</string>
+    <string name="settings_theme_black">Svart (nyttig for AMOLED-skjermer)</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Kunne ikke skrive logg til SD-kort:</string>
+    <string name="sdcard_not_writable">SD-kort ikke funnet eller ikke skrivbar</string>
+    <string name="menuClearLog">Fjern logg nå</string>
+    <string name="logs_cleared">Logg fjernet suksessfult</string>
+    <string name="logs_clear_failed">Kunne ikke fjerne loggen:</string>
+    <string name="log_is_empty">Logg er tom</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Hovedutvikler:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">Oversetter:</string>
+    <string name="translator">LordManhattan, rosaage</string>
+    <string name="about_version_label">Versjon av appen:</string>
+    <string name="about_source_label">Kildekode:</string>
+    <string name="about_libraries_label">Brukte bibliotek:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Last ned</string>
+    <string name="download_view_install">Installer</string>
+    <string name="download_view_cancel">Avbryt</string>
+    <string name="download_view_no_url">Ingen nedlastings-URL tilgjengelig</string>
+    <string name="download_view_running">Nedlasting kjører (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">Nedlasting venter</string>
+    <string name="download_view_successful">Nedlasting ferdig</string>
+    <string name="download_view_failed">Nedlasting feilet (feil %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 sum er feil (lastet ned: %1$s, forventet: %2$s)</string>
+    <string name="download_could_not_read_file">Kunne ikke lese nedlastet fil: %s</string>
+    <string name="download_no_valid_apk">Nedlastet fil er ikke en gyldig APK (eller ikke kompatibel)</string>
+    <string name="download_incorrect_package_name">Pakkenavn er feil  (lastet ned: %1$s, forventet: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Laster ned %1$s feilet: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Laster ned %1$s feilet: %2$s</string>
+    <string name="repo_load_failed">Kan ikke laste inn pakkebrønn fra %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+
+</resources>

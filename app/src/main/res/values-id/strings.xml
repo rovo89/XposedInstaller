@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Update tersedia.</string>
+
+    <!-- Navigation drawer items -->
+
+    <!-- Installer tab -->
+    <string name="install_update">Install/Update</string>
+    <string name="uninstall">Hapus</string>
+    <string name="soft_reboot">Reboot cepat</string>
+    <string name="reboot">Reboot</string>
+
+    <!-- File operations -->
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Modul Xposed belum diaktifkan</string>
+    <string name="module_empty_description">(tidak ada deskripsi)</string>
+    <string name="module_no_ui">Modul ini tidak ada tampilan utama</string>
+    <string name="no_xposed_modules_found">Tidak ada modul Xposed detemukan!</string>
+    <string name="xposed_module_list_updated">Daftar modul telah diupdate\nAkan aktif setelah reboot.</string>
+    <string name="warning_xposed_min_version">Modul ini membutuhkan Xposed yang lebih baru (%d) dan tidak dapat diaktifkan.</string>
+    <string name="no_min_version_specified">Modul ini tidak memberitahukan versi Xposed yang dibutuhkan.</string>
+    <string name="warning_min_version_too_low">Modul ini dibuat untuk Xposed versi %1$d, tetapi karena ketidakcocoknya di versi %2$d, maka modul dimatikan.</string>
+    <string name="module_launch">Buka UI</string>
+    <string name="module_download_updates">Unduhan/Update</string>
+    <string name="module_support">Dukungan</string>
+    <string name="module_app_info">Informasi Aplikasi</string>
+    <string name="module_uninstall">Hapus</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Cari</string>
+    <string name="menuReload">Reload</string>
+    <string name="changes">Perubahan:</string>
+    <string name="download_author">oleh %s</string>
+    <string name="download_unknown_author">pembuat tdk diketahui</string>
+    <string name="download_status_installed">Terinstall (versi %s)</string>
+    <string name="download_status_update_available">Update tersedia (versi %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Ditambahkan pada %1$s \u00b7 Diupdate pada %2$s</string>
+    <string name="download_sorting_title">Urutan sortir</string>
+    <string name="download_sorting_status">Sortir menurut status</string>
+    <string name="download_sorting_updated">Sortir menurut update terakhir</string>
+    <string name="download_sorting_created">Sortir menurut tanggal pembuatan</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Update tersedia</string>
+    <string name="download_section_installed">Terinstall</string>
+    <string name="download_section_not_installed">Tidak terinstall</string>
+    <string name="download_section_24h">24 jam yang lalu</string>
+    <string name="download_section_7d">Seminggu yang lalu</string>
+    <string name="download_section_30d">Sebulan yang lalu</string>
+    <string name="download_section_older">Lebih dari sebulan yang lalu</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Unduh</string>
+    <string name="settings_group_experimental">Uji coba</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+
+    <!-- About tab -->
+    <string name="about_developers_label">Pengembang utama:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> and <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">Penerjemah:</string>
+    <string name="translator">AngSanley</string>
+    <string name="about_version_label">Versi aplikasi:</string>
+    <string name="about_source_label">Source code:</string>
+    <string name="about_libraries_label">Library yang digunakan:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Unduh</string>
+    <string name="download_view_install">Pasang</string>
+    <string name="download_view_cancel">Batal</string>
+    <string name="download_view_no_url">URL tidak tersedia</string>
+    <string name="download_view_running">Unduhan sedang berlangsung (%1$,d dari %2$,d kB)</string>
+    <string name="download_view_waiting">Unduhan sedang menunggu</string>
+    <string name="download_view_successful">Unduhan selesai</string>
+    <string name="download_view_failed">Unduhan gagal (error %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 sum salah (terunduh: %1$s, diharapkan: %2$s)</string>
+    <string name="download_could_not_read_file">Tidak dapat membaca file: %s</string>
+    <string name="download_no_valid_apk">File terunduh bukan file APK (atau tidak didukung)</string>
+    <string name="download_incorrect_package_name">Nama package salah (terunduh: %1$s, diharapkan: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Mengunduh %1$s gagal: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Mengunduh %1$s gagal: %2$s</string>
+    <string name="repo_load_failed">Tidak dapat menambil daftar dari %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+
+</resources>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Odeslat</string>
+    <string name="menuSaveToSd">Uložit na SD kartu</string>
+    <string name="xposed_not_active">Poslední verze Xposed frameworku není aktivní. Byl Framework nainstalován a zařízení restartováno?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Aktualizace Xposed frameworku je k dispozici (%s).</string>
+    <string name="modules_updates_available">Aktualizace modulu k dispozici</string>
+
+    <!-- Navigation drawer items -->
+    <string name="nav_item_install">Framework</string>
+    <string name="nav_item_modules">Moduly</string>
+    <string name="nav_item_download">Stáhnout</string>
+    <string name="nav_item_settings">Nastavení</string>
+    <string name="nav_item_support">Podpora</string>
+    <string name="nav_item_logs">Log</string>
+    <string name="nav_item_about">O aplikaci</string>
+    <string name="navigation_drawer_open">Otevřít panel navigace</string>
+    <string name="navigation_drawer_close">Zavřít panel navigace</string>
+
+    <!-- Installer tab -->
+    <string name="install_update">Instalovat/Aktualizovat</string>
+    <string name="uninstall">Odinstalovat</string>
+    <string name="soft_reboot">Lehký restart</string>
+    <string name="reboot">Restart</string>
+    <string name="reboot_failed">Nepodařilo se restartovat zařízení. Prosím, restartujte jej běžným způsobem.</string>
+    <string name="auto_flash_note">Stisknutím \"OK\" bude %s automaticky nainstalován v recovery.</string>
+    <string name="reboot_confirmation">Chcete zařízení restartovat nyní?</string>
+    <string name="install_warning_title">Buďte opatrní!</string>
+    <string name="install_warning">V některých případech nemusí po instalaci Xposed vaše zařízení již naběhnout.\n\nPokud nejste obeznámeni s pojmy \"soft brick\" nebo \"bootloop\" a pokud nevíte, jak se v podobné situaci zachovat, <b>NEINSTALUJTE</b> Xposed!\n\nV každém případě je vřele doporučeno mít aktuální zálohu.</string>
+    <string name="dont_show_again">Již nezobrazovat</string>
+    <string name="install_known_issue">Zdá se, že existuje známý problém (\"%s\") s vaší ROM. Instalace Xposed nemusí fungovat, nebo může vést k závažným problémům. Pro podrobnosti o tomto problému stiskněte zde.</string>
+    <string name="framework_active">Xposed Framework verze %s je aktivní.</string>
+    <string name="framework_not_active">Xposed Framework verze %s je nainstalován, ale není aktivní. Prosím zkontrolujte log pro podrobnosti.</string>
+    <string name="framework_not_installed">Xposed Framework není nainstalován.</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Nepodařilo se získat oprávnění root.\n\nUjistěte se, že je vaše zařízení správně rootnuté a nejsou blokované přikazy shellu.</string>
+    <string name="file_copying">Kopíruji %s&#8230;</string>
+    <string name="file_copy_failed">Nelze zkopírovat %1$s do %2$s</string>
+    <string name="file_creating_directory">Vytvářím adresář %s&#8230;</string>
+    <string name="file_create_directory_failed">Nepodařilo se vytvořit adresář %s</string>
+    <string name="file_writing_recovery_command">Zapisuji příkazy recovery&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Zápis příkazů recovery selhal. Použijte prosím jiný způsob instalace.</string>
+    <string name="file_done">Hotovo! Změny se projeví po restartu zařízení.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed modul ještě není aktivován</string>
+    <string name="module_is_not_activated_yet_detailed">%s byl nainstalován, ale ještě není aktivován.</string>
+    <string name="activate_and_reboot">Aktivovat a restartovat</string>
+    <string name="module_activated">Xposed modul byl aktivován</string>
+    <string name="module_empty_description">(popis není k dispozici)</string>
+    <string name="module_no_ui">Tento modul nemá žádné uživatelské rozhraní</string>
+    <string name="no_xposed_modules_found">Nebyly nalezeny žádné Xposed moduly!</string>
+    <string name="xposed_module_list_updated">Seznam Xposed modulů byl aktualizován.\nZměny se projeví po restartu zařízení.</string>
+    <string name="xposed_module_updated_notification_title">Xposed modul byl aktualizován</string>
+    <string name="xposed_module_updated_notification">Restartovat pro aktivaci změn</string>
+    <string name="warning_xposed_min_version">Tento modul vyžaduje novější Xposed verze (%d), nemůže být proto aktivován.</string>
+    <string name="no_min_version_specified">Tento modul nespecifikuje požadovanou verzi Xposed.</string>
+    <string name="warning_min_version_too_low">Tento modul byl vytvořen pro Xposed verze %1$d, ale kvůli nekompatibilním změnám ve verzi %2$d byl zakázán.</string>
+    <string name="module_launch">Spustit UI</string>
+    <string name="module_download_updates">Stažení/Aktualizace</string>
+    <string name="module_support">Podpora</string>
+    <string name="module_app_info">Info o aplikaci</string>
+    <string name="module_uninstall">Odinstalovat</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Hledat</string>
+    <string name="menuReload">Obnovit</string>
+    <string name="changes">Změny:</string>
+    <string name="download_details_page_description">Popis</string>
+    <string name="download_details_page_versions">Verze</string>
+    <string name="download_details_page_settings">Nastavení</string>
+    <string name="reltype_stable">Stabilní</string>
+    <string name="reltype_stable_summary">Stabilní (malé riziko chyb)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (očekávají se nějaké chyby)</string>
+    <string name="reltype_experimental">Experimentální</string>
+    <string name="reltype_experimental_summary">Experimentální (vysoké riziko chyb)</string>
+    <string name="reltype_use_global_summary">Použít globální nastavení</string>
+    <string name="download_author">od %s</string>
+    <string name="download_unknown_author">neznámý autor</string>
+    <string name="download_status_installed">Nainstalováno (verze %s)</string>
+    <string name="download_status_update_available">Aktualizace k dispozici (verze %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Přidáno %1$s \u00b7 Aktualizováno %2$s</string>
+    <string name="download_sorting_title">Řazení</string>
+    <string name="download_sorting_status">Dle stavu</string>
+    <string name="download_sorting_updated">Dle poslední aktualizace</string>
+    <string name="download_sorting_created">Dle data vytvoření</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Aktualizace k dispozici</string>
+    <string name="download_section_installed">Nainstalováno</string>
+    <string name="download_section_not_installed">Nenainstalováno</string>
+    <string name="download_section_24h">Za posleních 24 hodin</string>
+    <string name="download_section_7d">Za poslední týden</string>
+    <string name="download_section_30d">Za posledních 30 dní</string>
+    <string name="download_section_older">Před více jak 30 dny</string>
+    <string name="download_details_not_found">Modul s názvem instalačního balíčku \"%s\" nebyl v repozitáři nalezen.</string>
+    <string name="download_no_versions">Autor zatím nic nenahrál.</string>
+    <string name="download_test_version_not_shown">Je dostupná testovací verze, není však zobrazena kvůli globálnímu nastavení, nebo specifickému nastavení pro modul.</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Stahování</string>
+    <string name="settings_release_type">Zobrazované verze</string>
+    <string name="settings_group_experimental">Experimentální</string>
+    <string name="settings_disable_resources">Zakázat ovlivňování prostředků</string>
+    <string name="settings_disable_resources_summary">(Resource hooks)\nŘeší konflikty s tématy (theme engines).\n<b>VAROVÁNÍ:</b> Je-li aktivní, moduly měnící prostředky nebudou správně pracovat.</string>
+    <string name="settings_group_app">Aplikace</string>
+    <string name="settings_theme">Téma</string>
+    <string name="settings_theme_light">Světlé</string>
+    <string name="settings_theme_dark">Tmavé</string>
+    <string name="settings_theme_black">Černé (užitečné pro AMOLED displeje)</string>
+    <string name="settings_default_view">Výchozí zobrazení</string>
+    <string name="notify_module_update">Povolit oznámení o aktualizaci modulu</string>
+
+    <!-- Support tab -->
+    <string name="support_modules_label">Podpora pro jednotlivé moduly</string>
+    <string name="support_modules_description">Podržte prst na kterémkoliv z modulů v seznamu nainstalovaných modulů a zvolte \"%1$s\".</string>
+    <string name="support_framework_label">Podpora pro Framework/instalátor</string>
+    <string name="support_faq_label">FAQ/známé problémy</string>
+    <string name="support_donate_label">Finanční příspěvek</string>
+    <string name="support_donate_description">Pokud chcete poděkovat za Xposed, můžete rovo89 zaslat finanční příspěvek zde:</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Nepodařilo se uložit log na kartu SD:</string>
+    <string name="sdcard_not_writable">SD karta nebyla nenalezena nebo na ni nelze zapisovat</string>
+    <string name="menuClearLog">Vymazat log</string>
+    <string name="logs_cleared">Log úspěšně smazán</string>
+    <string name="logs_clear_failed">Nepodařilo se vymazat log:</string>
+    <string name="log_is_empty">Log je prázný</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Hlavní vývojáři:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> a <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a> - autoři frameworku a instalátoru\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> a <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> - opravy chyb a Material Design</string>
+    <string name="about_translator_label">Překlad:</string>
+    <string name="translator">Petr kecinzer Řezníček, Aleš Berka (Aleq), pcpepik</string>
+    <string name="about_version_label">Verze této aplikace:</string>
+    <string name="about_source_label">Zdrojový kód:</string>
+    <string name="about_libraries_label">Použité knihovny:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Stáhnout</string>
+    <string name="download_view_install">Instalovat</string>
+    <string name="download_view_cancel">Zrušit</string>
+    <string name="download_view_no_url">URL pro stažení není k dispozici</string>
+    <string name="download_view_running">Probíhá stahování (%1$,d z %2$,d kB)</string>
+    <string name="download_view_waiting">Stahování čeká</string>
+    <string name="download_view_successful">Stahování úspěšně dokončeno</string>
+    <string name="download_view_failed">Stahování selhalo (chyba %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">Nesouhlasí kontrolní součet MD5 (staženo: %1$s, očekáváno: %2$s)</string>
+    <string name="download_could_not_read_file">Není možné načíst stažený soubor: %s</string>
+    <string name="download_no_valid_apk">Stažený soubor není validní APK (nebo není kompatibilní)</string>
+    <string name="download_incorrect_package_name">Název balíčku není správný (staženo: %1$s, očekáváno: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Stahování %1$s selhalo: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Stahování %1$s selhalo: %2$s</string>
+    <string name="repo_load_failed">Nemohu načíst repozitář z %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+    <string name="warning_installed_on_external_storage">Tento modul nemohl být načten protože je nainstalován na kartě SD, přesuňte jej prosím do interní paměti.</string>
+    <string name="view">VIEW</string>
+    <string name="export_">Export…</string>
+    <string name="import_">Import…</string>
+    <string name="export_enabled_modules">Exportovat seznam povolených modulů</string>
+    <string name="import_enabled_modules">Importovat seznam povolených modulů</string>
+    <string name="export_installed_modules">Exportovat seznam nainstalovaných modulů</string>
+    <string name="import_installed_modules">Importovat seznam nainstalovaných modulů</string>
+    <string name="no_installed_modules">Žádné Xposed moduly nebyly nalezeny!</string>
+    <string name="no_backup_found">Nenalezena žádná záloha</string>
+    <string name="no_enabled_modules">Nejsou povoleny žádné moduly</string>
+    <string name="share">Sdílet…</string>
+    <string name="permissionNotGranted">Tato funkce nebude fungovat bez udělení oprávnění k zápisu na externí úložiště.</string>
+
+</resources>

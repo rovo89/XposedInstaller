@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Skicka</string>
+    <string name="menuSaveToSd">Spara till SD-kort</string>
+    <string name="xposed_not_active">Senaste versionen av Xposed är inte aktiverad. Har du installerat ramverket och startat om?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">En uppdatering för Xposed ramverket är tillgänglig (%s).</string>
+
+    <!-- Navigation drawer items -->
+
+    <!-- Installer tab -->
+    <string name="install_update">Installera/Uppdatera</string>
+    <string name="uninstall">Avinstallera</string>
+    <string name="soft_reboot">Mjuk omstart</string>
+    <string name="reboot">Omstart</string>
+
+    <!-- File operations -->
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed modulen är inte aktiverad än</string>
+    <string name="module_empty_description">(ingen beskrivning given)</string>
+    <string name="module_no_ui">Denna modul tillhandahåller inte ett användargränssnitt</string>
+    <string name="no_xposed_modules_found">Inga Xposed moduler hittades!</string>
+    <string name="xposed_module_list_updated">Xposed modullistan uppdaterades\nFörändringar kommer att bli aktiv vid omstart</string>
+    <string name="warning_xposed_min_version">Denna modul kräver en nyare Xposed version (%d) och sålunda inte kan aktiveras.</string>
+    <string name="no_min_version_specified">Denna modul specificerar inte den Xposed version som behövs.</string>
+    <string name="warning_min_version_too_low">Denna modul skapades för Xposed version %1$d, men på grund av oförenliga förändringar i version %2$d, har den avaktiverats.</string>
+    <string name="module_launch">Start UI</string>
+    <string name="module_download_updates">Ladda ner/Uppdateringar</string>
+    <string name="module_support">Support</string>
+    <string name="module_app_info">App info</string>
+    <string name="module_uninstall">Avinstallera</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Sök</string>
+    <string name="menuReload">Ladda om</string>
+    <string name="changes">Ändringar:</string>
+    <string name="download_author">av %s</string>
+    <string name="download_unknown_author">okänd skapare</string>
+    <string name="download_status_installed">Installerad (version %s)</string>
+    <string name="download_status_update_available">Uppdatering tillgänglig (version %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Tillagd den %1$s \u00b7 Uppdaterades den %2$s</string>
+    <string name="download_sorting_title">Sortering</string>
+    <string name="download_sorting_status">Sortera efter status</string>
+    <string name="download_sorting_updated">Sortera efter senaste uppdatering</string>
+    <string name="download_sorting_created">Sortera efter datum för skapandet</string>
+    <string name="download_section_framework">Ramverk</string>
+    <string name="download_section_update_available">Uppdatering tillgänglig</string>
+    <string name="download_section_installed">Installerad</string>
+    <string name="download_section_not_installed">Inte installerad</string>
+    <string name="download_section_24h">Senaste 24 timmarna</string>
+    <string name="download_section_7d">Senaste 7 dagarna</string>
+    <string name="download_section_30d">Senaste 30 dagarna</string>
+    <string name="download_section_older">Mer än 30 dagar sen</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Ladda ner</string>
+    <string name="settings_group_experimental">Experimentellt</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Kunde inte skriva till loggen på SD-kortet:</string>
+    <string name="sdcard_not_writable">SD-kortet hittades inte eller är inte skrivbar</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Huvudsakliga utvecklare:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> och <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">Översättare:</string>
+    <string name="translator"><a href="http://forum.xda-developers.com/member.php?u=2364290">Fredro (Fredrik Lundberg)</a></string>
+    <string name="about_version_label">Versionen av denna app:</string>
+    <string name="about_source_label">Källkod:</string>
+    <string name="about_libraries_label">Bibliotek som använts:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Ladda ner</string>
+    <string name="download_view_install">Installera</string>
+    <string name="download_view_cancel">Avbryt</string>
+    <string name="download_view_no_url">Ingen nerladdnings URL tillgänglig</string>
+    <string name="download_view_running">Nerladdning pågår (%1$,d av %2$,d kB)</string>
+    <string name="download_view_waiting">Nerladdning avvaktar</string>
+    <string name="download_view_successful">Nerladdning lyckades</string>
+    <string name="download_view_failed">Nerladdning misslyckades (error %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 summan är felaktig (nerladdade: %1$s, förväntade: %2$s)</string>
+    <string name="download_could_not_read_file">Kunde inte läsa nerladdade filen: %s</string>
+    <string name="download_no_valid_apk">Nerladdade filen är inte en giltlig APK fil (eller inkompatibel)</string>
+    <string name="download_incorrect_package_name">Paketnamnet är felaktig (nerladdade: %1$s, förväntade: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Nerladdning av %1$s misslyckades: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Nerladdning av %1$s misslyckades: %2$s</string>
+    <string name="repo_load_failed">Kan inte ladda datakatalog från %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+
+</resources>

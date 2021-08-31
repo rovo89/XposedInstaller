@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Отправить</string>
+    <string name="menuSaveToSd">Сохранить на SD-карту</string>
+    <string name="xposed_not_active">Последняя версия Xposed в настоящее время не активна. Уверены, что Вы установили Framework и перезагрузили устройство?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Доступно обновление для Xposed Framework (%s).</string>
+    <string name="modules_updates_available">Доступны обновления модуля</string>
+
+    <!-- Navigation drawer items -->
+    <string name="nav_item_install">Xposed Framework</string>
+    <string name="nav_item_modules">Установленные модули</string>
+    <string name="nav_item_download">Поиск модулей</string>
+    <string name="nav_item_settings">Настройки</string>
+    <string name="nav_item_support">Поддержка</string>
+    <string name="nav_item_logs">Логи</string>
+    <string name="nav_item_about">О программе!</string>
+    <string name="navigation_drawer_open">Открыть меню приложений</string>
+    <string name="navigation_drawer_close">Закрыть меню приложений</string>
+
+    <!-- Installer tab -->
+    <string name="install_update">Установить или Обновить</string>
+    <string name="uninstall">Удалить</string>
+    <string name="soft_reboot">Быстрая перезагрузка</string>
+    <string name="reboot">Полная перезагрузка</string>
+    <string name="reboot_recovery">Перезагрузить в Recovery</string>
+    <string name="reboot_failed">Сбой перезагрузки. Пожалуйста, используйте встроенную функцию перезагрузки на устройстве.</string>
+    <string name="auto_flash_note">%s будет прошита автоматически при нажатии "OK".</string>
+    <string name="reboot_confirmation">Хотите перезагрузить устройство сейчас?</string>
+    <string name="install_warning_title">Будьте осторожны!</string>
+    <string name="install_warning">В некоторых случаях, устройство может не загрузиться после установки Xposed.\n\nЕсли вы не знаете что такое \"soft brick\" и \"bootloop\". И не знаете как восстановить систему, <b>НЕ</b> устанавливайте Xposed!\n\nВ любом случае, делайте резервную копию системы."</string>
+    <string name="dont_show_again">Больше не показывать сообщение</string>
+    <string name="install_known_issue">Похоже, присутствует известная несовместимость (\"%s\") с Вашей прошивкой. Пожалуй, Вам не стоит устанавливать Xposed. Нажмите здесь для дополнительной информации.</string>
+    <string name="framework_active">Xposed Framework версии %s активирован!</string>
+    <string name="framework_not_active">Xposed Framework версия %s установлена, но не активирована. Пожалуйста проверьте логи.</string>
+    <string name="framework_not_installed">Xposed Framework не установлен.</string>
+    <string name="status">Состояние Xposed</string>
+    <string name="xposed_on_next_reboot">Xposed Framework будет включен после перезагрузки</string>
+    <string name="xposed_off_next_reboot">Xposed Framework будет выключен после перезагрузки</string>
+
+    <!-- File operations -->
+    <string name="root_failed">"Сбой получения прав рут-доступа.\n\nУбедитесь, что на устройстве есть рут и команды оболочки не блокируются."</string>
+    <string name="file_copying">Копирование %s&#8230;</string>
+    <string name="file_copy_failed">Невозможно копировать %1$s в %2$s</string>
+    <string name="file_creating_directory">Создание каталога %s&#8230;</string>
+    <string name="file_create_directory_failed">Невозможно создать каталог %s</string>
+    <string name="file_writing_recovery_command">Запись команды восстановления&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Запись команды восстановления не удалась. Пожалуйста, используйте другой метод установки.</string>
+    <string name="file_done">Готово! Изменения станут активными после перезагрузки.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed модуль еще не активирован</string>
+    <string name="module_is_not_activated_yet_detailed">%s был установлен но не активирован.</string>
+    <string name="activate_and_reboot">Активировать и перезагрузить</string>
+    <string name="module_activated">Модуль Xposed был активирован</string>
+    <string name="module_empty_description">(описание отсутствует)</string>
+    <string name="module_no_ui">Этот модуль не содержит пользовательского интерфейса</string>
+    <string name="no_xposed_modules_found">Модули Xposed не найдены!</string>
+    <string name="xposed_module_list_updated">Список Xposed модулей обновлен\nИзменения вступят в силу после перезагрузки</string>
+    <string name="xposed_module_updated_notification_title">Модуль Xposed обновлен</string>
+    <string name="xposed_module_updated_notification">Перезагрузите устройство</string>
+    <string name="warning_xposed_min_version">Этот модуль требует более новой версии Xposed (%d) и не может быть активирован.</string>
+    <string name="no_min_version_specified">Этот модуль не указал версию Xposed, в которой он нуждается.</string>
+    <string name="warning_min_version_too_low">Этот модуль был создан для Xposed версии %1$d, но из-за несовместимых изменений в версии %2$d, он был отключен.</string>
+    <string name="module_launch">Запустить модуль</string>
+    <string name="module_download_updates">Загрузить/Обновить</string>
+    <string name="module_support">Поддержка</string>
+    <string name="module_app_info">О приложении</string>
+    <string name="module_uninstall">Удалить</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Поиск</string>
+    <string name="menuReload">Обновить</string>
+    <string name="changes">Список изменений:</string>
+    <string name="download_details_page_description">Описание</string>
+    <string name="download_details_page_versions">Версии</string>
+    <string name="download_details_page_settings">Настройки</string>
+    <string name="reltype_stable">Стабильная</string>
+    <string name="reltype_stable_summary">Стабильные (низкий риск ошибок)</string>
+    <string name="reltype_beta">Бета</string>
+    <string name="reltype_beta_summary">Бета (незначительный риск ошибок)</string>
+    <string name="reltype_experimental">Экспериментальная</string>
+    <string name="reltype_experimental_summary">Экспериментальные (большой риск ошибок)</string>
+    <string name="reltype_use_global_summary">Как в общих настройках</string>
+    <string name="download_author">от %s</string>
+    <string name="download_unknown_author">Автор неизвестен</string>
+    <string name="download_status_installed">Установленная (версия %s)</string>
+    <string name="download_status_update_available">Доступно обновление (версия %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Добавлено %1$s \u00b7 Обновлено %2$s</string>
+    <string name="download_sorting_title">Порядок сортировк</string>
+    <string name="download_sorting_status">Сортировать по статусу</string>
+    <string name="download_sorting_updated">Сортировать по последнему обновлению</string>
+    <string name="download_sorting_created">Сортировать по дате создания</string>
+    <string name="download_section_framework">Xposed Frameworkk</string>
+    <string name="download_section_update_available">Доступно обновление</string>
+    <string name="download_section_installed">Установлен</string>
+    <string name="download_section_not_installed">Не установлен</string>
+    <string name="download_section_24h">За последние 24 часа</string>
+    <string name="download_section_7d">За последние 7 дней</string>
+    <string name="download_section_30d">За последние 30 дней</string>
+    <string name="download_section_older">Более 30 дней назад</string>
+    <string name="download_details_not_found">Модуль с именем пакета \"%s\" отсутствует в репозитории.</string>
+    <string name="download_no_versions">Автор ещё ничего не выложил.</string>
+    <string name="download_test_version_not_shown">Доступны тестовые версии. Но они скрыты в настройках \"Отображение версий модуля\".</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Загрузка</string>
+    <string name="settings_release_type">Отображение версий модуля</string>
+    <string name="settings_group_experimental">Экспериментальное</string>
+    <string name="settings_disable_resources">Не изменять ресурсы</string>
+    <string name="settings_disable_resources_summary">Временное решение для конфликтов с темами системы\n<b>ВНИМАНИЕ:</b> Модули, которые пытаются изменить ресурсы не будут работать, если эта опция включена.</string>
+    <string name="settings_group_app">Приложение</string>
+    <string name="settings_theme">Тема</string>
+    <string name="settings_theme_light">Material светлая</string>
+    <string name="settings_theme_dark">Material темная</string>
+    <string name="settings_theme_black">Material черная (полезно для AMOLED экранов)</string>
+    <string name="settings_default_view">Вид по умолчанию при запуске</string>
+    <string name="open_drawer_summ">Автоматически открывать боковое меню при запуске</string>
+    <string name="open_drawer">Автоматически открыть боковое меню</string>
+    <string name="skip_xposedminversion_check">Пропускать проверку \'Xposed мин. версии\'</string>
+    <string name="skip_xposedminversion_check_summ">Пропустить \'Xposed мин. версии\' проверку модулей</string>
+    <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
+    <string name="chrome_custom_tabs_summ">Открытие ссылок внутри приложения</string>
+    <string name="notify_module_update">Включить уведомления об обновлении модулей</string>
+
+    <!-- Support tab -->
+    <string name="support_modules_label">Поддержка модулей</string>
+    <string name="support_modules_description">Долгое нажатие на модуле, в меню \"Установленные модули\" и выберите \"%1$s\".</string>
+    <string name="support_framework_label">Поддержка Xposed Framework/Installer</string>
+    <string name="support_faq_label">Справка/известные проблемы</string>
+    <string name="support_donate_label">Пожертвовать</string>
+    <string name="support_donate_description">Если вы хотите отблагодарить за Xposed, вы можете сделать пожертвование для rovo89 здесь:</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Невозможно записать логи на SD-карту:</string>
+    <string name="sdcard_not_writable">SD-карта не найдена или запись на неё невозможна</string>
+    <string name="menuClearLog">Очистить логи</string>
+    <string name="logs_cleared">Логи успешно очищены</string>
+    <string name="logs_clear_failed">Невозможно очистить логи:</string>
+    <string name="log_is_empty">Список логов пуст</string>
+    <string name="scroll_top">Прокрутка вверх</string>
+    <string name="scroll_bottom">Прокрутка вниз</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Главные разработчики</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> и <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> и <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> Для исправления багов и Material Дизайна</string>
+    <string name="about_translator_label">Переводчик:</string>
+    <string name="translator">Alexey711</string>
+    <string name="about_version_label">Версия приложения:</string>
+    <string name="about_source_label">Исходный код</string>
+    <string name="about_libraries_label">Используемые библиотеки</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Скачать</string>
+    <string name="download_view_install">Установить</string>
+    <string name="download_view_cancel">Отмена</string>
+    <string name="download_view_no_url">Нет доступных URL для загрузки</string>
+    <string name="download_view_running">Скачивание и установка (%1$,d из %2$,d кб)</string>
+    <string name="download_view_waiting">Ожидает скачивания</string>
+    <string name="download_view_successful">Скачивание завершено</string>
+    <string name="download_view_failed">Ошибка загрузки (ошибка %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">Сумма MD5 не совпадает (загружено: %1$s, ожидалось: %2$s)</string>
+    <string name="download_could_not_read_file">Не удалось прочитать загруженный файл: %s</string>
+    <string name="download_no_valid_apk">Загруженный файл не является APK (или несовместим)</string>
+    <string name="download_incorrect_package_name">Некорректное название пакета (загружено: %1$s, ожидалось: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Загрузка %1$s прервана: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Загрузка %1$s прервана: %2$s</string>
+    <string name="repo_load_failed">Не могу загрузить репозиторий %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+    <string name="warning_installed_on_external_storage">Этот модуль не может быть загружен, потому что он установлен на SD-карту, переместите его во внутреннюю память.</string>
+    <string name="view">Смотреть</string>
+    <string name="export_">Экспорт модулей</string>
+    <string name="import_">Импорт модулей</string>
+    <string name="export_enabled_modules">Экспорт списка включенных модулей</string>
+    <string name="import_enabled_modules">Импорт списка включенных модулей</string>
+    <string name="export_installed_modules">Экспорт списка установленных модулей</string>
+    <string name="import_installed_modules">Импорт списка установленных модулей</string>
+    <string name="no_installed_modules">Установленных модулей нет!</string>
+    <string name="no_backup_found">Резервные копии не найдены</string>
+    <string name="no_enabled_modules">Нет включенных модулей</string>
+    <string name="share">Поделиться</string>
+    <string name="permissionNotGranted">Эта функция не будет работать без разрешения на запись для накопителя.</string>
+    <string name="add_bookmark">Добавить закладку</string>
+    <string name="remove_bookmark">Удалить закладку</string>
+    <string name="bookmarks">Закладки</string>
+    <string name="no_bookmark_added">Нет добавленных закладок</string>
+    <string name="bookmark_added">Закладка добавлена</string>
+    <string name="bookmark_removed">Закладка удалена</string>
+    <string name="undo">Отменить</string>
+    <string name="file_is_empty">Файлов нет</string>
+    <string name="install_remove">Установить и удалить</string>
+    <string name="loading">Загрузка…</string>
+
+</resources>

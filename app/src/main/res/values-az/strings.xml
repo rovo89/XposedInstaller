@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Göndər</string>
+    <string name="menuSaveToSd">Yaddaş kartında saxla</string>
+    <string name="xposed_not_active">Xposed\'in son versiyası aktiv deyil. Framework\'i yükləmisiz? vəya cihazı yenidən başlatmısız?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Xposed Framework üçün yeniləmə mövcuddur.</string>
+
+    <!-- Navigation drawer items -->
+
+    <!-- Installer tab -->
+    <string name="install_update">Quraşdır/Yenilə</string>
+    <string name="uninstall">Sil</string>
+    <string name="soft_reboot">Cəld yenidən başlat</string>
+    <string name="reboot">Yenidən başlat</string>
+
+    <!-- File operations -->
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed modulu hələ ki aktiv deyil</string>
+    <string name="module_empty_description">(heç bir məlumatla təmin olunmayıb)</string>
+    <string name="module_no_ui">Bu modul istifadəçi interfeysini təmin eləmir</string>
+    <string name="no_xposed_modules_found">Xposed modulları tapılmadı!</string>
+    <string name="xposed_module_list_updated">Xposed modul siyahısı yeniləndi\nDəyişikliklər yenidən başlamadan sonra aktiv olacaq</string>
+    <string name="warning_xposed_min_version">Bu modul ən axırıncı Xposed versiya (%d)\'sını tələb edir və bu aktiv oluna bilməz.</string>
+    <string name="no_min_version_specified">Bu modul lazım olan Xposed versiyasını təyin edə bilmir.</string>
+    <string name="warning_min_version_too_low">Bu modul Xposed versiya %1$d üçün yaradılıb, ancaq versiya %2$d\'ə uyğun gəlməyən dəyişiklikərə görə aradan qaldırıldı.</string>
+    <string name="module_launch">Uİ\'ni başlat</string>
+    <string name="module_download_updates">Yüklə/Yeniləmələr</string>
+    <string name="module_support">Dəstək</string>
+    <string name="module_app_info">Proqram haqqında</string>
+    <string name="module_uninstall">Sil</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Axtar</string>
+    <string name="menuReload">Yenidən yüklə</string>
+    <string name="changes">Dəyişikliklər:</string>
+    <string name="download_author">%s tərəfindən</string>
+    <string name="download_unknown_author">bilinməyən müəllif</string>
+    <string name="download_status_installed">Quraşdırıldı (%s versiya)</string>
+    <string name="download_status_update_available">Yeniləmə mövcuddur (%1$s versiya \u2192 %2$s)</string>
+    <string name="download_timestamps">%1$s Əlavə olundu \u00b7 %2$s Yeniləndi </string>
+    <string name="download_sorting_title">Çeşidləmə növü</string>
+    <string name="download_sorting_status">Statusa görə çeşidlə</string>
+    <string name="download_sorting_updated">Axırıncı yeniləməyə görə çeşidlə</string>
+    <string name="download_sorting_created">Yaradılma vaxtına görə çeşidlə</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Yeniləmə mövcuddur</string>
+    <string name="download_section_installed">Quraşdırıldı</string>
+    <string name="download_section_not_installed">Quraşdırılmadı</string>
+    <string name="download_section_24h">Son 24 saat</string>
+    <string name="download_section_7d">Son 7 gün</string>
+    <string name="download_section_30d">Son 30 gün</string>
+    <string name="download_section_older">30 gündən də əvvəl</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Yüklə</string>
+    <string name="settings_group_experimental">Təcrübi</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Loqu yaddaş kartına yaza bilmədi:</string>
+    <string name="sdcard_not_writable">Yaddaş kartı tapılmadı və ya yazmaq üçün icazə yoxdur</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Əsas geliştiricilər:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> və <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">Azeri Translator:</string>
+    <string name="translator">hero355</string>
+    <string name="about_version_label">Proqramın versiyası:</string>
+    <string name="about_source_label">Qaynaq kod:</string>
+    <string name="about_libraries_label">İstifadə olunmuş kitabxanalar:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Yüklə</string>
+    <string name="download_view_install">Quraşdır</string>
+    <string name="download_view_cancel">Ləğv et</string>
+    <string name="download_view_no_url">Yükləmə URL\'sı aktiv deyil</string>
+    <string name="download_view_running">Yükləmə çalışır (%1$,d of %2$,d kB)</string>
+    <string name="download_view_waiting">Yükləmə gözləyir</string>
+    <string name="download_view_successful">Yükləmə başa çatdı</string>
+    <string name="download_view_failed">Yükləmə uğursuzdur (%d səhv )</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 məbləği səhvdir (yükləndi: %1$s, gözlənilirdi: %2$s)</string>
+    <string name="download_could_not_read_file">Yüklənmiş faylı oxuya bilmədi: %s</string>
+    <string name="download_no_valid_apk">Yüklənmiş fayl düzgün APK deyil (ya da uyğun deyil)</string>
+    <string name="download_incorrect_package_name">Paketin adı səhvdir (yükləndi: %1$s, gözlənilirdi: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Yükləmə %1$s uğursuz oldu: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Yükləmə %1$s uğursuz oldu: %2$s</string>
+    <string name="repo_load_failed">Depoya çata bilmədi %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+
+</resources>

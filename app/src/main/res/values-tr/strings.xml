@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Gönder</string>
+    <string name="menuSaveToSd">SD karta kaydet</string>
+    <string name="xposed_not_active">Xposed\'ın son sürümü şu anda etkin değil. Framework\'ü kurdunuz ve yeniden başlattınız mı?</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Xposed Framework için %s güncellemesi mevcut.</string>
+    <string name="modules_updates_available">Modül güncelleştirmeleri var</string>
+
+    <!-- Navigation drawer items -->
+    <string name="nav_item_install">Framework</string>
+    <string name="nav_item_modules">Modüller</string>
+    <string name="nav_item_download">İndir</string>
+    <string name="nav_item_settings">Ayarlar</string>
+    <string name="nav_item_support">Destek</string>
+    <string name="nav_item_logs">Kayıtlar</string>
+    <string name="nav_item_about">Hakkında</string>
+    <string name="navigation_drawer_open">Gezinti çekmecesini aç</string>
+    <string name="navigation_drawer_close">Gezinti çekmecesini kapat</string>
+
+    <!-- Installer tab -->
+    <string name="install_update">Yükle/Güncelle</string>
+    <string name="uninstall">Kaldır</string>
+    <string name="soft_reboot">Hızlı yeniden başlat</string>
+    <string name="reboot">Yeniden başlat</string>
+    <string name="reboot_recovery">Kurtarma modunda yeniden başlat</string>
+    <string name="not_now">Şimdi değil</string>
+    <string name="reboot_failed">Yeniden başlatılamıyor. Lütfen cihazın normal yeniden başlatma işlevini kullanın.</string>
+    <string name="auto_flash_note">Tamama bastığınızda %s otomatik olarak yüklenmelidir.</string>
+    <string name="reboot_confirmation">Yeniden başlatmak istiyor musunuz?</string>
+    <string name="install_warning_title">Dikkatli olun!</string>
+    <string name="install_warning">Bazı durumlarda, Xposed yüklendikten sonra cihazınız artık açılmayabilir.\n\nDaha önce \"soft brick\" ve \"bootloop\" gibi terimleri duymadıysanız veya bunlar hakkında bilginiz yoksa, Xposed\'ı <b>YÜKLEMEYİN!</b>\n\nHer durumda, yeni bir yedekleme yapılması şiddetle önerilir.</string>
+    <string name="dont_show_again">Bunu bir daha gösterme</string>
+    <string name="install_known_issue">Kullandığınız rom sürümü ile (\"%s\") bilinen bir uyumsuzluk sorunu var gibi görünüyor. Xposed\'ı yüklemek işe yaramayabilir veya ağır problemlere neden olabilir. Konuyla ilgili ayrıntılar için burayı tıklayın.</string>
+    <string name="installer_needs_update">%1$s güncellenmeli</string>
+    <string name="known_issue_wrong_base_directory">yanlış taban dizini: %1$s</string>
+    <string name="known_issue_missing_base_directory">eksik ana dizin</string>
+    <string name="framework_active">Xposed Framework %s sürümü etkin.</string>
+    <string name="framework_not_active">Xposed Framework %s sürümü yüklendi, ancak etkin değil. Ayrıntılar için lütfen kayıtları kontrol edin.</string>
+    <string name="framework_not_installed">Xposed Framework yüklü değil.</string>
+    <string name="countdown">%1$s (%2$d)</string>
+    <string name="flash_error_timeout">Zaman aşımı oluştu</string>
+    <string name="flash_error_shell_died">İşlem beklenmedik şekilde iptal edildi</string>
+    <string name="flash_error_invalid_zip">Yüklenebilir bir ZIP dosyası değil</string>
+    <string name="flash_error_not_flashable_in_app">Bu dosya sadece kurtarma modu üzerinden yüklenebilir.</string>
+    <string name="flash_error_default">%d hatası oluştu</string>
+    <string name="status">Xposed Durumu</string>
+    <string name="xposed_on_next_reboot">Xposed Framework sonraki yeniden başlatmada etkinleştirilecek</string>
+    <string name="xposed_off_next_reboot">Xposed Framework sonraki yeniden başlatmada devre dışı bırakılacak</string>
+    <string name="show_outdated">Eski sürümleri göster</string>
+    <string name="framework_device_info">Cihazınız</string>
+    <string name="framework_install">Yükle</string>
+    <string name="framework_uninstall">Kaldır</string>
+    <string name="framework_install_recovery">Kurtarma yoluyla yükle</string>
+    <string name="framework_uninstall_recovery">Kurtarma yoluyla kaldır</string>
+    <string name="framework_delete">İndirilen dosyayı sil</string>
+    <string name="framework_zip_load_failed">Kullanılabilir ZIP dosyaları yüklenemedi. Tekrar denemek için aşağı doğru çekin.</string>
+    <string name="framework_no_zips">Eşleşen hiçbir zip bulunamadı, cihazınız şu anda desteklenmiyor gibi görünüyor.</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Root erişimi alınamadı.\n\nCihazınızın doğru şekilde rootlandığından ve komut alabildiğinden emin olun.</string>
+    <string name="file_copying">Kopyalanıyor %s&#8230;</string>
+    <string name="file_copy_failed">%1$s %2$s içine kopyalanamadı</string>
+    <string name="file_creating_directory">Dizin oluşturuluyor %s&#8230;</string>
+    <string name="file_create_directory_failed">%s dizini oluşturulamıyor</string>
+    <string name="file_writing_recovery_command">Recovery komutu yazılıyor&#8230;</string>
+    <string name="file_writing_recovery_command_failed">Recovery komutu yazılamıyor. Lütfen farklı bir yükleme yöntemi kullanın.</string>
+    <string name="file_done">Bitti! Değişiklikler yeniden başlatıldığında etkinleşecek.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed modülü henüz etkinleştirilmedi</string>
+    <string name="module_is_not_activated_yet_detailed">%s yüklendi, ancak etkinleştirilmedi.</string>
+    <string name="activate_and_reboot">Etkinleştir ve yeniden başlat</string>
+    <string name="activate_only">Sadece etkinleştir</string>
+    <string name="module_activated">Xposed modulü etkinleştirildi</string>
+    <string name="module_empty_description">(açıklama yok)</string>
+    <string name="module_no_ui">Bu modül bir kullanıcı arabirimi sağlamaz</string>
+    <string name="no_xposed_modules_found">Xposed modülleri bulunamadı!</string>
+    <string name="xposed_module_list_updated">Xposed modül listesi güncellendi\nDeğişiklikler yeniden başlatıldığında etkinleşecektir</string>
+    <string name="xposed_module_updated_notification_title">Xposed modülü güncellendi</string>
+    <string name="xposed_module_updated_notification">Değişiklikleri etkinleştirmek için yeniden başlat</string>
+    <string name="warning_xposed_min_version">Bu modül yeni bir Xposed sürümü (%d) gerektirir ve etkinleştirilemez.</string>
+    <string name="no_min_version_specified">Bu modül ihtiyaç duyduğu Xposed sürümünü belirtmemektedir.</string>
+    <string name="warning_min_version_too_low">Bu modül Xposed %1$d sürümü için oluşturuldu, ancak %2$d sürümündeki uyumsuz değişiklikler nedeniyle devre dışı bırakıldı.</string>
+    <string name="module_launch">Arayüzü başlat</string>
+    <string name="module_download_updates">İndir/Güncelle</string>
+    <string name="module_support">Destek</string>
+    <string name="module_app_info">Uygulama bilgileri</string>
+    <string name="module_uninstall">Kaldır</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Ara</string>
+    <string name="menuReload">Yenile</string>
+    <string name="changes">Değişiklikler:</string>
+    <string name="download_details_page_description">Açıklama</string>
+    <string name="download_details_page_versions">Sürümler</string>
+    <string name="download_details_page_settings">Ayarlar</string>
+    <string name="reltype_stable">Kararlı</string>
+    <string name="reltype_stable_summary">Kararlı (hata riski düşük)</string>
+    <string name="reltype_beta">Beta</string>
+    <string name="reltype_beta_summary">Beta (bazı hatalar beklenebilir)</string>
+    <string name="reltype_experimental">Deneysel</string>
+    <string name="reltype_experimental_summary">Deneysel (hata riski yüksek)</string>
+    <string name="reltype_use_global_summary">Genel ayarları kullan</string>
+    <string name="download_author">Yapımcı: %s</string>
+    <string name="download_unknown_author">bilinmeyen yapımcı</string>
+    <string name="download_status_installed">Yüklendi (sürüm %s)</string>
+    <string name="download_status_update_available">Güncelleme mevcut (sürüm %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Eklenme %1$s \u00b7 Güncelleme %2$s</string>
+    <string name="download_sorting_title">Sıralama düzeni</string>
+    <string name="download_sorting_status">Duruma göre</string>
+    <string name="download_sorting_updated">Son güncelleme tarihine göre</string>
+    <string name="download_sorting_created">Oluşturulma tarihine göre</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Güncelleme mevcut</string>
+    <string name="download_section_installed">Yüklendi</string>
+    <string name="download_section_not_installed">Yüklenmedi</string>
+    <string name="download_section_24h">Son 24 saat</string>
+    <string name="download_section_7d">Son 7 gün</string>
+    <string name="download_section_30d">Son 30 gün</string>
+    <string name="download_section_older">30 günden önce</string>
+    <string name="download_details_not_found">Depoda paket adı \"%s\" olan hiçbir modül yok.</string>
+    <string name="download_no_versions">Yapımcı henüz bir şey yüklemedi.</string>
+    <string name="download_test_version_not_shown">Bir test sürümü mevcut, ancak genel veya modüle özgü ayarlarınız nedeniyle gösterilmez.</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">İndir</string>
+    <string name="settings_enable_downloads">İndirmeleri etkinleştir</string>
+    <string name="settings_enable_downloads_summary">Xposed Installer\'ın güncellemeleri ve yeni modülleri kontrol etmesine izin ver</string>
+    <string name="settings_release_type">Gösterilecek sürümler</string>
+    <string name="settings_group_experimental">Deneysel</string>
+    <string name="settings_disable_resources">Kaynaklara erişimi kapat</string>
+    <string name="settings_disable_resources_summary">Tema motorları ile çakışmalara geçici çözüm\n<b>UYARI:</b> Bu etkinleştirildiğinde, kaynakları değiştirmeye çalışan modüller çalışmaz.</string>
+    <string name="settings_group_app">Uygulama</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_theme_light">Aydınlık</string>
+    <string name="settings_theme_dark">Karanlık</string>
+    <string name="settings_theme_black">Siyah (AMOLED ekranlar için yararlı)</string>
+    <string name="settings_default_view">Varsayılan görünüm</string>
+    <string name="open_drawer_summ">Başlangıçta gezinti çekmecesini otomatik aç</string>
+    <string name="open_drawer">Gezinti çekmecesini otomatik aç</string>
+    <string name="skip_xposedminversion_check">\'xposedminversion\' kontrolünü atla</string>
+    <string name="skip_xposedminversion_check_summ">Modüller için minimum xposed sürümü kontrolünü atla</string>
+    <string name="chrome_custom_tabs">Chrome Özel Sekmeler</string>
+    <string name="chrome_custom_tabs_summ">Bağlantıları dahili tarayıcıda aç</string>
+    <string name="notify_module_update">Modül güncelleme bildirimini etkinleştir</string>
+
+    <!-- Support tab -->
+    <string name="support_modules_label">Modül desteği</string>
+    <string name="support_modules_description">Modül listesinde herhangi bir modüle uzun basın ve \"%1$s\" seçeneğine tıklayın.</string>
+    <string name="support_framework_label">Framework/Yükleyici desteği</string>
+    <string name="support_faq_label">SSS/Bilinen sorunlar</string>
+    <string name="support_donate_label">Bağış yap</string>
+    <string name="support_donate_description">Xposed için teşekkür etmek isterseniz, buradan rovo89\'a bağış yapabilirsiniz</string>
+
+    <!-- Logs tab  -->
+    <string name="logs_load_failed">Kayıt okunamıyor:</string>
+    <string name="logs_save_failed">Kayıtlar SD karta yazılamadı:</string>
+    <string name="sdcard_not_writable">SD kart yazılabilir değil veya bulunamadı</string>
+    <string name="log_too_large">Kayıt dosyası %1$,d kB\'tan büyük, %2$,d kB\'tan öncesi atlandı</string>
+    <string name="menuClearLog">Kayıtları şimdi temizle</string>
+    <string name="logs_cleared">Kayıtlar başarıyla temizlendi</string>
+    <string name="logs_clear_failed">Kayıtlar temizlenemedi:</string>
+    <string name="log_is_empty">Kayıt boş</string>
+    <string name="scroll_top">En üste kaydır</string>
+    <string name="scroll_bottom">En alta kaydır</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Ana geliştiriciler</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> ve <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a>\n<a href="http://forum.xda-developers.com/member.php?u=4756862">-BioHaZard-</a> ve <a href="http://forum.xda-developers.com/member.php?u=5345056">dvdandroid</a> hata düzeltmeleri ve Materyal Tasarım</string>
+    <string name="about_translator_label">Çevirmen:</string>
+    <string name="translator">Fatih Fırıncı</string>
+    <string name="about_version_label">Sürüm</string>
+    <string name="about_source_label">Kaynak kodu</string>
+    <string name="about_libraries_label">Kullanılan kütüphaneler</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">İndir</string>
+    <string name="download_view_install">Yükle</string>
+    <string name="download_view_cancel">İptal</string>
+    <string name="download_view_no_url">İndirme adresi mevcut değil</string>
+    <string name="download_view_running">İndiriliyor (İnen: %1$,d Toplam: %2$,d kB)</string>
+    <string name="download_view_waiting">İndirme bekliyor</string>
+    <string name="download_view_successful">İndirme başarılı</string>
+    <string name="download_view_failed">İndirme başarısız (hata %d)</string>
+    <string name="download_view_size">Boyut: %s KB</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 toplamı yanlış (indirilen: %1$s, beklenen: %2$s)</string>
+    <string name="download_could_not_read_file">İndirilen dosya okunamadı: %s</string>
+    <string name="download_no_valid_apk">İndirilen dosya geçerli bir Apk dosyası değil (veya uyumsuz)</string>
+    <string name="download_incorrect_package_name">Paket adı yanlış (indirilen: %1$s, beklenen: %2$s)</string>
+    <string name="download_running">İndirme çalışıyor</string>
+    <string name="download_progress">%1$,d / %2$,d kB</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">%1$s indirmesi başarısız: %2$d (%3$s)</string>
+    <string name="repo_download_failed">%1$s indirmesi başarısız: %2$s</string>
+    <string name="repo_load_failed">%1$s içinden depo yüklenemiyor:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+    <string name="warning_installed_on_external_storage">Bu modül hafıza kartına yüklendiğinden başlatılamıyor, lütfen dahili hafızaya taşıyın.</string>
+    <string name="warning_forward_locked">Bu modül ileriye kilitli olduğu için yüklenemez, lütfen modülün geliştiricisine başvurun.</string>
+    <string name="export_modules">Etkin modül listesini dışa aktar</string>
+    <string name="import_modules">Etkin modül listesini içe aktar</string>
+    <string name="view">GÖRÜNTÜLE</string>
+    <string name="export_">Dışa aktar…</string>
+    <string name="import_">İçe aktar…</string>
+    <string name="export_enabled_modules">Etkin modül listesini dışa aktar</string>
+    <string name="import_enabled_modules">Etkin modül listesini içe aktar</string>
+    <string name="export_installed_modules">Yüklü modül listesini dışa aktar</string>
+    <string name="import_installed_modules">Yüklü modül listesini içe aktar</string>
+    <string name="no_installed_modules">Yüklü bir modül yok!</string>
+    <string name="no_backup_found">Yedek bulunamadı</string>
+    <string name="no_enabled_modules">Etkin modül yok</string>
+    <string name="share">Şununla paylaş…</string>
+    <string name="permissionNotGranted">Bu özellik, harici depolama alanına yazmak için izin almadan çalışmaz.</string>
+    <string name="add_bookmark">Favorilere ekle</string>
+    <string name="remove_bookmark">Favorilerden kaldır</string>
+    <string name="bookmarks">Favoriler</string>
+    <string name="no_bookmark_added">Favori eklenmedi</string>
+    <string name="bookmark_added">Favorilere eklendi</string>
+    <string name="bookmark_removed">Favorilerden kaldırıldı</string>
+    <string name="undo">Geri al</string>
+    <string name="file_is_empty">Dosya boş</string>
+    <string name="install_remove">Yükle ve kaldır</string>
+    <string name="loading">Yükleniyor…</string>
+    <string name="update_download_list">Modül listesini yenilemek için aşağı çekin</string>
+
+</resources>

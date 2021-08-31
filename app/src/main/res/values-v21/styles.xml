@@ -1,0 +1,37 @@
+<resources>
+
+    <style name="Theme.XposedInstaller.Light" parent="Theme.XposedInstaller.Light.Base">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/background_material_light</item>
+        <item name="sticky_header_background">@color/sticky_header_background_light</item>
+        <item name="list_download_item_color">@color/list_download_item_color_light</item>
+        <item name="background_card">@drawable/background_card_light</item>
+        <item name="background_card_pressed">@drawable/background_card_pressed_light</item>
+        <item name="pager_tab_strip_bg">@color/pager_tab_strip_bg_light</item>
+        <item name="text_important">@color/red_500</item>
+        <item name="download_status_installed">@android:color/holo_orange_dark</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Dark" parent="Theme.XposedInstaller.Dark.Base">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/background_material_dark</item>
+        <item name="sticky_header_background">@color/sticky_header_background_dark</item>
+        <item name="list_download_item_color">@color/list_download_item_color_dark</item>
+        <item name="background_card">@drawable/background_card_dark</item>
+        <item name="background_card_pressed">@drawable/background_card_pressed_dark</item>
+        <item name="pager_tab_strip_bg">@color/pager_tab_strip_bg_dark</item>
+        <item name="text_important">@android:color/holo_orange_light</item>
+        <item name="download_status_installed">@android:color/holo_orange_light</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Dark.Black" parent="Theme.XposedInstaller.Dark">
+        <item name="android:windowBackground">@color/app_background_black</item>
+        <item name="list_download_item_color">@color/list_download_item_color_black</item>
+        <item name="background_card">@drawable/background_card_black</item>
+        <item name="background_card_pressed">@drawable/background_card_pressed_black</item>
+    </style>
+
+    <style name="Theme.XposedInstaller.Transparent" parent="Theme.AppCompat.NoActionBar">
+    </style>
+
+</resources>

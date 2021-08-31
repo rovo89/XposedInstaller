@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <issue id="IconDipSize">
+        <ignore path="res/drawable-mdpi/ic_menu_refresh.png"/>
+        <ignore path="res/drawable-xhdpi/ic_menu_refresh.png"/>
+    </issue>
+    <issue id="MissingTranslation">
+        <ignore path="res/values/strings.xml"/>
+    </issue>
+</lint>

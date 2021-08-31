@@ -1,0 +1,41 @@
+<resources>
+
+    <!-- base colors-->
+    <color name="colorPrimary">#2196f3</color>
+    <color name="colorPrimaryDark">#1976d2</color>
+    <color name="colorPrimaryLight">#727272</color>
+    <color name="colorAccent">#FF9800</color>
+    <color name="list_header">#777</color>
+    <color name="red_500">#F44336</color>
+    <color name="warning">@color/red_500</color>
+    <color name="download_status_update_available">@color/darker_green</color>
+    <color name="darker_green">#4CAF50</color>
+    <color name="amber_500">#FFC107</color>
+
+    <!-- light theme-->
+    <color name="background_material_light">#ffeeeeee</color>
+    <color name="list_download_item_color_light">#fff</color>
+    <color name="card_background_light">#fff</color>
+    <color name="card_background_pressed_light">#dfdfdf</color>
+    <color name="card_shadow_light">#dbdbdb</color>
+    <color name="pager_tab_strip_bg_light">#222</color>
+    <color name="sticky_header_background_light">#e5e5e5</color>
+
+    <!-- dark theme -->
+    <color name="background_material_dark">#ff303030</color>
+    <color name="list_download_item_color_dark">#363636</color>
+    <color name="card_background_dark">#363636</color>
+    <color name="card_background_pressed_dark">#505050</color>
+    <color name="card_shadow_dark">#161616</color>
+    <color name="pager_tab_strip_bg_dark">#222</color>
+    <color name="sticky_header_background_dark">#505050</color>
+
+    <!-- black theme -->
+    <color name="app_background_black">#000000</color>
+    <color name="list_download_item_color_black">#181818</color>
+    <color name="card_background_black">#181818</color>
+    <color name="card_background_pressed_black">#303030</color>
+    <color name="card_shadow_black">#121212</color>
+
+
+</resources>

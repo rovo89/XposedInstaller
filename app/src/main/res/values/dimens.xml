@@ -1,0 +1,11 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="toolbar_elevation">4dp</dimen>
+
+    <!-- Default Navigation Drawer. -->
+    <dimen name="nav_drawer_top_padding">0dp</dimen>
+    <dimen name="nav_drawer_width">264dp</dimen>
+    <dimen name="nav_drawer_header_height">148dp</dimen>
+    <dimen name="floating_height">650dp</dimen>
+    <dimen name="floating_width">500dp</dimen>
+</resources>

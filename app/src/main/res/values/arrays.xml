@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string-array name="download_sort_order" translatable="false">
+        <item>@string/download_sorting_status</item>
+        <item>@string/download_sorting_updated</item>
+        <item>@string/download_sorting_created</item>
+    </string-array>
+
+    <string-array name="theme_texts" translatable="false">
+        <item>@string/settings_theme_light</item>
+        <item>@string/settings_theme_dark</item>
+        <item>@string/settings_theme_black</item>
+    </string-array>
+
+    <string-array name="default_view_texts" translatable="false">
+        <item>@string/nav_item_install</item>
+        <item>@string/nav_item_modules</item>
+        <item>@string/nav_item_download</item>
+        <item>@string/nav_item_logs</item>
+    </string-array>
+
+    <string-array name="theme_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="default_view_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="release_type_texts" translatable="false">
+        <item>@string/reltype_stable_summary</item>
+        <item>@string/reltype_beta_summary</item>
+        <item>@string/reltype_experimental_summary</item>
+    </string-array>
+
+    <string-array name="release_type_values" translatable="false">
+        <item>stable</item>
+        <item>beta</item>
+        <item>experimental</item>
+    </string-array>
+
+    <string-array name="module_release_type_texts" translatable="false">
+        <item>@string/reltype_use_global_summary</item>
+        <item>@string/reltype_stable_summary</item>
+        <item>@string/reltype_beta_summary</item>
+        <item>@string/reltype_experimental_summary</item>
+    </string-array>
+
+    <string-array name="module_release_type_values" translatable="false">
+        <item></item>
+        <item>stable</item>
+        <item>beta</item>
+        <item>experimental</item>
+    </string-array>
+
+</resources>

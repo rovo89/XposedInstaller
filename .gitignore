@@ -1,8 +1,11 @@
-.idea/
-bin/
-gen/
-out/
 *.apk
+*.ap_
 *.iml
-proguard/
-proguard_logs/
+*.dex
+*.class
+.idea/
+.gradle/
+build/
+local.properties
+app/lint.xml
+app/proguard-project.txt

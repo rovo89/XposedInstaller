@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">보내기</string>
+    <string name="menuSaveToSd">내장 메모리에 저장</string>
+    <string name="xposed_not_active">현재 최신 버전의 Xposed 프레임워크가 활성화되지 않고 있습니다. 프레임워크 설치 후 시스템을 재시작하세요.</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">새로운 버전의 Xposed 프레임워크를 설치할 수 있습니다.</string>
+
+    <!-- Navigation drawer items -->
+
+    <!-- Installer tab -->
+    <string name="install_update">Xposed 프레임워크 설치 및 업데이트</string>
+    <string name="uninstall">Xposed 프레임워크 제거</string>
+    <string name="soft_reboot">빠른 재시작</string>
+    <string name="reboot">기본 재시작(권장)</string>
+
+    <!-- File operations -->
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Xposed 모듈이 아직 활성화 되지 않았습니다.</string>
+    <string name="module_empty_description">(설명없음)</string>
+    <string name="module_no_ui">이 모듈은 UI(사용자 환경)를 제공하지 않습니다.\n따라서 이 모듈은 활성화 하더라도 어플리케이션의 형태로 실행되어 화면에 출력되는 바는 없습니다.</string>
+    <string name="no_xposed_modules_found">그 어떠한 Xposed 모듈도 찾을 수 없습니다.</string>
+    <string name="xposed_module_list_updated">Xposed 모듈이 업데이트 되었습니다.\n변경 사항은 시스템을 <b>재시작</b> 해야 반영됩니다.</string>
+    <string name="warning_xposed_min_version">이 모듈은 새로운 Xposed이 요구되며 (%d) 이러한 이유로 활성화 될 수 없습니다.</string>
+    <string name="no_min_version_specified">이 모듈은 요구되는 최소한의 Xposed의 버전이 설정되지 않았습니다.</string>
+    <string name="warning_min_version_too_low">이 모듈은 Xposed 버전 %1$d에 맞춰 제작되었으나 Xposed 버전 %2$d에선 호환되지 않으므로 비활성화 됩니다.</string>
+    <string name="module_launch">모듈 실행</string>
+    <string name="module_download_updates">내려받기 / 업데이트</string>
+    <string name="module_support">지원</string>
+    <string name="module_app_info">모듈에 대한 애플리케이션 정보</string>
+    <string name="module_uninstall">모듈 제거</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">검색</string>
+    <string name="menuReload">새로고침</string>
+    <string name="changes">변경 이력 : </string>
+    <string name="download_author">개발자 : %s</string>
+    <string name="download_unknown_author">정의된 개발자 이름 없음.</string>
+    <string name="download_status_installed">설치됨 (version %s)</string>
+    <string name="download_status_update_available">업데이트가 가능합니다. (버전 %1$s \u2192 버전 %2$s)</string>
+    <string name="download_timestamps">등록 날짜 : %1$s \u00b7 업데이트 날짜 : %2$s</string>
+    <string name="download_sorting_title">정렬 순서</string>
+    <string name="download_sorting_status">상태 순서(설치/비설치)로 정렬</string>
+    <string name="download_sorting_updated">최신의 업데이트 순서로 정렬</string>
+    <string name="download_sorting_created">모듈이 Xposed Repository 서버에 등록된 순서로 정렬</string>
+    <string name="download_section_framework">설치된 설치 도구</string>
+    <string name="download_section_update_available">업데이트가 가능한 모듈들</string>
+    <string name="download_section_installed">설치된 모듈들</string>
+    <string name="download_section_not_installed">설치되지 않은 모듈들</string>
+    <string name="download_section_24h">지난 24시간 동안 등록된 모듈들</string>
+    <string name="download_section_7d">지난 7일간 등록된 모듈들</string>
+    <string name="download_section_30d">지난 30일동안 등록된 모듈들</string>
+    <string name="download_section_older">30일보다 더 오래 전에 등록된 모듈들</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">내려받기</string>
+    <string name="settings_group_experimental">실험적인 기능 들</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">내장 메모리에 내역을 저장할 수 없습니다 : </string>
+    <string name="sdcard_not_writable">내장 메모리에 데이터를 쓸 수 없거나 내장 메모리를 찾을 수 없습니다.</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">대표 개발자 :</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> 와 <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">번역자 : </string>
+    <string name="translator">김민우(marbulas@XDA / Stan Wayne on NAVER)</string>
+    <string name="about_version_label">이 설치 도구의 버전 :</string>
+    <string name="about_source_label">소스 코드 :</string>
+    <string name="about_libraries_label">사용된 라이브러리들 :</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">내려받기</string>
+    <string name="download_view_install">설치</string>
+    <string name="download_view_cancel">취소</string>
+    <string name="download_view_no_url">내려받기에 필요한 URL이 사용 가능하지 않습니다.</string>
+    <string name="download_view_running">내려받기가 진행중입니다.\n(전체 %2$,dKB 중 %1$,dKB를 받음.)</string>
+    <string name="download_view_waiting">내려받기가 시작되길 기다리고 있습니다.</string>
+    <string name="download_view_successful">내려받기가 완료되었습니다.</string>
+    <string name="download_view_failed">다운로드가 실패했습니다. (에러코드 %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">MD5 무결성 검사를 통과하지 못했습니다.\n(현재 내려받은 것 : %1$s, 내려받았어야 할 것 : %2$s)</string>
+    <string name="download_could_not_read_file">내려받은 파일을 읽을 수 없습니다 : %s</string>
+    <string name="download_no_valid_apk">내려받은 파일이 올바른 앱이 아니거나 호환되지 않습니다.</string>
+    <string name="download_incorrect_package_name">앱의 이름이 올바르지 않습니다. (현재 내려받은 것 : %1$s, 내려받았어야 할 것 : %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">%1$s의 내려받기가 실패했습니다 : %2$d (%3$s)</string>
+    <string name="repo_download_failed">%1$s의 내려받기가 실패했습니다 : %2$s</string>
+    <string name="repo_load_failed">%1$s로부터 정보를 읽어들이지 못했습니다 : \n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+
+</resources>

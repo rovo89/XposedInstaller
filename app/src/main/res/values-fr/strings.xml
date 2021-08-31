@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General/various strings -->
+    <string name="menuSend">Envoyer</string>
+    <string name="menuSaveToSd">Sauver sur la carte SD</string>
+    <string name="xposed_not_active">"La dernière version d'Xposed est inactive. Avez-vous installé le Framework et redémarré ?"</string>
+
+    <!-- Welcome screen / main sections -->
+    <string name="welcome_framework_update_available">Une mise à jour du Framework Xposed est disponible.</string>
+
+    <!-- Navigation drawer items -->
+
+    <!-- Installer tab -->
+    <string name="install_update">Installer/Mettre à jour</string>
+    <string name="uninstall">Désinstaller</string>
+    <string name="soft_reboot">Redémarrage doux</string>
+    <string name="reboot">Redémarrer</string>
+    <string name="reboot_failed">Le redémarrage a échoué. Veuillez utiliser la fonction redémarrage de l\'appareil.</string>
+    <string name="auto_flash_note">%s sera automatiquement flashé dès que vous aurez appuyé sur "OK".</string>
+    <string name="reboot_confirmation">Voulez-vous redémarrer maintenant ?</string>
+    <string name="install_warning_title">Soyez prudent !</string>
+    <string name="install_warning">Dans certains cas, votre appareil pourrait ne plus démarrer après avoir installé le Framework Xposed.\n\nSi vous n\'avez jamais entendu parler de \"soft brick\" et de \"bootloop\" avant ou si vous ne savez pas comment récupérer d\'une telle situation, n\'installez <b>PAS</b> le Framework Xposed !\n\nDans tous les cas, il est fortement recommandé d\'avoir une sauvegarde récente.</string>
+    <string name="dont_show_again">Ne plus afficher</string>
+    <string name="install_known_issue">Il semble y avoir un problème connu (\"%s\") avec votre ROM. Installer le Framework Xposed pourrait ne pas fonctionner ou provoquer des problèmes. Appuyez ici pour plus de détails.</string>
+
+    <!-- File operations -->
+    <string name="root_failed">Échec accès root.\n\nAssurez-vous que votre appareil soit correctement rooté et que vous n\'ayez pas bloqué les commandes shell.</string>
+    <string name="file_copying">Copie de %s&#8230;</string>
+    <string name="file_copy_failed">Impossible de copier de %1$s à %2$s</string>
+    <string name="file_creating_directory">Création du répertoire %s&#8230;</string>
+    <string name="file_create_directory_failed">Impossible de créer le répertoire %s</string>
+    <string name="file_writing_recovery_command">Écriture de la commande recovery&#8230;</string>
+    <string name="file_writing_recovery_command_failed">L\'écriture de la commande recovery a échoué. Veuillez utiliser une autre méthode d\'installation.</string>
+    <string name="file_done">Fait ! Les modifications prendront effet au redémarrage.</string>
+
+    <!-- Modules tab -->
+    <string name="module_is_not_activated_yet">Le module Xposed n\'est pas encore activé</string>
+    <string name="module_is_not_activated_yet_detailed">%s a été installé mais n\'est pas encore activé.</string>
+    <string name="activate_and_reboot">Activer et redémarrer</string>
+    <string name="module_activated">Module Xposed activé</string>
+    <string name="module_empty_description">(aucune description)</string>
+    <string name="module_no_ui">Ce module ne fournit pas d\'interface utilisateur</string>
+    <string name="no_xposed_modules_found">Aucun module Xposed trouvé !</string>
+    <string name="xposed_module_list_updated">La liste des modules Xposed a été rafraîchie\nLes changements seront actifs après redémarrage</string>
+    <string name="xposed_module_updated_notification_title">Module Xposed mis à jour</string>
+    <string name="xposed_module_updated_notification">Redémarrez pour appliquer les modifications</string>
+    <string name="warning_xposed_min_version">Ce module nécessite une nouvelle version de Xposed (%d) et ne peut donc pas être activé.</string>
+    <string name="no_min_version_specified">Ce module ne spécifie pas la version de Xposed dont il a besoin.</string>
+    <string name="warning_min_version_too_low">Ce module a été créé pour Xposed version %1$d, mais du fait de changements incompatibles dans la version %2$d, il a été désactivé.</string>
+    <string name="module_launch">Lancer l\'UI</string>
+    <string name="module_download_updates">Installer/Mettre à jour</string>
+    <string name="module_support">Support</string>
+    <string name="module_app_info">Info appli</string>
+    <string name="module_uninstall">Désinstaller</string>
+
+    <!-- Download tab -->
+    <string name="menuSearch">Chercher</string>
+    <string name="menuReload">Recharger</string>
+    <string name="changes">Modifications:</string>
+    <string name="download_details_page_description">Description</string>
+    <string name="download_details_page_versions">Versions</string>
+    <string name="download_details_page_settings">Paramètres</string>
+    <string name="reltype_stable">Stable</string>
+    <string name="reltype_stable_summary">Stable (risque de bugs faible)</string>
+    <string name="reltype_beta">Bêta</string>
+    <string name="reltype_beta_summary">Bêta (quelques bugs à prévoir)</string>
+    <string name="reltype_experimental">Expérimental</string>
+    <string name="reltype_experimental_summary">Expérimental (risque de bugs élevé)</string>
+    <string name="reltype_use_global_summary">Utiliser paramètre général</string>
+    <string name="download_author">par %s</string>
+    <string name="download_unknown_author">auteur inconnu</string>
+    <string name="download_status_installed">Installé (version %s)</string>
+    <string name="download_status_update_available">Mise à jour disponible (version %1$s \u2192 %2$s)</string>
+    <string name="download_timestamps">Ajouté le %1$s \u00b7 Mis à jour le %2$s</string>
+    <string name="download_sorting_title">Ordre de tri</string>
+    <string name="download_sorting_status">Trier par statut</string>
+    <string name="download_sorting_updated">Trier par date de mise à jour</string>
+    <string name="download_sorting_created">Trier par date de création</string>
+    <string name="download_section_framework">Framework</string>
+    <string name="download_section_update_available">Mise à jour disponible</string>
+    <string name="download_section_installed">Installé</string>
+    <string name="download_section_not_installed">Non installé</string>
+    <string name="download_section_24h">Dernières 24 heures</string>
+    <string name="download_section_7d">Semaine dernière</string>
+    <string name="download_section_30d">Mois dernier</string>
+    <string name="download_section_older">Plus ancien</string>
+    <string name="download_details_not_found">Aucun module avec le nom de paquet \"%s\" dans le dépôt.</string>
+    <string name="download_no_versions">L\'auteur n\'a encore rien mis en ligne.</string>
+    <string name="download_test_version_not_shown">Une version d\'essai est disponible, mais elle n\'apparaît pas en raison de vos paramètres (généraux ou du module).</string>
+
+    <!-- Settings tab -->
+    <string name="settings_group_download">Téléchargements</string>
+    <string name="settings_release_type">Versions à afficher</string>
+    <string name="settings_group_experimental">Expérimental</string>
+    <string name="settings_disable_resources">Désactiver \"resource hooks\"</string>
+    <string name="settings_disable_resources_summary">Solution pour éviter les conflits avec les moteurs de thème\n<b>ATTENTION:</b> Les modules qui essaient de modifier les ressources ne fonctionneront pas si vous activez ceci.</string>
+    <string name="settings_group_app">Application</string>
+    <string name="settings_theme">Thème</string>
+    <string name="settings_theme_light">Clair</string>
+    <string name="settings_theme_dark">Sombre</string>
+    <string name="settings_theme_black">Noir (approprié pour les écrans AMOLED)</string>
+
+    <!-- Support tab -->
+
+    <!-- Logs tab  -->
+    <string name="logs_save_failed">Impossible d\'écrire le journal:</string>
+    <string name="sdcard_not_writable">Carte SD non trouvée ou en lecture seule</string>
+    <string name="menuClearLog">Effacer le journal</string>
+    <string name="logs_cleared">Journal effacé</string>
+    <string name="logs_clear_failed">Impossible d\'effacer le journal:</string>
+    <string name="log_is_empty">Journal vide</string>
+
+    <!-- About tab -->
+    <string name="about_developers_label">Développeurs principaux:</string>
+    <string name="about_developers"><a href="http://forum.xda-developers.com/member.php?u=4419114">rovo89</a> et <a href="http://forum.xda-developers.com/member.php?u=4322181">Tungstwenty</a></string>
+    <string name="about_translator_label">Traducteur:</string>
+    <string name="translator">tonymanou</string>
+    <string name="about_version_label">Version de l\'application:</string>
+    <string name="about_source_label">Code source:</string>
+    <string name="about_libraries_label">Librairies utilisées:</string>
+
+    <!-- DownloadView -->
+    <string name="download_view_download">Télécharger</string>
+    <string name="download_view_install">Installer</string>
+    <string name="download_view_cancel">Annuler</string>
+    <string name="download_view_no_url">Lien de téléchargement manquant</string>
+    <string name="download_view_running">Téléchargement en cours (%1$,d sur %2$,d ko)</string>
+    <string name="download_view_waiting">Téléchargement en attente</string>
+    <string name="download_view_successful">Téléchargement réussi</string>
+    <string name="download_view_failed">Téléchargement échoué (erreur %d)</string>
+
+    <!-- DownloadUtils -->
+    <string name="download_md5sum_incorrect">Somme de contrôle MD5 incorrecte (téléchargée: %1$s, attendue: %2$s)</string>
+    <string name="download_could_not_read_file">Impossible de lire le fichier téléchargé: %s</string>
+    <string name="download_no_valid_apk">Le fichier téléchargé n\'est pas un APK valide (ou est incompatible)</string>
+    <string name="download_incorrect_package_name">Nom de paquet incorrect (téléchargé: %1$s, attendu: %2$s)</string>
+
+    <!-- RepoLoader -->
+    <string name="repo_download_failed_http">Téléchargement %1$s échoué: %2$d (%3$s)</string>
+    <string name="repo_download_failed">Téléchargement %1$s échoué: %2$s</string>
+    <string name="repo_load_failed">Impossible de charger le dépôt depuis %1$s:\n%2$s</string>
+
+    <!-- Most of these belong to currently hidden features -->
+
+</resources>
